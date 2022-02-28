@@ -302,6 +302,15 @@ const AccountMenu = function () {
                   </span>
                 </li>
                 <li>
+                  <span onClick={() => navigateTo(`/build-ship`)}>
+                    <span>
+                      {' '}
+                      <FontAwesomeIcon icon={faShoppingBasket} />{' '}
+                    </span>
+                    <span>Build Ship</span>
+                  </span>
+                </li>
+                <li>
                   <span onClick={clearCookies}>
                     <span>
                       {' '}
