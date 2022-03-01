@@ -232,13 +232,13 @@
     },
     {
       "name": "Cronos Slothty",
-      "slug": "cronos-slothy",
+      "slug": "cronos-slothty",
       "multiToken": false,
       "address": "0x94fCEDf4e07f1c3906195FA76852675590886Aaa",
       "onChain": false,
       "listable": true,
       "metadata": {
-        "slug": "cronos-slothy",
+        "slug": "cronos-slothty",
         "description": "",
         "verified": true,
         "avatar": "/img/collections/croslothy/avatar.gif",
@@ -951,13 +951,13 @@
     },
     {
       "name": "Cronos Slothty Xmas",
-      "slug": "cronos-slothy-xmas",
+      "slug": "cronos-slothty-xmas",
       "multiToken": false,
       "address": "0x303D2a6143cFc67C26Db2879eA955f7d076c4cBc",
       "onChain": false,
       "listable": true,
       "metadata": {
-        "slug": "cronos-slothy-xmas",
+        "slug": "cronos-slothty-xmas",
         "description": "",
         "verified": true,
         "maxSupply": 50,
@@ -1107,7 +1107,8 @@
         "website": "https://cronosmb.com/",
         "twitter": "https://twitter.com/MonkeyCronos",
         "discord": "https://discord.gg/qXxkanCKBB",
-        "medium": "https://medium.com/cronos-monkey-business"
+        "medium": "https://medium.com/cronos-monkey-business",
+        "staking": "crodex"
       }
     },
     {
@@ -1147,7 +1148,8 @@
         "website": "https://crougar.com/",
         "twitter": "https://twitter.com/CROugarNFT",
         "discord": "https://discord.gg/G8Puur6Qea",
-        "medium": "https://medium.com/@crougar"
+        "medium": "https://medium.com/@crougar",
+        "staking": "crodex"
       }
     },
     {
@@ -1237,7 +1239,8 @@
         "website": "https://crodex.app/",
         "twitter": "https://twitter.com/crodexapp",
         "discord": "https://discord.gg/7HwpTF63y5",
-        "telegram": "https://t.me/crodexofficial"
+        "telegram": "https://t.me/crodexofficial",
+        "staking": "crodex"
       }
     },
     {
@@ -1537,7 +1540,8 @@
         "maxSupply": 1500,
         "website": "https://www.cronogods.com/",
         "twitter": "https://twitter.com/CronoGods",
-        "discord": "https://discord.gg/nQVhNmkY8g"
+        "discord": "https://discord.gg/nQVhNmkY8g",
+        "staking": "crodex"
       }
     },
     {
@@ -1943,7 +1947,8 @@
         "twitter": "https://twitter.com/MetaversePixels",
         "website": "https://www.metaversepixels.app",
         "discord": "https://discord.gg/3gA2jnEGPA",
-        "telegram": "https://t.me/metaversepixels"
+        "telegram": "https://t.me/metaversepixels",
+        "staking": "crodex"
       }
     },
     {
@@ -2184,14 +2189,14 @@
       }
     },
     {
-      "name": "Slothty",
-      "slug": "slothty",
+      "name": "3DSlothty",
+      "slug": "3d-slothty",
       "multiToken": false,
       "address": "0x966B18Afe9D9062d611D0C246A1959b7a25FCdDe",
       "onChain": false,
       "listable": false,
       "metadata": {
-        "slug": "slothty",
+        "slug": "3d-slothty",
         "description": "",
         "verified": true,
         "avatar": "/img/collections/slothty/avatar.png",
@@ -2222,6 +2227,17 @@
         "twitter": "https://twitter.com/chronoswap",
         "discord": "https://discord.gg/chronoswap",
         "medium": "https://medium.com/@chronoswap"
+      }
+    },
+    {
+      "name" : "Pixel City",
+      "slug" : "pixel-city",
+      "multiToken" : false,
+      "address" : "0xAECD843fC3677a2d3Fc142b9C165977D57fE4C40",
+      "onChain" : false,
+      "listable" : false,
+      "metadata" : {
+        "slug" : "pixel-city"
       }
     }
   ],
@@ -3066,21 +3082,22 @@
     },
     {
       "id": 29,
-      "slug": "slothty",
-      "imgNft": "/img/collections/drops/card.webp",
-      "imgPreview": "/img/collections/drops/card.webp",
+      "slug": "3d-slothty",
+      "imgNft": "/img/drops/slothty/card.webp",
+      "imgPreview": "/img/drops/slothty/card.webp",
       "imgAvatar": "/img/collections/slothty/avatar.png",
-      "imgBanner": "/img/collections/drops/banner.webp",
-      "title": "Slothty",
-      "subtitle": "",
-      "description": "",
+      "imgBanner": "/img/drops/slothty/banner.webp",
+      "title": "3DSlothty",
+      "subtitle": "3DSLOTHTY is an 8,888 unique 3D PFP NFTs with more than 450 traits that we are developing hard on it with good design, exclusively on Cronos chain.",
+      "description": "3DSLOTHTY is an 8,888 unique 3D PFP NFTs with more than 450 traits that we are developing hard on it with good design, exclusively on Cronos chain. Our Sloth will access you to Mutant Sloth. You will need to stake your Sloth to get a serum for Mutant Sloth, Sloth robot (pets) airdrops, and you will get free characters on Sloth world MMORPG TURNBASED OpenWorld, Sloth Metaverse, and our IDO in the future.",
       "author": { "name": "SLOTHTY", "link": "https://croslothty.com/" },
       "address": "0x966B18Afe9D9062d611D0C246A1959b7a25FCdDe",
       "maxMintPerTx": 5,
       "maxMintPerAddress": 50,
       "totalSupply": 8888,
-      "cost": "5",
-      "memberCost": "10",
+      "cost": "299",
+      "memberCost": "249",
+      "whitelistCost": "249",
       "foundersOnly": false,
       "start": 1646179200000,
       "end": null,
@@ -3090,7 +3107,7 @@
       "complete": false
     },
     {
-      "id": "30",
+      "id": 30,
       "slug": "crognomides",
       "imgNft": "/img/drops/crognomides/drop.webp",
       "imgPreview": "/img/drops/crognomides/drop.webp",
