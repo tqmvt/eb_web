@@ -207,10 +207,11 @@ const Drop = () => {
       } else if (isCreaturesDrop(drop.address)) {
         let readContract = await new ethers.Contract(currentDrop.address, abi, readProvider);
         const infos = await readContract.getInfo();
+        const offsetSupply = infos.totalSupply.add(212);
         const canMint = user.address ? await readContract.canMint(user.address) : 0;
-        setDropInfo(currentDrop, infos.totalSupply);
+        setDropInfo(currentDrop, offsetSupply);
         setCanMintQuantity(canMint);
-        calculateStatus(currentDrop, infos.totalSupply, currentDrop.totalSupply);
+        calculateStatus(currentDrop, offsetSupply, currentDrop.totalSupply);
       } else {
         if (currentDrop.address && (isUsingDefaultDropAbi(currentDrop.abi) || isUsingAbiFile(currentDrop.abi))) {
           let readContract = await new ethers.Contract(currentDrop.address, abi, readProvider);
