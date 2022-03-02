@@ -151,7 +151,7 @@ const Drop = () => {
     let abi = currentDrop.abi;
     if (isUsingAbiFile(abi)) {
       const abiJson = require(`../../Assets/abis/${currentDrop.abi}`);
-      abi = abiJson.abi;
+      abi = abiJson.abi ?? abiJson;
     } else if (isUsingDefaultDropAbi(abi)) {
       abi = EbisuDropAbi;
     }
@@ -560,180 +560,234 @@ const Drop = () => {
           </div>
         </section>
 
-        <section className="container no-top">
-          <div className="row mt-md-5 pt-md-4">
-            <div className="col-md-6 text-center">
-              <img src={drop.imgNft} className="img-fluid img-rounded mb-sm-30" alt={drop.title} />
-            </div>
-            <div className="col-md-6">
-              <div className="item_info">
-                <h2>{drop.title}</h2>
-
-                {status === statuses.NOT_STARTED || drop.complete ? (
-                  <div>
-                    <div className="fs-6 fw-bold mb-1">Supply: {maxSupply.toString()}</div>
-                  </div>
-                ) : (
-                  <div>
-                    <div className="fs-6 fw-bold mb-1 text-end">
-                      {percentage(totalSupply.toString(), maxSupply.toString())}% minted (
-                      {ethers.utils.commify(totalSupply.toString())} / {ethers.utils.commify(maxSupply.toString())})
-                    </div>
-                    <ProgressBar
-                      now={percentage(totalSupply.toString(), maxSupply.toString())}
-                      style={{ height: '4px' }}
-                    />
-                  </div>
-                )}
-
-                <div className="mt-3">{newlineText(drop.description)}</div>
-
-                {drop.disclaimer && (
-                  <p className="fw-bold text-center my-4" style={{ color: 'black' }}>
-                    {drop.disclaimer}
-                  </p>
-                )}
-
-                <div className="d-flex flex-row">
-                  <div className="me-4">
-                    <h6 className="mb-1">Mint Price</h6>
-                    <h5>{regularCost} CRO</h5>
-                    {dropObject?.erc20Cost && dropObject?.erc20Unit && (
-                      <h5>{`${dropObject?.erc20Cost} ${dropObject?.erc20Unit}`}</h5>
-                    )}
-                  </div>
-                  {(memberCost || dropObject?.erc20Cost !== dropObject?.erc20MemberCost) && (
-                    <div className="me-4">
-                      <h6 className="mb-1">Founding Member Price</h6>
-                      <h5>{memberCost} CRO</h5>
-                      {dropObject?.erc20Cost !== dropObject?.erc20MemberCost && (
-                        <h5>{`${dropObject?.erc20MemberCost} ${dropObject?.erc20Unit}`}</h5>
-                      )}
-                    </div>
-                  )}
-                  {whitelistCost > 0 && (
-                    <div className="me-4">
-                      <h6 className="mb-1">Whitelist Price</h6>
-                      <h5>{whitelistCost} CRO</h5>
-                    </div>
-                  )}
-                  {specialWhitelistCost > 0 && (
-                    <div className="me-4">
-                      <h6 className="mb-1">Special Whitelist</h6>
-                      <h5>{specialWhitelistCost} CRO</h5>
-                    </div>
-                  )}
+        {drop.multiMint ?
+          <MultiDrop/>
+          :
+          <section className="container no-top">
+              <div className="row mt-md-5 pt-md-4">
+                <div className="col-md-6 text-center">
+                  <img src={drop.imgNft} className="img-fluid img-rounded mb-sm-30" alt={drop.title}/>
                 </div>
+                <div className="col-md-6">
+                  <div className="item_info">
+                    <h2>{drop.title}</h2>
 
-                {drop.priceDescription && (
-                  <p className="my-2" style={{ color: 'black' }}>
-                    *{drop.priceDescription}
-                  </p>
-                )}
-
-                <div className="spacer-40"></div>
-
-                {status === statuses.LIVE && drop.end && (
-                  <div className="me-4">
-                    <h6 className="mb-1">{status === statuses.EXPIRED ? <>Minting Ended</> : <>Minting Ends</>}</h6>
-                    <h3>{convertTime(drop.end)}</h3>
-                  </div>
-                )}
-                {status === statuses.NOT_STARTED && drop.start && (
-                  <div className="me-4">
-                    <h6 className="mb-1">Minting Starts</h6>
-                    <h3>
-                      {new Date(drop.start).toDateString()}, {new Date(drop.start).toTimeString()}
-                    </h3>
-                  </div>
-                )}
-                {status === statuses.NOT_STARTED && !drop.start && (
-                  <div className="me-4">
-                    <h6 className="mb-1">Minting Starts</h6>
-                    <h3>TBA</h3>
-                  </div>
-                )}
-                {status === statuses.LIVE && !drop.complete && (
-                  <>
-                    {canMintQuantity > 1 && (
-                      <div>
-                        <Form.Label>Quantity</Form.Label>
-                        <Form.Range
-                          value={numToMint}
-                          min="1"
-                          max={canMintQuantity}
-                          onChange={(e) => setNumToMint(e.target.value)}
-                        />
-                      </div>
-                    )}
-                    {dropObject?.referral && (
-                      <Form.Group className="mb-3" controlId="formReferralCode">
-                        <Form.Label>Referral Code</Form.Label>
-                        <Form.Control
-                          onChange={handleChangeReferralCode}
-                          type="text"
-                          placeholder="Enter Referral Code"
-                        />
-                        <Form.Text className="text-muted" />
-                      </Form.Group>
+                    {status === statuses.NOT_STARTED || drop.complete ? (
+                        <div>
+                          <div className="fs-6 fw-bold mb-1">Supply: {maxSupply.toString()}</div>
+                        </div>
+                    ) : (
+                        <div>
+                          <div className="fs-6 fw-bold mb-1 text-end">
+                            {percentage(totalSupply.toString(), maxSupply.toString())}% minted (
+                            {ethers.utils.commify(totalSupply.toString())} / {ethers.utils.commify(maxSupply.toString())})
+                          </div>
+                          <ProgressBar
+                              now={percentage(totalSupply.toString(), maxSupply.toString())}
+                              style={{height: '4px'}}
+                          />
+                        </div>
                     )}
 
-                    {canMintQuantity > 0 && (
-                      <div className="d-flex flex-row mt-5">
-                        <button className="btn-main lead mb-5 mr15" onClick={mintNow} disabled={minting}>
-                          {minting ? (
-                            <>
-                              Minting...
-                              <Spinner animation="border" role="status" size="sm" className="ms-1">
-                                <span className="visually-hidden">Loading...</span>
-                              </Spinner>
-                            </>
-                          ) : (
-                            <>{drop.maxMintPerTx && drop.maxMintPerTx > 1 ? <>Mint {numToMint}</> : <>Mint</>}</>
-                          )}
-                        </button>
-                        {drop.erc20Unit && (
-                          <button
-                            className="btn-main lead mb-5 mr15 mx-1"
-                            onClick={() => mintNow(true)}
-                            disabled={mintingERC20}
-                          >
-                            {mintingERC20 ? (
-                              <>
-                                Minting...
-                                <Spinner animation="border" role="status" size="sm" className="ms-1">
-                                  <span className="visually-hidden">Loading...</span>
-                                </Spinner>
-                              </>
-                            ) : (
-                              <>
-                                {drop.maxMintPerTx && drop.maxMintPerTx > 1 ? (
-                                  <>
-                                    Mint {numToMint} with {drop.erc20Unit}
-                                  </>
-                                ) : (
-                                  <>Mint with {drop.erc20Unit}</>
-                                )}
-                              </>
-                            )}
-                          </button>
+                    <div className="mt-3">{newlineText(drop.description)}</div>
+
+                    {drop.disclaimer && (
+                        <p className="fw-bold text-center my-4" style={{color: 'black'}}>
+                          {drop.disclaimer}
+                        </p>
+                    )}
+
+                    <div className="d-flex flex-row">
+                      <div className="me-4">
+                        <h6 className="mb-1">Mint Price</h6>
+                        <h5>{regularCost} CRO</h5>
+                        {dropObject?.erc20Cost && dropObject?.erc20Unit && (
+                            <h5>{`${dropObject?.erc20Cost} ${dropObject?.erc20Unit}`}</h5>
                         )}
                       </div>
+                      {(memberCost || dropObject?.erc20Cost !== dropObject?.erc20MemberCost) && (
+                          <div className="me-4">
+                            <h6 className="mb-1">Founding Member Price</h6>
+                            <h5>{memberCost} CRO</h5>
+                            {dropObject?.erc20Cost !== dropObject?.erc20MemberCost && (
+                                <h5>{`${dropObject?.erc20MemberCost} ${dropObject?.erc20Unit}`}</h5>
+                            )}
+                          </div>
+                      )}
+                      {whitelistCost > 0 && (
+                          <div className="me-4">
+                            <h6 className="mb-1">Whitelist Price</h6>
+                            <h5>{whitelistCost} CRO</h5>
+                          </div>
+                      )}
+                      {specialWhitelistCost > 0 && (
+                          <div className="me-4">
+                            <h6 className="mb-1">Special Whitelist</h6>
+                            <h5>{specialWhitelistCost} CRO</h5>
+                          </div>
+                      )}
+                    </div>
+
+                    {drop.priceDescription && (
+                        <p className="my-2" style={{color: 'black'}}>
+                          *{drop.priceDescription}
+                        </p>
                     )}
-                    {canMintQuantity === 0 && !user.address && !drop.complete && (
-                      <p className="mt-5">CONNECT WALLET TO MINT</p>
+
+                    <div className="spacer-40"></div>
+
+                    {status === statuses.LIVE && drop.end && (
+                        <div className="me-4">
+                          <h6 className="mb-1">{status === statuses.EXPIRED ? <>Minting Ended</> : <>Minting
+                            Ends</>}</h6>
+                          <h3>{convertTime(drop.end)}</h3>
+                        </div>
                     )}
-                  </>
-                )}
-                {status === statuses.SOLD_OUT && <p className="mt-5">MINT HAS SOLD OUT</p>}
-                {status === statuses.EXPIRED && <p className="mt-5">MINT HAS ENDED</p>}
+                    {status === statuses.NOT_STARTED && drop.start && (
+                        <div className="me-4">
+                          <h6 className="mb-1">Minting Starts</h6>
+                          <h3>
+                            {new Date(drop.start).toDateString()}, {new Date(drop.start).toTimeString()}
+                          </h3>
+                        </div>
+                    )}
+                    {status === statuses.NOT_STARTED && !drop.start && (
+                        <div className="me-4">
+                          <h6 className="mb-1">Minting Starts</h6>
+                          <h3>TBA</h3>
+                        </div>
+                    )}
+                    {status === statuses.LIVE && !drop.complete && (
+                        <>
+                          {canMintQuantity > 1 && (
+                              <div>
+                                <Form.Label>Quantity</Form.Label>
+                                <Form.Range
+                                    value={numToMint}
+                                    min="1"
+                                    max={canMintQuantity}
+                                    onChange={(e) => setNumToMint(e.target.value)}
+                                />
+                              </div>
+                          )}
+                          {dropObject?.referral && (
+                              <Form.Group className="mb-3" controlId="formReferralCode">
+                                <Form.Label>Referral Code</Form.Label>
+                                <Form.Control
+                                    onChange={handleChangeReferralCode}
+                                    type="text"
+                                    placeholder="Enter Referral Code"
+                                />
+                                <Form.Text className="text-muted"/>
+                              </Form.Group>
+                          )}
+
+                          {canMintQuantity > 0 && (
+                              <div className="d-flex flex-row mt-5">
+                                <button className="btn-main lead mb-5 mr15" onClick={mintNow} disabled={minting}>
+                                  {minting ? (
+                                      <>
+                                        Minting...
+                                        <Spinner animation="border" role="status" size="sm" className="ms-1">
+                                          <span className="visually-hidden">Loading...</span>
+                                        </Spinner>
+                                      </>
+                                  ) : (
+                                      <>{drop.maxMintPerTx && drop.maxMintPerTx > 1 ? <>Mint {numToMint}</> : <>Mint</>}</>
+                                  )}
+                                </button>
+                                {drop.erc20Unit && (
+                                    <button
+                                        className="btn-main lead mb-5 mr15 mx-1"
+                                        onClick={() => mintNow(true)}
+                                        disabled={mintingERC20}
+                                    >
+                                      {mintingERC20 ? (
+                                          <>
+                                            Minting...
+                                            <Spinner animation="border" role="status" size="sm" className="ms-1">
+                                              <span className="visually-hidden">Loading...</span>
+                                            </Spinner>
+                                          </>
+                                      ) : (
+                                          <>
+                                            {drop.maxMintPerTx && drop.maxMintPerTx > 1 ? (
+                                                <>
+                                                  Mint {numToMint} with {drop.erc20Unit}
+                                                </>
+                                            ) : (
+                                                <>Mint with {drop.erc20Unit}</>
+                                            )}
+                                          </>
+                                      )}
+                                    </button>
+                                )}
+                              </div>
+                          )}
+                          {canMintQuantity === 0 && !user.address && !drop.complete && (
+                              <p className="mt-5">CONNECT WALLET TO MINT</p>
+                          )}
+                        </>
+                    )}
+                    {status === statuses.SOLD_OUT && <p className="mt-5">MINT HAS SOLD OUT</p>}
+                    {status === statuses.EXPIRED && <p className="mt-5">MINT HAS ENDED</p>}
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-        </section>
+            </section>
+        }
       </>
       <Footer />
     </div>
   );
 };
 export default Drop;
+
+
+const MultiDrop = () => {
+
+  return (
+    <>
+      <div className="card-group">
+        <div className="d-item col-xs-12 col-sm-3 mb-4 px-2">
+          <MultiDropCard />
+          <MultiDropCard />
+          <MultiDropCard />
+        </div>
+      </div>
+    </>
+  );
+
+};
+
+const MultiDropCard = () => {
+  const [minting, setMinting] = useState(false);
+  const [numToMint, setNumToMint] = useState(1);
+
+  const mintNow = async () => {
+
+  }
+
+  return (
+      <div className="card eb-nft__card h-100 shadow">
+        <img
+            src={''}
+            className={`card-img-top`}
+        />
+        <div className="card-body d-flex flex-column">
+          <button className="btn-main lead mb-5 mr15" onClick={mintNow} disabled={minting}>
+            {minting ? (
+                <>
+                  Minting...
+                  <Spinner animation="border" role="status" size="sm" className="ms-1">
+                    <span className="visually-hidden">Loading...</span>
+                  </Spinner>
+                </>
+            ) : (
+                <>Mint {numToMint}</>
+            )}
+          </button>
+        </div>
+      </div>
+  );
+}
