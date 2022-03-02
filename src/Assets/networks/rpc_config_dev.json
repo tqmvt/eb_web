@@ -2254,7 +2254,7 @@
       "name": "Meta Cyborgs",
       "slug": "meta-cyborgs",
       "multiToken": false,
-      "address": "",
+      "address": "0xd1dd28f2B33bb2f9f23bac71C5221eF5907A738d",
       "onChain": false,
       "listable": false,
       "metadata": {
