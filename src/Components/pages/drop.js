@@ -751,7 +751,11 @@ const MultiDrop = () => {
       <div className="card-group">
         <div className="d-item col-xs-12 col-sm-3 mb-4 px-2">
           <MultiDropCard />
+        </div>
+        <div className="d-item col-xs-12 col-sm-3 mb-4 px-2">
           <MultiDropCard />
+        </div>
+        <div className="d-item col-xs-12 col-sm-3 mb-4 px-2">
           <MultiDropCard />
         </div>
       </div>
