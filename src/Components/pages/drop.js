@@ -571,7 +571,7 @@ const Drop = () => {
 
                 {status === statuses.NOT_STARTED || drop.complete ? (
                   <div>
-                    <div className="fs-6 fw-bold mb-1">Supply: {maxSupply.toString()}</div>
+                    <div className="fs-6 fw-bold mb-1">Supply: {ethers.utils.commify(maxSupply.toString())}</div>
                   </div>
                 ) : (
                   <div>
