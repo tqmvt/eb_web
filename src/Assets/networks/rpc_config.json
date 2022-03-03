@@ -2287,7 +2287,7 @@
       "multiToken": false,
       "address": "",
       "onChain": false,
-      "listable": true,
+      "listable": false,
       "metadata": {
         "description": "",
         "verified": true,
