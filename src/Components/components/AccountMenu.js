@@ -112,14 +112,25 @@ const AccountMenu = function () {
         dispatch(onLogout());
       }
     }
-
     if (
       localStorage.getItem('WEB3_CONNECT_CACHED_PROVIDER') ||
       window.ethereum ||
       localStorage.getItem('DeFiLink_session_storage_extension')
     ) {
-      if (!user.provider) dispatch(connectAccount());
+      if (!user.provider) {
+        if (window.navigator.userAgent.includes("Crypto.com DeFiWallet")) {
+          dispatch(connectAccount("defi"));
+        } else {
+          dispatch(connectAccount());
+        }
+      }
     }
+    if (!user.provider) {
+      if (window.navigator.userAgent.includes("Crypto.com DeFiWallet")) {
+        dispatch(connectAccount("defi"));
+      }
+    }
+
     // eslint-disable-next-line
   }, []);
 

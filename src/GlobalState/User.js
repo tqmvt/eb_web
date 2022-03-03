@@ -9,7 +9,8 @@ import Web3Modal from 'web3modal';
 
 import detectEthereumProvider from '@metamask/detect-provider';
 import { DeFiWeb3Connector } from 'deficonnect';
-import WalletConnectProvider from '@deficonnect/web3-provider';
+import WalletConnectProvider from '@walletconnect/web3-provider';
+import * as DefiWalletConnectProvider from '@deficonnect/web3-provider';
 import cdcLogo from '../Assets/cdc_logo.svg';
 import {getNftRankings, getNftSalesForAddress, getNftsForAddress, getUnfilteredListingsForAddress} from '../core/api';
 import { toast } from 'react-toastify';
@@ -305,7 +306,7 @@ export const updateListed =
   };
 
 export const connectAccount =
-  (firstRun = false) =>
+  (type = "") =>
   async (dispatch) => {
     const providerOptions = {
       injected: {
@@ -323,7 +324,7 @@ export const connectAccount =
           description: 'Connect with the CDC DeFi Wallet',
         },
         options: {},
-        package: WalletConnectProvider,
+        package: DefiWalletConnectProvider,
         connector: async (ProviderPackage, options) => {
           const connector = new DeFiWeb3Connector({
             supportedChainIds: [25],
@@ -342,6 +343,23 @@ export const connectAccount =
       },
     };
 
+    if (type !== "defi") {
+      providerOptions.walletconnect = {
+        package: WalletConnectProvider, // required
+        options: {
+            chainId: 25,
+            rpc: {
+                25: "https://evm-cronos.crypto.org",
+            },
+            network: 'cronos',
+            metadata: {
+                icons: ["https://ebisusbay.com/vector%20-%20face.svg"],
+                description: "Cronos NFT Marketplace"
+                }
+            }
+          }
+    }
+
     const web3ModalWillShowUp = !localStorage.getItem('WEB3_CONNECT_CACHED_PROVIDER');
 
     if (process.env.NODE_ENV !== 'production') {
@@ -357,7 +375,7 @@ export const connectAccount =
       .connect()
       .then((web3provider) => web3provider)
       .catch((error) => {
-        captureException(error, { extra: { firstRun } });
+        captureException(error, { });
         console.log('Could not get a wallet connection', error);
         return null;
       });
@@ -386,9 +404,6 @@ export const connectAccount =
       const signer = provider.getSigner();
 
       if (!correctChain) {
-        if (firstRun) {
-          dispatch(appAuthInitFinished());
-        }
         await dispatch(setShowWrongChainModal(true));
       }
 
@@ -402,10 +417,6 @@ export const connectAccount =
           correctChain: correctChain,
         })
       );
-      if (firstRun) {
-        dispatch(appAuthInitFinished());
-      }
-
       web3provider.on('DeFiConnectorDeactivate', (error) => {
         dispatch(onLogout());
       });
@@ -483,14 +494,10 @@ export const connectAccount =
     } catch (error) {
       captureException(error, {
         extra: {
-          firstRun,
           WEB3_CONNECT_CACHED_PROVIDER: localStorage.getItem('WEB3_CONNECT_CACHED_PROVIDER'),
           DeFiLink_session_storage_extension: localStorage.getItem('DeFiLink_session_storage_extension'),
         },
       });
-      if (firstRun) {
-        dispatch(appAuthInitFinished());
-      }
       console.log(error);
       console.log('Error connecting wallet!');
       await web3Modal.clearCachedProvider();
