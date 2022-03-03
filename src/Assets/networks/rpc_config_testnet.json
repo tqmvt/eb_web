@@ -13,7 +13,7 @@
   "cronie_contract": "0xe9DCa9E03F31CBD538A19a89eA2cA3684AF2788f",
   "elon_contract": "0x2fE1f2722fa215A68b92aECaD425259C0D645972",
   "ebisu_contract": "0x65A422AB9c95fc94208E010B8d4ab50F7E79af19",
-  "spaceship_contract": "0x2d8796aBBA5eE051EdfCB0f259AB8Cf112BcC8f4",
+  "spaceship_contract": "0x298612FA17a377cc844a6F26C292b460663f38B7",
   "known_tokens": {
     "loot": {
       "name": "LOOT",
@@ -438,6 +438,27 @@
         "twitter": "https://twitter.com/Slothtynft",
         "discord": "http://discord.gg/wkq88dHDyA",
         "telegram": "https://t.me/croslothty"
+      }
+    },
+    {
+      "name": "Crosmonauts Ships",
+      "slug": "crosmonauts-ship",
+      "multiToken": false,
+      "address": "0x298612FA17a377cc844a6F26C292b460663f38B7",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "slug": "crosmonauts-ship",
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/slothty/avatar.png",
+        "card": "/img/collections/slothty/card.webp",
+        "banner": "/img/collections/slothty/banner.webp",
+        "maxSupply": 8430,
+        "website": "",
+        "twitter": "",
+        "discord": "",
+        "telegram": ""
       }
     }
   ],
@@ -1045,7 +1066,7 @@
       "subtitle": "",
       "description": "Spaceship parts are randomly minted, so that its possible to have multiples of some rocket parts and none of others, which motivates trading.",
       "author": { "name": "Crosmonauts Ships", "link": "" },
-      "address": "0xe4754D6ba41CAF589ed36F50808B2A9966f10004",
+      "address": "0x298612FA17a377cc844a6F26C292b460663f38B7",
       "maxMintPerTx": 12,
       "maxMintPerAddress": 50,
       "totalSupply": 8430,
