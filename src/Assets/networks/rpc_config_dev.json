@@ -1124,8 +1124,8 @@
         "card": "/img/collections/cronosmb/card.png",
         "banner": "/img/collections/cronosmb/banner.webp",
         "maxSupply": 1000,
-        "website": "https://cronosmb.com/",
-        "twitter": "https://twitter.com/MonkeyCronos",
+        "website": "https://cronospb.com/",
+        "twitter": "https://twitter.com/PrimateCronos",
         "discord": "https://discord.gg/qXxkanCKBB",
         "medium": "https://medium.com/cronos-monkey-business",
         "staking": "crodex"
@@ -1783,8 +1783,8 @@
         "card": "/img/collections/cronosmb/special/card.png",
         "banner": "/img/collections/cronosmb/banner.webp",
         "maxSupply": 75,
-        "website": "https://cronosmb.com",
-        "twitter": "https://twitter.com/MonkeyCronos",
+        "website": "https://cronospb.com",
+        "twitter": "https://twitter.com/PrimateCronos",
         "discord": "https://discord.gg/qXxkanCKBB"
       }
     },
@@ -2279,6 +2279,26 @@
       "listable" : false,
       "metadata" : {
         "slug" : "pixel-city"
+      }
+    },
+    {
+      "name": "Cronos Gorilla Business",
+      "slug": "cronos-gorilla-business",
+      "multiToken": false,
+      "address": "",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/cronosmb/special/avatar.png",
+        "card": "/img/collections/cronosmb/gorilla/card.jpeg",
+        "banner": "/img/collections/cronosmb/gorilla/banner.webp",
+        "maxSupply": 6100,
+        "website": "https://cronospb.com/",
+        "twitter": "https://twitter.com/PrimateCronos",
+        "discord": "https://discord.gg/qXxkanCKBB",
+        "medium": "https://medium.com/cronos-monkey-business"
       }
     }
   ],
@@ -3069,7 +3089,7 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false
+      "complete": true
     },
     {
       "id": 27,
@@ -3165,7 +3185,7 @@
       "memberCost": "50",
       "whitelistCost": "50",
       "foundersOnly": false,
-      "start": null,
+      "start": 1646427600000,
       "end": null,
       "referral": false,
       "is1155": false,
@@ -3201,7 +3221,7 @@
       "complete": false
     },
     {
-      "id": 31,
+      "id": 32,
       "slug": "alie-nft",
       "imgNft": "/img/drops/alienft/drop.gif",
       "imgPreview": "/img/drops/alienft/drop.png",
@@ -3225,6 +3245,34 @@
       "is1155": false,
       "published": true,
       "complete": false
+    },
+    {
+      "id": 33,
+      "slug": "cronos-gorilla-business",
+      "imgNft": "/img/drops/cronosmb/drop.jpeg",
+      "imgPreview": "/img/collections/cronosmb/gorilla/card.jpeg",
+      "imgAvatar": "/img/collections/cronosmb/special/avatar.png",
+      "imgBanner": "/img/drops/cronosmb/banner.jpg",
+      "title": "Cronos Gorilla Business",
+      "subtitle": "Cronos Gorilla Business is a collection of 6100 uniquely generated NFTs stored on the Cronos Chain. Each CGB NFT is based on 10 + attributes with different rarities. The collection is composed of 4 different factions: MAFIA / AQUA / IGNIS / TERRA. So make the right choice.",
+      "description": "\"Cronos Gorilla Business is a collection of 6100 uniquely generated NFTs stored on the Cronos Chain. Each CGB NFT is based on 10 + attributes with different rarities. The collection is composed of 4 different factions: MAFIA / AQUA / IGNIS / TERRA. So make the right choice.\nThese NFTs can then be staked on our site within the next few weeks to earn $CPB tokens and several other features that will be announced.\"",
+      "author": { "name": "Cronos Primate Business", "link": "https://cronospb.com/" },
+      "address": "",
+      "maxMintPerTx": 5,
+      "maxMintPerAddress": 50,
+      "totalSupply": 6100,
+      "cost": "390",
+      "memberCost": "350",
+      "whitelistCost": "325",
+      "foundersOnly": false,
+      "abi": "cronos-gorilla-business.json",
+      "start": 1646424000000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false,
+      "multiMint": true
     }
   ],
   "auctions": [
