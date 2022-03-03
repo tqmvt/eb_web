@@ -1,16 +1,11 @@
 import React, { memo, useEffect, useState } from 'react';
-import { createGlobalStyle } from 'styled-components';
-import { caseInsensitiveCompare } from '../../utils';
 import { useParams, Redirect } from 'react-router-dom';
+
 import config from '../../Assets/networks/rpc_config.json';
-import Collection1155 from './collection1155';
-import Collection721 from './collection721';
 import Nft1155 from './nft1155';
 import Nft721 from './nft721';
+import { caseInsensitiveCompare } from '../../utils';
 const knownContracts = config.known_contracts;
-
-const GlobalStyles = createGlobalStyle`
-`;
 
 const Nft = () => {
   const { slug, id } = useParams();
