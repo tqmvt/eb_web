@@ -2,6 +2,8 @@ import React, { memo } from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import * as Sentry from '@sentry/react';
 import { connect } from 'react-redux';
+import { Spinner } from 'react-bootstrap';
+
 import Home from '../Components/pages/home';
 import Marketplace from '../Components/pages/marketplace';
 import Collection from '../Components/pages/collection';
@@ -15,11 +17,12 @@ import Drops from '../Components/pages/drops';
 import Drop from '../Components/pages/drop';
 import MyListings from '../Components/pages/myListings';
 import MySales from '../Components/pages/mySales';
+import MyOffers from '../Components/pages/myOffers';
 import Collections from '../Components/pages/collections';
 import CharityBall from '../Components/pages/charityBall';
-import history from '../history';
 import { ErrorPage } from '../Components/pages/ErrorPage';
-import { Spinner } from 'react-bootstrap';
+import history from '../history';
+
 const SentryEnhancedRoute = Sentry.withSentryRouting(Route);
 
 const mapStateToProps = (state) => ({
@@ -71,6 +74,7 @@ const Component = ({ walletAddress, authInitFinished }) => {
           {/*<Route exact path="/roadmap" component={Roadmap} />*/}
           <PrivateRoute exact path="/nfts" component={MyNfts} />
           <PrivateRoute exact path="/sales" component={MySales} />
+          <PrivateRoute exact path="/offers" component={MyOffers} />
           <PrivateRoute exact path="/wallet/listings" component={MyListings} />
 
           <SentryEnhancedRoute exact path="/drops" component={Drops} />

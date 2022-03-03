@@ -1,4 +1,4 @@
-import React, {memo, useEffect, useState} from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import Blockies from 'react-blockies';
 import { useDispatch, useSelector } from 'react-redux';
 import useOnclickOutside from 'react-cool-onclickoutside';
@@ -11,6 +11,7 @@ import {
   faShoppingBasket,
   faSignOutAlt,
   faExclamationCircle,
+  faHandHoldingHeart,
 } from '@fortawesome/free-solid-svg-icons';
 import { toast } from 'react-toastify';
 import MetaMaskOnboarding from '@metamask/onboarding';
@@ -300,6 +301,16 @@ const AccountMenu = function () {
                     </span>
                     <span>My Sales</span>
                   </span>
+                </li>
+                <li className="my-offers-menu-item">
+                  <span onClick={() => navigateTo(`/offers`)}>
+                    <span>
+                      {' '}
+                      <FontAwesomeIcon icon={faHandHoldingHeart} />{' '}
+                    </span>
+                    <span>My Offers</span>
+                  </span>
+                  <div className="notification-badge"></div>
                 </li>
                 <li>
                   <span onClick={clearCookies}>
