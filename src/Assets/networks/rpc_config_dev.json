@@ -3069,7 +3069,7 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false
+      "complete": true
     },
     {
       "id": 27,
@@ -3165,7 +3165,7 @@
       "memberCost": "50",
       "whitelistCost": "50",
       "foundersOnly": false,
-      "start": null,
+      "start": 1646427600000,
       "end": null,
       "referral": false,
       "is1155": false,
@@ -3201,7 +3201,7 @@
       "complete": false
     },
     {
-      "id": 31,
+      "id": 32,
       "slug": "alie-nft",
       "imgNft": "/img/drops/alienft/drop.gif",
       "imgPreview": "/img/drops/alienft/drop.png",
