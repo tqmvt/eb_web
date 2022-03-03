@@ -1,5 +1,5 @@
 [
-  "constructor(string,uint256)",
+  "constructor(string)",
   "event Approval(address indexed,address indexed,uint256 indexed)",
   "event ApprovalForAll(address indexed,address indexed,bool)",
   "event EventCGBMinted(uint256[],address)",
@@ -22,7 +22,7 @@
   "function getAquaSupplyRemaining() view returns (uint256)",
   "function getBalanceOfOwner(address) view returns (uint256)",
   "function getIgnisSupplyRemaining() view returns (uint256)",
-  "function getInfo() view returns (tuple(uint256,uint256,uint256,uint256,uint256,uint256,uint256))",
+  "function getInfo() view returns (tuple(uint256,uint256,uint256,uint256,uint256,uint256,uint256), tuple(uint256,uint256,uint256))",
   "function getMafiaSupplyRemaining() view returns (uint256)",
   "function getTerraSupplyRemaining() view returns (uint256)",
   "function getWalletOfOwner(address) view returns (uint256[])",
