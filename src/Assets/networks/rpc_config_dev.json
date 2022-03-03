@@ -1124,8 +1124,8 @@
         "card": "/img/collections/cronosmb/card.png",
         "banner": "/img/collections/cronosmb/banner.webp",
         "maxSupply": 1000,
-        "website": "https://cronosmb.com/",
-        "twitter": "https://twitter.com/MonkeyCronos",
+        "website": "https://cronospb.com/",
+        "twitter": "https://twitter.com/PrimateCronos",
         "discord": "https://discord.gg/qXxkanCKBB",
         "medium": "https://medium.com/cronos-monkey-business",
         "staking": "crodex"
@@ -1783,8 +1783,8 @@
         "card": "/img/collections/cronosmb/special/card.png",
         "banner": "/img/collections/cronosmb/banner.webp",
         "maxSupply": 75,
-        "website": "https://cronosmb.com",
-        "twitter": "https://twitter.com/MonkeyCronos",
+        "website": "https://cronospb.com",
+        "twitter": "https://twitter.com/PrimateCronos",
         "discord": "https://discord.gg/qXxkanCKBB"
       }
     },
@@ -2295,8 +2295,8 @@
         "card": "/img/collections/cronosmb/card.png",
         "banner": "/img/collections/cronosmb/banner.webp",
         "maxSupply": 6100,
-        "website": "https://cronosmb.com/",
-        "twitter": "https://twitter.com/MonkeyCronos",
+        "website": "https://cronospb.com/",
+        "twitter": "https://twitter.com/PrimateCronos",
         "discord": "https://discord.gg/qXxkanCKBB",
         "medium": "https://medium.com/cronos-monkey-business"
       }
@@ -3256,7 +3256,7 @@
       "title": "Cronos Gorilla Business",
       "subtitle": "Cronos Gorilla Business is an NFTs collection of 6100 Gorilla divided into 4 factions: Terra Crew, Ignis Gang, Aqua Clan, Mafia Genesis.",
       "description": "Cronos Gorilla Business is an NFTs collection of 6100 Gorilla divided into 4 factions: Terra Crew, Ignis Gang, Aqua Clan, Mafia Genesis.",
-      "author": { "name": "Cronos Primate Business", "link": "https://cronosmb.com/" },
+      "author": { "name": "Cronos Primate Business", "link": "https://cronospb.com/" },
       "address": "",
       "maxMintPerTx": 5,
       "maxMintPerAddress": 50,
