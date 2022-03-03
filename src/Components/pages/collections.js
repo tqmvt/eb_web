@@ -5,12 +5,9 @@ import { Link } from 'react-router-dom';
 import { ethers } from 'ethers';
 import Blockies from 'react-blockies';
 import { Form, Spinner } from 'react-bootstrap';
-// import Select from 'react-select';
 
 import Footer from '../components/Footer';
 import { getAllCollections } from '../../GlobalState/collectionsSlice';
-// import { searchListings } from '../../GlobalState/collectionSlice';
-// import { SortOption } from '../Models/sort-option.model';
 import { debounce } from '../../utils';
 
 const GlobalStyles = createGlobalStyle`
@@ -28,31 +25,6 @@ const GlobalStyles = createGlobalStyle`
     background-blend-mode: multiply;
   }
 `;
-
-/* const customStyles = {
-  option: (base, state) => ({
-    ...base,
-    background: '#fff',
-    color: '#333',
-    borderRadius: state.isFocused ? '0' : 0,
-    '&:hover': {
-      background: '#eee',
-    },
-  }),
-  menu: (base) => ({
-    ...base,
-    borderRadius: 0,
-    marginTop: 0,
-  }),
-  menuList: (base) => ({
-    ...base,
-    padding: 0,
-  }),
-  control: (base, state) => ({
-    ...base,
-    padding: 2,
-  }),
-}; */
 
 const Collections = () => {
   const mobileListBreakpoint = 1000;
@@ -102,7 +74,7 @@ const Collections = () => {
     setSearchTerms(value);
   }, 300);
 
-  //  collection helper pipes
+  // collection helper pipes
   const collectionTotalVolumeValue = ({ totalVolume }) => `${ethers.utils.commify(Math.round(totalVolume))} CRO`;
   const collectionNumberOfSalesValue = ({ numberOfSales }) => numberOfSales;
   const collectionFloorPriceValue = ({ floorPrice }) => `${ethers.utils.commify(Math.round(floorPrice))} CRO`;

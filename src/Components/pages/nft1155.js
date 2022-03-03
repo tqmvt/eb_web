@@ -1,6 +1,6 @@
 import React, { memo, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams, useHistory, Link } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import Blockies from 'react-blockies';
 import { ethers } from 'ethers';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';

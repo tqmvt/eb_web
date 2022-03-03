@@ -3,15 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { ethers } from 'ethers';
 import { croSkullRedPotionImageHack } from '../../hacks';
-
-const Outer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  align-items: center;
-  overflow: hidden;
-  border-radius: 8px;
-`;
+import Button from './Button';
 
 const Watermarked = styled.div`
   position: relative;
@@ -28,6 +20,16 @@ const Watermarked = styled.div`
     background-position: 0px 0px;
     background-repeat: no-repeat;
     opacity: 0.3;
+  }
+`;
+
+const MakeOffer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .w-30 {
+    width: 30%;
   }
 `;
 
@@ -53,7 +55,12 @@ const ListingCard = ({ listing, imgClass = 'marketplace', watermark }) => {
         {listing.nft.rank && <div className="badge bg-rarity text-wrap mt-1 mx-1">Rank: #{listing.nft.rank}</div>}
         <div className="card-body d-flex flex-column">
           <h6 className="card-title mt-auto">{listing.nft.name}</h6>
-          <p className="card-text">{ethers.utils.commify(listing.price)} CRO</p>
+          <MakeOffer>
+            <div>{ethers.utils.commify(listing.price)} CRO</div>
+            <div className="w-30">
+              <Button>Buy</Button>
+            </div>
+          </MakeOffer>
         </div>
       </div>
     </Link>

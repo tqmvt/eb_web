@@ -3,6 +3,7 @@ import Select from 'react-select';
 import { useDispatch, useSelector } from 'react-redux';
 import { sortOptions } from './constants/sort-options';
 import { SortOption } from '../Models/sort-option.model';
+import { listingFilterOptions } from './constants/filter-options';
 import { sortListings, resetListings, searchListings } from '../../GlobalState/collectionSlice';
 import { Form } from 'react-bootstrap';
 
@@ -77,8 +78,8 @@ const CollectionFilterBar = ({ cacheName = null }) => {
   }
 
   return (
-    <>
-      <div className="col-lg-9">
+    <div className="row">
+      <div className="col-md-3">
         <div className="items_filter" style={{ marginBottom: 0, marginTop: 0 }}>
           <div className="dropdownSelect two">
             <Select
@@ -93,10 +94,24 @@ const CollectionFilterBar = ({ cacheName = null }) => {
           </div>
         </div>
       </div>
-      <div className="col-lg-3">
-        <Form.Control type="text" placeholder="Search" onChange={handleSearch} />
+      <div className="col-md-3">
+        <Form.Control type="text" placeholder="Search by name" onChange={handleSearch} />
       </div>
-    </>
+      <div className="col-md-3">Total results (x out of z)</div>
+      <div className="col-md-3">
+        <div className="items_filter" style={{ marginBottom: 0, marginTop: 0 }}>
+          <div className="dropdownSelect two">
+            <Select
+              styles={customStyles}
+              placeholder={'Sort Listings...'}
+              options={listingFilterOptions}
+              defaultValue={listingFilterOptions[0]}
+              onChange={onSortChange}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 

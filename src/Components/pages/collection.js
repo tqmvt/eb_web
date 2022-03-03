@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Redirect, useParams } from 'react-router-dom';
-import config from '../../Assets/networks/rpc_config.json';
+
 import Collection1155 from './collection1155';
 import Collection721 from './collection721';
+import config from '../../Assets/networks/rpc_config.json';
 import { caseInsensitiveCompare } from '../../utils';
 
 const knownContracts = config.known_contracts;

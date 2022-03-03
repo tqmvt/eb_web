@@ -1,7 +1,8 @@
 import React, { memo } from 'react';
-import ListingCard from './ListingCard';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Spinner } from 'react-bootstrap';
+
+import ListingCard from './ListingCard';
 
 const CollectionListingsGroup = ({ showLoadMore = true, listings = [], canLoadMore = false, loadMore }) => {
   if (showLoadMore) {

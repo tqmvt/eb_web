@@ -27,6 +27,8 @@ import {
 } from '../../GlobalState/User';
 import rpcConfig from '../../Assets/networks/rpc_config.json';
 
+import HandHoldingCroIcon from 'src/Assets/images/hand-holding-cro.svg';
+
 const AccountMenu = function () {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -306,7 +308,7 @@ const AccountMenu = function () {
                   <span onClick={() => navigateTo(`/offers`)}>
                     <span>
                       {' '}
-                      <FontAwesomeIcon icon={faHandHoldingHeart} />{' '}
+                      <img src={HandHoldingCroIcon} alt="handholding-cro" width="14" height="14" />{' '}
                     </span>
                     <span>My Offers</span>
                   </span>
