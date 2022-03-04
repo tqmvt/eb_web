@@ -88,6 +88,7 @@ const MultiDrop = () => {
   const [specialWhitelistCost, setSpecialWhitelistCost] = useState(0);
   const [totalSupply, setTotalSupply] = useState(0);
   const [canMintQuantity, setCanMintQuantity] = useState(0);
+  const [factionCurrentSupply, setFactionCurrentSupply] = useState([]);
 
   useEffect(() => {
     logEvent(getAnalytics(), 'screen_view', {
@@ -156,27 +157,19 @@ const MultiDrop = () => {
     }
     try {
       let readContract = await new ethers.Contract(currentDrop.address, abi, readProvider);
-      const infos = (await readContract.getInfo())[0];
-      console.log(infos);
+      const infoTuple = await readContract.getInfo();
+      const infos = infoTuple[0];
 
       const canMint = user.address ? await readContract.canMint(user.address) : 0;
-      const mintCost = await readContract.mintCost(user.address);
-      console.log('mings',
-          canMint,
-          canMint[0].toString(),
-          canMint[1].toString(),
-          canMint[2].toString(),
-          mintCost.toString()
-      );
-
       setMaxMintPerAddress(infos.maxMintPerAddress);
       setMaxMintPerTx(infos.maxMintPerTx);
       setMaxSupply(infos.maxSupply);
       setMemberCost(ethers.utils.formatEther(infos.memberCost));
       setRegularCost(ethers.utils.formatEther(infos.regularCost));
       setTotalSupply(infos.totalSupply);
-      if (infos.whitelistCost) setWhitelistCost(ethers.utils.formatEther(infos.whitelistCost));
+      setWhitelistCost(ethers.utils.formatEther(infos.whitelistCost));
       setCanMintQuantity(canMint);
+      setFactionCurrentSupply(infoTuple[1]);
       calculateStatus(currentDrop, infos.totalSupply, infos.maxSupply);
     } catch (error) {
       console.log(error);
@@ -243,7 +236,7 @@ const MultiDrop = () => {
     return typeof dropAbi === 'undefined' || dropAbi.length === 0;
   };
 
-  const mintNow = async (faction) => {
+  const mintNow = async (quantity, faction) => {
     if (user.address) {
       if (!dropObject.writeContract) {
         return;
@@ -253,14 +246,13 @@ const MultiDrop = () => {
       const contract = dropObject.writeContract;
       try {
         const cost = await calculateCost(user);
-        let finalCost = cost.mul(numToMint);
+        let finalCost = cost.mul(quantity);
         let extra = {
           value: finalCost,
-          faction: faction
         };
 
-        console.log('minting', numToMint, faction, extra);
-        const response = await contract.mint(numToMint, ethers.utils.formatBytes32String(faction));
+        console.log('minting', quantity, faction, extra, finalCost.toString());
+        const response = await contract.mint(quantity, ethers.utils.formatBytes32String(faction), extra);
         const receipt = await response.wait();
         toast.success(createSuccessfulTransactionToastContent(receipt.transactionHash));
         {
@@ -282,7 +274,7 @@ const MultiDrop = () => {
             currency: 'CRO',
             value: ethers.utils.formatEther(finalCost),
             transaction_id: receipt.transactionHash,
-            quantity: numToMint,
+            quantity: quantity,
             items: [dropObjectAnalytics],
           };
 
@@ -436,30 +428,76 @@ const MultiDrop = () => {
           </div>
         </section>
 
-        <section className="container no-bottom" id="drop_detail">
+        <section className="container no-top" id="drop_detail">
+          <div className="row">
+            <div className="text-center">
+              <h2>{drop.title}</h2>
+
+              <div className="mt-3">{newlineText(drop.description)}</div>
+
+              {status === statuses.NOT_STARTED || drop.complete ? (
+                  <div>
+                    <div className="fs-6 fw-bold mb-1">Supply: {maxSupply.toString()}</div>
+                  </div>
+              ) : (
+                  <div>
+                    <div className="fs-6 fw-bold mb-1 text-end">
+                      {percentage(totalSupply.toString(), maxSupply.toString())}% minted (
+                      {ethers.utils.commify(totalSupply.toString())} / {ethers.utils.commify(maxSupply.toString())})
+                    </div>
+                    <ProgressBar
+                        now={percentage(totalSupply.toString(), maxSupply.toString())}
+                        style={{height: '4px'}}
+                    />
+                  </div>
+              )}
+            </div>
+          </div>
+
+        </section>
+
+        <section className="container no-top" id="drop_detail">
           <div className="card-group">
             <div className="d-item col-sm-4 mb-4 px-2">
               <MultiDropCard
                 title={'Aqua'}
                 img={'/img/drops/cronosmb/gorilla/aqua.png'}
-                canMintQuantity={canMintQuantity}
-                mintNow={() => mintNow('AQUA')}
+                currentSupply={
+                  factionCurrentSupply.aquaSupplyRemaining ?
+                      1700 - factionCurrentSupply.aquaSupplyRemaining.toNumber() :
+                      0
+                }
+                maxSupply={1700}
+                canMintQuantity={canMintQuantity[0] ?? 0}
+                mintNow={(quantity) => mintNow(quantity, 'AQUA')}
               />
             </div>
             <div className="d-item col-sm-4 mb-4 px-2">
               <MultiDropCard
                 title={'Ignis'}
                 img={'/img/drops/cronosmb/gorilla/fire.png'}
-                canMintQuantity={canMintQuantity}
-                mintNow={() => mintNow('IGNIS')}
+                currentSupply={
+                  factionCurrentSupply.ignisSupplyRemaining ?
+                      1700 - factionCurrentSupply.ignisSupplyRemaining.toNumber() :
+                      0
+                }
+                maxSupply={1700}
+                canMintQuantity={canMintQuantity[1] ?? 0}
+                mintNow={(quantity) => mintNow(quantity, 'IGNIS')}
               />
             </div>
             <div className="d-item col-sm-4 mb-4 px-2">
               <MultiDropCard
                 title={'Terra'}
                 img={'/img/drops/cronosmb/gorilla/desert.png'}
-                canMintQuantity={canMintQuantity}
-                mintNow={() => mintNow('TERRA')}
+                currentSupply={
+                  factionCurrentSupply.terraSupplyRemaining ?
+                      1700 - factionCurrentSupply.terraSupplyRemaining.toNumber() :
+                      0
+                }
+                maxSupply={1700}
+                canMintQuantity={canMintQuantity[2] ?? 0}
+                mintNow={(quantity) => mintNow(quantity, 'TERRA')}
               />
             </div>
           </div>
@@ -471,13 +509,17 @@ const MultiDrop = () => {
 };
 export default MultiDrop;
 
-const MultiDropCard = ({title, img, canMintQuantity, mintNow}) => {
+const MultiDropCard = ({title, img, canMintQuantity, mintNow, currentSupply, maxSupply}) => {
   const [minting, setMinting] = useState(false);
   const [numToMint, setNumToMint] = useState(1);
 
+  useEffect(() => {
+    console.log('canMintQuantity', canMintQuantity);
+  });
+
   const beginMint = async () => {
     setMinting(true);
-    await mintNow();
+    await mintNow(numToMint);
     setMinting(false);
   }
 
@@ -488,7 +530,7 @@ const MultiDropCard = ({title, img, canMintQuantity, mintNow}) => {
             className={`card-img-top`}
         />
         <div className="card-body d-flex flex-column">
-          <h2>{title}</h2>
+          <h2 className="text-center">{title}</h2>
           <div>
             <Form.Label>Quantity</Form.Label>
             <Form.Range
@@ -498,18 +540,32 @@ const MultiDropCard = ({title, img, canMintQuantity, mintNow}) => {
                 onChange={(e) => setNumToMint(e.target.value)}
             />
           </div>
-          <button className="btn-main lead mb-5 mr15" onClick={beginMint} disabled={minting}>
-            {minting ? (
-                <>
-                  Minting...
-                  <Spinner animation="border" role="status" size="sm" className="ms-1">
-                    <span className="visually-hidden">Loading...</span>
-                  </Spinner>
-                </>
-            ) : (
-                <>Mint {numToMint}</>
-            )}
-          </button>
+          <div className="text-center">
+            <button className="btn-main lead mb-5" style={{display:'inline'}} onClick={beginMint} disabled={minting}>
+              {minting ? (
+                  <>
+                    Minting...
+                    <Spinner animation="border" role="status" size="sm" className="ms-1">
+                      <span className="visually-hidden">Loading...</span>
+                    </Spinner>
+                  </>
+              ) : (
+                  <>Mint {numToMint}</>
+              )}
+            </button>
+          </div>
+          {currentSupply !== undefined && maxSupply !== undefined && (
+              <div>
+                <div className="fs-6 fw-bold mb-1 text-end">
+                  {percentage(currentSupply, maxSupply)}% minted (
+                  {ethers.utils.commify(currentSupply)} / {ethers.utils.commify(maxSupply)})
+                </div>
+                <ProgressBar
+                    now={percentage(currentSupply, maxSupply)}
+                    style={{height: '4px'}}
+                />
+              </div>
+          )}
         </div>
       </div>
   );
