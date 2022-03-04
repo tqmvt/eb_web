@@ -51,10 +51,14 @@ const Drop = () => {
 
   return (
       <>
-        {drop && isMultiDrop ? (
-            <MultiDrop drop={drop} />
-        ) : (
-            <SingleDrop drop={drop} />
+        {drop && (
+            <>
+              {isMultiDrop ? (
+                  <MultiDrop drop={drop} />
+              ) : (
+                  <SingleDrop drop={drop} />
+              )}
+            </>
         )}
       </>
   );

@@ -243,7 +243,7 @@ const MultiDrop = () => {
     return typeof dropAbi === 'undefined' || dropAbi.length === 0;
   };
 
-  const mintNow = async () => {
+  const mintNow = async (faction) => {
     if (user.address) {
       if (!dropObject.writeContract) {
         return;
@@ -254,83 +254,43 @@ const MultiDrop = () => {
       try {
         const cost = await calculateCost(user);
         let finalCost = cost.mul(numToMint);
-        if (isCreaturesDrop(drop.address)) {
-          finalCost = finalCost.sub(cost.mul(Math.floor(numToMint / 4)));
-        }
         let extra = {
           value: finalCost,
+          faction: faction
         };
 
-        var response;
-        if (dropObject.is1155) {
-          if (dropObject.title === 'Founding Member') {
-            if (referral) {
-              finalCost = finalCost.sub(ethers.utils.parseEther('10.0').mul(numToMint));
-              extra = {
-                value: finalCost,
-              };
-            }
-            const ref32 = ethers.utils.formatBytes32String(referral);
-            response = await contract.mint(1, numToMint, ref32, extra);
-          } else if (isFounderVipDrop(dropObject.address)) {
-            const ref32 = ethers.utils.formatBytes32String(referral);
-            response = await contract.mint(2, numToMint, ref32, extra);
-          }
-        } else {
-          if (isUsingDefaultDropAbi(dropObject.abi) || isUsingAbiFile(dropObject.abi)) {
-            response = await contract.mint(numToMint, extra);
-          } else {
-            let method;
-            for (const abiMethod of dropObject.abi) {
-              if (abiMethod.includes('mint') && !abiMethod.includes('view')) method = abiMethod;
-            }
+        console.log('minting', numToMint, faction, extra);
+        const response = await contract.mint(numToMint, ethers.utils.formatBytes32String(faction));
+        const receipt = await response.wait();
+        toast.success(createSuccessfulTransactionToastContent(receipt.transactionHash));
+        {
+          const dropObjectAnalytics = {
+            address: dropObject.address,
+            id: dropObject.id,
+            title: dropObject.title,
+            slug: dropObject.slug,
+            author_name: dropObject.author.name,
+            author_link: dropObject.author.link,
+            maxMintPerTx: dropObject.maxMintPerTx,
+            totalSupply: dropObject.totalSupply,
+            cost: dropObject.cost,
+            memberCost: dropObject.memberCost,
+            foundersOnly: dropObject.foundersOnly,
+          };
 
-            if (method.includes('address') && method.includes('uint256')) {
-              extra = {
-                ...extra,
-                gasPrice: ethers.utils.parseUnits('5000', 'gwei'),
-              };
-              response = await contract.mint(user.address, numToMint, extra);
-            } else {
-              console.log(`contract ${contract}  num: ${numToMint}   extra ${extra}`);
-              extra = {
-                ...extra,
-                gasPrice: ethers.utils.parseUnits('5000', 'gwei'),
-              };
-              response = await contract.mint(numToMint, extra);
-            }
-          }
-          const receipt = await response.wait();
-          toast.success(createSuccessfulTransactionToastContent(receipt.transactionHash));
+          const purchaseAnalyticParams = {
+            currency: 'CRO',
+            value: ethers.utils.formatEther(finalCost),
+            transaction_id: receipt.transactionHash,
+            quantity: numToMint,
+            items: [dropObjectAnalytics],
+          };
 
-          {
-            const dropObjectAnalytics = {
-              address: dropObject.address,
-              id: dropObject.id,
-              title: dropObject.title,
-              slug: dropObject.slug,
-              author_name: dropObject.author.name,
-              author_link: dropObject.author.link,
-              maxMintPerTx: dropObject.maxMintPerTx,
-              totalSupply: dropObject.totalSupply,
-              cost: dropObject.cost,
-              memberCost: dropObject.memberCost,
-              foundersOnly: dropObject.foundersOnly,
-            };
-
-            const purchaseAnalyticParams = {
-              currency: 'CRO',
-              value: ethers.utils.formatEther(finalCost),
-              transaction_id: receipt.transactionHash,
-              quantity: numToMint,
-              items: [dropObjectAnalytics],
-            };
-
-            logEvent(getAnalytics(), 'purchase', purchaseAnalyticParams);
-          }
-
-          await retrieveDropInfo();
+          logEvent(getAnalytics(), 'purchase', purchaseAnalyticParams);
         }
+
+        await retrieveDropInfo();
+
       } catch (error) {
         Sentry.captureException(error);
         if (error.data) {
@@ -476,20 +436,34 @@ const MultiDrop = () => {
           </div>
         </section>
 
-        <div className="card-group">
-          <div className="d-item col-xs-12 col-sm-3 mb-4 px-2">
-            <MultiDropCard />
+        <section className="container no-bottom" id="drop_detail">
+          <div className="card-group">
+            <div className="d-item col-sm-4 mb-4 px-2">
+              <MultiDropCard
+                title={'Aqua'}
+                img={'/img/drops/cronosmb/gorilla/aqua.png'}
+                canMintQuantity={canMintQuantity}
+                mintNow={() => mintNow('AQUA')}
+              />
+            </div>
+            <div className="d-item col-sm-4 mb-4 px-2">
+              <MultiDropCard
+                title={'Ignis'}
+                img={'/img/drops/cronosmb/gorilla/fire.png'}
+                canMintQuantity={canMintQuantity}
+                mintNow={() => mintNow('IGNIS')}
+              />
+            </div>
+            <div className="d-item col-sm-4 mb-4 px-2">
+              <MultiDropCard
+                title={'Terra'}
+                img={'/img/drops/cronosmb/gorilla/desert.png'}
+                canMintQuantity={canMintQuantity}
+                mintNow={() => mintNow('TERRA')}
+              />
+            </div>
           </div>
-          <div className="d-item col-xs-12 col-sm-3 mb-4 px-2">
-            <MultiDropCard />
-          </div>
-          <div className="d-item col-xs-12 col-sm-3 mb-4 px-2">
-            <MultiDropCard />
-          </div>
-          <div className="d-item col-xs-12 col-sm-3 mb-4 px-2">
-            <MultiDropCard />
-          </div>
-        </div>
+        </section>
       </>
       <Footer />
     </div>
@@ -497,12 +471,14 @@ const MultiDrop = () => {
 };
 export default MultiDrop;
 
-const MultiDropCard = ({img, canMintQuantity}) => {
+const MultiDropCard = ({title, img, canMintQuantity, mintNow}) => {
   const [minting, setMinting] = useState(false);
   const [numToMint, setNumToMint] = useState(1);
 
-  const mintNow = async () => {
-
+  const beginMint = async () => {
+    setMinting(true);
+    await mintNow();
+    setMinting(false);
   }
 
   return (
@@ -512,6 +488,7 @@ const MultiDropCard = ({img, canMintQuantity}) => {
             className={`card-img-top`}
         />
         <div className="card-body d-flex flex-column">
+          <h2>{title}</h2>
           <div>
             <Form.Label>Quantity</Form.Label>
             <Form.Range
@@ -521,7 +498,7 @@ const MultiDropCard = ({img, canMintQuantity}) => {
                 onChange={(e) => setNumToMint(e.target.value)}
             />
           </div>
-          <button className="btn-main lead mb-5 mr15" onClick={mintNow} disabled={minting}>
+          <button className="btn-main lead mb-5 mr15" onClick={beginMint} disabled={minting}>
             {minting ? (
                 <>
                   Minting...
