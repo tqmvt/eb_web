@@ -78,7 +78,7 @@ const CollectionFilterBar = ({ cacheName = null }) => {
   }
 
   return (
-    <div className="row">
+    <div className="row align-items-center">
       <div className="col-md-3">
         <div className="items_filter" style={{ marginBottom: 0, marginTop: 0 }}>
           <div className="dropdownSelect two">
@@ -95,7 +95,12 @@ const CollectionFilterBar = ({ cacheName = null }) => {
         </div>
       </div>
       <div className="col-md-3">
-        <Form.Control type="text" placeholder="Search by name" onChange={handleSearch} />
+        <Form.Control
+          type="text"
+          placeholder="Search by name"
+          onChange={handleSearch}
+          style={{ marginBottom: 0, marginTop: 0 }}
+        />
       </div>
       <div className="col-md-3">Total results (x out of z)</div>
       <div className="col-md-3">

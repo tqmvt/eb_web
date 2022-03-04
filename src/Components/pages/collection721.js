@@ -4,6 +4,8 @@ import { Contract, ethers } from 'ethers';
 import Blockies from 'react-blockies';
 import { Helmet } from 'react-helmet';
 import { faCheck, faCircle } from '@fortawesome/free-solid-svg-icons';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 import CollectionListingsGroup from '../components/CollectionListingsGroup';
 import CollectionFilterBar from '../components/CollectionFilterBar';
@@ -32,6 +34,7 @@ const Collection721 = ({ address, cacheName = 'collection' }) => {
 
   const collectionCachedTraitsFilter = useSelector((state) => state.collection.cachedTraitsFilter);
   const collectionCachedSort = useSelector((state) => state.collection.cachedSort);
+  const collectionStatsLoading = useSelector((state) => state.collection.statsLoading);
   const collectionStats = useSelector((state) => state.collection.stats);
 
   const listings = useSelector((state) => state.collection.listings);
@@ -256,17 +259,25 @@ const Collection721 = ({ address, cacheName = 'collection' }) => {
             )}
           </div>
         )}
-        <div className="row">
-          <div className={hasTraits() || hasPowertraits() ? 'offset-md-3 col-md-9' : 'col-md-12'}>
-            <CollectionFilterBar showFilter={false} cacheName={cacheName} />
-          </div>
-        </div>
-        <div className="row">
-          {(hasTraits() || hasPowertraits()) && (
-            <div className="col-md-3 mb-4">
-              {hasTraits() && <TraitsFilter address={address} />}
-              {hasPowertraits() && <PowertraitsFilter address={address} />}
+        {!collectionStatsLoading && (
+          <div className="row">
+            <div className={hasTraits() || hasPowertraits() ? 'offset-md-3 col-md-9' : 'col-md-12'}>
+              <CollectionFilterBar showFilter={false} cacheName={cacheName} />
             </div>
+          </div>
+        )}
+        <div className="row">
+          {collectionStatsLoading ? (
+            <div className="col-md-3 mb-4">
+              <Skeleton count={5} type="rect" />
+            </div>
+          ) : (
+            (hasTraits() || hasPowertraits()) && (
+              <div className="col-md-3 mb-4">
+                {hasTraits() && <TraitsFilter address={address} />}
+                {hasPowertraits() && <PowertraitsFilter address={address} />}
+              </div>
+            )
           )}
           <div className={hasTraits() || hasPowertraits() ? 'col-md-9' : 'col-md-12'}>
             <CollectionListingsGroup listings={listings} canLoadMore={canLoadMore} loadMore={loadMore} />
