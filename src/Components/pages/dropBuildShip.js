@@ -17,6 +17,8 @@ const Drop = () => {
   const [shipTypes, setShipTypes] = useState([]);
   const [isMinting, setIsMinting] = useState(false);
   const [shipContract, setShipContract] = useState(null);
+  const [ids, setIds] = useState([]);
+
   useEffect(() => {
    
   }, []);
@@ -34,13 +36,16 @@ const Drop = () => {
         const ship3 = await contract.SHIP3();
         setShipTypes([ship1, ship2, ship3]);
 
+        const ids = await contract.walletOfOwner(user.address);
+        setIds(ids);
+
         setShipContract(contract);
       } catch (error) {
         console.log(error);
         Sentry.captureException(error);
       }
     }
-  }, [user.provider]);
+  }, [user.address, user.provider]);
 
   useEffect(() => {
     init();
@@ -78,9 +83,14 @@ const Drop = () => {
               <option>Select the ShipType</option>
               {
                 shipTypes.map((type, index) => {
-                  return (
-                    <option value={type} key={type}> Ship{index+1} </option>
-                  )
+                  if (ids[index] > 0 && ids[index+4] > 0 && ids[index+6] > 0 ) {
+                    return (
+                      <option value={type} key={type}> Ship{index+1} </option>
+                    )
+                  } else {
+                    return index;
+                  }
+                  
                 })
               }
           </Form.Select>
