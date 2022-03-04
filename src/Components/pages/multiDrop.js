@@ -197,7 +197,8 @@ const MultiDrop = () => {
     const now = new Date();
 
     if (!drop.start || !drop.address || sTime > now) setStatus(statuses.NOT_STARTED);
-    else if (parseInt(totalSupply.toString()) >= parseInt(maxSupply.toString()) && !isFounderDrop(drop.address))
+    else if (drop.complete) setStatus(statuses.EXPIRED);
+    else if (parseInt(totalSupply.toString()) >= parseInt(maxSupply.toString()))
       setStatus(statuses.SOLD_OUT);
     else if (!drop.end || eTime > now) setStatus(statuses.LIVE);
     else if (drop.end && eTime < now) setStatus(statuses.EXPIRED);
@@ -243,6 +244,7 @@ const MultiDrop = () => {
       }
 
       setMinting(true);
+
       const contract = dropObject.writeContract;
       try {
         const cost = await calculateCost(user);
@@ -251,7 +253,6 @@ const MultiDrop = () => {
           value: finalCost,
         };
 
-        console.log('minting', quantity, faction, extra, finalCost.toString());
         const response = await contract.mint(quantity, ethers.utils.formatBytes32String(faction), extra);
         const receipt = await response.wait();
         toast.success(createSuccessfulTransactionToastContent(receipt.transactionHash));
@@ -310,11 +311,6 @@ const MultiDrop = () => {
     let dateString = `${fullDateString.split(', ')[1]} ${date.getUTCDate()} ${month} ${date.getUTCFullYear()} UTC`;
     return dateString;
   };
-
-  // const vidRef = useRef(null);
-  // const handlePlayVideo = () => {
-  //   vidRef.current.play();
-  // };
 
   return (
     <div>
@@ -435,21 +431,17 @@ const MultiDrop = () => {
 
               <div className="mt-3">{newlineText(drop.description)}</div>
 
-              {status === statuses.NOT_STARTED || drop.complete ? (
-                  <div>
-                    <div className="fs-6 fw-bold mb-1">Supply: {maxSupply.toString()}</div>
-                  </div>
-              ) : (
-                  <div>
-                    <div className="fs-6 fw-bold mb-1 text-end">
-                      {percentage(totalSupply.toString(), maxSupply.toString())}% minted (
-                      {ethers.utils.commify(totalSupply.toString())} / {ethers.utils.commify(maxSupply.toString())})
-                    </div>
-                    <ProgressBar
-                        now={percentage(totalSupply.toString(), maxSupply.toString())}
-                        style={{height: '4px'}}
-                    />
-                  </div>
+              {status === statuses.NOT_STARTED && drop.start && (
+                <div className="me-4">
+                  <h6 className="mb-1">Minting Starts</h6>
+                  {drop.start ? (
+                    <h3>
+                      {new Date(drop.start).toDateString()}, {new Date(drop.start).toTimeString()}
+                    </h3>
+                  ) : (
+                    <h3>TBA</h3>
+                  )}
+                </div>
               )}
             </div>
           </div>
@@ -460,7 +452,7 @@ const MultiDrop = () => {
           <div className="card-group">
             <div className="d-item col-sm-4 mb-4 px-2">
               <MultiDropCard
-                title={'Aqua'}
+                title={'Aqua Clan'}
                 img={'/img/drops/cronosmb/gorilla/aqua.png'}
                 currentSupply={
                   factionCurrentSupply.aquaSupplyRemaining ?
@@ -469,12 +461,13 @@ const MultiDrop = () => {
                 }
                 maxSupply={1700}
                 canMintQuantity={canMintQuantity[0] ?? 0}
+                dropStatus={status}
                 mintNow={(quantity) => mintNow(quantity, 'AQUA')}
               />
             </div>
             <div className="d-item col-sm-4 mb-4 px-2">
               <MultiDropCard
-                title={'Ignis'}
+                title={'Ignis Gang'}
                 img={'/img/drops/cronosmb/gorilla/fire.png'}
                 currentSupply={
                   factionCurrentSupply.ignisSupplyRemaining ?
@@ -483,20 +476,18 @@ const MultiDrop = () => {
                 }
                 maxSupply={1700}
                 canMintQuantity={canMintQuantity[1] ?? 0}
+                dropStatus={status}
                 mintNow={(quantity) => mintNow(quantity, 'IGNIS')}
               />
             </div>
             <div className="d-item col-sm-4 mb-4 px-2">
               <MultiDropCard
-                title={'Terra'}
+                title={'Terra Crew'}
                 img={'/img/drops/cronosmb/gorilla/desert.png'}
-                currentSupply={
-                  factionCurrentSupply.terraSupplyRemaining ?
-                      1700 - factionCurrentSupply.terraSupplyRemaining.toNumber() :
-                      0
-                }
+                currentSupply={1700}
                 maxSupply={1700}
                 canMintQuantity={canMintQuantity[2] ?? 0}
+                dropStatus={status}
                 mintNow={(quantity) => mintNow(quantity, 'TERRA')}
               />
             </div>
@@ -509,13 +500,23 @@ const MultiDrop = () => {
 };
 export default MultiDrop;
 
-const MultiDropCard = ({title, img, canMintQuantity, mintNow, currentSupply, maxSupply}) => {
+const MultiDropCard = ({title, img, canMintQuantity, mintNow, currentSupply, maxSupply, dropStatus}) => {
   const [minting, setMinting] = useState(false);
   const [numToMint, setNumToMint] = useState(1);
+  const [status, setStatus] =  useState(statuses.NOT_STARTED);
 
   useEffect(() => {
-    console.log('canMintQuantity', canMintQuantity);
-  });
+    calculateStatus(currentSupply, maxSupply);
+  }, [currentSupply, canMintQuantity, dropStatus]);
+
+  const calculateStatus = (currentSupply, maxSupply) => {
+    if (dropStatus === statuses.LIVE) {
+      if (currentSupply >= maxSupply) setStatus(statuses.SOLD_OUT);
+      else setStatus(statuses.LIVE);
+    } else {
+      setStatus(dropStatus);
+    }
+  };
 
   const beginMint = async () => {
     setMinting(true);
@@ -528,43 +529,60 @@ const MultiDropCard = ({title, img, canMintQuantity, mintNow, currentSupply, max
         <img
             src={img}
             className={`card-img-top`}
+            alt={title}
         />
         <div className="card-body d-flex flex-column">
           <h2 className="text-center">{title}</h2>
-          <div>
-            <Form.Label>Quantity</Form.Label>
-            <Form.Range
-                value={numToMint}
-                min="1"
-                max={canMintQuantity}
-                onChange={(e) => setNumToMint(e.target.value)}
-            />
-          </div>
-          <div className="text-center">
-            <button className="btn-main lead mb-5" style={{display:'inline'}} onClick={beginMint} disabled={minting}>
-              {minting ? (
-                  <>
-                    Minting...
-                    <Spinner animation="border" role="status" size="sm" className="ms-1">
-                      <span className="visually-hidden">Loading...</span>
-                    </Spinner>
-                  </>
-              ) : (
-                  <>Mint {numToMint}</>
-              )}
-            </button>
-          </div>
-          {currentSupply !== undefined && maxSupply !== undefined && (
+
+          {status === statuses.LIVE && (
+            <>
               <div>
-                <div className="fs-6 fw-bold mb-1 text-end">
-                  {percentage(currentSupply, maxSupply)}% minted (
-                  {ethers.utils.commify(currentSupply)} / {ethers.utils.commify(maxSupply)})
-                </div>
-                <ProgressBar
-                    now={percentage(currentSupply, maxSupply)}
-                    style={{height: '4px'}}
+                <Form.Label>Quantity</Form.Label>
+                <Form.Range
+                    value={numToMint}
+                    min="1"
+                    max={canMintQuantity}
+                    onChange={(e) => setNumToMint(e.target.value)}
                 />
               </div>
+              <div className="text-center">
+                <button className="btn-main lead mb-5" style={{display:'inline'}} onClick={beginMint} disabled={minting}>
+                  {minting ? (
+                      <>
+                        Minting...
+                        <Spinner animation="border" role="status" size="sm" className="ms-1">
+                          <span className="visually-hidden">Loading...</span>
+                        </Spinner>
+                      </>
+                  ) : (
+                      <>Mint {numToMint}</>
+                  )}
+                </button>
+              </div>
+            </>
+          )}
+          {status === statuses.SOLD_OUT && <p className="mt-4 text-center">MINT HAS SOLD OUT</p>}
+          {status === statuses.EXPIRED && <p className="mt-4 text-center">MINT HAS ENDED</p>}
+
+          {currentSupply !== undefined && maxSupply !== undefined && (
+            <>
+              {status === statuses.LIVE ? (
+                <div>
+                  <div className="fs-6 fw-bold mb-1 text-end">
+                    {percentage(currentSupply, maxSupply)}% minted (
+                    {ethers.utils.commify(currentSupply)} / {ethers.utils.commify(maxSupply)})
+                  </div>
+                  <ProgressBar
+                      now={percentage(currentSupply, maxSupply)}
+                      style={{height: '4px'}}
+                  />
+                </div>
+              ) : (
+                <div className="mt-auto">
+                  <div className="fs-6 fw-bold mb-1 text-end">Supply: {maxSupply}</div>
+                </div>
+              )}
+            </>
           )}
         </div>
       </div>
