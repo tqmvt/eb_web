@@ -443,6 +443,12 @@ const MultiDrop = () => {
 
               <div className="mt-3">{newlineText(drop.description)}</div>
 
+              {drop.disclaimer && (
+                  <p className="fw-bold text-center my-4" style={{color: 'black'}}>
+                    {drop.disclaimer}
+                  </p>
+              )}
+              
               <div className="d-flex flex-row justify-content-center">
                   <div className="me-4">
                     <h6 className="mb-1">Mint Price</h6>
