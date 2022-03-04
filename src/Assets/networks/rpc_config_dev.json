@@ -2,7 +2,7 @@
   "name": "Cronos",
   "chain_id": "25",
   "write_rpc": "https://evm-cronos.crypto.org/",
-  "read_rpc": "https://rpc.ebisusbay.com:8546/",
+  "read_rpc": "https://rpc.ebisusbay.com:8545/",
   "symbol": "CRO",
   "explorer": "http://cronos.crypto.org/explorer/",
   "api_base": "https://api.ebisusbay.com/",
