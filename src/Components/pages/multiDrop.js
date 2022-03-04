@@ -534,6 +534,10 @@ const MultiDrop = () => {
 export default MultiDrop;
 
 const MultiDropCard = ({title, img, canMintQuantity, mintNow, currentSupply, maxSupply, dropStatus}) => {
+  const user = useSelector((state) => {
+    return state.user;
+  });
+
   const [minting, setMinting] = useState(false);
   const [numToMint, setNumToMint] = useState(1);
   const [status, setStatus] =  useState(statuses.NOT_STARTED);
@@ -569,29 +573,41 @@ const MultiDropCard = ({title, img, canMintQuantity, mintNow, currentSupply, max
 
           {status === statuses.LIVE && (
             <>
-              <div>
-                <Form.Label>Quantity</Form.Label>
-                <Form.Range
-                    value={numToMint}
-                    min="1"
-                    max={canMintQuantity}
-                    onChange={(e) => setNumToMint(e.target.value)}
-                />
-              </div>
-              <div className="text-center">
-                <button className="btn-main lead mb-5" style={{display:'inline'}} onClick={beginMint} disabled={minting}>
-                  {minting ? (
-                      <>
-                        Minting...
-                        <Spinner animation="border" role="status" size="sm" className="ms-1">
-                          <span className="visually-hidden">Loading...</span>
-                        </Spinner>
-                      </>
-                  ) : (
-                      <>Mint {numToMint}</>
-                  )}
-                </button>
-              </div>
+              {user.address ? (
+                  <>
+                    <div>
+                      <Form.Label>Quantity</Form.Label>
+                      <Form.Range
+                          value={numToMint}
+                          min="1"
+                          max={canMintQuantity}
+                          onChange={(e) => setNumToMint(e.target.value)}
+                      />
+                    </div>
+                    <div className="text-center">
+                      <button className="btn-main lead mb-5" style={{display:'inline'}} onClick={beginMint} disabled={minting}>
+                        {minting ? (
+                            <>
+                              Minting...
+                              <Spinner animation="border" role="status" size="sm" className="ms-1">
+                                <span className="visually-hidden">Loading...</span>
+                              </Spinner>
+                            </>
+                        ) : (
+                            <>Mint {numToMint}</>
+                        )}
+                      </button>
+                    </div>
+                  </>
+              ) : (
+                  <>
+                    <div className="text-center">
+                      <button className="btn-main lead mb-5" style={{display:'inline'}} onClick={beginMint} disabled={minting}>
+                        Connect
+                      </button>
+                    </div>
+                  </>
+              )}
             </>
           )}
           {status === statuses.SOLD_OUT && <p className="mt-4 text-center">MINT HAS SOLD OUT</p>}
