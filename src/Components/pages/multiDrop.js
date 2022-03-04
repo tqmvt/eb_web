@@ -438,18 +438,24 @@ const MultiDrop = () => {
 
               <div className="mt-3">{newlineText(drop.description)}</div>
 
-              {status === statuses.NOT_STARTED && drop.start && (
-                <div className="me-4">
-                  <h6 className="mb-1">Minting Starts</h6>
-                  {drop.start ? (
-                    <h3>
-                      {new Date(drop.start).toDateString()}, {new Date(drop.start).toTimeString()}
-                    </h3>
-                  ) : (
-                    <h3>TBA</h3>
+              <div className="d-flex flex-row justify-content-center">
+                  <div className="me-4">
+                    <h6 className="mb-1">Mint Price</h6>
+                    <h5>{regularCost} CRO</h5>
+                  </div>
+                  {memberCost && (
+                      <div className="me-4">
+                        <h6 className="mb-1">Founding Member Price</h6>
+                        <h5>{memberCost} CRO</h5>
+                      </div>
                   )}
-                </div>
-              )}
+                  {whitelistCost > 0 && (
+                      <div className="me-4">
+                        <h6 className="mb-1">Whitelist Price</h6>
+                        <h5>{whitelistCost} CRO</h5>
+                      </div>
+                  )}
+              </div>
             </div>
           </div>
 
