@@ -484,7 +484,11 @@ const MultiDrop = () => {
               <MultiDropCard
                 title={'Terra Crew'}
                 img={'/img/drops/cronosmb/gorilla/desert.png'}
-                currentSupply={1700}
+                currentSupply={
+                  factionCurrentSupply.terraSupplyRemaining ?
+                      1700 - factionCurrentSupply.terraSupplyRemaining.toNumber() :
+                      0
+                }
                 maxSupply={1700}
                 canMintQuantity={canMintQuantity[2] ?? 0}
                 dropStatus={status}
