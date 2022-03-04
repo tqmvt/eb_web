@@ -438,6 +438,26 @@
         "discord": "http://discord.gg/wkq88dHDyA",
         "telegram": "https://t.me/croslothty"
       }
+    },
+    {
+      "name": "Cronos Gorilla Business",
+      "slug": "cronos-gorilla-business",
+      "multiToken": false,
+      "address": "0x72EF2E2090426e886eaE9845CabB6BAf491bAF02",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/cronosmb/special/avatar.png",
+        "card": "/img/collections/cronosmb/gorilla/card.jpeg",
+        "banner": "/img/collections/cronosmb/gorilla/banner.webp",
+        "maxSupply": 6100,
+        "website": "https://cronospb.com/",
+        "twitter": "https://twitter.com/PrimateCronos",
+        "discord": "https://discord.gg/qXxkanCKBB",
+        "medium": "https://medium.com/cronos-monkey-business"
+      }
     }
   ],
   "drops": [
