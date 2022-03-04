@@ -2355,7 +2355,6 @@
       "is1155": true,
       "foundersOnly": false,
       "published": true,
-      "featured": true,
       "complete": false
     },
     {
@@ -2793,7 +2792,6 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "featured": true,
       "complete": false
     },
     {
@@ -3191,7 +3189,6 @@
       "is1155": false,
       "disclaimer": "Only whitelisted addresses are eligible for this mint. Please check the Crognomes discord for more information.",
       "published": true,
-      "featured": true,
       "complete": false
     },
     {
@@ -3277,7 +3274,8 @@
       "disclaimer": "Presale is limited to whitelisted addresses only. Please check the Cronos Primate Business discord for more information.",
       "published": true,
       "complete": false,
-      "multiMint": true
+      "multiMint": true,
+      "featured": true
     }
   ],
   "auctions": [
