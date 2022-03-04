@@ -1400,7 +1400,7 @@
       "multiToken": false,
       "address": "0x0b289dEa4DCb07b8932436C2BA78bA09Fbd34C44",
       "onChain": false,
-      "listable": true,
+      "listable": false,
       "metadata": {
         "slug": "weird-apes-club-v2",
         "description": "",
