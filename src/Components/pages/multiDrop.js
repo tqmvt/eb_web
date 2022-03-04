@@ -456,6 +456,22 @@ const MultiDrop = () => {
                       </div>
                   )}
               </div>
+
+              <div className="mt-4">
+                <div>
+                  <h6 className="mb-1">Presale Starts</h6>
+                  <h3>
+                    {new Date(drop.salePeriods.presale).toDateString()}, {new Date(drop.salePeriods.presale).toTimeString()}
+                  </h3>
+                </div>
+
+                <div>
+                  <h6 className="mb-1">Public Sale Starts</h6>
+                  <h3>
+                    {new Date(drop.salePeriods.public).toDateString()}, {new Date(drop.salePeriods.public).toTimeString()}
+                  </h3>
+                </div>
+              </div>
             </div>
           </div>
 
