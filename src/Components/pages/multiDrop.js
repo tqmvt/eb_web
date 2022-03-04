@@ -159,12 +159,14 @@ const MultiDrop = () => {
       let readContract = await new ethers.Contract(currentDrop.address, abi, readProvider);
       const infoTuple = await readContract.getInfo();
       const infos = infoTuple[0];
-      console.log('retrieved info',
-          infoTuple,
-          infoTuple[1].aquaSupplyRemaining.toString(),
-          infoTuple[1].ignisSupplyRemaining.toString(),
-          infoTuple[1].terraSupplyRemaining.toString()
-      )
+      if (process.env.NODE_ENV === 'development') {
+        console.log('retrieved info',
+            infoTuple,
+            infoTuple[1].aquaSupplyRemaining.toString(),
+            infoTuple[1].ignisSupplyRemaining.toString(),
+            infoTuple[1].terraSupplyRemaining.toString(),
+        )
+      }
 
       const canMint = user.address ? await readContract.canMint(user.address) : 0;
       setMaxMintPerAddress(infos.maxMintPerAddress);
@@ -258,8 +260,11 @@ const MultiDrop = () => {
           value: finalCost,
           gasPrice: ethers.utils.parseUnits('5000', 'gwei'),
         };
-        console.log('Minting...', faction, quantity, finalCost.toString());
 
+        if (process.env.NODE_ENV === 'development') {
+          console.log('Minting...', faction, quantity, finalCost.toString());
+        }
+        
         const response = await contract.mint(quantity, ethers.utils.formatBytes32String(faction), extra);
         const receipt = await response.wait();
         toast.success(createSuccessfulTransactionToastContent(receipt.transactionHash));
