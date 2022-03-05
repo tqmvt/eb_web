@@ -119,7 +119,7 @@ const AccountMenu = function () {
     ) {
       if (!user.provider) {
         if (window.navigator.userAgent.includes("Crypto.com DeFiWallet")) {
-          dispatch(connectAccount("defi"));
+          dispatch(connectAccount(false, "defi"));
         } else {
           dispatch(connectAccount());
         }
@@ -127,7 +127,7 @@ const AccountMenu = function () {
     }
     if (!user.provider) {
       if (window.navigator.userAgent.includes("Crypto.com DeFiWallet")) {
-        dispatch(connectAccount("defi"));
+        dispatch(connectAccount(false, "defi"));
       }
     }
 

@@ -306,7 +306,7 @@ export const updateListed =
   };
 
 export const connectAccount =
-  (type = "") =>
+  (firstRun=false, type = "") =>
   async (dispatch) => {
     const providerOptions = {
       injected: {
@@ -375,7 +375,7 @@ export const connectAccount =
       .connect()
       .then((web3provider) => web3provider)
       .catch((error) => {
-        captureException(error, { });
+        captureException(error, { extra: { firstRun } });
         console.log('Could not get a wallet connection', error);
         return null;
       });
@@ -404,6 +404,9 @@ export const connectAccount =
       const signer = provider.getSigner();
 
       if (!correctChain) {
+        if (firstRun) {
+          dispatch(appAuthInitFinished());
+        }
         await dispatch(setShowWrongChainModal(true));
       }
 
@@ -417,6 +420,9 @@ export const connectAccount =
           correctChain: correctChain,
         })
       );
+      if (firstRun) {
+        dispatch(appAuthInitFinished());
+      }
       web3provider.on('DeFiConnectorDeactivate', (error) => {
         dispatch(onLogout());
       });
@@ -494,10 +500,14 @@ export const connectAccount =
     } catch (error) {
       captureException(error, {
         extra: {
+          firstRun,
           WEB3_CONNECT_CACHED_PROVIDER: localStorage.getItem('WEB3_CONNECT_CACHED_PROVIDER'),
           DeFiLink_session_storage_extension: localStorage.getItem('DeFiLink_session_storage_extension'),
         },
       });
+      if (firstRun) {
+        dispatch(appAuthInitFinished());
+      }
       console.log(error);
       console.log('Error connecting wallet!');
       await web3Modal.clearCachedProvider();
