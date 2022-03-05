@@ -255,7 +255,7 @@
       "name": "Cronos ALIENFT",
       "slug": "alie-nft",
       "multiToken": false,
-      "address": "",
+      "address": "0x39128237ea72040B96D3ea516619A226126ec838",
       "onChain": false,
       "listable": false,
       "metadata": {
@@ -3248,7 +3248,7 @@
       "subtitle": "A limited collection of 2500 NFTs with a variety of hand-drawn attributes with a unique design sure to please all life forms. Offering forms of utility like royalty sharing that will reward the user upon staking their NFTS on Crodex",
       "description": "From far off unquantifiable depths of our universe these brilliant extraterrestrial life forms live in harmony… until recently they have caught solar wind of what the humans of earth have been doing with these “NFTs” so they want in… will you take the small step for man and create the big change for mankind! Our unique utility of NFT staking will allow users to earn a from of passive rewards in this case CRO from staking their NFTs, the rewards are gathered from 100% of all secondary market sales at an 8% royalty fee.",
       "author": { "name": "ALIENFT", "link": "https://www.aliennft.ca/" },
-      "address": "",
+      "address": "0x39128237ea72040B96D3ea516619A226126ec838",
       "maxMintPerTx": 5,
       "maxMintPerAddress": 50,
       "totalSupply": 2500,
