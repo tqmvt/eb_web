@@ -257,7 +257,7 @@
       "multiToken": false,
       "address": "0x39128237ea72040B96D3ea516619A226126ec838",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "slug": "alie-nft",
         "description": "",
@@ -2293,7 +2293,7 @@
         "verified": true,
         "avatar": "/img/collections/cronosmb/special/avatar.png",
         "card": "/img/collections/cronosmb/gorilla/card.jpeg",
-        "banner": "/img/collections/cronosmb/gorilla/banner.webp",
+        "banner": "/img/collections/cronosmb/gorilla/banner.jpeg",
         "maxSupply": 6100,
         "website": "https://cronospb.com/",
         "twitter": "https://twitter.com/PrimateCronos",
@@ -3261,7 +3261,7 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false
+      "complete": true
     },
     {
       "id": 33,
