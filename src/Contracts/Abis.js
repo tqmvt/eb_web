@@ -11,6 +11,7 @@ export const ERC721 = [
   'function totalSupply() public view returns (uint256)',
   'function tokenByIndex(uint256 index) public view returns (uint256)',
   'function walletOfOwner(address owner) public view returns (uint256[] memory)',
+  'function stakedApes(uint256 tokenId) public view returns (bool staked)' // Weird Apes Club v2 ONLY
 ];
 
 export const ERC1155 = [
