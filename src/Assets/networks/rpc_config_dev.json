@@ -255,7 +255,7 @@
       "name": "Cronos ALIENFT",
       "slug": "alie-nft",
       "multiToken": false,
-      "address": "",
+      "address": "0x39128237ea72040B96D3ea516619A226126ec838",
       "onChain": false,
       "listable": false,
       "metadata": {
@@ -1120,12 +1120,12 @@
         "slug": "cronos-primate-business",
         "description": "",
         "verified": true,
-        "avatar": "/img/collections/cronosmb/avatar.png",
+        "avatar": "/img/collections/cronosmb/special/avatar.png",
         "card": "/img/collections/cronosmb/card.png",
         "banner": "/img/collections/cronosmb/banner.webp",
         "maxSupply": 1000,
-        "website": "https://cronosmb.com/",
-        "twitter": "https://twitter.com/MonkeyCronos",
+        "website": "https://cronospb.com/",
+        "twitter": "https://twitter.com/PrimateCronos",
         "discord": "https://discord.gg/qXxkanCKBB",
         "medium": "https://medium.com/cronos-monkey-business",
         "staking": "crodex"
@@ -1400,7 +1400,7 @@
       "multiToken": false,
       "address": "0x0b289dEa4DCb07b8932436C2BA78bA09Fbd34C44",
       "onChain": false,
-      "listable": true,
+      "listable": false,
       "metadata": {
         "slug": "weird-apes-club-v2",
         "description": "",
@@ -1783,8 +1783,8 @@
         "card": "/img/collections/cronosmb/special/card.png",
         "banner": "/img/collections/cronosmb/banner.webp",
         "maxSupply": 75,
-        "website": "https://cronosmb.com",
-        "twitter": "https://twitter.com/MonkeyCronos",
+        "website": "https://cronospb.com",
+        "twitter": "https://twitter.com/PrimateCronos",
         "discord": "https://discord.gg/qXxkanCKBB"
       }
     },
@@ -2254,7 +2254,7 @@
       "name": "Meta Cyborgs",
       "slug": "meta-cyborgs",
       "multiToken": false,
-      "address": "",
+      "address": "0xd1dd28f2B33bb2f9f23bac71C5221eF5907A738d",
       "onChain": false,
       "listable": false,
       "metadata": {
@@ -2279,6 +2279,46 @@
       "listable" : false,
       "metadata" : {
         "slug" : "pixel-city"
+      }
+    },
+    {
+      "name": "Cronos Gorilla Business",
+      "slug": "cronos-gorilla-business",
+      "multiToken": false,
+      "address": "0xc843f18d5605654391e7eDBEa250f6838C3e8936",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/cronosmb/special/avatar.png",
+        "card": "/img/collections/cronosmb/gorilla/card.jpeg",
+        "banner": "/img/collections/cronosmb/gorilla/banner.webp",
+        "maxSupply": 6100,
+        "website": "https://cronospb.com/",
+        "twitter": "https://twitter.com/PrimateCronos",
+        "discord": "https://discord.gg/qXxkanCKBB",
+        "medium": "https://medium.com/cronos-monkey-business"
+      }
+    },
+    {
+      "name": "Mad Treehouse",
+      "slug": "mad-treehouse",
+      "multiToken": false,
+      "address": "0xe9120F21c30468e327Dc3CAdEfb4578cC4e7603D",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/meerkats/treehouse/avatar.png",
+        "card": "/img/collections/meerkats/treehouse/card.jpg",
+        "banner": "/img/collections/meerkats/treehouse/banner.jpg",
+        "maxSupply": 10000,
+        "website": "https://madmeerkat.io/",
+        "twitter": "https://twitter.com/MadMeerkatNFT",
+        "discord": "http://discord.gg/madmeerkat",
+        "medium": " http://medium.com/@madmeerkat0"
       }
     }
   ],
@@ -2335,7 +2375,6 @@
       "is1155": true,
       "foundersOnly": false,
       "published": true,
-      "featured": true,
       "complete": false
     },
     {
@@ -2773,7 +2812,6 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "featured": true,
       "complete": false
     },
     {
@@ -3069,7 +3107,7 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false
+      "complete": true
     },
     {
       "id": 27,
@@ -3165,13 +3203,12 @@
       "memberCost": "50",
       "whitelistCost": "50",
       "foundersOnly": false,
-      "start": null,
+      "start": 1646427600000,
       "end": null,
       "referral": false,
       "is1155": false,
       "disclaimer": "Only whitelisted addresses are eligible for this mint. Please check the Crognomes discord for more information.",
       "published": true,
-      "featured": true,
       "complete": false
     },
     {
@@ -3193,7 +3230,7 @@
       "memberCost": "250",
       "whitelistCost": "200",
       "foundersOnly": false,
-      "start": 1646247600000,
+      "start": 1646254800000,
       "end": null,
       "referral": false,
       "is1155": false,
@@ -3201,17 +3238,17 @@
       "complete": false
     },
     {
-      "id": 31,
+      "id": 32,
       "slug": "alie-nft",
-      "imgNft": "/img/drops/alienft/drop.png",
-      "imgPreview": "/img/drops/alienft/drop.png",
+      "imgNft": "/img/drops/alienft/drop.gif",
+      "imgPreview": "/img/drops/alienft/drop.gif",
       "imgAvatar": "/img/collections/alienft/avatar.png",
       "imgBanner": "/img/drops/alienft/banner.png",
       "title": "Cronos ALIENFT",
       "subtitle": "A limited collection of 2500 NFTs with a variety of hand-drawn attributes with a unique design sure to please all life forms. Offering forms of utility like royalty sharing that will reward the user upon staking their NFTS on Crodex",
       "description": "From far off unquantifiable depths of our universe these brilliant extraterrestrial life forms live in harmony… until recently they have caught solar wind of what the humans of earth have been doing with these “NFTs” so they want in… will you take the small step for man and create the big change for mankind! Our unique utility of NFT staking will allow users to earn a from of passive rewards in this case CRO from staking their NFTs, the rewards are gathered from 100% of all secondary market sales at an 8% royalty fee.",
       "author": { "name": "ALIENFT", "link": "https://www.aliennft.ca/" },
-      "address": "",
+      "address": "0x39128237ea72040B96D3ea516619A226126ec838",
       "maxMintPerTx": 5,
       "maxMintPerAddress": 50,
       "totalSupply": 2500,
@@ -3219,12 +3256,72 @@
       "memberCost": "125",
       "whitelistCost": "125",
       "foundersOnly": false,
-      "start": 1646247600000,
+      "start": 1646506800000,
       "end": null,
       "referral": false,
       "is1155": false,
       "published": true,
       "complete": false
+    },
+    {
+      "id": 33,
+      "slug": "cronos-gorilla-business",
+      "imgNft": "/img/drops/cronosmb/drop.jpeg",
+      "imgPreview": "/img/drops/cronosmb/drop.jpeg",
+      "imgAvatar": "/img/collections/cronosmb/special/avatar.png",
+      "imgBanner": "/img/drops/cronosmb/banner.jpg",
+      "title": "Cronos Gorilla Business",
+      "subtitle": "Cronos Gorilla Business is a collection of 6100 uniquely generated NFTs stored on the Cronos Chain. Each CGB NFT is based on 10+ attributes with different rarities. The collection is composed of 4 different factions: MAFIA / AQUA / IGNIS / TERRA. So make the right choice.",
+      "description": "Cronos Gorilla Business is a collection of 6100 uniquely generated NFTs stored on the Cronos Chain. Each CGB NFT is based on 10+ attributes with different rarities. The collection is composed of 4 different factions: MAFIA / AQUA / IGNIS / TERRA. So make the right choice.\nThese NFTs can then be staked on our site within the next few weeks to earn $CPB tokens and several other features that will be announced.",
+      "author": { "name": "Cronos Primate Business", "link": "https://cronospb.com/" },
+      "address": "0xc843f18d5605654391e7eDBEa250f6838C3e8936",
+      "maxMintPerTx": 5,
+      "maxMintPerAddress": 50,
+      "totalSupply": 6100,
+      "cost": "390",
+      "memberCost": "350",
+      "whitelistCost": "325",
+      "foundersOnly": false,
+      "abi": "cronos-gorilla-business.json",
+      "start": 1646424000000,
+      "salePeriods": {
+        "presale": 1646424000000,
+        "public": 1646431200000
+      },
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "disclaimer": "Presale is limited to whitelisted addresses only. Please check the Cronos Primate Business discord for more information.",
+      "published": true,
+      "complete": false,
+      "multiMint": true,
+      "featured": true
+    },
+    {
+      "id": 34,
+      "slug": "mad-treehouse",
+      "imgNft": "/img/drops/meerkats/drop.jpeg",
+      "imgPreview": "/img/drops/meerkats/drop.jpeg",
+      "imgAvatar": "/img/collections/meerkats/treehouse/avatar.png",
+      "title": "Mad Treehouse",
+      "subtitle": "",
+      "description": "",
+      "author": { "name": "Mad Meerkats", "link": "https://madmeerkat.io/" },
+      "address": "",
+      "maxMintPerTx": 0,
+      "maxMintPerAddress": 0,
+      "totalSupply": 0,
+      "cost": "845",
+      "whitelistCost": "685",
+      "foundersOnly": false,
+      "start": 1646571600000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false,
+      "featured": false,
+      "redirect": "https://madmeerkat.io/"
     }
   ],
   "auctions": [

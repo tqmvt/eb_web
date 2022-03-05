@@ -62,7 +62,7 @@ const UpcomingDrops = () => {
               title={item.drop.title}
               subtitle={`${item.drop.start ? new Date(item.drop.start).toDateString() : 'TBA'}`}
               collectionId={item.drop.slug}
-              url={`/drops/${item.drop.slug}`}
+              url={item.drop.redirect ?? `/drops/${item.drop.slug}`}
               verified={true}
             />
           ))}
