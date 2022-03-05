@@ -74,6 +74,9 @@ const MyStaking = ({ walletAddress = null }) => {
   }
   return (
     <>
+      <div className="text-center">
+        <img src="/img/vip-stake.webp" alt="Ebisu's Bay VIP"/>
+      </div>
       <div className="row mt-4 d-flex justify-content-center">
         <div className="col-lg-4 text-center d-flex justify-content-sm-between">
           <h4>VipCount: {vipCount} </h4>
