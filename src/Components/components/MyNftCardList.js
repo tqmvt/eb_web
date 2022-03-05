@@ -89,8 +89,9 @@ const MyNftCardList = ({ nfts = [], isLoading, listedOnly, activeFilterOption })
             >
               <NftCard
                 nft={nft}
-                canTransfer={true}
-                canSell={nft.listable && !nft.listed}
+                canTransfer={nft.canTransfer}
+                canSell={nft.listable && !nft.listed && nft.canSell}
+                isStaked={nft.isStaked}
                 canCancel={nft.listed && nft.listingId}
                 canUpdate={nft.listable && nft.listed}
                 onTransferButtonPressed={() => dispatch(MyNftPageActions.showMyNftPageTransferDialog(nft))}

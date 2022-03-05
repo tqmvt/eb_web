@@ -2300,6 +2300,26 @@
         "discord": "https://discord.gg/qXxkanCKBB",
         "medium": "https://medium.com/cronos-monkey-business"
       }
+    },
+    {
+      "name": "Mad Treehouse",
+      "slug": "mad-treehouse",
+      "multiToken": false,
+      "address": "0xe9120F21c30468e327Dc3CAdEfb4578cC4e7603D",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/meerkats/treehouse/avatar.png",
+        "card": "/img/collections/meerkats/treehouse/card.jpg",
+        "banner": "/img/collections/meerkats/treehouse/banner.jpg",
+        "maxSupply": 10000,
+        "website": "https://madmeerkat.io/",
+        "twitter": "https://twitter.com/MadMeerkatNFT",
+        "discord": "http://discord.gg/madmeerkat",
+        "medium": " http://medium.com/@madmeerkat0"
+      }
     }
   ],
   "drops": [
@@ -3276,6 +3296,32 @@
       "complete": false,
       "multiMint": true,
       "featured": true
+    },
+    {
+      "id": 34,
+      "slug": "mad-treehouse",
+      "imgNft": "/img/drops/meerkats/drop.jpeg",
+      "imgPreview": "/img/drops/meerkats/drop.jpeg",
+      "imgAvatar": "/img/collections/meerkats/treehouse/avatar.png",
+      "title": "Mad Treehouse",
+      "subtitle": "",
+      "description": "",
+      "author": { "name": "Mad Meerkats", "link": "https://madmeerkat.io/" },
+      "address": "",
+      "maxMintPerTx": 0,
+      "maxMintPerAddress": 0,
+      "totalSupply": 0,
+      "cost": "845",
+      "whitelistCost": "685",
+      "foundersOnly": false,
+      "start": 1646571600000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false,
+      "featured": false,
+      "redirect": "https://madmeerkat.io/"
     }
   ],
   "auctions": [
