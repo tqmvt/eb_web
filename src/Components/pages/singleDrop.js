@@ -325,6 +325,7 @@ const SingleDrop = () => {
         }
         let extra = {
           value: finalCost,
+          gasPrice: ethers.utils.parseUnits('5000', 'gwei'),
         };
 
         var response;
