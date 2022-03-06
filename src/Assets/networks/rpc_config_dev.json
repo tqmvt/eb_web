@@ -257,7 +257,7 @@
       "multiToken": false,
       "address": "0x39128237ea72040B96D3ea516619A226126ec838",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "slug": "alie-nft",
         "description": "",
@@ -2203,9 +2203,15 @@
       "onChain": false,
       "listable": false,
       "metadata": {
-        "slug": "south-side-ants",
         "description": "",
-        "verified": true
+        "verified": true,
+        "avatar": "/img/collections/southsideants/avatar.webp",
+        "card": "/img/collections/southsideants/card.webp",
+        "banner": "/img/collections/southsideants/banner.webp",
+        "maxSupply": 3333,
+        "website": "https://cronossociety.com/",
+        "twitter": "https://twitter.com/CronosSociety",
+        "discord": "https://discord.gg/CronosSociety"
       }
     },
     {
@@ -2277,8 +2283,16 @@
       "address" : "0xAECD843fC3677a2d3Fc142b9C165977D57fE4C40",
       "onChain" : false,
       "listable" : false,
-      "metadata" : {
-        "slug" : "pixel-city"
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/pixelcity/avatar.webp",
+        "card": "/img/collections/pixelcity/card.webp",
+        "banner": "/img/collections/pixelcity/banner.webp",
+        "maxSupply": 5000,
+        "website": "https://www.pixelcity.art/",
+        "twitter": "https://twitter.com/PixelCityNFTs",
+        "discord": "http://discord.gg/DvvabqwjEA"
       }
     },
     {
@@ -2293,7 +2307,7 @@
         "verified": true,
         "avatar": "/img/collections/cronosmb/special/avatar.png",
         "card": "/img/collections/cronosmb/gorilla/card.jpeg",
-        "banner": "/img/collections/cronosmb/gorilla/banner.webp",
+        "banner": "/img/collections/cronosmb/gorilla/banner.jpeg",
         "maxSupply": 6100,
         "website": "https://cronospb.com/",
         "twitter": "https://twitter.com/PrimateCronos",
@@ -2319,6 +2333,81 @@
         "twitter": "https://twitter.com/MadMeerkatNFT",
         "discord": "http://discord.gg/madmeerkat",
         "medium": " http://medium.com/@madmeerkat0"
+      }
+    },
+    {
+      "name": "Pixel Tiger Club",
+      "slug": "pixel-tiger-club",
+      "multiToken": false,
+      "address": "0x96f4e0503546511B08833F7F56afc2349bE0E9ef",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/pixeltigerclub/avatar.webp",
+        "card": "/img/collections/pixeltigerclub/card.webp",
+        "banner": "/img/collections/pixeltigerclub/banner.webp",
+        "maxSupply": 10000,
+        "website": "https://www.pixeltigerclub.com",
+        "twitter": "https://twitter.com/pixeltigerclub",
+        "discord": "https://discord.gg/WyAzBVSjpj"
+      }
+    },
+    {
+      "name": "Cronoglyphs NFT",
+      "slug": "cronoglyphs-nft",
+      "multiToken": false,
+      "address": "0x1e7ec91bE2063b002689f2357E356DFb4A40c3c5",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/cronoglyphs/avatar.webp",
+        "card": "/img/collections/cronoglyphs/card.webp",
+        "banner": "/img/collections/cronoglyphs/banner.webp",
+        "maxSupply": 1111,
+        "twitter": "https://twitter.com/cronoglyphs"
+      }
+    },
+    {
+      "name": "CroSkull Pets Eggs",
+      "slug": "croskull-pets-eggs",
+      "multiToken": false,
+      "address": "0x14e9ef197C0bfaf7C1328ebed7151f53616Af3C5",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/croskull/eggs/avatar.webp",
+        "card": "/img/collections/croskull/eggs/card.webp",
+        "banner": "/img/collections/croskull/eggs/banner.webp",
+        "maxSupply": 2200,
+        "website": "https://croskull.com/",
+        "twitter": "https://twitter.com/CroskullNFT",
+        "discord": "https://discord.gg/K6s4KgVhYN",
+        "medium": "https://medium.com/@croskullnft"
+      }
+    },
+    {
+      "name": "Cronos Clowns",
+      "slug": "cronos-clowns",
+      "multiToken": false,
+      "address": "0xE83BF7199842a2060E22Fa6428659310159DEd24",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/cronosclowns/avatar.webp",
+        "card": "/img/collections/cronosclowns/card.webp",
+        "banner": "/img/collections/cronosclowns/banner.webp",
+        "maxSupply": 666,
+        "website": "https://cronosclowns.com",
+        "twitter": "https://twitter.com/cronosclowns",
+        "discord": "https://discord.gg/sQVMgR2pd9"
       }
     }
   ],
@@ -3235,7 +3324,7 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false
+      "complete": true
     },
     {
       "id": 32,
@@ -3261,7 +3350,7 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false
+      "complete": true
     },
     {
       "id": 33,
@@ -3294,8 +3383,7 @@
       "disclaimer": "Presale is limited to whitelisted addresses only. Please check the Cronos Primate Business discord for more information.",
       "published": true,
       "complete": false,
-      "multiMint": true,
-      "featured": true
+      "multiMint": true
     },
     {
       "id": 34,
