@@ -266,7 +266,7 @@
         "card": "/img/collections/alienft/card.png",
         "banner": "/img/collections/alienft/banner.png",
         "website": "https://www.aliennft.ca/",
-        "twitter": "https://twitter.com/aliennft",
+        "twitter": "https://twitter.com/AlienftCronos",
         "discord": "https://discord.gg/aliennft",
         "medium": "https://medium.com/@aliennft"
       }
@@ -1400,7 +1400,7 @@
       "multiToken": false,
       "address": "0x0b289dEa4DCb07b8932436C2BA78bA09Fbd34C44",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "slug": "weird-apes-club-v2",
         "description": "",
@@ -2321,7 +2321,7 @@
       "multiToken": false,
       "address": "0xDC5bBDb4A4b051BDB85B959eB3cBD1c8C0d0c105",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "",
         "verified": true,
@@ -2408,6 +2408,26 @@
         "website": "https://cronosclowns.com",
         "twitter": "https://twitter.com/cronosclowns",
         "discord": "https://discord.gg/sQVMgR2pd9"
+      }
+    },
+    {
+      "name": "IcyHouses",
+      "slug": "icy-houses",
+      "multiToken": false,
+      "address": "0x45008e129A33368119757496DA762284ff8e2565",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "slug": "icy-houses",
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/icysquidgame/houses/avatar.jpg",
+        "card": "/img/collections/icysquidgame/card.jpg",
+        "banner": "/img/collections/icysquidgame/banner.jpg",
+        "maxSupply": 30,
+        "website": "https://www.icysquidgame.com/",
+        "twitter": "https://twitter.com/IcySquidGame",
+        "telegram": "http://t.me/IcySquidGame"
       }
     }
   ],
@@ -3407,7 +3427,7 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false,
+      "complete": true,
       "featured": false,
       "redirect": "https://madmeerkat.io/"
     }
