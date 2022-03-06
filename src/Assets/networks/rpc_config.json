@@ -2316,8 +2316,8 @@
       }
     },
     {
-      "name": "Mad Treehouse",
-      "slug": "mad-treehouse",
+      "name": "MM Treehouse",
+      "slug": "mm-treehouse",
       "multiToken": false,
       "address": "0xDC5bBDb4A4b051BDB85B959eB3cBD1c8C0d0c105",
       "onChain": false,
@@ -3411,7 +3411,7 @@
       "imgNft": "/img/drops/meerkats/drop.jpeg",
       "imgPreview": "/img/drops/meerkats/drop.jpeg",
       "imgAvatar": "/img/collections/meerkats/treehouse/avatar.png",
-      "title": "Mad Treehouse",
+      "title": "MM Treehouse",
       "subtitle": "",
       "description": "",
       "author": { "name": "Mad Meerkats", "link": "https://madmeerkat.io/" },
