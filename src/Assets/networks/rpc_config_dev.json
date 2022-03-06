@@ -2353,6 +2353,23 @@
         "twitter": "https://twitter.com/pixeltigerclub",
         "discord": "https://discord.gg/WyAzBVSjpj"
       }
+    },
+    {
+      "name": "Cronoglyphs NFT",
+      "slug": "cronoglyphs-nft",
+      "multiToken": false,
+      "address": "0x1e7ec91bE2063b002689f2357E356DFb4A40c3c5",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/cronoglyphs/avatar.webp",
+        "card": "/img/collections/cronoglyphs/card.webp",
+        "banner": "/img/collections/cronoglyphs/banner.webp",
+        "maxSupply": 1111,
+        "twitter": "https://twitter.com/cronoglyphs"
+      }
     }
   ],
   "drops": [
