@@ -54,7 +54,7 @@ const MyStaking = ({ walletAddress = null }) => {
 
   const stake = async () => {
     if (!user.stakeContract || amount === 0) return;
-    if (amount >= vipCount) {
+    if (amount > vipCount) {
       toast.error("Exceed amount");
       return;
     }
@@ -74,7 +74,7 @@ const MyStaking = ({ walletAddress = null }) => {
 
   const unStake = async () => {
     if (!user.stakeContract || amount ===0) return;
-    if (amount >= stakeCount) {
+    if (amount > stakeCount) {
       alert("Exceed amount");
       return;
     }
