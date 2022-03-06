@@ -18,7 +18,6 @@ const Drop = () => {
   const [shipTypes, setShipTypes] = useState([]);
   const [isMinting, setIsMinting] = useState(false);
   const [shipContract, setShipContract] = useState(null);
-  const [ids, setIds] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
    
@@ -54,7 +53,6 @@ const Drop = () => {
         }
         
         setShipTypes(tmpShipTypes);
-        setIds(ids);
 
         setShipContract(spaceShip);
       } catch (error) {
