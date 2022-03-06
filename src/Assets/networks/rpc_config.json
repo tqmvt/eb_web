@@ -2320,6 +2320,25 @@
         "discord": "http://discord.gg/madmeerkat",
         "medium": " http://medium.com/@madmeerkat0"
       }
+    },
+    {
+      "name": "Pixel Tiger Club",
+      "slug": "pixel-tiger-club",
+      "multiToken": false,
+      "address": "0x96f4e0503546511B08833F7F56afc2349bE0E9ef",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/pixeltigerclub/avatar.webp",
+        "card": "/img/collections/pixeltigerclub/card.webp",
+        "banner": "/img/collections/pixeltigerclub/banner.webp",
+        "maxSupply": 10000,
+        "website": "https://www.pixeltigerclub.com",
+        "twitter": "https://twitter.com/pixeltigerclub",
+        "discord": "https://discord.gg/WyAzBVSjpj"
+      }
     }
   ],
   "drops": [
