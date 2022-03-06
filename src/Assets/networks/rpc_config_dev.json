@@ -2203,9 +2203,15 @@
       "onChain": false,
       "listable": false,
       "metadata": {
-        "slug": "south-side-ants",
         "description": "",
-        "verified": true
+        "verified": true,
+        "avatar": "/img/collections/southsideants/avatar.webp",
+        "card": "/img/collections/southsideants/card.webp",
+        "banner": "/img/collections/southsideants/banner.webp",
+        "maxSupply": 3333,
+        "website": "https://cronossociety.com/",
+        "twitter": "https://twitter.com/CronosSociety",
+        "discord": "https://discord.gg/CronosSociety"
       }
     },
     {
