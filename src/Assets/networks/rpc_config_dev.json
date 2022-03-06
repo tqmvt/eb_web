@@ -2390,6 +2390,25 @@
         "discord": "https://discord.gg/K6s4KgVhYN",
         "medium": "https://medium.com/@croskullnft"
       }
+    },
+    {
+      "name": "Cronos Clowns",
+      "slug": "cronos-clowns",
+      "multiToken": false,
+      "address": "0xE83BF7199842a2060E22Fa6428659310159DEd24",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/cronosclowns/avatar.webp",
+        "card": "/img/collections/cronosclowns/card.webp",
+        "banner": "/img/collections/cronosclowns/banner.webp",
+        "maxSupply": 666,
+        "website": "https://cronosclowns.com",
+        "twitter": "https://twitter.com/cronosclowns",
+        "discord": "https://discord.gg/sQVMgR2pd9"
+      }
     }
   ],
   "drops": [
