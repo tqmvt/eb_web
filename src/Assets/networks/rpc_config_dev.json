@@ -2370,6 +2370,26 @@
         "maxSupply": 1111,
         "twitter": "https://twitter.com/cronoglyphs"
       }
+    },
+    {
+      "name": "CroSkull Pets Eggs",
+      "slug": "croskull-pets-eggs",
+      "multiToken": false,
+      "address": "0x14e9ef197C0bfaf7C1328ebed7151f53616Af3C5",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/croskull/eggs/avatar.webp",
+        "card": "/img/collections/croskull/eggs/card.webp",
+        "banner": "/img/collections/croskull/eggs/banner.webp",
+        "maxSupply": 2200,
+        "website": "https://croskull.com/",
+        "twitter": "https://twitter.com/CroskullNFT",
+        "discord": "https://discord.gg/K6s4KgVhYN",
+        "medium": "https://medium.com/@croskullnft"
+      }
     }
   ],
   "drops": [
