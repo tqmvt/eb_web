@@ -466,7 +466,7 @@
       "multiToken": false,
       "address": "0x7d09ff680b210770D6D9a1296b4A74bd5391b341",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "slug": "3d-slothty",
         "description": "",
