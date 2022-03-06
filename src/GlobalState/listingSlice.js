@@ -33,8 +33,11 @@ export default listingSlice.reducer;
 
 export const getListingDetails = (listingId) => async (dispatch) => {
   dispatch(listingLoading());
-  const listing = await getListing(listingId);
-  const nft = await getNft(listing.nftAddress, listing.nftId, false);
+  let listing = await getListing(listingId);
+  const nft = await getNft(listing.nftAddress, listing.nftId);
+  if (nft) {
+    listing = {...listing, ...{nft: nft.nft}};
+  }
   const history = nft?.listings ?? [];
   const powertraits = nft.nft?.powertraits ?? [];
   dispatch(listingReceived({ listing, history, powertraits }));

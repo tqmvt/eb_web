@@ -255,9 +255,9 @@
       "name": "Cronos ALIENFT",
       "slug": "alie-nft",
       "multiToken": false,
-      "address": "",
+      "address": "0x39128237ea72040B96D3ea516619A226126ec838",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "slug": "alie-nft",
         "description": "",
@@ -1124,8 +1124,8 @@
         "card": "/img/collections/cronosmb/card.png",
         "banner": "/img/collections/cronosmb/banner.webp",
         "maxSupply": 1000,
-        "website": "https://cronosmb.com/",
-        "twitter": "https://twitter.com/MonkeyCronos",
+        "website": "https://cronospb.com/",
+        "twitter": "https://twitter.com/PrimateCronos",
         "discord": "https://discord.gg/qXxkanCKBB",
         "medium": "https://medium.com/cronos-monkey-business",
         "staking": "crodex"
@@ -1400,7 +1400,7 @@
       "multiToken": false,
       "address": "0x0b289dEa4DCb07b8932436C2BA78bA09Fbd34C44",
       "onChain": false,
-      "listable": true,
+      "listable": false,
       "metadata": {
         "slug": "weird-apes-club-v2",
         "description": "",
@@ -1783,8 +1783,8 @@
         "card": "/img/collections/cronosmb/special/card.png",
         "banner": "/img/collections/cronosmb/banner.webp",
         "maxSupply": 75,
-        "website": "https://cronosmb.com",
-        "twitter": "https://twitter.com/MonkeyCronos",
+        "website": "https://cronospb.com",
+        "twitter": "https://twitter.com/PrimateCronos",
         "discord": "https://discord.gg/qXxkanCKBB"
       }
     },
@@ -2203,9 +2203,15 @@
       "onChain": false,
       "listable": false,
       "metadata": {
-        "slug": "south-side-ants",
         "description": "",
-        "verified": true
+        "verified": true,
+        "avatar": "/img/collections/southsideants/avatar.webp",
+        "card": "/img/collections/southsideants/card.webp",
+        "banner": "/img/collections/southsideants/banner.webp",
+        "maxSupply": 3333,
+        "website": "https://cronossociety.com/",
+        "twitter": "https://twitter.com/CronosSociety",
+        "discord": "https://discord.gg/CronosSociety"
       }
     },
     {
@@ -2277,8 +2283,131 @@
       "address" : "0xAECD843fC3677a2d3Fc142b9C165977D57fE4C40",
       "onChain" : false,
       "listable" : false,
-      "metadata" : {
-        "slug" : "pixel-city"
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/pixelcity/avatar.webp",
+        "card": "/img/collections/pixelcity/card.webp",
+        "banner": "/img/collections/pixelcity/banner.webp",
+        "maxSupply": 5000,
+        "website": "https://www.pixelcity.art/",
+        "twitter": "https://twitter.com/PixelCityNFTs",
+        "discord": "http://discord.gg/DvvabqwjEA"
+      }
+    },
+    {
+      "name": "Cronos Gorilla Business",
+      "slug": "cronos-gorilla-business",
+      "multiToken": false,
+      "address": "0xc843f18d5605654391e7eDBEa250f6838C3e8936",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/cronosmb/special/avatar.png",
+        "card": "/img/collections/cronosmb/gorilla/card.jpeg",
+        "banner": "/img/collections/cronosmb/gorilla/banner.jpeg",
+        "maxSupply": 6100,
+        "website": "https://cronospb.com/",
+        "twitter": "https://twitter.com/PrimateCronos",
+        "discord": "https://discord.gg/qXxkanCKBB",
+        "medium": "https://medium.com/cronos-monkey-business"
+      }
+    },
+    {
+      "name": "Mad Treehouse",
+      "slug": "mad-treehouse",
+      "multiToken": false,
+      "address": "0xDC5bBDb4A4b051BDB85B959eB3cBD1c8C0d0c105",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/meerkats/treehouse/avatar.png",
+        "card": "/img/collections/meerkats/treehouse/card.jpg",
+        "banner": "/img/collections/meerkats/treehouse/banner.jpg",
+        "maxSupply": 10000,
+        "website": "https://madmeerkat.io/",
+        "twitter": "https://twitter.com/MadMeerkatNFT",
+        "discord": "http://discord.gg/madmeerkat",
+        "medium": " http://medium.com/@madmeerkat0"
+      }
+    },
+    {
+      "name": "Pixel Tiger Club",
+      "slug": "pixel-tiger-club",
+      "multiToken": false,
+      "address": "0x96f4e0503546511B08833F7F56afc2349bE0E9ef",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/pixeltigerclub/avatar.webp",
+        "card": "/img/collections/pixeltigerclub/card.webp",
+        "banner": "/img/collections/pixeltigerclub/banner.webp",
+        "maxSupply": 10000,
+        "website": "https://www.pixeltigerclub.com",
+        "twitter": "https://twitter.com/pixeltigerclub",
+        "discord": "https://discord.gg/WyAzBVSjpj"
+      }
+    },
+    {
+      "name": "Cronoglyphs NFT",
+      "slug": "cronoglyphs-nft",
+      "multiToken": false,
+      "address": "0x1e7ec91bE2063b002689f2357E356DFb4A40c3c5",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/cronoglyphs/avatar.webp",
+        "card": "/img/collections/cronoglyphs/card.webp",
+        "banner": "/img/collections/cronoglyphs/banner.webp",
+        "maxSupply": 1111,
+        "twitter": "https://twitter.com/cronoglyphs"
+      }
+    },
+    {
+      "name": "CroSkull Pets Eggs",
+      "slug": "croskull-pets-eggs",
+      "multiToken": false,
+      "address": "0x14e9ef197C0bfaf7C1328ebed7151f53616Af3C5",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/croskull/eggs/avatar.webp",
+        "card": "/img/collections/croskull/eggs/card.webp",
+        "banner": "/img/collections/croskull/eggs/banner.webp",
+        "maxSupply": 2200,
+        "website": "https://croskull.com/",
+        "twitter": "https://twitter.com/CroskullNFT",
+        "discord": "https://discord.gg/K6s4KgVhYN",
+        "medium": "https://medium.com/@croskullnft"
+      }
+    },
+    {
+      "name": "Cronos Clowns",
+      "slug": "cronos-clowns",
+      "multiToken": false,
+      "address": "0xE83BF7199842a2060E22Fa6428659310159DEd24",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/cronosclowns/avatar.webp",
+        "card": "/img/collections/cronosclowns/card.webp",
+        "banner": "/img/collections/cronosclowns/banner.webp",
+        "maxSupply": 666,
+        "website": "https://cronosclowns.com",
+        "twitter": "https://twitter.com/cronosclowns",
+        "discord": "https://discord.gg/sQVMgR2pd9"
       }
     }
   ],
@@ -2335,7 +2464,6 @@
       "is1155": true,
       "foundersOnly": false,
       "published": true,
-      "featured": true,
       "complete": false
     },
     {
@@ -2773,7 +2901,6 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "featured": true,
       "complete": false
     },
     {
@@ -3171,7 +3298,6 @@
       "is1155": false,
       "disclaimer": "Only whitelisted addresses are eligible for this mint. Please check the Crognomes discord for more information.",
       "published": true,
-      "featured": true,
       "complete": false
     },
     {
@@ -3198,20 +3324,20 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false
+      "complete": true
     },
     {
       "id": 32,
       "slug": "alie-nft",
       "imgNft": "/img/drops/alienft/drop.gif",
-      "imgPreview": "/img/drops/alienft/drop.png",
+      "imgPreview": "/img/drops/alienft/drop.gif",
       "imgAvatar": "/img/collections/alienft/avatar.png",
       "imgBanner": "/img/drops/alienft/banner.png",
       "title": "Cronos ALIENFT",
       "subtitle": "A limited collection of 2500 NFTs with a variety of hand-drawn attributes with a unique design sure to please all life forms. Offering forms of utility like royalty sharing that will reward the user upon staking their NFTS on Crodex",
       "description": "From far off unquantifiable depths of our universe these brilliant extraterrestrial life forms live in harmony… until recently they have caught solar wind of what the humans of earth have been doing with these “NFTs” so they want in… will you take the small step for man and create the big change for mankind! Our unique utility of NFT staking will allow users to earn a from of passive rewards in this case CRO from staking their NFTs, the rewards are gathered from 100% of all secondary market sales at an 8% royalty fee.",
       "author": { "name": "ALIENFT", "link": "https://www.aliennft.ca/" },
-      "address": "",
+      "address": "0x39128237ea72040B96D3ea516619A226126ec838",
       "maxMintPerTx": 5,
       "maxMintPerAddress": 50,
       "totalSupply": 2500,
@@ -3245,11 +3371,66 @@
       "memberCost": "2",
       "foundersOnly": false,
       "start": 1643727600000,
+      "complete": true
+    },
+    {
+      "id": 33,
+      "slug": "cronos-gorilla-business",
+      "imgNft": "/img/drops/cronosmb/drop.jpeg",
+      "imgPreview": "/img/drops/cronosmb/drop.jpeg",
+      "imgAvatar": "/img/collections/cronosmb/special/avatar.png",
+      "imgBanner": "/img/drops/cronosmb/banner.jpg",
+      "title": "Cronos Gorilla Business",
+      "subtitle": "Cronos Gorilla Business is a collection of 6100 uniquely generated NFTs stored on the Cronos Chain. Each CGB NFT is based on 10+ attributes with different rarities. The collection is composed of 4 different factions: MAFIA / AQUA / IGNIS / TERRA. So make the right choice.",
+      "description": "Cronos Gorilla Business is a collection of 6100 uniquely generated NFTs stored on the Cronos Chain. Each CGB NFT is based on 10+ attributes with different rarities. The collection is composed of 4 different factions: MAFIA / AQUA / IGNIS / TERRA. So make the right choice.\nThese NFTs can then be staked on our site within the next few weeks to earn $CPB tokens and several other features that will be announced.",
+      "author": { "name": "Cronos Primate Business", "link": "https://cronospb.com/" },
+      "address": "0xc843f18d5605654391e7eDBEa250f6838C3e8936",
+      "maxMintPerTx": 5,
+      "maxMintPerAddress": 50,
+      "totalSupply": 6100,
+      "cost": "390",
+      "memberCost": "350",
+      "whitelistCost": "325",
+      "foundersOnly": false,
+      "abi": "cronos-gorilla-business.json",
+      "start": 1646424000000,
+      "salePeriods": {
+        "presale": 1646424000000,
+        "public": 1646431200000
+      },
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "disclaimer": "Presale is limited to whitelisted addresses only. Please check the Cronos Primate Business discord for more information.",
+      "published": true,
+      "complete": false,
+      "multiMint": true
+    },
+    {
+      "id": 34,
+      "slug": "mad-treehouse",
+      "imgNft": "/img/drops/meerkats/drop.jpeg",
+      "imgPreview": "/img/drops/meerkats/drop.jpeg",
+      "imgAvatar": "/img/collections/meerkats/treehouse/avatar.png",
+      "title": "Mad Treehouse",
+      "subtitle": "",
+      "description": "",
+      "author": { "name": "Mad Meerkats", "link": "https://madmeerkat.io/" },
+      "address": "",
+      "maxMintPerTx": 0,
+      "maxMintPerAddress": 0,
+      "totalSupply": 0,
+      "cost": "845",
+      "whitelistCost": "685",
+      "foundersOnly": false,
+      "start": 1646571600000,
       "end": null,
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false
+      "complete": false,
+      "featured": false,
+      "redirect": "https://madmeerkat.io/"
     }
   ],
   "auctions": [
