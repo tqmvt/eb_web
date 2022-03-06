@@ -1104,7 +1104,7 @@
         "card": "/img/collections/cronoslizards/card.png",
         "banner": "/img/collections/cronoslizards/banner.png",
         "maxSupply": 797,
-        "website": "https://www.cronoslizards.com/home/index.html",
+        "website": "https://cronoslizards.com/",
         "twitter": "https://twitter.com/CronosLizards",
         "discord": "https://discord.gg/BRDQhtDNsM"
       }
@@ -2428,6 +2428,26 @@
         "website": "https://www.icysquidgame.com/",
         "twitter": "https://twitter.com/IcySquidGame",
         "telegram": "http://t.me/IcySquidGame"
+      }
+    },
+    {
+      "name": "Cronos Lizards Gen2",
+      "slug": "cronos-lizards-gen2",
+      "multiToken": false,
+      "address": "0xEe8d8048d84C567D73a7438E658Ae2C4807a6b7D",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "slug": "cronos-lizards-gen2",
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/cronoslizards/gen2/avatar.webp",
+        "card": "/img/collections/cronoslizards/gen2/card.webp",
+        "banner": "/img/collections/cronoslizards/gen2/banner.webp",
+        "maxSupply": 2203,
+        "website": "https://cronoslizards.com/",
+        "twitter": "https://twitter.com/CronosLizards",
+        "discord": "https://discord.gg/Dk6tk36kcN"
       }
     }
   ],
