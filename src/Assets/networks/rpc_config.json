@@ -273,27 +273,6 @@
       }
     },
     {
-      "name": "Crosmonauts Ships",
-      "slug": "crosmonauts-ship",
-      "multiToken": false,
-      "address": "0xDFab622fC4E5CE1420F83cf38E52312f33849a0A",
-      "onChain": false,
-      "listable": true,
-      "metadata": {
-        "slug": "crosmonauts-ship",
-        "description": "",
-        "verified": true,
-        "avatar": "/img/collections/crosmonauts/ship/avatar.webp",
-        "banner": "/img/collections/crosmonauts/ship/banner.webp",
-        "card": "/img/collections/crosmonauts/ship/card.webp",
-        "maxSupply": 1000,
-        "website": "https://www.crosmonauts.club/",
-        "twitter": "https://twitter.com/crosmonaut",
-        "discord": "https://discord.gg/mC7x6tKsSe",
-        "medium": "https://medium.com/@crosmonaut"
-      }
-    },
-    {
       "name": "CronosChimp",
       "slug": "cronos-chimp-club",
       "multiToken": false,
@@ -2450,6 +2429,48 @@
         "twitter": "https://twitter.com/CronosLizards",
         "discord": "https://discord.gg/Dk6tk36kcN"
       }
+    },
+    {
+      "name": "Crosmocrafts",
+      "slug": "crosmocrafts",
+      "multiToken": false,
+      "address": "",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "slug": "crosmocrafts",
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/crosmonauts/ship/avatar.webp",
+        "card": "/img/collections/crosmonauts/ship/card.webp",
+        "banner": "/img/collections/crosmonauts/ship/banner.webp",
+        "maxSupply": 3000,
+        "website": "https://www.crosmonauts.club/",
+        "twitter": "https://twitter.com/crosmonaut",
+        "discord": "https://discord.gg/yhyJjZ2uWk",
+        "medium": "https://medium.com/@crosmonaut"
+      }
+    },
+    {
+      "name": "Crosmocrafts Parts",
+      "slug": "crosmocrafts-parts",
+      "multiToken": false,
+      "address": "",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "slug": "crosmocrafts-parts",
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/crosmonauts/parts/avatar.webp",
+        "card": "/img/collections/crosmonauts/parts/card.webp",
+        "banner": "/img/collections/crosmonauts/ship/banner.webp",
+        "maxSupply": 8430,
+        "website": "https://www.crosmonauts.club/",
+        "twitter": "https://twitter.com/crosmonaut",
+        "discord": "https://discord.gg/yhyJjZ2uWk",
+        "medium": "https://medium.com/@crosmonaut"
+      }
     }
   ],
   "drops": [
@@ -3394,28 +3415,6 @@
       "complete": false
     },
     {
-      "id": 27,
-      "slug": "crosmonauts-ship",
-      "imgNft": "/img/drops/crosmonautsShip/drop.png",
-      "imgPreview": "/img/drops/crosmonautsShip/drop.png",
-      "imgAvatar": "/img/collections/crosmonauts/ship/avatar.webp",
-      "imgBanner": "/img/drops/crosmonautsShip/banner.png",
-      "title": "Crosmonauts Ships",
-      "subtitle": "",
-      "description": "Spaceship parts are randomly minted, so that its possible to have multiples of some rocket parts and none of others, which motivates trading.",
-      "author": { "name": "Crosmonauts Ships", "link": "" },
-      "address": "",
-      "maxMintPerTx": 12,
-      "maxMintPerAddress": 50,
-      "totalSupply": 8430,
-      "cost": "3",
-      "memberCost": "2",
-      "foundersOnly": false,
-      "start": 1653727600000,
-      "published": true,
-      "complete": false
-    },
-    {
       "id": 33,
       "slug": "cronos-gorilla-business",
       "imgNft": "/img/drops/cronosmb/drop.jpeg",
@@ -3473,6 +3472,28 @@
       "complete": true,
       "featured": false,
       "redirect": "https://madmeerkat.io/"
+    },
+    {
+      "id": 35,
+      "slug": "crosmocrafts-parts",
+      "imgNft": "/img/drops/crosmonautsShip/drop.png",
+      "imgPreview": "/img/drops/crosmonautsShip/drop.png",
+      "imgAvatar": "/img/collections/crosmonauts/parts/avatar.webp",
+      "imgBanner": "/img/drops/crosmonautsShip/banner.png",
+      "title": "Crosmonauts Parts",
+      "subtitle": "These spaceship-parts are needed to build a Crosmocraft! \nParts come in 3 types, Engines, Boosters and Space Decks. Types are further divided into classes, being ; Regular, rare and legendary. There are a total of 9 possibilities and your parts have to be of the same class to be able to build a spaceship!",
+      "description": "Spaceship-parts are needed to build your very own Crosmocraft! When minting parts you will randomly receive one of the three distinct parts that are needed for a Crosmocraft. These are a Booster, an Engine and a Space Deck. All parts will come in either a Regular, Great or Legendary rarity. The rarity of the parts will directly influence the rarity of the Crosmocraft and its traits!",
+      "author": { "name": "Crosmonauts", "link": "https://www.crosmonauts.club/" },
+      "address": "",
+      "maxMintPerTx": 12,
+      "maxMintPerAddress": 50,
+      "totalSupply": 8430,
+      "cost": "3",
+      "memberCost": "2",
+      "foundersOnly": false,
+      "start": 1653727600000,
+      "published": true,
+      "complete": false
     }
   ],
   "auctions": [
