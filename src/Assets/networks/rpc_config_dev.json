@@ -2262,7 +2262,7 @@
       "multiToken": false,
       "address": "0xd1dd28f2B33bb2f9f23bac71C5221eF5907A738d",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "slug": "meta-cyborgs",
         "description": "",
@@ -3103,7 +3103,7 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false,
+      "complete": true,
       "featured": true,
       "redirect": "https://trooprz.army/mint"
     },
