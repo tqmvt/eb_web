@@ -3103,7 +3103,7 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false,
+      "complete": true,
       "featured": true,
       "redirect": "https://trooprz.army/mint"
     },
