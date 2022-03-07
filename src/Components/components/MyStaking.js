@@ -108,7 +108,10 @@ const MyStaking = ({ walletAddress = null }) => {
   }
 
   const onAmountChange = (e) => {
-    setAmount(parseInt(e.target.value));
+    const value = parseInt(e.target.value);
+    if (value > 0) {
+      setAmount(parseInt(e.target.value));
+    }
   }
 
   useEffect(async () => {
@@ -151,22 +154,21 @@ const MyStaking = ({ walletAddress = null }) => {
               </div>
               <div className="mt-3">At Ebisu's Bay Marketplace, 50% of all transaction fees go towards the VIP rewards pool. Stake your VIP Founding Member NFTs today and be a part of the rewards pool.</div>
 
-              <div className="spacer-40"></div>
+              <div className="spacer-20"></div>
 
               {!isInitializing && isApproved && (
                 <>
                   {(stakeCount + vipCount) > 0 ? (
                       <>
-                        <div className="row mt-4 text-center">
-                          <div className="text-center d-inline-block">
-                            <Form.Control
-                                type="number"
-                                placeholder="Input the amount"
-                                onChange={onAmountChange}
-                                value={amount}
-                                style={{width:'100px', marginBottom: 0, appearance:'none', margin: 0}}
-                            />
-                          </div>
+                        <div className="row mt-4">
+                          <Form.Label>Quantity</Form.Label>
+                          <Form.Control
+                              type="number"
+                              placeholder="Input the amount"
+                              onChange={onAmountChange}
+                              value={amount}
+                              style={{width:'100px', marginBottom: 0, appearance:'none', margin: 0}}
+                          />
                         </div>
                         <div className="d-flex flex-wrap mt-5">
                           <button className="btn-main lead mx-1 mb-2" onClick={stake} disabled={amount ===0 || vipCount === 0}>
