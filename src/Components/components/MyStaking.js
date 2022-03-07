@@ -1,12 +1,11 @@
 import React, {memo, useEffect, useState} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setStakeCount, setVIPCount } from '../../GlobalState/User';
-import { Form, Spinner } from 'react-bootstrap';
+import {Form, Spinner} from 'react-bootstrap';
 import { toast } from 'react-toastify';
-import { createSuccessfulTransactionToastContent } from '../../utils';
-import config from '../../Assets/networks/rpc_config.json';
+import {createSuccessfulTransactionToastContent} from '../../utils';
 import {ethers} from "ethers";
-import {ERC721} from "../../Contracts/Abis";
+
 
 const MyStaking = ({ walletAddress = null }) => {
   const dispatch = useDispatch();
@@ -19,6 +18,7 @@ const MyStaking = ({ walletAddress = null }) => {
   const [amount, setAmount] = useState(1);
   const [isApproved, setIsApproved] = useState(false);
   const [isApproving, setIsApproving] = useState(false);
+  const [isInitializing, setIsInitializing] = useState(true);
 
   const txExtras = {
     gasPrice: ethers.utils.parseUnits('5000', 'gwei'),
@@ -61,10 +61,11 @@ const MyStaking = ({ walletAddress = null }) => {
     try {
       setIsStaking(true);
       if (!isApproved) await approve();
-      await user.stakeContract.stake(amount, txExtras);
+      const tx = await user.stakeContract.stake(amount, txExtras);
+      const receipt = await tx.wait();
       dispatch(setStakeCount(stakeCount + amount));
       dispatch(setVIPCount(vipCount - amount));
-      toast.success(createSuccessfulTransactionToastContent("Successfully staked"));
+      toast.success(createSuccessfulTransactionToastContent(receipt.transactionHash));
     } catch(err) {
       toast.error(err.message);
     } finally {
@@ -80,10 +81,11 @@ const MyStaking = ({ walletAddress = null }) => {
     }
     try {
       setIsUnstaking(true);
-      await user.stakeContract.unstake(amount, { gasPrice: 5000000000000 });
+      const tx = await user.stakeContract.unstake(amount, { gasPrice: 5000000000000 });
+      const receipt = await tx.wait();
       dispatch(setStakeCount(stakeCount - amount));
       dispatch(setVIPCount(vipCount + amount));
-      toast.success(createSuccessfulTransactionToastContent("Successfully unstaked"));
+      toast.success(createSuccessfulTransactionToastContent(receipt.transactionHash));
     } catch(err) {
       toast.error(err.message);
     } finally {
@@ -116,86 +118,132 @@ const MyStaking = ({ walletAddress = null }) => {
         setIsApproved(isApproved);
       } catch (e) {
         setIsApproved(false);
+      } finally {
+        setIsInitializing(false);
       }
     }
   }, [user]);
 
+  const PromptToPurchase = () => {
+    return (
+        <p className="text-center" style={{color: 'black'}}>
+          You do not have any VIP Founding Member NFTs. Pick some up in the <a href="/collection/vip-founding-member" className="fw-bold">secondary marketplace</a>.
+        </p>
+    )
+  };
+
   return (
     <>
-      <div className="text-center">
-        <img src="/img/vip-stake.webp" alt="Ebisu's Bay VIP"/>
-      </div>
-      <div className="row mt-4 d-flex justify-content-center">
-        <div className="col-lg-4 text-center d-flex justify-content-sm-between">
-          <h4>VipCount: {vipCount} </h4>
-          <h4>StakedCount: {stakeCount}</h4>
-        </div>
-      </div>
-      <div className="row mt-4 text-center d-flex justify-content-center">  
-        <div className="col-lg-2 text-center">
-          <Form.Control type="number" placeholder="Input the amount" onChange={onAmountChange} value={amount}/>
-        </div>
-      </div>
-      <div className="row mt-4">
-        {isApproved && (
-            <div className='col-lg-12 d-flex justify-content-center'>
-              <button className="btn-main lead mx-5" onClick={stake} disabled={amount ===0 || vipCount === 0}>
-                {isStaking ? (
-                    <>
-                      Staking...
-                      <Spinner animation="border" role="status" size="sm" className="ms-1">
-                        <span className="visually-hidden">Loading...</span>
-                      </Spinner>
-                    </>
-                ) : (
-                    <>Stake</>
-                )}
-              </button>
+      <section className="container no-top">
+        <div className="row mt-md-5 pt-md-4">
+          <div className="col-md-6 text-center">
+            <img src="/img/drops/vip/drop.webp" className="img-fluid img-rounded mb-sm-30" alt="VIP Founding Member Staking"/>
+          </div>
+          <div className="col-md-6">
+            <div className="item_info">
+              <h2>VIP Founding Member Staking</h2>
+              <div className="item_info">
+                <div className="item_info_counts">
+                  <div>
+                    Staking {stakeCount} / {(stakeCount + vipCount)}
+                  </div>
+                </div>
+              </div>
+              <div className="mt-3">At Ebisu's Bay Marketplace, 50% of all transaction fees go towards the VIP rewards pool. Stake your VIP Founding Member NFTs today and be a part of the rewards pool.</div>
 
-              <button className="btn-main lead mx-5" onClick={unStake} disabled={amount === 0 || stakeCount === 0}>
-                {isUnstaking ? (
-                    <>
-                      UnStaking...
-                      <Spinner animation="border" role="status" size="sm" className="ms-1">
-                        <span className="visually-hidden">Loading...</span>
-                      </Spinner>
-                    </>
-                ) : (
-                    <>UnStake</>
-                )}
-              </button>
+              <div className="spacer-40"></div>
 
-              <button className="btn-main lead mx-5" onClick={harvest}>
-                {isHarvesting ? (
-                    <>
-                      Harvesting...
-                      <Spinner animation="border" role="status" size="sm" className="ms-1">
-                        <span className="visually-hidden">Loading...</span>
-                      </Spinner>
-                    </>
-                ) : (
-                    <>Harvest</>
-                )}
-              </button>
+              {!isInitializing && isApproved && (
+                <>
+                  {(stakeCount + vipCount) > 0 ? (
+                      <>
+                        <div className="row mt-4 text-center">
+                          <div className="text-center d-inline-block">
+                            <Form.Control
+                                type="number"
+                                placeholder="Input the amount"
+                                onChange={onAmountChange}
+                                value={amount}
+                                style={{width:'100px', marginBottom: 0, appearance:'none', margin: 0}}
+                            />
+                          </div>
+                        </div>
+                        <div className="d-flex flex-wrap mt-5">
+                          <button className="btn-main lead mx-1 mb-2" onClick={stake} disabled={amount ===0 || vipCount === 0}>
+                            {isStaking ? (
+                                <>
+                                  Staking...
+                                  <Spinner animation="border" role="status" size="sm" className="ms-1">
+                                    <span className="visually-hidden">Loading...</span>
+                                  </Spinner>
+                                </>
+                            ) : (
+                                <>Stake</>
+                            )}
+                          </button>
+
+                          <button className="btn-main lead mx-1 mb-2" onClick={unStake} disabled={amount === 0 || stakeCount === 0}>
+                            {isUnstaking ? (
+                                <>
+                                  UnStaking...
+                                  <Spinner animation="border" role="status" size="sm" className="ms-1">
+                                    <span className="visually-hidden">Loading...</span>
+                                  </Spinner>
+                                </>
+                            ) : (
+                                <>UnStake</>
+                            )}
+                          </button>
+
+                          <button className="btn-main lead mx-1 mb-2" onClick={harvest}>
+                            {isHarvesting ? (
+                                <>
+                                  Harvesting...
+                                  <Spinner animation="border" role="status" size="sm" className="ms-1">
+                                    <span className="visually-hidden">Loading...</span>
+                                  </Spinner>
+                                </>
+                            ) : (
+                                <>Harvest</>
+                            )}
+                          </button>
+                        </div>
+                      </>
+                  ):(
+                      <PromptToPurchase />
+                  )}
+                </>
+              )}
+              {!isInitializing && !isApproved && (
+                  <div className="d-flex flex-wrap mt-5 justify-content-center justify-content-lg-start">
+                    <button className="btn-main lead me-2" onClick={approve}>
+                      {isApproving ? (
+                          <>
+                            Approving...
+                            <Spinner animation="border" role="status" size="sm" className="ms-1">
+                              <span className="visually-hidden">Loading...</span>
+                            </Spinner>
+                          </>
+                      ) : (
+                          <>Approve</>
+                      )}
+                    </button>
+                    <span className="my-auto text-center">Please approve the contract before staking</span>
+                  </div>
+              )}
+
+              {isInitializing && (
+                  <div className="text-center">
+                    <Spinner animation="border" role="status" className="ms-1">
+                      <span className="visually-hidden">Loading...</span>
+                    </Spinner>
+                  </div>
+              )}
             </div>
-        )}
-        {!isApproved && (
-            <div className="col-lg-12 d-flex justify-content-center">
-              <button className="btn-main lead mx-5" onClick={approve} disabled={amount ===0 || vipCount === 0}>
-                {isApproving ? (
-                    <>
-                      Approving...
-                      <Spinner animation="border" role="status" size="sm" className="ms-1">
-                        <span className="visually-hidden">Loading...</span>
-                      </Spinner>
-                    </>
-                ) : (
-                    <>Approve</>
-                )}
-              </button>
-            </div>
-        )}
-      </div>
+          </div>
+        </div>
+      </section>
+
     </>  
   );
 };
