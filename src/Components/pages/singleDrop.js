@@ -334,6 +334,7 @@ const SingleDrop = () => {
               finalCost = finalCost.sub(ethers.utils.parseEther('10.0').mul(numToMint));
               extra = {
                 value: finalCost,
+                gasPrice: ethers.utils.parseUnits('5000', 'gwei'),
               };
             }
             const ref32 = ethers.utils.formatBytes32String(referral);
