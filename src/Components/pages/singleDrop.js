@@ -325,6 +325,7 @@ const SingleDrop = () => {
         }
         let extra = {
           value: finalCost,
+          gasPrice: ethers.utils.parseUnits('5000', 'gwei')
         };
 
         var response;
@@ -334,6 +335,7 @@ const SingleDrop = () => {
               finalCost = finalCost.sub(ethers.utils.parseEther('10.0').mul(numToMint));
               extra = {
                 value: finalCost,
+                gasPrice: ethers.utils.parseUnits('5000', 'gwei'),
               };
             }
             const ref32 = ethers.utils.formatBytes32String(referral);
@@ -341,6 +343,8 @@ const SingleDrop = () => {
           } else if (isFounderVipDrop(dropObject.address)) {
             const ref32 = ethers.utils.formatBytes32String(referral);
             response = await contract.mint(2, numToMint, ref32, extra);
+          } else {
+            response = await contract.mint(numToMint, extra);
           }
         } else {
           if (isUsingDefaultDropAbi(dropObject.abi) || isUsingAbiFile(dropObject.abi)) {
@@ -380,37 +384,37 @@ const SingleDrop = () => {
               }
             }
           }
-          const receipt = await response.wait();
-          toast.success(createSuccessfulTransactionToastContent(receipt.transactionHash));
-
-          {
-            const dropObjectAnalytics = {
-              address: dropObject.address,
-              id: dropObject.id,
-              title: dropObject.title,
-              slug: dropObject.slug,
-              author_name: dropObject.author.name,
-              author_link: dropObject.author.link,
-              maxMintPerTx: dropObject.maxMintPerTx,
-              totalSupply: dropObject.totalSupply,
-              cost: dropObject.cost,
-              memberCost: dropObject.memberCost,
-              foundersOnly: dropObject.foundersOnly,
-            };
-
-            const purchaseAnalyticParams = {
-              currency: 'CRO',
-              value: ethers.utils.formatEther(finalCost),
-              transaction_id: receipt.transactionHash,
-              quantity: numToMint,
-              items: [dropObjectAnalytics],
-            };
-
-            logEvent(getAnalytics(), 'purchase', purchaseAnalyticParams);
-          }
-
-          await retrieveDropInfo();
         }
+        const receipt = await response.wait();
+        toast.success(createSuccessfulTransactionToastContent(receipt.transactionHash));
+
+        {
+          const dropObjectAnalytics = {
+            address: dropObject.address,
+            id: dropObject.id,
+            title: dropObject.title,
+            slug: dropObject.slug,
+            author_name: dropObject.author.name,
+            author_link: dropObject.author.link,
+            maxMintPerTx: dropObject.maxMintPerTx,
+            totalSupply: dropObject.totalSupply,
+            cost: dropObject.cost,
+            memberCost: dropObject.memberCost,
+            foundersOnly: dropObject.foundersOnly,
+          };
+
+          const purchaseAnalyticParams = {
+            currency: 'CRO',
+            value: ethers.utils.formatEther(finalCost),
+            transaction_id: receipt.transactionHash,
+            quantity: numToMint,
+            items: [dropObjectAnalytics],
+          };
+
+          logEvent(getAnalytics(), 'purchase', purchaseAnalyticParams);
+        }
+
+        await retrieveDropInfo();
       } catch (error) {
         Sentry.captureException(error);
         if (error.data) {
