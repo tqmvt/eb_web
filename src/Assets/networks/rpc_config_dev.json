@@ -3371,7 +3371,6 @@
       "referral": false,
       "is1155": false,
       "published": true,
-<<<<<<< HEAD
       "complete": false
     },
     {
@@ -3392,9 +3391,9 @@
       "cost": "3",
       "memberCost": "2",
       "foundersOnly": false,
-      "start": 1643727600000,
-=======
-      "complete": true
+      "start": 1653727600000,
+      "published": true,
+      "complete": false
     },
     {
       "id": 33,
@@ -3447,18 +3446,13 @@
       "whitelistCost": "685",
       "foundersOnly": false,
       "start": 1646571600000,
->>>>>>> dev
       "end": null,
       "referral": false,
       "is1155": false,
       "published": true,
-<<<<<<< HEAD
-      "complete": false
-=======
       "complete": false,
       "featured": false,
       "redirect": "https://madmeerkat.io/"
->>>>>>> dev
     }
   ],
   "auctions": [
