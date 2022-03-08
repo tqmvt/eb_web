@@ -4,7 +4,9 @@ import { setStakeCount, setVIPCount } from '../../GlobalState/User';
 import {Form, Spinner} from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import {createSuccessfulTransactionToastContent} from '../../utils';
-import {ethers} from "ethers";
+import {Contract, ethers} from "ethers";
+import {RewardsPoolAbi} from "../../Contracts/Abis";
+import config from "../../Assets/networks/rpc_config.json";
 
 
 const MyStaking = ({ walletAddress = null }) => {
@@ -19,6 +21,7 @@ const MyStaking = ({ walletAddress = null }) => {
   const [isApproved, setIsApproved] = useState(false);
   const [isApproving, setIsApproving] = useState(false);
   const [isInitializing, setIsInitializing] = useState(true);
+  const [inInitMode, setIsInInitMode] = useState(true);
 
   const txExtras = {
     gasPrice: ethers.utils.parseUnits('5000', 'gwei'),
@@ -115,17 +118,26 @@ const MyStaking = ({ walletAddress = null }) => {
   }
 
   useEffect(async () => {
-    if (user.membershipContract) {
+    if (!user.connectingWallet && user.membershipContract) {
       try {
         const isApproved = await user.membershipContract.isApprovedForAll(user.address, user.stakeContract.address);
         setIsApproved(isApproved);
+
+        // const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
+        // const curPoolAddress = await user.stakeContract.curPool();
+        // const poolContract = new Contract(curPoolAddress, RewardsPoolAbi, readProvider);
+        // if (curPoolAddress !== ethers.constants.AddressZero) {
+        //   const harvestableRewards = await poolContract.shares(user.address);
+        //   const finalBalance = await poolContract.finalBalance();
+        // }
+
       } catch (e) {
-        setIsApproved(false);
+        console.log(e);
       } finally {
         setIsInitializing(false);
       }
     }
-  }, [user]);
+  }, [user.connectingWallet]);
 
   const PromptToPurchase = () => {
     return (
@@ -160,55 +172,77 @@ const MyStaking = ({ walletAddress = null }) => {
                 <>
                   {(stakeCount + vipCount) > 0 ? (
                       <>
-                        <div className="row mt-4">
-                          <Form.Label>Quantity</Form.Label>
-                          <Form.Control
-                              type="number"
-                              placeholder="Input the amount"
-                              onChange={onAmountChange}
-                              value={amount}
-                              style={{width:'100px', marginBottom: 0, appearance:'none', margin: 0}}
-                          />
+                        <div className="card-group text-center">
+                          <div className="d-item px-2 mx-auto w-auto">
+                            <div className="card eb-nft__card h-100 shadow px-4">
+                              <div className="card-body d-flex flex-column">
+                                <h5>Stake</h5>
+                                <Form.Label>Quantity</Form.Label>
+                                <Form.Control
+                                    type="number"
+                                    placeholder="Input the amount"
+                                    onChange={onAmountChange}
+                                    value={amount}
+                                    style={{width:'100px', marginBottom: 0, appearance:'none', margin: 0}}
+                                />
+                                <div className="row d-flex justify-content-center mt-2">
+                                  <button className="btn-main lead mx-1 mb-2" onClick={stake} disabled={amount ===0 || vipCount === 0}>
+                                    {isStaking ? (
+                                        <>
+                                          Staking...
+                                          <Spinner animation="border" role="status" size="sm" className="ms-1">
+                                            <span className="visually-hidden">Loading...</span>
+                                          </Spinner>
+                                        </>
+                                    ) : (
+                                        <>Stake</>
+                                    )}
+                                  </button>
+                                </div>
+
+                                <div className="row d-flex justify-content-center mt-2">
+                                  <button className="btn-main lead mx-1 mb-2" onClick={unStake} disabled={amount === 0 || stakeCount === 0}>
+                                    {isUnstaking ? (
+                                        <>
+                                          UnStaking...
+                                          <Spinner animation="border" role="status" size="sm" className="ms-1">
+                                            <span className="visually-hidden">Loading...</span>
+                                          </Spinner>
+                                        </>
+                                    ) : (
+                                        <>UnStake</>
+                                    )}
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="d-item px-2 mx-auto mt-4 mt-lg-0 w-auto">
+                            <div className="card eb-nft__card h-100 shadow px-4">
+                              <div className="card-body d-flex flex-column">
+                                <h5>Rewards</h5>
+                                {inInitMode ? (
+                                    <span>Not Started</span>
+                                ) : (
+                                    <button className="btn-main lead mx-1 mb-2" onClick={harvest}>
+                                      {isHarvesting ? (
+                                          <>
+                                            Harvesting...
+                                            <Spinner animation="border" role="status" size="sm" className="ms-1">
+                                              <span className="visually-hidden">Loading...</span>
+                                            </Spinner>
+                                          </>
+                                      ) : (
+                                          <>Harvest</>
+                                      )}
+                                    </button>
+                                )}
+                              </div>
+                            </div>
+                          </div>
                         </div>
                         <div className="d-flex flex-wrap mt-5">
-                          <button className="btn-main lead mx-1 mb-2" onClick={stake} disabled={amount ===0 || vipCount === 0}>
-                            {isStaking ? (
-                                <>
-                                  Staking...
-                                  <Spinner animation="border" role="status" size="sm" className="ms-1">
-                                    <span className="visually-hidden">Loading...</span>
-                                  </Spinner>
-                                </>
-                            ) : (
-                                <>Stake</>
-                            )}
-                          </button>
 
-                          <button className="btn-main lead mx-1 mb-2" onClick={unStake} disabled={amount === 0 || stakeCount === 0}>
-                            {isUnstaking ? (
-                                <>
-                                  UnStaking...
-                                  <Spinner animation="border" role="status" size="sm" className="ms-1">
-                                    <span className="visually-hidden">Loading...</span>
-                                  </Spinner>
-                                </>
-                            ) : (
-                                <>UnStake</>
-                            )}
-                          </button>
-
-                          <button className="btn-main lead mx-1 mb-2" onClick={harvest}>
-                            {isHarvesting ? (
-                                <>
-                                  Harvesting...
-                                  <Spinner animation="border" role="status" size="sm" className="ms-1">
-                                    <span className="visually-hidden">Loading...</span>
-                                  </Spinner>
-                                </>
-                            ) : (
-                                <>Harvest</>
-                            )}
-                          </button>
                         </div>
                       </>
                   ):(
