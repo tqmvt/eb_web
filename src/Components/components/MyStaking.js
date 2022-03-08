@@ -27,12 +27,12 @@ const MyStaking = ({ walletAddress = null }) => {
   const txExtras = {
     gasPrice: ethers.utils.parseUnits('5000', 'gwei'),
   }
-  const getStakeAmount = useCallback(async() => {
+  const getHarvestAmount = useCallback(async() => {
     if (!user.stakeContract) return;
     try {
       setIsHarvesting(true);
       const completedPool = await user.stakeContract.completedPool();
-      if (completedPool !== '0x000000000000000000000000000000000000') {
+      if (completedPool !== ethers.constants.AddressZero) {
         const rewardsContract = new Contract(completedPool, RewardsPoolAbi, user.provider.getSigner());
         const finalBalance = await rewardsContract.finalBalance();
         if (finalBalance <= 0) {
@@ -45,6 +45,7 @@ const MyStaking = ({ walletAddress = null }) => {
         }          
       }
     } catch(err) {
+      console.log({err})
       toast.error(err.message);
     } finally {
       setIsHarvesting(false);
@@ -52,16 +53,13 @@ const MyStaking = ({ walletAddress = null }) => {
   }, [user.provider, user.stakeContract, walletAddress]);
 
   useEffect(() => {
-    getStakeAmount();
-    const harvetstInterval = setInterval(getStakeAmount, 1000 * 60 * 60);
+    getHarvestAmount();
+    const harvetstInterval = setInterval(getHarvestAmount, 1000 * 60 * 60);
 
     return () => {
       clearInterval(harvetstInterval);
     }
-  }, [getStakeAmount])
-
- 
-
+  }, [getHarvestAmount])
    
   // Allow exception to be thrown for other functions to catch it
   const setApprovalForAll = async () => {
@@ -83,7 +81,6 @@ const MyStaking = ({ walletAddress = null }) => {
       } else if (error.message) {
         toast.error(error.message);
       } else {
-        console.log(error);
         toast.error('Unknown Error');
       }
     } finally {
@@ -138,7 +135,7 @@ const MyStaking = ({ walletAddress = null }) => {
     try {
       setIsHarvesting(true);
       const completedPool = await user.stakeContract.completedPool();
-      if (completedPool !== '0x000000000000000000000000000000000000') {
+      if (completedPool !== ethers.constants.AddressZero) {
         const rewardsContract = new Contract(completedPool, RewardsPoolAbi, user.provider.getSigner());
         try {
           const released = await rewardsContract.released(walletAddress);
@@ -147,12 +144,12 @@ const MyStaking = ({ walletAddress = null }) => {
             toast.error("Already released");      
           } else {
             const share = await rewardsContract.shares(walletAddress);
-            console.log({share})
+
             if (share > 0) {
               try {
                 await user.stakeContract.harvest(walletAddress, { gasPrice: 5000000000000 });
                 toast.success(createSuccessfulTransactionToastContent("Successfully harvested"));
-                await getStakeAmount();
+                await getHarvestAmount();
               } catch(err) {
                 toast.error(err.message);      
               }
@@ -161,7 +158,6 @@ const MyStaking = ({ walletAddress = null }) => {
             }
           }          
         } catch(err) {
-          console.log({err})
           toast.error("No harvest available");    
         }
       }
