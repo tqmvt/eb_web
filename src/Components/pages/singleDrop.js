@@ -223,7 +223,7 @@ const SingleDrop = () => {
           setRegularCost(ethers.utils.formatEther(infos.regularCost));
           setTotalSupply(infos.totalSupply);
           if (infos.whitelistCost) setWhitelistCost(ethers.utils.formatEther(infos.whitelistCost));
-          setCanMintQuantity(canMint);
+          setCanMintQuantity(Math.min(canMint, infos.maxMintPerTx));
           calculateStatus(currentDrop, infos.totalSupply, infos.maxSupply);
         } else {
           let readContract = await new ethers.Contract(currentDrop.address, abi, readProvider);
