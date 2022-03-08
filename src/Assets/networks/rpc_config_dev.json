@@ -2416,7 +2416,7 @@
       "multiToken": false,
       "address": "0x45008e129A33368119757496DA762284ff8e2565",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "slug": "icy-houses",
         "description": "",
