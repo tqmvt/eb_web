@@ -23,14 +23,30 @@ const Watermarked = styled.div`
   }
 `;
 
-const MakeOffer = styled.div`
+const MakeBuy = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  .w-30 {
-    width: 30%;
+  .w-40 {
+    width: 40%;
   }
+`;
+
+const MakeOffer = styled.div`
+  margin-top: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .w-40 {
+    width: 40%;
+  }
+`;
+
+const Likes = styled.div`
+  font-size: 14px;
+  color: ${({ theme }) => theme.colors.textColor3};
 `;
 
 const ListingCard = ({ listing, imgClass = 'marketplace', watermark }) => {
@@ -55,10 +71,18 @@ const ListingCard = ({ listing, imgClass = 'marketplace', watermark }) => {
         {listing.nft.rank && <div className="badge bg-rarity text-wrap mt-1 mx-1">Rank: #{listing.nft.rank}</div>}
         <div className="card-body d-flex flex-column">
           <h6 className="card-title mt-auto">{listing.nft.name}</h6>
-          <MakeOffer>
+          <MakeBuy>
             <div>{ethers.utils.commify(listing.price)} CRO</div>
-            <div className="w-30">
+            <div className="w-40">
               <Button>Buy</Button>
+            </div>
+          </MakeBuy>
+          <MakeOffer>
+            <div className="like">
+              <Likes>55.4k</Likes>
+            </div>
+            <div className="w-40">
+              <Button type="outlined">Offer</Button>
             </div>
           </MakeOffer>
         </div>

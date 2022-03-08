@@ -6,6 +6,11 @@ import { SortOption } from '../Models/sort-option.model';
 import { listingFilterOptions } from './constants/filter-options';
 import { sortListings, resetListings, searchListings } from '../../GlobalState/collectionSlice';
 import { Form } from 'react-bootstrap';
+import styled from 'styled-components';
+
+const CollectionFilterBarContainer = styled.div`
+  margin: 0 0 22px;
+`;
 
 const CollectionFilterBar = ({ cacheName = null }) => {
   const dispatch = useDispatch();
@@ -78,8 +83,8 @@ const CollectionFilterBar = ({ cacheName = null }) => {
   }
 
   return (
-    <div className="row align-items-center">
-      <div className="col-md-3">
+    <CollectionFilterBarContainer className="row align-items-center">
+      <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12 px-2 mt-2">
         <div className="items_filter" style={{ marginBottom: 0, marginTop: 0 }}>
           <div className="dropdownSelect two">
             <Select
@@ -94,7 +99,7 @@ const CollectionFilterBar = ({ cacheName = null }) => {
           </div>
         </div>
       </div>
-      <div className="col-md-3">
+      <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12 px-2 mt-2">
         <Form.Control
           type="text"
           placeholder="Search by name"
@@ -102,8 +107,10 @@ const CollectionFilterBar = ({ cacheName = null }) => {
           style={{ marginBottom: 0, marginTop: 0 }}
         />
       </div>
-      <div className="col-md-3">Total results (x out of z)</div>
-      <div className="col-md-3">
+      <div className="col-xl-3 px-2 mt-2 col-md-6 col-sm-12 d-sm-flex d-lg-none d-xl-flex">
+        Total results (x out of z)
+      </div>
+      <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12 px-2 mt-2">
         <div className="items_filter" style={{ marginBottom: 0, marginTop: 0 }}>
           <div className="dropdownSelect two">
             <Select
@@ -116,7 +123,7 @@ const CollectionFilterBar = ({ cacheName = null }) => {
           </div>
         </div>
       </div>
-    </div>
+    </CollectionFilterBarContainer>
   );
 };
 
