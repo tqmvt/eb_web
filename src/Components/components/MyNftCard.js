@@ -11,6 +11,7 @@ const MyNftCard = ({
   nft,
   canTransfer = false,
   canSell = false,
+  isStaked = false,
   canCancel = false,
   canUpdate = false,
   onTransferButtonPressed,
@@ -78,12 +79,17 @@ const MyNftCard = ({
             Sell
           </span>
         )}
+        {isStaked && (
+          <span className="mx-1">
+            <strong>STAKED</strong>
+          </span>
+        )}
         {canCancel && (
           <span className="mx-1" onClick={onCancelButtonPressed} style={{ cursor: 'pointer' }}>
             Cancel
           </span>
         )}
-        {canUpdate && (
+        {(canUpdate && !isStaked) && (
           <span className="mx-1" onClick={onUpdateButtonPressed} style={{ cursor: 'pointer' }}>
             Update
           </span>

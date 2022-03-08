@@ -496,7 +496,7 @@ export const connectAccount =
           code: code,
           balance: balance,
           rewards: rewards,
-          isMember: ownedVip > 0 || ownedFounder > 0,
+          isMember: ownedVip > 0 || ownedFounder > 0 || stakeCount > 0,
           vipCount: ownedVip ? ownedVip.toNumber() : ownedVip,
           stakeCount: stakeCount ? stakeCount.toNumber() : stakeCount,
           marketContract: market,

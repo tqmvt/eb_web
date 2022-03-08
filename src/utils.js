@@ -308,7 +308,7 @@ export const isMetapixelsCollection = (address) => {
 
 export const percentage = (partialValue, totalValue) => {
   if (!totalValue || totalValue === 0) return 0;
-  return Math.round((100 * partialValue) / totalValue);
+  return Math.floor((100 * partialValue) / totalValue);
 };
 
 export const relativePrecision = (num) => {
