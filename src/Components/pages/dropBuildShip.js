@@ -27,7 +27,8 @@ const Drop = () => {
     if (user.provider) {
       try {
         setIsLoading(true);
-        let spaceShip = await new ethers.Contract(config.spaceship_contract, ShipABI.abi, user.provider.getSigner());
+        const spaceShipDrop = config.known_contracts.find(drop => drop.slug === "crosmocrafts");
+        let spaceShip = await new ethers.Contract(spaceShipDrop.address, ShipABI.abi, user.provider.getSigner());
         const ship1 = await spaceShip.SHIP1(); // Regular
         const ship2 = await spaceShip.SHIP2(); // Great
         const ship3 = await spaceShip.SHIP3(); // Legendary
