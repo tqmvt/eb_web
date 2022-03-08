@@ -183,7 +183,7 @@ const ShipBuilderCard = ({type, shipAddress, key, mintCallback, quantityCollecte
               </div>
             </div>
             <div className="card border-0">
-              {quantityCollected[0] > 0 ? (
+              {quantityCollected[1] > 0 ? (
                 <img src={`/img/collections/crosmonauts/parts/${type}-booster.webp`}  className="card-img-top" alt="..." />
               ) : (
                 <GreyscaleImg src={`/img/collections/crosmonauts/parts/${type}-booster.webp`}  className="card-img-top" alt="..." />
@@ -194,7 +194,7 @@ const ShipBuilderCard = ({type, shipAddress, key, mintCallback, quantityCollecte
               </div>
             </div>
             <div className="card border-0">
-              {quantityCollected[0] > 0 ? (
+              {quantityCollected[2] > 0 ? (
                 <img src={`/img/collections/crosmonauts/parts/${type}-deck.webp`}  className="card-img-top" alt="..." />
               ) : (
                 <GreyscaleImg src={`/img/collections/crosmonauts/parts/${type}-deck.webp`}  className="card-img-top" alt="..." />
