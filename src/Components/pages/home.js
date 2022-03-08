@@ -216,7 +216,7 @@ const Home = () => {
       <section className="promo" style={{ paddingBottom: '8px', background:'#15B619', color: 'white'}}>
         <div className="d-flex justify-content-center px-3">
           <p className="my-auto me-3">
-            Founding Member NFTs are now over 50% minted! Grab one now to enjoy amazing discounts on drops and 50% off service fees.{' '}
+            Founding Member NFTs are over 50% minted! Grab one now to enjoy amazing discounts on drops and 50% off service fees.{' '}
             <span className="fw-bold d-block d-md-inline-block text-end">
             <Link to="/drops/founding-member">Learn More &gt;</Link>
           </span>
