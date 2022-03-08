@@ -35,15 +35,7 @@ const Drop = () => {
         const ships = [ship1, ship2, ship3];
         setShips(ships);
 
-        const shipItemDrop = config.known_contracts.find(drop => drop.slug === "crosmocrafts-parts");
-
-        let shipItem = await new ethers.Contract(shipItemDrop.address, ShipItemABI.abi, user.provider.getSigner());
-        let ids= [];
-        for(let i = 0; i < 9; i ++) {
-          const balance = await shipItem.balanceOf(user.address, i);  
-          ids.push(balance.toNumber());
-        }
-        setPartsBalances(ids);
+        await refreshPartsBalance();
 
         setShipContract(spaceShip);
       } catch (error) {
@@ -53,6 +45,17 @@ const Drop = () => {
       setIsLoading(false);
     }
   }, [user.address, user.provider]);
+
+  const refreshPartsBalance = async() => {
+    const shipItemDrop = config.known_contracts.find(drop => drop.slug === "crosmocrafts-parts");
+    let shipItem = await new ethers.Contract(shipItemDrop.address, ShipItemABI.abi, user.provider.getSigner());
+    let ids= [];
+    for(let i = 0; i < 9; i ++) {
+      const balance = await shipItem.balanceOf(user.address, i);
+      ids.push(balance.toNumber());
+    }
+    setPartsBalances(ids);
+  };
 
   useEffect(() => {
     init();
@@ -68,7 +71,8 @@ const Drop = () => {
     try {
       const tx = await shipContract.mint(quantity, address, extra);
       const receipt = await tx.wait();
-      toast.success(createSuccessfulTransactionToastContent(receipt.hash()));
+      toast.success(createSuccessfulTransactionToastContent(receipt.transactionHash));
+      await refreshPartsBalance();
     } catch(err) {
       toast.error(err.message);
     } finally {
@@ -156,7 +160,7 @@ const ShipBuilderCard = ({type, shipAddress, key, mintCallback, quantityCollecte
     const value = e.target.value;
     const maxAvailable = Math.min(...quantityCollected);
     console.log(value, quantityCollected, maxAvailable)
-    if (value <= maxAvailable && value > 0) {
+    if (value <= maxAvailable && value >= 0) {
         setQuantity(value);
     }
   }
@@ -230,7 +234,7 @@ const ShipBuilderCard = ({type, shipAddress, key, mintCallback, quantityCollecte
                                 />
                             </div>
                             <div className="col d-flex justify-content-center">
-                                <button className="btn-main lead mb-5 mr15" onClick={() => onMint(shipAddress, quantity)}>
+                                <button className="btn-main lead mb-5 mr15" onClick={() => onMint(shipAddress, quantity)} disabled={quantity < 1}>
                                     {isMinting ? (
                                         <>
                                             Minting...
