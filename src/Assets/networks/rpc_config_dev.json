@@ -1913,7 +1913,7 @@
       }
     },
     {
-      "name": "NoBuddies NFT (BETA)",
+      "name": "NoBuddies NFT (OG)",
       "slug": "nobuddies",
       "multiToken": false,
       "address": "0xE13A2bf710c4D1fD3a04a85e14489B4D352CA2F0",
@@ -2263,7 +2263,7 @@
       "multiToken": false,
       "address": "0xd1dd28f2B33bb2f9f23bac71C5221eF5907A738d",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "slug": "meta-cyborgs",
         "description": "",
@@ -2984,7 +2984,7 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false
+      "complete": true
     },
     {
       "id": 16,
@@ -3139,9 +3139,9 @@
       "maxMintPerTx": 0,
       "maxMintPerAddress": 0,
       "totalSupply": 0,
-      "cost": "250",
+      "cost": "125",
       "foundersOnly": false,
-      "start": 1644015600000,
+      "start": 1646647200000,
       "end": null,
       "referral": false,
       "is1155": false,
@@ -3381,7 +3381,7 @@
       "is1155": false,
       "disclaimer": "Only whitelisted addresses are eligible for this mint. Please check the Crognomes discord for more information.",
       "published": true,
-      "complete": false
+      "complete": true
     },
     {
       "id": 31,
