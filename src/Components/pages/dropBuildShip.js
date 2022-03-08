@@ -61,9 +61,14 @@ const Drop = () => {
   const mint = async(address, quantity) => {
     if (!shipContract)  return;
     console.log('minting...', quantity, address);
+    let extra = {
+      gasPrice: ethers.utils.parseUnits('5000', 'gwei')
+    };
+
     try {
-      await shipContract.mint(quantity, address);
-      toast.success(createSuccessfulTransactionToastContent("Successfully minted"));
+      const tx = await shipContract.mint(quantity, address, extra);
+      const receipt = await tx.wait();
+      toast.success(createSuccessfulTransactionToastContent(receipt.hash()));
     } catch(err) {
       toast.error(err.message);
     } finally {
@@ -206,15 +211,16 @@ const ShipBuilderCard = ({type, shipAddress, key, mintCallback, quantityCollecte
               </div>
             </div>
             <div className="card border-0">
-              <div className="card-body d-flex">
+              <div className="card-body d-flex justify-content-center">
                 <div className="align-self-center">
-                  <h5 className="card-title d-flex justify-content-center">Build {humanize(type)} Ship</h5>
+                  <h5 className="card-title d-flex text-center">Build {humanize(type)} Ship</h5>
+                  <div className="row row-cols-1 g-3 mt-2 d-block">
                     {quantityCollected[0] > 0 &&  quantityCollected[1] > 0 && quantityCollected[2] > 0 ? (
-                        <div className="row row-cols-1 g-3 mt-2">
+                        <>
                             <div className="col d-flex justify-content-center">
                                 <Form.Label>Quantity</Form.Label>
                             </div>
-                            <div className="col d-flex justify-content-center">
+                            <div className="col d-flex justify-content-center mt-0">
                                 <Form.Control
                                     type="number"
                                     placeholder="Input the amount"
@@ -237,10 +243,11 @@ const ShipBuilderCard = ({type, shipAddress, key, mintCallback, quantityCollecte
                                     )}
                                 </button>
                             </div>
-                        </div>
+                        </>
                     ) : (
-                        <p>Not enough parts</p>
+                        <p className="text-center">Not enough parts</p>
                     )}
+                  </div>
                 </div>
               </div>
             </div>
