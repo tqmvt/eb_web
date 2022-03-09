@@ -17,7 +17,6 @@ const Collection = () => {
   useEffect(() => {
     setRedirect(false);
     let col = knownContracts.find((c) => c.slug === slug);
-    console.log(col.split);
     if (col) {
       setCollection(col);
       setType(col.multiToken ? '1155' : '721');
