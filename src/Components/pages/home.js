@@ -225,16 +225,16 @@ const Home = () => {
   return (
     <div>
       <GlobalStyles />
-      <section className="promo">
-        <div className="d-flex justify-content-center px-3">
-          <p className="my-auto me-3">
-            Founding Member NFTs are over 90% minted! Grab one now to enjoy amazing discounts on drops and 50% off service fees.{' '}
-            <span className="fw-bold d-block d-md-inline-block text-end">
-            <Link to="/drops/founding-member">Learn More &gt;</Link>
-          </span>
-          </p>
-        </div>
-      </section>
+      {/*<section className="promo">*/}
+      {/*  <div className="d-flex justify-content-center px-3">*/}
+      {/*    <p className="my-auto me-3">*/}
+      {/*      Founding Member NFTs are over 90% minted! Grab one now to enjoy amazing discounts on drops and 50% off service fees.{' '}*/}
+      {/*      <span className="fw-bold d-block d-md-inline-block text-end">*/}
+      {/*      <Link to="/drops/founding-member">Learn More &gt;</Link>*/}
+      {/*    </span>*/}
+      {/*    </p>*/}
+      {/*  </div>*/}
+      {/*</section>*/}
       <Jumbotron.Host>{!mobile && <div className="container">{JumbotronData()}</div>}</Jumbotron.Host>
       {mobile && JumbotronData()}
 
