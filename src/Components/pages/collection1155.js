@@ -29,8 +29,6 @@ const Collection1155 = ({ address, tokenId=null, cacheName = 'collection' }) => 
   const [royalty, setRoyalty] = useState(null);
   const [metadata, setMetadata] = useState(null);
 
-  console.log(tokenId);
-
   const collectionCachedTraitsFilter = useSelector((state) => state.collection.cachedTraitsFilter);
   const collectionCachedSort = useSelector((state) => state.collection.cachedSort);
   const collectionStats = useSelector((state) => state.collection.stats);
