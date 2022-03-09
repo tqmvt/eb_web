@@ -3464,7 +3464,7 @@
       "is1155": false,
       "disclaimer": "Presale is limited to whitelisted addresses only. Please check the Cronos Primate Business discord for more information.",
       "published": true,
-      "complete": false,
+      "complete": true,
       "multiMint": true
     },
     {
