@@ -3,7 +3,7 @@ import { Redirect, useParams } from 'react-router-dom';
 import config from '../../Assets/networks/rpc_config.json';
 import Collection1155 from './collection1155';
 import Collection721 from './collection721';
-import { caseInsensitiveCompare } from '../../utils';
+import { caseInsensitiveCompare, collections } from '../../utils';
 
 const knownContracts = config.known_contracts;
 
@@ -17,6 +17,7 @@ const Collection = () => {
   useEffect(() => {
     setRedirect(false);
     let col = knownContracts.find((c) => c.slug === slug);
+    console.log(col.split);
     if (col) {
       setCollection(col);
       setType(col.multiToken ? '1155' : '721');
@@ -39,7 +40,13 @@ const Collection = () => {
           ) : (
             <>
               {type === '1155' ? (
-                <Collection1155 address={collection.address} tokenId={collection.id} />
+                <>
+                {collection.split ? (
+                  <Collection1155 address={collection.address} tokenId={collection.id} />
+                ) : (
+                  <Collection1155 address={collection.address} />
+                )}
+                </>
               ) : (
                 <Collection721 address={collection.address} />
               )}

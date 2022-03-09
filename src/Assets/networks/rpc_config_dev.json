@@ -5,7 +5,7 @@
   "read_rpc": "https://gateway.nebkas.ro/",
   "symbol": "CRO",
   "explorer": "http://cronos.crypto.org/explorer/",
-  "api_base": "https://api.ebisusbay.com/",
+  "api_base": "https://api.ebisusbay.biz/",
   "app_base": "https://app.ebisusbay.com/",
   "membership_contract": "0x8d9232Ebc4f06B7b8005CCff0ca401675ceb25F5",
   "auction_contract": "0x08254C5B77615E7B4d2f7df0Dc36e1AEb9025D10",
@@ -27,6 +27,7 @@
       "onChain": false,
       "address": "0x8d9232Ebc4f06B7b8005CCff0ca401675ceb25F5",
       "multiToken": true,
+      "split": true,
       "id": 2,
       "listable": true,
       "metadata": {
@@ -50,6 +51,7 @@
       "onChain": false,
       "address": "0x653DDF1Bb9995ecfcbDd411Dc3F9793127680B29",
       "multiToken": true,
+      "split": false,
       "id": 1,
       "listable": true,
       "metadata": {
@@ -73,6 +75,7 @@
       "address": "0x653DDF1Bb9995ecfcbDd411Dc3F9793127680B29",
       "multiToken": true,
       "id": 2,
+      "split": false,
       "listable": true,
       "metadata": {
         "slug": "ebisu-valentine-rare",
@@ -94,6 +97,7 @@
       "onChain": false,
       "address": "0x653DDF1Bb9995ecfcbDd411Dc3F9793127680B29",
       "multiToken": true,
+      "split": false,
       "id": 3,
       "listable": true,
       "metadata": {
@@ -108,11 +112,12 @@
       }
     },
     {
-      "name": "Ebisu's Bay - Founder Member",
+      "name": "Ebisu's Bay - Founding Member",
       "slug": "founding-member",
       "onChain": false,
       "address": "0x8d9232Ebc4f06B7b8005CCff0ca401675ceb25F5",
       "multiToken": true,
+      "split": true,
       "id": 1,
       "listable": true,
       "metadata": {
