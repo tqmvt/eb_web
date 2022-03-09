@@ -35,6 +35,7 @@
         "verified": true,
         "avatar": "/img/avatar.jpg",
         "card": "/img/collections/ebisu/card.webp",
+        "banner": "/img/collections/ebisu/banner.png",
         "maxSupply": 1000,
         "website": "https://app.ebisusbay.com/",
         "twitter": "https://twitter.com/EbisusBay",
