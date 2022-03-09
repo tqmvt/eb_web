@@ -331,7 +331,7 @@ const SingleDrop = () => {
         if (dropObject.is1155) {
           if (dropObject.title === 'Founding Member') {
             if (referral) {
-              finalCost = finalCost.sub(ethers.utils.parseEther('10.0').mul(numToMint));
+              finalCost = finalCost.sub(ethers.utils.parseEther(dropObject.discount).mul(numToMint));
               extra = {
                 value: finalCost,
               };
