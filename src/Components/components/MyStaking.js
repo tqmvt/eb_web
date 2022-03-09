@@ -279,7 +279,7 @@ const MyStaking = ({ walletAddress = null }) => {
                           <div className="d-item px-2 mx-auto mt-4 mt-lg-0 w-auto">
                             <div className="card eb-nft__card h-100 shadow px-4">
                               <div className="card-body d-flex flex-column">
-                                <h5>Rewards</h5>
+                                <h5>Rewards: {harvestAmount}</h5>
                                 {inInitMode ? (
                                     <span>Not Started</span>
                                 ) : (
