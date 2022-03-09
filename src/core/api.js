@@ -48,7 +48,7 @@ export async function sortAndFetchListings(page, sort, filter, traits, powertrai
     page: page,
     pageSize: pagesize,
     sortBy: 'listingId',
-    direction: 'desc'
+    direction: 'desc',
   };
 
   if (filter && filter instanceof FilterOption) {
@@ -57,10 +57,6 @@ export async function sortAndFetchListings(page, sort, filter, traits, powertrai
 
   if (sort && sort instanceof SortOption) {
     query = { ...query, ...sort.toApi() };
-  }
-
-  if (filter.id) {
-    query.tokenId = filter.id;
   }
 
   if (traits && Object.keys(traits).length > 0) {
@@ -266,6 +262,14 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
     });
   };
 
+  const getERC1155Listings = (address, id) => {
+    return listings.filter((listing) => {
+      const sameId = ethers.BigNumber.from(listing['nftId']).eq(id);
+      const sameAddress = listing['nftAddress'].toLowerCase() === address.toLowerCase();
+      return sameId && sameAddress && listing.state === 0;
+    });
+  };
+
   let response = {
     nfts: [],
     isMember: false,
@@ -283,9 +287,7 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
           if (knownContract.multiToken) {
             let canTransfer = true;
             let canSell = true;
-            const listed = !!getListing(address, knownContract.id);
-            const listingId = listed ? getListing(address, knownContract.id).listingId : null;
-            const price = listed ? getListing(address, knownContract.id).price : null;
+            let erc1155Listings = getERC1155Listings(address, knownContract.id);
 
             const contract = new Contract(knownContract.address, ERC1155, signer);
             contract.connect(signer);
@@ -314,25 +316,42 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
               : json.image;
             const description = json.description;
             const properties = json.properties;
-            const nft = {
-              name: name,
-              id: knownContract.id,
-              image: image,
-              count: count,
-              description: description,
-              properties: properties,
-              contract: contract,
-              address: knownContract.address,
-              multiToken: true,
-              listable,
-              listed,
-              listingId,
-              price,
-              canSell: canSell,
-              canTransfer: canTransfer
-            };
+            for (const item of erc1155Listings) {
+              let nft = {
+                name: name,
+                id: knownContract.id,
+                image: image,
+                description: description,
+                properties: properties,
+                contract: contract,
+                address: knownContract.address,
+                multiToken: true,
+                listable,
+                listed: true,
+                listingId: item.listingId,
+                price: item.price,
+                canSell: canSell,
+                canTransfer: canTransfer
+              };
+              onNftLoaded([nft]);
+            }
+            for (let i = 0; i < count - erc1155Listings.length; i++) {
+              let nft = {
+                name: name,
+                id: knownContract.id,
+                image: image,
+                description: description,
+                properties: properties,
+                contract: contract,
+                address: knownContract.address,
+                multiToken: true,
+                listable,
+                canSell: canSell,
+                canTransfer: canTransfer
+              };
+              onNftLoaded([nft]);
+            }
 
-            onNftLoaded([nft]);
           } else {
             const contract = (() => {
               if (isMetaPixels) {
