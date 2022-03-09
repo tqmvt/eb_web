@@ -2460,7 +2460,7 @@
       "name": "Crosmocrafts",
       "slug": "crosmocrafts",
       "multiToken": false,
-      "address": "",
+      "address": "0x6C85FFD00cD1C528D4667a49d1E1F6c132c691F9",
       "onChain": false,
       "listable": false,
       "metadata": {
@@ -2481,7 +2481,7 @@
       "name": "Crosmocrafts Parts",
       "slug": "crosmocrafts-parts",
       "multiToken": false,
-      "address": "",
+      "address": "0x283d21Ef67C1dFA35549F6AA030ff634545e2C68",
       "onChain": false,
       "listable": false,
       "metadata": {
@@ -3510,7 +3510,7 @@
       "subtitle": "These spaceship-parts are needed to build a Crosmocraft! \nParts come in 3 types: Engines, Boosters and Space Decks. Types are further divided into classes: Regular, rare and legendary. There are a total of 9 possibilities and your parts have to be of the same class to be able to build a spaceship!",
       "description": "Spaceship-parts are needed to build your very own Crosmocraft! When minting parts you will randomly receive one of the three distinct parts that are needed for a Crosmocraft. These are a Booster, an Engine and a Space Deck. All parts will come in either a Regular, Great or Legendary rarity. The rarity of the parts will directly influence the rarity of the Crosmocraft and its traits!",
       "author": { "name": "Crosmonauts", "link": "https://www.crosmonauts.club/" },
-      "address": "",
+      "address": "0x283d21Ef67C1dFA35549F6AA030ff634545e2C68",
       "maxMintPerTx": 12,
       "maxMintPerAddress": 50,
       "totalSupply": 8430,
