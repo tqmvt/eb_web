@@ -336,6 +336,13 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
               onNftLoaded([nft]);
             }
             for (let i = 0; i < count - erc1155Listings.length; i++) {
+              if (erc1155Listings.length == 1) {
+                canSell = false;
+              }
+              if (erc1155Listings == 0 && i != 0) {
+                canSell = false;
+              }
+              console.log(canSell);
               let nft = {
                 name: name,
                 id: knownContract.id,
