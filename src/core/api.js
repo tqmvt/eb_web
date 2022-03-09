@@ -48,7 +48,7 @@ export async function sortAndFetchListings(page, sort, filter, traits, powertrai
     page: page,
     pageSize: pagesize,
     sortBy: 'listingId',
-    direction: 'desc',
+    direction: 'desc'
   };
 
   if (filter && filter instanceof FilterOption) {
@@ -57,6 +57,10 @@ export async function sortAndFetchListings(page, sort, filter, traits, powertrai
 
   if (sort && sort instanceof SortOption) {
     query = { ...query, ...sort.toApi() };
+  }
+
+  if (filter.id) {
+    query.tokenId = filter.id;
   }
 
   if (traits && Object.keys(traits).length > 0) {

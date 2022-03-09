@@ -39,7 +39,7 @@ const Collection = () => {
           ) : (
             <>
               {type === '1155' ? (
-                <Collection1155 address={collection.address} />
+                <Collection1155 address={collection.address} tokenId={collection.id} />
               ) : (
                 <Collection721 address={collection.address} />
               )}
