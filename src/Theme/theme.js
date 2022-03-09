@@ -1,7 +1,14 @@
-export const primaryTheme = {
+export const lightTheme = {
   textColor1: '#FFFFFF',
   textColor2: '#E97B05',
   textColor3: '#000000',
+  borderColor1: '#EB7D07',
+};
+
+export const darkTheme = {
+  textColor1: '#000000',
+  textColor2: '#E97B05',
+  textColor3: '#FFFFFF',
   borderColor1: '#EB7D07',
 };
 
@@ -20,5 +27,5 @@ export const theme = {
     xl: 1200,
     xxl: 1400,
   },
-  colors: primaryTheme,
+  colors: lightTheme,
 };

@@ -1,9 +1,10 @@
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { ethers } from 'ethers';
 import { croSkullRedPotionImageHack } from '../../hacks';
 import Button from './Button';
+import MakeOfferDialog from '../Offer/MakeOfferDialog';
 
 const Watermarked = styled.div`
   position: relative;
@@ -38,6 +39,7 @@ const MakeOffer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 999;
 
   .w-40 {
     width: 40%;
@@ -49,45 +51,60 @@ const Likes = styled.div`
   color: ${({ theme }) => theme.colors.textColor3};
 `;
 
-const ListingCard = ({ listing, imgClass = 'marketplace', watermark }) => {
+const ListingCard = ({ listing, imgClass = 'marketplace', watermark, collectionMetadata }) => {
+  const [openMakeOfferDialog, setOpenMakeOfferDialog] = useState(false);
+  const handleMakeOffer = (e) => {
+    setOpenMakeOfferDialog(!openMakeOfferDialog);
+  };
+
   return (
-    <Link className="linkPointer" to={`/listing/${listing.listingId}`}>
-      <div className="card eb-nft__card h-100 shadow">
-        {watermark ? (
-          <Watermarked watermark={watermark}>
+    <>
+      <Link className="linkPointer" to={`/listing/${listing.listingId}`}>
+        <div className="card eb-nft__card h-100 shadow">
+          {watermark ? (
+            <Watermarked watermark={watermark}>
+              <img
+                src={croSkullRedPotionImageHack(listing.nftAddress, listing.nft.image)}
+                className={`card-img-top ${imgClass}`}
+                alt={listing.nft.name}
+              />
+            </Watermarked>
+          ) : (
             <img
               src={croSkullRedPotionImageHack(listing.nftAddress, listing.nft.image)}
               className={`card-img-top ${imgClass}`}
               alt={listing.nft.name}
             />
-          </Watermarked>
-        ) : (
-          <img
-            src={croSkullRedPotionImageHack(listing.nftAddress, listing.nft.image)}
-            className={`card-img-top ${imgClass}`}
-            alt={listing.nft.name}
-          />
-        )}
-        {listing.nft.rank && <div className="badge bg-rarity text-wrap mt-1 mx-1">Rank: #{listing.nft.rank}</div>}
-        <div className="card-body d-flex flex-column">
-          <h6 className="card-title mt-auto">{listing.nft.name}</h6>
-          <MakeBuy>
-            <div>{ethers.utils.commify(listing.price)} CRO</div>
-            <div className="w-40">
-              <Button>Buy</Button>
-            </div>
-          </MakeBuy>
-          <MakeOffer>
-            <div className="like">
-              <Likes>55.4k</Likes>
-            </div>
-            <div className="w-40">
-              <Button type="outlined">Offer</Button>
-            </div>
-          </MakeOffer>
+          )}
+          {listing.nft.rank && <div className="badge bg-rarity text-wrap mt-1 mx-1">Rank: #{listing.nft.rank}</div>}
+          <div className="card-body d-flex flex-column">
+            <h6 className="card-title mt-auto">{listing.nft.name}</h6>
+            <MakeBuy>
+              <div>{ethers.utils.commify(listing.price)} CRO</div>
+              <div className="w-40">
+                <Button>Buy</Button>
+              </div>
+            </MakeBuy>
+            <MakeOffer>
+              <div className="like">
+                <Likes>55.4k</Likes>
+              </div>
+              <div className="w-40">
+                <Button type="outlined" onClick={handleMakeOffer}>
+                  Offer
+                </Button>
+              </div>
+            </MakeOffer>
+          </div>
         </div>
-      </div>
-    </Link>
+      </Link>
+      <MakeOfferDialog
+        isOpen={openMakeOfferDialog}
+        toggle={handleMakeOffer}
+        nftData={listing}
+        collectionMetadata={collectionMetadata}
+      />
+    </>
   );
 };
 

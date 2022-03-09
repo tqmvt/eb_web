@@ -280,7 +280,12 @@ const Collection721 = ({ address, cacheName = 'collection' }) => {
             )
           )}
           <div className={hasTraits() || hasPowertraits() ? 'col-md-9' : 'col-md-12'}>
-            <CollectionListingsGroup listings={listings} canLoadMore={canLoadMore} loadMore={loadMore} />
+            <CollectionListingsGroup
+              listings={listings}
+              canLoadMore={canLoadMore}
+              loadMore={loadMore}
+              collectionMetadata={collectionMetadata}
+            />
           </div>
         </div>
       </section>

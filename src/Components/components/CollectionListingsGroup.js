@@ -4,7 +4,13 @@ import { Spinner } from 'react-bootstrap';
 
 import ListingCard from './ListingCard';
 
-const CollectionListingsGroup = ({ showLoadMore = true, listings = [], canLoadMore = false, loadMore }) => {
+const CollectionListingsGroup = ({
+  showLoadMore = true,
+  listings = [],
+  canLoadMore = false,
+  loadMore,
+  collectionMetadata,
+}) => {
   if (showLoadMore) {
     return (
       <InfiniteScroll
@@ -50,7 +56,7 @@ const CollectionListingsGroup = ({ showLoadMore = true, listings = [], canLoadMo
           {listings &&
             listings.map((listing, index) => (
               <div key={index} className="d-item col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12 mb-4 px-2">
-                <ListingCard listing={listing} imgClass="collection" />
+                <ListingCard listing={listing} imgClass="collection" collectionMetadata={collectionMetadata} />
               </div>
             ))}
         </div>
