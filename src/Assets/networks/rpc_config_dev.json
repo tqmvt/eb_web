@@ -27,7 +27,7 @@
       "onChain": false,
       "address": "0x8d9232Ebc4f06B7b8005CCff0ca401675ceb25F5",
       "multiToken": true,
-      "split": true,
+      "split": false,
       "id": 2,
       "listable": true,
       "metadata": {
@@ -112,12 +112,12 @@
       }
     },
     {
-      "name": "Ebisu's Bay - Founding Member",
+      "name": "Ebisu's Bay - ALL Founding Member",
       "slug": "founding-member",
       "onChain": false,
       "address": "0x8d9232Ebc4f06B7b8005CCff0ca401675ceb25F5",
       "multiToken": true,
-      "split": true,
+      "split": false,
       "id": 1,
       "listable": true,
       "metadata": {
@@ -789,6 +789,7 @@
       "name": "Genesis Rock",
       "slug": "genesis-rock",
       "multiToken": true,
+      "split": false,
       "id": 1,
       "address": "0x68ec010Cf044CbAe1aCc213D043d394E620c641D",
       "onChain": false,
