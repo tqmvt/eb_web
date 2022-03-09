@@ -1,15 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Dialog, DialogContent, DialogTitle } from '@mui/material';
 import styled from 'styled-components';
 
 import Button from 'src/Components/components/Button';
+import Input from 'src/Components/components/common/Input';
 import ProfilePreview from 'src/Components/components/ProfilePreview';
 import { croSkullRedPotionImageHack } from 'src/hacks';
-import { humanize } from 'src/utils';
+import { humanize, shortAddress } from 'src/utils';
+import CloseIcon from 'src/Assets/images/close-icon-orange-grad.svg';
 
 const DialogContainer = styled(Dialog)`
   .MuiDialogContent-root {
     padding: 15px 42px 28px !important;
+    border-radius: 8px;
+    width: 734px;
   }
 `;
 
@@ -18,18 +22,20 @@ const DialogTitleContainer = styled(DialogTitle)`
   color: ${({ theme }) => theme.colors.textColor3};
   padding: 0px !important;
   margin-bottom: 24px !important;
-  font-weight: bold;
+  font-weight: bold !important;
   text-align: center;
 `;
 
 const DialogMainContent = styled.div`
   display: flex;
   justify-content: space-between;
+  position: relative;
 `;
 
 const ImageContainer = styled.div`
   width: 232px;
   height: 232px;
+  margin-top: 6px;
 
   img {
     width: 100%;
@@ -70,15 +76,34 @@ const OfferPrice = styled.div`
 `;
 
 const OfferPriceInput = styled.div`
+  display: flex;
+  align-items: center;
   font-size: 18px;
   font-weight: bold;
   color: ${({ theme }) => theme.colors.textColor3};
 `;
 
-export default function MakeOfferDialog({ isOpen, toggle, nftData, collectionMetadata }) {
-  console.log(collectionMetadata);
+const CloseIconContainer = styled.div`
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  cursor: pointer;
+
+  img {
+    width: 28px;
+  }
+`;
+
+export default function MakeOfferDialog({ isOpen, toggle, nftData, address, collectionMetadata }) {
+  const [offerPrice, setOfferPrice] = useState(0);
+  const onOfferValueChange = (inputEvent) => {
+    setOfferPrice(inputEvent.target.value);
+  };
+
+  const handleMakeOffer = () => {};
+
   return (
-    <DialogContainer onClose={toggle} open={isOpen}>
+    <DialogContainer onClose={toggle} open={isOpen} maxWidth="md">
       <DialogContent>
         <DialogTitleContainer>Make offer</DialogTitleContainer>
         <DialogMainContent>
@@ -88,27 +113,31 @@ export default function MakeOfferDialog({ isOpen, toggle, nftData, collectionMet
           <NftDetailContainer>
             <NftTitle>{nftData.nft.name}</NftTitle>
             <NftDescription>{nftData.nft.description}</NftDescription>
-            <FlexRow>
-              <div className="row" style={{ gap: '2rem 0' }}>
-                <ProfilePreview
-                  type="Collection"
-                  title={'View Collection'}
-                  avatar={nftData?.avatar}
-                  address={'address'}
-                  verified={nftData?.verified}
-                  to={`/collection/${'address'}`}
-                />
-
-                {typeof nftData.nft.rank !== 'undefined' && nftData.nft.rank !== null && (
+            <FlexRow className="row">
+              <div className="item_info">
+                <div className="row" style={{ gap: '2rem 0' }}>
                   <ProfilePreview
-                    type="Rarity Rank"
-                    title={nftData.nft.rank}
-                    avatar={nftData?.rarity === 'rarity_sniper' ? '/img/rarity-sniper.png' : null}
-                    hover={
-                      nftData.rarity === 'rarity_sniper' ? `Ranking provided by ${humanize(nftData.rarity)}` : null
-                    }
+                    type="Collection"
+                    title={address && shortAddress(address)}
+                    avatar={collectionMetadata?.avatar}
+                    address={address}
+                    verified={collectionMetadata?.verified}
+                    to={`/collection/${address}`}
                   />
-                )}
+
+                  {typeof nftData.nft.rank !== 'undefined' && nftData.nft.rank !== null && (
+                    <ProfilePreview
+                      type="Rarity Rank"
+                      title={nftData.nft.rank}
+                      avatar={collectionMetadata?.rarity === 'rarity_sniper' ? '/img/rarity-sniper.png' : null}
+                      hover={
+                        collectionMetadata?.rarity === 'rarity_sniper'
+                          ? `Ranking provided by ${humanize(collectionMetadata.rarity)}`
+                          : null
+                      }
+                    />
+                  )}
+                </div>
               </div>
             </FlexRow>
             <FlexRow>
@@ -117,13 +146,28 @@ export default function MakeOfferDialog({ isOpen, toggle, nftData, collectionMet
             </FlexRow>
             <FlexRow>
               <OfferPrice>Offer Price</OfferPrice>
-              <OfferPriceInput>input field CRO</OfferPriceInput>
+              <OfferPriceInput>
+                <Input
+                  type="number"
+                  className="mx-2"
+                  onKeyDown={(e) => {
+                    if (e.code === 'Period') {
+                      e.preventDefault();
+                    }
+                  }}
+                  onChange={onOfferValueChange}
+                />
+                CRO
+              </OfferPriceInput>
             </FlexRow>
             <div>
-              <Button>Make Offer</Button>
+              <Button onClick={handleMakeOffer}>Make Offer</Button>
             </div>
           </NftDetailContainer>
         </DialogMainContent>
+        <CloseIconContainer onClick={toggle}>
+          <img src={CloseIcon} alt="close" />
+        </CloseIconContainer>
       </DialogContent>
     </DialogContainer>
   );

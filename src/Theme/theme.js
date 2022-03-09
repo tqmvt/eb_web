@@ -3,6 +3,7 @@ export const lightTheme = {
   textColor2: '#E97B05',
   textColor3: '#000000',
   borderColor1: '#EB7D07',
+  borderColor2: '#707070',
 };
 
 export const darkTheme = {
@@ -10,6 +11,7 @@ export const darkTheme = {
   textColor2: '#E97B05',
   textColor3: '#FFFFFF',
   borderColor1: '#EB7D07',
+  borderColor2: '#707070',
 };
 
 export const theme = {

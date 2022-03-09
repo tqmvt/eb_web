@@ -9,6 +9,7 @@ const CollectionListingsGroup = ({
   listings = [],
   canLoadMore = false,
   loadMore,
+  address,
   collectionMetadata,
 }) => {
   if (showLoadMore) {
@@ -43,7 +44,12 @@ const CollectionListingsGroup = ({
           {listings &&
             listings.map((listing, index) => (
               <div key={index} className="d-item col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12 mb-4 px-2">
-                <ListingCard listing={listing} imgClass="collection" />
+                <ListingCard
+                  listing={listing}
+                  imgClass="collection"
+                  address={address}
+                  collectionMetadata={collectionMetadata}
+                />
               </div>
             ))}
         </div>
@@ -56,7 +62,12 @@ const CollectionListingsGroup = ({
           {listings &&
             listings.map((listing, index) => (
               <div key={index} className="d-item col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12 mb-4 px-2">
-                <ListingCard listing={listing} imgClass="collection" collectionMetadata={collectionMetadata} />
+                <ListingCard
+                  listing={listing}
+                  imgClass="collection"
+                  address={address}
+                  collectionMetadata={collectionMetadata}
+                />
               </div>
             ))}
         </div>

@@ -284,6 +284,7 @@ const Collection721 = ({ address, cacheName = 'collection' }) => {
               listings={listings}
               canLoadMore={canLoadMore}
               loadMore={loadMore}
+              address={address}
               collectionMetadata={collectionMetadata}
             />
           </div>
