@@ -50,6 +50,18 @@ const GlobalStyles = createGlobalStyle`
     margin-bottom: 0px;
   }
   
+  .promo {
+    padding-bottom: 8px;
+    background: #15B619;
+    color: #fff;
+    animation: mymove 6s infinite alternate-reverse;
+  }
+  
+  @keyframes mymove {
+    from {background-color: #15B619;}
+    to {background-color: #b63d15;}
+  }
+
   @media only screen and (max-width: 1199.98px) {
     .min-width-on-column > span {
       min-width: 200px;
@@ -213,10 +225,10 @@ const Home = () => {
   return (
     <div>
       <GlobalStyles />
-      <section className="promo" style={{ paddingBottom: '8px', background:'#15B619', color: 'white'}}>
+      <section className="promo">
         <div className="d-flex justify-content-center px-3">
           <p className="my-auto me-3">
-            Founding Member NFTs are over 75% minted! Grab one now to enjoy amazing discounts on drops and 50% off service fees.{' '}
+            Founding Member NFTs are over 90% minted! Grab one now to enjoy amazing discounts on drops and 50% off service fees.{' '}
             <span className="fw-bold d-block d-md-inline-block text-end">
             <Link to="/drops/founding-member">Learn More &gt;</Link>
           </span>
