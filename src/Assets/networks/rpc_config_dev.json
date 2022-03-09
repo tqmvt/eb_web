@@ -22,7 +22,7 @@
   },
   "known_contracts": [
     {
-      "name": "Ebisu's Bay - ALL Founding Members",
+      "name": "Ebisu's Bay - ALL Founding Member",
       "slug": "all-founding-member",
       "onChain": false,
       "address": "0x8d9232Ebc4f06B7b8005CCff0ca401675ceb25F5",
@@ -2484,7 +2484,7 @@
       "id": 1,
       "address": "0xf49C94E09E506aCcbe553b673FEe4F44efb06D55",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "slug": "crosmocrafts-parts",
         "description": "",
@@ -2528,7 +2528,7 @@
       "id": 3,
       "address": "0xf49C94E09E506aCcbe553b673FEe4F44efb06D55",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "slug": "crosmocrafts-parts",
         "description": "",
@@ -2550,7 +2550,7 @@
       "id": 4,
       "address": "0xf49C94E09E506aCcbe553b673FEe4F44efb06D55",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "slug": "crosmocrafts-parts",
         "description": "",
@@ -2572,7 +2572,7 @@
       "id": 5,
       "address": "0xf49C94E09E506aCcbe553b673FEe4F44efb06D55",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "slug": "crosmocrafts-parts",
         "description": "",
@@ -2594,7 +2594,7 @@
       "id": 6,
       "address": "0xf49C94E09E506aCcbe553b673FEe4F44efb06D55",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "slug": "crosmocrafts-parts",
         "description": "",
@@ -2616,7 +2616,7 @@
       "id": 7,
       "address": "0xf49C94E09E506aCcbe553b673FEe4F44efb06D55",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "slug": "crosmocrafts-parts",
         "description": "",
@@ -2638,7 +2638,7 @@
       "id": 8,
       "address": "0xf49C94E09E506aCcbe553b673FEe4F44efb06D55",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "slug": "crosmocrafts-parts",
         "description": "",
@@ -2657,10 +2657,10 @@
       "name": "Crosmocrafts Parts",
       "slug": "crosmocrafts-parts",
       "multiToken": true,
-      "id": 9,
+      "id": 0,
       "address": "0xf49C94E09E506aCcbe553b673FEe4F44efb06D55",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "slug": "crosmocrafts-parts",
         "description": "",
