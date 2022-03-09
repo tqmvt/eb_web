@@ -13,6 +13,7 @@ import MyNfts from '../Components/pages/myNfts';
 import Header from '../Components/menu/header';
 import Drops from '../Components/pages/drops';
 import Drop from '../Components/pages/drop';
+import DropBuildShip from '../Components/pages/dropBuildShip';
 import MyListings from '../Components/pages/myListings';
 import MySales from '../Components/pages/mySales';
 import MyStaking from '../Components/pages/myStaking';
@@ -74,6 +75,7 @@ const Component = ({ walletAddress, authInitFinished }) => {
           <PrivateRoute exact path="/sales" component={MySales} />
           <PrivateRoute exact path="/staking" component={MyStaking} />
           <PrivateRoute exact path="/wallet/listings" component={MyListings} />
+          <PrivateRoute exact path="/build-ship" component={DropBuildShip} />
 
           <SentryEnhancedRoute exact path="/drops" component={Drops} />
           <SentryEnhancedRoute exact path="/drops/:slug" component={Drop} />

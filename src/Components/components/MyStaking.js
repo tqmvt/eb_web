@@ -231,52 +231,8 @@ const MyStaking = ({ walletAddress = null }) => {
                 <>
                   {(stakeCount + vipCount) > 0 ? (
                       <>
-                        <div className="card-group text-center">
-                          <div className="d-item px-2 mx-auto w-auto">
-                            <div className="card eb-nft__card h-100 shadow px-4">
-                              <div className="card-body d-flex flex-column">
-                                <h5>Stake</h5>
-                                <Form.Label>Quantity</Form.Label>
-                                <Form.Control
-                                    type="number"
-                                    placeholder="Input the amount"
-                                    onChange={onAmountChange}
-                                    value={amount}
-                                    style={{width:'100px', marginBottom: 0, appearance:'none', margin: 0}}
-                                />
-                                <div className="row d-flex justify-content-center mt-2">
-                                  <button className="btn-main lead mx-1 mb-2" onClick={stake} disabled={amount ===0 || vipCount === 0}>
-                                    {isStaking ? (
-                                        <>
-                                          Staking...
-                                          <Spinner animation="border" role="status" size="sm" className="ms-1">
-                                            <span className="visually-hidden">Loading...</span>
-                                          </Spinner>
-                                        </>
-                                    ) : (
-                                        <>Stake</>
-                                    )}
-                                  </button>
-                                </div>
-
-                                <div className="row d-flex justify-content-center mt-2">
-                                  <button className="btn-main lead mx-1 mb-2" onClick={unStake} disabled={amount === 0 || stakeCount === 0}>
-                                    {isUnstaking ? (
-                                        <>
-                                          UnStaking...
-                                          <Spinner animation="border" role="status" size="sm" className="ms-1">
-                                            <span className="visually-hidden">Loading...</span>
-                                          </Spinner>
-                                        </>
-                                    ) : (
-                                        <>UnStake</>
-                                    )}
-                                  </button>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="d-item px-2 mx-auto mt-4 mt-lg-0 w-auto">
+                        <div className="row g-3">
+                          <div>
                             <div className="card eb-nft__card h-100 shadow px-4">
                               <div className="card-body d-flex flex-column">
                                 <h5>Rewards: {harvestAmount}</h5>
@@ -299,9 +255,53 @@ const MyStaking = ({ walletAddress = null }) => {
                               </div>
                             </div>
                           </div>
-                        </div>
-                        <div className="d-flex flex-wrap mt-5">
+                          <div>
+                            <div className="card eb-nft__card h-100 shadow px-4">
+                              <div className="card-body d-flex flex-column">
+                                <h5>Stake</h5>
 
+                                <div className="row row-cols-1 g-3">
+                                  <div>
+                                    <Form.Label>Quantity</Form.Label>
+                                    <Form.Control
+                                        type="number"
+                                        placeholder="Input the amount"
+                                        onChange={onAmountChange}
+                                        value={amount}
+                                        style={{width:'80px', marginBottom: 0, appearance:'none', margin: 0}}
+                                    />
+                                  </div>
+
+                                  <div className="btn-group mt-4 flex-wrap">
+                                    <button className="btn-main lead mx-1 mb-2" onClick={stake} disabled={amount ===0 || vipCount === 0}>
+                                      {isStaking ? (
+                                          <>
+                                            Staking...
+                                            <Spinner animation="border" role="status" size="sm" className="ms-1">
+                                              <span className="visually-hidden">Loading...</span>
+                                            </Spinner>
+                                          </>
+                                      ) : (
+                                          <>Stake</>
+                                      )}
+                                    </button>
+                                    <button className="btn-main lead mx-1 mb-2" onClick={unStake} disabled={amount === 0 || stakeCount === 0}>
+                                      {isUnstaking ? (
+                                          <>
+                                            UnStaking...
+                                            <Spinner animation="border" role="status" size="sm" className="ms-1">
+                                              <span className="visually-hidden">Loading...</span>
+                                            </Spinner>
+                                          </>
+                                      ) : (
+                                          <>UnStake</>
+                                      )}
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </>
                   ):(
