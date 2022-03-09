@@ -82,6 +82,7 @@ const Drop = () => {
   return (
     <>
       <section
+          id="profile_banner"
           className="jumbotron breadcumb no-bg tint"
           style={{
             backgroundImage: 'url(/img/collections/crosmonauts/ship/banner.webp)',
@@ -99,12 +100,31 @@ const Drop = () => {
         </div>
       </section>
 
+
+      <section className="container d_coll no-top no-bottom">
+        <div className="row">
+          <div className="col-md-12">
+            <div className="d_profile">
+              <div className="profile_avatar">
+                <div className="d_profile_img">
+                  <img src="img/collections/crosmonauts/ship/avatar.webp" alt="Crosmonauts" />
+                </div>
+                <p>Combine ship parts to build a Crosmocraft!</p>
+                <p>Parts come in 3 types: Engines, Boosters and Space Decks. Types are further divided into classes: Regular, Rare and Legendary. There are a total of 9 possibilities and your parts have to be of the same class to be able to build a spaceship!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="container">
         {
           isLoading ? (
             <div className="row mt-4" style={{"marginTop": "220px"}}>
               <div className="col-lg-12 text-center">
-                <span>Loading...</span>
+                <Spinner animation="border" role="status" className="ms-1">
+                  <span className="visually-hidden">Loading...</span>
+                </Spinner>
               </div>
             </div>
           ):
@@ -188,7 +208,7 @@ const ShipBuilderCard = ({type, shipAddress, key, mintCallback, quantityCollecte
                 <GreyscaleImg src={`/img/collections/crosmonauts/parts/${type}-engine.webp`}  className="card-img-top" alt="..." />
               )}
               <div className="card-body">
-                <h5 className="card-title">Core</h5>
+                <h5 className="card-title">Engine</h5>
                 <p className="card-text">Parts Collected: {quantityCollected[0]}</p>
               </div>
             </div>
@@ -210,7 +230,7 @@ const ShipBuilderCard = ({type, shipAddress, key, mintCallback, quantityCollecte
                 <GreyscaleImg src={`/img/collections/crosmonauts/parts/${type}-deck.webp`}  className="card-img-top" alt="..." />
               )}
               <div className="card-body">
-                <h5 className="card-title">Deck</h5>
+                <h5 className="card-title">Space Deck</h5>
                 <p className="card-text">Parts Collected: {quantityCollected[2]}</p>
               </div>
             </div>
