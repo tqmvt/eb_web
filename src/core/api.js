@@ -236,8 +236,22 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
   }
 
   const signer = walletProvider.getSigner();
-  const listingsReponse = await (await fetch(`${api.baseUrl}${api.listings}?seller=${walletAddress}&state=0`)).json();
-  const listings = listingsReponse.listings;
+
+  let listings = [];
+  let chunkParams = {complete: false, pageSize: 100, curPage: 1}
+  while (!chunkParams.complete) {
+    const queryString = new URLSearchParams({
+      state: 0,
+      page: chunkParams.curPage,
+      pageSize: chunkParams.pageSize,
+      seller: walletAddress
+    });
+    const url = new URL(api.listings, `${api.baseUrl}`);
+    const listingsReponse = await (await fetch(`${url}?${queryString}`)).json();
+    listings = [...listings, ...listingsReponse.listings];
+    chunkParams.complete = listingsReponse.listings.length < chunkParams.pageSize;
+    chunkParams.curPage++
+  }
 
   //  Helper function
   const getListing = (address, id) => {
