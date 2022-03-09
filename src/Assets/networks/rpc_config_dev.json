@@ -2657,7 +2657,7 @@
       "name": "Crosmocrafts Parts",
       "slug": "crosmocrafts-parts",
       "multiToken": true,
-      "id": 9,
+      "id": 0,
       "address": "0xf49C94E09E506aCcbe553b673FEe4F44efb06D55",
       "onChain": false,
       "listable": true,
