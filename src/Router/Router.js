@@ -73,7 +73,7 @@ const Component = ({ walletAddress, authInitFinished }) => {
           <PrivateRoute exact path="/nfts" component={MyNfts} />
           <PrivateRoute exact path="/sales" component={MySales} />
           <PrivateRoute exact path="/wallet/listings" component={MyListings} />
-          <PrivateRoute exact path="/build-ship" component={DropBuildShip} />
+          <SentryEnhancedRoute exact path="/build-ship" component={DropBuildShip} />
 
           <SentryEnhancedRoute exact path="/drops" component={Drops} />
           <SentryEnhancedRoute exact path="/drops/:slug" component={Drop} />
