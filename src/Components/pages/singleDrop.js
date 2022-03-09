@@ -21,7 +21,7 @@ import { fetchCronieInfo } from '../../GlobalState/Cronies';
 import {
   createSuccessfulTransactionToastContent,
   isCreaturesDrop,
-  isCrognomesDrop,
+  isCrognomesDrop, isCrosmocraftsPartsDrop,
   isFounderDrop, isFounderVipDrop,
   isMagBrewVikingsDrop,
   newlineText,
@@ -596,6 +596,17 @@ const SingleDrop = () => {
                       <p className="fw-bold text-center my-4" style={{color: 'black'}}>
                         {drop.disclaimer}
                       </p>
+                  )}
+
+                  {isCrosmocraftsPartsDrop(drop.address) && (
+                    <div className="mb-4">
+                      <span>Once you have minted your parts, you can&nbsp;</span>
+                      <div className="nft__item_action d-inline-block" style={{fontSize: '16px'}}>
+                        <span onClick={() => window.open('/build-ship', '_self')} style={{cursor:'pointer'}}>
+                          build your Crosmocraft
+                        </span>
+                      </div>
+                    </div>
                   )}
 
                   <div className="d-flex flex-row">

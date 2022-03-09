@@ -28,6 +28,10 @@ const Drop = () => {
       try {
         setIsLoading(true);
         const spaceShipDrop = config.known_contracts.find(drop => drop.slug === "crosmocrafts");
+        if (!spaceShipDrop.address) {
+          setIsLoading(false);
+          return;
+        }
         let spaceShip = await new ethers.Contract(spaceShipDrop.address, ShipABI.abi, user.provider.getSigner());
         const ship1 = await spaceShip.SHIP1(); // Regular
         const ship2 = await spaceShip.SHIP2(); // Great
@@ -111,6 +115,14 @@ const Drop = () => {
                 </div>
                 <p>Combine ship parts to build a Crosmocraft!</p>
                 <p>Parts come in 3 types: Engines, Boosters and Space Decks. Types are further divided into classes: Regular, Rare and Legendary. There are a total of 9 possibilities and your parts have to be of the same class to be able to build a spaceship!</p>
+                <div className="mb-4">
+                  <span>Need more parts? &nbsp;</span>
+                  <div className="nft__item_action d-inline-block" style={{fontSize: '16px'}}>
+                    <span onClick={() => window.open('/drops/crosmocrafts-parts', '_self')} style={{cursor:'pointer'}}>
+                      mint Crosmocrafts parts
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
