@@ -32,6 +32,12 @@ const MyStaking = ({ walletAddress = null }) => {
     try {
       setIsHarvesting(true);
       const completedPool = await user.stakeContract.completedPool();
+      const currBalance = await user.provider.getBalance( user.stakeContract.curPool());
+      const completedBalance = await user.provider.getBalance(completedPool);
+      console.log({completedBalance})
+      if (currBalance > 0 || completedBalance > 0) {
+        setIsInInitMode(false);
+      }
       if (completedPool !== ethers.constants.AddressZero) {
         const rewardsContract = new Contract(completedPool, RewardsPoolAbi, user.provider.getSigner());
         const finalBalance = await rewardsContract.finalBalance();
