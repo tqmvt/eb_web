@@ -1961,7 +1961,7 @@
       "multiToken": false,
       "address": "0xD97A5ed8d1f5943085F7eFADC8e46415F5b7deDD",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "slug": "hyped-dogs",
         "description": "",
