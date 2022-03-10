@@ -310,8 +310,8 @@ export const isMetapixelsCollection = (address) => {
   return isCollection(address, 'metapixels');
 };
 
-export const isCrosmonautsCollection = (address) => {
-  return isCollection(address, 'crosmonauts');
+export const isCrosmocraftsPartsCollection = (address) => {
+  return isCollection(address, 'crosmocrafts-parts');
 };
 
 export const percentage = (partialValue, totalValue) => {
