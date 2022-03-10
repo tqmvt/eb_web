@@ -5,8 +5,8 @@
   "read_rpc": "https://gateway.nebkas.ro/",
   "symbol": "CRO",
   "explorer": "http://cronos.crypto.org/explorer/",
-  "api_base": "https://api.ebisusbay.com/",
-  "app_base": "https://app.ebisusbay.com/",
+  "api_base": "https://api.ebisusbay.biz/",
+  "app_base": "https://app.ebisusbay.biz/",
   "membership_contract": "0x8d9232Ebc4f06B7b8005CCff0ca401675ceb25F5",
   "auction_contract": "0x08254C5B77615E7B4d2f7df0Dc36e1AEb9025D10",
   "cronie_contract": "0xD961956B319A10CBdF89409C0aE7059788A4DaBb",
@@ -2462,7 +2462,7 @@
       "multiToken": false,
       "address": "0xC6373d6F369A9FfE7D93B21F2A5b0E16291d996D",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "slug": "crosmocrafts",
         "description": "",
@@ -3700,7 +3700,7 @@
       "referral": false,
       "is1155": true,
       "published": true,
-      "complete": false
+      "complete": true
     }
   ],
   "auctions": [
