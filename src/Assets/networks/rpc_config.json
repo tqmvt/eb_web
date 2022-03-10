@@ -2462,7 +2462,7 @@
       "multiToken": false,
       "address": "0xC6373d6F369A9FfE7D93B21F2A5b0E16291d996D",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "slug": "crosmocrafts",
         "description": "",
@@ -3700,7 +3700,7 @@
       "referral": false,
       "is1155": true,
       "published": true,
-      "complete": false
+      "complete": true
     }
   ],
   "auctions": [
