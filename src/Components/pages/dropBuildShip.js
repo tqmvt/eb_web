@@ -26,31 +26,34 @@ const Drop = () => {
   });
 
   const init = useCallback (async() => {
-    if (user.provider) {
+    setIsLoading(true);
+    await refreshDropDetails();
       try {
-        setIsLoading(true);
-        const spaceShipDrop = config.known_contracts.find(drop => drop.slug === "crosmocrafts");
-        if (!spaceShipDrop.address) {
-          setIsLoading(false);
-          return;
+        if (user.provider) {
+          const spaceShipDrop = config.known_contracts.find(drop => drop.slug === "crosmocrafts");
+          if (!spaceShipDrop.address) {
+            setIsLoading(false);
+            return;
+          }
+          let spaceShip = await new ethers.Contract(spaceShipDrop.address, ShipABI.abi, user.provider.getSigner());
+          const ship1 = await spaceShip.SHIP1(); // Regular
+          const ship2 = await spaceShip.SHIP2(); // Great
+          const ship3 = await spaceShip.SHIP3(); // Legendary
+          const ships = [ship1, ship2, ship3];
+          setShips(ships);
+
+          await refreshPartsBalance();
+
+          setShipContract(spaceShip);
+        } else {
+          setPartsBalances([]);
         }
-        let spaceShip = await new ethers.Contract(spaceShipDrop.address, ShipABI.abi, user.provider.getSigner());
-        const ship1 = await spaceShip.SHIP1(); // Regular
-        const ship2 = await spaceShip.SHIP2(); // Great
-        const ship3 = await spaceShip.SHIP3(); // Legendary
-        const ships = [ship1, ship2, ship3];
-        setShips(ships);
-
-        await refreshPartsBalance();
-        await refreshDropDetails();
-
-        setShipContract(spaceShip);
       } catch (error) {
         console.log(error);
         Sentry.captureException(error);
+      } finally {
+        setIsLoading(false);
       }
-      setIsLoading(false);
-    }
   }, [user.address, user.provider]);
 
   const refreshPartsBalance = async() => {
@@ -66,7 +69,8 @@ const Drop = () => {
 
   const refreshDropDetails = async() => {
     const spaceShipDrop = config.known_contracts.find(drop => drop.slug === "crosmocrafts");
-    let spaceShip = await new ethers.Contract(spaceShipDrop.address, ShipABI.abi, user.provider.getSigner());
+    const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
+    let spaceShip = await new ethers.Contract(spaceShipDrop.address, ShipABI.abi, readProvider);
     const info = await spaceShip.getInfo();
 
     setTotalSupply(info.totalSupply);
