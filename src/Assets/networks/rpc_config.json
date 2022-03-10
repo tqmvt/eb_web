@@ -2674,6 +2674,26 @@
         "discord": "https://discord.gg/yhyJjZ2uWk",
         "medium": "https://medium.com/@crosmonaut"
       }
+    },
+    {
+      "name": "Gold Partner",
+      "slug": "gold-partner",
+      "multiToken": false,
+      "address": "",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/goldpartner/avatar.gif",
+        "card": "/img/collections/goldpartner/card.png",
+        "banner": "/img/collections/goldpartner/banner.png",
+        "maxSupply": 300,
+        "website": "http://www.thesportsnft.io/",
+        "twitter": "https://twitter.com/TheSportsNFT",
+        "discord": "https://discord.gg/6XYv63jc9Z",
+        "medium": "https://medium.com/@thesportsnft"
+      }
     }
   ],
   "drops": [
@@ -3701,6 +3721,33 @@
       "is1155": true,
       "published": true,
       "complete": false
+    },
+    {
+      "id": 33,
+      "slug": "gold-partner",
+      "imgNft": "/img/drops/goldpartner/drop.png",
+      "imgPreview": "/img/drops/goldpartner/drop.png",
+      "imgAvatar": "/img/collections/goldpartner/avatar.gif",
+      "imgBanner": "/img/drops/goldpartner/banner.png",
+      "title": "Gold Partner",
+      "subtitle": "Gold Partner Collection - The Hall of Fame is a collection of 300 Hand-drawn, 3D, and animated NFT's with very unique features and utilities. Every NFT is hand-drawn, comes with a unique edition# engraved, a first of its kind on Cronos Chain. Holders of the NFT's will enjoy 30% share of the profits earned from upcoming collections. These NFT's offer a profit-sharing partnership opportunity to the buyers and holders to earn passive income from all upcoming drops.",
+      "description": "Gold Partner Collection - The Hall of Fame is designed after deep research by our team. This collection honors founders and inventors of different sports forgotten by the world. This collection is structured in a way that makes you a direct profit-sharing partner in the project.\n Long term goal of this project is to create a decentralized marketplace for trading real-world sports collectibles. \nUnique Utilities: \n&#8226;30% of profits from upcoming drops are shared directly among the holders of this collection.  \n&#8226;Chance to be a Platinum partner and enjoy a bigger chunk of profits.   \n&#8226;Community-driven Project with a long-term vision of becoming a marketplace for real-world sports collectibles.     \nCome explore the joy of owning an NFT project and become a founding member!",
+      "author": { "name": "Cronos Primate Business", "link": "https://cronospb.com/" },
+      "address": "",
+      "maxMintPerTx": 5,
+      "maxMintPerAddress": 5,
+      "totalSupply": 300,
+      "cost": "375",
+      "memberCost": "325",
+      "whitelistCost": "325",
+      "foundersOnly": false,
+      "start": 1646376840000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false,
+      "video": "https://app.ebisusbay.com/files/goldpartner/banner.mp4"
     }
   ],
   "auctions": [
