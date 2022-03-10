@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Dialog, DialogContent, DialogTitle } from '@mui/material';
 import styled from 'styled-components';
+import { ethers } from 'ethers';
 
 import Button from 'src/Components/components/Button';
 import Input from 'src/Components/components/common/Input';
@@ -13,7 +15,7 @@ const DialogContainer = styled(Dialog)`
   .MuiDialogContent-root {
     padding: 15px 42px 28px !important;
     border-radius: 8px;
-    width: 734px;
+    max-width: 734px;
   }
 `;
 
@@ -30,6 +32,10 @@ const DialogMainContent = styled.div`
   display: flex;
   justify-content: space-between;
   position: relative;
+
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    flex-direction: column;
+  }
 `;
 
 const ImageContainer = styled.div`
@@ -41,10 +47,18 @@ const ImageContainer = styled.div`
     width: 100%;
     height: 100%;
   }
+
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    margin: auto;
+    margin-bottom: 10px;
+  }
 `;
 
 const NftDetailContainer = styled.div`
   width: 50%;
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    width: 100%;
+  }
 `;
 
 const NftTitle = styled.div`
@@ -95,12 +109,24 @@ const CloseIconContainer = styled.div`
 `;
 
 export default function MakeOfferDialog({ isOpen, toggle, nftData, address, collectionMetadata }) {
+  const offerContract = useSelector((state) => {
+    return state.user.offerContract;
+  });
+
   const [offerPrice, setOfferPrice] = useState(0);
   const onOfferValueChange = (inputEvent) => {
     setOfferPrice(inputEvent.target.value);
   };
 
-  const handleMakeOffer = () => {};
+  const handleMakeOffer = async () => {
+    console.log(offerContract);
+    console.log(nftData.nftAddress, nftData.nftId, offerPrice, ethers.utils.parseEther(offerPrice));
+    const tx = await offerContract.makeOffer(nftData.nftAddress, nftData.nftId, {
+      value: ethers.utils.parseEther(offerPrice),
+    });
+    const receipt = await tx.wait();
+    console.log(receipt);
+  };
 
   return (
     <DialogContainer onClose={toggle} open={isOpen} maxWidth="md">
