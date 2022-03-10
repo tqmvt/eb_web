@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Contract, ethers } from 'ethers';
-import { faCheck, faCircle } from '@fortawesome/free-solid-svg-icons';
 import Blockies from 'react-blockies';
 import { Helmet } from 'react-helmet';
-import Footer from '../components/Footer';
+import { faCheck, faCircle } from '@fortawesome/free-solid-svg-icons';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
+
 import CollectionListingsGroup from '../components/CollectionListingsGroup';
 import CollectionFilterBar from '../components/CollectionFilterBar';
 import LayeredIcon from '../components/LayeredIcon';
+import Footer from '../components/Footer';
 import { init, fetchListings, getStats } from '../../GlobalState/collectionSlice';
 import { caseInsensitiveCompare, isFounderCollection, siPrefixedNumber } from '../../utils';
 import TraitsFilter from '../Collection/TraitsFilter';
@@ -31,6 +34,7 @@ const Collection721 = ({ address, cacheName = 'collection' }) => {
 
   const collectionCachedTraitsFilter = useSelector((state) => state.collection.cachedTraitsFilter);
   const collectionCachedSort = useSelector((state) => state.collection.cachedSort);
+  const collectionStatsLoading = useSelector((state) => state.collection.statsLoading);
   const collectionStats = useSelector((state) => state.collection.stats);
 
   const listings = useSelector((state) => state.collection.listings);
@@ -182,7 +186,10 @@ const Collection721 = ({ address, cacheName = 'collection' }) => {
           <div className="row">
             {hasRank && collectionMetadata?.rarity === 'rarity_sniper' && (
               <div className="row">
-                <div className="col-lg-8 col-sm-10 mx-auto text-center text-sm-end fst-italic" style={{ fontSize: '0.8em' }}>
+                <div
+                  className="col-lg-8 col-sm-10 mx-auto text-center text-sm-end fst-italic"
+                  style={{ fontSize: '0.8em' }}
+                >
                   Rarity scores and ranks provided by{' '}
                   <a href="https://raritysniper.com/" target="_blank" rel="noreferrer">
                     <span className="color">Rarity Sniper</span>
@@ -243,7 +250,7 @@ const Collection721 = ({ address, cacheName = 'collection' }) => {
             {collectionMetadata?.staking === 'crodex' && (
               <div className="row">
                 <div className="mx-auto text-center fw-bold" style={{ fontSize: '0.8em' }}>
-                  NFTs from this collection can be staked at {' '}
+                  NFTs from this collection can be staked at{' '}
                   <a href="https://swap.crodex.app/#/rewards/nft" target="_blank" rel="noreferrer">
                     <span className="color">Crodex</span>
                   </a>
@@ -252,18 +259,34 @@ const Collection721 = ({ address, cacheName = 'collection' }) => {
             )}
           </div>
         )}
-        <div className="row">
-          <CollectionFilterBar showFilter={false} cacheName={cacheName} />
-        </div>
-        <div className="row">
-          {(hasTraits() || hasPowertraits()) && (
-            <div className="col-md-3 mb-4">
-              {hasTraits() && <TraitsFilter address={address} />}
-              {hasPowertraits() && <PowertraitsFilter address={address} />}
+        {!collectionStatsLoading && (
+          <div className="row">
+            <div className={hasTraits() || hasPowertraits() ? 'offset-md-3 col-md-9' : 'col-md-12'}>
+              <CollectionFilterBar showFilter={false} cacheName={cacheName} />
             </div>
+          </div>
+        )}
+        <div className="row">
+          {collectionStatsLoading ? (
+            <div className="col-md-3 mb-4">
+              <Skeleton count={5} type="rect" />
+            </div>
+          ) : (
+            (hasTraits() || hasPowertraits()) && (
+              <div className="col-md-3 mb-4">
+                {hasTraits() && <TraitsFilter address={address} />}
+                {hasPowertraits() && <PowertraitsFilter address={address} />}
+              </div>
+            )
           )}
           <div className={hasTraits() || hasPowertraits() ? 'col-md-9' : 'col-md-12'}>
-            <CollectionListingsGroup listings={listings} canLoadMore={canLoadMore} loadMore={loadMore} />
+            <CollectionListingsGroup
+              listings={listings}
+              canLoadMore={canLoadMore}
+              loadMore={loadMore}
+              address={address}
+              collectionMetadata={collectionMetadata}
+            />
           </div>
         </div>
       </section>

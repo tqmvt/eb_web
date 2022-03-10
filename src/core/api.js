@@ -1,15 +1,14 @@
 import { BigNumber, Contract, ethers } from 'ethers';
 import * as Sentry from '@sentry/react';
-import config from '../Assets/networks/rpc_config.json';
-// import Market from '../Contracts/Marketplace.json';
-import { ERC1155, ERC721, MetaPixelsAbi } from '../Contracts/Abis';
-import IPFSGatewayTools from '@pinata/ipfs-gateway-tools/dist/browser';
-import { dataURItoBlob } from '../Store/utils';
 import moment from 'moment';
-import { SortOption } from '../Components/Models/sort-option.model';
+import IPFSGatewayTools from '@pinata/ipfs-gateway-tools/dist/browser';
 
+import config from '../Assets/networks/rpc_config.json';
+import { ERC1155, ERC721, MetaPixelsAbi } from '../Contracts/Abis';
+import { dataURItoBlob } from '../Store/utils';
+import { SortOption } from '../Components/Models/sort-option.model';
 import { FilterOption } from '../Components/Models/filter-option.model';
-import {isMetapixelsCollection} from "../utils";
+import { isMetapixelsCollection } from '../utils';
 
 const gatewayTools = new IPFSGatewayTools();
 const gateway = 'https://mygateway.mypinata.cloud';
@@ -147,11 +146,11 @@ export async function getListing(listingId) {
 
     const isMetaPixels = isMetapixelsCollection(rawListing['nftAddress']);
     if (isMetaPixels) {
-      const contract =  new Contract(rawListing['nftAddress'], MetaPixelsAbi, readProvider);
+      const contract = new Contract(rawListing['nftAddress'], MetaPixelsAbi, readProvider);
       const data = await contract.lands(rawListing['nftId']);
-      const plotSize = `${(data.xmax - data.xmin + 1)}x${(data.ymax - data.ymin + 1)}`;
-      const plotCoords = `(${data.xmin}, ${data.ymin})`
-      rawListing['nft'].description = `Metaverse Pixel plot at ${plotCoords} with a ${plotSize} size`
+      const plotSize = `${data.xmax - data.xmin + 1}x${data.ymax - data.ymin + 1}`;
+      const plotCoords = `(${data.xmin}, ${data.ymin})`;
+      rawListing['nft'].description = `Metaverse Pixel plot at ${plotCoords} with a ${plotSize} size`;
     }
 
     const listing = {
@@ -170,7 +169,7 @@ export async function getListing(listingId) {
       royalty: rawListing['royalty'],
       nft: rawListing['nft'],
       useIframe: isMetaPixels,
-      iframeSource: isMetaPixels ? `https://www.metaversepixels.app/grid?id=${rawListing['nftId']}&zoom=3` : null
+      iframeSource: isMetaPixels ? `https://www.metaversepixels.app/grid?id=${rawListing['nftId']}&zoom=3` : null,
     };
     return listing;
   } catch (error) {
@@ -745,11 +744,11 @@ export async function getNft(collectionId, nftId, useFallback = true) {
 
     const isMetaPixels = isMetapixelsCollection(collectionId);
     if (isMetaPixels) {
-      const contract =  new Contract(collectionId, MetaPixelsAbi, readProvider);
+      const contract = new Contract(collectionId, MetaPixelsAbi, readProvider);
       const data = await contract.lands(nftId);
-      const plotSize = `${(data.xmax - data.xmin + 1)}x${(data.ymax - data.ymin + 1)}`;
-      const plotCoords = `(${data.xmin}, ${data.ymin})`
-      result.nft.description = `Metaverse Pixel plot at ${plotCoords} with a ${plotSize} size`
+      const plotSize = `${data.xmax - data.xmin + 1}x${data.ymax - data.ymin + 1}`;
+      const plotCoords = `(${data.xmin}, ${data.ymin})`;
+      result.nft.description = `Metaverse Pixel plot at ${plotCoords} with a ${plotSize} size`;
     }
 
     return result;
@@ -866,7 +865,7 @@ export async function getNftRankings(contractAddress, nftIds) {
 
   let query = {
     collection: contractAddress,
-    tokenId: commaIds
+    tokenId: commaIds,
   };
 
   const queryString = new URLSearchParams(query);
@@ -875,17 +874,19 @@ export async function getNftRankings(contractAddress, nftIds) {
   let json = await response.json();
 
   if (json.data) {
-    return json.data.map(o => {
+    return json.data.map((o) => {
       return {
         id: o.nft?.nftId ?? 0,
-        rank: o.nft?.rank ?? 0
-      }
-    })
+        rank: o.nft?.rank ?? 0,
+      };
+    });
   } else if (json.nft) {
-    return [{
-      id: json.nft.nftId,
-      rank: json.nft.rank
-    }];
+    return [
+      {
+        id: json.nft.nftId,
+        rank: json.nft.rank,
+      },
+    ];
   } else {
     return [];
   }

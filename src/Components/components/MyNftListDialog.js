@@ -209,7 +209,7 @@ const MyNftListDialog = ({ walletAddress, marketContract, myNftPageListDialog })
                               label="Price"
                               variant="outlined"
                               onKeyDown={(e) => {
-                                if (e.keyCode === 190 || e.keyCode === 110) {
+                                if (e.code === 'Period') {
                                   e.preventDefault();
                                 }
                               }}

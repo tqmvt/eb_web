@@ -2,11 +2,11 @@ import React, { memo, useEffect, useState } from 'react';
 import { Accordion, Form } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-import { humanize } from '../../utils';
-import { filterListingsByTrait } from '../../GlobalState/collectionSlice';
-import './Filters.css';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
+
+import { filterListingsByTrait } from '../../GlobalState/collectionSlice';
+import { humanize } from '../../utils';
+import './Filters.css';
 
 const TraitsFilter = ({ address }) => {
   const dispatch = useDispatch();

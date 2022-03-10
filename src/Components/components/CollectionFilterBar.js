@@ -3,8 +3,14 @@ import Select from 'react-select';
 import { useDispatch, useSelector } from 'react-redux';
 import { sortOptions } from './constants/sort-options';
 import { SortOption } from '../Models/sort-option.model';
+import { listingFilterOptions } from './constants/filter-options';
 import { sortListings, resetListings, searchListings } from '../../GlobalState/collectionSlice';
 import { Form } from 'react-bootstrap';
+import styled from 'styled-components';
+
+const CollectionFilterBarContainer = styled.div`
+  margin: 0 0 22px;
+`;
 
 const CollectionFilterBar = ({ cacheName = null }) => {
   const dispatch = useDispatch();
@@ -77,8 +83,8 @@ const CollectionFilterBar = ({ cacheName = null }) => {
   }
 
   return (
-    <>
-      <div className="col-lg-9">
+    <CollectionFilterBarContainer className="row align-items-center">
+      <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12 px-2 mt-2">
         <div className="items_filter" style={{ marginBottom: 0, marginTop: 0 }}>
           <div className="dropdownSelect two">
             <Select
@@ -93,10 +99,31 @@ const CollectionFilterBar = ({ cacheName = null }) => {
           </div>
         </div>
       </div>
-      <div className="col-lg-3">
-        <Form.Control type="text" placeholder="Search" onChange={handleSearch} />
+      <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12 px-2 mt-2">
+        <Form.Control
+          type="text"
+          placeholder="Search by name"
+          onChange={handleSearch}
+          style={{ marginBottom: 0, marginTop: 0 }}
+        />
       </div>
-    </>
+      <div className="col-xl-3 px-2 mt-2 col-md-6 col-sm-12 d-sm-flex d-lg-none d-xl-flex">
+        Total results (x out of z)
+      </div>
+      <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12 px-2 mt-2">
+        <div className="items_filter" style={{ marginBottom: 0, marginTop: 0 }}>
+          <div className="dropdownSelect two">
+            <Select
+              styles={customStyles}
+              placeholder={'Sort Listings...'}
+              options={listingFilterOptions}
+              defaultValue={listingFilterOptions[0]}
+              onChange={onSortChange}
+            />
+          </div>
+        </div>
+      </div>
+    </CollectionFilterBarContainer>
   );
 };
 

@@ -21,6 +21,7 @@ const collectionSlice = createSlice({
       powertraits: {},
     },
     totalPages: 0,
+    statsLoading: false,
     stats: null,
     hasRank: false,
     cachedTraitsFilter: {},
@@ -111,6 +112,11 @@ const collectionSlice = createSlice({
     },
     onCollectionStatsLoaded: (state, action) => {
       state.stats = action.payload.stats;
+      state.statsLoading = false;
+    },
+    onCollectionStatsLoading: (state, _) => {
+      state.statsLoading = true;
+      state.error = false;
     },
   },
 });
@@ -123,6 +129,7 @@ export const {
   onSearch,
   onTraitFilter,
   clearSet,
+  onCollectionStatsLoading,
   onCollectionStatsLoaded,
 } = collectionSlice.actions;
 
@@ -191,6 +198,7 @@ export const resetListings = () => async (dispatch) => {
 
 export const getStats = (address) => async (dispatch) => {
   try {
+    dispatch(onCollectionStatsLoading());
     const response = await getCollectionMetadata(address);
     const traits = await getCollectionTraits(address);
     const powertraits = await getCollectionPowertraits(address);

@@ -1,17 +1,10 @@
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { ethers } from 'ethers';
 import { croSkullRedPotionImageHack } from '../../hacks';
-
-const Outer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  align-items: center;
-  overflow: hidden;
-  border-radius: 8px;
-`;
+import Button from './Button';
+import MakeOfferDialog from '../Offer/MakeOfferDialog';
 
 const Watermarked = styled.div`
   position: relative;
@@ -31,9 +24,47 @@ const Watermarked = styled.div`
   }
 `;
 
-const ListingCard = ({ listing, imgClass = 'marketplace', watermark }) => {
+const MakeBuy = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .w-40 {
+    width: 40%;
+  }
+`;
+
+const MakeOffer = styled.div`
+  margin-top: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 999;
+
+  .w-40 {
+    width: 40%;
+  }
+`;
+
+const Likes = styled.div`
+  font-size: 14px;
+  color: ${({ theme }) => theme.colors.textColor3};
+`;
+
+const ListingCard = ({ listing, imgClass = 'marketplace', watermark, address, collectionMetadata }) => {
+  const [openMakeOfferDialog, setOpenMakeOfferDialog] = useState(false);
+  const handleMakeOffer = () => {
+    setOpenMakeOfferDialog(!openMakeOfferDialog);
+  };
+
+  const history = useHistory();
+  const handleBuy = () => {
+    history.push(`/listing/${listing.listingId}`);
+  };
+
   return (
-    <Link className="linkPointer" to={`/listing/${listing.listingId}`}>
+    <>
+      {/* <Link className="linkPointer" to={`/listing/${listing.listingId}`}> */}
       <div className="card eb-nft__card h-100 shadow">
         {watermark ? (
           <Watermarked watermark={watermark}>
@@ -53,10 +84,33 @@ const ListingCard = ({ listing, imgClass = 'marketplace', watermark }) => {
         {listing.nft.rank && <div className="badge bg-rarity text-wrap mt-1 mx-1">Rank: #{listing.nft.rank}</div>}
         <div className="card-body d-flex flex-column">
           <h6 className="card-title mt-auto">{listing.nft.name}</h6>
-          <p className="card-text">{ethers.utils.commify(listing.price)} CRO</p>
+          <MakeBuy>
+            <div>{ethers.utils.commify(listing.price)} CRO</div>
+            <div className="w-40">
+              <Button onClick={handleBuy}>Buy</Button>
+            </div>
+          </MakeBuy>
+          <MakeOffer>
+            <div className="like">
+              <Likes>55.4k</Likes>
+            </div>
+            <div className="w-40">
+              <Button type="outlined" onClick={handleMakeOffer}>
+                Offer
+              </Button>
+            </div>
+          </MakeOffer>
         </div>
       </div>
-    </Link>
+      {/* </Link> */}
+      <MakeOfferDialog
+        isOpen={openMakeOfferDialog}
+        toggle={handleMakeOffer}
+        nftData={listing}
+        address={address}
+        collectionMetadata={collectionMetadata}
+      />
+    </>
   );
 };
 
