@@ -281,7 +281,6 @@ const MyNftListDialog = ({ walletAddress, marketContract, myNftPageListDialog })
                             {salePrice <= Number(floorPrice) && (
                               <>
                               <Typography sx={{color: "red"}}><strong>{(((floorPrice - Number(salePrice)) / floorPrice) * 100).toFixed(1)}% BELOW FLOOR PRICE</strong></Typography>
-                              <Typography sx={{color: "#750b1c"}}><strong>Floor price: {floorPrice} CRO</strong></Typography>
                               </>
                             )}
                             <Typography sx={{color: "#750b1c"}}><strong>Floor price: {floorPrice} CRO</strong></Typography>
