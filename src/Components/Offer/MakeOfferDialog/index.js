@@ -40,12 +40,11 @@ const DialogMainContent = styled.div`
 
 const ImageContainer = styled.div`
   width: 232px;
-  height: 232px;
+  height: auto;
   margin-top: 6px;
 
   img {
     width: 100%;
-    height: 100%;
   }
 
   @media only screen and (max-width: ${({ theme }) => theme.breakpoints.md}) {

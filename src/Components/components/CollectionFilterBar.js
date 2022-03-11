@@ -86,7 +86,7 @@ const CollectionFilterBar = ({ cacheName = null }) => {
     <CollectionFilterBarContainer className="row align-items-center">
       <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12 px-2 mt-2">
         <div className="items_filter" style={{ marginBottom: 0, marginTop: 0 }}>
-          <div className="dropdownSelect two">
+          <div className="dropdownSelect two w-100 mr-0 mb-0">
             <Select
               styles={customStyles}
               placeholder={'Sort Listings...'}
@@ -112,7 +112,7 @@ const CollectionFilterBar = ({ cacheName = null }) => {
       </div>
       <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12 px-2 mt-2">
         <div className="items_filter" style={{ marginBottom: 0, marginTop: 0 }}>
-          <div className="dropdownSelect two">
+          <div className="dropdownSelect two w-100 mr-0 mb-0">
             <Select
               styles={customStyles}
               placeholder={'Sort Listings...'}

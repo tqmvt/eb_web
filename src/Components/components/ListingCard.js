@@ -39,7 +39,7 @@ const MakeOffer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 999;
+  z-index: 2;
 
   .w-40 {
     width: 40%;
