@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 import Footer from '../components/Footer';
+import TableHeader from '../Offer/MadeOffersHeader';
+import TableRow from '../Offer/MadeOffersRow';
 
 const MyOffers = () => {
   const walletAddress = useSelector((state) => state.user.address);
@@ -21,7 +23,12 @@ const MyOffers = () => {
         </div>
       </section>
 
-      <section className="container"></section>
+      <section className="container">
+        <TableHeader />
+        <TableRow />
+        <TableRow />
+        <TableRow />
+      </section>
 
       <Footer />
     </>

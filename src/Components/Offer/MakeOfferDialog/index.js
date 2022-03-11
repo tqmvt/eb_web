@@ -108,7 +108,7 @@ const CloseIconContainer = styled.div`
   }
 `;
 
-export default function MakeOfferDialog({ isOpen, toggle, nftData, address, collectionMetadata }) {
+export default function MakeOfferDialog({ isOpen, toggle, nftData, address, collectionMetadata, type = 'Make' }) {
   const offerContract = useSelector((state) => {
     return state.user.offerContract;
   });
@@ -133,7 +133,7 @@ export default function MakeOfferDialog({ isOpen, toggle, nftData, address, coll
   return (
     <DialogContainer onClose={toggle} open={isOpen} maxWidth="md">
       <DialogContent>
-        <DialogTitleContainer>Make offer</DialogTitleContainer>
+        <DialogTitleContainer>{type} offer</DialogTitleContainer>
         <DialogMainContent>
           <ImageContainer>
             <img src={croSkullRedPotionImageHack(nftData.nftAddress, nftData.nft.image)} alt={nftData.nft.name} />
