@@ -47,7 +47,6 @@ export const RewardsPoolAbi = [
   "function owner() view returns (address)",
   "function payee(uint256 index) view returns (address)",
   "function release(address account)",
-  "function released(address token, address account) view returns (uint256)",
   "function released(address account) view returns (uint256)",
   "function renounceOwnership()",
   "function shares(address account) view returns (uint256)",

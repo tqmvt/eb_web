@@ -34,7 +34,7 @@ const MyStaking = ({ walletAddress = null }) => {
       const completedPool = await user.stakeContract.completedPool();
       const currBalance = await user.provider.getBalance( user.stakeContract.curPool());
       const completedBalance = await user.provider.getBalance(completedPool);
-      console.log({completedBalance})
+
       if (currBalance > 0 || completedBalance > 0) {
         setIsInInitMode(false);
       }
@@ -143,8 +143,10 @@ const MyStaking = ({ walletAddress = null }) => {
       const completedPool = await user.stakeContract.completedPool();
       if (completedPool !== ethers.constants.AddressZero) {
         const rewardsContract = new Contract(completedPool, RewardsPoolAbi, user.provider.getSigner());
+
         try {
           const released = await rewardsContract.released(walletAddress);
+          
 
           if (released > 0) {
             toast.error("Already released");      
@@ -164,6 +166,7 @@ const MyStaking = ({ walletAddress = null }) => {
             }
           }          
         } catch(err) {
+          console.log({err})
           toast.error("No harvest available");    
         }
       }
