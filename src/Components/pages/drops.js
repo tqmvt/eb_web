@@ -22,7 +22,7 @@ const Drops = () => (
           </span>
         </p>
         <div style={{ width: '70px' }} className="my-auto">
-          <Link to="/drops/founding-member">
+          <Link to="/collection/founding-member">
             <img src={FoundingMemberImg} className="img-responsive" alt="Founding Member Membership" />
           </Link>
         </div>
