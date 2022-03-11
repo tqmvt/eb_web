@@ -22,19 +22,20 @@
   },
   "known_contracts": [
     {
-      "name": "Ebisu's Bay VIP",
-      "slug": "vip-founding-member",
+      "name": "Ebisu's Bay - ALL Founding Member",
+      "slug": "all-founding-member",
       "onChain": false,
       "address": "0x8d9232Ebc4f06B7b8005CCff0ca401675ceb25F5",
       "multiToken": true,
       "id": 2,
       "listable": true,
       "metadata": {
-        "slug": "vip-founding-member",
+        "slug": "all-founding-member",
         "description": "",
         "verified": true,
         "avatar": "/img/avatar.jpg",
         "card": "/img/collections/ebisu/card.webp",
+        "banner": "/img/collections/ebisu/banner.png",
         "maxSupply": 1000,
         "website": "https://app.ebisusbay.com/",
         "twitter": "https://twitter.com/EbisusBay",
@@ -113,7 +114,7 @@
       "address": "0x8d9232Ebc4f06B7b8005CCff0ca401675ceb25F5",
       "multiToken": true,
       "id": 1,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "slug": "founding-member",
         "description": "",
@@ -268,7 +269,8 @@
         "website": "https://www.aliennft.ca/",
         "twitter": "https://twitter.com/AlienftCronos",
         "discord": "https://discord.gg/aliennft",
-        "medium": "https://medium.com/@aliennft"
+        "medium": "https://medium.com/@aliennft",
+        "staking": "crodex"
       }
     },
     {
@@ -1826,7 +1828,8 @@
         "banner": "/img/collections/bobanftea/banner.png",
         "maxSupply": 3300,
         "twitter": "https://twitter.com/Boba_NFTea",
-        "discord": "http://discord.gg/bobanftea"
+        "discord": "http://discord.gg/bobanftea",
+        "staking": "crodex"
       }
     },
     {
@@ -1867,7 +1870,8 @@
         "maxSupply": 4444,
         "twitter": "https://twitter.com/CROmeleonNFT",
         "website": "https://cromeleons.com/",
-        "discord": "https://discord.gg/cromeleonsnft"
+        "discord": "https://discord.gg/cromeleonsnft",
+        "staking": "crodex"
       }
     },
     {
@@ -1947,7 +1951,8 @@
         "website": "https://www.recklessrobotsnft.com/",
         "twitter": "https://twitter.com/RecklessRobots",
         "discord": "https://discord.gg/Nk4PHjdhcs",
-        "medium": "https://medium.com/@recklessrobots"
+        "medium": "https://medium.com/@recklessrobots",
+        "staking": "crodex"
       }
     },
     {
@@ -1956,7 +1961,7 @@
       "multiToken": false,
       "address": "0xD97A5ed8d1f5943085F7eFADC8e46415F5b7deDD",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "slug": "hyped-dogs",
         "description": "",
@@ -2111,7 +2116,8 @@
         "website": "https://lootpad.io/",
         "discord": "https://discord.gg/lootnetwork",
         "medium": "https://medium.com/@Loot_Network",
-        "telegram": "https://t.me/loot_network"
+        "telegram": "https://t.me/loot_network",
+        "staking": "crodex"
       }
     },
     {
@@ -2201,7 +2207,7 @@
       "multiToken": false,
       "address": "0x5219cA4b335bA51aB717E474F31D803381D09d24",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "",
         "verified": true,
@@ -2416,7 +2422,7 @@
       "multiToken": false,
       "address": "0x45008e129A33368119757496DA762284ff8e2565",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "slug": "icy-houses",
         "description": "",
@@ -2448,6 +2454,225 @@
         "website": "https://cronoslizards.com/",
         "twitter": "https://twitter.com/CronosLizards",
         "discord": "https://discord.gg/Dk6tk36kcN"
+      }
+    },
+    {
+      "name": "Crosmocrafts",
+      "slug": "crosmocrafts",
+      "multiToken": false,
+      "address": "0xC6373d6F369A9FfE7D93B21F2A5b0E16291d996D",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "slug": "crosmocrafts",
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/crosmonauts/ship/avatar.webp",
+        "card": "/img/collections/crosmonauts/ship/card.webp",
+        "banner": "/img/collections/crosmonauts/ship/banner.webp",
+        "maxSupply": 3000,
+        "website": "https://www.crosmonauts.club/",
+        "twitter": "https://twitter.com/crosmonaut",
+        "discord": "https://discord.gg/yhyJjZ2uWk",
+        "medium": "https://medium.com/@crosmonaut"
+      }
+    },
+    {
+      "name": "Crosmocrafts Parts",
+      "slug": "crosmocrafts-parts",
+      "multiToken": true,
+      "id": 0,
+      "address": "0xf49C94E09E506aCcbe553b673FEe4F44efb06D55",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "slug": "crosmocrafts-parts",
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/crosmonauts/parts/avatar.webp",
+        "card": "/img/collections/crosmonauts/parts/card.webp",
+        "banner": "/img/collections/crosmonauts/ship/banner.webp",
+        "maxSupply": 8430,
+        "website": "https://www.crosmonauts.club/",
+        "twitter": "https://twitter.com/crosmonaut",
+        "discord": "https://discord.gg/yhyJjZ2uWk",
+        "medium": "https://medium.com/@crosmonaut"
+      }
+    },
+    {
+      "name": "Crosmocrafts Parts",
+      "slug": "crosmocrafts-parts",
+      "multiToken": true,
+      "id": 1,
+      "address": "0xf49C94E09E506aCcbe553b673FEe4F44efb06D55",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "slug": "crosmocrafts-parts",
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/crosmonauts/parts/avatar.webp",
+        "card": "/img/collections/crosmonauts/parts/card.webp",
+        "banner": "/img/collections/crosmonauts/ship/banner.webp",
+        "maxSupply": 8430,
+        "website": "https://www.crosmonauts.club/",
+        "twitter": "https://twitter.com/crosmonaut",
+        "discord": "https://discord.gg/yhyJjZ2uWk",
+        "medium": "https://medium.com/@crosmonaut"
+      }
+    },
+    {
+      "name": "Crosmocrafts Parts",
+      "slug": "crosmocrafts-parts",
+      "multiToken": true,
+      "id": 2,
+      "address": "0xf49C94E09E506aCcbe553b673FEe4F44efb06D55",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "slug": "crosmocrafts-parts",
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/crosmonauts/parts/avatar.webp",
+        "card": "/img/collections/crosmonauts/parts/card.webp",
+        "banner": "/img/collections/crosmonauts/ship/banner.webp",
+        "maxSupply": 8430,
+        "website": "https://www.crosmonauts.club/",
+        "twitter": "https://twitter.com/crosmonaut",
+        "discord": "https://discord.gg/yhyJjZ2uWk",
+        "medium": "https://medium.com/@crosmonaut"
+      }
+    },
+    {
+      "name": "Crosmocrafts Parts",
+      "slug": "crosmocrafts-parts",
+      "multiToken": true,
+      "id": 3,
+      "address": "0xf49C94E09E506aCcbe553b673FEe4F44efb06D55",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "slug": "crosmocrafts-parts",
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/crosmonauts/parts/avatar.webp",
+        "card": "/img/collections/crosmonauts/parts/card.webp",
+        "banner": "/img/collections/crosmonauts/ship/banner.webp",
+        "maxSupply": 8430,
+        "website": "https://www.crosmonauts.club/",
+        "twitter": "https://twitter.com/crosmonaut",
+        "discord": "https://discord.gg/yhyJjZ2uWk",
+        "medium": "https://medium.com/@crosmonaut"
+      }
+    },
+    {
+      "name": "Crosmocrafts Parts",
+      "slug": "crosmocrafts-parts",
+      "multiToken": true,
+      "id": 4,
+      "address": "0xf49C94E09E506aCcbe553b673FEe4F44efb06D55",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "slug": "crosmocrafts-parts",
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/crosmonauts/parts/avatar.webp",
+        "card": "/img/collections/crosmonauts/parts/card.webp",
+        "banner": "/img/collections/crosmonauts/ship/banner.webp",
+        "maxSupply": 8430,
+        "website": "https://www.crosmonauts.club/",
+        "twitter": "https://twitter.com/crosmonaut",
+        "discord": "https://discord.gg/yhyJjZ2uWk",
+        "medium": "https://medium.com/@crosmonaut"
+      }
+    },
+    {
+      "name": "Crosmocrafts Parts",
+      "slug": "crosmocrafts-parts",
+      "multiToken": true,
+      "id": 5,
+      "address": "0xf49C94E09E506aCcbe553b673FEe4F44efb06D55",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "slug": "crosmocrafts-parts",
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/crosmonauts/parts/avatar.webp",
+        "card": "/img/collections/crosmonauts/parts/card.webp",
+        "banner": "/img/collections/crosmonauts/ship/banner.webp",
+        "maxSupply": 8430,
+        "website": "https://www.crosmonauts.club/",
+        "twitter": "https://twitter.com/crosmonaut",
+        "discord": "https://discord.gg/yhyJjZ2uWk",
+        "medium": "https://medium.com/@crosmonaut"
+      }
+    },
+    {
+      "name": "Crosmocrafts Parts",
+      "slug": "crosmocrafts-parts",
+      "multiToken": true,
+      "id": 6,
+      "address": "0xf49C94E09E506aCcbe553b673FEe4F44efb06D55",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "slug": "crosmocrafts-parts",
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/crosmonauts/parts/avatar.webp",
+        "card": "/img/collections/crosmonauts/parts/card.webp",
+        "banner": "/img/collections/crosmonauts/ship/banner.webp",
+        "maxSupply": 8430,
+        "website": "https://www.crosmonauts.club/",
+        "twitter": "https://twitter.com/crosmonaut",
+        "discord": "https://discord.gg/yhyJjZ2uWk",
+        "medium": "https://medium.com/@crosmonaut"
+      }
+    },
+    {
+      "name": "Crosmocrafts Parts",
+      "slug": "crosmocrafts-parts",
+      "multiToken": true,
+      "id": 7,
+      "address": "0xf49C94E09E506aCcbe553b673FEe4F44efb06D55",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "slug": "crosmocrafts-parts",
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/crosmonauts/parts/avatar.webp",
+        "card": "/img/collections/crosmonauts/parts/card.webp",
+        "banner": "/img/collections/crosmonauts/ship/banner.webp",
+        "maxSupply": 8430,
+        "website": "https://www.crosmonauts.club/",
+        "twitter": "https://twitter.com/crosmonaut",
+        "discord": "https://discord.gg/yhyJjZ2uWk",
+        "medium": "https://medium.com/@crosmonaut"
+      }
+    },
+    {
+      "name": "Crosmocrafts Parts",
+      "slug": "crosmocrafts-parts",
+      "multiToken": true,
+      "id": 8,
+      "address": "0xf49C94E09E506aCcbe553b673FEe4F44efb06D55",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "slug": "crosmocrafts-parts",
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/crosmonauts/parts/avatar.webp",
+        "card": "/img/collections/crosmonauts/parts/card.webp",
+        "banner": "/img/collections/crosmonauts/ship/banner.webp",
+        "maxSupply": 8430,
+        "website": "https://www.crosmonauts.club/",
+        "twitter": "https://twitter.com/crosmonaut",
+        "discord": "https://discord.gg/yhyJjZ2uWk",
+        "medium": "https://medium.com/@crosmonaut"
       }
     },
     {
@@ -2514,17 +2739,17 @@
       "address": "0x8d9232Ebc4f06B7b8005CCff0ca401675ceb25F5",
       "maxMintPerTx": 10,
       "totalSupply": 10000,
-      "cost": "200.0",
-      "memberCost": "200.0",
+      "cost": "300.0",
+      "memberCost": "300.0",
       "abi": ["function mint(uint256 _id, uint256 _amount, bytes _data) public payable"],
       "start": 1639489543000,
       "end": null,
       "referral": true,
-      "discount": "10.0",
+      "discount": "15.0",
       "is1155": true,
       "foundersOnly": false,
       "published": true,
-      "complete": false
+      "complete": true
     },
     {
       "id": 2,
@@ -3230,7 +3455,7 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false
+      "complete": true
     },
     {
       "id": 26,
@@ -3473,6 +3698,32 @@
     },
     {
       "id": 35,
+      "slug": "crosmocrafts-parts",
+      "imgNft": "/img/drops/crosmonautsShip/drop.png",
+      "imgPreview": "/img/drops/crosmonautsShip/drop.png",
+      "imgAvatar": "/img/collections/crosmonauts/parts/avatar.webp",
+      "imgBanner": "/img/drops/crosmonautsShip/banner.png",
+      "title": "Crosmocrafts Parts",
+      "subtitle": "These spaceship-parts are needed to build a Crosmocraft! \nParts come in 3 types: Engines, Boosters and Space Decks. Types are further divided into classes: Regular, rare and legendary. There are a total of 9 possibilities and your parts have to be of the same class to be able to build a spaceship!",
+      "description": "Spaceship-parts are needed to build your very own Crosmocraft! When minting parts you will randomly receive one of the three distinct parts that are needed for a Crosmocraft. These are a Booster, an Engine and a Space Deck. All parts will come in either a Regular, Great or Legendary rarity. The rarity of the parts will directly influence the rarity of the Crosmocraft and its traits!",
+      "author": { "name": "Crosmonauts", "link": "https://www.crosmonauts.club/" },
+      "address": "0xf49C94E09E506aCcbe553b673FEe4F44efb06D55",
+      "maxMintPerTx": 12,
+      "maxMintPerAddress": 50,
+      "totalSupply": 8430,
+      "cost": "80",
+      "memberCost": "70",
+      "whitelistCost": "65",
+      "foundersOnly": false,
+      "start": 1646857800000,
+      "end": null,
+      "referral": false,
+      "is1155": true,
+      "published": true,
+      "complete": true
+    },
+    {
+      "id": 36,
       "slug": "lolita-friends",
       "imgNft": "/img/drops/lolitafriends/drop.png",
       "imgPreview": "/img/drops/lolitafriends/drop.png",

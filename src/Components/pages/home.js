@@ -50,6 +50,18 @@ const GlobalStyles = createGlobalStyle`
     margin-bottom: 0px;
   }
   
+  .promo {
+    padding-bottom: 8px;
+    background: #15B619;
+    color: #fff;
+    animation: mymove 6s infinite alternate-reverse;
+  }
+  
+  @keyframes mymove {
+    from {background-color: #15B619;}
+    to {background-color: #b63d15;}
+  }
+
   @media only screen and (max-width: 1199.98px) {
     .min-width-on-column > span {
       min-width: 200px;
@@ -162,7 +174,7 @@ const Home = () => {
             </span>
 
             <span
-              onClick={() => window.open(`/drops/founding-member`, '_self')}
+              onClick={() => window.open(`/collection/founding-member`, '_self')}
               className="m-0 text-nowrap p-4 pt-2 pb-2 btn-main btn-outline inline white lead"
               style={{ outline: '1px solid #DDD' }}
             >
@@ -213,16 +225,16 @@ const Home = () => {
   return (
     <div>
       <GlobalStyles />
-      <section className="promo" style={{ paddingBottom: '8px', background:'#15B619', color: 'white'}}>
-        <div className="d-flex justify-content-center px-3">
-          <p className="my-auto me-3">
-            Founding Member NFTs are now over 50% minted! Grab one now to enjoy amazing discounts on drops and 50% off service fees.{' '}
-            <span className="fw-bold d-block d-md-inline-block text-end">
-            <Link to="/drops/founding-member">Learn More &gt;</Link>
-          </span>
-          </p>
-        </div>
-      </section>
+      {/*<section className="promo">*/}
+      {/*  <div className="d-flex justify-content-center px-3">*/}
+      {/*    <p className="my-auto me-3">*/}
+      {/*      Founding Member NFTs are over 90% minted! Grab one now to enjoy amazing discounts on drops and 50% off service fees.{' '}*/}
+      {/*      <span className="fw-bold d-block d-md-inline-block text-end">*/}
+      {/*      <Link to="/drops/founding-member">Learn More &gt;</Link>*/}
+      {/*    </span>*/}
+      {/*    </p>*/}
+      {/*  </div>*/}
+      {/*</section>*/}
       <Jumbotron.Host>{!mobile && <div className="container">{JumbotronData()}</div>}</Jumbotron.Host>
       {mobile && JumbotronData()}
 

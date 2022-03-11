@@ -9,7 +9,12 @@ import CollectionListingsGroup from '../components/CollectionListingsGroup';
 import CollectionFilterBar from '../components/CollectionFilterBar';
 import LayeredIcon from '../components/LayeredIcon';
 import { init, fetchListings, getStats } from '../../GlobalState/collectionSlice';
-import { caseInsensitiveCompare, isFounderCollection, siPrefixedNumber } from '../../utils';
+import {
+  caseInsensitiveCompare,
+  isCrosmocraftsPartsCollection,
+  isFounderCollection,
+  siPrefixedNumber
+} from '../../utils';
 import TraitsFilter from '../Collection/TraitsFilter';
 import PowertraitsFilter from '../Collection/PowertraitsFilter';
 import SocialsBar from '../Collection/SocialsBar';
@@ -240,6 +245,16 @@ const Collection1155 = ({ address, cacheName = 'collection' }) => {
                 </div>
               </div>
             </div>
+            {isCrosmocraftsPartsCollection(address) && (
+              <div className="row">
+                <div className="mx-auto text-center fw-bold" style={{ fontSize: '0.8em' }}>
+                  Collect Crosmocraft parts to {' '}
+                  <a href="/build-ship">
+                    <span className="color">build your Crosmocraft!</span>
+                  </a>
+                </div>
+              </div>
+            )}
             {collectionMetadata?.staking === 'crodex' && (
               <div className="row">
                 <div className="mx-auto text-center fw-bold" style={{ fontSize: '0.8em' }}>
