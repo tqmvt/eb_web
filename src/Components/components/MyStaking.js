@@ -3,69 +3,27 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setStakeCount, setVIPCount } from '../../GlobalState/User';
 import {Form, Spinner} from 'react-bootstrap';
 import { toast } from 'react-toastify';
-import {createSuccessfulTransactionToastContent} from '../../utils';
+import {createSuccessfulTransactionToastContent, round} from '../../utils';
 import {Contract, ethers} from "ethers";
 import {RewardsPoolAbi} from "../../Contracts/Abis";
 import config from "../../Assets/networks/rpc_config.json";
+import {commify} from "ethers/lib.esm/utils";
 
+const txExtras = {
+  gasPrice: ethers.utils.parseUnits('5000', 'gwei'),
+}
 
-const MyStaking = ({ walletAddress = null }) => {
+const MyStaking = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const stakeCount = user.stakeCount;
   const vipCount = user.vipCount;
   const [isStaking, setIsStaking] = useState(false);
   const [isUnstaking, setIsUnstaking] = useState(false);
-  const [isHarvesting, setIsHarvesting] = useState(false);
   const [amount, setAmount] = useState(1);
-  const [harvestAmount, setHarvestAmount] = useState(0);
   const [isApproved, setIsApproved] = useState(false);
   const [isApproving, setIsApproving] = useState(false);
   const [isInitializing, setIsInitializing] = useState(true);
-  const [inInitMode, setIsInInitMode] = useState(true);
-
-  const txExtras = {
-    gasPrice: ethers.utils.parseUnits('5000', 'gwei'),
-  }
-  const getHarvestAmount = useCallback(async() => {
-    if (!user.stakeContract) return;
-    try {
-      setIsHarvesting(true);
-      const completedPool = await user.stakeContract.completedPool();
-      const currBalance = await user.provider.getBalance( user.stakeContract.curPool());
-      const completedBalance = await user.provider.getBalance(completedPool);
-
-      if (currBalance > 0 || completedBalance > 0) {
-        setIsInInitMode(false);
-      }
-      if (completedPool !== ethers.constants.AddressZero) {
-        const rewardsContract = new Contract(completedPool, RewardsPoolAbi, user.provider.getSigner());
-        const finalBalance = await rewardsContract.finalBalance();
-        if (finalBalance <= 0) {
-          toast.error("Not available balance");      
-        } else {
-          const share = await rewardsContract.shares(walletAddress);
-          const totalShares = await rewardsContract.totalShares();
-          const balance = finalBalance.mul(share).div(totalShares);
-          setHarvestAmount(ethers.utils.formatEther(balance));
-        }          
-      }
-    } catch(err) {
-      console.log({err})
-      toast.error(err.message);
-    } finally {
-      setIsHarvesting(false);
-    }    
-  }, [user.provider, user.stakeContract, walletAddress]);
-
-  useEffect(() => {
-    getHarvestAmount();
-    const harvetstInterval = setInterval(getHarvestAmount, 1000 * 60 * 60);
-
-    return () => {
-      clearInterval(harvetstInterval);
-    }
-  }, [getHarvestAmount])
    
   // Allow exception to be thrown for other functions to catch it
   const setApprovalForAll = async () => {
@@ -135,47 +93,7 @@ const MyStaking = ({ walletAddress = null }) => {
     }    
   }
 
-  const harvest = async () => {
-    if (!user.stakeContract) return;
-   
-    try {
-      setIsHarvesting(true);
-      const completedPool = await user.stakeContract.completedPool();
-      if (completedPool !== ethers.constants.AddressZero) {
-        const rewardsContract = new Contract(completedPool, RewardsPoolAbi, user.provider.getSigner());
 
-        try {
-          const released = await rewardsContract.released(walletAddress);
-          
-
-          if (released > 0) {
-            toast.error("Already released");      
-          } else {
-            const share = await rewardsContract.shares(walletAddress);
-
-            if (share > 0) {
-              try {
-                await user.stakeContract.harvest(walletAddress, { gasPrice: 5000000000000 });
-                await getHarvestAmount();
-                toast.success(createSuccessfulTransactionToastContent("Successfully harvested"));
-              } catch(err) {
-                toast.error(err.message);      
-              }
-            } else {
-              toast.error("No shares");      
-            }
-          }          
-        } catch(err) {
-          console.log({err})
-          toast.error("No harvest available");    
-        }
-      }
-    } catch(err) {
-      toast.error(err.message);
-    } finally {
-      setIsHarvesting(false);
-    }    
-  }
 
   const onAmountChange = (e) => {
     const value = parseInt(e.target.value);
@@ -241,29 +159,7 @@ const MyStaking = ({ walletAddress = null }) => {
                   {(stakeCount + vipCount) > 0 ? (
                       <>
                         <div className="row g-3">
-                          <div>
-                            <div className="card eb-nft__card h-100 shadow px-4">
-                              <div className="card-body d-flex flex-column">
-                                <h5>Rewards: {harvestAmount}</h5>
-                                {inInitMode ? (
-                                    <span>Not Started</span>
-                                ) : (
-                                    <button className="btn-main lead mx-1 mb-2" onClick={harvest}>
-                                      {isHarvesting ? (
-                                          <>
-                                            Harvesting...
-                                            <Spinner animation="border" role="status" size="sm" className="ms-1">
-                                              <span className="visually-hidden">Loading...</span>
-                                            </Spinner>
-                                          </>
-                                      ) : (
-                                          <>Harvest</>
-                                      )}
-                                    </button>
-                                )}
-                              </div>
-                            </div>
-                          </div>
+                          <RewardsCard />
                           <div>
                             <div className="card eb-nft__card h-100 shadow px-4">
                               <div className="card-body d-flex flex-column">
@@ -353,3 +249,142 @@ const MyStaking = ({ walletAddress = null }) => {
 };
 
 export default memo(MyStaking);
+
+
+const StakeCard = ({}) => {
+  const [isLoading, setIsLoading] = useState(false);
+
+}
+
+const RewardsCard = ({}) => {
+  const user = useSelector((state) => state.user);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isHarvesting, setIsHarvesting] = useState(false);
+  const [totalRewards, setTotalRewards] = useState(0);
+  const [harvestableAmount, setHarvestableAmount] = useState(0);
+  const [inInitMode, setIsInInitMode] = useState(true);
+  const [periodEnd, setPeriodEnd] = useState(true);
+
+  const getHarvestAmount = useCallback(async() => {
+    if (!user.stakeContract) return;
+    try {
+      setIsLoading(true);
+      const completedPool = await user.stakeContract.completedPool();
+      const currBalance = await user.provider.getBalance(user.stakeContract.curPool());
+      const completedBalance = await user.provider.getBalance(completedPool);
+      const end = await user.stakeContract.periodEnd();
+      setPeriodEnd(end);
+
+      if (currBalance > 0 || completedBalance > 0) {
+        setIsInInitMode(false);
+      }
+      if (completedPool !== ethers.constants.AddressZero) {
+        const rewardsContract = new Contract(completedPool, RewardsPoolAbi, user.provider.getSigner());
+        const finalBalance = await rewardsContract.finalBalance();
+        if (finalBalance <= 0) {
+          toast.error("Not available balance");
+        } else {
+          const share = await rewardsContract.shares(user.address);
+          const totalShares = await rewardsContract.totalShares();
+          const balance = finalBalance.mul(share).div(totalShares);
+          const released = await rewardsContract.released(user.address);
+          setTotalRewards(ethers.utils.formatEther(balance));
+          setHarvestableAmount(ethers.utils.formatEther(balance.sub(released)))
+        }
+      }
+    } catch(err) {
+      console.log({err})
+      toast.error(err.message);
+    } finally {
+      setIsLoading(false);
+    }
+  }, [user.provider, user.stakeContract, user.address]);
+
+  const harvest = async () => {
+    if (!user.stakeContract) return;
+
+    try {
+      setIsHarvesting(true);
+      const completedPool = await user.stakeContract.completedPool();
+      if (completedPool !== ethers.constants.AddressZero) {
+        const rewardsContract = new Contract(completedPool, RewardsPoolAbi, user.provider.getSigner());
+
+        try {
+          const released = await rewardsContract.released(user.address);
+
+          if (released > 0) {
+            toast.error("Already released");
+          } else {
+            const share = await rewardsContract.shares(user.address);
+
+            if (share > 0) {
+              try {
+                const tx = await user.stakeContract.harvest(user.address, txExtras);
+                const receipt = await tx.wait();
+                await getHarvestAmount();
+                toast.success(createSuccessfulTransactionToastContent(receipt.transactionHash));
+              } catch(err) {
+                toast.error(err.message);
+              }
+            } else {
+              toast.error("No shares");
+            }
+          }
+        } catch(err) {
+          console.log({err})
+          toast.error("No harvest available");
+        }
+      }
+    } catch(err) {
+      toast.error(err.message);
+    } finally {
+      setIsHarvesting(false);
+    }
+  }
+
+  useEffect(() => {
+    getHarvestAmount();
+    const harvestInterval = setInterval(getHarvestAmount, 1000 * 60 * 60);
+
+    return () => {
+      clearInterval(harvestInterval);
+    }
+  }, [getHarvestAmount])
+
+  return (
+      <div>
+        <div className="card eb-nft__card h-100 shadow px-4">
+          <div className="card-body d-flex flex-column">
+            <h5>Rewards</h5>
+            {isLoading ? (
+                <Spinner animation="border" role="status" size="sm" className="ms-1">
+                  <span className="visually-hidden">Loading...</span>
+                </Spinner>
+            ) : (
+                <>
+                  <span className="mb-2">Total: {commify(round(totalRewards, 8))} CRO</span>
+                  <span className="mb-2">Available: {commify(round(harvestableAmount, 8))} CRO</span>
+                  {inInitMode ? (
+                      <span>Not Started</span>
+                  ) : (
+                      <button className="btn-main lead mx-1 mb-2" onClick={harvest} disabled={!(harvestableAmount > 0)}>
+                        {isHarvesting ? (
+                            <>
+                              Harvesting...
+                              <Spinner animation="border" role="status" size="sm" className="ms-1">
+                                <span className="visually-hidden">Loading...</span>
+                              </Spinner>
+                            </>
+                        ) : (
+                            <>Harvest</>
+                        )}
+                      </button>
+                  )}
+                </>
+            )}
+
+          </div>
+        </div>
+      </div>
+  )
+}

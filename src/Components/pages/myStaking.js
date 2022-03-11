@@ -23,7 +23,7 @@ const MyStaking = () => {
       </section>
 
       <section className="container">
-        <MyStakingComponent walletAddress={walletAddress} />
+        <MyStakingComponent />
       </section>
 
       <Footer />
