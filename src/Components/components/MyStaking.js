@@ -156,8 +156,8 @@ const MyStaking = ({ walletAddress = null }) => {
             if (share > 0) {
               try {
                 await user.stakeContract.harvest(walletAddress, { gasPrice: 5000000000000 });
-                toast.success(createSuccessfulTransactionToastContent("Successfully harvested"));
                 await getHarvestAmount();
+                toast.success(createSuccessfulTransactionToastContent("Successfully harvested"));
               } catch(err) {
                 toast.error(err.message);      
               }
