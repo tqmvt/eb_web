@@ -53,14 +53,11 @@ const MyNftListDialog = ({ walletAddress, marketContract, myNftPageListDialog })
     asyncFunc();
   }, [myNftPageListDialog]);
 
-  const [salePrice, setSalePrice] = useState(null);
+  const [salePrice, setSalePrice] = useState(0);
+  const [priceError, setPriceError] = useState("");
 
   const onListingDialogPriceValueChange = (inputEvent) => {
     setSalePrice(inputEvent.target.value);
-    if (salePrice <= floorPrice) {
-      setBelowFloor(true);
-    }
-    
   };
 
   const listingSteps = [
@@ -90,13 +87,22 @@ const MyNftListDialog = ({ walletAddress, marketContract, myNftPageListDialog })
 
   const [floorPrice, setFloorPrice] = useState(0);
   const [belowFloor, setBelowFloor] = useState(false);
-  const [confirmPrice, setConfirmPrice] = useState(false);
 
 
   useEffect(() => {
-    if (salePrice && salePrice.length > 0 && salePrice[0] !== '0') {
+    const re = /^[0-9\b]+$/;
+    if (salePrice && salePrice.length > 0 && salePrice[0] !== '0' && re.test(salePrice)) {
+      setPriceError("")
       setNextEnabled(true);
+      if (salePrice != null) {
+        if (salePrice <= floorPrice) {
+          setBelowFloor(true);
+        }
+      }
     } else {
+      if (salePrice != "" && salePrice != null) {
+        setPriceError("Price must only contain full numbers!")
+      }
       setNextEnabled(false);
     }
   }, [salePrice]);
@@ -182,6 +188,9 @@ const MyNftListDialog = ({ walletAddress, marketContract, myNftPageListDialog })
     dispatch(MyNftPageActions.hideMyNftPageListDialog());
     setListDialogActiveStep(ListDialogStepEnum.WaitingForTransferApproval);
     setNextEnabled(false);
+    setPriceError("");
+    setFloorPrice(0);
+    setBelowFloor(false);
     setSalePrice(null);
   };
 
@@ -236,13 +245,15 @@ const MyNftListDialog = ({ walletAddress, marketContract, myNftPageListDialog })
                               type="number"
                               label="Price"
                               variant="outlined"
-                              onKeyDown={(e) => {
-                                if (e.keyCode === 190 || e.keyCode === 110) {
-                                  e.preventDefault();
-                                }
+                              onChange={(e) => {
+                                onListingDialogPriceValueChange(e);
                               }}
-                              onChange={onListingDialogPriceValueChange}
                             />
+                            <Typography sx={{color: 'red'}}>
+                              <strong>
+                                {priceError}
+                              </strong>
+                            </Typography>
                             <Typography>
                               <strong>
                                 {' '}
@@ -267,12 +278,13 @@ const MyNftListDialog = ({ walletAddress, marketContract, myNftPageListDialog })
                         ) : null}
                         {index === 2 ? (
                           <Stack>
-                            {salePrice <= floorPrice && (
+                            {salePrice <= Number(floorPrice) && (
                               <>
                               <Typography sx={{color: "red"}}><strong>{(((floorPrice - Number(salePrice)) / floorPrice) * 100).toFixed(1)}% BELOW FLOOR PRICE</strong></Typography>
                               <Typography sx={{color: "#750b1c"}}><strong>Floor price: {floorPrice} CRO</strong></Typography>
                               </>
                             )}
+                            <Typography sx={{color: "#750b1c"}}><strong>Floor price: {floorPrice} CRO</strong></Typography>
                             <Typography>
                               <strong>
                                 {' '}

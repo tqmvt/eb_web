@@ -675,6 +675,10 @@ p.lead {
         background:$white;
       }
     }
+    &:disabled {
+      background: #707070 !important;
+      cursor: default;
+    }
 }
 
 .btn-success {
