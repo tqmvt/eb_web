@@ -89,6 +89,7 @@ const OfferPrice = styled.div`
 `;
 
 const OfferPriceInput = styled.div`
+  width: 60%;
   display: flex;
   align-items: center;
   font-size: 18px;
@@ -118,13 +119,15 @@ export default function MakeOfferDialog({ isOpen, toggle, nftData, address, coll
   };
 
   const handleMakeOffer = async () => {
-    console.log(offerContract);
-    console.log(nftData.nftAddress, nftData.nftId, offerPrice, ethers.utils.parseEther(offerPrice));
+    if (!offerPrice || offerPrice < 0) {
+      return;
+    }
     const tx = await offerContract.makeOffer(nftData.nftAddress, nftData.nftId, {
       value: ethers.utils.parseEther(offerPrice),
     });
     const receipt = await tx.wait();
     console.log(receipt);
+    toggle();
   };
 
   return (
@@ -138,33 +141,35 @@ export default function MakeOfferDialog({ isOpen, toggle, nftData, address, coll
           <NftDetailContainer>
             <NftTitle>{nftData.nft.name}</NftTitle>
             <NftDescription>{nftData.nft.description}</NftDescription>
-            <FlexRow className="row">
-              <div className="item_info">
-                <div className="row" style={{ gap: '2rem 0' }}>
-                  <ProfilePreview
-                    type="Collection"
-                    title={address && shortAddress(address)}
-                    avatar={collectionMetadata?.avatar}
-                    address={address}
-                    verified={collectionMetadata?.verified}
-                    to={`/collection/${address}`}
-                  />
-
-                  {typeof nftData.nft.rank !== 'undefined' && nftData.nft.rank !== null && (
+            {collectionMetadata && (
+              <FlexRow className="row">
+                <div className="item_info">
+                  <div className="row" style={{ gap: '2rem 0' }}>
                     <ProfilePreview
-                      type="Rarity Rank"
-                      title={nftData.nft.rank}
-                      avatar={collectionMetadata?.rarity === 'rarity_sniper' ? '/img/rarity-sniper.png' : null}
-                      hover={
-                        collectionMetadata?.rarity === 'rarity_sniper'
-                          ? `Ranking provided by ${humanize(collectionMetadata.rarity)}`
-                          : null
-                      }
+                      type="Collection"
+                      title={address && shortAddress(address)}
+                      avatar={collectionMetadata?.avatar}
+                      address={address}
+                      verified={collectionMetadata?.verified}
+                      to={`/collection/${address}`}
                     />
-                  )}
+
+                    {typeof nftData.nft.rank !== 'undefined' && nftData.nft.rank !== null && (
+                      <ProfilePreview
+                        type="Rarity Rank"
+                        title={nftData.nft.rank}
+                        avatar={collectionMetadata?.rarity === 'rarity_sniper' ? '/img/rarity-sniper.png' : null}
+                        hover={
+                          collectionMetadata?.rarity === 'rarity_sniper'
+                            ? `Ranking provided by ${humanize(collectionMetadata.rarity)}`
+                            : null
+                        }
+                      />
+                    )}
+                  </div>
                 </div>
-              </div>
-            </FlexRow>
+              </FlexRow>
+            )}
             <FlexRow>
               <Royalty>Royalty</Royalty>
               <Royalty>{nftData.royalty}</Royalty>
@@ -176,7 +181,7 @@ export default function MakeOfferDialog({ isOpen, toggle, nftData, address, coll
                   type="number"
                   className="mx-2"
                   onKeyDown={(e) => {
-                    if (e.code === 'Period') {
+                    if (e.code === 'Period' || e.code === 'Minus') {
                       e.preventDefault();
                     }
                   }}

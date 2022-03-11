@@ -28,10 +28,6 @@ const MakeBuy = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  .w-40 {
-    width: 40%;
-  }
 `;
 
 const MakeOffer = styled.div`
@@ -41,15 +37,15 @@ const MakeOffer = styled.div`
   align-items: center;
   z-index: 2;
 
-  .w-40 {
-    width: 40%;
+  .w-45 {
+    width: 45%;
   }
 `;
 
-const Likes = styled.div`
-  font-size: 14px;
-  color: ${({ theme }) => theme.colors.textColor3};
-`;
+// const Likes = styled.div`
+//   font-size: 14px;
+//   color: ${({ theme }) => theme.colors.textColor3};
+// `;
 
 const ListingCard = ({ listing, imgClass = 'marketplace', watermark, address, collectionMetadata }) => {
   const [openMakeOfferDialog, setOpenMakeOfferDialog] = useState(false);
@@ -86,15 +82,12 @@ const ListingCard = ({ listing, imgClass = 'marketplace', watermark, address, co
           <h6 className="card-title mt-auto">{listing.nft.name}</h6>
           <MakeBuy>
             <div>{ethers.utils.commify(listing.price)} CRO</div>
-            <div className="w-40">
-              <Button onClick={handleBuy}>Buy</Button>
-            </div>
           </MakeBuy>
           <MakeOffer>
-            <div className="like">
-              <Likes>55.4k</Likes>
+            <div className="w-45">
+              <Button onClick={handleBuy}>Buy</Button>
             </div>
-            <div className="w-40">
+            <div className="w-45">
               <Button type="outlined" onClick={handleMakeOffer}>
                 Offer
               </Button>
