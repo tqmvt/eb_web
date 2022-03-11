@@ -2674,6 +2674,26 @@
         "discord": "https://discord.gg/yhyJjZ2uWk",
         "medium": "https://medium.com/@crosmonaut"
       }
+    },
+    {
+      "name": "Lolita Friends",
+      "slug": "lolita-friends",
+      "multiToken": false,
+      "address": "",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "slug": "lolita-friends",
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/lolitafriends/avatar.png",
+        "card": "/img/collections/lolitafriends/card.png",
+        "banner": "/img/collections/lolitafriends/banner.png",
+        "maxSupply": 2500,
+        "website": "https://lolitandfriends.io/",
+        "twitter": "https://twitter.com/lolita_nft",
+        "discord": "https://discord.com/invite/g6jquqSmMw"
+      }
     }
   ],
   "drops": [
@@ -3677,7 +3697,7 @@
       "redirect": "https://madmeerkat.io/"
     },
     {
-      "id": 35,
+      "id": 36,
       "slug": "crosmocrafts-parts",
       "imgNft": "/img/drops/crosmonautsShip/drop.png",
       "imgPreview": "/img/drops/crosmonautsShip/drop.png",
@@ -3701,6 +3721,31 @@
       "is1155": true,
       "published": true,
       "complete": true
+    },
+    {
+      "id": 35,
+      "slug": "lolita-friends",
+      "imgNft": "/img/drops/lolitafriends/drop.png",
+      "imgPreview": "/img/drops/lolitafriends/drop.png",
+      "imgAvatar": "/img/collections/lolitafriends/avatar.png",
+      "imgBanner": "/img/drops/lolitafriends/banner.png",
+      "title": "Lolita Friends",
+      "subtitle": " Lolita & Friends is the first-ever petfluencer NFT collection. This project is launched by @LolitatheAlien, a Chihuahua petfluencers with a community of 200k people on Instagram. The collection consists of 2,500 randomly assembled Lolitas with over 120 traits!",
+      "description": "Lolita & Friends mission is to rescue endangered and abandoned animals. Our first mission is to rescue 1000 dogs from the streets: feeding, vaccinating, sterilizing and all other cares to prepare them for adoption. In this collection, Lolita has a variety of outfits, accessories, faces and background colors. Some NFTs are rare, some are very rare, and some are exceptional! Our goal is to onboard worldwide influencer pets of Instagram through beautiful NFT collections with utility. Be part of the original collection and join our mission to save thousands of abandoned animals!",
+      "author": { "name": "Lolita Friends", "link": "https://lolitandfriends.io/" },
+      "address": "",
+      "maxMintPerTx": 15,
+      "maxMintPerAddress": 50,
+      "totalSupply": 2500,
+      "cost": "245",
+      "memberCost": "200",
+      "foundersOnly": false,
+      "start": 1656376840000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false
     }
   ],
   "auctions": [
