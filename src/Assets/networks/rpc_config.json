@@ -232,27 +232,6 @@
       }
     },
     {
-      "name": "Cronos Slothty",
-      "slug": "cronos-slothty",
-      "multiToken": false,
-      "address": "",
-      "onChain": false,
-      "listable": true,
-      "metadata": {
-        "slug": "cronos-slothty",
-        "description": "",
-        "verified": true,
-        "avatar": "/img/collections/croslothy/avatar.gif",
-        "banner": "/img/collections/croslothy/banner.jpg",
-        "card": "/img/collections/croslothy/card.jpg",
-        "maxSupply": 250,
-        "website": "https://croslothty.com/",
-        "twitter": "https://twitter.com/Slothtynft",
-        "discord": "https://discord.gg/QPy6U6WWkj",
-        "telegram": "https://t.me/croslothty"
-      }
-    },
-    {
       "name": "Cronos ALIENFT",
       "slug": "alie-nft",
       "multiToken": false,
@@ -969,24 +948,6 @@
         "slug": "crypto-lovers",
         "description": "",
         "verified": true
-      }
-    },
-    {
-      "name": "Cronos Slothty Xmas",
-      "slug": "cronos-slothty-xmas",
-      "multiToken": false,
-      "address": "",
-      "onChain": false,
-      "listable": true,
-      "metadata": {
-        "slug": "cronos-slothty-xmas",
-        "description": "",
-        "verified": true,
-        "maxSupply": 50,
-        "website": "https://croslothty.com/",
-        "twitter": "https://twitter.com/Slothtynft",
-        "discord": "https://discord.gg/QPy6U6WWkj",
-        "telegram": "https://t.me/croslothty"
       }
     },
     {
