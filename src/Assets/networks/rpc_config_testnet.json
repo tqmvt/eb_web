@@ -1198,7 +1198,7 @@
       "is1155": false,
       "published": true,
       "complete": false,
-      "video": "https://app.ebisusbay.com/files/goldpartner/banner.mp4"
+      "embed": "<div style='position: relative; padding-top:56.25%;'><iframe src='https://iframe.mediadelivery.net/embed/27293/2ba3cdf8-d3ff-4ae1-94b6-84de9e9a402e?autoplay=true&loop=true&muted=true'  loading='lazy' style='border: none; position: absolute; top: 0; height: 100%; width: 100%;' allow='accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;' allowFullScreen='true'  title='SportsNFt'> </iframe> </div>"
     }
   ],
   "auctions": [
