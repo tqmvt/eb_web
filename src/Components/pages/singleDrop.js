@@ -490,12 +490,6 @@ const SingleDrop = () => {
                     width="75%"
                     height="75%"
                   />
-                    {
-                      drop.embed &&
-                      <div dangerouslySetInnerHTML={{__html: drop.embed}}
-                      >
-                      </div>
-                    }
                 </Reveal>
               </div>
               <div className={`col-lg-6 ${drop.mediaPosition === 'left' ? 'order-2' : 'order-1'}`}>
