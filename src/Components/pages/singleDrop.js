@@ -472,7 +472,7 @@ const SingleDrop = () => {
           <div className="container">
             <div className="row align-items-center">
               <div className={`col-lg-6 ${drop.mediaPosition === 'left' ? 'order-1' : 'order-2'}`}>
-                <Reveal className="onStep" keyframes={fadeInUp} delay={600} duration={900} triggerOnce>
+                <Reveal className="onStep" keyframes={fadeInUp} delay={600} duration={900} triggerOnce >
                   <ReactPlayer
                     controls
                     url={drop.video}
@@ -490,6 +490,12 @@ const SingleDrop = () => {
                     width="75%"
                     height="75%"
                   />
+                    {
+                      drop.embed &&
+                      <div dangerouslySetInnerHTML={{__html: drop.embed}}
+                      >
+                      </div>
+                    }
                 </Reveal>
               </div>
               <div className={`col-lg-6 ${drop.mediaPosition === 'left' ? 'order-2' : 'order-1'}`}>

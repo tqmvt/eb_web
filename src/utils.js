@@ -148,6 +148,7 @@ export function classList(classes) {
 export function humanize(str) {
   let i,
     frags = str
+      .toString()
       .split(/(?=[A-Z])/)
       .join(' ')
       .split('_');
