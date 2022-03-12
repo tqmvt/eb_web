@@ -2714,6 +2714,26 @@
         "discord": "https://discord.gg/6XYv63jc9Z",
         "medium": "https://medium.com/@thesportsnft"
       }
+    },
+    {
+      "name": "Handpunks",
+      "slug": "handpunks",
+      "multiToken": false,
+      "address": "0x3274C3F706c5d6fe354Fb7B3De806571AF3cF540",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "slug": "handpunks",
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/handpunks/avatar.gif",
+        "card": "/img/collections/handpunks/card.gif",
+        "banner": "/img/collections/handpunks/banner.gif",
+        "maxSupply": 111,
+        "website": "https://handpunks.com/",
+        "twitter": "https://twitter.com/Handpunks",
+        "discord": "https://discord.gg/Y799VfgV2M"
+      }
     }
   ],
   "drops": [
