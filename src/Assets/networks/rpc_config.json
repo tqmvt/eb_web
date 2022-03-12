@@ -235,7 +235,7 @@
       "name": "Cronos Slothty",
       "slug": "cronos-slothty",
       "multiToken": false,
-      "address": "0x94fCEDf4e07f1c3906195FA76852675590886Aaa",
+      "address": "",
       "onChain": false,
       "listable": true,
       "metadata": {
@@ -975,7 +975,7 @@
       "name": "Cronos Slothty Xmas",
       "slug": "cronos-slothty-xmas",
       "multiToken": false,
-      "address": "0x303D2a6143cFc67C26Db2879eA955f7d076c4cBc",
+      "address": "",
       "onChain": false,
       "listable": true,
       "metadata": {
