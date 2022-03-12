@@ -75,7 +75,7 @@ const MyStaking = () => {
 
   const unStake = async () => {
     if (!user.stakeContract || amount <=0) return;
-    if (amount >= stakeCount) {
+    if (amount > stakeCount) {
       alert("Exceed amount");
       return;
     }

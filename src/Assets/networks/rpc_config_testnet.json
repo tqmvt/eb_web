@@ -522,6 +522,15 @@
         "discord": "http://discord.gg/wkq88dHDyA",
         "telegram": "https://t.me/croslothty"
       }
+    },
+    {
+      "slug": "super-nft",
+      "name": "Super NFT",
+      "multiToken": false,
+      "address": "0x99a1E178d0AB41DbdA42EED5faaDFAA073c4AA14",
+      "onChain": false,
+      "listable": false,
+      "metadata": {}
     }
   ],
   "drops": [
