@@ -3758,7 +3758,7 @@
       "redirect": "https://madmeerkat.io/"
     },
     {
-      "id": 36,
+      "id": 35,
       "slug": "crosmocrafts-parts",
       "imgNft": "/img/drops/crosmonautsShip/drop.png",
       "imgPreview": "/img/drops/crosmonautsShip/drop.png",
@@ -3784,7 +3784,7 @@
       "complete": true
     },
     {
-      "id": 35,
+      "id": 36,
       "slug": "lolita-friends",
       "imgNft": "/img/drops/lolitafriends/drop.png",
       "imgPreview": "/img/drops/lolitafriends/drop.png",
@@ -3809,7 +3809,7 @@
       "complete": false
     },
     {
-      "id": 36,
+      "id": 37,
       "slug": "gold-partner",
       "imgNft": "/img/drops/goldpartner/drop.gif",
       "imgPreview": "/img/drops/goldpartner/drop.gif",
@@ -3836,7 +3836,7 @@
       "embed": "<div style='position: relative; padding-top:56.25%;'><iframe src='https://iframe.mediadelivery.net/embed/27293/2ba3cdf8-d3ff-4ae1-94b6-84de9e9a402e?autoplay=true&loop=true&muted=true'  loading='lazy' style='border: none; position: absolute; top: 0; height: 100%; width: 100%;' allow='accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;' allowFullScreen='true'  title='SportsNFt'> </iframe> </div>"
     },
     {
-      "id": 37,
+      "id": 38,
       "slug": "cronos-bot-society",
       "imgNft": "",
       "imgPreview": "",
