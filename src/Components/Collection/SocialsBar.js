@@ -3,7 +3,7 @@ import {faBook, faCopy, faGlobe, faRocket} from '@fortawesome/free-solid-svg-ico
 import { faDiscord, faInstagram, faMedium, faTelegram, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import LayeredIcon from '../components/LayeredIcon';
 import { toast } from 'react-toastify';
-import {isCrosmocraftsPartsCollection} from "../../utils";
+import {isCrosmocraftsCollection, isCrosmocraftsPartsCollection} from "../../utils";
 
 const SocialsBar = ({ collection }) => {
   const handleCopy = (code) => () => {
@@ -43,7 +43,7 @@ const SocialsBar = ({ collection }) => {
           <LayeredIcon icon={faMedium} />
         </a>
       )}
-      {collection && isCrosmocraftsPartsCollection(collection.address) && (
+      {collection && (isCrosmocraftsPartsCollection(collection.address) || isCrosmocraftsCollection(collection.address)) && (
         <a href='/build-ship' title="Build a Crosmocraft!">
             <LayeredIcon icon={faRocket} />
         </a>
