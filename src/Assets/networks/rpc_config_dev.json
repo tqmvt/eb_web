@@ -2334,6 +2334,7 @@
         "avatar": "/img/collections/meerkats/treehouse/avatar.png",
         "card": "/img/collections/meerkats/treehouse/card.jpg",
         "banner": "/img/collections/meerkats/treehouse/banner.jpg",
+        "rarity": "rarity_sniper",
         "maxSupply": 10000,
         "website": "https://madmeerkat.io/",
         "twitter": "https://twitter.com/MadMeerkatNFT",
