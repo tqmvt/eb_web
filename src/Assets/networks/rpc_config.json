@@ -2714,6 +2714,27 @@
         "twitter": "https://twitter.com/Handpunks",
         "discord": "https://discord.gg/Y799VfgV2M"
       }
+    },
+    {
+      "name": "Cronos Bot Society",
+      "slug": "cronos-bot-society",
+      "multiToken": false,
+      "address": "0xc1135735D3c4C7A3D479d1760C10CF5a8280c6a1",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "slug": "cronos-bot-society",
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/cronosbotsociety/avatar.png",
+        "card": "/img/collections/cronosbotsociety/card.png",
+        "banner": "/img/collections/cronosbotsociety/banner.png",
+        "maxSupply": 2000,
+        "website": "https://www.cronosbotsociety.com/",
+        "twitter": "https://twitter.com/CronosBots",
+        "discord": "discord.gg/cronosbotsociety",
+        "medium" : "https://medium.com/@Cronos-Bot-Society"
+      }
     }
   ],
   "drops": [
@@ -3766,6 +3787,32 @@
       "is1155": false,
       "published": true,
       "complete": false
+    },
+    {
+      "id": 36,
+      "slug": "cronos-bot-society",
+      "imgNft": "",
+      "imgPreview": "",
+      "imgAvatar": "/img/collections/cronosbotsociety/avatar.png",
+      "title": "Cronos Bot Society",
+      "subtitle": "",
+      "description": "",
+      "author": { "name": "Cronos Bot Society", "link": "https://cronosbotsociety.com/initiate-bots" },
+      "address": "",
+      "maxMintPerTx": 0,
+      "maxMintPerAddress": 0,
+      "totalSupply": 0,
+      "cost": "",
+      "whitelistCost": "",
+      "foundersOnly": false,
+      "start": 1644784200000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false,
+      "featured": false,
+      "redirect": "https://cronosbotsociety.com/initiate-bots"
     }
   ],
   "auctions": [
