@@ -174,7 +174,7 @@ const Home = () => {
             </span>
 
             <span
-              onClick={() => window.open(`/drops/founding-member`, '_self')}
+              onClick={() => window.open(`/collection/founding-member`, '_self')}
               className="m-0 text-nowrap p-4 pt-2 pb-2 btn-main btn-outline inline white lead"
               style={{ outline: '1px solid #DDD' }}
             >
