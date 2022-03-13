@@ -287,6 +287,9 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
           if (knownContract.multiToken) {
             let canTransfer = true;
             let canSell = true;
+            const listed = !!getListing(address, knownContract.id);
+            const listingId = listed ? getListing(address, knownContract.id).listingId : null;
+            const price = listed ? getListing(address, knownContract.id).price : null;
             let erc1155Listings = getERC1155Listings(address, knownContract.id);
 
             const contract = new Contract(knownContract.address, ERC1155, signer);
@@ -316,6 +319,26 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
               : json.image;
             const description = json.description;
             const properties = json.properties;
+            const nft = {
+              name: name,
+              id: knownContract.id,
+              image: image,
+              count: count,
+              description: description,
+              properties: properties,
+              contract: contract,
+              address: knownContract.address,
+              multiToken: true,
+              listable,
+              listed,
+              listingId,
+              price,
+              canSell: canSell,
+              canTransfer: canTransfer
+            };
+
+            onNftLoaded([nft]);
+            /*
             for (const item of erc1155Listings) {
               let nft = {
                 name: name,
@@ -357,7 +380,7 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
                 canTransfer: canTransfer
               };
               onNftLoaded([nft]);
-            }
+            } */
 
           } else {
             const contract = (() => {
