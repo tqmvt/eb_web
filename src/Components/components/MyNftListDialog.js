@@ -278,7 +278,7 @@ const MyNftListDialog = ({ walletAddress, marketContract, myNftPageListDialog })
                         ) : null}
                         {index === 2 ? (
                           <Stack>
-                            {salePrice < Number(floorPrice) && (
+                            {(((floorPrice - Number(salePrice)) / floorPrice) * 100) > 5 && (
                               <>
                               <Typography sx={{color: "red"}}><strong>{(((floorPrice - Number(salePrice)) / floorPrice) * 100).toFixed(1)}% BELOW FLOOR PRICE</strong></Typography>
                               </>
