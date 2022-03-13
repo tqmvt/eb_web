@@ -25,6 +25,7 @@ const MyStaking = () => {
   const [isApproved, setIsApproved] = useState(false);
   const [isApproving, setIsApproving] = useState(false);
   const [isInitializing, setIsInitializing] = useState(true);
+  const [currentPoolId, setCurrentPoolId] = useState(null);
    
   // Allow exception to be thrown for other functions to catch it
   const setApprovalForAll = async () => {
@@ -108,14 +109,9 @@ const MyStaking = () => {
         const isApproved = await user.membershipContract.isApprovedForAll(user.address, user.stakeContract.address);
         setIsApproved(isApproved);
 
-        // const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
-        // const curPoolAddress = await user.stakeContract.curPool();
-        // const poolContract = new Contract(curPoolAddress, RewardsPoolAbi, readProvider);
-        // if (curPoolAddress !== ethers.constants.AddressZero) {
-        //   const harvestableRewards = await poolContract.shares(user.address);
-        //   const finalBalance = await poolContract.finalBalance();
-        // }
-
+        const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
+        const curPoolAddress = await user.stakeContract.currentPoolId();
+        setCurrentPoolId(curPoolAddress);
       } catch (e) {
         console.log(e);
       } finally {
@@ -164,6 +160,9 @@ const MyStaking = () => {
                               <div className="card-body d-flex flex-column">
                                 <h5>Stake</h5>
 
+                                {currentPoolId && (
+                                    <p>Staking additional VIPs will begin accumulating rewards during the next rewards pool {currentPoolId ? `(${currentPoolId})` : ''}.</p>
+                                )}
                                 <div className="row row-cols-1 g-3">
                                   <div>
                                     <Form.Label>Quantity</Form.Label>
@@ -260,6 +259,7 @@ const RewardsCard = ({}) => {
   const [isHarvesting, setIsHarvesting] = useState(false);
   const [inInitMode, setIsInInitMode] = useState(false);
   const [isAwaitingRollover, setIsAwaitingRollover] = useState(false);
+  const [totalUserStaked, setTotalUserStaked] = useState(0);
 
   // Current pool state
   const [cupIsLoading, setCupIsLoading] = useState(false);
@@ -309,19 +309,18 @@ const RewardsCard = ({}) => {
         setIsInInitMode(true);
       }
       const end = await user.stakeContract.periodEnd();
-      const currentBalance = await user.provider.getBalance(currentPool);
+      const poolBalance = await user.provider.getBalance(currentPool);
       const rewardsContract = new Contract(currentPool, RewardsPoolAbi, user.provider.getSigner());
-      const currentShares = await rewardsContract.shares(user.address);
+      const userShares = await rewardsContract.shares(user.address);
       const curPoolId = await user.stakeContract.currentPoolId();
+      const poolShares = await rewardsContract.totalShares();
+      const balance = poolBalance.mul(userShares).div(poolShares);
 
-      const totalShares = await rewardsContract.totalShares();
-      const balance = currentBalance.mul(currentShares).div(totalShares);
-      setCupUserRewards(balance.toNumber());
-
+      setCupUserRewards(ethers.utils.formatEther(balance));
       setCupId(curPoolId.toNumber());
-      setCupUserShares(currentShares.toNumber());
-      setCupPoolRewards(ethers.utils.formatEther(currentBalance));
-      setCupPeriodEnd(end.toNumber());
+      setCupUserShares(userShares.toNumber());
+      setCupPoolRewards(ethers.utils.formatEther(poolBalance));
+      setCupPeriodEnd(end.toNumber() * 1000);
       setIsAwaitingRollover(end.toNumber() * 1000 < Date.now());
     } catch (error) {
       console.log(error)
@@ -351,7 +350,8 @@ const RewardsCard = ({}) => {
               try {
                 const tx = await user.stakeContract.harvest(user.address, txExtras);
                 const receipt = await tx.wait();
-                await getCompletedPoolInfo();
+                getCurrentPoolInfo();
+                getCompletedPoolInfo();
                 toast.success(createSuccessfulTransactionToastContent(receipt.transactionHash));
               } catch(err) {
                 toast.error(err.message);
@@ -378,7 +378,7 @@ const RewardsCard = ({}) => {
   }, [])
 
   return (
-      <div className="row row-cols-2 gx-2">
+      <div className="row row-cols-1 row-cols-xl-2 gx-2 gy-3 gy-xl-0">
             <>
               <div className="col">
                 <div className="card eb-nft__card h-100 shadow px-4">
@@ -400,9 +400,9 @@ const RewardsCard = ({}) => {
                               ) : (
                                   <>
                                     {!cmpHasHarvested && (
-                                        <p><strong>Harvestable Rewards</strong>: {commify(round(cmpUserRewards, 8))} CRO</p>
+                                        <p><strong>Harvestable Rewards</strong>: {commify(round(cmpUserRewards, 3))} CRO</p>
                                     )}
-                                    <button className="btn-main lead mx-1 mb-2" onClick={harvest} disabled={cmpHasHarvested || !(cmpUserShares > 0)}>
+                                    <button className="btn-main lead mx-1 mb-2" onClick={harvest} disabled={cmpHasHarvested || !(cmpUserShares > 0)} style={{width:'auto'}}>
                                       {isHarvesting ? (
                                           <>
                                             Harvesting...
@@ -413,7 +413,7 @@ const RewardsCard = ({}) => {
                                       ) : (
                                           <>
                                             {cmpHasHarvested ? (
-                                                <>Harvest in <Countdown date={cupPeriodEnd * 1000} /></>
+                                                <>Harvest in <Countdown date={cupPeriodEnd} /></>
                                             ) : (
                                                 <>Harvest</>
                                             )}
@@ -448,7 +448,7 @@ const RewardsCard = ({}) => {
                                 <p><strong>VIPs Staked</strong>: {cupUserShares}</p>
                                 <p><strong>Pool Balance</strong>: {round(cupPoolRewards, 3)} CRO</p>
                                 <p><strong>My Balance</strong>: {round(cupUserRewards, 3)} CRO</p>
-                                <p><strong>Ends in</strong>: <Countdown date={cupPeriodEnd * 1000} /></p>
+                                <p><strong>Ends in</strong>: <Countdown date={cupPeriodEnd} /></p>
                               </>
                           )}
                         </>
