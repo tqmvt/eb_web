@@ -278,7 +278,7 @@ const MyNftListDialog = ({ walletAddress, marketContract, myNftPageListDialog })
                         ) : null}
                         {index === 2 ? (
                           <Stack>
-                            {salePrice <= Number(floorPrice) && (
+                            {salePrice < Number(floorPrice) && (
                               <>
                               <Typography sx={{color: "red"}}><strong>{(((floorPrice - Number(salePrice)) / floorPrice) * 100).toFixed(1)}% BELOW FLOOR PRICE</strong></Typography>
                               </>
@@ -343,7 +343,7 @@ const MyNftListDialog = ({ walletAddress, marketContract, myNftPageListDialog })
                           <div>
                             {index === 2 ? (
                               <>
-                              <button sx={{background: "red"}} className="btn-warning lead mb-2 mr15" disabled={!nextEnabled} onClick={handlePrevious}>
+                              <button style={{background: "red"}} className="btn-warning lead mb-2 mr15" disabled={!nextEnabled} onClick={handlePrevious}>
                                 Return
                               </button>
                               <button className="btn-success lead mb-2 mr15" disabled={!nextEnabled} onClick={handleNext}>
