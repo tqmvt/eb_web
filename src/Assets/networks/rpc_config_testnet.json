@@ -214,7 +214,7 @@
       "multiToken": false,
       "address": "0xFdc26dde39BE26e01f25e26999AF26C672541174",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "slug": "aunah",
         "description": "",
@@ -385,7 +385,7 @@
       "multiToken": false,
       "address": "0x10F7D2BbaEEF04e7b61335ba4b680412d0B167D6",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "slug": "alie-nft",
         "description": "",
@@ -488,7 +488,7 @@
       "multiToken": false,
       "address": "0xC10e3eAdaE647E1C8CBA8497256CCd5f278f6E7c",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "",
         "verified": true,
