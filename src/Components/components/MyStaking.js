@@ -161,7 +161,7 @@ const MyStaking = () => {
                                 <h5>Stake</h5>
 
                                 {currentPoolId && (
-                                    <p>Staking additional VIPs will begin accumulating rewards during the next rewards pool {currentPoolId ? `(${currentPoolId})` : ''}.</p>
+                                    <p>Staking additional VIPs will begin accumulating rewards during the next rewards pool {currentPoolId ? `(next pool ID: ${parseInt(currentPoolId) + 1})` : ''}.</p>
                                 )}
                                 <div className="row row-cols-1 g-3">
                                   <div>
