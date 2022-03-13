@@ -9,7 +9,7 @@ import { Helmet } from 'react-helmet';
 
 import ProfilePreview from '../components/ProfilePreview';
 import Footer from '../components/Footer';
-import { humanize, relativePrecision, shortAddress, timeSince } from '../../utils';
+import {humanize, isCrosmocraftsPartsDrop, relativePrecision, shortAddress, timeSince} from '../../utils';
 import { getNftDetails } from '../../GlobalState/nftSlice';
 import config from '../../Assets/networks/rpc_config.json';
 import { croSkullRedPotionImageHack } from '../../hacks';
@@ -176,7 +176,7 @@ const Nft1155 = ({ address, id }) => {
                                     <div key={i} className="col-lg-4 col-md-6 col-sm-6">
                                       <div className="nft_attr">
                                         <h5>{humanize(data.trait_type)}</h5>
-                                        <h4>{humanize(data.value)}</h4>
+                                        <h4>{humanize(isCrosmocraftsPartsDrop(address) ? data.Value : data.value)}</h4>
                                         {data.occurrence ? (
                                           <span>{Math.round(data.occurrence * 100)}% have this trait</span>
                                         ) : (

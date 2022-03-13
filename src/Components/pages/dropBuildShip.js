@@ -2,12 +2,12 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { ethers } from 'ethers';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import { Form, Spinner } from 'react-bootstrap';
+import {Form, ProgressBar, Spinner} from 'react-bootstrap';
 import * as Sentry from '@sentry/react';
 import Footer from '../components/Footer';
 import config from '../../Assets/networks/rpc_config.json';
 import {
-  createSuccessfulTransactionToastContent, humanize
+  createSuccessfulTransactionToastContent, humanize, percentage
 } from '../../utils';
 import ShipABI from "../../Contracts/Ship.json"
 import ShipItemABI from "../../Contracts/ShipItem.json"
@@ -18,36 +18,42 @@ const Drop = () => {
   const [partsBalances, setPartsBalances] = useState([]);
   const [shipContract, setShipContract] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [totalSupply, setTotalSupply] = useState(0);
+  const [maxSupply, setMaxSupply] = useState(0);
 
   const user = useSelector((state) => {
     return state.user;
   });
 
   const init = useCallback (async() => {
-    if (user.provider) {
+    setIsLoading(true);
+    await refreshDropDetails();
       try {
-        setIsLoading(true);
-        const spaceShipDrop = config.known_contracts.find(drop => drop.slug === "crosmocrafts");
-        if (!spaceShipDrop.address) {
-          setIsLoading(false);
-          return;
+        if (user.provider) {
+          const spaceShipDrop = config.known_contracts.find(drop => drop.slug === "crosmocrafts");
+          if (!spaceShipDrop.address) {
+            setIsLoading(false);
+            return;
+          }
+          let spaceShip = await new ethers.Contract(spaceShipDrop.address, ShipABI.abi, user.provider.getSigner());
+          const ship1 = await spaceShip.SHIP1(); // Regular
+          const ship2 = await spaceShip.SHIP2(); // Great
+          const ship3 = await spaceShip.SHIP3(); // Legendary
+          const ships = [ship1, ship2, ship3];
+          setShips(ships);
+
+          await refreshPartsBalance();
+
+          setShipContract(spaceShip);
+        } else {
+          setPartsBalances([]);
         }
-        let spaceShip = await new ethers.Contract(spaceShipDrop.address, ShipABI.abi, user.provider.getSigner());
-        const ship1 = await spaceShip.SHIP1(); // Regular
-        const ship2 = await spaceShip.SHIP2(); // Great
-        const ship3 = await spaceShip.SHIP3(); // Legendary
-        const ships = [ship1, ship2, ship3];
-        setShips(ships);
-
-        await refreshPartsBalance();
-
-        setShipContract(spaceShip);
       } catch (error) {
         console.log(error);
         Sentry.captureException(error);
+      } finally {
+        setIsLoading(false);
       }
-      setIsLoading(false);
-    }
   }, [user.address, user.provider]);
 
   const refreshPartsBalance = async() => {
@@ -59,6 +65,16 @@ const Drop = () => {
       ids.push(balance.toNumber());
     }
     setPartsBalances(ids);
+  };
+
+  const refreshDropDetails = async() => {
+    const spaceShipDrop = config.known_contracts.find(drop => drop.slug === "crosmocrafts");
+    const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
+    let spaceShip = await new ethers.Contract(spaceShipDrop.address, ShipABI.abi, readProvider);
+    const info = await spaceShip.getInfo();
+
+    setTotalSupply(info.totalSupply);
+    setMaxSupply(info.maxSupply);
   };
 
   useEffect(() => {
@@ -119,7 +135,7 @@ const Drop = () => {
                   <span>Need more parts? &nbsp;</span>
                   <div className="nft__item_action d-inline-block" style={{fontSize: '16px'}}>
                     <span onClick={() => window.open('/drops/crosmocrafts-parts', '_self')} style={{cursor:'pointer'}}>
-                      mint Crosmocrafts parts
+                      Mint Crosmocrafts Parts
                     </span>
                   </div>
                 </div>
@@ -129,7 +145,8 @@ const Drop = () => {
         </div>
       </section>
 
-      <section className="container">
+      <section className="container no-top">
+
         {
           isLoading ? (
             <div className="row mt-4" style={{"marginTop": "220px"}}>
@@ -141,35 +158,47 @@ const Drop = () => {
             </div>
           ):
           (
-            <div className="row row-cols-1 g-4">
-              {ships[0] && (
-                  <ShipBuilderCard
-                      type="regular"
-                      shipAddress={ships[0]}
-                      key={0}
-                      mintCallback={mint}
-                      quantityCollected={[partsBalances[0], partsBalances[3], partsBalances[6]]}
-                  />
-              )}
-              {ships[1] && (
-                  <ShipBuilderCard
-                      type="great"
-                      shipAddress={ships[1]}
-                      key={1}
-                      mintCallback={mint}
-                      quantityCollected={[partsBalances[1], partsBalances[4], partsBalances[7]]}
-                  />
-              )}
-              {ships[2] && (
-                  <ShipBuilderCard
-                      type="legendary"
-                      shipAddress={ships[2]}
-                      key={2}
-                      mintCallback={mint}
-                      quantityCollected={[partsBalances[2], partsBalances[5], partsBalances[8]]}
-                  />
-              )}
-            </div>
+            <>
+              <div className="mb-4">
+                <div className="fs-6 fw-bold mb-1 text-end">
+                  {percentage(totalSupply.toString(), maxSupply.toString())}% minted (
+                  {ethers.utils.commify(totalSupply.toString())} / {ethers.utils.commify(maxSupply.toString())})
+                </div>
+                <ProgressBar
+                    now={percentage(totalSupply.toString(), maxSupply.toString())}
+                    style={{height: '4px'}}
+                />
+              </div>
+              <div className="row row-cols-1 g-4">
+                {ships[0] && (
+                    <ShipBuilderCard
+                        type="regular"
+                        shipAddress={ships[0]}
+                        key={0}
+                        mintCallback={mint}
+                        quantityCollected={[partsBalances[0], partsBalances[3], partsBalances[6]]}
+                    />
+                )}
+                {ships[1] && (
+                    <ShipBuilderCard
+                        type="great"
+                        shipAddress={ships[1]}
+                        key={1}
+                        mintCallback={mint}
+                        quantityCollected={[partsBalances[1], partsBalances[4], partsBalances[7]]}
+                    />
+                )}
+                {ships[2] && (
+                    <ShipBuilderCard
+                        type="legendary"
+                        shipAddress={ships[2]}
+                        key={2}
+                        mintCallback={mint}
+                        quantityCollected={[partsBalances[2], partsBalances[5], partsBalances[8]]}
+                    />
+                )}
+              </div>
+            </>
           )
         }
       </section>

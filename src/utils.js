@@ -148,6 +148,7 @@ export function classList(classes) {
 export function humanize(str) {
   let i,
     frags = str
+      .toString()
       .split(/(?=[A-Z])/)
       .join(' ')
       .split('_');
@@ -310,8 +311,12 @@ export const isMetapixelsCollection = (address) => {
   return isCollection(address, 'metapixels');
 };
 
-export const isCrosmonautsCollection = (address) => {
-  return isCollection(address, 'crosmonauts');
+export const isCrosmocraftsPartsCollection = (address) => {
+  return isCollection(address, 'crosmocrafts-parts');
+};
+
+export const isCrosmocraftsCollection = (address) => {
+  return isCollection(address, 'crosmocrafts');
 };
 
 export const percentage = (partialValue, totalValue) => {

@@ -19,7 +19,7 @@ import { connectAccount, chainConnect } from '../../GlobalState/User';
 import {
   createSuccessfulTransactionToastContent,
   humanize,
-  isCroCrowCollection,
+  isCroCrowCollection, isCrosmocraftsPartsDrop,
   relativePrecision,
   shortAddress,
   timeSince,
@@ -292,7 +292,7 @@ const Listing = () => {
                                           <div key={i} className="col-lg-4 col-md-6 col-sm-6">
                                             <div className="nft_attr">
                                               <h5>{humanize(data.trait_type)}</h5>
-                                              <h4>{humanize(data.value)}</h4>
+                                              <h4>{humanize(isCrosmocraftsPartsDrop(collection.address) ? data.Value : data.value)}</h4>
                                               {data.occurrence ? (
                                                   <span>{relativePrecision(data.occurrence)}% have this trait</span>
                                               ) : (
