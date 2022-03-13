@@ -27,7 +27,7 @@
       "onChain": false,
       "address": "0x8d9232Ebc4f06B7b8005CCff0ca401675ceb25F5",
       "multiToken": true,
-      "split": false,
+      "split": true,
       "id": 2,
       "listable": true,
       "metadata": {
@@ -112,12 +112,12 @@
       }
     },
     {
-      "name": "Ebisu's Bay - ALL Founding Member",
+      "name": "Ebisu's Bay - Founding Member",
       "slug": "founding-member",
       "onChain": false,
       "address": "0x8d9232Ebc4f06B7b8005CCff0ca401675ceb25F5",
       "multiToken": true,
-      "split": false,
+      "split": true,
       "id": 1,
       "listable": true,
       "metadata": {
@@ -2490,6 +2490,7 @@
       "id": 0,
       "address": "0xf49C94E09E506aCcbe553b673FEe4F44efb06D55",
       "onChain": false,
+      "split": false,
       "listable": true,
       "metadata": {
         "slug": "crosmocrafts-parts",
@@ -2512,6 +2513,7 @@
       "id": 1,
       "address": "0xf49C94E09E506aCcbe553b673FEe4F44efb06D55",
       "onChain": false,
+      "split": false,
       "listable": true,
       "metadata": {
         "slug": "crosmocrafts-parts",
@@ -2534,6 +2536,7 @@
       "id": 2,
       "address": "0xf49C94E09E506aCcbe553b673FEe4F44efb06D55",
       "onChain": false,
+      "split": false,
       "listable": true,
       "metadata": {
         "slug": "crosmocrafts-parts",
@@ -2556,6 +2559,7 @@
       "id": 3,
       "address": "0xf49C94E09E506aCcbe553b673FEe4F44efb06D55",
       "onChain": false,
+      "split": false,
       "listable": true,
       "metadata": {
         "slug": "crosmocrafts-parts",
@@ -2578,6 +2582,7 @@
       "id": 4,
       "address": "0xf49C94E09E506aCcbe553b673FEe4F44efb06D55",
       "onChain": false,
+      "split": false,
       "listable": true,
       "metadata": {
         "slug": "crosmocrafts-parts",
@@ -2600,6 +2605,7 @@
       "id": 5,
       "address": "0xf49C94E09E506aCcbe553b673FEe4F44efb06D55",
       "onChain": false,
+      "split": false,
       "listable": true,
       "metadata": {
         "slug": "crosmocrafts-parts",
@@ -2622,6 +2628,7 @@
       "id": 6,
       "address": "0xf49C94E09E506aCcbe553b673FEe4F44efb06D55",
       "onChain": false,
+      "split": false,
       "listable": true,
       "metadata": {
         "slug": "crosmocrafts-parts",
@@ -2644,6 +2651,7 @@
       "id": 7,
       "address": "0xf49C94E09E506aCcbe553b673FEe4F44efb06D55",
       "onChain": false,
+      "split": false,
       "listable": true,
       "metadata": {
         "slug": "crosmocrafts-parts",
@@ -2666,6 +2674,7 @@
       "id": 8,
       "address": "0xf49C94E09E506aCcbe553b673FEe4F44efb06D55",
       "onChain": false,
+      "split": false,
       "listable": true,
       "metadata": {
         "slug": "crosmocrafts-parts",

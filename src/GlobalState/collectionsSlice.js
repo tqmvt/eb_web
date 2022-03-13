@@ -45,6 +45,7 @@ export const getAllCollections =
           if (contract && !contract.split) return;
         } else {
           contract = knownContracts.find((c) => caseInsensitiveCompare(c.address, collection.collection));
+          if (contract && contract.split) return;
         }
 
         if (contract) {
