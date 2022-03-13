@@ -2717,6 +2717,26 @@
         "discord": "discord.gg/cronosbotsociety",
         "medium" : "https://medium.com/@Cronos-Bot-Society"
       }
+    },
+    {
+      "name": "Zombabies",
+      "slug": "zombabies",
+      "multiToken": false,
+      "address": "0xD0BD375a43B58Fd8329980898802667a64623F60",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "slug": "zombabies",
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/zombabies/avatar.png",
+        "card": "/img/collections/zombabies/card.png",
+        "banner": "/img/collections/zombabies/banner.png",
+        "maxSupply": 3333,
+        "website": "https://www.zombabies.io/",
+        "twitter": "https://twitter.com/ZombabiesNFT",
+        "discord": "https://discord.gg/v2WXbA5v3m"
+      }
     }
   ],
   "drops": [
