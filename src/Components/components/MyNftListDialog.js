@@ -21,11 +21,14 @@ import { ethers } from 'ethers';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { MyNftPageActions } from '../../GlobalState/User';
+import {getCollectionMetadata} from '../../core/api'
+import { numberToWords } from 'number-to-words'
 
 const ListDialogStepEnum = {
   WaitingForTransferApproval: 0,
   EnteringPrice: 1,
-  ConfirmListing: 2,
+  ConfirmPrice: 2,
+  ConfirmListing: 3,
 };
 
 Object.freeze(ListDialogStepEnum);
@@ -50,7 +53,8 @@ const MyNftListDialog = ({ walletAddress, marketContract, myNftPageListDialog })
     asyncFunc();
   }, [myNftPageListDialog]);
 
-  const [salePrice, setSalePrice] = useState(null);
+  const [salePrice, setSalePrice] = useState(0);
+  const [priceError, setPriceError] = useState("");
 
   const onListingDialogPriceValueChange = (inputEvent) => {
     setSalePrice(inputEvent.target.value);
@@ -66,6 +70,10 @@ const MyNftListDialog = ({ walletAddress, marketContract, myNftPageListDialog })
       description: `Enter the listing price in CRO.`,
     },
     {
+      label: 'Confirm Price',
+      description: "",
+    },
+    {
       label: 'Confirm Listing',
       description: 'Sign transaction to complete listing.',
     },
@@ -77,10 +85,24 @@ const MyNftListDialog = ({ walletAddress, marketContract, myNftPageListDialog })
   const [fee, setFee] = useState(0);
   const [royalty, setRoyalty] = useState(0);
 
+  const [floorPrice, setFloorPrice] = useState(0);
+  const [belowFloor, setBelowFloor] = useState(false);
+
+
   useEffect(() => {
-    if (salePrice && salePrice.length > 0 && salePrice[0] !== '0') {
+    const re = /^[0-9\b]+$/;
+    if (salePrice && salePrice.length > 0 && salePrice[0] !== '0' && re.test(salePrice)) {
+      setPriceError("")
       setNextEnabled(true);
+      if (salePrice != null) {
+        if (salePrice <= floorPrice) {
+          setBelowFloor(true);
+        }
+      }
     } else {
+      if (salePrice != "" && salePrice != null) {
+        setPriceError("Price must only contain full numbers!")
+      }
       setNextEnabled(false);
     }
   }, [salePrice]);
@@ -90,6 +112,9 @@ const MyNftListDialog = ({ walletAddress, marketContract, myNftPageListDialog })
       const marketContractAddress = marketContract.address;
 
       const { contract, /*id, image, name,*/ address } = myNftPageListDialog;
+
+      const floorPrice = await getCollectionMetadata(contract.address, null, {type: "collection", "value": contract.address});
+      setFloorPrice(floorPrice.collections[0].floorPrice);
 
       const fees = await marketContract.fee(walletAddress);
       const royalties = await marketContract.royalties(address);
@@ -140,6 +165,7 @@ const MyNftListDialog = ({ walletAddress, marketContract, myNftPageListDialog })
     }
   };
 
+
   const listDialogConfirmListingStep = async () => {
     const { contract } = myNftPageListDialog;
 
@@ -162,6 +188,9 @@ const MyNftListDialog = ({ walletAddress, marketContract, myNftPageListDialog })
     dispatch(MyNftPageActions.hideMyNftPageListDialog());
     setListDialogActiveStep(ListDialogStepEnum.WaitingForTransferApproval);
     setNextEnabled(false);
+    setPriceError("");
+    setFloorPrice(0);
+    setBelowFloor(false);
     setSalePrice(null);
   };
 
@@ -169,16 +198,24 @@ const MyNftListDialog = ({ walletAddress, marketContract, myNftPageListDialog })
     if (listDialogActiveStep === ListDialogStepEnum.WaitingForTransferApproval) {
       listDialogSetApprovalForAllStep();
     } else if (listDialogActiveStep === ListDialogStepEnum.EnteringPrice) {
+      setListDialogActiveStep(ListDialogStepEnum.ConfirmPrice);
+    } else if (listDialogActiveStep === ListDialogStepEnum.ConfirmPrice) {
       setListDialogActiveStep(ListDialogStepEnum.ConfirmListing);
     } else if (listDialogActiveStep === ListDialogStepEnum.ConfirmListing) {
       listDialogConfirmListingStep();
     }
   };
 
+  const handlePrevious = () => {
+    setListDialogActiveStep(ListDialogStepEnum.EnteringPrice);
+  };
+
   const getYouReceiveViewValue = () => {
     const youReceive = salePrice - (fee / 100) * salePrice - (royalty / 100) * salePrice;
     return ethers.utils.commify(youReceive.toFixed(2));
   };
+
+
 
   return (
     <>
@@ -196,7 +233,7 @@ const MyNftListDialog = ({ walletAddress, marketContract, myNftPageListDialog })
                 <Stepper activeStep={listDialogActiveStep} orientation="vertical">
                   {listingSteps.map((step, index) => (
                     <Step key={step.label}>
-                      <StepLabel optional={index === 2 ? <Typography variant="caption">Last step</Typography> : null}>
+                      <StepLabel optional={index === 3 ? <Typography variant="caption">Last step</Typography> : null}>
                         {step.label}
                       </StepLabel>
                       <StepContent>
@@ -208,13 +245,15 @@ const MyNftListDialog = ({ walletAddress, marketContract, myNftPageListDialog })
                               type="number"
                               label="Price"
                               variant="outlined"
-                              onKeyDown={(e) => {
-                                if (e.keyCode === 190 || e.keyCode === 110) {
-                                  e.preventDefault();
-                                }
+                              onChange={(e) => {
+                                onListingDialogPriceValueChange(e);
                               }}
-                              onChange={onListingDialogPriceValueChange}
                             />
+                            <Typography sx={{color: 'red'}}>
+                              <strong>
+                                {priceError}
+                              </strong>
+                            </Typography>
                             <Typography>
                               <strong>
                                 {' '}
@@ -237,9 +276,82 @@ const MyNftListDialog = ({ walletAddress, marketContract, myNftPageListDialog })
                             </Typography>
                           </Stack>
                         ) : null}
-
-                        <Box sx={{ mb: 2 }}>
+                        {index === 2 ? (
+                          <Stack>
+                            {(((floorPrice - Number(salePrice)) / floorPrice) * 100) > 5 && (
+                              <>
+                              <Typography sx={{color: "red"}}><strong>{(((floorPrice - Number(salePrice)) / floorPrice) * 100).toFixed(1)}% BELOW FLOOR PRICE</strong></Typography>
+                              </>
+                            )}
+                            <Typography sx={{color: "#750b1c"}}><strong>Floor price: {floorPrice} CRO</strong></Typography>
+                            <Typography>
+                              <strong>
+                                {' '}
+                                Buyer pays:{' '}
+                                <span style={{ fontSize: '18px' }}>
+                                  {salePrice ? ethers.utils.commify(salePrice) : 0}
+                                </span>{' '}
+                                CRO{' '}
+                              </strong>
+                            </Typography>
+                            <Typography>Service Fee: {fee} %</Typography>
+                            <Typography>Royalty Fee: {royalty} %</Typography>
+                            <Typography>
+                              <strong>
+                                {' '}
+                                You receive: <span style={{ fontSize: '18px' }}>
+                                  {getYouReceiveViewValue()}
+                                </span> CRO{' '}
+                              </strong>
+                            </Typography>
+                            {/*
+                            {salePrice && (
+                            <Typography>
+                              <strong>
+                                { numberToWords.toWords(salePrice) }
+                              </strong>
+                            </Typography>
+                            )} */ }
+                          </Stack>
+                        ) : null}
+                        {index === 3 ? (
+                          <Stack>
+                        
+                            <Typography>
+                              <strong>
+                                {' '}
+                                Buyer pays:{' '}
+                                <span style={{ fontSize: '18px' }}>
+                                  {salePrice ? ethers.utils.commify(salePrice) : 0}
+                                </span>{' '}
+                                CRO{' '}
+                              </strong>
+                            </Typography>
+                            <Typography>Service Fee: {fee} %</Typography>
+                            <Typography>Royalty Fee: {royalty} %</Typography>
+                            <Typography>
+                              <strong>
+                                {' '}
+                                You receive: <span style={{ fontSize: '18px' }}>
+                                  {getYouReceiveViewValue()}
+                                </span> CRO{' '}
+                              </strong>
+                            </Typography>
+                          </Stack>
+                        ) : null}
+                        <Box sx={{ mt: 3 }}>
                           <div>
+                            {index === 2 ? (
+                              <>
+                              <button style={{background: "red"}} className="btn-warning lead mb-2 mr15" disabled={!nextEnabled} onClick={handlePrevious}>
+                                Return
+                              </button>
+                              <button className="btn-success lead mb-2 mr15" disabled={!nextEnabled} onClick={handleNext}>
+                                I accept, Continue
+                              </button>
+                              
+                              </>
+                            ) : (
                             <button className="btn-main lead mb-5 mr15" disabled={!nextEnabled} onClick={handleNext}>
                               {!nextEnabled && index !== 1 ? (
                                 <span className="d-flex align-items-center">
@@ -249,7 +361,8 @@ const MyNftListDialog = ({ walletAddress, marketContract, myNftPageListDialog })
                               ) : (
                                 <>{index === listingSteps.length - 1 ? 'Finish' : 'Continue'}</>
                               )}
-                            </button>
+                              </button>
+                            )}
                           </div>
                         </Box>
                       </StepContent>
