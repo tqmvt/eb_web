@@ -117,13 +117,20 @@ const PowertraitsFilter = ({ address }) => {
         )}
       </div>
       <Accordion id="powertraits" className={hideAttributes ? 'd-none' : ''}>
-        {viewPowertraitsList().map(([traitCategoryName, traitCategoryValues], key) => (
+        {viewPowertraitsList()
+            .sort((a, b) => (a[0].toLowerCase() > b[0].toLowerCase() ? 1 : -1))
+            .map(([traitCategoryName, traitCategoryValues], key) => (
           <Accordion.Item eventKey={key} key={key}>
             <Accordion.Header>{humanize(traitCategoryName)}</Accordion.Header>
             <Accordion.Body>
               {Object.entries(traitCategoryValues)
                 .filter((t) => t[1].count > 0)
-                .sort((a, b) => (a[0] > b[0] ? 1 : -1))
+                .sort((a, b) => {
+                  if (!isNaN(a[0]) && !isNaN(b[0])) {
+                    return (parseInt(a[0]) > parseInt(b[0]) ? 1 : -1)
+                  }
+                  return (a[0] > b[0] ? 1 : -1)
+                })
                 .map((stats) => (
                   <div key={`${traitCategoryName}-${stats[0]}`}>
                     <Form.Check

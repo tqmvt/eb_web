@@ -148,6 +148,7 @@ export function classList(classes) {
 export function humanize(str) {
   let i,
     frags = str
+      .toString()
       .split(/(?=[A-Z])/)
       .join(' ')
       .split('_');
@@ -288,6 +289,10 @@ export const isFounderVipDrop = (address) => {
   return isDrop(address, 'vip-founding-member');
 };
 
+export const isCrosmocraftsPartsDrop = (address) => {
+  return isDrop(address, 'crosmocrafts-parts');
+};
+
 export const isDrop = (address, slug) => {
   const drop = drops.find((d) => d.slug === slug);
   return drop && caseInsensitiveCompare(drop.address, address);
@@ -306,9 +311,17 @@ export const isMetapixelsCollection = (address) => {
   return isCollection(address, 'metapixels');
 };
 
+export const isCrosmocraftsPartsCollection = (address) => {
+  return isCollection(address, 'crosmocrafts-parts');
+};
+
+export const isCrosmocraftsCollection = (address) => {
+  return isCollection(address, 'crosmocrafts');
+};
+
 export const percentage = (partialValue, totalValue) => {
   if (!totalValue || totalValue === 0) return 0;
-  return Math.round((100 * partialValue) / totalValue);
+  return Math.floor((100 * partialValue) / totalValue);
 };
 
 export const relativePrecision = (num) => {

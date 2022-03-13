@@ -19,7 +19,7 @@ import { connectAccount, chainConnect } from '../../GlobalState/User';
 import {
   createSuccessfulTransactionToastContent,
   humanize,
-  isCroCrowCollection,
+  isCroCrowCollection, isCrosmocraftsPartsDrop,
   relativePrecision,
   shortAddress,
   timeSince,
@@ -263,11 +263,12 @@ const Listing = () => {
                     <div className="de_tab_content">
                       {openMenu === 0 && (
                         <div className="tab-1 onStep fadeIn">
-                          {listing.nft.attributes && listing.nft.attributes.length > 0 ? (
+                          {(listing.nft.attributes && Array.isArray(listing.nft.attributes) && listing.nft.attributes.length > 0) ||
+                          (listing.nft.properties && Array.isArray(listing.nft.properties) && listing.nft.properties.length > 0) ? (
                             <>
                               <div className="d-block mb-3">
                                 <div className="row mt-5 gx-3 gy-2">
-                                  {listing.nft.attributes
+                                  {listing.nft.attributes && Array.isArray(listing.nft.attributes) && listing.nft.attributes
                                     .filter((data) => data.value !== 'None')
                                     .map((data, i) => {
                                       return (
@@ -282,6 +283,23 @@ const Listing = () => {
                                             )}
                                           </div>
                                         </div>
+                                      );
+                                    })}
+                                  {listing.nft.properties &&
+                                    Array.isArray(listing.nft.properties) &&
+                                    listing.nft.properties.map((data, i) => {
+                                      return (
+                                          <div key={i} className="col-lg-4 col-md-6 col-sm-6">
+                                            <div className="nft_attr">
+                                              <h5>{humanize(data.trait_type)}</h5>
+                                              <h4>{humanize(isCrosmocraftsPartsDrop(collection.address) ? data.Value : data.value)}</h4>
+                                              {data.occurrence ? (
+                                                  <span>{relativePrecision(data.occurrence)}% have this trait</span>
+                                              ) : (
+                                                  data.percent && <span>{data.percent}% have this trait</span>
+                                              )}
+                                            </div>
+                                          </div>
                                       );
                                     })}
                                 </div>

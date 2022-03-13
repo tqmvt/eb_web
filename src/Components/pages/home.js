@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import { keyframes } from '@emotion/react';
 import Reveal from 'react-awesome-reveal';
 import { createGlobalStyle, default as styled } from 'styled-components';
@@ -12,6 +12,8 @@ import CurrentDrops from '../components/CurrentDrops';
 import { getMarketData } from '../../GlobalState/marketplaceSlice';
 import { siPrefixedNumber } from '../../utils';
 import { theme } from '../../Theme/theme';
+import {faFire} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const fadeInUp = keyframes`
   0% {
@@ -48,10 +50,25 @@ const GlobalStyles = createGlobalStyle`
     margin-bottom: 0px;
   }
   
+  .promo {
+    padding-bottom: 8px;
+    background: #15B619;
+    color: #fff;
+    animation: mymove 6s infinite alternate-reverse;
+  }
+  
+  @keyframes mymove {
+    from {background-color: #15B619;}
+    to {background-color: #b63d15;}
+  }
+
   @media only screen and (max-width: 1199.98px) {
     .min-width-on-column > span {
       min-width: 200px;
     }  
+    .promo {
+      padding: 12px 0 !important;
+    } 
   }
   
   @media only screen and (max-width: 464px) {
@@ -157,19 +174,12 @@ const Home = () => {
             </span>
 
             <span
-              onClick={() => window.open('https://forms.gle/rRtn6gp16tyavQge9', '_blank')}
+              onClick={() => window.open(`/collection/founding-member`, '_self')}
               className="m-0 text-nowrap p-4 pt-2 pb-2 btn-main btn-outline inline white lead"
               style={{ outline: '1px solid #DDD' }}
             >
-              Become a Creator
-            </span>
-
-            <span
-              onClick={() => window.open(`/drops/founding-member`, '_self')}
-              className="m-0 text-nowrap p-4 pt-2 pb-2 btn-main btn-outline inline white lead"
-              style={{ outline: '1px solid #DDD' }}
-            >
-              Become a Member
+              <FontAwesomeIcon icon={faFire} className="me-1" style={{color:'#ff690e'}} />
+              Become a Founding Member
             </span>
           </div>
         </Reveal>
@@ -215,6 +225,16 @@ const Home = () => {
   return (
     <div>
       <GlobalStyles />
+      {/*<section className="promo">*/}
+      {/*  <div className="d-flex justify-content-center px-3">*/}
+      {/*    <p className="my-auto me-3">*/}
+      {/*      Founding Member NFTs are over 90% minted! Grab one now to enjoy amazing discounts on drops and 50% off service fees.{' '}*/}
+      {/*      <span className="fw-bold d-block d-md-inline-block text-end">*/}
+      {/*      <Link to="/drops/founding-member">Learn More &gt;</Link>*/}
+      {/*    </span>*/}
+      {/*    </p>*/}
+      {/*  </div>*/}
+      {/*</section>*/}
       <Jumbotron.Host>{!mobile && <div className="container">{JumbotronData()}</div>}</Jumbotron.Host>
       {mobile && JumbotronData()}
 

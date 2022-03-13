@@ -13,7 +13,7 @@ const Footer = () => {
   return (
     <footer className="footer-light" data-is-in-home-page={(location.pathname === '/').toString()}>
       <div className="container text-center">
-        <h5>Partners</h5>
+        <h5>Frens</h5>
         <div className="row align-items-center">
           <div className="col">
             <a href="https://nebkas.ro" target="_blank" rel="noreferrer">
