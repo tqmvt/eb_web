@@ -3867,7 +3867,7 @@
       "cost": "",
       "whitelistCost": "",
       "foundersOnly": false,
-      "start": 1647295200000,
+      "start": null,
       "end": null,
       "referral": false,
       "is1155": false,
