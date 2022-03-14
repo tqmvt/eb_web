@@ -2774,6 +2774,25 @@
         "discord": "https://discord.gg/2ExptDUXtZ",
         "medium": "https://medium.com/@CronosLionessClub"
       }
+    },
+    {
+      "name": "CronoGoddessess",
+      "slug": "crono-godessess",
+      "multiToken": false,
+      "address": "0x972A2DDd1E364105cDe1f6E70f8078974A3D7A9b",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/cronogods/godess/avatar.gif",
+        "card": "/img/collections/cronogods/godess/card.png",
+        "banner": "/img/collections/cronogods/godess/banner.jpg",
+        "maxSupply": 1000,
+        "website": "https://www.cronogods.com/cronogoddess",
+        "twitter": "https://twitter.com/CronoGoddess",
+        "discord": "https://discord.gg/xECQDMZANw"
+      }
     }
   ],
   "drops": [
