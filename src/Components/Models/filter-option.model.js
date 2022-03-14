@@ -31,6 +31,12 @@ export class FilterOption {
       return {};
     }
 
+    if (this.address && this.id) {
+      return {
+        collection: this.address.toLowerCase(),
+        tokenId: this.id,
+      };
+    }
     return {
       [this.type]: this.address.toLowerCase(),
     };

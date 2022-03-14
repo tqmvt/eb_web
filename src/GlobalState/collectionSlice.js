@@ -189,9 +189,14 @@ export const resetListings = () => async (dispatch) => {
   dispatch(fetchListings());
 };
 
-export const getStats = (address) => async (dispatch) => {
+export const getStats = (address, id=null) => async (dispatch) => {
   try {
-    const response = await getCollectionMetadata(address);
+    var response;
+    if (id != null) {
+      response = await getCollectionMetadata(address, null, {type: "tokenId", value: id});
+    } else {
+      response = await getCollectionMetadata(address);
+    }    
     const traits = await getCollectionTraits(address);
     const powertraits = await getCollectionPowertraits(address);
     dispatch(

@@ -22,15 +22,16 @@
   },
   "known_contracts": [
     {
-      "name": "Ebisu's Bay - ALL Founding Member",
-      "slug": "all-founding-member",
+      "name": "Ebisu's Bay - VIP Founding Member",
+      "slug": "vip-founding-member",
       "onChain": false,
       "address": "0x8d9232Ebc4f06B7b8005CCff0ca401675ceb25F5",
       "multiToken": true,
+      "split": true,
       "id": 2,
       "listable": true,
       "metadata": {
-        "slug": "all-founding-member",
+        "slug": "vip-founding-member",
         "description": "",
         "verified": true,
         "avatar": "/img/avatar.jpg",
@@ -50,6 +51,7 @@
       "onChain": false,
       "address": "0x653DDF1Bb9995ecfcbDd411Dc3F9793127680B29",
       "multiToken": true,
+      "split": false,
       "id": 1,
       "listable": true,
       "metadata": {
@@ -73,6 +75,7 @@
       "address": "0x653DDF1Bb9995ecfcbDd411Dc3F9793127680B29",
       "multiToken": true,
       "id": 2,
+      "split": false,
       "listable": true,
       "metadata": {
         "slug": "ebisu-valentine-rare",
@@ -94,6 +97,7 @@
       "onChain": false,
       "address": "0x653DDF1Bb9995ecfcbDd411Dc3F9793127680B29",
       "multiToken": true,
+      "split": false,
       "id": 3,
       "listable": true,
       "metadata": {
@@ -108,11 +112,12 @@
       }
     },
     {
-      "name": "Ebisu's Bay Founder",
+      "name": "Ebisu's Bay - Founding Member",
       "slug": "founding-member",
       "onChain": false,
       "address": "0x8d9232Ebc4f06B7b8005CCff0ca401675ceb25F5",
       "multiToken": true,
+      "split": true,
       "id": 1,
       "listable": true,
       "metadata": {
@@ -2446,6 +2451,7 @@
       "id": 0,
       "address": "0xf49C94E09E506aCcbe553b673FEe4F44efb06D55",
       "onChain": false,
+      "split": false,
       "listable": true,
       "metadata": {
         "slug": "crosmocrafts-parts",
@@ -2468,6 +2474,7 @@
       "id": 1,
       "address": "0xf49C94E09E506aCcbe553b673FEe4F44efb06D55",
       "onChain": false,
+      "split": false,
       "listable": true,
       "metadata": {
         "slug": "crosmocrafts-parts",
@@ -2490,6 +2497,7 @@
       "id": 2,
       "address": "0xf49C94E09E506aCcbe553b673FEe4F44efb06D55",
       "onChain": false,
+      "split": false,
       "listable": true,
       "metadata": {
         "slug": "crosmocrafts-parts",
@@ -2512,6 +2520,7 @@
       "id": 3,
       "address": "0xf49C94E09E506aCcbe553b673FEe4F44efb06D55",
       "onChain": false,
+      "split": false,
       "listable": true,
       "metadata": {
         "slug": "crosmocrafts-parts",
@@ -2534,6 +2543,7 @@
       "id": 4,
       "address": "0xf49C94E09E506aCcbe553b673FEe4F44efb06D55",
       "onChain": false,
+      "split": false,
       "listable": true,
       "metadata": {
         "slug": "crosmocrafts-parts",
@@ -2556,6 +2566,7 @@
       "id": 5,
       "address": "0xf49C94E09E506aCcbe553b673FEe4F44efb06D55",
       "onChain": false,
+      "split": false,
       "listable": true,
       "metadata": {
         "slug": "crosmocrafts-parts",
@@ -2578,6 +2589,7 @@
       "id": 6,
       "address": "0xf49C94E09E506aCcbe553b673FEe4F44efb06D55",
       "onChain": false,
+      "split": false,
       "listable": true,
       "metadata": {
         "slug": "crosmocrafts-parts",
@@ -2600,6 +2612,7 @@
       "id": 7,
       "address": "0xf49C94E09E506aCcbe553b673FEe4F44efb06D55",
       "onChain": false,
+      "split": false,
       "listable": true,
       "metadata": {
         "slug": "crosmocrafts-parts",
@@ -2622,6 +2635,7 @@
       "id": 8,
       "address": "0xf49C94E09E506aCcbe553b673FEe4F44efb06D55",
       "onChain": false,
+      "split": false,
       "listable": true,
       "metadata": {
         "slug": "crosmocrafts-parts",

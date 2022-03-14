@@ -39,10 +39,13 @@ export const getAllCollections =
       const response = await getCollectionMetadata();
       response.collections.forEach(function (collection, index) {
         let contract;
-        if (isFounderCollection(collection.collection)) {
-          contract = knownContracts.find((c) => c.slug === 'vip-founding-member');
+        if (collection.collection.indexOf("-") != -1) {
+          let parts = collection.collection.split("-")
+          contract = knownContracts.find((c) => caseInsensitiveCompare(c.address, parts[0]) && c.id == parts[1]);
+          if (contract && !contract.split) return;
         } else {
           contract = knownContracts.find((c) => caseInsensitiveCompare(c.address, collection.collection));
+          if (contract && contract.split) return;
         }
 
         if (contract) {
