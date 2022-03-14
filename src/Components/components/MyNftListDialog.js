@@ -115,7 +115,7 @@ const MyNftListDialog = ({ walletAddress, marketContract, myNftPageListDialog })
 
       const floorPrice = await getCollectionMetadata(contract.address, null, {type: "collection", "value": contract.address});
       if (floorPrice.collections.length > 0) {
-        setFloorPrice(floorPrice.collections[0].floorPrice);
+        setFloorPrice(floorPrice.collections[0].floorPrice ?? 0);
       }
 
       const fees = await marketContract.fee(walletAddress);
