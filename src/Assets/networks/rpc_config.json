@@ -2638,10 +2638,10 @@
       }
     },
     {
-      "name": "Lolita Friends",
+      "name": "Lolita & Friends",
       "slug": "lolita-friends",
       "multiToken": false,
-      "address": "",
+      "address": "0xDdb5DE96A5A639AA6b0357c5A325444dA2BcE913",
       "onChain": false,
       "listable": false,
       "metadata": {
@@ -2748,6 +2748,9 @@
       "metadata": {
         "description": "",
         "verified": true,
+        "avatar": "/img/collections/weirdapesclub/avatar.png",
+        "card": "/img/collections/weirdapesclub/ladies/card.png",
+        "banner": "/img/collections/weirdapesclub/ladies/banner.png",
         "maxSupply": 2000,
         "website": "https://weirdapes.com/",
         "twitter": "https://twitter.com/WeirdApesClub",
@@ -2773,6 +2776,25 @@
         "twitter": "https://twitter.com/CronosLioness",
         "discord": "https://discord.gg/2ExptDUXtZ",
         "medium": "https://medium.com/@CronosLionessClub"
+      }
+    },
+    {
+      "name": "CronoGoddessess",
+      "slug": "crono-godessess",
+      "multiToken": false,
+      "address": "0x972A2DDd1E364105cDe1f6E70f8078974A3D7A9b",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/cronogods/godess/avatar.gif",
+        "card": "/img/collections/cronogods/godess/card.png",
+        "banner": "/img/collections/cronogods/godess/banner.jpg",
+        "maxSupply": 1000,
+        "website": "https://www.cronogods.com/cronogoddess",
+        "twitter": "https://twitter.com/CronoGoddess",
+        "discord": "https://discord.gg/xECQDMZANw"
       }
     }
   ],
@@ -3783,11 +3805,11 @@
       "imgPreview": "/img/drops/lolitafriends/drop.png",
       "imgAvatar": "/img/collections/lolitafriends/avatar.png",
       "imgBanner": "/img/drops/lolitafriends/banner.png",
-      "title": "Lolita Friends",
+      "title": "Lolita & Friends",
       "subtitle": " Lolita & Friends is the first-ever petfluencer NFT collection. This project is launched by @LolitatheAlien, a Chihuahua petfluencers with a community of 200k people on Instagram. The collection consists of 2,500 randomly assembled Lolitas with over 120 traits!",
       "description": "Lolita & Friends mission is to rescue endangered and abandoned animals. Our first mission is to rescue 1000 dogs from the streets: feeding, vaccinating, sterilizing and all other cares to prepare them for adoption. In this collection, Lolita has a variety of outfits, accessories, faces and background colors. Some NFTs are rare, some are very rare, and some are exceptional! Our goal is to onboard worldwide influencer pets of Instagram through beautiful NFT collections with utility. Be part of the original collection and join our mission to save thousands of abandoned animals!",
-      "author": { "name": "Lolita Friends", "link": "https://lolitandfriends.io/" },
-      "address": "",
+      "author": { "name": "Lolita & Friends", "link": "https://lolitandfriends.io/" },
+      "address": "0xDdb5DE96A5A639AA6b0357c5A325444dA2BcE913",
       "maxMintPerTx": 15,
       "maxMintPerAddress": 50,
       "totalSupply": 2500,
@@ -3827,6 +3849,32 @@
       "published": true,
       "complete": false,
       "embed": "<div style='position: relative; padding-top:56.25%;'><iframe src='https://iframe.mediadelivery.net/embed/27293/2ba3cdf8-d3ff-4ae1-94b6-84de9e9a402e?autoplay=true&loop=true&muted=true'  loading='lazy' style='border: none; position: absolute; top: 0; height: 100%; width: 100%;' allow='accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;' allowFullScreen='true'  title='SportsNFt'> </iframe> </div>"
+    },
+    {
+      "id": 38,
+      "slug": "crono-godessess",
+      "imgNft": "",
+      "imgPreview": "",
+      "imgAvatar": "/img/collections/cronogods/godess/avatar.gif",
+      "title": "Crono Godesses",
+      "subtitle": "",
+      "description": "",
+      "author": { "name": "Crono Gods", "link": "https://www.cronogods.com/cronogoddess" },
+      "address": "",
+      "maxMintPerTx": 0,
+      "maxMintPerAddress": 0,
+      "totalSupply": 0,
+      "cost": "",
+      "whitelistCost": "",
+      "foundersOnly": false,
+      "start": null,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false,
+      "featured": false,
+      "redirect": "https://lootpad.io/collection/cronogoddesses"
     }
   ],
   "auctions": [
