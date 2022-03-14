@@ -114,7 +114,9 @@ const MyNftListDialog = ({ walletAddress, marketContract, myNftPageListDialog })
       const { contract, /*id, image, name,*/ address } = myNftPageListDialog;
 
       const floorPrice = await getCollectionMetadata(contract.address, null, {type: "collection", "value": contract.address});
-      setFloorPrice(floorPrice.collections[0].floorPrice);
+      if (floorPrice.collections.length > 0) {
+        setFloorPrice(floorPrice.collections[0].floorPrice ?? 0);
+      }
 
       const fees = await marketContract.fee(walletAddress);
       const royalties = await marketContract.royalties(address);
@@ -278,12 +280,14 @@ const MyNftListDialog = ({ walletAddress, marketContract, myNftPageListDialog })
                         ) : null}
                         {index === 2 ? (
                           <Stack>
-                            {(((floorPrice - Number(salePrice)) / floorPrice) * 100) > 5 && (
+                            { floorPrice !== 0 && (((floorPrice - Number(salePrice)) / floorPrice) * 100) > 5 && (
                               <>
                               <Typography sx={{color: "red"}}><strong>{(((floorPrice - Number(salePrice)) / floorPrice) * 100).toFixed(1)}% BELOW FLOOR PRICE</strong></Typography>
                               </>
                             )}
-                            <Typography sx={{color: "#750b1c"}}><strong>Floor price: {floorPrice} CRO</strong></Typography>
+                            { floorPrice !== 0 && (
+                              <Typography sx={{color: "#750b1c"}}><strong>Floor price: {floorPrice} CRO</strong></Typography>
+                            )}
                             <Typography>
                               <strong>
                                 {' '}
