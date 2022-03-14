@@ -25,7 +25,7 @@ import Market from '../../Contracts/Marketplace.json';
 
 const knownContracts = config.known_contracts;
 
-const Collection1155 = ({ address, cacheName = 'collection' }) => {
+const Collection1155 = ({ address, tokenId=null, cacheName = 'collection' }) => {
   const dispatch = useDispatch();
 
   const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
@@ -53,10 +53,10 @@ const Collection1155 = ({ address, cacheName = 'collection' }) => {
 
   const collectionName = () => {
     let contract;
-    if (isFounderCollection(address)) {
-      contract = knownContracts.find((c) => c.metadata?.slug === 'vip-founding-member');
+    if (tokenId != null) {
+      contract = knownContracts.find((c) => caseInsensitiveCompare(c.address, address) && c.id === tokenId);
     } else {
-      contract = knownContracts.find((c) => c.address.toLowerCase() === address.toLowerCase());
+      contract = knownContracts.find((c) => caseInsensitiveCompare(c.address, address));
     }
 
     return contract ? contract.name : 'Collection';
@@ -88,6 +88,9 @@ const Collection1155 = ({ address, cacheName = 'collection' }) => {
     const filterOption = FilterOption.default();
     filterOption.type = 'collection';
     filterOption.address = address;
+    if (tokenId != null) {
+      filterOption.id = tokenId;
+    }
     filterOption.name = 'Specific collection';
 
     dispatch(
@@ -104,8 +107,8 @@ const Collection1155 = ({ address, cacheName = 'collection' }) => {
 
   useEffect(() => {
     let extraData;
-    if (isFounderCollection(address)) {
-      extraData = knownContracts.find((c) => c.metadata?.slug === 'vip-founding-member');
+    if (tokenId != null) {
+      extraData = knownContracts.find((c) => caseInsensitiveCompare(c.address, address) && c.id === tokenId);
     } else {
       extraData = knownContracts.find((c) => caseInsensitiveCompare(c.address, address));
     }
@@ -117,7 +120,11 @@ const Collection1155 = ({ address, cacheName = 'collection' }) => {
 
   useEffect(() => {
     async function asyncFunc() {
-      dispatch(getStats(address));
+      if (tokenId != null) {
+        dispatch(getStats(address, tokenId));
+      } else {
+        dispatch(getStats(address));
+      }
       try {
         let royalties = await readMarket.royalties(address);
         setRoyalty(Math.round(royalties[1]) / 100);
