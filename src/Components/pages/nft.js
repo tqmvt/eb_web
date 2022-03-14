@@ -1,6 +1,6 @@
 import React, { memo, useEffect, useState } from 'react';
 import { createGlobalStyle } from 'styled-components';
-import { caseInsensitiveCompare } from '../../utils';
+import {caseInsensitiveCompare, findCollectionByAddress} from '../../utils';
 import { useParams, Redirect } from 'react-router-dom';
 import config from '../../Assets/networks/rpc_config.json';
 import Collection1155 from './collection1155';
@@ -27,7 +27,7 @@ const Nft = () => {
       setType(col.multiToken ? '1155' : '721');
       if (col.multiToken) setType(col.multiToken ? '1155' : '721');
     } else {
-      col = knownContracts.find((c) => caseInsensitiveCompare(c.address, slug));
+      col = findCollectionByAddress(slug, id);
       if (col) {
         setCollection(col);
         setRedirect(true);
