@@ -437,6 +437,10 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
                   // fix for CroSkull's Red Skull Potions
                   return `https://gateway.pinata.cloud/ipfs/QmQd9sFZv9aTenGD4q4LWDQWnkM4CwBtJSL82KLveJUNTT/${id}`;
                 }
+                if (knownContract.name === 'Lolita & Friends') {
+                  // fix for Lolita & Friends until they update their metadata extension
+                  return `https://mygateway.mypinata.cloud/ipfs/QmbgkhdcfUU8KxtEoYnqwLtkUPvpGkXKa9Pma71zQHbVrx/${id}`;
+                }
 
                 if (isMetaPixels) {
                   return await readContract.lands(id);
