@@ -540,6 +540,26 @@
         "discord": "https://discord.gg/6XYv63jc9Z",
         "medium": "https://medium.com/@thesportsnft"
       }
+    },
+    {
+      "name": "CronosFighters",
+      "slug": "crono-fighters",
+      "multiToken": false,
+      "address": "",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/fighters/avatar.png",
+        "card": "/img/collections/fighters/card.png",
+        "banner": "/img/collections/fighters/banner.png",
+        "maxSupply": 1000,
+        "website": "http://fightersnft.io/",
+        "twitter": "https://twitter.com/FightersNFT",
+        "medium": "https://medium.com/@shahabs/nft-collectors-fighters-are-coming-593cb9865e20",
+        "discord": "http://discord.gg/Bb39m7BBBR"
+      }
     }
   ],
   "drops": [
@@ -1244,6 +1264,32 @@
       "published": true,
       "complete": false,
       "embed": "<div style='position: relative; padding-top:56.25%;'><iframe src='https://iframe.mediadelivery.net/embed/27293/2ba3cdf8-d3ff-4ae1-94b6-84de9e9a402e?autoplay=true&loop=true&muted=true'  loading='lazy' style='border: none; position: absolute; top: 0; height: 100%; width: 100%;' allow='accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;' allowFullScreen='true'  title='SportsNFt'> </iframe> </div>"
+    },
+    {
+      "id": 38,
+      "slug": "crono-fighters",
+      "imgNft": "",
+      "imgPreview": "",
+      "imgAvatar": "/img/collections/fighters/avatar.png",
+      "title": "Cronos Fighters",
+      "subtitle": "We fall. We break. We fail. BUT THEN. We rise. We heal. We Overcome. We all have a fighter in us - Mint yours today. \nFighters are FINALLY Here!",
+      "description": "Cronos Fighters is a generative collection of 1000 Female and Male Champions. A fighter's purpose is to inspire and motivate, no matter the situation. This is the first piece of the Fighters game and metaverse. Each V1 fighter will give it’s owner many perks, such as, token airdrops, game upgrades, voting rights and more! Our goal is to add value to our holders while creating the greatest world the Cronos chain has ever seen! Fighters Are Here!",
+      "author": { "name": "Cronos Fighters", "link": "http://fightersnft.io/" },
+      "address": "0x0e8f883124c1c234d64Ec566adC5966f1832d207",
+      "maxMintPerTx": 10,
+      "maxMintPerAddress": 50,
+      "totalSupply": 1000,
+      "cost": "250",
+      "memberCost": "215",
+      "whitelistCost": "185",
+      "foundersOnly": false,
+      "start": null,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false,
+      "featured": false
     }
   ],
   "auctions": [
