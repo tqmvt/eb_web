@@ -2638,10 +2638,10 @@
       }
     },
     {
-      "name": "Lolita Friends",
+      "name": "Lolita & Friends",
       "slug": "lolita-friends",
       "multiToken": false,
-      "address": "",
+      "address": "0xDdb5DE96A5A639AA6b0357c5A325444dA2BcE913",
       "onChain": false,
       "listable": false,
       "metadata": {
@@ -3808,8 +3808,8 @@
       "title": "Lolita Friends",
       "subtitle": " Lolita & Friends is the first-ever petfluencer NFT collection. This project is launched by @LolitatheAlien, a Chihuahua petfluencers with a community of 200k people on Instagram. The collection consists of 2,500 randomly assembled Lolitas with over 120 traits!",
       "description": "Lolita & Friends mission is to rescue endangered and abandoned animals. Our first mission is to rescue 1000 dogs from the streets: feeding, vaccinating, sterilizing and all other cares to prepare them for adoption. In this collection, Lolita has a variety of outfits, accessories, faces and background colors. Some NFTs are rare, some are very rare, and some are exceptional! Our goal is to onboard worldwide influencer pets of Instagram through beautiful NFT collections with utility. Be part of the original collection and join our mission to save thousands of abandoned animals!",
-      "author": { "name": "Lolita Friends", "link": "https://lolitandfriends.io/" },
-      "address": "",
+      "author": { "name": "Lolita & Friends", "link": "https://lolitandfriends.io/" },
+      "address": "0xDdb5DE96A5A639AA6b0357c5A325444dA2BcE913",
       "maxMintPerTx": 15,
       "maxMintPerAddress": 50,
       "totalSupply": 2500,
