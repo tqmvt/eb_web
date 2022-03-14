@@ -2737,6 +2737,43 @@
         "twitter": "https://twitter.com/ZombabiesNFT",
         "discord": "https://discord.gg/v2WXbA5v3m"
       }
+    },
+    {
+      "name": "Lady Weird Apes",
+      "slug": "lady-weird-apes",
+      "multiToken": false,
+      "address": "0xD316F2F1872648a376D8c0937db1b4b10D1Ef8b1",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "maxSupply": 2000,
+        "website": "https://weirdapes.com/",
+        "twitter": "https://twitter.com/WeirdApesClub",
+        "discord": "https://discord.gg/RX9h6mhnTR",
+        "medium": "https://medium.com/@WeirdApesClub"
+      }
+    },
+    {
+      "name": "Cronos Lioness Club",
+      "slug": "cronos-lioness-club",
+      "multiToken": false,
+      "address": "0x9b1FCA3e5F8D2ea0AF870eB09b03B28C23f62733",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/cronoslionessclub/avatar.webp",
+        "card": "/img/collections/cronoslionessclub/card.webp",
+        "banner": "/img/collections/cronoslionessclub/banner.webp",
+        "maxSupply": 8888,
+        "website": "https://cronoslioness.club/",
+        "twitter": "https://twitter.com/CronosLioness",
+        "discord": "https://discord.gg/2ExptDUXtZ",
+        "medium": "https://medium.com/@CronosLionessClub"
+      }
     }
   ],
   "drops": [
