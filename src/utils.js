@@ -222,7 +222,7 @@ export function getShortIdForView(id = '') {
  * @param transactionHash 0x000
  */
 export function openWithCronosExplorer(transactionHash = '') {
-  window.open(`https://cronos.crypto.org/explorer/tx/${transactionHash}`, '_blank');
+  window.open(`https://cronoscan.com/tx/${transactionHash}`, '_blank');
 }
 
 export function createSuccessfulTransactionToastContent(transactionHash) {
