@@ -3899,9 +3899,10 @@
     {
       "id": 38,
       "slug": "crono-fighters",
-      "imgNft": "",
-      "imgPreview": "",
+      "imgNft": "/img/drops/fighters/drop.png",
+      "imgPreview": "/img/drops/fighters/drop.png",
       "imgAvatar": "/img/collections/fighters/avatar.png",
+      "imgBanner": "/img/drops/fighters/banner.png",
       "title": "Cronos Fighters",
       "subtitle": "We fall. We break. We fail. BUT THEN. We rise. We heal. We Overcome. We all have a fighter in us - Mint yours today. \nFighters are FINALLY Here!",
       "description": "Cronos Fighters is a generative collection of 1000 Female and Male Champions. A fighter's purpose is to inspire and motivate, no matter the situation. This is the first piece of the Fighters game and metaverse. Each V1 fighter will give it’s owner many perks, such as, token airdrops, game upgrades, voting rights and more! Our goal is to add value to our holders while creating the greatest world the Cronos chain has ever seen! Fighters Are Here!",
@@ -3914,13 +3915,12 @@
       "memberCost": "215",
       "whitelistCost": "185",
       "foundersOnly": false,
-      "start": null,
+      "start": 1647795651000,
       "end": null,
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false,
-      "featured": false
+      "complete": false
     }
   ],
   "auctions": [
