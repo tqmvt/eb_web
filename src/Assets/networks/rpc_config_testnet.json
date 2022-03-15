@@ -30,7 +30,6 @@
       "id": 2,
       "listable": true,
       "metadata": {
-        "slug": "vip-founding-member",
         "description": "",
         "verified": true,
         "avatar": "/img/avatar.jpg",
@@ -97,7 +96,6 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "slug": "deplone",
         "description": "",
         "verified": true,
         "avatar": "/img/collections/deplone/avatar.jpg",
@@ -113,7 +111,6 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "slug": "lazyhorse",
         "description": "",
         "verified": true,
         "avatar": "/img/collections/lazyhorse/avatar.png",
@@ -129,7 +126,6 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "slug": "crougars",
         "description": "",
         "verified": true,
         "avatar": "/img/collections/crougars/avatar.png",
@@ -145,7 +141,6 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "slug": "fractals",
         "description": "",
         "verified": true,
         "avatar": "/img/collections/fractals/avatar.png",
@@ -163,7 +158,6 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "slug": "lazy-horse-pony",
         "description": "",
         "verified": true,
         "avatar": "/img/collections/lazyhorse/avatar.png",
@@ -179,7 +173,6 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "slug": "space-crystal-unicorns",
         "description": "They are magical! Their strength lies in feeling and finding those in need.",
         "verified": true,
         "avatar": "/img/collections/barbara/spacecrystalunicorns/avatar.jpg",
@@ -195,7 +188,6 @@
       "onChain": false,
       "listable": false,
       "metadata": {
-        "slug": "crognomes",
         "description": "",
         "verified": true,
         "avatar": "/img/collections/crognomes/avatar.png",
@@ -215,7 +207,6 @@
       "onChain": false,
       "listable": false,
       "metadata": {
-        "slug": "aunah",
         "description": "",
         "verified": true,
         "avatar": "/img/collections/anuah/avatar.png",
@@ -231,7 +222,6 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "slug": "cronogods",
         "description": "",
         "verified": true,
         "avatar": "/img/collections/cronogods/avatar.gif",
@@ -250,7 +240,6 @@
       "onChain": false,
       "listable": false,
       "metadata": {
-        "slug": "maries-cyborgs",
         "description": "",
         "verified": true,
         "avatar": "/img/collections/mariecyborg/avatar.png",
@@ -270,7 +259,6 @@
       "onChain": false,
       "listable": false,
       "metadata": {
-        "slug": "mag-brew-vikings",
         "description": "",
         "verified": true,
         "avatar": "/img/collections/magbrew/avatar.jpg",
@@ -290,7 +278,6 @@
       "onChain": false,
       "listable": false,
       "metadata": {
-        "slug": "crazy-scientists",
         "description": "",
         "verified": true,
         "avatar": "/img/collections/crazyscientists/avatar.gif",
@@ -309,7 +296,6 @@
       "onChain": false,
       "listable": false,
       "metadata": {
-        "slug": "boba-nftea",
         "description": "",
         "verified": true,
         "avatar": "/img/collections/bobanftea/avatar.png",
@@ -328,7 +314,6 @@
       "onChain": false,
       "listable": false,
       "metadata": {
-        "slug": "reckless-robots",
         "description": "",
         "verified": true,
         "avatar": "/img/collections/recklessrobots/avatar.png",
@@ -347,7 +332,6 @@
       "onChain": false,
       "listable": false,
       "metadata": {
-        "slug": "hyped-dogs",
         "description": "",
         "verified": true,
         "avatar": "/img/collections/hypeddogs/avatar.png",
@@ -366,7 +350,6 @@
       "onChain": false,
       "listable": false,
       "metadata": {
-        "slug": "creatures",
         "description": "",
         "verified": true,
         "avatar": "/img/collections/creatures/avatar.jpg",
@@ -386,7 +369,6 @@
       "onChain": false,
       "listable": false,
       "metadata": {
-        "slug": "alie-nft",
         "description": "",
         "verified": true,
         "avatar": "/img/collections/alienft/avatar.png",
@@ -406,7 +388,6 @@
       "onChain": false,
       "listable": false,
       "metadata": {
-        "slug": "meta-cyborgs",
         "description": "",
         "verified": true,
         "avatar": "/img/collections/meta_cyborgs/avatar.png",
@@ -426,7 +407,6 @@
       "onChain": false,
       "listable": false,
       "metadata": {
-        "slug": "crosmocrafts",
         "description": "",
         "verified": true,
         "avatar": "/img/collections/crosmonauts/ship/avatar.webp",
@@ -447,7 +427,6 @@
       "onChain": false,
       "listable": false,
       "metadata": {
-        "slug": "crosmocrafts-parts",
         "description": "",
         "verified": true,
         "avatar": "/img/collections/crosmonauts/parts/avatar.webp",
@@ -488,7 +467,6 @@
       "onChain": false,
       "listable": false,
       "metadata": {
-        "slug": "lolita-friends",
         "description": "",
         "verified": true,
         "avatar": "/img/collections/lolitafriends/avatar.png",
