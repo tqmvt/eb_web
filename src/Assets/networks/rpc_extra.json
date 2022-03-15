@@ -160,13 +160,6 @@
         "listable": true
       },
       {
-        "name": "Croslothty",
-        "multiToken": false,
-        "address": "0x94fCEDf4e07f1c3906195FA76852675590886Aaa",
-        "onChain": false,
-        "listable": true
-      },
-      {
         "name": "Crosmonauts",
         "multiToken": false,
         "address": "0xDFab622fC4E5CE1420F83cf38E52312f33849a0A",

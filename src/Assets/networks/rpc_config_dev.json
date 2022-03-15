@@ -126,6 +126,7 @@
         "verified": true,
         "avatar": "/img/avatar.jpg",
         "card": "/img/collections/ebisu/card.webp",
+        "banner": "/img/collections/ebisu/banner.png",
         "maxSupply": 10000,
         "website": "https://app.ebisusbay.com/",
         "twitter": "https://twitter.com/EbisusBay",
@@ -2208,27 +2209,6 @@
       }
     },
     {
-      "name": "3DSlothty",
-      "slug": "3d-slothty",
-      "multiToken": false,
-      "address": "0x966B18Afe9D9062d611D0C246A1959b7a25FCdDe",
-      "onChain": false,
-      "listable": false,
-      "metadata": {
-        "slug": "3d-slothty",
-        "description": "",
-        "verified": true,
-        "avatar": "/img/collections/slothty/avatar.png",
-        "card": "/img/collections/slothty/card.webp",
-        "banner": "/img/collections/slothty/banner.webp",
-        "maxSupply": 8888,
-        "website": "https://croslothty.com/",
-        "twitter": "https://twitter.com/Slothtynft",
-        "discord": "http://discord.gg/wkq88dHDyA",
-        "telegram": "https://t.me/croslothty"
-      }
-    },
-    {
       "name": "Meta Cyborgs",
       "slug": "meta-cyborgs",
       "multiToken": false,
@@ -2809,6 +2789,26 @@
         "website": "https://www.cronogods.com/cronogoddess",
         "twitter": "https://twitter.com/CronoGoddess",
         "discord": "https://discord.gg/xECQDMZANw"
+      }
+    },
+    {
+      "name": "Big Bad Wolves",
+      "slug": "big-bad-wolves",
+      "multiToken": false,
+      "address": "",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/bigbadwolves/avatar.webp",
+        "card": "/img/collections/bigbadwolves/card.webp",
+        "banner": "/img/collections/bigbadwolves/banner.webp",
+        "maxSupply": 6699,
+        "website": "https://www.bigbadwolves.club/",
+        "twitter": "https://twitter.com/BigBadWolves_MC",
+        "discord": "https://discord.gg/9GetF5Nc5x",
+        "medium": "https://t.me/bigbadwolves_nft"
       }
     }
   ],
@@ -3889,6 +3889,31 @@
       "complete": false,
       "featured": false,
       "redirect": "https://lootpad.io/collection/cronogoddesses"
+    },
+    {
+      "id": 39,
+      "slug": "big-bad-wolves",
+      "imgNft": "/img/drops/bigbadwolves/drop.webp",
+      "imgPreview": "/img/drops/bigbadwolves/drop.webp",
+      "imgAvatar": "/img/collections/bigbadwolves/avatar.webp",
+      "imgBanner": "/img/collections/bigbadwolves/banner.webp",
+      "title": "Big Bad Wolves",
+      "subtitle": "Big Bad Wolves is a community based NFT project including real time video game, metaverse integration and big marketing campaign.\nHolding the NFT gives you a PRIVILEGED position.\nWelcome to THE PACK!",
+      "description": "BIG BAD WOLVES is a community NFT collection heading towards a gory multiplayer video game and metaverse integration. Join the ride and access staking, giveaways, airdrops, and rewarded Art & Memes contests!\n\nHolder WILL be rewarded.\n\n1/1 are unique and exclusive artworks made by several artists.\n\nAll NFTs in the collection have random stats for strength, agility, stamina, speed and ferocity. These stats will change the way to play the video game.",
+      "author": { "name": "Big Bad Wolves", "link": "https://www.bigbadwolves.club/" },
+      "address": "",
+      "maxMintPerTx": 20,
+      "maxMintPerAddress": 50,
+      "totalSupply": 2000,
+      "cost": "380",
+      "memberCost": "330",
+      "foundersOnly": false,
+      "start": 1647453600000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false
     }
   ],
   "auctions": [
