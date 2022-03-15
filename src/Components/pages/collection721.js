@@ -4,8 +4,8 @@ import { Contract, ethers } from 'ethers';
 import Blockies from 'react-blockies';
 import { Helmet } from 'react-helmet';
 import { faCheck, faCircle } from '@fortawesome/free-solid-svg-icons';
-import Skeleton from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
+// import Skeleton from 'react-loading-skeleton';
+// import 'react-loading-skeleton/dist/skeleton.css';
 
 import CollectionListingsGroup from '../components/CollectionListingsGroup';
 import CollectionFilterBar from '../components/CollectionFilterBar';
@@ -268,10 +268,11 @@ const Collection721 = ({ address, cacheName = 'collection' }) => {
         )}
         <div className="row">
           {collectionStatsLoading ? (
-            <div className="col-md-3 mb-4">
-              <Skeleton count={5} type="rect" />
-            </div>
+            <></>
           ) : (
+            // <div className="col-md-3 mb-4">
+            //   <Skeleton count={5} type="rect" />
+            // </div>
             (hasTraits() || hasPowertraits()) && (
               <div className="col-md-3 mb-4">
                 {hasTraits() && <TraitsFilter address={address} />}

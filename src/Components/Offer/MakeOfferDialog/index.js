@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux';
 import { Dialog, DialogContent, DialogTitle } from '@mui/material';
 import styled from 'styled-components';
 import { ethers } from 'ethers';
+import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Button from 'src/Components/components/Button';
 import Input from 'src/Components/components/common/Input';
@@ -42,6 +44,7 @@ const ImageContainer = styled.div`
   width: 232px;
   height: auto;
   margin-top: 6px;
+  text-align: center;
 
   img {
     width: 100%;
@@ -130,6 +133,15 @@ export default function MakeOfferDialog({ isOpen, toggle, nftData, address, coll
     toggle();
   };
 
+  const fullImage = () => {
+    if (nftData.nft.original_image.startsWith('ipfs://')) {
+      const link = nftData.nft.original_image.split('://')[1];
+      return `https://ipfs.io/ipfs/${link}`;
+    }
+
+    return nftData.nft.original_image;
+  };
+
   return (
     <DialogContainer onClose={toggle} open={isOpen} maxWidth="md">
       <DialogContent>
@@ -137,6 +149,16 @@ export default function MakeOfferDialog({ isOpen, toggle, nftData, address, coll
         <DialogMainContent>
           <ImageContainer>
             <img src={croSkullRedPotionImageHack(nftData.nftAddress, nftData.nft.image)} alt={nftData.nft.name} />
+            {nftData && nftData.nft.original_image && (
+              <div className="nft__item_action mt-2" style={{ cursor: 'pointer' }}>
+                <span
+                  onClick={() => window.open(croSkullRedPotionImageHack(nftData.nftAddress, fullImage()), '_blank')}
+                >
+                  <span className="p-2">View Full Image</span>
+                  <FontAwesomeIcon icon={faExternalLinkAlt} />
+                </span>
+              </div>
+            )}
           </ImageContainer>
           <NftDetailContainer>
             <NftTitle>{nftData.nft.name}</NftTitle>
