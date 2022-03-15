@@ -3904,7 +3904,7 @@
       "address": "",
       "maxMintPerTx": 20,
       "maxMintPerAddress": 50,
-      "totalSupply": 6699,
+      "totalSupply": 2000,
       "cost": "380",
       "memberCost": "330",
       "foundersOnly": false,
