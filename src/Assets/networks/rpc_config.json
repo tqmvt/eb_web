@@ -2209,27 +2209,6 @@
       }
     },
     {
-      "name": "3DSlothty",
-      "slug": "3d-slothty",
-      "multiToken": false,
-      "address": "0x966B18Afe9D9062d611D0C246A1959b7a25FCdDe",
-      "onChain": false,
-      "listable": false,
-      "metadata": {
-        "slug": "3d-slothty",
-        "description": "",
-        "verified": true,
-        "avatar": "/img/collections/slothty/avatar.png",
-        "card": "/img/collections/slothty/card.webp",
-        "banner": "/img/collections/slothty/banner.webp",
-        "maxSupply": 8888,
-        "website": "https://croslothty.com/",
-        "twitter": "https://twitter.com/Slothtynft",
-        "discord": "http://discord.gg/wkq88dHDyA",
-        "telegram": "https://t.me/croslothty"
-      }
-    },
-    {
       "name": "Meta Cyborgs",
       "slug": "meta-cyborgs",
       "multiToken": false,
