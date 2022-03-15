@@ -148,6 +148,7 @@ export function classList(classes) {
 export function humanize(str) {
   let i,
     frags = str
+      .toString()
       .split(/(?=[A-Z])/)
       .join(' ')
       .split('_');
@@ -221,7 +222,7 @@ export function getShortIdForView(id = '') {
  * @param transactionHash 0x000
  */
 export function openWithCronosExplorer(transactionHash = '') {
-  window.open(`https://cronos.crypto.org/explorer/tx/${transactionHash}`, '_blank');
+  window.open(`https://cronoscan.com/tx/${transactionHash}`, '_blank');
 }
 
 export function createSuccessfulTransactionToastContent(transactionHash) {
@@ -288,6 +289,10 @@ export const isFounderVipDrop = (address) => {
   return isDrop(address, 'vip-founding-member');
 };
 
+export const isCrosmocraftsPartsDrop = (address) => {
+  return isDrop(address, 'crosmocrafts-parts');
+};
+
 export const isDrop = (address, slug) => {
   const drop = drops.find((d) => d.slug === slug);
   return drop && caseInsensitiveCompare(drop.address, address);
@@ -306,9 +311,21 @@ export const isMetapixelsCollection = (address) => {
   return isCollection(address, 'metapixels');
 };
 
+export const isSouthSideAntsCollection = (address) => {
+  return isCollection(address, 'south-side-ants');
+};
+
+export const isCrosmocraftsPartsCollection = (address) => {
+  return isCollection(address, 'crosmocrafts-parts');
+};
+
+export const isCrosmocraftsCollection = (address) => {
+  return isCollection(address, 'crosmocrafts');
+};
+
 export const percentage = (partialValue, totalValue) => {
   if (!totalValue || totalValue === 0) return 0;
-  return Math.round((100 * partialValue) / totalValue);
+  return Math.floor((100 * partialValue) / totalValue);
 };
 
 export const relativePrecision = (num) => {
@@ -327,4 +344,21 @@ export const sliceIntoChunks = (arr, chunkSize) => {
     res.push(chunk);
   }
   return res;
+};
+
+/**
+ * Lookup a collection by address instead of slug
+ *
+ * @param address
+ * @param tokenId
+ * @returns {*}
+ */
+export const findCollectionByAddress = (address, tokenId) => {
+  return collections.find((c) => {
+    const matchesAddress = caseInsensitiveCompare(c.address, address);
+    if (!tokenId) return matchesAddress;
+
+    const matchesTokenIf1155 = !c.multiToken || (tokenId && c.id == tokenId);
+    return matchesAddress && matchesTokenIf1155;
+  });
 };

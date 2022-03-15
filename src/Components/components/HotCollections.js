@@ -17,7 +17,7 @@ const HotCollections = () => {
   const [hotCollections, setHotCollections] = useState([]);
 
   function arrangeCollections() {
-    const shortList = ['mad-meerkat', 'croskull', 'crobots', 'bushicro', 'lazy-horse', 'barn-cats'];
+    const shortList = ['mm-treehouse', 'mad-meerkat', 'croskull', 'meta-cyborgs', 'crobots', 'lazy-horse', 'barn-cats'];
 
     const featuredCollections = [];
     shortList.forEach(function (val, index) {

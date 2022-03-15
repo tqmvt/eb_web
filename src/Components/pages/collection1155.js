@@ -9,7 +9,12 @@ import CollectionListingsGroup from '../components/CollectionListingsGroup';
 import CollectionFilterBar from '../components/CollectionFilterBar';
 import LayeredIcon from '../components/LayeredIcon';
 import { init, fetchListings, getStats } from '../../GlobalState/collectionSlice';
-import { caseInsensitiveCompare, isFounderCollection, siPrefixedNumber } from '../../utils';
+import {
+  caseInsensitiveCompare,
+  isCrosmocraftsPartsCollection,
+  isFounderCollection,
+  siPrefixedNumber,
+} from '../../utils';
 import TraitsFilter from '../Collection/TraitsFilter';
 import PowertraitsFilter from '../Collection/PowertraitsFilter';
 import SocialsBar from '../Collection/SocialsBar';
@@ -20,7 +25,7 @@ import Market from '../../Contracts/Marketplace.json';
 
 const knownContracts = config.known_contracts;
 
-const Collection1155 = ({ address, cacheName = 'collection' }) => {
+const Collection1155 = ({ address, tokenId = null, cacheName = 'collection' }) => {
   const dispatch = useDispatch();
 
   const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
@@ -48,10 +53,10 @@ const Collection1155 = ({ address, cacheName = 'collection' }) => {
 
   const collectionName = () => {
     let contract;
-    if (isFounderCollection(address)) {
-      contract = knownContracts.find((c) => c.metadata?.slug === 'vip-founding-member');
+    if (tokenId != null) {
+      contract = knownContracts.find((c) => caseInsensitiveCompare(c.address, address) && c.id === tokenId);
     } else {
-      contract = knownContracts.find((c) => c.address.toLowerCase() === address.toLowerCase());
+      contract = knownContracts.find((c) => caseInsensitiveCompare(c.address, address));
     }
 
     return contract ? contract.name : 'Collection';
@@ -83,6 +88,9 @@ const Collection1155 = ({ address, cacheName = 'collection' }) => {
     const filterOption = FilterOption.default();
     filterOption.type = 'collection';
     filterOption.address = address;
+    if (tokenId != null) {
+      filterOption.id = tokenId;
+    }
     filterOption.name = 'Specific collection';
 
     dispatch(
@@ -99,8 +107,8 @@ const Collection1155 = ({ address, cacheName = 'collection' }) => {
 
   useEffect(() => {
     let extraData;
-    if (isFounderCollection(address)) {
-      extraData = knownContracts.find((c) => c.metadata?.slug === 'vip-founding-member');
+    if (tokenId != null) {
+      extraData = knownContracts.find((c) => caseInsensitiveCompare(c.address, address) && c.id === tokenId);
     } else {
       extraData = knownContracts.find((c) => caseInsensitiveCompare(c.address, address));
     }
@@ -112,7 +120,11 @@ const Collection1155 = ({ address, cacheName = 'collection' }) => {
 
   useEffect(() => {
     async function asyncFunc() {
-      dispatch(getStats(address));
+      if (tokenId != null) {
+        dispatch(getStats(address, tokenId));
+      } else {
+        dispatch(getStats(address));
+      }
       try {
         let royalties = await readMarket.royalties(address);
         setRoyalty(Math.round(royalties[1]) / 100);
@@ -182,7 +194,10 @@ const Collection1155 = ({ address, cacheName = 'collection' }) => {
           <div className="row">
             {hasRank && collectionMetadata?.rarity === 'rarity_sniper' && (
               <div className="row">
-                <div className="col-lg-8 col-sm-10 mx-auto text-center text-sm-end fst-italic" style={{ fontSize: '0.8em' }}>
+                <div
+                  className="col-lg-8 col-sm-10 mx-auto text-center text-sm-end fst-italic"
+                  style={{ fontSize: '0.8em' }}
+                >
                   Rarity scores and ranks provided by{' '}
                   <a href="https://raritysniper.com/" target="_blank" rel="noreferrer">
                     <span className="color">Rarity Sniper</span>
@@ -240,10 +255,20 @@ const Collection1155 = ({ address, cacheName = 'collection' }) => {
                 </div>
               </div>
             </div>
+            {isCrosmocraftsPartsCollection(address) && (
+              <div className="row">
+                <div className="mx-auto text-center fw-bold" style={{ fontSize: '0.8em' }}>
+                  Collect Crosmocraft parts to{' '}
+                  <a href="/build-ship">
+                    <span className="color">build your Crosmocraft!</span>
+                  </a>
+                </div>
+              </div>
+            )}
             {collectionMetadata?.staking === 'crodex' && (
               <div className="row">
                 <div className="mx-auto text-center fw-bold" style={{ fontSize: '0.8em' }}>
-                  NFTs from this collection can be staked at {' '}
+                  NFTs from this collection can be staked at{' '}
                   <a href="https://swap.crodex.app/#/rewards/nft" target="_blank" rel="noreferrer">
                     <span className="color">Crodex</span>
                   </a>

@@ -119,29 +119,36 @@ const TraitsFilter = ({ address }) => {
         )}
       </div>
       <Accordion id="traits" className={hideAttributes ? 'd-none' : ''}>
-        {viewTraitsList().map(([traitCategoryName, traitCategoryValues], key) => (
-          <Accordion.Item eventKey={key} key={key}>
-            <Accordion.Header>{humanize(traitCategoryName)}</Accordion.Header>
-            <Accordion.Body>
-              {Object.entries(traitCategoryValues)
-                .filter((t) => t[1].count > 0)
-                .sort((a, b) => (a[0] > b[0] ? 1 : -1))
-                .map((stats) => (
-                  <div key={`${traitCategoryName}-${stats[0]}`}>
-                    <Form.Check
-                      type="checkbox"
-                      id={stats[0]}
-                      className="attribute-checkbox"
-                      label={traitStatName(stats[0], stats[1])}
-                      defaultChecked={viewGetDefaultCheckValue(traitCategoryName, stats[0])}
-                      value={viewGetDefaultCheckValue(traitCategoryName, stats[0])}
-                      onChange={(t) => handleCheck(t, traitCategoryName)}
-                    />
-                  </div>
-                ))}
-            </Accordion.Body>
-          </Accordion.Item>
-        ))}
+        {viewTraitsList()
+          .sort((a, b) => (a[0].toLowerCase() > b[0].toLowerCase() ? 1 : -1))
+          .map(([traitCategoryName, traitCategoryValues], key) => (
+            <Accordion.Item eventKey={key} key={key}>
+              <Accordion.Header>{humanize(traitCategoryName)}</Accordion.Header>
+              <Accordion.Body>
+                {Object.entries(traitCategoryValues)
+                  .filter((t) => t[1].count > 0)
+                  .sort((a, b) => {
+                    if (!isNaN(a[0]) && !isNaN(b[0])) {
+                      return parseInt(a[0]) > parseInt(b[0]) ? 1 : -1;
+                    }
+                    return a[0] > b[0] ? 1 : -1;
+                  })
+                  .map((stats) => (
+                    <div key={`${traitCategoryName}-${stats[0]}`}>
+                      <Form.Check
+                        type="checkbox"
+                        id={stats[0]}
+                        className="attribute-checkbox"
+                        label={traitStatName(stats[0], stats[1])}
+                        defaultChecked={viewGetDefaultCheckValue(traitCategoryName, stats[0])}
+                        value={viewGetDefaultCheckValue(traitCategoryName, stats[0])}
+                        onChange={(t) => handleCheck(t, traitCategoryName)}
+                      />
+                    </div>
+                  ))}
+              </Accordion.Body>
+            </Accordion.Item>
+          ))}
       </Accordion>
     </>
   );

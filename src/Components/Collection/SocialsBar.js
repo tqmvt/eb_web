@@ -1,8 +1,9 @@
 import React, { memo } from 'react';
-import { faBook, faCopy, faGlobe } from '@fortawesome/free-solid-svg-icons';
+import { faBook, faCopy, faGlobe, faRocket } from '@fortawesome/free-solid-svg-icons';
 import { faDiscord, faInstagram, faMedium, faTelegram, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import LayeredIcon from '../components/LayeredIcon';
 import { toast } from 'react-toastify';
+import { isCrosmocraftsCollection, isCrosmocraftsPartsCollection } from '../../utils';
 
 const SocialsBar = ({ collection }) => {
   const handleCopy = (code) => () => {
@@ -42,6 +43,12 @@ const SocialsBar = ({ collection }) => {
           <LayeredIcon icon={faMedium} />
         </a>
       )}
+      {collection &&
+        (isCrosmocraftsPartsCollection(collection.address) || isCrosmocraftsCollection(collection.address)) && (
+          <a href="/build-ship" title="Build a Crosmocraft!">
+            <LayeredIcon icon={faRocket} />
+          </a>
+        )}
       {collection && collection.metadata.gitbook && (
         <a href={collection.metadata.gitbook} target="_blank" rel="noreferrer" title="View Gitbook">
           <LayeredIcon icon={faBook} />

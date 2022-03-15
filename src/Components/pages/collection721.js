@@ -12,7 +12,13 @@ import CollectionFilterBar from '../components/CollectionFilterBar';
 import LayeredIcon from '../components/LayeredIcon';
 import Footer from '../components/Footer';
 import { init, fetchListings, getStats } from '../../GlobalState/collectionSlice';
-import { caseInsensitiveCompare, isFounderCollection, siPrefixedNumber } from '../../utils';
+import {
+  caseInsensitiveCompare,
+  isCrosmocraftsCollection,
+  isCrosmocraftsPartsCollection,
+  isFounderCollection,
+  siPrefixedNumber,
+} from '../../utils';
 import TraitsFilter from '../Collection/TraitsFilter';
 import PowertraitsFilter from '../Collection/PowertraitsFilter';
 import SocialsBar from '../Collection/SocialsBar';
@@ -20,6 +26,8 @@ import { SortOption } from '../Models/sort-option.model';
 import { FilterOption } from '../Models/filter-option.model';
 import config from '../../Assets/networks/rpc_config.json';
 import Market from '../../Contracts/Marketplace.json';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 
 const knownContracts = config.known_contracts;
 
@@ -51,12 +59,7 @@ const Collection721 = ({ address, cacheName = 'collection' }) => {
   });
 
   const collectionName = () => {
-    let contract;
-    if (isFounderCollection(address)) {
-      contract = knownContracts.find((c) => c.metadata?.slug === 'vip-founding-member');
-    } else {
-      contract = knownContracts.find((c) => c.address.toLowerCase() === address.toLowerCase());
-    }
+    const contract = knownContracts.find((c) => caseInsensitiveCompare(c.address, address));
 
     return contract ? contract.name : 'Collection';
   };
@@ -102,12 +105,7 @@ const Collection721 = ({ address, cacheName = 'collection' }) => {
   }, [dispatch, address]);
 
   useEffect(() => {
-    let extraData;
-    if (isFounderCollection(address)) {
-      extraData = knownContracts.find((c) => c.metadata?.slug === 'vip-founding-member');
-    } else {
-      extraData = knownContracts.find((c) => caseInsensitiveCompare(c.address, address));
-    }
+    const extraData = knownContracts.find((c) => caseInsensitiveCompare(c.address, address));
 
     if (extraData) {
       setMetadata(extraData.metadata);
@@ -247,6 +245,27 @@ const Collection721 = ({ address, cacheName = 'collection' }) => {
                 </div>
               </div>
             </div>
+            {address.toLowerCase() == '0x7D5f8F9560103E1ad958A6Ca43d49F954055340a'.toLowerCase() && (
+              <div className="row m-3">
+                <div className="mx-auto text-center fw-bold" style={{ fontSize: '1.2em' }}>
+                  {'  '} Please visit{' '}
+                  <a href="/collection/weird-apes-club-v2">
+                    <span className="color">here </span>
+                  </a>
+                  for the newer, migrated contract until these pages are unified
+                </div>
+              </div>
+            )}
+            {isCrosmocraftsCollection(address) && (
+              <div className="row">
+                <div className="mx-auto text-center fw-bold" style={{ fontSize: '0.8em' }}>
+                  Got Crosmocraft parts?{' '}
+                  <a href="/build-ship">
+                    <span className="color">build your Crosmocraft!</span>
+                  </a>
+                </div>
+              </div>
+            )}
             {collectionMetadata?.staking === 'crodex' && (
               <div className="row">
                 <div className="mx-auto text-center fw-bold" style={{ fontSize: '0.8em' }}>

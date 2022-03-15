@@ -196,24 +196,33 @@ export const resetListings = () => async (dispatch) => {
   dispatch(fetchListings());
 };
 
-export const getStats = (address) => async (dispatch) => {
-  try {
-    dispatch(onCollectionStatsLoading());
-    const response = await getCollectionMetadata(address);
-    const traits = await getCollectionTraits(address);
-    const powertraits = await getCollectionPowertraits(address);
-    dispatch(
-      onCollectionStatsLoaded({
-        stats: {
-          ...response.collections[0],
-          ...{
-            traits: traits,
-            powertraits: powertraits,
+export const getStats =
+  (address, id = null) =>
+  async (dispatch) => {
+    try {
+      dispatch(onCollectionStatsLoading());
+
+      var response;
+      if (id != null) {
+        response = await getCollectionMetadata(address, null, { type: 'tokenId', value: id });
+      } else {
+        response = await getCollectionMetadata(address);
+      }
+
+      const traits = await getCollectionTraits(address);
+      const powertraits = await getCollectionPowertraits(address);
+      dispatch(
+        onCollectionStatsLoaded({
+          stats: {
+            ...response.collections[0],
+            ...{
+              traits: traits,
+              powertraits: powertraits,
+            },
           },
-        },
-      })
-    );
-  } catch (error) {
-    console.log(error);
-  }
-};
+        })
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };

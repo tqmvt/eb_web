@@ -2102,19 +2102,19 @@
       "name": "Meta Cyborgs",
       "slug": "meta-cyborgs",
       "multiToken": false,
-      "address": "0xd1dd28f2B33bb2f9f23bac71C5221eF5907A738d",
+      "address": "0x972A2DDd1E364105cDe1f6E70f8078974A3D7A9b",
       "onChain": false,
       "listable": true,
       "metadata": {
         "description": "",
         "verified": true,
-        "avatar": "/img/collections/meta_cyborgs/avatar.png",
-        "card": "/img/collections/meta_cyborgs/banner.webp",
-        "banner": "/img/collections/meta_cyborgs/banner.webp",
-        "website": "https://cyborgswap.io/",
-        "twitter": "https://twitter.com/chronoswap",
-        "discord": "https://discord.gg/chronoswap",
-        "medium": "https://medium.com/@chronoswap"
+        "avatar": "/img/collections/cronogods/godess/avatar.gif",
+        "card": "/img/collections/cronogods/godess/card.png",
+        "banner": "/img/collections/cronogods/godess/banner.jpg",
+        "maxSupply": 1000,
+        "website": "https://www.cronogods.com/cronogoddess",
+        "twitter": "https://twitter.com/CronoGoddess",
+        "discord": "https://discord.gg/xECQDMZANw"
       }
     },
     {

@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import { useLocation } from 'react-router-dom';
 import nebkas from '../../Assets/nebkas-logo.png';
 import weAreFi from '../../Assets/wearefi-logo.png';
-import crodex from  '../../Assets/crodex.png';
+import crodex from '../../Assets/crodex.png';
 import { faDiscord, faTwitter, faMedium, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { faSquare, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import LayeredIcon from './LayeredIcon';
@@ -13,7 +13,7 @@ const Footer = () => {
   return (
     <footer className="footer-light" data-is-in-home-page={(location.pathname === '/').toString()}>
       <div className="container text-center">
-        <h5>Partners</h5>
+        <h5>Frens</h5>
         <div className="row align-items-center">
           <div className="col">
             <a href="https://nebkas.ro" target="_blank" rel="noreferrer">

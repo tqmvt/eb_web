@@ -17,9 +17,11 @@ import Footer from '../components/Footer';
 import { getListingDetails, listingUpdated } from '../../GlobalState/listingSlice';
 import { connectAccount, chainConnect } from '../../GlobalState/User';
 import {
+  findCollectionByAddress,
   createSuccessfulTransactionToastContent,
   humanize,
   isCroCrowCollection,
+  isCrosmocraftsPartsDrop,
   relativePrecision,
   shortAddress,
   timeSince,
@@ -42,7 +44,9 @@ const Listing = () => {
   const user = useSelector((state) => state.user);
 
   const collection = useSelector((state) => {
-    return knownContracts.find((c) => c.address.toLowerCase() === listing?.nftAddress.toLowerCase());
+    if (listing) {
+      return findCollectionByAddress(listing.nftAddress, listing.is1155 ? listing.nftId : null);
+    }
   });
 
   const [openCheckout, setOpenCheckout] = React.useState(false);
@@ -263,18 +267,46 @@ const Listing = () => {
                     <div className="de_tab_content">
                       {openMenu === 0 && (
                         <div className="tab-1 onStep fadeIn">
-                          {listing.nft.attributes && listing.nft.attributes.length > 0 ? (
+                          {(listing.nft.attributes &&
+                            Array.isArray(listing.nft.attributes) &&
+                            listing.nft.attributes.length > 0) ||
+                          (listing.nft.properties &&
+                            Array.isArray(listing.nft.properties) &&
+                            listing.nft.properties.length > 0) ? (
                             <>
                               <div className="d-block mb-3">
                                 <div className="row mt-5 gx-3 gy-2">
-                                  {listing.nft.attributes
-                                    .filter((data) => data.value !== 'None')
-                                    .map((data, i) => {
+                                  {listing.nft.attributes &&
+                                    Array.isArray(listing.nft.attributes) &&
+                                    listing.nft.attributes
+                                      .filter((data) => data.value !== 'None')
+                                      .map((data, i) => {
+                                        return (
+                                          <div key={i} className="col-lg-4 col-md-6 col-sm-6">
+                                            <div className="nft_attr">
+                                              <h5>{humanize(data.trait_type)}</h5>
+                                              <h4>{humanize(data.value)}</h4>
+                                              {data.occurrence ? (
+                                                <span>{relativePrecision(data.occurrence)}% have this trait</span>
+                                              ) : (
+                                                data.percent && <span>{data.percent}% have this trait</span>
+                                              )}
+                                            </div>
+                                          </div>
+                                        );
+                                      })}
+                                  {listing.nft.properties &&
+                                    Array.isArray(listing.nft.properties) &&
+                                    listing.nft.properties.map((data, i) => {
                                       return (
                                         <div key={i} className="col-lg-4 col-md-6 col-sm-6">
                                           <div className="nft_attr">
                                             <h5>{humanize(data.trait_type)}</h5>
-                                            <h4>{humanize(data.value)}</h4>
+                                            <h4>
+                                              {humanize(
+                                                isCrosmocraftsPartsDrop(collection.address) ? data.Value : data.value
+                                              )}
+                                            </h4>
                                             {data.occurrence ? (
                                               <span>{relativePrecision(data.occurrence)}% have this trait</span>
                                             ) : (
