@@ -222,7 +222,7 @@ export function getShortIdForView(id = '') {
  * @param transactionHash 0x000
  */
 export function openWithCronosExplorer(transactionHash = '') {
-  window.open(`https://cronos.crypto.org/explorer/tx/${transactionHash}`, '_blank');
+  window.open(`https://cronoscan.com/tx/${transactionHash}`, '_blank');
 }
 
 export function createSuccessfulTransactionToastContent(transactionHash) {
@@ -342,6 +342,22 @@ export const sliceIntoChunks = (arr, chunkSize) => {
   return res;
 };
 
+/**
+ * Lookup a collection by address instead of slug
+ *
+ * @param address
+ * @param tokenId
+ * @returns {*}
+ */
+export const findCollectionByAddress = (address, tokenId) => {
+  return collections.find((c) => {
+    const matchesAddress = caseInsensitiveCompare(c.address, address);
+    if (!tokenId) return matchesAddress;
+
+    const matchesTokenIf1155 = !c.multiToken || (tokenId && c.id == tokenId);
+    return matchesAddress && matchesTokenIf1155;
+  });
+}
 export const round = (num, decimals) => {
   if (!decimals) return num;
   const pow = Math.pow(10, decimals);

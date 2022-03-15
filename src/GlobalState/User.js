@@ -344,7 +344,7 @@ export const connectAccount =
         connector: async (ProviderPackage, options) => {
           const connector = new DeFiWeb3Connector({
             supportedChainIds: [25],
-            rpc: { 25: 'https://evm-cronos.crypto.org' },
+            rpc: { 25: 'https://evm.cronos.org' },
             pollingInterval: 15000,
             metadata: {
               icons: ['https://ebisusbay.com/vector%20-%20face.svg'],
@@ -612,7 +612,7 @@ export const chainConnect = (type) => async (dispatch) => {
   } else {
     const web3Provider = new WalletConnectProvider({
       rpc: {
-        25: 'https://evm-cronos.crypto.org',
+        25: 'https://evm.cronos.org',
       },
       chainId: 25,
     });

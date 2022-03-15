@@ -1,10 +1,10 @@
 {
-  "name": "Cronos",
+  "name": "Cronos Mainnet Beta",
   "chain_id": "25",
-  "write_rpc": "https://evm-cronos.crypto.org/",
+  "write_rpc": "https://evm.cronos.org/",
   "read_rpc": "https://gateway.nebkas.ro/",
   "symbol": "CRO",
-  "explorer": "http://cronos.crypto.org/explorer/",
+  "explorer": "https://cronoscan.com/",
   "api_base": "https://api.ebisusbay.com/",
   "app_base": "https://app.ebisusbay.com/",
   "membership_contract": "0x8d9232Ebc4f06B7b8005CCff0ca401675ceb25F5",
@@ -22,15 +22,16 @@
   },
   "known_contracts": [
     {
-      "name": "Ebisu's Bay - ALL Founding Member",
-      "slug": "all-founding-member",
+      "name": "Ebisu's Bay - VIP Founding Member",
+      "slug": "vip-founding-member",
       "onChain": false,
       "address": "0x8d9232Ebc4f06B7b8005CCff0ca401675ceb25F5",
       "multiToken": true,
+      "split": true,
       "id": 2,
       "listable": true,
       "metadata": {
-        "slug": "all-founding-member",
+        "slug": "vip-founding-member",
         "description": "",
         "verified": true,
         "avatar": "/img/avatar.jpg",
@@ -50,6 +51,7 @@
       "onChain": false,
       "address": "0x653DDF1Bb9995ecfcbDd411Dc3F9793127680B29",
       "multiToken": true,
+      "split": false,
       "id": 1,
       "listable": true,
       "metadata": {
@@ -73,6 +75,7 @@
       "address": "0x653DDF1Bb9995ecfcbDd411Dc3F9793127680B29",
       "multiToken": true,
       "id": 2,
+      "split": false,
       "listable": true,
       "metadata": {
         "slug": "ebisu-valentine-rare",
@@ -94,6 +97,7 @@
       "onChain": false,
       "address": "0x653DDF1Bb9995ecfcbDd411Dc3F9793127680B29",
       "multiToken": true,
+      "split": false,
       "id": 3,
       "listable": true,
       "metadata": {
@@ -108,11 +112,12 @@
       }
     },
     {
-      "name": "Ebisu's Bay Founder",
+      "name": "Ebisu's Bay - Founding Member",
       "slug": "founding-member",
       "onChain": false,
       "address": "0x8d9232Ebc4f06B7b8005CCff0ca401675ceb25F5",
       "multiToken": true,
+      "split": true,
       "id": 1,
       "listable": true,
       "metadata": {
@@ -121,6 +126,7 @@
         "verified": true,
         "avatar": "/img/avatar.jpg",
         "card": "/img/collections/ebisu/card.webp",
+        "banner": "/img/collections/ebisu/banner.png",
         "maxSupply": 10000,
         "website": "https://app.ebisusbay.com/",
         "twitter": "https://twitter.com/EbisusBay",
@@ -2087,7 +2093,7 @@
       "multiToken": false,
       "address": "0xf0533419F1dD11f311C00D06D263295e963e3574",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "slug": "creatures",
         "description": "",
@@ -2200,27 +2206,6 @@
         "twitter": "https://twitter.com/BAD_Cronos",
         "discord": "https://discord.gg/2WT7gbSPnK",
         "medium": "https://medium.com/@babyaliendivision"
-      }
-    },
-    {
-      "name": "3DSlothty",
-      "slug": "3d-slothty",
-      "multiToken": false,
-      "address": "0x966B18Afe9D9062d611D0C246A1959b7a25FCdDe",
-      "onChain": false,
-      "listable": false,
-      "metadata": {
-        "slug": "3d-slothty",
-        "description": "",
-        "verified": true,
-        "avatar": "/img/collections/slothty/avatar.png",
-        "card": "/img/collections/slothty/card.webp",
-        "banner": "/img/collections/slothty/banner.webp",
-        "maxSupply": 8888,
-        "website": "https://croslothty.com/",
-        "twitter": "https://twitter.com/Slothtynft",
-        "discord": "http://discord.gg/wkq88dHDyA",
-        "telegram": "https://t.me/croslothty"
       }
     },
     {
@@ -2446,6 +2431,7 @@
       "id": 0,
       "address": "0xf49C94E09E506aCcbe553b673FEe4F44efb06D55",
       "onChain": false,
+      "split": false,
       "listable": true,
       "metadata": {
         "slug": "crosmocrafts-parts",
@@ -2468,6 +2454,7 @@
       "id": 1,
       "address": "0xf49C94E09E506aCcbe553b673FEe4F44efb06D55",
       "onChain": false,
+      "split": false,
       "listable": true,
       "metadata": {
         "slug": "crosmocrafts-parts",
@@ -2490,6 +2477,7 @@
       "id": 2,
       "address": "0xf49C94E09E506aCcbe553b673FEe4F44efb06D55",
       "onChain": false,
+      "split": false,
       "listable": true,
       "metadata": {
         "slug": "crosmocrafts-parts",
@@ -2512,6 +2500,7 @@
       "id": 3,
       "address": "0xf49C94E09E506aCcbe553b673FEe4F44efb06D55",
       "onChain": false,
+      "split": false,
       "listable": true,
       "metadata": {
         "slug": "crosmocrafts-parts",
@@ -2534,6 +2523,7 @@
       "id": 4,
       "address": "0xf49C94E09E506aCcbe553b673FEe4F44efb06D55",
       "onChain": false,
+      "split": false,
       "listable": true,
       "metadata": {
         "slug": "crosmocrafts-parts",
@@ -2556,6 +2546,7 @@
       "id": 5,
       "address": "0xf49C94E09E506aCcbe553b673FEe4F44efb06D55",
       "onChain": false,
+      "split": false,
       "listable": true,
       "metadata": {
         "slug": "crosmocrafts-parts",
@@ -2578,6 +2569,7 @@
       "id": 6,
       "address": "0xf49C94E09E506aCcbe553b673FEe4F44efb06D55",
       "onChain": false,
+      "split": false,
       "listable": true,
       "metadata": {
         "slug": "crosmocrafts-parts",
@@ -2600,6 +2592,7 @@
       "id": 7,
       "address": "0xf49C94E09E506aCcbe553b673FEe4F44efb06D55",
       "onChain": false,
+      "split": false,
       "listable": true,
       "metadata": {
         "slug": "crosmocrafts-parts",
@@ -2622,6 +2615,7 @@
       "id": 8,
       "address": "0xf49C94E09E506aCcbe553b673FEe4F44efb06D55",
       "onChain": false,
+      "split": false,
       "listable": true,
       "metadata": {
         "slug": "crosmocrafts-parts",
@@ -2638,10 +2632,10 @@
       }
     },
     {
-      "name": "Lolita Friends",
+      "name": "Lolita & Friends",
       "slug": "lolita-friends",
       "multiToken": false,
-      "address": "",
+      "address": "0xDdb5DE96A5A639AA6b0357c5A325444dA2BcE913",
       "onChain": false,
       "listable": false,
       "metadata": {
@@ -2736,6 +2730,85 @@
         "website": "https://www.zombabies.io/",
         "twitter": "https://twitter.com/ZombabiesNFT",
         "discord": "https://discord.gg/v2WXbA5v3m"
+      }
+    },
+    {
+      "name": "Lady Weird Apes",
+      "slug": "lady-weird-apes",
+      "multiToken": false,
+      "address": "0xD316F2F1872648a376D8c0937db1b4b10D1Ef8b1",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/weirdapesclub/avatar.png",
+        "card": "/img/collections/weirdapesclub/ladies/card.png",
+        "banner": "/img/collections/weirdapesclub/ladies/banner.png",
+        "maxSupply": 2000,
+        "website": "https://weirdapes.com/",
+        "twitter": "https://twitter.com/WeirdApesClub",
+        "discord": "https://discord.gg/RX9h6mhnTR",
+        "medium": "https://medium.com/@WeirdApesClub"
+      }
+    },
+    {
+      "name": "Cronos Lioness Club",
+      "slug": "cronos-lioness-club",
+      "multiToken": false,
+      "address": "0x9b1FCA3e5F8D2ea0AF870eB09b03B28C23f62733",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/cronoslionessclub/avatar.webp",
+        "card": "/img/collections/cronoslionessclub/card.webp",
+        "banner": "/img/collections/cronoslionessclub/banner.webp",
+        "maxSupply": 8888,
+        "website": "https://cronoslioness.club/",
+        "twitter": "https://twitter.com/CronosLioness",
+        "discord": "https://discord.gg/2ExptDUXtZ",
+        "medium": "https://medium.com/@CronosLionessClub"
+      }
+    },
+    {
+      "name": "CronoGoddessess",
+      "slug": "crono-godessess",
+      "multiToken": false,
+      "address": "0x972A2DDd1E364105cDe1f6E70f8078974A3D7A9b",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/cronogods/godess/avatar.gif",
+        "card": "/img/collections/cronogods/godess/card.png",
+        "banner": "/img/collections/cronogods/godess/banner.jpg",
+        "maxSupply": 1000,
+        "website": "https://www.cronogods.com/cronogoddess",
+        "twitter": "https://twitter.com/CronoGoddess",
+        "discord": "https://discord.gg/xECQDMZANw"
+      }
+    },
+    {
+      "name": "Big Bad Wolves",
+      "slug": "big-bad-wolves",
+      "multiToken": false,
+      "address": "",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/bigbadwolves/avatar.webp",
+        "card": "/img/collections/bigbadwolves/card.webp",
+        "banner": "/img/collections/bigbadwolves/banner.webp",
+        "maxSupply": 6699,
+        "website": "https://www.bigbadwolves.club/",
+        "twitter": "https://twitter.com/BigBadWolves_MC",
+        "discord": "https://discord.gg/9GetF5Nc5x",
+        "medium": "https://t.me/bigbadwolves_nft"
       }
     }
   ],
@@ -3572,35 +3645,9 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false,
+      "complete": true,
       "featured": false,
       "redirect": "https://lootpad.io/collection/cromeleons"
-    },
-    {
-      "id": 29,
-      "slug": "3d-slothty",
-      "imgNft": "/img/drops/slothty/card.webp",
-      "imgPreview": "/img/drops/slothty/card.webp",
-      "imgAvatar": "/img/collections/slothty/avatar.png",
-      "imgBanner": "/img/drops/slothty/banner.webp",
-      "title": "3DSlothty",
-      "subtitle": "3DSLOTHTY is a GEN 2 collection of Cronos Slothty, with unique access to the upcoming gaming and metaverse experiences.",
-      "description": "3DSLOTHTY is an 8,888 unique 3D PFP project with more than 450 traits exclusively available on the CRONOS chain. 3DSLOTHTY will give you access to staking for Serums for Mutant Slothty, Pet (Sloth Robot) airdrops, and free in-game characters on an upcoming MMORPG turn-based OpenWorld game (Sloth World) as well as the Sloth Metaverse. IDO is planned for an ecosystem token in the future",
-      "author": { "name": "SLOTHTY", "link": "https://croslothty.com/" },
-      "address": "0x966B18Afe9D9062d611D0C246A1959b7a25FCdDe",
-      "maxMintPerTx": 5,
-      "maxMintPerAddress": 50,
-      "totalSupply": 8888,
-      "cost": "299",
-      "memberCost": "249",
-      "whitelistCost": "249",
-      "foundersOnly": false,
-      "start": 1646179200000,
-      "end": null,
-      "referral": false,
-      "is1155": false,
-      "published": true,
-      "complete": false
     },
     {
       "id": 30,
@@ -3772,11 +3819,11 @@
       "imgPreview": "/img/drops/lolitafriends/drop.png",
       "imgAvatar": "/img/collections/lolitafriends/avatar.png",
       "imgBanner": "/img/drops/lolitafriends/banner.png",
-      "title": "Lolita Friends",
+      "title": "Lolita & Friends",
       "subtitle": " Lolita & Friends is the first-ever petfluencer NFT collection. This project is launched by @LolitatheAlien, a Chihuahua petfluencers with a community of 200k people on Instagram. The collection consists of 2,500 randomly assembled Lolitas with over 120 traits!",
       "description": "Lolita & Friends mission is to rescue endangered and abandoned animals. Our first mission is to rescue 1000 dogs from the streets: feeding, vaccinating, sterilizing and all other cares to prepare them for adoption. In this collection, Lolita has a variety of outfits, accessories, faces and background colors. Some NFTs are rare, some are very rare, and some are exceptional! Our goal is to onboard worldwide influencer pets of Instagram through beautiful NFT collections with utility. Be part of the original collection and join our mission to save thousands of abandoned animals!",
-      "author": { "name": "Lolita Friends", "link": "https://lolitandfriends.io/" },
-      "address": "",
+      "author": { "name": "Lolita & Friends", "link": "https://lolitandfriends.io/" },
+      "address": "0xDdb5DE96A5A639AA6b0357c5A325444dA2BcE913",
       "maxMintPerTx": 15,
       "maxMintPerAddress": 50,
       "totalSupply": 2500,
@@ -3819,14 +3866,14 @@
     },
     {
       "id": 38,
-      "slug": "cronos-bot-society",
+      "slug": "crono-godessess",
       "imgNft": "",
       "imgPreview": "",
-      "imgAvatar": "/img/collections/cronosbotsociety/avatar.png",
-      "title": "Cronos Bot Society",
+      "imgAvatar": "/img/collections/cronogods/godess/avatar.gif",
+      "title": "Crono Godesses",
       "subtitle": "",
       "description": "",
-      "author": { "name": "Cronos Bot Society", "link": "https://cronosbotsociety.com/initiate-bots" },
+      "author": { "name": "Crono Gods", "link": "https://www.cronogods.com/cronogoddess" },
       "address": "",
       "maxMintPerTx": 0,
       "maxMintPerAddress": 0,
@@ -3834,14 +3881,39 @@
       "cost": "",
       "whitelistCost": "",
       "foundersOnly": false,
-      "start": 1644784200000,
+      "start": 1645240287000,
       "end": null,
       "referral": false,
       "is1155": false,
       "published": true,
       "complete": false,
       "featured": false,
-      "redirect": "https://cronosbotsociety.com/initiate-bots"
+      "redirect": "https://lootpad.io/collection/cronogoddesses"
+    },
+    {
+      "id": 39,
+      "slug": "big-bad-wolves",
+      "imgNft": "/img/drops/bigbadwolves/drop.webp",
+      "imgPreview": "/img/drops/bigbadwolves/drop.webp",
+      "imgAvatar": "/img/collections/bigbadwolves/avatar.webp",
+      "imgBanner": "/img/collections/bigbadwolves/banner.webp",
+      "title": "Big Bad Wolves",
+      "subtitle": "Big Bad Wolves is a community based NFT project including real time video game, metaverse integration and big marketing campaign.\nHolding the NFT gives you a PRIVILEGED position.\nWelcome to THE PACK!",
+      "description": "BIG BAD WOLVES is a community NFT collection heading towards a gory multiplayer video game and metaverse integration. Join the ride and access staking, giveaways, airdrops, and rewarded Art & Memes contests!\n\nHolder WILL be rewarded.\n\n1/1 are unique and exclusive artworks made by several artists.\n\nAll NFTs in the collection have random stats for strength, agility, stamina, speed and ferocity. These stats will change the way to play the video game.",
+      "author": { "name": "Big Bad Wolves", "link": "https://www.bigbadwolves.club/" },
+      "address": "",
+      "maxMintPerTx": 20,
+      "maxMintPerAddress": 50,
+      "totalSupply": 6699,
+      "cost": "380",
+      "memberCost": "330",
+      "foundersOnly": false,
+      "start": 1647453600000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false
     }
   ],
   "auctions": [
