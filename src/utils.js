@@ -311,6 +311,10 @@ export const isMetapixelsCollection = (address) => {
   return isCollection(address, 'metapixels');
 };
 
+export const isSouthSideAntsCollection = (address) => {
+  return isCollection(address, 'south-side-ants');
+};
+
 export const isCrosmocraftsPartsCollection = (address) => {
   return isCollection(address, 'crosmocrafts-parts');
 };
