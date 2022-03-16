@@ -2540,7 +2540,7 @@
         "card": "/img/collections/goldpartner/card.png",
         "banner": "/img/collections/goldpartner/banner.png",
         "maxSupply": 300,
-        "website": "http://www.thesportsnft.io/",
+        "website": "https://thesportsnft.io/",
         "twitter": "https://twitter.com/TheSportsNFT",
         "discord": "https://discord.gg/6XYv63jc9Z",
         "medium": "https://medium.com/@thesportsnft"
@@ -3712,14 +3712,14 @@
     {
       "id": 37,
       "slug": "gold-partner",
-      "imgNft": "/img/drops/goldpartner/drop.gif",
-      "imgPreview": "/img/drops/goldpartner/drop.gif",
+      "imgNft": "/img/drops/goldpartner/drop.webp",
+      "imgPreview": "/img/drops/goldpartner/drop.webp",
       "imgAvatar": "/img/collections/goldpartner/avatar.gif",
-      "imgBanner": "/img/drops/goldpartner/banner.png",
+      "imgBanner": "/img/collections/goldpartner/banner.png",
       "title": "Gold Partner",
-      "subtitle": "Gold Partner Collection - The Hall of Fame is a collection of 300 Hand-drawn, 3D, and animated NFT's with very unique features and utilities. Every NFT is hand-drawn, comes with a unique edition# engraved, a first of its kind on Cronos Chain. Holders of the NFT's will enjoy 30% share of the profits earned from upcoming collections. These NFT's offer a profit-sharing partnership opportunity to the buyers and holders to earn passive income from all upcoming drops.",
-      "description": "Gold Partner Collection - The Hall of Fame is designed after deep research by our team. This collection honors founders and inventors of different sports forgotten by the world. This collection is structured in a way that makes you a direct profit-sharing partner in the project.\n Long term goal of this project is to create a decentralized marketplace for trading real-world sports collectibles. \nUnique Utilities: \n30% of profits from upcoming drops are shared directly among the holders of this collection.  \nChance to be a Platinum partner and enjoy a bigger chunk of profits.   \nCommunity-driven Project with a long-term vision of becoming a marketplace for real-world sports collectibles.     \nCome explore the joy of owning an NFT project and become a founding member!",
-      "author": { "name": "Sports NFTs", "link": "http://www.thesportsnft.io/" },
+      "subtitle": "Gold Partner Collection - The Hall of Fame is a collection of 300- 3D animated NFT's with unique features and utilities. Every NFT is a VIP founding members pass on our project. Holders of these NFT's will enjoy 30% share of the primary profits earned from all upcoming collections, marketplace and other benefits from time to time. These NFT's offer a profit-sharing partnership opportunity to the buyers and holders to earn passive income by staking these NFT’s.",
+      "description": "Gold Partner Collection - The Hall of Fame is designed to offer direct profit-sharing partnership for all holders of these NFT’s.\nLong term goal of this project is to create a decentralized marketplace for trading real-world collectibles (not just pictures). This will allow P2P trading of real-world collectables on the blockchain.\nUnique Utilities:\n•    30% of primary profits are shared directly among the holders of this collection.\n•    Exclusive giveaways for the gold partners.\n•    Exclusive access to DAO- This will give all holders the power to cast their vote towards proposals put forward by the team, along with community proposals for roadmap ideas and utility.\n•    Chance to be a Platinum partner and enjoy a bigger chunk of profits.\n•    Come explore the joy of owning a share in NFT project and become a founding member!",
+      "author": { "name": "Sports NFTs", "link": "https://thesportsnft.io/" },
       "address": "",
       "maxMintPerTx": 5,
       "maxMintPerAddress": 5,
@@ -3733,8 +3733,7 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false,
-      "embed": "<div style='position: relative; padding-top:56.25%;'><iframe src='https://iframe.mediadelivery.net/embed/27293/2ba3cdf8-d3ff-4ae1-94b6-84de9e9a402e?autoplay=true&loop=true&muted=true'  loading='lazy' style='border: none; position: absolute; top: 0; height: 100%; width: 100%;' allow='accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;' allowFullScreen='true'  title='SportsNFt'> </iframe> </div>"
+      "complete": false
     },
     {
       "id": 38,
