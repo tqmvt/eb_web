@@ -15,6 +15,10 @@ const TableHeaderContainer = styled.div`
       width: 12%;
     }
   }
+
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    display: none;
+  }
 `;
 export default function TableHeader() {
   return (

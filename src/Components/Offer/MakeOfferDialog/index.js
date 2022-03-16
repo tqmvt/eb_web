@@ -213,7 +213,7 @@ export default function MakeOfferDialog({ isOpen, toggle, nftData, address, coll
               </OfferPriceInput>
             </FlexRow>
             <div>
-              <Button onClick={handleMakeOffer}>Make Offer</Button>
+              <Button onClick={handleMakeOffer}>{type} Offer</Button>
             </div>
           </NftDetailContainer>
         </DialogMainContent>

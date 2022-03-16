@@ -102,6 +102,7 @@ const ListingCard = ({ listing, imgClass = 'marketplace', watermark, address, co
         nftData={listing}
         address={address}
         collectionMetadata={collectionMetadata}
+        type="Update"
       />
     </>
   );
