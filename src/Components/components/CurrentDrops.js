@@ -68,7 +68,7 @@ const CurrentDrops = ({ showAll = false }) => {
                   collectionId={item.drop.slug}
                   url={item.drop.redirect ?? `/drops/${item.drop.slug}`}
                   externalPage={!!item.drop.redirect}
-                  verified={true}
+                  verified={item.collection.metadata.verified}
                 />
               </div>
             ))}
@@ -88,7 +88,7 @@ const CurrentDrops = ({ showAll = false }) => {
                   collectionId={item.drop.slug}
                   url={item.drop.redirect ?? `/drops/${item.drop.slug}`}
                   externalPage={!!item.drop.redirect}
-                  verified={true}
+                  verified={item.collection.metadata.verified}
                 />
               ))}
           </Slider>
