@@ -2702,6 +2702,25 @@
         "discord": "https://discord.gg/9GetF5Nc5x",
         "medium": "https://t.me/bigbadwolves_nft"
       }
+    },
+    {
+      "name": "CroFlips",
+      "slug": "cro-flips",
+      "multiToken": false,
+      "address": "0x24116CF1B25C3A284d39F5E357865E238143084C",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/croflips/avatar.webp",
+        "card": "/img/collections/croflips/card.webp",
+        "banner": "/img/collections/croflips/banner.webp",
+        "maxSupply": 444,
+        "website": "https://croflips.com",
+        "twitter": "https://twitter.com/croflips",
+        "discord": "https://discord.gg/ZfbXqqFffk"
+      }
     }
   ],
   "drops": [
