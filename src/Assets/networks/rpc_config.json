@@ -2646,12 +2646,12 @@
       }
     },
     {
-      "name": "CronoGoddessess",
-      "slug": "crono-godessess",
+      "name": "CronoGoddesses",
+      "slug": "crono-goddesses",
       "multiToken": false,
       "address": "0x972A2DDd1E364105cDe1f6E70f8078974A3D7A9b",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "",
         "verified": true,
@@ -3759,7 +3759,7 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false,
+      "complete": true,
       "featured": false,
       "redirect": "https://lootpad.io/collection/cronogoddesses"
     },
