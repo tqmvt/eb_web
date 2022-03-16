@@ -242,8 +242,8 @@
         "banner": "/img/collections/alienft/banner.png",
         "website": "https://www.aliennft.ca/",
         "twitter": "https://twitter.com/AlienftCronos",
-        "discord": "https://discord.gg/aliennft",
-        "medium": "https://medium.com/@aliennft",
+        "discord": "https://discord.gg/dQ4ANz4yu2",
+        "medium": "https://medium.com/@CronosALIENFT",
         "staking": "crodex"
       }
     },
@@ -2665,7 +2665,7 @@
     },
     {
       "name": "CronosFighters",
-      "slug": "crono-fighters",
+      "slug": "cronos-fighters",
       "multiToken": false,
       "address": "0x0e8f883124c1c234d64Ec566adC5966f1832d207",
       "onChain": false,
@@ -3802,7 +3802,7 @@
     },
     {
       "id": 39,
-      "slug": "crono-fighters",
+      "slug": "cronos-fighters",
       "imgNft": "/img/drops/fighters/drop.png",
       "imgPreview": "/img/drops/fighters/drop.png",
       "imgAvatar": "/img/collections/fighters/avatar.png",
@@ -3819,7 +3819,7 @@
       "memberCost": "215",
       "whitelistCost": "185",
       "foundersOnly": false,
-      "start": 1647795651000,
+      "start": 1647799200000,
       "end": null,
       "referral": false,
       "is1155": false,
