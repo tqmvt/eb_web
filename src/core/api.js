@@ -2,14 +2,14 @@ import { BigNumber, Contract, ethers } from 'ethers';
 import * as Sentry from '@sentry/react';
 import config from '../Assets/networks/rpc_config.json';
 // import Market from '../Contracts/Marketplace.json';
-import { ERC1155, ERC721, MetaPixelsAbi } from '../Contracts/Abis';
+import {ERC1155, ERC721, MetaPixelsAbi, SouthSideAntsReadAbi} from '../Contracts/Abis';
 import IPFSGatewayTools from '@pinata/ipfs-gateway-tools/dist/browser';
 import { dataURItoBlob } from '../Store/utils';
 import moment from 'moment';
 import { SortOption } from '../Components/Models/sort-option.model';
 
 import { FilterOption } from '../Components/Models/filter-option.model';
-import {isMetapixelsCollection} from "../utils";
+import {isMetapixelsCollection, isSouthSideAntsCollection} from "../utils";
 
 const gatewayTools = new IPFSGatewayTools();
 const gateway = 'https://mygateway.mypinata.cloud';
@@ -262,6 +262,14 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
     });
   };
 
+  const getERC1155Listings = (address, id) => {
+    return listings.filter((listing) => {
+      const sameId = ethers.BigNumber.from(listing['nftId']).eq(id);
+      const sameAddress = listing['nftAddress'].toLowerCase() === address.toLowerCase();
+      return sameId && sameAddress && listing.state === 0;
+    });
+  };
+
   let response = {
     nfts: [],
     isMember: false,
@@ -275,6 +283,7 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
           const address = knownContract.address;
           const listable = knownContract.listable;
           const isMetaPixels = isMetapixelsCollection(address);
+          const isSouthSideAnts = isSouthSideAntsCollection(address);
 
           if (knownContract.multiToken) {
             let canTransfer = true;
@@ -282,6 +291,7 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
             const listed = !!getListing(address, knownContract.id);
             const listingId = listed ? getListing(address, knownContract.id).listingId : null;
             const price = listed ? getListing(address, knownContract.id).price : null;
+            let erc1155Listings = getERC1155Listings(address, knownContract.id);
 
             const contract = new Contract(knownContract.address, ERC1155, signer);
             contract.connect(signer);
@@ -329,6 +339,50 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
             };
 
             onNftLoaded([nft]);
+            /*
+            for (const item of erc1155Listings) {
+              let nft = {
+                name: name,
+                id: knownContract.id,
+                image: image,
+                description: description,
+                properties: properties,
+                contract: contract,
+                address: knownContract.address,
+                multiToken: true,
+                listable,
+                listed: true,
+                listingId: item.listingId,
+                price: item.price,
+                canSell: canSell,
+                canTransfer: canTransfer
+              };
+              onNftLoaded([nft]);
+            }
+            for (let i = 0; i < count - erc1155Listings.length; i++) {
+              if (erc1155Listings.length == 1) {
+                canSell = false;
+              }
+              if (erc1155Listings == 0 && i != 0) {
+                canSell = false;
+              }
+              console.log(canSell);
+              let nft = {
+                name: name,
+                id: knownContract.id,
+                image: image,
+                description: description,
+                properties: properties,
+                contract: contract,
+                address: knownContract.address,
+                multiToken: true,
+                listable,
+                canSell: canSell,
+                canTransfer: canTransfer
+              };
+              onNftLoaded([nft]);
+            } */
+
           } else {
             const contract = (() => {
               if (isMetaPixels) {
@@ -341,6 +395,9 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
               if (isMetaPixels) {
                 return new Contract(address, MetaPixelsAbi, readProvider);
               }
+              if (isSouthSideAnts) {
+                return new Contract(address, SouthSideAntsReadAbi, readProvider);
+              }
               return new Contract(address, ERC721, readProvider);
             })();
 
@@ -350,7 +407,11 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
             let ids = [];
             if (count > 0) {
               try {
-                await readContract.tokenOfOwnerByIndex(walletAddress, 0);
+                if (isSouthSideAnts) {
+                  ids = await readContract.getNftByUser(walletAddress);
+                } else {
+                  await readContract.tokenOfOwnerByIndex(walletAddress, 0);
+                }
               } catch (error) {
                 ids = await readContract.walletOfOwner(walletAddress);
               }
@@ -384,7 +445,6 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
                   // fix for CroSkull's Red Skull Potions
                   return `https://gateway.pinata.cloud/ipfs/QmQd9sFZv9aTenGD4q4LWDQWnkM4CwBtJSL82KLveJUNTT/${id}`;
                 }
-
                 if (isMetaPixels) {
                   return await readContract.lands(id);
                 }
