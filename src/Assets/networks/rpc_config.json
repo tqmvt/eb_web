@@ -2781,6 +2781,24 @@
         "twitter": "https://twitter.com/CroPetNFT",
         "discord": "https://discord.gg/Wuk8JSMvuZ"
       }
+    },
+    {
+      "name": "ScareCROs NFT",
+      "slug": "scarecros-nft",
+      "multiToken": false,
+      "address": "0x5f399c9029f397e3f6b2e3be89478884fd201e57",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": false,
+        "avatar": "/img/collections/scarecrosnft/avatar.png",
+        "card": "/img/collections/scarecrosnft/card.png",
+        "banner": "/img/collections/scarecrosnft/banner.png",
+        "maxSupply": 999,
+        "twitter": "https://twitter.com/ScareCROsNFT",
+        "discord": "https://discord.gg/ba3YF7Bq7g"
+      }
     }
   ],
   "drops": [
