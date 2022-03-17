@@ -2762,6 +2762,25 @@
         "discord": "https://discord.gg/3gA2jnEGPA",
         "telegram": "https://t.me/metaversepixels"
       }
+    },
+    {
+      "name": "CroPet NFT",
+      "slug": "cropet-nft",
+      "multiToken": false,
+      "address": "0x8513af602e45bC60D94f0033edc6E983be4B4b3f",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": false,
+        "avatar": "/img/collections/cropet/avatar.png",
+        "card": "/img/collections/cropet/card.png",
+        "banner": "/img/collections/cropet/banner.jpg",
+        "maxSupply": 1500,
+        "website": "https://www.cropetnft.com",
+        "twitter": "https://twitter.com/CroPetNFT",
+        "discord": "https://discord.gg/Wuk8JSMvuZ"
+      }
     }
   ],
   "drops": [
