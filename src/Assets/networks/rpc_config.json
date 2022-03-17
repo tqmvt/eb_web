@@ -2532,7 +2532,7 @@
       "multiToken": false,
       "address": "0xF4C80B77AA1F73E09348693a81d744Fcd1263A2D",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "",
         "verified": true,
