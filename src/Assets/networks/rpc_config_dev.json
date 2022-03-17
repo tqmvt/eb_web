@@ -1852,7 +1852,7 @@
       "listable": true,
       "metadata": {
         "description": "",
-        "verified": true,
+        "verified": false,
         "avatar": "/img/collections/metapixels/avatar.png",
         "card": "/img/collections/metapixels/card.jpg",
         "banner": "/img/collections/metapixels/banner.webp",
@@ -2730,9 +2730,8 @@
       "onChain": false,
       "listable": false,
       "metadata": {
-        "slug": "3d-slothty",
         "description": "",
-        "verified": true,
+        "verified": false,
         "avatar": "/img/collections/slothty/avatar.png",
         "card": "/img/collections/slothty/card.webp",
         "banner": "/img/collections/slothty/banner.webp",
