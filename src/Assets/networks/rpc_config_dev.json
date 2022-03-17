@@ -3871,6 +3871,32 @@
       "is1155": false,
       "published": true,
       "complete": false
+    },
+    {
+      "id": 41,
+      "slug": "pixel-city",
+      "imgNft": "",
+      "imgPreview": "",
+      "imgAvatar": "/img/collections/pixelcity/avatar.webp",
+      "title": "Pixel City",
+      "subtitle": "",
+      "description": "",
+      "author": { "name": "Pixel City", "link": "https://pixelcity.art/" },
+      "address": "",
+      "maxMintPerTx": 0,
+      "maxMintPerAddress": 0,
+      "totalSupply": 0,
+      "cost": "",
+      "whitelistCost": "",
+      "foundersOnly": false,
+      "start": 1645240287000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false,
+      "featured": false,
+      "redirect": "https://pixelcity.art/"
     }
   ],
   "auctions": [
