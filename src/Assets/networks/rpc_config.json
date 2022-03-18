@@ -731,6 +731,7 @@
       "name": "Genesis Rock",
       "slug": "genesis-rock",
       "multiToken": true,
+      "split": true,
       "id": 1,
       "address": "0x68ec010Cf044CbAe1aCc213D043d394E620c641D",
       "onChain": false,
