@@ -231,11 +231,10 @@ export async function getCollectionPowertraits(contractAddress) {
 }
 
 export async function getNftsForAddress(walletAddress, walletProvider, onNftLoaded) {
+  walletProvider = readProvider;
   if (!walletAddress || !walletProvider) {
     return;
   }
-
-  const signer = walletProvider.getSigner();
 
   let listings = [];
   let chunkParams = {complete: false, pageSize: 100, curPage: 1}
@@ -293,8 +292,7 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
             const price = listed ? getListing(address, knownContract.id).price : null;
             let erc1155Listings = getERC1155Listings(address, knownContract.id);
 
-            const contract = new Contract(knownContract.address, ERC1155, signer);
-            contract.connect(signer);
+            const contract = new Contract(knownContract.address, ERC1155, readProvider);
             let count = await contract.balanceOf(walletAddress, knownContract.id);
             count = count.toNumber();
             if (knownContract.address === config.membership_contract && count > 0) {
@@ -386,9 +384,9 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
           } else {
             const contract = (() => {
               if (isMetaPixels) {
-                return new Contract(address, MetaPixelsAbi, signer);
+                return new Contract(address, MetaPixelsAbi, readProvider);
               }
-              return new Contract(address, ERC721, signer);
+              return new Contract(address, ERC721, readProvider);
             })();
 
             const readContract = (() => {
@@ -400,8 +398,6 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
               }
               return new Contract(address, ERC721, readProvider);
             })();
-
-            contract.connect(signer);
 
             const count = await contract.balanceOf(walletAddress);
             let ids = [];
@@ -612,8 +608,6 @@ export async function getUnfilteredListingsForAddress(walletAddress, walletProvi
   };
 
   try {
-    const signer = walletProvider.getSigner();
-
     const queryString = new URLSearchParams(query);
     const url = new URL(api.unfilteredListings, `${api.baseUrl}`);
     const response = await fetch(`${url}?${queryString}`);
@@ -634,12 +628,12 @@ export async function getUnfilteredListingsForAddress(walletAddress, walletProvi
 
             const contract = (() => {
               if (knownContract.multiToken) {
-                return new Contract(knownContract.address, ERC1155, signer);
+                return new Contract(knownContract.address, ERC1155, readProvider);
               }
               if (isMetaPixels) {
-                return new Contract(knownContract.address, MetaPixelsAbi, signer);
+                return new Contract(knownContract.address, MetaPixelsAbi, readProvider);
               }
-              return new Contract(knownContract.address, ERC721, signer);
+              return new Contract(knownContract.address, ERC721, readProvider);
             })();
 
             const count = await (async () => {
@@ -738,15 +732,13 @@ export async function getUnfilteredListingsForAddress(walletAddress, walletProvi
           ).toLowerCase() === address.toLowerCase();
         const contract = (() => {
           if (is1155) {
-            return new Contract(address, ERC1155, signer);
+            return new Contract(address, ERC1155, readProvider);
           }
           if (isMetaPixels) {
-            return new Contract(address, MetaPixelsAbi, signer);
+            return new Contract(address, MetaPixelsAbi, readProvider);
           }
-          return new Contract(address, ERC721, signer);
+          return new Contract(address, ERC721, readProvider);
         })();
-
-        contract.connect(signer);
 
         return {
           contract,
