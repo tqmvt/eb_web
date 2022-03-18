@@ -621,6 +621,8 @@ export async function getUnfilteredListingsForAddress(walletAddress, walletProvi
   const signer = walletProvider.getSigner();
 
   try {
+    const signer = walletProvider.getSigner();
+
     const queryString = new URLSearchParams(query);
     const url = new URL(api.unfilteredListings, `${api.baseUrl}`);
     const response = await fetch(`${url}?${queryString}`);
@@ -641,12 +643,12 @@ export async function getUnfilteredListingsForAddress(walletAddress, walletProvi
 
             const contract = (() => {
               if (knownContract.multiToken) {
-                return new Contract(knownContract.address, ERC1155, readProvider);
+                return new Contract(knownContract.address, ERC1155, signer);
               }
               if (isMetaPixels) {
-                return new Contract(knownContract.address, MetaPixelsAbi, readProvider);
+                return new Contract(knownContract.address, MetaPixelsAbi, signer);
               }
-              return new Contract(knownContract.address, ERC721, readProvider);
+              return new Contract(knownContract.address, ERC721, signer);
             })();
 
             const count = await (async () => {
@@ -745,12 +747,12 @@ export async function getUnfilteredListingsForAddress(walletAddress, walletProvi
           ).toLowerCase() === address.toLowerCase();
         const readContract = (() => {
           if (is1155) {
-            return new Contract(address, ERC1155, readProvider);
+            return new Contract(address, ERC1155, signer);
           }
           if (isMetaPixels) {
-            return new Contract(address, MetaPixelsAbi, readProvider);
+            return new Contract(address, MetaPixelsAbi, signer);
           }
-          return new Contract(address, ERC721, readProvider);
+          return new Contract(address, ERC721, signer);
         })();
 
 
