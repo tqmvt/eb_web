@@ -116,7 +116,7 @@ const Nft721 = ({ address, id }) => {
                     <ProfilePreview
                       type="Rarity Rank"
                       title={nft.rank}
-                      avatar={collectionMetadata.rarity === 'rarity_sniper' ? '/img/rarity-sniper.png' : null}
+                      avatar={collectionMetadata.rarity === 'rarity_sniper' ? '/img/logos/rarity-sniper.png' : null}
                       hover={
                         collectionMetadata.rarity === 'rarity_sniper'
                           ? `Ranking provided by ${humanize(collectionMetadata.rarity)}`

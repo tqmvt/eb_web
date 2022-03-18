@@ -9,8 +9,6 @@ import Footer from '../components/Footer';
 import UpcomingDrops from '../Drops/UpcomingDrops';
 import PastDrops from '../Drops/PastDrops';
 
-import FoundingMemberImg from '../../Assets/founding_member.png';
-
 const Drops = () => (
   <div>
     <section style={{ paddingTop: '90px', paddingBottom: '8px', background: 'transparent' }}>
@@ -23,7 +21,7 @@ const Drops = () => (
         </p>
         <div style={{ width: '70px' }} className="my-auto">
           <Link to="/collection/founding-member">
-            <img src={FoundingMemberImg} className="img-responsive" alt="Founding Member Membership" />
+            <img src="/img/founding_member_sm.png" className="img-responsive" alt="Founding Member Membership" />
           </Link>
         </div>
       </div>
