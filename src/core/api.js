@@ -296,6 +296,7 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
             const readContract = new Contract(knownContract.address, ERC1155, readProvider);
             const writeContract = new Contract(knownContract.address, ERC1155, signer);
 
+            readContract.connect(readProvider);
             writeContract.connect(signer);
 
             let count = await readContract.balanceOf(walletAddress, knownContract.id);
@@ -407,6 +408,7 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
               return new Contract(address, ERC721, readProvider);
             })();
 
+            readContract.connect(readProvider);
             writeContract.connect(signer);
 
             const count = await readContract.balanceOf(walletAddress);
@@ -435,7 +437,6 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
               } else {
                 id = ids[i];
               }
-
               const listed = !!getListing(address, id);
               const listingId = listed ? getListing(address, id).listingId : null;
               const price = listed ? getListing(address, id).price : null;
@@ -763,6 +764,7 @@ export async function getUnfilteredListingsForAddress(walletAddress, walletProvi
           return new Contract(address, ERC721, signer);
         })();
 
+        readContract.connect(readProvider);
         writeContract.connect(signer);
 
         return {
