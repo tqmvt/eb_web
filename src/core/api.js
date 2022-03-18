@@ -231,10 +231,11 @@ export async function getCollectionPowertraits(contractAddress) {
 }
 
 export async function getNftsForAddress(walletAddress, walletProvider, onNftLoaded) {
-  walletProvider = readProvider;
   if (!walletAddress || !walletProvider) {
     return;
   }
+
+  const signer = walletProvider.getSigner();
 
   let listings = [];
   let chunkParams = {complete: false, pageSize: 100, curPage: 1}
@@ -292,8 +293,12 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
             const price = listed ? getListing(address, knownContract.id).price : null;
             let erc1155Listings = getERC1155Listings(address, knownContract.id);
 
-            const contract = new Contract(knownContract.address, ERC1155, readProvider);
-            let count = await contract.balanceOf(walletAddress, knownContract.id);
+            const readContract = new Contract(knownContract.address, ERC1155, readProvider);
+            const writeContract = new Contract(knownContract.address, ERC1155, signer);
+
+            writeContract.connect(signer);
+
+            let count = await readContract.balanceOf(walletAddress, knownContract.id);
             count = count.toNumber();
             if (knownContract.address === config.membership_contract && count > 0) {
               response.isMember = true;
@@ -302,7 +307,7 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
               return;
             }
 
-            let uri = await contract.uri(knownContract.id);
+            let uri = await readContract.uri(knownContract.id);
 
             if (gatewayTools.containsCID(uri)) {
               try {
@@ -325,7 +330,7 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
               count: count,
               description: description,
               properties: properties,
-              contract: contract,
+              contract: writeContract,
               address: knownContract.address,
               multiToken: true,
               listable,
@@ -382,11 +387,14 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
             } */
 
           } else {
-            const contract = (() => {
+            const writeContract = (() => {
               if (isMetaPixels) {
-                return new Contract(address, MetaPixelsAbi, readProvider);
+                return new Contract(address, MetaPixelsAbi, signer);
               }
-              return new Contract(address, ERC721, readProvider);
+              if (isSouthSideAnts) {
+                return new Contract(address, SouthSideAntsReadAbi, signer);
+              }
+              return new Contract(address, ERC721, signer);
             })();
 
             const readContract = (() => {
@@ -399,7 +407,9 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
               return new Contract(address, ERC721, readProvider);
             })();
 
-            const count = await contract.balanceOf(walletAddress);
+            writeContract.connect(signer);
+
+            const count = await readContract.balanceOf(walletAddress);
             let ids = [];
             if (count > 0) {
               try {
@@ -462,7 +472,7 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
                   image,
                   description,
                   properties,
-                  contract,
+                  contract: writeContract,
                   address,
                   multiToken: false,
                   listable: true,
@@ -490,7 +500,7 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
                   image: URL.createObjectURL(image),
                   description: desc,
                   properties: properties,
-                  contract: contract,
+                  contract: writeContract,
                   address: knownContract.address,
                   multiToken: false,
                   listable,
@@ -525,7 +535,7 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
                     name: knownContract.name + ' ' + id,
                     description: 'Unrevealed!',
                     image: '',
-                    contract: contract,
+                    contract: writeContract,
                     address: knownContract.address,
                     multiToken: false,
                     properties: [],
@@ -559,7 +569,7 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
                 }
                 let isStaked;
                 if (address == "0x0b289dEa4DCb07b8932436C2BA78bA09Fbd34C44") { 
-                  if (await contract.stakedApes(id)) {
+                  if (await readContract.stakedApes(id)) {
                     canTransfer = false;
                     canSell = false;
                     isStaked = true;
@@ -571,7 +581,7 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
                   image: image,
                   description: json.description,
                   properties: json.properties ? json.properties : json.attributes,
-                  contract: contract,
+                  contract: writeContract,
                   address: knownContract.address,
                   multiToken: false,
                   listable,
@@ -606,6 +616,8 @@ export async function getUnfilteredListingsForAddress(walletAddress, walletProvi
     sortBy: 'listingTime',
     direction: 'asc',
   };
+
+  const signer = walletProvider.getSigner();
 
   try {
     const queryString = new URLSearchParams(query);
@@ -730,7 +742,7 @@ export async function getUnfilteredListingsForAddress(walletAddress, walletProvi
           (
             (knownContracts.find((knownContract) => knownContract.name === 'MetaPixels') ?? {}).address ?? ''
           ).toLowerCase() === address.toLowerCase();
-        const contract = (() => {
+        const readContract = (() => {
           if (is1155) {
             return new Contract(address, ERC1155, readProvider);
           }
@@ -740,8 +752,21 @@ export async function getUnfilteredListingsForAddress(walletAddress, walletProvi
           return new Contract(address, ERC721, readProvider);
         })();
 
+
+        const writeContract = (() => {
+          if (is1155) {
+            return new Contract(address, ERC1155, signer);
+          }
+          if (isMetaPixels) {
+            return new Contract(address, MetaPixelsAbi, signer);
+          }
+          return new Contract(address, ERC721, signer);
+        })();
+
+        writeContract.connect(signer);
+
         return {
-          contract,
+          contract: writeContract,
           address,
           id,
           image,
