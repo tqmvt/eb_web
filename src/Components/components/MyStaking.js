@@ -9,6 +9,8 @@ import {RewardsPoolAbi} from "../../Contracts/Abis";
 import config from "../../Assets/networks/rpc_config.json";
 import {commify} from "ethers/lib.esm/utils";
 import Countdown from "react-countdown";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faBolt} from "@fortawesome/free-solid-svg-icons";
 
 const txExtras = {
   gasPrice: ethers.utils.parseUnits('5000', 'gwei'),
@@ -57,7 +59,7 @@ const MyStaking = () => {
   const stake = async () => {
     if (!user.stakeContract || amount === 0) return;
     if (amount > vipCount) {
-      toast.error("Exceed amount");
+      toast.error("You do not have enough available VIPs");
       return;
     }
     try {
@@ -78,7 +80,7 @@ const MyStaking = () => {
   const unStake = async () => {
     if (!user.stakeContract || amount <=0) return;
     if (amount > stakeCount) {
-      alert("Exceed amount");
+      toast.error('You do not have enough available VIPs');
       return;
     }
     try {
@@ -132,10 +134,10 @@ const MyStaking = () => {
     <>
       <section className="container no-top">
         <div className="row mt-md-5 pt-md-4">
-          <div className="col-md-6 text-center">
+          <div className="col-md-4 text-center">
             <img src="/img/drops/vip/drop.webp" className="img-fluid img-rounded mb-sm-30" alt="VIP Founding Member Staking"/>
           </div>
-          <div className="col-md-6">
+          <div className="col-md-8">
             <div className="item_info">
               <h2>VIP Founding Member Staking</h2>
               <div className="item_info">
@@ -161,8 +163,10 @@ const MyStaking = () => {
                                 <h5>Stake</h5>
 
                                 {currentPoolId && (
-                                    <p>Staking additional VIPs will begin accumulating rewards during the next rewards pool {currentPoolId ? `(next pool ID: ${parseInt(currentPoolId) + 1})` : ''}.</p>
+                                    <p>Stake additional VIPs to accumulate rewards during the next epoch {currentPoolId ? `(${parseInt(currentPoolId) + 1})` : ''}.</p>
                                 )}
+                                <p><strong>VIPs staked for the next epoch</strong>: {stakeCount}</p>
+
                                 <div className="row row-cols-1 g-3">
                                   <div>
                                     <Form.Label>Quantity</Form.Label>
@@ -377,6 +381,12 @@ const RewardsCard = ({}) => {
     getCompletedPoolInfo();
   }, [])
 
+  const EpochCountdown = ({timestamp}) => {
+    return (
+        <Countdown date={timestamp} />
+    )
+  };
+
   return (
       <div className="row row-cols-1 row-cols-xl-2 gx-2 gy-3 gy-xl-0">
             <>
@@ -384,6 +394,12 @@ const RewardsCard = ({}) => {
                 <div className="card eb-nft__card h-100 shadow px-4">
                   <div className="card-body d-flex flex-column">
                     <h5>Rewards</h5>
+
+                    <div className="item_info_counts">
+                      <div>
+                        <FontAwesomeIcon icon={faBolt} /> VIPs Rewarded: {cmpUserShares}
+                      </div>
+                    </div>
                     {cmpIsLoading ? (
                       <Spinner animation="border" role="status" size="sm" className="ms-1">
                         <span className="visually-hidden">Loading...</span>
@@ -394,15 +410,16 @@ const RewardsCard = ({}) => {
                             <span>Not Started</span>
                         ) : (
                             <>
-                              <p><strong>VIPs Staked</strong>: {cmpUserShares}</p>
                               {isAwaitingRollover ? (
-                                  <span>Calculating rewards...</span>
+                                  <p className="text-center my-auto">Calculating rewards. Please wait...</p>
                               ) : (
                                   <>
-                                    {!cmpHasHarvested && (
-                                        <p><strong>Harvestable Rewards</strong>: {commify(round(cmpUserRewards, 3))} CRO</p>
+                                    {cupId > 1 ? (
+                                        <p className="text-center my-xl-auto">You have <strong>{cmpHasHarvested ? 0 : commify(round(cmpUserRewards, 3))} CRO</strong> available for harvest from epoch {cupId - 1}.</p>
+                                    ) : (
+                                        <p className="text-center my-auto">Rewards will be harvestable once the first epoch is completed.</p>
                                     )}
-                                    <button className="btn-main lead mx-1 mb-2" onClick={harvest} disabled={cmpHasHarvested || !(cmpUserShares > 0)} style={{width:'auto'}}>
+                                    <button className="btn-main lead mx-1 mb-1 mt-auto" onClick={harvest} disabled={cmpHasHarvested || !(cmpUserShares > 0)} style={{width:'auto'}}>
                                       {isHarvesting ? (
                                           <>
                                             Harvesting...
@@ -413,7 +430,7 @@ const RewardsCard = ({}) => {
                                       ) : (
                                           <>
                                             {cmpHasHarvested ? (
-                                                <>Harvest in <Countdown date={cupPeriodEnd} /></>
+                                                <>Harvest in <EpochCountdown timestamp={cupPeriodEnd} /></>
                                             ) : (
                                                 <>Harvest</>
                                             )}
@@ -433,8 +450,12 @@ const RewardsCard = ({}) => {
               <div className="col">
                 <div className="card eb-nft__card h-100 shadow px-4">
                   <div className="card-body d-flex flex-column">
-                    <h5>Current Pool ({cupId})</h5>
-
+                    <h5>Current Pool</h5>
+                    <div className="item_info_counts">
+                      <div>
+                        <FontAwesomeIcon icon={faBolt} /> VIPs Eligible: {cupUserShares}
+                      </div>
+                    </div>
                     {cupIsLoading ? (
                       <Spinner animation="border" role="status" size="sm" className="ms-1">
                         <span className="visually-hidden">Loading...</span>
@@ -442,13 +463,15 @@ const RewardsCard = ({}) => {
                     ):(
                         <>
                           {isAwaitingRollover ? (
-                              <p>Pool complete. Awaiting next pool.</p>
+                              <p className="text-center my-auto">Epoch {cupId} has ended. The next epoch will start soon.</p>
                           ) : (
                               <>
-                                <p><strong>VIPs Staked</strong>: {cupUserShares}</p>
+                                <p><strong>Current Epoch</strong>: {cupId}</p>
                                 <p><strong>Pool Balance</strong>: {round(cupPoolRewards, 3)} CRO</p>
                                 <p><strong>My Balance</strong>: {round(cupUserRewards, 3)} CRO</p>
-                                <p><strong>Ends in</strong>: <Countdown date={cupPeriodEnd} /></p>
+                                <div className="eb-de_countdown text-center">
+                                  Ends In: <EpochCountdown timestamp={cupPeriodEnd} />
+                                </div>
                               </>
                           )}
                         </>
