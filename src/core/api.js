@@ -392,9 +392,6 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
               if (isMetaPixels) {
                 return new Contract(address, MetaPixelsAbi, signer);
               }
-              if (isSouthSideAnts) {
-                return new Contract(address, SouthSideAntsReadAbi, signer);
-              }
               return new Contract(address, ERC721, signer);
             })();
 
