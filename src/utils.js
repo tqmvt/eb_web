@@ -293,6 +293,10 @@ export const isCrosmocraftsPartsDrop = (address) => {
   return isDrop(address, 'crosmocrafts-parts');
 };
 
+export const isCmbDrop = (address) => {
+  return isDrop(address, 'cronos-gorilla-business');
+};
+
 export const isDrop = (address, slug) => {
   const drop = drops.find((d) => d.slug === slug);
   return drop && caseInsensitiveCompare(drop.address, address);
@@ -309,6 +313,10 @@ export const isCroCrowCollection = (address) => {
 
 export const isMetapixelsCollection = (address) => {
   return isCollection(address, 'metapixels');
+};
+
+export const isSouthSideAntsCollection = (address) => {
+  return isCollection(address, 'south-side-ants');
 };
 
 export const isCrosmocraftsPartsCollection = (address) => {

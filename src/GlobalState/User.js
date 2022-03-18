@@ -11,7 +11,6 @@ import Web3Modal from 'web3modal';
 import detectEthereumProvider from '@metamask/detect-provider';
 import { DeFiWeb3Connector } from 'deficonnect';
 import WalletConnectProvider from '@deficonnect/web3-provider';
-import cdcLogo from '../Assets/cdc_logo.svg';
 import {getNftRankings, getNftSalesForAddress, getNftsForAddress, getUnfilteredListingsForAddress} from '../core/api';
 import { toast } from 'react-toastify';
 import {createSuccessfulTransactionToastContent, sliceIntoChunks} from '../utils';
@@ -335,7 +334,7 @@ export const connectAccount =
       },
       'custom-defiwallet': {
         display: {
-          logo: cdcLogo,
+          logo: '/img/logos/cdc_logo.svg',
           name: 'Crypto.com DeFi Wallet',
           description: 'Connect with the CDC DeFi Wallet',
         },

@@ -236,7 +236,7 @@ const Listing = () => {
                       <ProfilePreview
                         type="Rarity Rank"
                         title={listing.nft.rank}
-                        avatar={collection.metadata.rarity === 'rarity_sniper' ? '/img/rarity-sniper.png' : null}
+                        avatar={collection.metadata.rarity === 'rarity_sniper' ? '/img/logos/rarity-sniper.png' : null}
                         hover={
                           collection.metadata.rarity === 'rarity_sniper'
                             ? `Ranking provided by ${humanize(collection.metadata.rarity)}`

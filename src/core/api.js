@@ -2,14 +2,14 @@ import { BigNumber, Contract, ethers } from 'ethers';
 import * as Sentry from '@sentry/react';
 import config from '../Assets/networks/rpc_config.json';
 // import Market from '../Contracts/Marketplace.json';
-import { ERC1155, ERC721, MetaPixelsAbi } from '../Contracts/Abis';
+import {ERC1155, ERC721, MetaPixelsAbi, SouthSideAntsReadAbi} from '../Contracts/Abis';
 import IPFSGatewayTools from '@pinata/ipfs-gateway-tools/dist/browser';
 import { dataURItoBlob } from '../Store/utils';
 import moment from 'moment';
 import { SortOption } from '../Components/Models/sort-option.model';
 
 import { FilterOption } from '../Components/Models/filter-option.model';
-import {isMetapixelsCollection} from "../utils";
+import {isMetapixelsCollection, isSouthSideAntsCollection} from "../utils";
 
 const gatewayTools = new IPFSGatewayTools();
 const gateway = 'https://mygateway.mypinata.cloud';
@@ -283,6 +283,7 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
           const address = knownContract.address;
           const listable = knownContract.listable;
           const isMetaPixels = isMetapixelsCollection(address);
+          const isSouthSideAnts = isSouthSideAntsCollection(address);
 
           if (knownContract.multiToken) {
             let canTransfer = true;
@@ -394,6 +395,9 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
               if (isMetaPixels) {
                 return new Contract(address, MetaPixelsAbi, readProvider);
               }
+              if (isSouthSideAnts) {
+                return new Contract(address, SouthSideAntsReadAbi, readProvider);
+              }
               return new Contract(address, ERC721, readProvider);
             })();
 
@@ -403,7 +407,11 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
             let ids = [];
             if (count > 0) {
               try {
-                await readContract.tokenOfOwnerByIndex(walletAddress, 0);
+                if (isSouthSideAnts) {
+                  ids = await readContract.getNftByUser(walletAddress);
+                } else {
+                  await readContract.tokenOfOwnerByIndex(walletAddress, 0);
+                }
               } catch (error) {
                 ids = await readContract.walletOfOwner(walletAddress);
               }
