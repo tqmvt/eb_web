@@ -311,6 +311,10 @@ export const isCroCrowCollection = (address) => {
   return isCollection(address, 'cro-crow');
 };
 
+export const isCrognomidesCollection = (address) => {
+  return isCollection(address, 'crognomides');
+};
+
 export const isMetapixelsCollection = (address) => {
   return isCollection(address, 'metapixels');
 };
