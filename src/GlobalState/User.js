@@ -349,7 +349,7 @@ export const connectAccount =
         options: {
             chainId: 25,
             rpc: {
-                25: "https://evm-cronos.crypto.org",
+                25: "https://gateway.nebkas.ro",
             },
             network: 'cronos',
             metadata: {
