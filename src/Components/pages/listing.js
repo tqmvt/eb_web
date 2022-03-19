@@ -17,6 +17,7 @@ import Footer from '../components/Footer';
 import { getListingDetails, listingUpdated } from '../../GlobalState/listingSlice';
 import { connectAccount, chainConnect } from '../../GlobalState/User';
 import {
+  findCollectionByAddress,
   createSuccessfulTransactionToastContent,
   humanize,
   isCroCrowCollection, isCrosmocraftsPartsDrop,
@@ -42,7 +43,9 @@ const Listing = () => {
   const user = useSelector((state) => state.user);
 
   const collection = useSelector((state) => {
-    return knownContracts.find((c) => c.address.toLowerCase() === listing?.nftAddress.toLowerCase());
+    if (listing) {
+      return findCollectionByAddress(listing.nftAddress, listing.is1155 ? listing.nftId : null);
+    }
   });
 
   const [openCheckout, setOpenCheckout] = React.useState(false);
@@ -233,7 +236,7 @@ const Listing = () => {
                       <ProfilePreview
                         type="Rarity Rank"
                         title={listing.nft.rank}
-                        avatar={collection.metadata.rarity === 'rarity_sniper' ? '/img/rarity-sniper.png' : null}
+                        avatar={collection.metadata.rarity === 'rarity_sniper' ? '/img/logos/rarity-sniper.png' : null}
                         hover={
                           collection.metadata.rarity === 'rarity_sniper'
                             ? `Ranking provided by ${humanize(collection.metadata.rarity)}`

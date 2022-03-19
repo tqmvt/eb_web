@@ -11,7 +11,6 @@ import detectEthereumProvider from '@metamask/detect-provider';
 import { DeFiWeb3Connector } from 'deficonnect';
 import WalletConnectProvider from '@walletconnect/web3-provider';
 import * as DefiWalletConnectProvider from '@deficonnect/web3-provider';
-import cdcLogo from '../Assets/cdc_logo.svg';
 import {getNftRankings, getNftSalesForAddress, getNftsForAddress, getUnfilteredListingsForAddress} from '../core/api';
 import { toast } from 'react-toastify';
 import {createSuccessfulTransactionToastContent, sliceIntoChunks} from '../utils';
@@ -319,7 +318,7 @@ export const connectAccount =
       },
       'custom-defiwallet': {
         display: {
-          logo: cdcLogo,
+          logo: '/img/logos/cdc_logo.svg',
           name: 'Crypto.com DeFi Wallet',
           description: 'Connect with the CDC DeFi Wallet',
         },
@@ -605,7 +604,7 @@ export const chainConnect = (type) => async (dispatch) => {
   } else {
     const web3Provider = new WalletConnectProvider({
       rpc: {
-        25: 'https://evm-cronos.crypto.org',
+        25: 'https://evm.cronos.org',
       },
       chainId: 25,
     });
