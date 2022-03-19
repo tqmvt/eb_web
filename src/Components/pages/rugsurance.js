@@ -95,7 +95,7 @@ const Rugsurance = () => {
       <section className="container">
         <div className="row">
           <div className="col-lg-12 text-center">
-            <p>Refunds for the 3dSlothty drop will be available next week. In the meantime, you may check your address below to confirm your eligibility for a refund</p>
+            <p>Refunds for the 3DSlothty drop will be available next week. In the meantime, you may check your address below to confirm your eligibility for a refund.</p>
               <FormControl
                   onChange={handleChangeAddress}
                   placeholder="Enter Wallet Address"
