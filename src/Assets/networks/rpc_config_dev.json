@@ -2825,6 +2825,25 @@
         "website": "https://www.cultcreatures.xyz/",
         "discord": "https://discord.gg/creaturegang"
       }
+    },
+    {
+      "name": "Super Trooprz",
+      "slug": "super-trooprz",
+      "multiToken": false,
+      "address": "0xea4DF145322ec9dFCE037b062b08083141c6af8f",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "The world is under attack from a swarm of highly contagious alien miCRObes… the Trooprz have become infected and are struggling to protect the community… \n\n3333 ultra rare Super Trooprz have been sent to fight off the miCRObes and bring peace once more… will all 3333 survive…",
+        "verified": true,
+        "avatar": "/img/collections/trooprz/super/avatar.gif",
+        "card": "/img/collections/trooprz/super/card.png",
+        "banner": "/img/collections/trooprz/super/banner.png",
+        "maxSupply": 3333,
+        "twitter": "https://twitter.com/trooprzarmy",
+        "website": "https://trooprz.army/",
+        "discord": "https://discord.gg/trooprz"
+      }
     }
   ],
   "drops": [
@@ -3928,7 +3947,7 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false
+      "complete": true
     },
     {
       "id": 40,
@@ -4006,6 +4025,32 @@
       "complete": true,
       "featured": false,
       "redirect": "https://lootpad.io/collection/cronosbotsociety"
+    },
+    {
+      "id": 43,
+      "slug": "super-trooprz",
+      "imgNft": "/img/collections/trooprz/super/drop.png",
+      "imgPreview": "/img/collections/trooprz/super/drop.png",
+      "imgAvatar": "/img/collections/trooprz/super/avatar.gif",
+      "title": "Super Trooprz",
+      "subtitle": "",
+      "description": "",
+      "author": { "name": "Trooprz", "link": "https://trooprz.army/" },
+      "address": "",
+      "maxMintPerTx": 0,
+      "maxMintPerAddress": 0,
+      "totalSupply": 0,
+      "cost": "600",
+      "whitelistCost": "",
+      "foundersOnly": false,
+      "start": 1647907200000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false,
+      "featured": false,
+      "redirect": "https://trooprz.army/mint/"
     }
   ],
   "auctions": [
