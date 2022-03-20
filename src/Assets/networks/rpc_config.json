@@ -2802,6 +2802,24 @@
         "twitter": "https://twitter.com/ScareCROsNFT",
         "discord": "https://discord.gg/ba3YF7Bq7g"
       }
+    },
+    {
+      "name": "Creatures Pods",
+      "slug": "creatures-pods",
+      "multiToken": false,
+      "address": "0x30D54067cbF5034123C5128ac9Baad7AE92E5539",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/creatures/avatar.jpg",
+        "card": "/img/collections/creatures/card.png",
+        "banner": "/img/collections/creatures/banner.png",
+        "twitter": "https://twitter.com/creaturesxcl",
+        "website": "https://www.cultcreatures.xyz/",
+        "discord": "https://discord.gg/creaturegang"
+      }
     }
   ],
   "drops": [
