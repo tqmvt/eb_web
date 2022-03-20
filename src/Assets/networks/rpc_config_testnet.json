@@ -534,14 +534,18 @@
       "slug": "crono-fighters",
       "multiToken": false,
       "address": "0x17e95a737533d93cf4B7180f8f48070914b84706",
-      "avatar": "/img/collections/fighters/avatar.png",
-      "card": "/img/collections/fighters/card.png",
-      "banner": "/img/collections/fighters/banner.png",
-      "maxSupply": 1000,
-      "website": "http://fightersnft.io/",
-      "twitter": "https://twitter.com/FightersNFT",
-      "medium": "https://medium.com/@shahabs/nft-collectors-fighters-are-coming-593cb9865e20",
-      "discord": "http://discord.gg/Bb39m7BBBR"
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/fighters/avatar.png",
+        "card": "/img/collections/fighters/card.png",
+        "banner": "/img/collections/fighters/banner.png",
+        "maxSupply": 1000,
+        "website": "http://fightersnft.io/",
+        "twitter": "https://twitter.com/FightersNFT",
+        "medium": "https://medium.com/@shahabs/nft-collectors-fighters-are-coming-593cb9865e20",
+        "discord": "http://discord.gg/Bb39m7BBBR"
+      }
     },
     {
       "name": "Big Bad Wolves",
