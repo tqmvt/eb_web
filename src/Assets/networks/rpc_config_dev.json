@@ -2676,7 +2676,7 @@
       "multiToken": false,
       "address": "0x0e8f883124c1c234d64Ec566adC5966f1832d207",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "",
         "verified": true,
