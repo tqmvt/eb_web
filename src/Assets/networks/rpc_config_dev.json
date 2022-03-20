@@ -216,7 +216,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Explore this Land with your CRO Monkeys and get more $BANANA",
         "verified": true,
         "avatar": "/img/collections/cromonkeysland/avatar.gif",
         "card": "/img/collections/cromonkeys/card.png",
@@ -373,7 +373,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Collection of 2720 algorithmically generated punks on the Cronos Chain",
         "verified": false,
         "avatar": "/img/collections/wrappedcronospunk/avatar.jpg",
         "banner": "/img/collections/wrappedcronospunk/banner.webp",
@@ -496,7 +496,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Crypto Collage Doge series. Each cryptocurrency NFT project will be minted with only 10 editions of each in existence. This art is inspired by the ever growing popularity of the cryptocurrency. Art is combination of vintage inspiration from the past that is fused with current cryptocurrency projects and astronomical potential it possesses.",
         "verified": true,
         "avatar": "/img/collections/cryptocollage/avatar.png",
         "banner": "/img/collections/cryptocollage/banner.webp",
@@ -514,8 +514,11 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "A collection of 200 unique commemorative medals to honour the bravery and commitment of the first generation Governors in the Petite Planets Consortium.",
         "verified": true,
+        "avatar": "/img/collections/petiteplanets/gen1/avatar.png",
+        "banner": "/img/collections/petiteplanets/gen1/banner.webp",
+        "card": "/img/collections/petiteplanets/gen1/card.png",
         "maxSupply": 200,
         "website": "https://petiteplanets.com",
         "twitter": "https://twitter.com/PetitePlanets",
@@ -563,7 +566,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "CronosEyez Gen.2 is a Generative Art Collection of 999 NFTs living in the Cronos Blockchain, inspired by calligraphy, graffiti, crypto and other dimensions. Owners share a part of the CronosArt.org Art Vault",
+        "description": "CronosEyez is a Generative Art Collection of 333 NFTs living in the Cronos Blockchain, inspired by calligraphy, graffiti, crypto and other dimensions. Owners share a part of the Community Art Vault",
         "verified": true,
         "avatar": "/img/collections/cronoseyez/gen1/avatar.jpg",
         "banner": "/img/collections/cronoseyez/gen1/banner.jpg",
@@ -582,7 +585,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "CronosEyez Gen.2 is a Generative Art Collection of 999 NFTs living in the Cronos Blockchain, inspired by calligraphy, graffiti, crypto and other dimensions. Owners share a part of the CronosArt.org Art Vault",
         "verified": true,
         "avatar": "/img/collections/cronoseyez/gen2/avatar.png",
         "banner": "/img/collections/cronoseyez/gen2/banner.webp",
@@ -633,7 +636,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "He is viral, he is global, he is interstellar!",
         "verified": true,
         "avatar": "/img/collections/barbara/elon/avatar.jpg",
         "banner": "/img/collections/barbara/elon/banner.jpg",
@@ -652,7 +655,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "DodgerDogs are 1,111 unique characters by Barbara from 47 hand-drawn traits with different levels of rarity. No two DodgerDogs are exactly alike, and each one of them can be officially owned by a single person on the blockchain.",
         "verified": true,
         "avatar": "/img/collections/barbara/dodgerdogs/avatar.gif",
         "banner": "/img/collections/barbara/dodgerdogs/banner.png",
@@ -815,7 +818,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Celebrating the first Christmas on Cronos & CroMoon, together with SantaCro",
         "verified": true,
         "avatar": "/img/collections/santacro/avatar.png",
         "banner": "/img/collections/santacro/banner.webp",
@@ -1110,7 +1113,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Join the Elite!",
         "verified": true,
         "avatar": "/img/collections/foxfraternity/avatar.jpg",
         "card": "/img/collections/foxfraternity/card.jpg",
@@ -1303,7 +1306,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Stay Weird Stay Ape",
         "verified": true,
         "avatar": "/img/collections/weirdapesclub/avatar.png",
         "card": "/img/collections/weirdapesclub/card.png",
@@ -1323,7 +1326,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "IcySquidNFT is a collection of 1000 NFTs used in the game http://IcySquidGame.com by IcyCro",
         "verified": true,
         "avatar": "/img/collections/icysquidgame/avatar.png",
         "card": "/img/collections/icysquidgame/card.jpg",
@@ -1564,7 +1567,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "1000 unique little Crosmonaut companions to explore space with on the Cronos chain",
         "verified": true,
         "avatar": "/img/collections/crosmobabies/avatar.png",
         "banner": "/img/collections/crosmobabies/banner.webp",
@@ -1658,7 +1661,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Special Cronos Monkey Business is a collection of 75 unique NFT handmade, designed and created primarily for art.",
         "verified": true,
         "avatar": "/img/collections/cronosmb/special/avatar.png",
         "card": "/img/collections/cronosmb/special/card.png",
@@ -1757,6 +1760,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
+        "description": "CrowPunk, but where did he come from?",
         "verified": true,
         "avatar": "/img/collections/crowpunks/avatar.png",
         "banner": "/img/collections/crowpunks/banner.png",
@@ -1911,7 +1915,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "100 unique rocks on the cronos network",
         "verified": true,
         "avatar": "/img/collections/cronosrocks/avatar.png",
         "card": "/img/collections/cronosrocks/card.png",
@@ -1930,7 +1934,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Crayon Ape Art Club a collection for those who love APE Banana and ART Artist palette 2,750 Monkey with different asset different role and stories",
         "verified": true,
         "avatar": "/img/collections/crayonartapeclub/avatar.gif",
         "card": "/img/collections/crayonartapeclub/card.png",
@@ -1949,7 +1953,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "2100 Majestic Minotaurs roaming a labyrinth on the Cronos Blockchain!",
         "verified": true,
         "avatar": "/img/collections/majesticminotaurs/avatar.png",
         "card": "/img/collections/majesticminotaurs/card.png",
@@ -1992,7 +1996,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Creatures by Cult Leader is a generative PFP project that unlocks an immersive music & metaverse experience.",
         "verified": true,
         "avatar": "/img/collections/creatures/avatar.jpg",
         "card": "/img/collections/creatures/card.png",
@@ -2031,7 +2035,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "2000 secretive Crognomides living on the cronos blockchain ready to start a family with their hard working husbands, the Crognomes",
         "verified": true,
         "avatar": "/img/collections/crognomides/avatar.webp",
         "card": "/img/collections/crognomides/card.webp",
@@ -2069,7 +2073,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "3,333 SouthSide Ants from the Cronos Secret Society.",
         "verified": true,
         "avatar": "/img/collections/southsideants/avatar.webp",
         "card": "/img/collections/southsideants/card.webp",
@@ -2655,7 +2659,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Every God Needs A Goddess",
         "verified": true,
         "avatar": "/img/collections/cronogods/godess/avatar.gif",
         "card": "/img/collections/cronogods/godess/card.png",
@@ -2793,7 +2797,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "ScareCROs is a limited collection of 999 spooky NFTs with unique traits and utility. Let's protect our crop together!",
         "verified": false,
         "avatar": "/img/collections/scarecrosnft/avatar.png",
         "card": "/img/collections/scarecrosnft/card.png",
