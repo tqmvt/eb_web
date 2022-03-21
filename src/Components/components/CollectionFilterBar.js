@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { sortOptions } from './constants/sort-options';
 import { SortOption } from '../Models/sort-option.model';
 import { listingFilterOptions } from './constants/filter-options';
-import { sortListings, resetListings, searchListings } from '../../GlobalState/collectionSlice';
+import { sortListings, resetListings, searchListings, filterListingsByListed } from '../../GlobalState/collectionSlice';
 import { Form } from 'react-bootstrap';
 import styled from 'styled-components';
 
@@ -30,6 +30,20 @@ const CollectionFilterBar = ({ cacheName = null }) => {
   const onSortChange = useCallback(
     (sortOption) => {
       dispatch(sortListings(sortOption, cacheName));
+    },
+    [dispatch]
+  );
+
+  const handleCollectionFilter = useCallback(
+    (filterOption) => {
+      let option = '';
+      if (filterOption.key === 'listed') {
+        option = '1';
+      } else if (filterOption.key === 'unlisted') {
+        option = '0';
+      }
+
+      dispatch(filterListingsByListed(option));
     },
     [dispatch]
   );
@@ -115,10 +129,10 @@ const CollectionFilterBar = ({ cacheName = null }) => {
           <div className="dropdownSelect two w-100 mr-0 mb-0">
             <Select
               styles={customStyles}
-              placeholder={'Sort Listings...'}
+              placeholder={'Filter Listings...'}
               options={listingFilterOptions}
               defaultValue={listingFilterOptions[0]}
-              onChange={onSortChange}
+              onChange={handleCollectionFilter}
             />
           </div>
         </div>

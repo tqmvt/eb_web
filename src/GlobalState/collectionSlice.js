@@ -19,6 +19,7 @@ const collectionSlice = createSlice({
       search: null,
       traits: {},
       powertraits: {},
+      filterListed: '',
     },
     totalPages: 0,
     statsLoading: false,
@@ -90,6 +91,12 @@ const collectionSlice = createSlice({
       state.query.page = 0;
       state.query.search = action.payload;
     },
+    onListedFilter: (state, action) => {
+      state.listings = [];
+      state.totalPages = 0;
+      state.query.page = 0;
+      state.query.filterListed = action.payload;
+    },
     onTraitFilter: (state, action) => {
       const { address, traits, powertraits } = action.payload;
 
@@ -127,6 +134,7 @@ export const {
   onFilter,
   onSort,
   onSearch,
+  onListedFilter,
   onTraitFilter,
   clearSet,
   onCollectionStatsLoading,
@@ -160,7 +168,8 @@ export const fetchListings = () => async (dispatch, getState) => {
     state.collection.query.filter,
     state.collection.query.traits,
     state.collection.query.powertraits,
-    state.collection.query.search
+    state.collection.query.search,
+    state.collection.query.filterListed
   );
 
   if (!cancelled) {
@@ -181,6 +190,11 @@ export const sortListings = (sortOption, cacheName) => async (dispatch) => {
 
 export const searchListings = (value) => async (dispatch) => {
   dispatch(onSearch(value));
+  dispatch(fetchListings());
+};
+
+export const filterListingsByListed = (options) => async (dispatch) => {
+  dispatch(onListedFilter(options));
   dispatch(fetchListings());
 };
 

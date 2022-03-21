@@ -40,7 +40,7 @@ export default api;
 //  just for sortAndFetchListings function
 let abortController = null;
 
-export async function sortAndFetchListings(page, sort, filter, traits, powertraits, search) {
+export async function sortAndFetchListings(page, sort, filter, traits, powertraits, search, filterListed) {
   let pagesize = 12;
 
   let query = {
@@ -94,6 +94,7 @@ export async function sortAndFetchListings(page, sort, filter, traits, powertrai
   }
 
   if (search) query['search'] = search;
+  if (filterListed) query['listed'] = filterListed;
 
   const queryString = new URLSearchParams(query);
 

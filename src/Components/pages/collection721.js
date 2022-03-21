@@ -28,6 +28,7 @@ import config from '../../Assets/networks/rpc_config.json';
 import Market from '../../Contracts/Marketplace.json';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
+import CollectionInfoBar from '../components/CollectionInfoBar';
 
 const knownContracts = config.known_contracts;
 
@@ -195,55 +196,8 @@ const Collection721 = ({ address, cacheName = 'collection' }) => {
                 </div>
               </div>
             )}
-            <div className="d-item col-lg-8 col-sm-10 mb-4 mx-auto">
-              <div className="nft_attr">
-                <div className="row">
-                  <div className="col-md-2 col-xs-4">
-                    <h5>Floor</h5>
-                    {collectionStats.floorPrice ? (
-                      <h4>{siPrefixedNumber(Number(collectionStats.floorPrice).toFixed(0))} CRO</h4>
-                    ) : (
-                      <h4>-</h4>
-                    )}
-                  </div>
-                  <div className="col-md-2 col-xs-4">
-                    <h5>Volume</h5>
-                    {collectionStats.totalVolume ? (
-                      <h4>{siPrefixedNumber(Number(collectionStats.totalVolume).toFixed(0))} CRO</h4>
-                    ) : (
-                      <h4>-</h4>
-                    )}
-                  </div>
-                  <div className="col-md-2 col-xs-4">
-                    <h5>Sales</h5>
-                    {collectionStats.numberOfSales ? (
-                      <h4>{siPrefixedNumber(collectionStats.numberOfSales)}</h4>
-                    ) : (
-                      <h4>-</h4>
-                    )}
-                  </div>
-                  <div className="col-md-2 col-xs-4">
-                    <h5>Avg. Sale</h5>
-                    {collectionStats.averageSalePrice ? (
-                      <h4>{siPrefixedNumber(Number(collectionStats.averageSalePrice).toFixed(0))} CRO</h4>
-                    ) : (
-                      <h4>-</h4>
-                    )}
-                  </div>
-                  <div className="col-md-2 col-xs-4">
-                    <h5>Royalty</h5>
-                    {royalty ? <h4>{royalty}%</h4> : <h4>-</h4>}
-                  </div>
-                  <div className="col-md-2 col-xs-4">
-                    <h5>Active Listings</h5>
-                    {collectionStats.numberActive ? (
-                      <h4>{siPrefixedNumber(collectionStats.numberActive)}</h4>
-                    ) : (
-                      <h4>-</h4>
-                    )}
-                  </div>
-                </div>
-              </div>
+            <div className="d-item col-lg-10 col-md-12 mb-4 mx-auto">
+              <CollectionInfoBar collectionStats={collectionStats} royalty={royalty} />
             </div>
             {address.toLowerCase() == '0x7D5f8F9560103E1ad958A6Ca43d49F954055340a'.toLowerCase() && (
               <div className="row m-3">
