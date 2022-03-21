@@ -24,7 +24,6 @@ import CharityBall from '../Components/pages/charityBall';
 import Rugsurance from '../Components/pages/rugsurance';
 import history from '../history';
 import { ErrorPage } from '../Components/pages/ErrorPage';
-import history from '../history';
 
 const SentryEnhancedRoute = Sentry.withSentryRouting(Route);
 

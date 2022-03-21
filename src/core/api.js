@@ -568,7 +568,7 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
                 let isStaked;
 
                 if (address == '0x0b289dEa4DCb07b8932436C2BA78bA09Fbd34C44') {
-                  if (await contract.stakedApes(id)) {
+                  if (await readContract.stakedApes(id)) {
                     canTransfer = false;
                     canSell = false;
                     isStaked = true;
