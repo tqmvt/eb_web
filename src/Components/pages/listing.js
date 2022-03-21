@@ -91,15 +91,12 @@ const Listing = () => {
   useEffect(async () => {
     if (listing && isCrognomidesCollection(listing.nftAddress) && crognomideBreed === null) {
       const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
-      const abiJson = require(`../../Assets/abis/crognomides.json`);
-
       const contract = new Contract(
-          listing.nftAddress,
-          abiJson,
+          '0xE57742748f98ab8e08b565160D3A9A32BFEF7352',
+          ['function crognomidUsed(uint256) public view returns (bool)'],
           readProvider
       );
       try {
-        console.log('sadf', listing.nftId, listing.nftAddress, abiJson, readProvider, contract);
         const used = await contract.crognomidUsed(listing.nftId);
         setCrognomideBreed(used);
       } catch (error) {
