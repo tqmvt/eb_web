@@ -32,7 +32,7 @@
       "id": 2,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Holding this NFT grants reduced service fees, discounts on drops, early access to features and is stakeable in the service fee pool.",
         "verified": true,
         "avatar": "/img/avatar.jpg",
         "card": "/img/collections/ebisu/card.webp",
@@ -55,7 +55,7 @@
       "id": 1,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Happy Valentine's Day from ebisusbay.com staff! We ❤ you!",
         "verified": true,
         "avatar": "/img/avatar.jpg",
         "card": "",
@@ -118,7 +118,7 @@
       "id": 1,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Holding this NFT grants reduced service fees, discounts on drops and early access to features",
         "verified": true,
         "avatar": "/img/avatar.jpg",
         "card": "/img/collections/ebisu/card.webp",
@@ -139,7 +139,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "The Mad Meerkat is inspired by the cheeky nature of the loveable rogues, who loves nothing more than cavorting together in the sun. An expansion from our OG Ethereum collection, these 10000 Next Gen Cro Meerkats will traverse the novel Cronos chain. Guided by the M.A.D values, we will embark on an adventure to explore and unlock all that lies within Cronos. With each Mad Meerkat sharing and learning from one another regardless the chain, it is our next step forward as one Burrow.",
         "verified": true,
         "avatar": "/img/collections/meerkats/avatar.png",
         "banner": "/img/collections/meerkats/banner.jpg",
@@ -160,7 +160,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "600 Beautiful NFT Planets to Support Aerospace and Green Charities",
         "verified": true,
         "avatar": "/img/collections/petiteplanets/gen2/avatar.png",
         "banner": "/img/collections/petiteplanets/gen2/banner.webp",
@@ -179,7 +179,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "200 Beautiful NFT Planets to Support Aerospace and Green Charities",
         "verified": true,
         "avatar": "/img/collections/petiteplanets/gen1/avatar.png",
         "banner": "/img/collections/petiteplanets/gen1/banner.webp",
@@ -198,7 +198,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Monkeys on Cronos that loves Bananas!",
         "verified": true,
         "avatar": "/img/collections/cromonkeys/avatar.gif",
         "card": "/img/collections/cromonkeys/card.png",
@@ -217,7 +217,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Explore this Land with your CRO Monkeys and get more $BANANA",
         "verified": true,
         "avatar": "/img/collections/cromonkeysland/avatar.gif",
         "card": "/img/collections/cromonkeys/card.png",
@@ -236,15 +236,15 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "CRONOS ALIENFT our limited gen 1 collection consists of 2500 NFTs",
         "verified": true,
         "avatar": "/img/collections/alienft/avatar.png",
         "card": "/img/collections/alienft/card.png",
         "banner": "/img/collections/alienft/banner.png",
         "website": "https://www.aliennft.ca/",
         "twitter": "https://twitter.com/AlienftCronos",
-        "discord": "https://discord.gg/aliennft",
-        "medium": "https://medium.com/@aliennft",
+        "discord": "https://discord.gg/dQ4ANz4yu2",
+        "medium": "https://medium.com/@CronosALIENFT",
         "staking": "crodex"
       }
     },
@@ -256,7 +256,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Generation 1 Crosmonaut 1000 NFT collection, the first space themed NFT collection on Cronos",
         "verified": true,
         "avatar": "/img/collections/crosmonauts/avatar.png",
         "banner": "/img/collections/crosmonauts/banner.webp",
@@ -296,6 +296,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
+        "description": "One of the 1111 Unique Punks to be found on the Cronos Blockchain",
         "verified": true,
         "avatar": "/img/collections/cropunks/avatar.png",
         "banner": "/img/collections/cropunks/1920_banner.png",
@@ -315,6 +316,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
+        "description": "One of the 111 Unique Winter Punks to be found on the Cronos Blockchain",
         "verified": true,
         "avatar": "/img/collections/winterpunks/winter_ava.png",
         "banner": "/img/collections/winterpunks/1920_bann_xmas.png",
@@ -373,7 +375,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Collection of 2720 algorithmically generated punks on the Cronos Chain",
         "verified": false,
         "avatar": "/img/collections/wrappedcronospunk/avatar.jpg",
         "banner": "/img/collections/wrappedcronospunk/banner.webp",
@@ -392,7 +394,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Collection of 10,000 algorithmically generated punks on the CronosChain",
         "verified": false,
         "maxSupply": 2720,
         "website": "https://www.cronospunk.net/",
@@ -409,7 +411,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "CrocosNFT is a collection of Crypto Crocodiles, living in their natural habitat on the brand new, Cronos blockchain. The First Batch of the collection consists of 2000 unique digital generated artworks.",
         "verified": true,
         "avatar": "/img/collections/crocs/crocos_avatar.jpg",
         "maxSupply": 2000,
@@ -427,7 +429,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Crocos XMAS is a collection of Crypto Crocodiles, living in their Snow habitat on the brand new, Cronos blockchain.",
         "verified": true,
         "avatar": "/img/collections/crocs/crocos_avatar.jpg",
         "maxSupply": 2000,
@@ -445,7 +447,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "The first Dragons on the Cronos Chain!",
         "verified": true,
         "avatar": "/img/collections/crodrakes/avatar.gif",
         "banner": "/img/collections/crodrakes/banner.png",
@@ -465,7 +467,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "SupBirds are 5000 unique bird characters which live on Ethereum Blockchain. Each Sup Bird comes with proof of ownership, represented by the ERC721-standard.",
         "verified": true,
         "maxSupply": 5000,
         "website": "https://www.supbirds.com/",
@@ -496,7 +498,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Crypto Collage Doge series. Each cryptocurrency NFT project will be minted with only 10 editions of each in existence. This art is inspired by the ever growing popularity of the cryptocurrency. Art is combination of vintage inspiration from the past that is fused with current cryptocurrency projects and astronomical potential it possesses.",
         "verified": true,
         "avatar": "/img/collections/cryptocollage/avatar.png",
         "banner": "/img/collections/cryptocollage/banner.webp",
@@ -514,8 +516,11 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "A collection of 200 unique commemorative medals to honour the bravery and commitment of the first generation Governors in the Petite Planets Consortium.",
         "verified": true,
+        "avatar": "/img/collections/petiteplanets/gen1/avatar.png",
+        "banner": "/img/collections/petiteplanets/gen1/banner.webp",
+        "card": "/img/collections/petiteplanets/gen1/card.png",
         "maxSupply": 200,
         "website": "https://petiteplanets.com",
         "twitter": "https://twitter.com/PetitePlanets",
@@ -530,7 +535,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Thanks for being a part of the CroMoon Community.",
         "verified": true,
         "maxSupply": 400,
         "website": "https://cromoon.net/",
@@ -563,7 +568,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "CronosEyez is a Generative Art Collection of 333 NFTs living in the Cronos Blockchain, inspired by calligraphy, graffiti, crypto and other dimensions. Owners share a part of the Community Art Vault",
         "verified": true,
         "avatar": "/img/collections/cronoseyez/gen1/avatar.jpg",
         "banner": "/img/collections/cronoseyez/gen1/banner.jpg",
@@ -582,7 +587,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "CronosEyez Gen.2 is a Generative Art Collection of 999 NFTs living in the Cronos Blockchain, inspired by calligraphy, graffiti, crypto and other dimensions. Owners share a part of the CronosArt.org Art Vault",
         "verified": true,
         "avatar": "/img/collections/cronoseyez/gen2/avatar.png",
         "banner": "/img/collections/cronoseyez/gen2/banner.webp",
@@ -633,7 +638,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "He is viral, he is global, he is interstellar!",
         "verified": true,
         "avatar": "/img/collections/barbara/elon/avatar.jpg",
         "banner": "/img/collections/barbara/elon/banner.jpg",
@@ -650,9 +655,9 @@
       "multiToken": false,
       "address": "0xf518f16F6611f0B7a51496cfCBA2Ed954Ec81112",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
-        "description": "",
+        "description": "DodgerDogs are 1,111 unique characters by Barbara from 47 hand-drawn traits with different levels of rarity. No two DodgerDogs are exactly alike, and each one of them can be officially owned by a single person on the blockchain.",
         "verified": true,
         "avatar": "/img/collections/barbara/dodgerdogs/avatar.gif",
         "banner": "/img/collections/barbara/dodgerdogs/banner.png",
@@ -671,7 +676,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Recently, some ancient relics have suddenly appeared from the past. They seem to be video game consoles which come from a distant era. The GameArtNFTs, from their names, are exactly 1,989 in memory of the launch year of a famous Japanese console, which reinvented playing. Owning one allows you to go back to the 90's to rediscover forgotten video games.",
         "verified": true,
         "maxSupply": 1989,
         "website": "https://www.gameartnft.com/",
@@ -719,7 +724,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "From the treacherous Himalayan mountains, the red pandas have arrived at the Cronos Chain. Get ready for all the wacky mayhem they bring!",
         "verified": true,
         "avatar": "/img/collections/redpandas/avatar.png",
         "banner": "/img/collections/redpandas/banner.png",
@@ -732,12 +737,13 @@
       "name": "Genesis Rock",
       "slug": "genesis-rock",
       "multiToken": true,
+      "split": true,
       "id": 1,
       "address": "0x68ec010Cf044CbAe1aCc213D043d394E620c641D",
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "The Genesis Rock: The epitome of all diamond hands in the #CroMoonTeam",
         "verified": true,
         "maxSupply": 92,
         "website": "https://cromoon.net/",
@@ -755,7 +761,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Ebisu has many origins, all of which have lead to his current status as one of the Seven Lucky Gods. May his blessing be upon you as a guiding light in your journeys on the Cronos Chain.",
         "verified": true,
         "avatar": "/img/collections/barbara/ebisu/avatar.jpg",
         "banner": "/img/collections/barbara/ebisu/banner.jpg",
@@ -774,7 +780,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Cronos Dolphinos are a collection of 504 randomly generated Pixel Art NFTs on the Cronos Blockchain.",
         "verified": true,
         "maxSupply": 504,
         "website": "https://www.cronosdolphinos.com/",
@@ -814,7 +820,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Celebrating the first Christmas on Cronos & CroMoon, together with SantaCro",
         "verified": true,
         "avatar": "/img/collections/santacro/avatar.png",
         "banner": "/img/collections/santacro/banner.webp",
@@ -835,7 +841,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Cro Sharks Collection",
         "verified": true,
         "avatar": "/img/collections/crosharks/avatar.jpg",
         "banner": "/img/collections/crosharks/banner.jpg",
@@ -885,7 +891,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Cronos Nanas is a collection of 4,444 of the cutest nanas in the Metaverse. Marketplace and analytics sites coming soon!",
         "verified": true,
         "avatar": "/img/collections/cronosnanas/avatar.png",
         "banner": "/img/collections/cronosnanas/banner.png",
@@ -934,7 +940,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "The first Mage on CRONOS!",
         "verified": true,
         "avatar": "/img/collections/cromages/avatar.gif",
         "banner": "/img/collections/cromages/banner.webp",
@@ -953,7 +959,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "CroSkull is a collection of 6.666 uniquely generated NFTs stored on the Cronos Chain. Each CroSkull NFT is based on 6+ attributes with different rarities. A CroSkull is not simply a PFP but is also the key to the insane Dr. Jiko’s laboratory experiments.",
         "verified": true,
         "avatar": "/img/collections/croskull/avatar.jpg",
         "banner": "/img/collections/croskull/banner.webp",
@@ -1013,7 +1019,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Scaling the Cronos Blockchain.",
         "verified": true,
         "avatar": "/img/collections/cronoslizards/avatar.png",
         "card": "/img/collections/cronoslizards/card.png",
@@ -1032,7 +1038,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Cronos Primate Business is a collection of 1000 uniquely generated NFTs stored on the Cronos Chain. Each Cronos Primate Business NFT is based on 10 + attributes with different rarities.",
         "verified": true,
         "avatar": "/img/collections/cronosmb/special/avatar.png",
         "card": "/img/collections/cronosmb/card.png",
@@ -1071,7 +1077,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "CROugars is a limited collection of 2,222 cougar NFTs with concrete utility. Deployed on the Cronos Chain.",
         "verified": true,
         "avatar": "/img/collections/crougars/avatar.png",
         "card": "/img/collections/crougars/card.png",
@@ -1092,7 +1098,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Evanescent Judgment",
         "verified": true,
         "avatar": "/img/collections/fractals/avatar.png",
         "card": "/img/collections/fractals/card.png",
@@ -1109,7 +1115,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Join the Elite!",
         "verified": true,
         "avatar": "/img/collections/foxfraternity/avatar.jpg",
         "card": "/img/collections/foxfraternity/card.jpg",
@@ -1157,7 +1163,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Crxillion Club is the original NFT collection of CRODEX. It is the first NFT collection offering DeFi use-cases in the Cronos Network.",
         "verified": true,
         "avatar": "/img/collections/crxillion/avatar.png",
         "card": "/img/collections/crxillion/card.png",
@@ -1178,7 +1184,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "They are not just NFTs, they are a family's best friend and a way to directly help animals in need.",
         "verified": true,
         "avatar": "/img/collections/cronosdogs/avatar.png",
         "card": "/img/collections/cronosdogs/card.jpg",
@@ -1197,7 +1203,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Coming from the Smart Mars Metaverse",
         "verified": true,
         "maxSupply": 9000,
         "website": "https://smartmartians.com/",
@@ -1263,7 +1269,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "3333 stupid fish on Cronos Chain A collection for those who want to have unique fish in their tank Our fish don't need any special care, they can clean their own tank",
         "verified": true,
         "avatar": "/img/collections/foolyfish/avatar.png",
         "card": "/img/collections/foolyfish/card.png",
@@ -1282,7 +1288,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Stay Weird Stay Ape",
         "verified": true,
         "avatar": "/img/collections/weirdapesclub/avatar.png",
         "card": "/img/collections/weirdapesclub/card.png",
@@ -1302,7 +1308,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Stay Weird Stay Ape",
         "verified": true,
         "avatar": "/img/collections/weirdapesclub/avatar.png",
         "card": "/img/collections/weirdapesclub/card.png",
@@ -1322,7 +1328,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "IcySquidNFT is a collection of 1000 NFTs used in the game http://IcySquidGame.com by IcyCro",
         "verified": true,
         "avatar": "/img/collections/icysquidgame/avatar.png",
         "card": "/img/collections/icysquidgame/card.jpg",
@@ -1341,7 +1347,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Combine this potion with the red one to get an exclusive Purple Potion that can be used to evolve your Skull.",
         "verified": true,
         "avatar": "/img/collections/croskull/bluepotions/avatar.jpg",
         "card": "/img/collections/croskull/bluepotions/card.jpg",
@@ -1361,7 +1367,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Combine this potion with the blue one to get an exclusive Purple Potion that can be used to evolve your Skull.",
         "verified": true,
         "avatar": "/img/collections/croskull/redpotions/avatar.jpg",
         "card": "/img/collections/croskull/redpotions/card.jpg",
@@ -1427,7 +1433,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "2000 secretive hard working Crognomes living on the cronos blockchain who might share the location of the secret mines if taken care of well enough",
         "verified": true,
         "avatar": "/img/collections/crognomes/avatar.png",
         "card": "/img/collections/crognomes/card.png",
@@ -1446,7 +1452,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Multimedia artist Chance Watt produces works that pulsate with energy. He evokes movement through both form and colour. A figure emerges from the fiery orange and dark amber background in this piece. Her presence, although striking, is almost a suggestion as her features are so delicately modelled. This concept is crucial to Watt's artworks, which toe the line between illusion and reality. Dark purple and mauve strands intertwine across the subject, almost enveloping her. The artist conveys a sense of movement here, his brushstrokes dancing across the canvas. Watt conjures activity in this piece through his choices of colour palette. As analogous colours, the nature of purple and orange is to compliment yet contrast one another. This dynamic between the two colours brings the work to life, stimulating our minds as we endeavour to digest this work.",
         "verified": true,
         "avatar": "/img/collections/anuah/avatar.png",
         "card": "/img/collections/anuah/card.webp",
@@ -1463,7 +1469,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Hi, We Have Arrived. Defenders Of The Conoverse..",
         "verified": true,
         "avatar": "/img/collections/cronogods/avatar.gif",
         "card": "/img/collections/cronogods/card.png",
@@ -1483,7 +1489,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Marie's Cyborgs NFT Collection",
         "verified": true,
         "avatar": "/img/collections/mariecyborg/avatar.png",
         "card": "/img/collections/mariecyborg/card.png",
@@ -1503,7 +1509,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Trooprz have got your back",
         "verified": true,
         "avatar": "/img/collections/trooprz/avatar.gif",
         "card": "/img/collections/trooprz/card.jpeg",
@@ -1522,7 +1528,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "WHEN APE MEETS DOGE, WHAT DO YOU GET? THE MOST VIRAL NFT OF ALL TIME",
         "verified": true,
         "avatar": "/img/collections/dogeapesociety/avatar.png",
         "card": "/img/collections/dogeapesociety/card.png",
@@ -1542,7 +1548,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "The First ChronoSwap NFT Collection",
         "verified": true,
         "avatar": "/img/collections/chronoswapfoundingmember/avatar.png",
         "banner": "/img/collections/chronoswapfoundingmember/banner.webp",
@@ -1563,7 +1569,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "1000 unique little Crosmonaut companions to explore space with on the Cronos chain",
         "verified": true,
         "avatar": "/img/collections/crosmobabies/avatar.png",
         "banner": "/img/collections/crosmobabies/banner.webp",
@@ -1639,7 +1645,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "It's quiet now. Humanity has ended. https://thecrobots.com",
         "verified": true,
         "avatar": "/img/collections/crobots/avatar.gif",
         "card": "/img/collections/crobots/card.jpg",
@@ -1657,7 +1663,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Special Cronos Monkey Business is a collection of 75 unique NFT handmade, designed and created primarily for art.",
         "verified": true,
         "avatar": "/img/collections/cronosmb/special/avatar.png",
         "card": "/img/collections/cronosmb/special/card.png",
@@ -1676,7 +1682,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Universe's first cross-chain NFT collaboration",
         "verified": true,
         "avatar": "/img/collections/moonlanding/avatar.png",
         "card": "/img/collections/moonlanding/card.png",
@@ -1716,7 +1722,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "The official NFT of Cronodes",
         "verified": true,
         "avatar": "/img/collections/cronodes/avatar.gif",
         "card": "/img/collections/cronodes/card.png",
@@ -1736,7 +1742,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "CROmeleon’s are a unique and limited collection of 4,444 NFTs that deliver utility and a bold sense of personality.",
         "verified": true,
         "avatar": "/img/collections/cromeleons/avatar.png",
         "card": "/img/collections/cromeleons/card.png",
@@ -1756,6 +1762,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
+        "description": "CrowPunk, but where did he come from?",
         "verified": true,
         "avatar": "/img/collections/crowpunks/avatar.png",
         "banner": "/img/collections/crowpunks/banner.png",
@@ -1813,6 +1820,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
+        "description": "Reckless Robots is a collection of 2100 unique NFTs deployed on the Cronos blockchain.",
         "verified": true,
         "avatar": "/img/collections/recklessrobots/avatar.png",
         "banner": "/img/collections/recklessrobots/banner.webp",
@@ -1833,7 +1841,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Hyped Dogs is a collection of 3000 uniquely generated NFTs stored on the Cronos Chain. Each Hyped Dog NFT is generated with over 120 + attributes with different rarities.",
         "verified": true,
         "avatar": "/img/collections/hypeddogs/avatar.png",
         "card": "/img/collections/hypeddogs/card.png",
@@ -1853,7 +1861,7 @@
       "listable": true,
       "metadata": {
         "description": "",
-        "verified": true,
+        "verified": false,
         "avatar": "/img/collections/metapixels/avatar.png",
         "card": "/img/collections/metapixels/card.jpg",
         "banner": "/img/collections/metapixels/banner.webp",
@@ -1873,7 +1881,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Made with fighting spirit",
         "verified": true,
         "avatar": "/img/collections/bushicro/avatar.jpg",
         "card": "/img/collections/bushicro/card.jpg",
@@ -1909,7 +1917,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "100 unique rocks on the cronos network",
         "verified": true,
         "avatar": "/img/collections/cronosrocks/avatar.png",
         "card": "/img/collections/cronosrocks/card.png",
@@ -1928,7 +1936,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Crayon Ape Art Club a collection for those who love APE Banana and ART Artist palette 2,750 Monkey with different asset different role and stories",
         "verified": true,
         "avatar": "/img/collections/crayonartapeclub/avatar.gif",
         "card": "/img/collections/crayonartapeclub/card.png",
@@ -1947,7 +1955,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "2100 Majestic Minotaurs roaming a labyrinth on the Cronos Blockchain!",
         "verified": true,
         "avatar": "/img/collections/majesticminotaurs/avatar.png",
         "card": "/img/collections/majesticminotaurs/card.png",
@@ -1968,7 +1976,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Looters is a limited collection of 1,111 NFTs and is the official NFT of the Loot Network community.",
         "verified": true,
         "avatar": "/img/collections/looters/avatar.png",
         "card": "/img/collections/looters/card.png",
@@ -1990,7 +1998,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Creatures by Cult Leader is a generative PFP project that unlocks an immersive music & metaverse experience.",
         "verified": true,
         "avatar": "/img/collections/creatures/avatar.jpg",
         "card": "/img/collections/creatures/card.png",
@@ -2029,7 +2037,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "2000 secretive Crognomides living on the cronos blockchain ready to start a family with their hard working husbands, the Crognomes",
         "verified": true,
         "avatar": "/img/collections/crognomides/avatar.webp",
         "card": "/img/collections/crognomides/card.webp",
@@ -2067,7 +2075,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "3,333 SouthSide Ants from the Cronos Secret Society.",
         "verified": true,
         "avatar": "/img/collections/southsideants/avatar.webp",
         "card": "/img/collections/southsideants/card.webp",
@@ -2106,7 +2114,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "The first CyborgSwap NFT collection",
         "verified": true,
         "avatar": "/img/collections/cronogods/godess/avatar.gif",
         "card": "/img/collections/cronogods/godess/card.png",
@@ -2164,7 +2172,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "The MM TreeHouse represents a celebration of inclusivity and empowerment amongst all. Connecting branches between all of Cronos, it is a shared space where innovation is created from discovering shared value between differences- To build a lush future for everyone to succeed in their unique ways. Welcome to Stage 2 of MM.",
         "verified": true,
         "avatar": "/img/collections/meerkats/treehouse/avatar.png",
         "card": "/img/collections/meerkats/treehouse/card.jpg",
@@ -2204,7 +2212,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Inspired by Ethereum's original Autoglyphs, Cronoglyphs are 1111 unique 32x32 generative art compositions based on 13 different glyphs.",
         "verified": true,
         "avatar": "/img/collections/cronoglyphs/avatar.webp",
         "card": "/img/collections/cronoglyphs/card.webp",
@@ -2279,7 +2287,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Scaling the Cronos Blockchain.",
         "verified": true,
         "avatar": "/img/collections/cronoslizards/gen2/avatar.webp",
         "card": "/img/collections/cronoslizards/gen2/card.webp",
@@ -2298,7 +2306,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "CrosmoCraft NFT collection is a 3000 large NFT Collection on CRONOS. Holders will be able to go on intergalactic exploration missions using the Crosmonauts' favorite means of transportation. CrosmoCrafts need to be built by minting 3 main parts, which are: An engine; boosters; and a deck. Once you have one of each part, you can build your CrosmoCraft.",
         "verified": true,
         "avatar": "/img/collections/crosmonauts/ship/avatar.webp",
         "card": "/img/collections/crosmonauts/ship/card.webp",
@@ -2320,7 +2328,7 @@
       "split": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "These Spaceship parts are essential in the construction of the Crosmocrafts. Every Crosmocraft needs a Booster, Engine and Space Deck in order to be built!",
         "verified": true,
         "avatar": "/img/collections/crosmonauts/parts/avatar.webp",
         "card": "/img/collections/crosmonauts/parts/card.webp",
@@ -2342,7 +2350,7 @@
       "split": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "These Spaceship parts are essential in the construction of the Crosmocrafts. Every Crosmocraft needs a Booster, Engine and Space Deck in order to be built!",
         "verified": true,
         "avatar": "/img/collections/crosmonauts/parts/avatar.webp",
         "card": "/img/collections/crosmonauts/parts/card.webp",
@@ -2364,7 +2372,7 @@
       "split": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "These Spaceship parts are essential in the construction of the Crosmocrafts. Every Crosmocraft needs a Booster, Engine and Space Deck in order to be built!",
         "verified": true,
         "avatar": "/img/collections/crosmonauts/parts/avatar.webp",
         "card": "/img/collections/crosmonauts/parts/card.webp",
@@ -2386,7 +2394,7 @@
       "split": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "These Spaceship parts are essential in the construction of the Crosmocrafts. Every Crosmocraft needs a Booster, Engine and Space Deck in order to be built!",
         "verified": true,
         "avatar": "/img/collections/crosmonauts/parts/avatar.webp",
         "card": "/img/collections/crosmonauts/parts/card.webp",
@@ -2408,7 +2416,7 @@
       "split": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "These Spaceship parts are essential in the construction of the Crosmocrafts. Every Crosmocraft needs a Booster, Engine and Space Deck in order to be built!",
         "verified": true,
         "avatar": "/img/collections/crosmonauts/parts/avatar.webp",
         "card": "/img/collections/crosmonauts/parts/card.webp",
@@ -2430,7 +2438,7 @@
       "split": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "These Spaceship parts are essential in the construction of the Crosmocrafts. Every Crosmocraft needs a Booster, Engine and Space Deck in order to be built!",
         "verified": true,
         "avatar": "/img/collections/crosmonauts/parts/avatar.webp",
         "card": "/img/collections/crosmonauts/parts/card.webp",
@@ -2452,7 +2460,7 @@
       "split": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "These Spaceship parts are essential in the construction of the Crosmocrafts. Every Crosmocraft needs a Booster, Engine and Space Deck in order to be built!",
         "verified": true,
         "avatar": "/img/collections/crosmonauts/parts/avatar.webp",
         "card": "/img/collections/crosmonauts/parts/card.webp",
@@ -2474,7 +2482,7 @@
       "split": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "These Spaceship parts are essential in the construction of the Crosmocrafts. Every Crosmocraft needs a Booster, Engine and Space Deck in order to be built!",
         "verified": true,
         "avatar": "/img/collections/crosmonauts/parts/avatar.webp",
         "card": "/img/collections/crosmonauts/parts/card.webp",
@@ -2496,7 +2504,7 @@
       "split": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "These Spaceship parts are essential in the construction of the Crosmocrafts. Every Crosmocraft needs a Booster, Engine and Space Deck in order to be built!",
         "verified": true,
         "avatar": "/img/collections/crosmonauts/parts/avatar.webp",
         "card": "/img/collections/crosmonauts/parts/card.webp",
@@ -2531,9 +2539,9 @@
       "name": "Gold Partner",
       "slug": "gold-partner",
       "multiToken": false,
-      "address": "",
+      "address": "0xF4C80B77AA1F73E09348693a81d744Fcd1263A2D",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "",
         "verified": true,
@@ -2541,7 +2549,7 @@
         "card": "/img/collections/goldpartner/card.png",
         "banner": "/img/collections/goldpartner/banner.png",
         "maxSupply": 300,
-        "website": "http://www.thesportsnft.io/",
+        "website": "https://thesportsnft.io/",
         "twitter": "https://twitter.com/TheSportsNFT",
         "discord": "https://discord.gg/6XYv63jc9Z",
         "medium": "https://medium.com/@thesportsnft"
@@ -2555,7 +2563,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Handpunks is a OG collection of 111 Unique pixel based hand drawn art",
         "verified": true,
         "avatar": "/img/collections/handpunks/avatar.gif",
         "card": "/img/collections/handpunks/card.gif",
@@ -2570,17 +2578,17 @@
       "name": "Cronos Bot Society",
       "slug": "cronos-bot-society",
       "multiToken": false,
-      "address": "0xc1135735D3c4C7A3D479d1760C10CF5a8280c6a1",
+      "address": "0x57bB37249fAaC77c404a3CddE08687A20aA7a77D",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "",
-        "verified": true,
+        "verified": false,
         "avatar": "/img/collections/cronosbotsociety/avatar.png",
         "card": "/img/collections/cronosbotsociety/card.png",
         "banner": "/img/collections/cronosbotsociety/banner.png",
         "maxSupply": 2000,
-        "website": "https://www.cronosbotsociety.com/",
+        "website": "https://cronosbotsociety.com/",
         "twitter": "https://twitter.com/CronosBots",
         "discord": "discord.gg/cronosbotsociety",
         "medium": "https://medium.com/@Cronos-Bot-Society"
@@ -2653,7 +2661,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Every God Needs A Goddess",
         "verified": true,
         "avatar": "/img/collections/cronogods/godess/avatar.gif",
         "card": "/img/collections/cronogods/godess/card.png",
@@ -2665,15 +2673,35 @@
       }
     },
     {
+      "name": "CronosFighters",
+      "slug": "cronos-fighters",
+      "multiToken": false,
+      "address": "0x0e8f883124c1c234d64Ec566adC5966f1832d207",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "A generative collection of V1 Female and Male Champions with a purpose to inspire and motive. MMA does wonders for the mind and body and with this collection, we will do wonders for our society by giving back. ",
+        "verified": true,
+        "avatar": "/img/collections/fighters/avatar.png",
+        "card": "/img/collections/fighters/card.png",
+        "banner": "/img/collections/fighters/banner.png",
+        "maxSupply": 1000,
+        "website": "http://fightersnft.io/",
+        "twitter": "https://twitter.com/FightersNFT",
+        "medium": "https://medium.com/@shahabs/nft-collectors-fighters-are-coming-593cb9865e20",
+        "discord": "http://discord.gg/Bb39m7BBBR"
+      }
+    },
+    {
       "name": "Big Bad Wolves",
       "slug": "big-bad-wolves",
       "multiToken": false,
-      "address": "",
+      "address": "0xA9CC74Bf256C02AdAd4E47af5344d008b5F2F556",
       "onChain": false,
       "listable": false,
       "metadata": {
         "description": "",
-        "verified": true,
+        "verified": false,
         "avatar": "/img/collections/bigbadwolves/avatar.webp",
         "card": "/img/collections/bigbadwolves/card.webp",
         "banner": "/img/collections/bigbadwolves/banner.webp",
@@ -2682,6 +2710,140 @@
         "twitter": "https://twitter.com/BigBadWolves_MC",
         "discord": "https://discord.gg/9GetF5Nc5x",
         "medium": "https://t.me/bigbadwolves_nft"
+      }
+    },
+    {
+      "name": "CroFlips",
+      "slug": "cro-flips",
+      "multiToken": false,
+      "address": "0x24116CF1B25C3A284d39F5E357865E238143084C",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/croflips/avatar.webp",
+        "card": "/img/collections/croflips/card.webp",
+        "banner": "/img/collections/croflips/banner.webp",
+        "maxSupply": 444,
+        "website": "https://croflips.com",
+        "twitter": "https://twitter.com/croflips",
+        "discord": "https://discord.gg/ZfbXqqFffk"
+      }
+    },
+    {
+      "name": "3DSlothty",
+      "slug": "3d-slothty",
+      "multiToken": false,
+      "address": "0x966B18Afe9D9062d611D0C246A1959b7a25FCdDe",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": false,
+        "avatar": "/img/collections/slothty/avatar.png",
+        "card": "/img/collections/slothty/card.webp",
+        "banner": "/img/collections/slothty/banner.webp",
+        "maxSupply": 8888,
+        "website": "https://croslothty.com/",
+        "twitter": "https://twitter.com/Slothtynft",
+        "discord": "http://discord.gg/wkq88dHDyA",
+        "telegram": "https://t.me/croslothty"
+      }
+    },
+    {
+      "name": "MetaPixelSkins",
+      "slug": "metapixelskins",
+      "multiToken": true,
+      "split": false,
+      "address": "0x79757e3B152050fAe36f4429f5cA417170cf2359",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": false,
+        "avatar": "/img/collections/metapixels/avatar.png",
+        "card": "/img/collections/metapixels/skins/card.png",
+        "banner": "/img/collections/metapixels/skins/banner.png",
+        "maxSupply": 20000,
+        "website": "https://www.metaversepixels.app/",
+        "twitter": "https://twitter.com/MetaversePixels",
+        "discord": "https://discord.gg/3gA2jnEGPA",
+        "telegram": "https://t.me/metaversepixels"
+      }
+    },
+    {
+      "name": "CroPet NFT",
+      "slug": "cropet-nft",
+      "multiToken": false,
+      "address": "0x8513af602e45bC60D94f0033edc6E983be4B4b3f",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": false,
+        "avatar": "/img/collections/cropet/avatar.png",
+        "card": "/img/collections/cropet/card.png",
+        "banner": "/img/collections/cropet/banner.jpg",
+        "maxSupply": 1500,
+        "website": "https://www.cropetnft.com",
+        "twitter": "https://twitter.com/CroPetNFT",
+        "discord": "https://discord.gg/Wuk8JSMvuZ"
+      }
+    },
+    {
+      "name": "ScareCROs NFT",
+      "slug": "scarecros-nft",
+      "multiToken": false,
+      "address": "0x5f399c9029f397e3f6b2e3be89478884fd201e57",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "ScareCROs is a limited collection of 999 spooky NFTs with unique traits and utility. Let's protect our crop together!",
+        "verified": false,
+        "avatar": "/img/collections/scarecrosnft/avatar.png",
+        "card": "/img/collections/scarecrosnft/card.png",
+        "banner": "/img/collections/scarecrosnft/banner.png",
+        "maxSupply": 999,
+        "twitter": "https://twitter.com/ScareCROsNFT",
+        "discord": "https://discord.gg/ba3YF7Bq7g"
+      }
+    },
+    {
+      "name": "Creatures Pods",
+      "slug": "creatures-pods",
+      "multiToken": false,
+      "address": "0x30D54067cbF5034123C5128ac9Baad7AE92E5539",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/creatures/avatar.jpg",
+        "card": "/img/collections/creatures/card.png",
+        "banner": "/img/collections/creatures/banner.png",
+        "twitter": "https://twitter.com/creaturesxcl",
+        "website": "https://www.cultcreatures.xyz/",
+        "discord": "https://discord.gg/creaturegang"
+      }
+    },
+    {
+      "name": "Super Trooprz",
+      "slug": "super-trooprz",
+      "multiToken": false,
+      "address": "0xea4DF145322ec9dFCE037b062b08083141c6af8f",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "The world is under attack from a swarm of highly contagious alien miCRObes… the Trooprz have become infected and are struggling to protect the community… \n\n3333 ultra rare Super Trooprz have been sent to fight off the miCRObes and bring peace once more… will all 3333 survive…",
+        "verified": true,
+        "avatar": "/img/collections/trooprz/super/avatar.gif",
+        "card": "/img/collections/trooprz/super/card.png",
+        "banner": "/img/collections/trooprz/super/banner.png",
+        "maxSupply": 3333,
+        "twitter": "https://twitter.com/trooprzarmy",
+        "website": "https://trooprz.army/",
+        "discord": "https://discord.gg/trooprz"
       }
     }
   ],
@@ -3364,7 +3526,7 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false
+      "complete": true
     },
     {
       "id": 23,
@@ -3713,15 +3875,15 @@
     {
       "id": 37,
       "slug": "gold-partner",
-      "imgNft": "/img/drops/goldpartner/drop.gif",
-      "imgPreview": "/img/drops/goldpartner/drop.gif",
+      "imgNft": "/img/drops/goldpartner/drop.webp",
+      "imgPreview": "/img/drops/goldpartner/drop.webp",
       "imgAvatar": "/img/collections/goldpartner/avatar.gif",
-      "imgBanner": "/img/drops/goldpartner/banner.png",
+      "imgBanner": "/img/collections/goldpartner/banner.png",
       "title": "Gold Partner",
-      "subtitle": "Gold Partner Collection - The Hall of Fame is a collection of 300 Hand-drawn, 3D, and animated NFT's with very unique features and utilities. Every NFT is hand-drawn, comes with a unique edition# engraved, a first of its kind on Cronos Chain. Holders of the NFT's will enjoy 30% share of the profits earned from upcoming collections. These NFT's offer a profit-sharing partnership opportunity to the buyers and holders to earn passive income from all upcoming drops.",
-      "description": "Gold Partner Collection - The Hall of Fame is designed after deep research by our team. This collection honors founders and inventors of different sports forgotten by the world. This collection is structured in a way that makes you a direct profit-sharing partner in the project.\n Long term goal of this project is to create a decentralized marketplace for trading real-world sports collectibles. \nUnique Utilities: \n30% of profits from upcoming drops are shared directly among the holders of this collection.  \nChance to be a Platinum partner and enjoy a bigger chunk of profits.   \nCommunity-driven Project with a long-term vision of becoming a marketplace for real-world sports collectibles.     \nCome explore the joy of owning an NFT project and become a founding member!",
-      "author": { "name": "Sports NFTs", "link": "http://www.thesportsnft.io/" },
-      "address": "",
+      "subtitle": "Gold Partner Collection - The Hall of Fame is a collection of 300- 3D animated NFT's with unique features and utilities. Every NFT is a VIP founding members pass on our project. Holders of these NFT's will enjoy 30% share of the primary profits earned from all upcoming collections, marketplace and other benefits from time to time. These NFT's offer a profit-sharing partnership opportunity to the buyers and holders to earn passive income by staking these NFT’s.",
+      "description": "Gold Partner Collection - The Hall of Fame is designed to offer direct profit-sharing partnership for all holders of these NFT’s.\nLong term goal of this project is to create a decentralized marketplace for trading real-world collectibles (not just pictures). This will allow P2P trading of real-world collectables on the blockchain.\nUnique Utilities:\n•    30% of primary profits are shared directly among the holders of this collection.\n•    Exclusive giveaways for the gold partners.\n•    Exclusive access to DAO- This will give all holders the power to cast their vote towards proposals put forward by the team, along with community proposals for roadmap ideas and utility.\n•    Chance to be a Platinum partner and enjoy a bigger chunk of profits.\n•    Come explore the joy of owning a share in NFT project and become a founding member!",
+      "author": { "name": "Sports NFTs", "link": "https://thesportsnft.io/" },
+      "address": "0xF4C80B77AA1F73E09348693a81d744Fcd1263A2D",
       "maxMintPerTx": 5,
       "maxMintPerAddress": 5,
       "totalSupply": 300,
@@ -3734,8 +3896,7 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false,
-      "embed": "<div style='position: relative; padding-top:56.25%;'><iframe src='https://iframe.mediadelivery.net/embed/27293/2ba3cdf8-d3ff-4ae1-94b6-84de9e9a402e?autoplay=true&loop=true&muted=true'  loading='lazy' style='border: none; position: absolute; top: 0; height: 100%; width: 100%;' allow='accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;' allowFullScreen='true'  title='SportsNFt'> </iframe> </div>"
+      "complete": true
     },
     {
       "id": 38,
@@ -3765,6 +3926,32 @@
     },
     {
       "id": 39,
+      "slug": "cronos-fighters",
+      "imgNft": "/img/drops/fighters/drop.png",
+      "imgPreview": "/img/drops/fighters/drop.png",
+      "imgAvatar": "/img/collections/fighters/avatar.png",
+      "imgBanner": "/img/drops/fighters/banner.png",
+      "title": "Cronos Fighters",
+      "subtitle": "We fall. We break. We fail. BUT THEN. We rise. We heal. We Overcome. We all have a fighter in us - Mint yours today. \nFighters are FINALLY Here!",
+      "description": "Cronos Fighters is a generative collection of 1000 Female and Male Champions. A fighter's purpose is to inspire and motivate, no matter the situation. This is the first piece of the Fighters game and metaverse. Each V1 fighter will give it’s owner many perks, such as, token airdrops, game upgrades, voting rights and more! Our goal is to add value to our holders while creating the greatest world the Cronos chain has ever seen! Fighters Are Here!",
+      "author": { "name": "Cronos Fighters", "link": "http://fightersnft.io/" },
+      "address": "0x0e8f883124c1c234d64Ec566adC5966f1832d207",
+      "maxMintPerTx": 10,
+      "maxMintPerAddress": 50,
+      "totalSupply": 1000,
+      "cost": "250",
+      "memberCost": "215",
+      "whitelistCost": "185",
+      "foundersOnly": false,
+      "start": 1647799200000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": true
+    },
+    {
+      "id": 40,
       "slug": "big-bad-wolves",
       "imgNft": "/img/drops/bigbadwolves/drop.webp",
       "imgPreview": "/img/drops/bigbadwolves/drop.webp",
@@ -3774,7 +3961,7 @@
       "subtitle": "Big Bad Wolves is a community based NFT project including real time video game, metaverse integration and big marketing campaign.\nHolding the NFT gives you a PRIVILEGED position.\nWelcome to THE PACK!",
       "description": "BIG BAD WOLVES is a community NFT collection heading towards a gory multiplayer video game and metaverse integration. Join the ride and access staking, giveaways, airdrops, and rewarded Art & Memes contests!\n\nHolder WILL be rewarded.\n\n1/1 are unique and exclusive artworks made by several artists.\n\nAll NFTs in the collection have random stats for strength, agility, stamina, speed and ferocity. These stats will change the way to play the video game.",
       "author": { "name": "Big Bad Wolves", "link": "https://www.bigbadwolves.club/" },
-      "address": "",
+      "address": "0xA9CC74Bf256C02AdAd4E47af5344d008b5F2F556",
       "maxMintPerTx": 20,
       "maxMintPerAddress": 50,
       "totalSupply": 2000,
@@ -3787,6 +3974,84 @@
       "is1155": false,
       "published": true,
       "complete": false
+    },
+    {
+      "id": 41,
+      "slug": "pixel-city",
+      "imgNft": "",
+      "imgPreview": "",
+      "imgAvatar": "/img/collections/pixelcity/avatar.webp",
+      "title": "Pixel City",
+      "subtitle": "",
+      "description": "",
+      "author": { "name": "Pixel City", "link": "https://pixelcity.art/" },
+      "address": "",
+      "maxMintPerTx": 0,
+      "maxMintPerAddress": 0,
+      "totalSupply": 0,
+      "cost": "",
+      "whitelistCost": "",
+      "foundersOnly": false,
+      "start": 1645240287000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false,
+      "featured": false,
+      "redirect": "https://pixelcity.art/"
+    },
+    {
+      "id": 42,
+      "slug": "cronos-bot-society",
+      "imgNft": "",
+      "imgPreview": "",
+      "imgAvatar": "/img/collections/cronosbotsociety/avatar.png",
+      "title": "Cronos Bot Society",
+      "subtitle": "",
+      "description": "",
+      "author": { "name": "Cronos Bot Society", "link": "https://cronosbotsociety.com/" },
+      "address": "",
+      "maxMintPerTx": 0,
+      "maxMintPerAddress": 0,
+      "totalSupply": 0,
+      "cost": "",
+      "whitelistCost": "",
+      "foundersOnly": false,
+      "start": 1645240287000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": true,
+      "featured": false,
+      "redirect": "https://lootpad.io/collection/cronosbotsociety"
+    },
+    {
+      "id": 43,
+      "slug": "super-trooprz",
+      "imgNft": "/img/drops/trooprz/super/drop.png",
+      "imgPreview": "/img/drops/trooprz/super/drop.png",
+      "imgAvatar": "/img/collections/trooprz/super/avatar.gif",
+      "title": "Super Trooprz",
+      "subtitle": "",
+      "description": "",
+      "author": { "name": "Trooprz", "link": "https://trooprz.army/" },
+      "address": "",
+      "maxMintPerTx": 0,
+      "maxMintPerAddress": 0,
+      "totalSupply": 0,
+      "cost": "600",
+      "whitelistCost": "",
+      "foundersOnly": false,
+      "start": 1647907200000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false,
+      "featured": false,
+      "redirect": "https://trooprz.army/mint/"
     }
   ],
   "auctions": [

@@ -20,6 +20,7 @@ import { fetchMemberInfo, fetchVipInfo } from '../../GlobalState/Memberships';
 import { fetchCronieInfo } from '../../GlobalState/Cronies';
 import {
   createSuccessfulTransactionToastContent,
+  isCmbDrop,
   isCreaturesDrop,
   isCrognomesDrop,
   isFounderDrop,
@@ -170,7 +171,13 @@ const MultiDrop = () => {
         );
       }
 
-      const canMint = user.address ? await readContract.canMint(user.address) : 0;
+      let canMint;
+      if (isCmbDrop(currentDrop.address)) {
+        canMint = [15, 15, 15];
+      } else {
+        canMint = user.address ? await readContract.canMint(user.address) : 0;
+      }
+
       setMaxMintPerAddress(infos.maxMintPerAddress);
       setMaxMintPerTx(infos.maxMintPerTx);
       setMaxSupply(infos.maxSupply);
