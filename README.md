@@ -11,7 +11,7 @@ cd /<pathtorepository>/eb_web
 Build and run:
 
 ```
-docker-compose -f docker-compose.yml up --build --remove-orphans
+docker compose -f docker-compose.yml up --build --remove-orphans
 ```
 
 Note: Use "-d" to run containers in the background
@@ -27,7 +27,7 @@ a3262fec588f   ebisusbay-frontend_ebisusbay-frontend   "/docker-entrypoint.…" 
 Delete stack:
 
 ```
-docker-compose down
+docker compose down
 ```
 
 ### Connect to individual container via "SSH"
