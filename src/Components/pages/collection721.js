@@ -34,7 +34,6 @@ const Collection721 = ({ collection, cacheName = 'collection' }) => {
   const readMarket = new Contract(config.market_contract, Market.abi, readProvider);
 
   const [royalty, setRoyalty] = useState(null);
-  const [metadata, setMetadata] = useState(null);
 
   const collectionCachedTraitsFilter = useSelector((state) => state.collection.cachedTraitsFilter);
   const collectionCachedSort = useSelector((state) => state.collection.cachedSort);
@@ -120,7 +119,7 @@ const Collection721 = ({ collection, cacheName = 'collection' }) => {
         id="profile_banner"
         className="jumbotron breadcumb no-bg"
         style={{
-          backgroundImage: `url(${metadata?.banner ? metadata.banner : '/img/background/subheader-blue.webp'})`,
+          backgroundImage: `url(${collection.metadata.banner ?? '/img/background/subheader-blue.webp'})`,
           backgroundPosition: '50% 50%',
         }}
       >
@@ -133,12 +132,12 @@ const Collection721 = ({ collection, cacheName = 'collection' }) => {
             <div className="d_profile">
               <div className="profile_avatar">
                 <div className="d_profile_img">
-                  {metadata?.avatar ? (
-                    <img src={metadata.avatar} alt={collection.name} />
+                  {collection.metadata.avatar ? (
+                    <img src={collection.metadata.avatar} alt={collection.name} />
                   ) : (
                     <Blockies seed={collection.address.toLowerCase()} size={15} scale={10} />
                   )}
-                  {metadata?.verified && (
+                  {collection.metadata.verified && (
                     <LayeredIcon icon={faCheck} bgIcon={faCircle} shrink={8} stackClass="eb-avatar_badge" />
                   )}
                 </div>
