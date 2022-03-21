@@ -28,6 +28,7 @@ import {
 } from '../../utils';
 import config from '../../Assets/networks/rpc_config.json';
 import { croSkullRedPotionImageHack } from '../../hacks';
+import NFTTabOffers from '../Offer/NFTTabOffers';
 
 const knownContracts = config.known_contracts;
 
@@ -262,6 +263,9 @@ const Listing = () => {
                       <li id="Mainbtn2" className="tab">
                         <span onClick={handleBtnClick(2)}>History</span>
                       </li>
+                      <li id="Mainbtn3" className="tab">
+                        <span onClick={handleBtnClick(3)}>Offers</span>
+                      </li>
                     </ul>
 
                     <div className="de_tab_content">
@@ -385,6 +389,8 @@ const Listing = () => {
                           )}
                         </div>
                       )}
+
+                      {openMenu === 3 && <NFTTabOffers />}
 
                       {/* button for checkout */}
                       {listing.state === 0 ? (
