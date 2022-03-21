@@ -95,7 +95,7 @@ const Rugsurance = () => {
       <section className="container">
         <div className="row">
           <div className="col-lg-12 text-center">
-            <p>Refunds for the 3DSlothty drop will be available next week. In the meantime, you may check your address below to confirm your eligibility for a refund.</p>
+            <p>Refunds for the 3DSlothty drop will be available later this week. In the meantime, you may check your address below to confirm your eligibility for a refund.</p>
               <FormControl
                   onChange={handleChangeAddress}
                   placeholder="Enter Wallet Address"
@@ -119,11 +119,16 @@ const Rugsurance = () => {
             <div className="col text-center">
                 {result && (
                     <>
-                        <p><strong>Address</strong>: {result.address}</p>
-                        <p><strong>Cost Per Slothty</strong>: {result.costPerSlothty} CRO</p>
-                        <p><strong>Total Minted</strong>: {result.minted}</p>
-                        <p><strong>IDs to be burned</strong>: {result.ids.join(', ')}</p>
-                        <p><strong>Total Eligible Refund</strong>: {commify(result.totalCost)} CRO</p>
+                        <div className="card eb-nft__card h-100 shadow px-4">
+                            <div className="card-body d-flex flex-column">
+                                <h5>Information</h5>
+                                <p><strong>Address</strong>: {result.address}</p>
+                                <p><strong>Cost Per Slothty</strong>: {result.costPerSlothty} CRO</p>
+                                <p><strong>Total Minted</strong>: {result.minted}</p>
+                                <p><strong>Eligible IDs to be burned</strong>: {result.ids.join(', ')}</p>
+                                <p><strong>Maximum Eligible Refund</strong>: {commify(result.totalCost)} CRO</p>
+                            </div>
+                        </div>
                     </>
                 )}
                 {!result && error && (
