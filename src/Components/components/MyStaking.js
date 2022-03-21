@@ -217,20 +217,25 @@ const MyStaking = () => {
                 </>
               )}
               {!isInitializing && !isApproved && (
-                  <div className="d-flex flex-wrap mt-5 justify-content-center justify-content-lg-start">
-                    <button className="btn-main lead me-2" onClick={approve}>
-                      {isApproving ? (
-                          <>
-                            Approving...
-                            <Spinner animation="border" role="status" size="sm" className="ms-1">
-                              <span className="visually-hidden">Loading...</span>
-                            </Spinner>
-                          </>
-                      ) : (
-                          <>Approve</>
-                      )}
-                    </button>
-                    <span className="my-auto text-center">Please approve the contract before staking</span>
+
+                  <div className="card eb-nft__card h-100 shadow px-4">
+                    <div className="card-body d-flex flex-row justify-content-center">
+                      <span className="my-auto">
+                        <button className="btn-main lead me-2" onClick={approve}>
+                          {isApproving ? (
+                              <>
+                                Approving...
+                                <Spinner animation="border" role="status" size="sm" className="ms-1">
+                                  <span className="visually-hidden">Loading...</span>
+                                </Spinner>
+                              </>
+                          ) : (
+                              <>Approve</>
+                          )}
+                        </button>
+                      </span>
+                      <span className="my-auto text-center">Please approve the staking contract before staking</span>
+                    </div>
                   </div>
               )}
 
@@ -407,7 +412,7 @@ const RewardsCard = ({}) => {
                     ):(
                       <>
                         {inInitMode ? (
-                            <span>Not Started</span>
+                            <p className="text-center my-auto">Rewards will start once the first epoch is complete</p>
                         ) : (
                             <>
                               {isAwaitingRollover ? (
@@ -462,18 +467,25 @@ const RewardsCard = ({}) => {
                       </Spinner>
                     ):(
                         <>
-                          {isAwaitingRollover ? (
-                              <p className="text-center my-auto">Epoch {cupId} has ended. The next epoch will start soon.</p>
+                          {inInitMode ? (
+                              <p className="text-center my-auto">Waiting for the first epoch to begin</p>
                           ) : (
                               <>
-                                <p><strong>Current Epoch</strong>: {cupId}</p>
-                                <p><strong>Pool Balance</strong>: {round(cupPoolRewards, 3)} CRO</p>
-                                <p><strong>My Balance</strong>: {round(cupUserRewards, 3)} CRO</p>
-                                <div className="eb-de_countdown text-center">
-                                  Ends In: <EpochCountdown timestamp={cupPeriodEnd} />
-                                </div>
+                                {isAwaitingRollover ? (
+                                    <p className="text-center my-auto">Epoch {cupId} has ended. The next epoch will start soon.</p>
+                                ) : (
+                                    <>
+                                      <p><strong>Current Epoch</strong>: {cupId}</p>
+                                      <p><strong>Pool Balance</strong>: {round(cupPoolRewards, 3)} CRO</p>
+                                      <p><strong>My Balance</strong>: {round(cupUserRewards, 3)} CRO</p>
+                                      <div className="eb-de_countdown text-center">
+                                        Ends In: <EpochCountdown timestamp={cupPeriodEnd} />
+                                      </div>
+                                    </>
+                                )}
                               </>
                           )}
+
                         </>
                     )}
                   </div>
