@@ -6,7 +6,7 @@ import MetaMaskOnboarding from '@metamask/onboarding';
 import { Spinner } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import Blockies from 'react-blockies';
-import { faCrow, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+import {faCrow, faExternalLinkAlt, faHeart} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as Sentry from '@sentry/react';
 import { Helmet } from 'react-helmet';
@@ -23,7 +23,7 @@ import {
   isCroCrowCollection, isCrosmocraftsPartsDrop,
   relativePrecision,
   shortAddress,
-  timeSince,
+  timeSince, isCrognomidesCollection,
 } from '../../utils';
 import config from '../../Assets/networks/rpc_config.json';
 import { croSkullRedPotionImageHack } from '../../hacks';
@@ -50,7 +50,9 @@ const Listing = () => {
 
   const [openCheckout, setOpenCheckout] = React.useState(false);
   // const [buying, setBuying] = useState(false);
+
   const [croCrowBreed, setCroCrowBreed] = useState(null);
+  const [crognomideBreed, setCrognomideBreed] = useState(null);
 
   useEffect(() => {
     dispatch(getListingDetails(id));
@@ -80,6 +82,23 @@ const Listing = () => {
             }
           }
         }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }, [listing]);
+
+  useEffect(async () => {
+    if (listing && isCrognomidesCollection(listing.nftAddress) && crognomideBreed === null) {
+      const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
+      const contract = new Contract(
+          '0xE57742748f98ab8e08b565160D3A9A32BFEF7352',
+          ['function crognomidUsed(uint256) public view returns (bool)'],
+          readProvider
+      );
+      try {
+        const used = await contract.crognomidUsed(listing.nftId);
+        setCrognomideBreed(used);
       } catch (error) {
         console.log(error);
       }
@@ -221,6 +240,18 @@ const Listing = () => {
                       />
                       <span className="fw-bold">This CRO Crow has been bred for a CrowPunk</span>
                     </div>
+                  )}
+                  {isCrognomidesCollection(listing.nftAddress) && crognomideBreed && (
+                      <div className="d-flex flex-row align-items-center mb-4">
+                        <LayeredIcon
+                            icon={faHeart}
+                            bgColor={'#fff'}
+                            color={'#dc143c'}
+                            inverse={false}
+                            title="This Crognomide has been bred for a Croby!"
+                        />
+                        <span className="fw-bold">This Crognomide has been bred for a Croby</span>
+                      </div>
                   )}
                   <div className="row" style={{ gap: '2rem 0' }}>
                     <ProfilePreview type="Seller" address={listing.seller} to={`/seller/${listing.seller}`} />
