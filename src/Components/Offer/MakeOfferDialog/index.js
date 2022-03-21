@@ -121,15 +121,19 @@ export default function MakeOfferDialog({ isOpen, toggle, nftData, address, coll
     setOfferPrice(inputEvent.target.value);
   };
 
-  const handleMakeOffer = async () => {
-    if (!offerPrice || offerPrice < 0) {
-      return;
+  const handleOfferAction = async (actionType) => {
+    if (actionType === 'Make') {
+      if (!offerPrice || offerPrice < 0) {
+        return;
+      }
+      const tx = await offerContract.makeOffer(nftData.nftAddress, nftData.nftId, {
+        value: ethers.utils.parseEther(offerPrice),
+      });
+      await tx.wait();
+    } else if (actionType === 'Cancel') {
+      const tx = await offerContract.cancelOffer(nftData.nftAddress, nftData.nftId);
+      await tx.wait();
     }
-    const tx = await offerContract.makeOffer(nftData.nftAddress, nftData.nftId, {
-      value: ethers.utils.parseEther(offerPrice),
-    });
-    const receipt = await tx.wait();
-    console.log(receipt);
     toggle();
   };
 
@@ -213,7 +217,7 @@ export default function MakeOfferDialog({ isOpen, toggle, nftData, address, coll
               </OfferPriceInput>
             </FlexRow>
             <div>
-              <Button onClick={handleMakeOffer}>{type} Offer</Button>
+              <Button onClick={() => handleOfferAction(type)}>{type} Offer</Button>
             </div>
           </NftDetailContainer>
         </DialogMainContent>
