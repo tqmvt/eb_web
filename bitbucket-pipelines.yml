@@ -131,7 +131,7 @@ pipelines:
             - 'linux'
             - 'web'
           # Copy RPC config to Admin S3 Bucket
-          - aws s3 cp ./src/Assets/networks/rpc_config_testnet.json s3://test-ebisusbay-admin-storage/rpc_config.json
+            - aws s3 cp ./src/Assets/networks/rpc_config_testnet.json s3://test-ebisusbay-admin-storage/rpc_config.json
       - step:
           <<: *deploy
           deployment: Testnet
@@ -163,7 +163,7 @@ pipelines:
             - 'linux'
             - 'web'
           # Copy RPC config to Admin S3 Bucket
-          - aws s3 cp ./src/Assets/networks/rpc_config_dev.json s3://dev-ebisusbay-admin-storage/rpc_config.json
+            - aws s3 cp ./src/Assets/networks/rpc_config_dev.json s3://dev-ebisusbay-admin-storage/rpc_config.json
       - step:
           <<: *deploy
           deployment: Development
@@ -195,7 +195,7 @@ pipelines:
             - 'linux'
             - 'web'
           # Copy RPC config to Admin S3 Bucket
-          - aws s3 cp ./src/Assets/networks/rpc_config.json s3://prod-ebisusbay-admin-storage/rpc_config.json
+            - aws s3 cp ./src/Assets/networks/rpc_config.json s3://prod-ebisusbay-admin-storage/rpc_config.json
       - step:
           <<: *deploy
           deployment: Production
