@@ -2851,7 +2851,7 @@
       "multiToken": false,
       "address": "0x750Ee91c3bf5B764b88f0508c720591baC45A81b",
       "onChain": false,
-      "listable": true,
+      "listable": false,
       "metadata": {
         "verified": true,
         "avatar": "/img/collections/nobuddies/avatar.webp",
