@@ -2862,6 +2862,22 @@
         "twitter": "https://twitter.com/NoBuddiesNFT",
         "discord": "https://discord.gg/W5TDF7jC34"
       }
+    },
+    {
+      "name": "Crobies",
+      "slug": "crobies",
+      "multiToken": false,
+      "address": "0x66d794F5CC6F8228C9BA8c29c7eA6e43518E2Af9",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "maxSupply": 2000,
+        "twitter": "https://twitter.com/CroGnomes",
+        "website": "https://www.crognomes.com/",
+        "discord": "https://discord.gg/yfqGzCy99W"
+      }
     }
   ],
   "drops": [
