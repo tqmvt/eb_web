@@ -8,7 +8,7 @@ const TableRowContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 8px 0;
+  margin: 26px 0;
 
   .table-row-item {
     width: 9%;
@@ -36,12 +36,21 @@ const TableRowContainerMobile = styled.div`
     border-radius: 11px;
     border: 1px solid ${({ theme }) => theme.colors.borderColor5};
     margin-top: 10px;
+
+    .table-row-button {
+      width: 40%;
+    }
   }
 `;
 
 const ItemRow = styled.div`
   display: flex;
   justify-content: space-between;
+  margin: 8px 0;
+
+  .nft-title {
+    color: ${({ theme }) => theme.colors.textColor4};
+  }
 `;
 
 export default function TableRow() {
@@ -81,7 +90,7 @@ export default function TableRow() {
         </ItemRow>
         <ItemRow>
           <div>NFT title</div>
-          <div>#53453</div>
+          <div className="nft-title">#53453</div>
         </ItemRow>
         <ItemRow>
           <div>Status</div>
@@ -98,6 +107,14 @@ export default function TableRow() {
         <ItemRow>
           <div>Offer Price</div>
           <div>1550 CRO</div>
+        </ItemRow>
+        <ItemRow>
+          <div className="table-row-button">
+            <Button onClick={handleUpdateOffer}>Update</Button>
+          </div>
+          <div className="table-row-button">
+            <Button type="outlined">Cancel</Button>
+          </div>
         </ItemRow>
       </TableRowContainerMobile>
     </>

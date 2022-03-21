@@ -14,6 +14,13 @@ const OFFERS_TAB = {
 
 const Tabs = styled.div`
   display: flex;
+  margin-left: 80px;
+  margin-bottom: 60px;
+
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    margin: 0px;
+    justify-content: space-between;
+  }
 `;
 
 const Tab = styled.div`
@@ -27,6 +34,14 @@ const Tab = styled.div`
 
   &.active {
     border-bottom: solid 6px ${({ theme }) => theme.colors.borderColor3};
+  }
+
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    margin-right: 0px;
+    padding: 2px 0px;
+    &:first-child {
+      margin-right: 10px;
+    }
   }
 `;
 
