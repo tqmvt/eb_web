@@ -551,6 +551,26 @@
         "twitter": "https://twitter.com/NoBuddiesNFT",
         "discord": "https://discord.gg/W5TDF7jC34"
       }
+    },
+    {
+      "name": "MarbleVerse",
+      "slug": "marbleverse",
+      "multiToken": false,
+      "address": "0x9B8AA98d87D1be70ac12fC86130e6c66C69C0D24",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "verified": true,
+        "avatar": "/img/collections/marbleverse/avatar.webp",
+        "banner": "/img/collections/marbleverse/banner.webp",
+        "card": "/img/collections/marbleverse/card.webp",
+        "maxSupply": 20000,
+        "website": "https://www.marbleverse.io/",
+        "twitter": "https://twitter.com/marbleverse_io",
+        "discord": "https://discord.gg/marbleverse",
+        "telegram": "https://t.me/marbleverse_io",
+        "medium": "https://medium.com/@marbleverse_io"
+      }
     }
   ],
   "drops": [
@@ -1301,6 +1321,32 @@
       "memberCost": "349",
       "foundersOnly": false,
       "start": 1647795651000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false
+    },
+    {
+      "id": 45,
+      "slug": "marbleverse",
+      "imgNft": "/img/drops/marbleverse/drop.webp",
+      "imgPreview": "/img/drops/marbleverse/drop.webp",
+      "imgAvatar": "/img/collections/marbleverse/avatar.webp",
+      "imgBanner": "/img/collections/marbleverse/banner.webp",
+      "title": "MarbleVerse",
+      "subtitle": "Find your favorite marble and try to become the rolling champion of the MarbleVerse",
+      "description": "MarbleVerse will be the 1st P2E NFT game on Cronos Network and welcomes all into an evolving universe where your marbles race to prove their worth and become more valuable racers. Mint your marbles and let it race for you; as it wins races, you will earn too.\n\nAnyone holding Marble NFTs will be able to join marble races and earn valuable rewards based on their marbles success.\n\nMarbleVerse brings a game where you can enjoy racing, winning, earning and owning beautiful pieces of art with the rest of the community.",
+      "author": { "name": "MarbleVerse", "link": "https://www.marbleverse.io/" },
+      "address": "0x9B8AA98d87D1be70ac12fC86130e6c66C69C0D24",
+      "maxMintPerTx": 10,
+      "maxMintPerAddress": 1000,
+      "totalSupply": 20000,
+      "priceDescription": "Mint prices increases by 10 for every 2000 nfts minted",
+      "cost": "80",
+      "memberCost": "80",
+      "foundersOnly": false,
+      "start": null,
       "end": null,
       "referral": false,
       "is1155": false,
