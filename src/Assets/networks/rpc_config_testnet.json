@@ -503,14 +503,16 @@
       "slug": "crono-fighters",
       "multiToken": false,
       "address": "0x17e95a737533d93cf4B7180f8f48070914b84706",
-      "avatar": "/img/collections/fighters/avatar.png",
-      "card": "/img/collections/fighters/card.png",
-      "banner": "/img/collections/fighters/banner.png",
-      "maxSupply": 1000,
-      "website": "http://fightersnft.io/",
-      "twitter": "https://twitter.com/FightersNFT",
-      "medium": "https://medium.com/@shahabs/nft-collectors-fighters-are-coming-593cb9865e20",
-      "discord": "http://discord.gg/Bb39m7BBBR"
+      "metadata": {
+        "avatar": "/img/collections/fighters/avatar.png",
+        "card": "/img/collections/fighters/card.png",
+        "banner": "/img/collections/fighters/banner.png",
+        "maxSupply": 1000,
+        "website": "http://fightersnft.io/",
+        "twitter": "https://twitter.com/FightersNFT",
+        "medium": "https://medium.com/@shahabs/nft-collectors-fighters-are-coming-593cb9865e20",
+        "discord": "http://discord.gg/Bb39m7BBBR"
+      }
     },
     {
       "name": "Big Bad Wolves",
@@ -530,6 +532,24 @@
         "twitter": "https://twitter.com/BigBadWolves_MC",
         "discord": "https://discord.gg/9GetF5Nc5x",
         "medium": "https://t.me/bigbadwolves_nft"
+      }
+    },
+    {
+      "name": "NoBuddies NFT (Gen 2)",
+      "slug": "nobuddies-gen2",
+      "multiToken": false,
+      "address": "0xCdAB46e622540220D54b2275a5Bb840CF6eD4e4C",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "verified": true,
+        "avatar": "/img/collections/nobuddies/avatar.webp",
+        "banner": "/img/collections/nobuddies/banner.webp",
+        "card": "/img/collections/nobuddies/card.webp",
+        "maxSupply": 2250,
+        "website": "https://nobuddiesnft.com/",
+        "twitter": "https://twitter.com/NoBuddiesNFT",
+        "discord": "https://discord.gg/W5TDF7jC34"
       }
     }
   ],
@@ -1256,6 +1276,31 @@
       "memberCost": "1",
       "foundersOnly": false,
       "start": 1647288000000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false
+    },
+    {
+      "id": 38,
+      "slug": "nobuddies-gen2",
+      "imgNft": "/img/drops/nobuddies/drop.webp",
+      "imgPreview": "/img/drops/nobuddies/drop.webp",
+      "imgAvatar": "/img/collections/nobuddies/avatar.webp",
+      "imgBanner": "/img/collections/nobuddies/banner.webp",
+      "title": "NoBuddies NFT Gen 2",
+      "subtitle": "NoBuddies NFT Gen 2 is a collection of 2250 uniquely generated NFTs on the Cronos Chain with over 100 attributes.",
+      "description": "NoBuddies is all about community growth, and passive income. We will invest a percentage from mint sales into investments that our team is confident will be beneficial to our holders. After buying your NoBuddie, just sit back and collect your rewards on a regular basis. The more NoBuddies you own, the more rewards you will receive. So what are you waiting for? Come join our community and find out for yourself why you should be a NoBuddie!",
+      "author": { "name": "NoBuddies", "link": "https://nobuddiesnft.com/" },
+      "address": "0x424616fAb8A0f2DE40627bd798e03Fdd718CfAcd",
+      "maxMintPerTx": 10,
+      "maxMintPerAddress": 50,
+      "totalSupply": 2250,
+      "cost": "399",
+      "memberCost": "349",
+      "foundersOnly": false,
+      "start": 1647795651000,
       "end": null,
       "referral": false,
       "is1155": false,
