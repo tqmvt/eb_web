@@ -49,7 +49,9 @@ const MakeOffer = styled.div`
 
 const ListingCard = ({ listing, imgClass = 'marketplace', watermark, address, collectionMetadata }) => {
   const [openMakeOfferDialog, setOpenMakeOfferDialog] = useState(false);
-  const handleMakeOffer = () => {
+  const [modalType, setModalType] = useState('Make');
+  const handleMakeOffer = (type) => {
+    setModalType(type);
     setOpenMakeOfferDialog(!openMakeOfferDialog);
   };
 
@@ -88,8 +90,18 @@ const ListingCard = ({ listing, imgClass = 'marketplace', watermark, address, co
               <Button onClick={handleBuy}>Buy</Button>
             </div>
             <div className="w-45">
-              <Button type="outlined" onClick={handleMakeOffer}>
+              <Button type="outlined" onClick={() => handleMakeOffer('Make')}>
                 Offer
+              </Button>
+            </div>
+            <div className="w-45">
+              <Button type="outlined" onClick={() => handleMakeOffer('Update')}>
+                Update
+              </Button>
+            </div>
+            <div className="w-45">
+              <Button type="outlined" onClick={() => handleMakeOffer('Cancel')}>
+                Cancel
               </Button>
             </div>
           </MakeOffer>
@@ -98,11 +110,11 @@ const ListingCard = ({ listing, imgClass = 'marketplace', watermark, address, co
       {/* </Link> */}
       <MakeOfferDialog
         isOpen={openMakeOfferDialog}
-        toggle={handleMakeOffer}
+        toggle={() => setOpenMakeOfferDialog(!openMakeOfferDialog)}
         nftData={listing}
         address={address}
         collectionMetadata={collectionMetadata}
-        type="Update"
+        type={modalType}
       />
     </>
   );
