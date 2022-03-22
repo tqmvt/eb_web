@@ -10,7 +10,8 @@ import Web3Modal from 'web3modal';
 
 import detectEthereumProvider from '@metamask/detect-provider';
 import { DeFiWeb3Connector } from 'deficonnect';
-import WalletConnectProvider from '@deficonnect/web3-provider';
+import WalletConnectProvider from '@walletconnect/web3-provider';
+import * as DefiWalletConnectProvider from '@deficonnect/web3-provider';
 import {getNftRankings, getNftSalesForAddress, getNftsForAddress, getUnfilteredListingsForAddress} from '../core/api';
 import { toast } from 'react-toastify';
 import {createSuccessfulTransactionToastContent, sliceIntoChunks} from '../utils';
@@ -321,7 +322,7 @@ export const updateListed =
   };
 
 export const connectAccount =
-  (firstRun = false) =>
+  (firstRun=false, type = "") =>
   async (dispatch) => {
     const providerOptions = {
       injected: {
@@ -339,11 +340,11 @@ export const connectAccount =
           description: 'Connect with the CDC DeFi Wallet',
         },
         options: {},
-        package: WalletConnectProvider,
+        package: DefiWalletConnectProvider,
         connector: async (ProviderPackage, options) => {
           const connector = new DeFiWeb3Connector({
             supportedChainIds: [25],
-            rpc: { 25: 'https://evm.cronos.org' },
+            rpc: { 25: 'https://gateway.nebkas.ro' },
             pollingInterval: 15000,
             metadata: {
               icons: ['https://ebisusbay.com/vector%20-%20face.svg'],
@@ -357,6 +358,23 @@ export const connectAccount =
         },
       },
     };
+
+    if (type !== "defi") {
+      providerOptions.walletconnect = {
+        package: WalletConnectProvider, // required
+        options: {
+            chainId: 25,
+            rpc: {
+                25: "https://gateway.nebkas.ro",
+            },
+            network: 'cronos',
+            metadata: {
+                icons: ["https://ebisusbay.com/vector%20-%20face.svg"],
+                description: "Cronos NFT Marketplace"
+                }
+            }
+          }
+    }
 
     const web3ModalWillShowUp = !localStorage.getItem('WEB3_CONNECT_CACHED_PROVIDER');
 
@@ -421,7 +439,6 @@ export const connectAccount =
       if (firstRun) {
         dispatch(appAuthInitFinished());
       }
-
       web3provider.on('DeFiConnectorDeactivate', (error) => {
         dispatch(onLogout());
       });
