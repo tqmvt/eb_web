@@ -2901,6 +2901,25 @@
         "telegram": "https://t.me/marbleverse_io",
         "medium": "https://medium.com/@marbleverse_io"
       }
+    },
+    {
+      "name": "CryptoChads",
+      "slug": "crypto-chads",
+      "multiToken": false,
+      "address": "0x41524cE5E966963CC76D87b39E3E8aac21bCC3FD",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "verified": true,
+        "avatar": "/img/collections/cryptochads/avatar.webp",
+        "banner": "/img/collections/cryptochads/banner.webp",
+        "card": "/img/collections/cryptochads/card.webp",
+        "maxSupply": 120,
+        "website": "https://chadnft.club/",
+        "twitter": "https://twitter.com/thechadsnft",
+        "discord": "https://discord.gg/ftzVvwbw2d",
+        "telegram": "https://t.me/cryptochadsnftgroup"
+      }
     }
   ],
   "drops": [
