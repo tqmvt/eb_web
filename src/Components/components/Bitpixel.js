@@ -275,7 +275,7 @@ const Bitpixel = () => {
                 console.log('//////////');
                 console.log("before: ", beforeLeft, beforeTop)
                 console.log("current: ", left, top)
-                ctx.fillRect(gridWidth_temp * left, gridHeight_temp * top, gridWidth_temp, gridHeight_temp);
+                ctx.fillRect(gridWidth_temp * left+1, gridHeight_temp * top+1, gridWidth_temp-1, gridHeight_temp-2);
                 setPointerX(e.clientX)
                 setPointerY(e.clientY)
                 selectPixel(left, top)
