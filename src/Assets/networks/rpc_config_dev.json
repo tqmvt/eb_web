@@ -4120,7 +4120,7 @@
       "subtitle": "NoBuddies NFT Gen 2 is a collection of 2250 uniquely generated NFTs on the Cronos Chain with over 100 attributes.",
       "description": "NoBuddies is all about community growth and giveaways! And trust me… We love hosting giveaways! Just ask our OGs! To start things off with a bang we will be giving away 50K CRO in prizes after we mint out! And that’s only the beginning! So what are you waiting for?! Come join our community and find out for yourself why you should be a NoBuddie.",
       "author": { "name": "NoBuddies", "link": "https://nobuddiesnft.com/" },
-      "address": "0x1fE73D4Cc73ea313056E41fe82E58d59D29c6592 ",
+      "address": "0x1fE73D4Cc73ea313056E41fe82E58d59D29c6592",
       "maxMintPerTx": 10,
       "maxMintPerAddress": 50,
       "totalSupply": 2250,
