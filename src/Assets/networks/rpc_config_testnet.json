@@ -255,10 +255,11 @@
     },
     {
       "name": "MAG Brew Vikings",
+      "slug": "mag-brew-vikings",
       "multiToken": false,
       "address": "0x3620FC8174199A2666cca88A18Fcf6e9c4B166eB",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "",
         "verified": true,
