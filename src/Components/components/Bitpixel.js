@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './constants/Everything.css';
 import { ethers } from 'ethers'
+
+// import image assets
 import tile1 from '../../Assets/cronosverse/tile1.jpg'
 import tile2 from '../../Assets/cronosverse/tile2.jpg'
 import tile3 from '../../Assets/cronosverse/tile3.jpg'
@@ -33,12 +35,7 @@ let beforeLeft
 let beforeTop
 const Bitpixel = () => {
     const mintedIds = useSelector((state)=> state.cronoverse.mintedIds)
-    // const mintCost = useSelector((state) => state.cronoverse.mintCost )
-    // console.log(mintCost)
-  
-    const [flag, setFlag] = useState('hidden')
-    // popup contents
-    // const [mintedTile, setMintedTile] = useState([])
+    const [flag, setFlag] = useState('hidden') // modal flag
     const [left, setLeft] = useState(350)
     const [top, setTop] = useState(50)
     const [level, setLevel] = useState(1)
@@ -46,12 +43,10 @@ const Bitpixel = () => {
     const [costArray, setCostArray] = useState([])
     const [tileCost, setTileCost] = useState('0')
     const [tokenId, setTokenId] = useState(1)
-    // const [mintedIds, setMintedIds] = useState([])
+
     // mouse postion
     const [pointerX, setPointerX] = useState(10)
     const [pointerY, setPointerY] = useState(10)
-    // scroll wheel 
-    const [scaleVal, setScaleVal] = useState(1)
   
     // web 3
     const realProvider = new ethers.providers.Web3Provider(window.ethereum)
@@ -60,24 +55,21 @@ const Bitpixel = () => {
     const writeContract = readContract.connect(signer)
     const rpcProvider = new ethers.providers.JsonRpcProvider('https://cronos-testnet-3.crypto.org:8545')
     const rpcContract = new ethers.Contract(address, cronoverseAbi.abi, rpcProvider)
-    var prices
+    let prices
 
-    // let yourPrice
     // redux
     const dispatch = useDispatch()
     // canvas
-    const [gridWidth, setGridWidth] = useState(1)
+    const [gridWidth, setGridWidth] = useState(1) 
     const [gridHeight, setGridHeight] = useState(1)
     const [context, setContext] = useState(null)
     
-    // let canvasDown = false
+    // when click canvas
     const [canvasDown, setCanvasDown] = useState(false)
     // callback
     const [loading, setLoading] = useState(false);
     let loadFlag = false
 
-
-    // let mintIds 
     function getMousePos(cnvs, evt) {
         var rect = cnvs.getBoundingClientRect();
         return {
@@ -87,7 +79,7 @@ const Bitpixel = () => {
     }
 
     function initCanvas() {
-        canvas = document.getElementById("canvas");
+        canvas = document.getElementById("layerFront");
         let ctx = canvas.getContext("2d");
 
         let canvas_back = document.getElementById("layerBack")
@@ -103,17 +95,8 @@ const Bitpixel = () => {
    
         img.onload = function() {
             ctx_back.drawImage(img, 0, 0, ctx.canvas.width, ctx.canvas.height);
-            // ctx.fillStyle = 'rgba(250,10,10,0.5)'
-            // for(var i = 0; i < 54; i ++){
-            //     for(var j = 0; j < 28; j ++){
-            //         ctx.strokeRect(i * gridWidth_temp, j * gridHeight_temp,gridWidth_temp,gridHeight_temp);
-            //     }
-            // }
         };
         img.src = borderboard;
-        canvas.addEventListener("mousewheel", (e) => {
-            console.log('mouse wheel');
-        })
     }
 
     async function initCost() {
@@ -129,21 +112,24 @@ const Bitpixel = () => {
         }
         prices = strCost
         setCostArray(strCost)
-        console.log("start select")
+        if (strCost.length > 0) {
+            console.log("start select")            
+        }
     }
 
+    // draw minted token
     function drawMinted() {
-        console.log('draw mint');
+        console.log('draw minted tile');
         if ( !(mintedIds.length) ) {
             return
         }
         for (let i = 1; i < numColumns-1; i++) {
             for (let j = 1; j < numRows-1; j++) {
                 const temp = getTokenId(i, j)
-                let flag = 0
+                let flag = 0 // minted flag
                 for (let p = 0; p < mintedIds.length; p++) {
                     if (temp === mintedIds[p].toNumber()) {
-                        flag = 1
+                        flag = 1 // minted
                         break
                     }
                 }
@@ -154,6 +140,8 @@ const Bitpixel = () => {
             }
         }
     }
+
+    // get token type
     function getLevel(j, i) {
         if (i >= 9 && j >= 19 && i <= 17 && j <= 34) {
             return 4
@@ -169,6 +157,7 @@ const Bitpixel = () => {
         }
     }
       
+    // get token id
     function getTokenId(j, i) {
         let id
         let temp = 52 * (i - 1) + j
@@ -189,6 +178,8 @@ const Bitpixel = () => {
             return id
         }
     }
+
+    // when click canvas
     const selectPixel = (left, top) => {
         let level_temp = getLevel(left, top)
         let id_temp = getTokenId(left, top)
@@ -224,7 +215,6 @@ const Bitpixel = () => {
         setLeft(left)
         setTop(top)
         setTokenId(id_temp)
-        console.log('constarray', costArray);
         setTileCost(prices[level_temp-1])
         setCanvasDown(true)
         setFlag('visible')
@@ -233,7 +223,6 @@ const Bitpixel = () => {
         console.log('mint started...');
         setLoading(true)
         loadFlag = true
-
         console.log(tokenId);
         try {
             const tx = await writeContract.mint(tokenId, {value: tileCost})        
@@ -272,9 +261,6 @@ const Bitpixel = () => {
                 let ctx = canvas.getContext("2d");
                 ctx.clearRect(gridWidth_temp*beforeLeft, gridHeight_temp*beforeTop,gridWidth_temp, gridHeight_temp)
                 ctx.fillStyle = 'rgba(250,10,10,0.5)'
-                console.log('//////////');
-                console.log("before: ", beforeLeft, beforeTop)
-                console.log("current: ", left, top)
                 ctx.fillRect(gridWidth_temp * left+1, gridHeight_temp * top+1, gridWidth_temp-1, gridHeight_temp-2);
                 setPointerX(e.clientX)
                 setPointerY(e.clientY)
@@ -284,36 +270,26 @@ const Bitpixel = () => {
     }, [mintedIds])
     return (
         <div>
-            <div className='bit_back' style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+            <div className='bitpixel_back'
                 onMouseDown={(e) => {
                     if (loading === true) {
                     return
                     } else if (canvasDown === true) {
-                        // console.log('canvas true', canvasDown);
                         setCanvasDown(false)
-                    //    setFlag('visible')
                     } else {
-                        // console.log('canvas false', canvasDown);
                         setFlag('hidden')
-                        // canvasDown = false
-                        // setCanvasDown(false)
                     }
                 }}
             >
-                <div style={{marginTop: '20%',marginBottom: '15%', width: '100%', display: 'flex', justifyContent: 'center',}}>
-                    <canvas id="layerBack" width={`${canvas_size_width}px`} height={`${canvas_size_height}px`}
-                        style={{ left: 0, top: 0, zIndex: 0,  }}
-                    ></canvas>
-                    <canvas id="canvas" width={`${canvas_size_width}px`} height={`${canvas_size_height}px`} 
-                    style={{ zIndex: '1', position: 'absolute' }}
-                    ></canvas>
+                <div className='canvas'>
+                    <canvas className='canvasBack' id="layerBack" width={`${canvas_size_width}px`} height={`${canvas_size_height}px`}></canvas>
+                    <canvas className='canvasFront' id="layerFront" width={`${canvas_size_width}px`} height={`${canvas_size_height}px`} ></canvas>
                 </div>
             </div>
-            <div style={{ visibility: flag, position: 'fixed',left: `${pointerX+15}px`, top: `${pointerY+15}px`,
-                        backgroundColor: 'white', borderRadius: '5px', border: '1px solid black', padding: '10px', zIndex: '3'  }}>
-                <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
-                    <img src={tile} style={{width: '40px', height: '40px', borderRadius:'5px', marginRight: '10px'}} alt="tile" />
-                    <div style={{ display:'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+            <div className='tip_modal' style={{ visibility: flag, left: `${pointerX+15}px`, top: `${pointerY+15}px`}}>
+                <div className='modal_content'>
+                    <img className='tile_img' src={tile} alt="tile" />
+                    <div className='tile_items'>
                         <div>TokenId: {tokenId}</div>
                         <div>Type: {type[level-1]}</div>
                         <div>Location: {left}, {letters[top]} </div>
