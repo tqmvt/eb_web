@@ -496,7 +496,7 @@
       "multiToken": false,
       "address": "0x87de5d738c1a9a3fDEEb85A2fA5c04E54b21AEC4",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "",
         "verified": true,
@@ -515,7 +515,7 @@
       "multiToken": false,
       "address": "0x4668329e1cb30841282c0b209B20e6b069f8C523",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "",
         "verified": true,
@@ -553,7 +553,7 @@
       "multiToken": false,
       "address": "0x0E1B4c3370005b5F9bDBBa12ea97D90aC2dCdaDe",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "",
         "verified": true,
@@ -864,7 +864,7 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false,
+      "complete": true,
       "video": "https://app.ebisusbay.com/files/aunah/trailer.mp4"
     },
     {
@@ -906,9 +906,9 @@
       "end": null,
       "referral": false,
       "is1155": false,
-      "published": true,
+      "published": false,
       "featured": true,
-      "complete": false
+      "complete": true
     },
     {
       "id": 16,
@@ -1146,7 +1146,7 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false
+      "complete": true
     },
     {
       "id": 30,
@@ -1307,7 +1307,7 @@
       "end": null,
       "referral": false,
       "is1155": false,
-      "published": true,
+      "published": false,
       "complete": false
     },
     {
