@@ -29,6 +29,7 @@ import {
 } from '../../utils';
 import { dropState as statuses } from '../../core/api/enums';
 import { EbisuDropAbi } from '../../Contracts/Abis';
+import {commify} from "ethers/lib.esm/utils";
 
 export const drops = config.drops;
 
@@ -581,9 +582,9 @@ const SingleDrop = () => {
                 <div className="item_info">
                   <h2>{drop.title}</h2>
 
-                  {status === statuses.NOT_STARTED || drop.complete ? (
+                  {status === statuses.UNSET || status === statuses.NOT_STARTED || drop.complete ? (
                       <div>
-                        <div className="fs-6 fw-bold mb-1">Supply: {maxSupply.toString()}</div>
+                        <div className="fs-6 fw-bold mb-1">Supply: {commify(maxSupply.toString())}</div>
                       </div>
                   ) : (
                       <div>
