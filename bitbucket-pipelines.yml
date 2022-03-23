@@ -103,12 +103,12 @@ pipelines:
       - step:
           <<: *deploy
           deployment: Testnet
-  branches:
-    testnet:
+    deploy-to-testnet2:
       - step: *test
       - step:
           name: Build
           image: node:16
+          deployment: Testnet2BuildStep
           runs-on:
             - 'self.hosted'
             - 'linux'
@@ -124,18 +124,9 @@ pipelines:
           artifacts:
             - build/**
       - step:
-          name: Upload to S3
-          image: amazon/aws-cli
-          runs-on:
-            - 'self.hosted'
-            - 'linux'
-            - 'web'
-          # Copy RPC config to Admin S3 Bucket
-          script:
-            - aws s3 cp ./src/Assets/networks/rpc_config_testnet.json s3://test-ebisusbay-admin-storage/rpc_config.json
-      - step:
           <<: *deploy
-          deployment: Testnet
+          deployment: Testnet2
+  branches:
     dev:
       - step: *test
       - step:
