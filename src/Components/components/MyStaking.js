@@ -10,7 +10,14 @@ import config from "../../Assets/networks/rpc_config.json";
 import {commify} from "ethers/lib.esm/utils";
 import Countdown from "react-countdown";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faBolt} from "@fortawesome/free-solid-svg-icons";
+import {
+  faBatteryEmpty,
+  faBatteryFull, faBatteryHalf,
+  faBatteryQuarter, faBatteryThreeQuarters,
+  faBolt, faChargingStation,
+  faExternalLinkAlt,
+  faTrophy
+} from "@fortawesome/free-solid-svg-icons";
 
 const txExtras = {
   gasPrice: ethers.utils.parseUnits('5000', 'gwei'),
@@ -130,6 +137,18 @@ const MyStaking = () => {
     )
   };
 
+  const DynamicBattery = () => {
+    console.log('battery check', stakeCount, vipCount)
+    if (!(stakeCount + vipCount > 0)) return <FontAwesomeIcon icon={faBatteryEmpty} />;
+
+    const percent = stakeCount / (stakeCount + vipCount);
+    if (percent >= 1) return <FontAwesomeIcon icon={faBatteryFull} />;
+    if (percent >= 0.75) return <FontAwesomeIcon icon={faBatteryThreeQuarters} />;
+    else if (percent >= 0.5) return <FontAwesomeIcon icon={faBatteryHalf} />;
+    else if (percent > 0) return <FontAwesomeIcon icon={faBatteryQuarter} />;
+    else return <FontAwesomeIcon icon={faBatteryEmpty} />;
+  };
+
   return (
     <>
       <section className="container no-top">
@@ -140,14 +159,17 @@ const MyStaking = () => {
           <div className="col-md-8">
             <div className="item_info">
               <h2>VIP Founding Member Staking</h2>
-              <div className="item_info">
+              <div className="my-2">Earn rewards generated through platform sales. <a href="#" className="fw-bold">Learn More <FontAwesomeIcon icon={faExternalLinkAlt} /></a></div>
+              {isApproved && (
                 <div className="item_info_counts">
                   <div>
-                    Staking {stakeCount} / {(stakeCount + vipCount)}
+                    <DynamicBattery /> VIPs Staked {stakeCount}
+                  </div>
+                  <div>
+                    <FontAwesomeIcon icon={faBolt} /> VIPs Available: {vipCount}
                   </div>
                 </div>
-              </div>
-              <div className="mt-3">At Ebisu's Bay Marketplace, 50% of all transaction fees go towards the VIP rewards pool. Stake your VIP Founding Member NFTs today and be a part of the rewards pool.</div>
+              )}
 
               <div className="spacer-20"></div>
 
@@ -234,7 +256,7 @@ const MyStaking = () => {
                           )}
                         </button>
                       </span>
-                      <span className="my-auto text-center">Please approve the staking contract before staking</span>
+                      <span className="my-auto text-center">Please approve the staking contract to continue</span>
                     </div>
                   </div>
               )}
@@ -316,6 +338,7 @@ const RewardsCard = ({}) => {
       const currentPool = await user.stakeContract.curPool();
       if (currentPool === ethers.constants.AddressZero) {
         setIsInInitMode(true);
+        return;
       }
       const end = await user.stakeContract.periodEnd();
       const poolBalance = await user.provider.getBalance(currentPool);
@@ -399,12 +422,13 @@ const RewardsCard = ({}) => {
                 <div className="card eb-nft__card h-100 shadow px-4">
                   <div className="card-body d-flex flex-column">
                     <h5>Rewards</h5>
-
-                    <div className="item_info_counts">
-                      <div>
-                        <FontAwesomeIcon icon={faBolt} /> VIPs Rewarded: {cmpUserShares}
+                    {!inInitMode && (
+                      <div className="item_info_counts">
+                        <div>
+                          <FontAwesomeIcon icon={faTrophy} /> VIPs Rewarded: {cmpUserShares}
+                        </div>
                       </div>
-                    </div>
+                    )}
                     {cmpIsLoading ? (
                       <Spinner animation="border" role="status" size="sm" className="ms-1">
                         <span className="visually-hidden">Loading...</span>
@@ -456,11 +480,13 @@ const RewardsCard = ({}) => {
                 <div className="card eb-nft__card h-100 shadow px-4">
                   <div className="card-body d-flex flex-column">
                     <h5>Current Pool</h5>
-                    <div className="item_info_counts">
-                      <div>
-                        <FontAwesomeIcon icon={faBolt} /> VIPs Eligible: {cupUserShares}
-                      </div>
-                    </div>
+                    {!inInitMode && (
+                        <div className="item_info_counts">
+                          <div>
+                            <FontAwesomeIcon icon={faChargingStation} /> VIPs Eligible: {cupUserShares}
+                          </div>
+                        </div>
+                    )}
                     {cupIsLoading ? (
                       <Spinner animation="border" role="status" size="sm" className="ms-1">
                         <span className="visually-hidden">Loading...</span>
