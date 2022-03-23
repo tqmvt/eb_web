@@ -21,6 +21,7 @@ import CharityBall from '../Components/pages/charityBall';
 import history from '../history';
 import { ErrorPage } from '../Components/pages/ErrorPage';
 import { Spinner } from 'react-bootstrap';
+
 const SentryEnhancedRoute = Sentry.withSentryRouting(Route);
 
 const mapStateToProps = (state) => ({
@@ -88,6 +89,7 @@ const Component = ({ walletAddress, authInitFinished }) => {
           <SentryEnhancedRoute exact path="/seller/:address" component={Seller} />
           <SentryEnhancedRoute exact path="/charity-ball" component={CharityBall} />
           <SentryEnhancedRoute path="*" render={() => <Redirect to="/" />} />
+          {/* <SentryEnhancedRoute exact path="/mydrop" component={MyDrop} /> */}
         </Switch>
       </Sentry.ErrorBoundary>
     </Router>

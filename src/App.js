@@ -11,7 +11,7 @@ import firebaseConfig from './Firebase/firebase_config';
 import { initializeAnalytics } from 'firebase/analytics';
 import { initProvider } from './GlobalState/User';
 import { appInitializer } from './GlobalState/InitSlice';
-
+import { fetchMintData } from './GlobalState/cronoverseSlice'
 const GlobalStyles = createGlobalStyle`
   :root {
     scroll-behavior: smooth;
@@ -43,6 +43,7 @@ function App() {
 
   useEffect(() => {
     dispatch(appInitializer());
+    // dispatch(fetchMintData())
   }, [dispatch]);
 
   useLayoutEffect(() => {

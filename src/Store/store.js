@@ -15,6 +15,7 @@ import collectionsReducer from '../GlobalState/collectionsSlice';
 import collectionReducer from '../GlobalState/collectionSlice';
 import { appInitializeStateReducer } from '../GlobalState/InitSlice';
 import { user } from '../GlobalState/User';
+import cronoverseReducer from '../GlobalState/cronoverseSlice'
 
 const rootReducer = combineReducers({
   memberships: memberships,
@@ -28,6 +29,7 @@ const rootReducer = combineReducers({
   appInitialize: appInitializeStateReducer,
   collections: collectionsReducer,
   collection: collectionReducer,
+  cronoverse: cronoverseReducer,
 });
 
 const reduxDevToolsComposeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
