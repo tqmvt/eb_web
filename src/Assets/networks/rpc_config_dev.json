@@ -2910,7 +2910,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "verified": true,
+        "verified": false,
         "avatar": "/img/collections/cryptochads/avatar.webp",
         "banner": "/img/collections/cryptochads/banner.webp",
         "card": "/img/collections/cryptochads/card.webp",
