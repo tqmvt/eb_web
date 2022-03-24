@@ -31,7 +31,6 @@ import { dropState as statuses } from '../../core/api/enums';
 import { EbisuDropAbi } from '../../Contracts/Abis';
 import {commify} from "ethers/lib.esm/utils";
 
-import Bitpixel from '../components/Bitpixel'
 export const drops = config.drops;
 
 const fadeInUp = keyframes`
@@ -573,7 +572,6 @@ const SingleDrop = () => {
             </div>
           </div>
         </section>
-        {drop.id !== 41 ? (
           <section className="container no-top">
             <div className="row mt-md-5 pt-md-4">
               <div className="col-md-6 text-center">
@@ -757,10 +755,6 @@ const SingleDrop = () => {
               </div>
             </div>
           </section>
-        ) : (
-          <Bitpixel />
-        )
-        }
         
       </>
       <Footer />
