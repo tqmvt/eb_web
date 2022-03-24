@@ -1352,6 +1352,33 @@
       "is1155": false,
       "published": true,
       "complete": false
+    },
+    {
+      "id": 46,
+      "slug": "cronosverse",
+      "abi": "Cronoverse.json",
+      "imgNft": "/img/drops/cronosverse/drop.png",
+      "imgPreview": "/img/drops/cronosverse/drop.png",
+      "imgAvatar": "/img/collections/cronosverse/avatar.png",
+      "imgBanner": "/img/collections/cronosverse/banner.png",
+      "title": "Cronosverse",
+      "subtitle": "Cronosverse is a community based NFT project including real time video game, metaverse integration and big marketing campaign.\nHolding the NFT gives you a PRIVILEGED position.\nWelcome to THE PACK!",
+      "description": "Cronosverse is a community NFT collection heading towards a gory multiplayer video game and metaverse integration. Join the ride and access staking, giveaways, airdrops, and rewarded Art & Memes contests!\n\nHolder WILL be rewarded.\n\n1/1 are unique and exclusive artworks made by several artists.\n\nAll NFTs in the collection have random stats for strength, agility, stamina, speed and ferocity. These stats will change the way to play the video game.",
+      "author": { "name": "Cronosverse", "link": "https://www.bigbadwolves.club/" },
+      "address": "0x93C08f7A59a43D17cb4BD57CAAb16401BC1067f4",
+      "maxMintPerTx": 1,
+      "maxMintPerAddress": 1208,
+      "totalSupply": 1208,
+      "cost": ["2", "3", "4"],
+      "memberCost": ["1", "2", "3"],
+      "foundersOnly": false,
+      "start": 1647288000000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false,
+      "multiPrice": true
     }
   ],
   "auctions": [
