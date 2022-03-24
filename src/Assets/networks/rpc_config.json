@@ -2958,6 +2958,24 @@
         "medium": "https://medium.com/@crodogesclub",
         "telegram": "https://t.co/0dhK5Z2HMw"
       }
+    },
+    {
+      "name": "Cronos Bulls&Bears",
+      "slug": "cronos-bulls-bears",
+      "multiToken": false,
+      "address": "0xAE36CaD133c11E590bfA4c632A02f85965101BB7",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "verified": false,
+        "avatar": "/img/collections/cronosbullsandbears/avatar.png",
+        "banner": "/img/collections/cronosbullsandbears/banner.jpg",
+        "card": "/img/collections/cronosbullsandbears/card.jpg",
+        "maxSupply": 10000,
+        "website": "https://cronosfoxelite.com/",
+        "twitter": "https://twitter.com/CronosBBs",
+        "discord": "https://discord.gg/fVFcNkTKvS"
+      }
     }
   ],
   "drops": [
