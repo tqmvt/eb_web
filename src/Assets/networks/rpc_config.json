@@ -2910,7 +2910,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "verified": true,
+        "verified": false,
         "avatar": "/img/collections/cryptochads/avatar.webp",
         "banner": "/img/collections/cryptochads/banner.webp",
         "card": "/img/collections/cryptochads/card.webp",
@@ -2919,6 +2919,24 @@
         "twitter": "https://twitter.com/thechadsnft",
         "discord": "https://discord.gg/ftzVvwbw2d",
         "telegram": "https://t.me/cryptochadsnftgroup"
+      }
+    },
+    {
+      "name": "Slavik Fruit Farm",
+      "slug": "slavik-fruit-farm",
+      "multiToken": false,
+      "address": "0xADFf544D633747aE216c85421b6e9Ad7445a4681",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "verified": false,
+        "avatar": "/img/collections/slavikfruitfarm/avatar.gif",
+        "banner": "/img/collections/slavikfruitfarm/banner.png",
+        "card": "/img/collections/slavikfruitfarm/card.jpg",
+        "maxSupply": 5000,
+        "website": "https://slavikfruitfarm.io/",
+        "twitter": "https://twitter.com/SlavikFruitFarm",
+        "discord": "https://discord.gg/D5KgZ6Aghq"
       }
     }
   ],
