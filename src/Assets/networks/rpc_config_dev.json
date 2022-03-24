@@ -4278,6 +4278,32 @@
       "complete": false,
       "featured": false,
       "redirect": "https://lootpad.io/collection/crodoges"
+    },
+    {
+      "id": 47,
+      "slug": "south-side-ants",
+      "imgNft": "",
+      "imgPreview": "",
+      "imgAvatar": "/img/collections/southsideants/avatar.webp",
+      "title": "South Side Ants",
+      "subtitle": "",
+      "description": "",
+      "author": { "name": "South Side Ants", "link": "https://cronossociety.com/" },
+      "address": "",
+      "maxMintPerTx": 0,
+      "maxMintPerAddress": 0,
+      "totalSupply": 0,
+      "cost": "",
+      "whitelistCost": "",
+      "foundersOnly": false,
+      "start": 1645240287000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false,
+      "featured": false,
+      "redirect": "https://cronossociety.com/"
     }
   ],
   "auctions": [
