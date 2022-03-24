@@ -103,12 +103,12 @@ pipelines:
       - step:
           <<: *deploy
           deployment: Testnet
-  branches:
-    testnet:
+    deploy-to-testnet2:
       - step: *test
       - step:
           name: Build
           image: node:16
+          deployment: Testnet2BuildStep
           runs-on:
             - 'self.hosted'
             - 'linux'
@@ -125,7 +125,8 @@ pipelines:
             - build/**
       - step:
           <<: *deploy
-          deployment: Testnet
+          deployment: Testnet2
+  branches:
     dev:
       - step: *test
       - step:
@@ -146,6 +147,16 @@ pipelines:
             - *build
           artifacts:
             - build/**
+      - step:
+          name: Upload to S3
+          image: amazon/aws-cli
+          runs-on:
+            - 'self.hosted'
+            - 'linux'
+            - 'web'
+          # Copy RPC config to Admin S3 Bucket
+          script:
+            - aws s3 cp ./src/Assets/networks/rpc_config_dev.json s3://dev-ebisusbay-admin-storage/rpc_config.json
       - step:
           <<: *deploy
           deployment: Development
@@ -169,6 +180,16 @@ pipelines:
             - *build
           artifacts:
             - build/**
+      - step:
+          name: Upload to S3
+          image: amazon/aws-cli
+          runs-on:
+            - 'self.hosted'
+            - 'linux'
+            - 'web'
+          script:
+          # Copy RPC config to Admin S3 Bucket
+            - aws s3 cp ./src/Assets/networks/rpc_config.json s3://prod-ebisusbay-admin-storage/rpc_config.json
       - step:
           <<: *deploy
           deployment: Production

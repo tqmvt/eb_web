@@ -27,14 +27,13 @@ import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 
 const knownContracts = config.known_contracts;
 
-const Collection721 = ({ address, cacheName = 'collection' }) => {
+const Collection721 = ({ collection, cacheName = 'collection' }) => {
   const dispatch = useDispatch();
 
   const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
   const readMarket = new Contract(config.market_contract, Market.abi, readProvider);
 
   const [royalty, setRoyalty] = useState(null);
-  const [metadata, setMetadata] = useState(null);
 
   const collectionCachedTraitsFilter = useSelector((state) => state.collection.cachedTraitsFilter);
   const collectionCachedSort = useSelector((state) => state.collection.cachedSort);
@@ -48,16 +47,6 @@ const Collection721 = ({ address, cacheName = 'collection' }) => {
       (state.collection.query.page === 0 || state.collection.query.page < state.collection.totalPages)
     );
   });
-
-  const collectionMetadata = useSelector((state) => {
-    return knownContracts.find((c) => c.address.toLowerCase() === address.toLowerCase())?.metadata;
-  });
-
-  const collectionName = () => {
-    const contract = knownContracts.find((c) => caseInsensitiveCompare(c.address, address));
-
-    return contract ? contract.name : 'Collection';
-  };
 
   // const handleCopy = (code) => () => {
   //   navigator.clipboard.writeText(code);
@@ -84,34 +73,26 @@ const Collection721 = ({ address, cacheName = 'collection' }) => {
 
     const filterOption = FilterOption.default();
     filterOption.type = 'collection';
-    filterOption.address = address;
+    filterOption.address = collection.address;
     filterOption.name = 'Specific collection';
 
     dispatch(
       init(
         filterOption,
         collectionCachedSort[cacheName] ?? sortOption,
-        collectionCachedTraitsFilter[address] ?? {},
-        address
+        collectionCachedTraitsFilter[collection.address] ?? {},
+          collection.address
       )
     );
     dispatch(fetchListings());
     // eslint-disable-next-line
-  }, [dispatch, address]);
-
-  useEffect(() => {
-    const extraData = knownContracts.find((c) => caseInsensitiveCompare(c.address, address));
-
-    if (extraData) {
-      setMetadata(extraData.metadata);
-    }
-  }, [address]);
+  }, [dispatch, collection.address]);
 
   useEffect(() => {
     async function asyncFunc() {
-      dispatch(getStats(address));
+      dispatch(getStats(collection.address));
       try {
-        let royalties = await readMarket.royalties(address);
+        let royalties = await readMarket.royalties(collection.address);
         setRoyalty(Math.round(royalties[1]) / 100);
       } catch (error) {
         console.log('error retrieving royalties for collection', error);
@@ -120,25 +101,25 @@ const Collection721 = ({ address, cacheName = 'collection' }) => {
     }
     asyncFunc();
     // eslint-disable-next-line
-  }, [dispatch, address]);
+  }, [dispatch, collection]);
 
   return (
     <div>
       <Helmet>
-        <title>{collectionName()} | Ebisu's Bay Marketplace</title>
-        <meta name="description" content={`${collectionName()} for Ebisu's Bay Marketplace`} />
-        <meta name="title" content={`${collectionName()} | Ebisu's Bay Marketplace`} />
-        <meta property="og:title" content={`${collectionName()} | Ebisu's Bay Marketplace`} />
-        <meta property="og:url" content={`https://app.ebisusbay.com/collection/${address}`} />
-        <meta property="og:image" content={`https://app.ebisusbay.com${collectionMetadata?.avatar || '/'}`} />
-        <meta name="twitter:title" content={`${collectionName()} | Ebisu's Bay Marketplace`} />
-        <meta name="twitter:image" content={`https://app.ebisusbay.com${collectionMetadata?.avatar || '/'}`} />
+        <title>{collection.name} | Ebisu's Bay Marketplace</title>
+        <meta name="description" content={`${collection.name} for Ebisu's Bay Marketplace`} />
+        <meta name="title" content={`${collection.name} | Ebisu's Bay Marketplace`} />
+        <meta property="og:title" content={`${collection.name} | Ebisu's Bay Marketplace`} />
+        <meta property="og:url" content={`https://app.ebisusbay.com/collection/${collection.slug}`} />
+        <meta property="og:image" content={`https://app.ebisusbay.com${collection.metadata.avatar || '/'}`} />
+        <meta name="twitter:title" content={`${collection.name} | Ebisu's Bay Marketplace`} />
+        <meta name="twitter:image" content={`https://app.ebisusbay.com${collection.metadata.avatar || '/'}`} />
       </Helmet>
       <section
         id="profile_banner"
         className="jumbotron breadcumb no-bg"
         style={{
-          backgroundImage: `url(${metadata?.banner ? metadata.banner : '/img/background/subheader-blue.webp'})`,
+          backgroundImage: `url(${collection.metadata.banner ?? '/img/background/subheader-blue.webp'})`,
           backgroundPosition: '50% 50%',
         }}
       >
@@ -151,22 +132,27 @@ const Collection721 = ({ address, cacheName = 'collection' }) => {
             <div className="d_profile">
               <div className="profile_avatar">
                 <div className="d_profile_img">
-                  {metadata?.avatar ? (
-                    <img src={metadata.avatar} alt={collectionName()} />
+                  {collection.metadata.avatar ? (
+                    <img src={collection.metadata.avatar} alt={collection.name} />
                   ) : (
-                    <Blockies seed={address.toLowerCase()} size={15} scale={10} />
+                    <Blockies seed={collection.address.toLowerCase()} size={15} scale={10} />
                   )}
-                  {metadata?.verified && (
+                  {collection.metadata.verified && (
                     <LayeredIcon icon={faCheck} bgIcon={faCircle} shrink={8} stackClass="eb-avatar_badge" />
                   )}
                 </div>
 
                 <div className="profile_name">
                   <h4>
-                    {collectionName()}
+                    {collection.name}
                     <div className="clearfix" />
-                    <SocialsBar collection={knownContracts.find((c) => caseInsensitiveCompare(c.address, address))} />
                   </h4>
+                  {collection.metadata.description && (
+                      <p>{collection.metadata.description}</p>
+                  )}
+                  <span className="fs-4">
+                    <SocialsBar collection={knownContracts.find((c) => caseInsensitiveCompare(c.address, collection.address))} />
+                  </span>
                 </div>
               </div>
             </div>
@@ -177,7 +163,7 @@ const Collection721 = ({ address, cacheName = 'collection' }) => {
       <section className="container no-top">
         {collectionStats && (
           <div className="row">
-            {hasRank && collectionMetadata?.rarity === 'rarity_sniper' && (
+            {hasRank && collection.metadata.rarity === 'rarity_sniper' && (
               <div className="row">
                 <div className="col-lg-8 col-sm-10 mx-auto text-center text-sm-end fst-italic" style={{ fontSize: '0.8em' }}>
                   Rarity scores and ranks provided by{' '}
@@ -237,7 +223,7 @@ const Collection721 = ({ address, cacheName = 'collection' }) => {
                 </div>
               </div>
             </div>
-            {address.toLowerCase() == "0x7D5f8F9560103E1ad958A6Ca43d49F954055340a".toLowerCase() && (
+            {collection.address.toLowerCase() == "0x7D5f8F9560103E1ad958A6Ca43d49F954055340a".toLowerCase() && (
               <div className="row m-3">
                 <div className="mx-auto text-center fw-bold" style={{ fontSize: '1.2em' }}>
                   {'  '} Please visit {' '}
@@ -248,7 +234,7 @@ const Collection721 = ({ address, cacheName = 'collection' }) => {
                 </div>
               </div>
             )}
-            {isCrosmocraftsCollection(address) && (
+            {isCrosmocraftsCollection(collection.address) && (
               <div className="row">
                 <div className="mx-auto text-center fw-bold" style={{ fontSize: '0.8em' }}>
                   Got Crosmocraft parts? {' '}
@@ -258,7 +244,7 @@ const Collection721 = ({ address, cacheName = 'collection' }) => {
                 </div>
               </div>
             )}
-            {collectionMetadata?.staking === 'crodex' && (
+            {collection.metadata.staking === 'crodex' && (
               <div className="row">
                 <div className="mx-auto text-center fw-bold" style={{ fontSize: '0.8em' }}>
                   NFTs from this collection can be staked at {' '}
@@ -271,13 +257,13 @@ const Collection721 = ({ address, cacheName = 'collection' }) => {
           </div>
         )}
         <div className="row">
-          <CollectionFilterBar showFilter={false} cacheName={cacheName} />
+          <CollectionFilterBar showFilter={false} cacheName={cacheName} address={collection.address} traits={collectionStats?.traits} powertraits={collectionStats?.powertraits}/>
         </div>
         <div className="row">
           {(hasTraits() || hasPowertraits()) && (
             <div className="col-md-3 mb-4">
-              {hasTraits() && <TraitsFilter address={address} />}
-              {hasPowertraits() && <PowertraitsFilter address={address} />}
+              {hasTraits() && <TraitsFilter address={collection.address} />}
+              {hasPowertraits() && <PowertraitsFilter address={collection.address} />}
             </div>
           )}
           <div className={hasTraits() || hasPowertraits() ? 'col-md-9' : 'col-md-12'}>

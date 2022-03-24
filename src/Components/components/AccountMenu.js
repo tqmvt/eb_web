@@ -101,19 +101,36 @@ const AccountMenu = function () {
   };
 
   useEffect(() => {
+    let defiLink = localStorage.getItem('DeFiLink_session_storage_extension');
+    if (defiLink) {
+      try {
+        const json = JSON.parse(defiLink);
+        if (!json.connected) {
+          dispatch(onLogout());
+        }
+      } catch (error) {
+        dispatch(onLogout());
+      }
+    }
     if (
       localStorage.getItem('WEB3_CONNECT_CACHED_PROVIDER') ||
-      window.ethereum
+      window.ethereum ||
+      localStorage.getItem('DeFiLink_session_storage_extension')
     ) {
       if (!user.provider) {
-        dispatch(connectAccount());
+        if (window.navigator.userAgent.includes("Crypto.com DeFiWallet")) {
+          dispatch(connectAccount(false, "defi"));
+        } else {
+          dispatch(connectAccount());
+        }
       }
     }
     if (!user.provider) {
       if (window.navigator.userAgent.includes("Crypto.com DeFiWallet")) {
-        dispatch(connectAccount());
+        dispatch(connectAccount(false, "defi"));
       }
     }
+
     // eslint-disable-next-line
   }, []);
 

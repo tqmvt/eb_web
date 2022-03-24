@@ -1,8 +1,5 @@
 import React, { memo } from 'react';
 import { useLocation } from 'react-router-dom';
-import nebkas from '../../Assets/nebkas-logo.png';
-import weAreFi from '../../Assets/wearefi-logo.png';
-import crodex from  '../../Assets/crodex.png';
 import { faDiscord, faTwitter, faMedium, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { faSquare, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import LayeredIcon from './LayeredIcon';
@@ -17,17 +14,17 @@ const Footer = () => {
         <div className="row align-items-center">
           <div className="col">
             <a href="https://nebkas.ro" target="_blank" rel="noreferrer">
-              <img src={nebkas} alt="nebkas.co" width="128px" />
+              <img src="/img/logos/nebkas-logo.png" alt="nebkas.co" width="128px" />
             </a>
           </div>
           <div className="col">
             <a href="https://www.weare.fi/" target="_blank" rel="noreferrer">
-              <img src={weAreFi} alt="WeAre Solutions" width="64px" />
+              <img src="/img/logos/wearefi-logo.png" alt="WeAre Solutions" width="64px" />
             </a>
           </div>
           <div className="col">
             <a href="https://crodex.app/" target="_blank" rel="noreferrer">
-              <img src={crodex} alt="CRODEX" width="150px" />
+              <img src="/img/logos/crodex.png" alt="CRODEX" width="150px" />
             </a>
           </div>
         </div>

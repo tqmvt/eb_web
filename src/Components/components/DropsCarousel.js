@@ -104,6 +104,7 @@ export default class Responsive extends Component {
             d.start &&
             d.start > Date.now() &&
             d.start - Date.now() < twelveHours &&
+            !!d.imgPreview &&
             !topLevelKeys.includes(d.slug)
       )
       .sort((a, b) => (a.start < b.start ? 1 : -1));
