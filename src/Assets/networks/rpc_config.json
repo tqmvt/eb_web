@@ -2976,6 +2976,24 @@
         "twitter": "https://twitter.com/CronosBBs",
         "discord": "https://discord.gg/fVFcNkTKvS"
       }
+    },
+    {
+      "name": "Boars Gone Wild",
+      "slug": "boars-gone-wild",
+      "multiToken": false,
+      "address": "0x32208902Ab9bea7e8F255AE7fC9ab79565c81414",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "verified": false,
+        "avatar": "/img/collections/boarsgonewild/avatar.jpg",
+        "banner": "/img/collections/boarsgonewild/banner.png",
+        "card": "/img/collections/boarsgonewild/card.png",
+        "maxSupply": 1000,
+        "website": "https://www.boarsgonewild.app",
+        "twitter": "https://twitter.com/boarsgonewild",
+        "discord": "https://discord.gg/nA33tCUphh"
+      }
     }
   ],
   "drops": [
