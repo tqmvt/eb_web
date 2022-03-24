@@ -32,7 +32,7 @@ import CollectionInfoBar from '../components/CollectionInfoBar';
 
 const knownContracts = config.known_contracts;
 
-const Collection721 = ({ address, cacheName = 'collection' }) => {
+const Collection721 = ({ address, slug, cacheName = 'collection' }) => {
   const dispatch = useDispatch();
 
   const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
@@ -115,7 +115,7 @@ const Collection721 = ({ address, cacheName = 'collection' }) => {
 
   useEffect(() => {
     async function asyncFunc() {
-      dispatch(getStats(address));
+      dispatch(getStats(address, slug));
       try {
         let royalties = await readMarket.royalties(address);
         setRoyalty(Math.round(royalties[1]) / 100);

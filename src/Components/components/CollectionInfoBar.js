@@ -68,42 +68,25 @@ const ItemValue = styled.div`
 `;
 
 export default function CollectionInfoBar({ collectionStats, royalty }) {
+  const { active, avg_sale_price, complete, floor_price, volume } = collectionStats;
   return (
     <div>
       <CollectionInfoBarContainer>
         <InfoItem>
-          <ItemValue>
-            {collectionStats.floorPrice ? (
-              <>{siPrefixedNumber(Number(collectionStats.floorPrice).toFixed(0))} CRO</>
-            ) : (
-              <>-</>
-            )}
-          </ItemValue>
+          <ItemValue>{floor_price ? <>{siPrefixedNumber(Number(floor_price).toFixed(0))} CRO</> : <>-</>}</ItemValue>
           <ItemTitle>Floor</ItemTitle>
         </InfoItem>
         <InfoItem>
-          <ItemValue>
-            {collectionStats.totalVolume ? (
-              <>{siPrefixedNumber(Number(collectionStats.totalVolume).toFixed(0))} CRO</>
-            ) : (
-              <>-</>
-            )}
-          </ItemValue>
+          <ItemValue>{volume ? <>{siPrefixedNumber(Number(volume).toFixed(0))} CRO</> : <>-</>}</ItemValue>
           <ItemTitle>Volume</ItemTitle>
         </InfoItem>
         <InfoItem>
-          <ItemValue>
-            {collectionStats.numberOfSales ? <>{siPrefixedNumber(collectionStats.numberOfSales)}</> : <>-</>}
-          </ItemValue>
+          <ItemValue>{complete ? <>{siPrefixedNumber(complete)}</> : <>-</>}</ItemValue>
           <ItemTitle>Sales</ItemTitle>
         </InfoItem>
         <InfoItem>
           <ItemValue>
-            {collectionStats.averageSalePrice ? (
-              <>{siPrefixedNumber(Number(collectionStats.averageSalePrice).toFixed(0))} CRO</>
-            ) : (
-              <>-</>
-            )}
+            {avg_sale_price ? <>{siPrefixedNumber(Number(avg_sale_price).toFixed(0))} CRO</> : <>-</>}
           </ItemValue>
           <ItemTitle>Avg. Sale</ItemTitle>
         </InfoItem>
@@ -112,9 +95,7 @@ export default function CollectionInfoBar({ collectionStats, royalty }) {
           <ItemTitle>Royalty</ItemTitle>
         </InfoItem>
         <InfoItem>
-          <ItemValue>
-            {collectionStats.numberActive ? <>{siPrefixedNumber(collectionStats.numberActive)}</> : <>-</>}
-          </ItemValue>
+          <ItemValue>{active ? <>{siPrefixedNumber(active)}</> : <>-</>}</ItemValue>
           <ItemTitle>Active Listings</ItemTitle>
         </InfoItem>
       </CollectionInfoBarContainer>

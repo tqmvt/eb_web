@@ -4,6 +4,7 @@ import {
   getCollectionMetadata,
   getCollectionTraits,
   getCollectionPowertraits,
+  getCollectionSummary,
 } from '../core/api';
 
 const collectionSlice = createSlice({
@@ -211,24 +212,27 @@ export const resetListings = () => async (dispatch) => {
 };
 
 export const getStats =
-  (address, id = null) =>
+  (address, slug, id = null) =>
   async (dispatch) => {
     try {
       dispatch(onCollectionStatsLoading());
 
-      var response;
-      if (id != null) {
-        response = await getCollectionMetadata(address, null, { type: 'tokenId', value: id });
-      } else {
-        response = await getCollectionMetadata(address);
-      }
+      // var response;
+      // if (id != null) {
+      //   response = await getCollectionMetadata(address, null, { type: 'tokenId', value: id });
+      // } else {
+      //   response = await getCollectionMetadata(address);
+      // }
+
+      const response = await getCollectionSummary(slug);
+      console.log(slug, response);
 
       const traits = await getCollectionTraits(address);
       const powertraits = await getCollectionPowertraits(address);
       dispatch(
         onCollectionStatsLoaded({
           stats: {
-            ...response.collections[0],
+            ...response.collections[0].activity,
             ...{
               traits: traits,
               powertraits: powertraits,

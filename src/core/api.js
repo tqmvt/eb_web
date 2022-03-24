@@ -25,6 +25,7 @@ const api = {
   nft: '/nft',
   auctions: '/auctions',
   unfilteredListings: '/unfilteredlistings',
+  collectionSummary: '/collection/summary',
 };
 
 export default api;
@@ -204,6 +205,13 @@ export async function getCollectionMetadata(contractAddress, sort, filter) {
   const queryString = new URLSearchParams(query);
 
   const uri = `${api.baseUrl}${api.collections}?${queryString}`;
+  return await (await fetch(uri)).json();
+}
+
+export async function getCollectionSummary(slug) {
+  const query = { slug };
+  const queryString = new URLSearchParams(query);
+  const uri = `${api.baseUrl}${api.collectionSummary}?${queryString}`;
   return await (await fetch(uri)).json();
 }
 
