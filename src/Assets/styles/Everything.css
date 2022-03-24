@@ -1,6 +1,6 @@
 .bitpixel_back {
   text-align: center;
-  background-image: url('../../../Assets/cronosverse/Bit-back.png');
+  background-image: url('../cronosverse/Bit-back.png');
   background-size: 100% 100%;
   background-repeat: no-repeat;
   display: flex; 
@@ -9,8 +9,9 @@
 }
 
 .canvas {
-  margin-top: 20%;
-  margin-bottom: 15%; 
+  margin-top: 16%;
+  margin-bottom: 12%; 
+  padding-right: 1%;
   width: 100%; 
   display: flex; 
   justify-content: center;
