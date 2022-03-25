@@ -1,0 +1,14 @@
+{
+  "crodex":  {
+    "name": "Crodex",
+    "url": "https://swap.crodex.app/#/rewards/nft"
+  },
+  "croskull": {
+    "name": "CroSkull",
+    "url": "https://app.croskull.com/"
+  },
+  "cyborgswap": {
+    "name": "CyborgSwap",
+    "url":"https://cyborgswap.io/nft-staking"
+  }
+}

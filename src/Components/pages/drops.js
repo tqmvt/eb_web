@@ -55,7 +55,12 @@ const Drops = () => (
       <div className="row">
         <div className="col-lg-12">
           <div className="text-center">
-            <h2>Upcoming Drops</h2>
+            <h2>
+              Upcoming Drops
+              <a href="https://lootpad.io/collection/aef25aef25aef" target="_blank" rel="noreferrer">
+                <img src="/img/lootpad-ghost.gif" />
+              </a>
+            </h2>
             <div className="small-border"></div>
           </div>
         </div>
