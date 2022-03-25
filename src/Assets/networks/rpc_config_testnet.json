@@ -571,6 +571,26 @@
         "telegram": "https://t.me/marbleverse_io",
         "medium": "https://medium.com/@marbleverse_io"
       }
+    },
+    {
+      "name": "LazyHorse Skybox",
+      "slug": "lazy-horse-skybox",
+      "multiToken": false,
+      "address": "0xa0A17d4aBf1334E339E736A6fcDA137052877cc2",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/lazyhorse/avatar.png",
+        "card": "/img/collections/lazyhorse/skybox/card.webp",
+        "banner": "/img/collections/lazyhorse/skybox/banner.webp",
+        "maxSupply": 2100,
+        "website": "https://www.lazyhorseraceclub.com",
+        "twitter": "https://twitter.com/LazyHorseRC",
+        "discord": "https://discord.gg/lhrc",
+        "medium": "https://medium.com/@lazyhorseraceclub"
+      }
     }
   ],
   "drops": [
@@ -1347,6 +1367,33 @@
       "memberCost": "80",
       "foundersOnly": false,
       "start": null,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false
+    },
+    {
+      "id": 46,
+      "slug": "lazy-horse-skybox",
+      "imgNft": "/img/drops/lazyhorse/skybox/drop1.webp",
+      "imgPreview": "/img/drops/lazyhorse/skybox/drop2.webp",
+      "imgAvatar": "/img/collections/lazyhorse/avatar.png",
+      "imgBanner": "/img/collections/lazyhorse/skybox/banner.webp",
+      "title": "LHRC Skybox",
+      "subtitle": "Full access and control of private skybox in the Lazy Horse Metaverse",
+      "description": "",
+      "author": { "name": "LazyHorse", "link": "https://www.lazyhorseraceclub.com/" },
+      "address": "0xa0A17d4aBf1334E339E736A6fcDA137052877cc2",
+      "maxMintPerTx": 1,
+      "maxMintPerAddress": 1,
+      "totalSupply": 2100,
+      "priceDescription": "Whitelist-only presale for the first 12 hours (limit 1 per address). Public sale after (limit 2 per address).",
+      "cost": "5000",
+      "memberCost": "4000",
+      "whitelistCost": "4000",
+      "foundersOnly": false,
+      "start": 1648182013000,
       "end": null,
       "referral": false,
       "is1155": false,
