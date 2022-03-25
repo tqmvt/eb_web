@@ -262,13 +262,20 @@ const Collection1155 = ({ address, tokenId=null, cacheName = 'collection' }) => 
                 </div>
               </div>
             )}
-            {collectionMetadata?.staking === 'crodex' && (
+            {collectionMetadata?.staking && (
               <div className="row">
                 <div className="mx-auto text-center fw-bold" style={{ fontSize: '0.8em' }}>
                   NFTs from this collection can be staked at {' '}
-                  <a href="https://swap.crodex.app/#/rewards/nft" target="_blank" rel="noreferrer">
-                    <span className="color">Crodex</span>
-                  </a>
+                  {collectionMetadata.staking === 'crodex' && (
+                      <a href="https://swap.crodex.app/#/rewards/nft" target="_blank" rel="noreferrer">
+                        <span className="color">Crodex</span>
+                      </a>
+                  )}
+                  {collectionMetadata.staking === 'croskull' && (
+                      <a href="https://app.croskull.com/ " target="_blank" rel="noreferrer">
+                        <span className="color">CroSkull</span>
+                      </a>
+                  )}
                 </div>
               </div>
             )}
