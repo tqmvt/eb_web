@@ -5,6 +5,7 @@ import { ethers } from 'ethers';
 import { croSkullRedPotionImageHack } from '../../hacks';
 import Button from './Button';
 import MakeOfferDialog from '../Offer/MakeOfferDialog';
+import AcceptOfferDialog from '../Offer/AcceptOfferDialog';
 
 const Watermarked = styled.div`
   position: relative;
@@ -49,10 +50,15 @@ const MakeOffer = styled.div`
 
 const ListingCard = ({ listing, imgClass = 'marketplace', watermark, address, collectionMetadata }) => {
   const [openMakeOfferDialog, setOpenMakeOfferDialog] = useState(false);
+  const [openAcceptDialog, setOpenAcceptDialog] = useState(false);
   const [modalType, setModalType] = useState('Make');
   const handleMakeOffer = (type) => {
     setModalType(type);
     setOpenMakeOfferDialog(!openMakeOfferDialog);
+  };
+
+  const handleAcceptOffer = () => {
+    setOpenAcceptDialog(!openAcceptDialog);
   };
 
   const history = useHistory();
@@ -94,6 +100,13 @@ const ListingCard = ({ listing, imgClass = 'marketplace', watermark, address, co
                 Offer
               </Button>
             </div>
+          </MakeOffer>
+          <div>
+            <div className="w-45">
+              <Button type="outlined" onClick={() => handleAcceptOffer('Accept')}>
+                Accept
+              </Button>
+            </div>
             <div className="w-45">
               <Button type="outlined" onClick={() => handleMakeOffer('Update')}>
                 Update
@@ -104,7 +117,7 @@ const ListingCard = ({ listing, imgClass = 'marketplace', watermark, address, co
                 Cancel
               </Button>
             </div>
-          </MakeOffer>
+          </div>
         </div>
       </div>
       {/* </Link> */}
@@ -115,6 +128,13 @@ const ListingCard = ({ listing, imgClass = 'marketplace', watermark, address, co
         address={address}
         collectionMetadata={collectionMetadata}
         type={modalType}
+      />
+      <AcceptOfferDialog
+        isOpen={openAcceptDialog}
+        toggle={() => setOpenAcceptDialog(!openAcceptDialog)}
+        nftData={listing}
+        address={address}
+        collectionMetadata={collectionMetadata}
       />
     </>
   );

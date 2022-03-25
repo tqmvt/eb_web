@@ -7,12 +7,26 @@ const TableHeaderContainer = styled.div`
   border-bottom: 1px solid ${({ theme }) => theme.colors.borderColor2};
   margin: 8px 0px;
   padding: 8px 0px;
+  font-size: 14px;
 
-  div {
-    width: 9%;
+  .table-row-item {
+    width: 12%;
 
     &:first-child {
-      width: 12%;
+      display: flex;
+      align-items: center;
+      width: 13%;
+    }
+  }
+
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoints.lg}) {
+    .table-row-item {
+      &:first-child {
+        width: 10%;
+      }
+    }
+    .nft-title {
+      display: none;
     }
   }
 
@@ -23,16 +37,14 @@ const TableHeaderContainer = styled.div`
 export default function TableHeader() {
   return (
     <TableHeaderContainer>
-      <div>Collection name</div>
-      <div>NFT title</div>
-      <div>Status</div>
-      <div>Date</div>
-      <div>Owner</div>
-      <div>Last price</div>
-      <div>Floor price</div>
-      <div>Offer price</div>
-      <div></div>
-      <div></div>
+      <div className="table-row-item">Collection name</div>
+      <div className="table-row-item nft-title">NFT title</div>
+      <div className="table-row-item">Status</div>
+      <div className="table-row-item">Offer Date</div>
+      <div className="table-row-item">Owner</div>
+      <div className="table-row-item">Offer price</div>
+      <div className="table-row-item"></div>
+      <div className="table-row-item"></div>
     </TableHeaderContainer>
   );
 }

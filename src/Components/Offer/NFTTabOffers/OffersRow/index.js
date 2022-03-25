@@ -1,7 +1,9 @@
 import React from 'react';
-import Button from 'src/Components/components/Button';
 import styled from 'styled-components';
+import Blockies from 'react-blockies';
+import { Dropdown } from 'react-bootstrap';
 
+import Button from 'src/Components/components/Button';
 // import MakeOfferDialog from '../MakeOfferDialog';
 
 const TableRowContainer = styled.div`
@@ -10,8 +12,66 @@ const TableRowContainer = styled.div`
   align-items: center;
   margin: 26px 0;
 
+  .actions-dropdown {
+    &-toggle {
+      padding: 5px;
+      border: 0.25px solid #707070;
+      border-radius: 8px;
+      background-color: transparent !important;
+
+      &:hover,
+      &:focus,
+      &:active,
+      &:visited {
+        background-color: transparent !important;
+        box-shadow: none !important;
+      }
+      &:before,
+      &:after {
+        display: none;
+      }
+
+      .dot-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 4px 2px;
+
+        span {
+          width: 8px;
+          height: 8px;
+          background: transparent linear-gradient(180deg, #ff9420 0%, #e57700 100%) 0% 0% no-repeat padding-box;
+          border-radius: 4px;
+
+          margin-right: 4px;
+
+          &:last-child {
+            margin-right: 0px;
+          }
+        }
+      }
+    }
+
+    &-item-text {
+      font-size: 12px;
+      letter-spacing: 0px;
+      color: #707070;
+    }
+  }
+
   .table-row-item {
     width: 20%;
+  }
+
+  .address {
+    display: flex;
+    align-items: center;
+    width: 30%;
+
+    .blockies {
+      border-radius: 50px;
+      margin-right: 5px;
+    }
   }
 
   .nft-title {
@@ -49,7 +109,7 @@ const ItemRow = styled.div`
   }
 `;
 
-export default function OffersRow() {
+export default function OffersRow({ data, type }) {
   // const [openMakeOfferDialog, setOpenMakeOfferDialog] = useState(false);
   const handleAcceptOffer = () => {
     // setOpenMakeOfferDialog(!openMakeOfferDialog);
@@ -57,38 +117,75 @@ export default function OffersRow() {
   return (
     <>
       <TableRowContainer>
-        <div className="table-row-item">15.11.2022</div>
-        <div className="table-row-item">0x84…x987</div>
-        <div className="table-row-item">1500 CRO</div>
-        <div className="table-row-item">
-          <Button onClick={handleAcceptOffer}>Accept</Button>
+        <div className="table-row-item address">
+          <Blockies seed={data.address} size={6} scale={5} className="blockies" />
+          {data.address}
         </div>
-        {/* <MakeOfferDialog
-        isOpen={openMakeOfferDialog}
-        toggle={handleAcceptOffer}
-        nftData={listing}
-        address={address}
-        collectionMetadata={collectionMetadata}
-      /> */}
+        <div className="table-row-item">{data.offerDate}</div>
+        {type === 'Observer' && <div className="table-row-item">Offered</div>}
+        <div className="table-row-item">{data.offerPrice}</div>
+        {type === 'Received' && (
+          <div className="table-row-item">
+            <Button onClick={handleAcceptOffer}>Accept</Button>
+          </div>
+        )}
+        {type === 'Made' && (
+          <>
+            <Dropdown className="actions-dropdown">
+              <Dropdown.Toggle className="actions-dropdown-toggle">
+                <div className="dot-icon">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu>
+                <Dropdown.ItemText className="actions-dropdown-item-text">Action</Dropdown.ItemText>
+                <Dropdown.Item>Update offer</Dropdown.Item>
+                <Dropdown.Item>Cancel offer</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </>
+        )}
       </TableRowContainer>
       <TableRowContainerMobile>
         <ItemRow>
-          <div>Date</div>
-          <div>15.11.2022</div>
+          <div>Address</div>
+          <div>{data.address}</div>
         </ItemRow>
         <ItemRow>
-          <div>Owner</div>
-          <div>0x84…x987</div>
+          <div>Offer Date</div>
+          <div>{data.offerDate}</div>
         </ItemRow>
         <ItemRow>
           <div>Offer Price</div>
-          <div>1550 CRO</div>
+          <div>{data.offerPrice}</div>
         </ItemRow>
-        <ItemRow>
-          <div className="table-row-button">
-            <Button onClick={handleAcceptOffer}>Accept</Button>
-          </div>
-        </ItemRow>
+        {type === 'Received' && (
+          <ItemRow>
+            <div className="table-row-button">
+              <Button onClick={handleAcceptOffer}>Accept</Button>
+            </div>
+            <div className="table-row-button">
+              <Button onClick={handleAcceptOffer} type="outlined">
+                Decline
+              </Button>
+            </div>
+          </ItemRow>
+        )}
+        {type === 'Made' && (
+          <ItemRow>
+            <div className="table-row-button">
+              <Button onClick={handleAcceptOffer}>Update</Button>
+            </div>
+            <div className="table-row-button">
+              <Button onClick={handleAcceptOffer} type="outlined">
+                Cancel
+              </Button>
+            </div>
+          </ItemRow>
+        )}
       </TableRowContainerMobile>
     </>
   );
