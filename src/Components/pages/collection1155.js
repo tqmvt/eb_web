@@ -22,6 +22,7 @@ import { SortOption } from '../Models/sort-option.model';
 import { FilterOption } from '../Models/filter-option.model';
 import config from '../../Assets/networks/rpc_config.json';
 import Market from '../../Contracts/Marketplace.json';
+import stakingPlatforms from '../../core/data/staking-platforms.json';
 
 const knownContracts = config.known_contracts;
 
@@ -266,16 +267,9 @@ const Collection1155 = ({ address, tokenId=null, cacheName = 'collection' }) => 
               <div className="row">
                 <div className="mx-auto text-center fw-bold" style={{ fontSize: '0.8em' }}>
                   NFTs from this collection can be staked at {' '}
-                  {collectionMetadata.staking === 'crodex' && (
-                      <a href="https://swap.crodex.app/#/rewards/nft" target="_blank" rel="noreferrer">
-                        <span className="color">Crodex</span>
-                      </a>
-                  )}
-                  {collectionMetadata.staking === 'croskull' && (
-                      <a href="https://app.croskull.com/ " target="_blank" rel="noreferrer">
-                        <span className="color">CroSkull</span>
-                      </a>
-                  )}
+                  <a href={stakingPlatforms[collectionMetadata.staking].url} target="_blank" rel="noreferrer">
+                    <span className="color">{stakingPlatforms[collectionMetadata.staking].name}</span>
+                  </a>
                 </div>
               </div>
             )}
