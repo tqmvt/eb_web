@@ -967,7 +967,8 @@
         "website": "https://croskull.com/",
         "twitter": "https://twitter.com/CroskullNFT",
         "discord": "https://discord.gg/aU5YmPuqKy",
-        "medium": "https://medium.com/@croskullnft"
+        "medium": "https://medium.com/@croskullnft",
+        "staking": "croskull"
       }
     },
     {
@@ -1018,7 +1019,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "Scaling the Cronos Blockchain.",
+        "description": "Cronos Lizards are a collection of 797 OG Lizards and 2203 Gen2 Lizards scaling the Cronos Jungle. Holding a Cronos Lizard gives you exclusive access to the LizzyDAO, Cronos' first NFT project DAO. With 100% royalty sharing and unique tokenomics to breed Baby Space Lizards, Cronos Lizards transcend the typical PFP project.",
         "verified": true,
         "avatar": "/img/collections/cronoslizards/avatar.png",
         "card": "/img/collections/cronoslizards/card.png",
@@ -2286,7 +2287,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "Scaling the Cronos Blockchain.",
+        "description": "Cronos Lizards are a collection of 797 OG Lizards and 2203 Gen2 Lizards scaling the Cronos Jungle. Holding a Cronos Lizard gives you exclusive access to the LizzyDAO, Cronos' first NFT project DAO. With 100% royalty sharing and unique tokenomics to breed Baby Space Lizards, Cronos Lizards transcend the typical PFP project.",
         "verified": true,
         "avatar": "/img/collections/cronoslizards/gen2/avatar.webp",
         "card": "/img/collections/cronoslizards/gen2/card.webp",
