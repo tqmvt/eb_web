@@ -4412,7 +4412,7 @@
       "maxMintPerTx": 1,
       "maxMintPerAddress": 1,
       "totalSupply": 2100,
-      "priceDescription": "Whitelist-only presale for the first 12 hours (limit 1 per address). Public sale after presale ends (limit 3 per address).",
+      "priceDescription": "Whitelist-only presale for the first 12 hours (limit 1 per address). Public sale after presale ends (limit 3 per transaction).",
       "cost": "5000",
       "memberCost": "4000",
       "whitelistCost": "4000",
