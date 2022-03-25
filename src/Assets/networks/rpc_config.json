@@ -2996,6 +2996,25 @@
         "twitter": "https://twitter.com/boarsgonewild",
         "discord": "https://discord.gg/nA33tCUphh"
       }
+    },
+    {
+      "name": "CRO Homes",
+      "slug": "cro-homes",
+      "multiToken": false,
+      "address": "0x59b554B12B80cAc8629Bf541a2D6359639AF2A63",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "verified": false,
+        "avatar": "/img/collections/crohomes/avatar.png",
+        "banner": "/img/collections/crohomes/banner.png",
+        "card": "/img/collections/crohomes/card.png",
+        "maxSupply": 3333,
+        "website": "https://cro.homes",
+        "twitter": "https://twitter.com/CROHomesNFT",
+        "discord": "https://discord.gg/crohomes",
+        "medium": "https://medium.com/@CROHomes"
+      }
     }
   ],
   "drops": [
