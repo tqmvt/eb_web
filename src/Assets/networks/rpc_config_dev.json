@@ -3015,6 +3015,26 @@
         "discord": "https://discord.gg/crohomes",
         "medium": "https://medium.com/@CROHomes"
       }
+    },
+    {
+      "name": "LazyHorse Skybox",
+      "slug": "lazy-horse-skybox",
+      "multiToken": false,
+      "address": "",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/lazyhorse/avatar.png",
+        "card": "/img/collections/lazyhorse/skybox/card.webp",
+        "banner": "/img/collections/lazyhorse/skybox/banner.webp",
+        "maxSupply": 2100,
+        "website": "https://www.lazyhorseraceclub.com",
+        "twitter": "https://twitter.com/LazyHorseRC",
+        "discord": "https://discord.gg/lhrc",
+        "medium": "https://medium.com/@lazyhorseraceclub"
+      }
     }
   ],
   "drops": [
@@ -4377,6 +4397,33 @@
       "complete": false,
       "featured": false,
       "redirect": "https://cronoslioness.club/"
+    },
+    {
+      "id": 50,
+      "slug": "lazy-horse-skybox",
+      "imgNft": "/img/drops/lazyhorse/skybox/drop1.webp",
+      "imgPreview": "/img/drops/lazyhorse/skybox/drop2.webp",
+      "imgAvatar": "/img/collections/lazyhorse/avatar.png",
+      "imgBanner": "/img/collections/lazyhorse/skybox/banner.webp",
+      "title": "LHRC Skybox",
+      "subtitle": "Full access and control of a private skybox room in the Lazy Horse Metaverse",
+      "description": "The LHRC Skybox is a property asset inside the Lazy Horse Metaverse represented by the LHRC Skybox NFT.  The LHRC Skybox gives each owner full access and control of their own room, 20 sellable seats to every Signature Concert Event, a virtual meeting/conference room for private events, a view of ongoing races in the Lazy Horse Race Game, customizable and licensable wall pictures, and 24/7 access to all the entertainment the Lazy Horse Metaverse has to offer.",
+      "author": { "name": "LazyHorse", "link": "https://www.lazyhorseraceclub.com/" },
+      "address": "",
+      "maxMintPerTx": 1,
+      "maxMintPerAddress": 1,
+      "totalSupply": 2100,
+      "priceDescription": "Whitelist-only presale for the first 12 hours (limit 1 per address). Public sale after presale ends (limit 2 per address).",
+      "cost": "5000",
+      "memberCost": "4000",
+      "whitelistCost": "4000",
+      "foundersOnly": false,
+      "start": 1648306800000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false
     }
   ],
   "auctions": [
