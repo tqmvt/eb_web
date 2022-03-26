@@ -1724,7 +1724,7 @@
       "metadata": {
         "description": "The official NFT of Cronodes",
         "verified": true,
-        "avatar": "/img/collections/cronodes/avatar.gif",
+        "avatar": "https://files.ebisusbay.com/img/collections/cronodes/avatar.gif",
         "card": "/img/collections/cronodes/card.png",
         "banner": "/img/collections/cronodes/banner.png",
         "maxSupply": 3300,
@@ -4418,7 +4418,8 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false
+      "complete": false,
+      "featured": true
     },
     {
       "id": 51,
