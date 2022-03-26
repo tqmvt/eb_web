@@ -4418,7 +4418,8 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false
+      "complete": false,
+      "featured": true
     },
     {
       "id": 51,
