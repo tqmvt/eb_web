@@ -3034,6 +3034,26 @@
         "discord": "https://discord.gg/lhrc",
         "medium": "https://medium.com/@lazyhorseraceclub"
       }
+    },
+    {
+      "name": "Cronos Football Club",
+      "slug": "cronos-fc",
+      "multiToken": false,
+      "address": "0xd8cdcA552c2419DaeEF7598C9a4C6Ff3526d35AC",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/cronosfc/avatar.webp",
+        "card": "/img/collections/cronosfc/card.webp",
+        "banner": "/img/collections/cronosfc/banner.webp",
+        "maxSupply": 25000,
+        "website": "https://cronosfc.club/",
+        "twitter": "https://twitter.com/Cronos__FC",
+        "discord": "https://discord.gg/C7saCVJN",
+        "medium": "https://medium.com/@cfcgcronos"
+      }
     }
   ],
   "drops": [
