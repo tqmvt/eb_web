@@ -16,6 +16,7 @@ import Drop from '../Components/pages/drop';
 import DropBuildShip from '../Components/pages/dropBuildShip';
 import MyListings from '../Components/pages/myListings';
 import MySales from '../Components/pages/mySales';
+import MyStaking from '../Components/pages/myStaking';
 import Collections from '../Components/pages/collections';
 import CharityBall from '../Components/pages/charityBall';
 import Rugsurance from '../Components/pages/rugsurance';
@@ -73,6 +74,7 @@ const Component = ({ walletAddress, authInitFinished }) => {
           {/*<Route exact path="/roadmap" component={Roadmap} />*/}
           <PrivateRoute exact path="/nfts" component={MyNfts} />
           <PrivateRoute exact path="/sales" component={MySales} />
+          <PrivateRoute exact path="/staking" component={MyStaking} />
           <PrivateRoute exact path="/wallet/listings" component={MyListings} />
           <SentryEnhancedRoute exact path="/build-ship" component={DropBuildShip} />
 
