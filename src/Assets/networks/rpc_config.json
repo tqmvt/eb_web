@@ -2946,7 +2946,7 @@
       "multiToken": false,
       "address": "0xe7f4b4c26912dbB5764353eBD8D6aCD56A5B7435",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "verified": false,
         "avatar": "/img/collections/crodoges/avatar.gif",
@@ -4331,7 +4331,7 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false,
+      "complete": true,
       "featured": false,
       "redirect": "https://lootpad.io/collection/crodoges"
     },
