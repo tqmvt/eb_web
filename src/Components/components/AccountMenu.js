@@ -313,15 +313,17 @@ const AccountMenu = function () {
                     <span>My Sales</span>
                   </span>
                 </li>
-                <li>
-                  <span onClick={() => navigateTo(`/staking`)}>
-                    <span>
-                      {' '}
-                      <FontAwesomeIcon icon={faShoppingBag} />{' '}
+                {(user.vipCount > 0 || user.stakeCount > 0) && (
+                  <li>
+                    <span onClick={() => navigateTo(`/staking`)}>
+                      <span>
+                        {' '}
+                        <FontAwesomeIcon icon={faShoppingBag} />{' '}
+                      </span>
+                      <span>My Staking</span>
                     </span>
-                    <span>My Staking</span>
-                  </span>
-                </li>
+                  </li>
+                )}
                 <li>
                   <span onClick={clearCookies}>
                     <span>
