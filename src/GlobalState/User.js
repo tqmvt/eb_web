@@ -3,6 +3,7 @@ import { Contract, ethers, BigNumber } from 'ethers';
 import config from '../Assets/networks/rpc_config.json';
 import Membership from '../Contracts/EbisusBayMembership.json';
 import Cronies from '../Contracts/CronosToken.json';
+import StakeABI from '../Contracts/Stake.json';
 import Market from '../Contracts/Marketplace.json';
 import Auction from '../Contracts/Auction.json';
 import Web3Modal from 'web3modal';
@@ -33,12 +34,15 @@ const userSlice = createSlice({
     cronies: [],
     founderCount: 0,
     vipCount: 0,
+    stakeCount: 0,
     needsOnboard: false,
+    isStaking: false,
 
     // Contracts
     membershipContract: null,
     croniesContract: null,
     marketContract: null,
+    stateContract: null,
     auctionContract: null,
     // ebisuContract : null,
 
@@ -79,12 +83,15 @@ const userSlice = createSlice({
   reducers: {
     accountChanged(state, action) {
       state.membershipContract = action.payload.membershipContract;
+      state.stakeContract = action.payload.stakeContract;
       state.croniesContract = action.payload.croniesContract;
 
       state.balance = action.payload.balance;
       state.code = action.payload.code;
       state.rewards = action.payload.rewards;
       state.isMember = action.payload.isMember;
+      state.vipCount = action.payload.vipCount;
+      state.stakeCount = action.payload.stakeCount;
       state.marketContract = action.payload.marketContract;
       state.marketBalance = action.payload.marketBalance;
       state.auctionContract = action.payload.auctionContract;
@@ -246,6 +253,8 @@ const userSlice = createSlice({
       state.rewards = null;
       state.marketBalance = null;
       state.isMember = false;
+      state.vipCount = 0;
+      state.stakeCount = 0;
       state.fetchingNfts = false;
       state.nftsInitialized = false;
       state.nfts = [];
@@ -260,6 +269,12 @@ const userSlice = createSlice({
     },
     balanceUpdated(state, action) {
       state.balance = action.payload;
+    },
+    setVIPCount(state, action) {
+      state.vipCount = action.payload;
+    },
+    setStakeCount(state, action) {
+      state.stakeCount = action.payload;
     },
   },
 });
@@ -295,6 +310,8 @@ export const {
   onLogout,
   elonContract,
   onThemeChanged,
+  setVIPCount,
+  setStakeCount,
 } = userSlice.actions;
 export const user = userSlice.reducer;
 
@@ -449,6 +466,7 @@ export const connectAccount =
 
       let mc;
       let cc;
+      let sc;
       let code;
       let balance;
       let rewards;
@@ -457,16 +475,19 @@ export const connectAccount =
       let market;
       let auction;
       let sales;
+      let stakeCount = 0;
       // let ebisu;
 
       if (signer && correctChain) {
         mc = new Contract(config.membership_contract, Membership.abi, signer);
+        sc = new Contract(config.stake_contract, StakeABI.abi, signer);
         cc = new Contract(config.cronie_contract, Cronies.abi, signer);
         const rawCode = await mc.codes(address);
         code = ethers.utils.parseBytes32String(rawCode);
         rewards = ethers.utils.formatEther(await mc.payments(address));
         ownedFounder = await mc.balanceOf(address, 1);
         ownedVip = await mc.balanceOf(address, 2);
+        stakeCount = await sc.amountStaked(address);
         market = new Contract(config.market_contract, Market.abi, signer);
         auction = new Contract(config.auction_contract, Auction.abi, signer);
         sales = ethers.utils.formatEther(await market.payments(address));
@@ -486,11 +507,14 @@ export const connectAccount =
           needsOnboard: false,
           correctChain: correctChain,
           membershipContract: mc,
+          stakeContract: sc,
           croniesContract: cc,
           code: code,
           balance: balance,
           rewards: rewards,
-          isMember: ownedVip > 0 || ownedFounder > 0,
+          isMember: ownedVip > 0 || ownedFounder > 0 || stakeCount > 0,
+          vipCount: ownedVip ? ownedVip.toNumber() : ownedVip,
+          stakeCount: stakeCount ? stakeCount.toNumber() : stakeCount,
           marketContract: market,
           auctionContract: auction,
           marketBalance: sales,

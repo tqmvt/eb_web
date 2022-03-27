@@ -5311,3 +5311,9 @@ blockquote {
 @media only screen and (max-width: 378px) {
 
 }
+button:disabled,
+button[disabled]{
+ cursor: unset;
+  background-color: #cccccc;
+  color: #666666;
+}

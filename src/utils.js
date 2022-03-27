@@ -370,3 +370,8 @@ export const findCollectionByAddress = (address, tokenId) => {
     return matchesAddress && matchesTokenIf1155;
   });
 }
+export const round = (num, decimals) => {
+  if (!decimals) return num;
+  const pow = Math.pow(10, decimals);
+  return Math.round(num * pow) / pow;
+}

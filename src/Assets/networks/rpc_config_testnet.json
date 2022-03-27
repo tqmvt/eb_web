@@ -8,7 +8,8 @@
   "api_base": "https://testapi.ebisusbay.biz/",
   "app_base": "https://testapp.ebisusbay.biz/",
   "membership_contract": "0x3F1590A5984C89e6d5831bFB76788F3517Cdf034",
-  "market_contract": "0x15876C450638158F48392F01dE2CEa51eccc7840",
+  "market_contract": "0xb3cB12e7F9e442ef799a2B7e92f65ab8710d7b27",
+  "stake_contract": "0x70A9989dd73B026B34462BE158963587dD9ca16f",
   "auction_contract": "0xba707763609f18bc1439ACCfe342c1E35ba0fDCC",
   "cronie_contract": "0xe9DCa9E03F31CBD538A19a89eA2cA3684AF2788f",
   "elon_contract": "0x2fE1f2722fa215A68b92aECaD425259C0D645972",
@@ -205,7 +206,7 @@
       "multiToken": false,
       "address": "0xFdc26dde39BE26e01f25e26999AF26C672541174",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "",
         "verified": true,
@@ -254,10 +255,11 @@
     },
     {
       "name": "MAG Brew Vikings",
+      "slug": "mag-brew-vikings",
       "multiToken": false,
       "address": "0x3620FC8174199A2666cca88A18Fcf6e9c4B166eB",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "",
         "verified": true,
@@ -367,7 +369,7 @@
       "multiToken": false,
       "address": "0x10F7D2BbaEEF04e7b61335ba4b680412d0B167D6",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "",
         "verified": true,
@@ -445,7 +447,7 @@
       "multiToken": false,
       "address": "0xC10e3eAdaE647E1C8CBA8497256CCd5f278f6E7c",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "",
         "verified": true,
@@ -460,12 +462,42 @@
       }
     },
     {
+      "name": "3DSlothty",
+      "slug": "3d-slothty",
+      "multiToken": false,
+      "address": "0x7d09ff680b210770D6D9a1296b4A74bd5391b341",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "slug": "3d-slothty",
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/slothty/avatar.png",
+        "card": "/img/collections/slothty/card.webp",
+        "banner": "/img/collections/slothty/banner.webp",
+        "maxSupply": 8888,
+        "website": "https://croslothty.com/",
+        "twitter": "https://twitter.com/Slothtynft",
+        "discord": "http://discord.gg/wkq88dHDyA",
+        "telegram": "https://t.me/croslothty"
+      }
+    },
+    {
+      "slug": "super-nft",
+      "name": "Super NFT",
+      "multiToken": false,
+      "address": "0x99a1E178d0AB41DbdA42EED5faaDFAA073c4AA14",
+      "onChain": false,
+      "listable": false,
+      "metadata": {}
+    },
+    {
       "name": "Lolita Friends",
       "slug": "lolita-friends",
       "multiToken": false,
       "address": "0x87de5d738c1a9a3fDEEb85A2fA5c04E54b21AEC4",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "",
         "verified": true,
@@ -484,7 +516,7 @@
       "multiToken": false,
       "address": "0x4668329e1cb30841282c0b209B20e6b069f8C523",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "",
         "verified": true,
@@ -504,6 +536,8 @@
       "multiToken": false,
       "address": "0x17e95a737533d93cf4B7180f8f48070914b84706",
       "metadata": {
+        "description": "",
+        "verified": true,
         "avatar": "/img/collections/fighters/avatar.png",
         "card": "/img/collections/fighters/card.png",
         "banner": "/img/collections/fighters/banner.png",
@@ -520,7 +554,7 @@
       "multiToken": false,
       "address": "0x0E1B4c3370005b5F9bDBBa12ea97D90aC2dCdaDe",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "",
         "verified": true,
@@ -851,7 +885,7 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false,
+      "complete": true,
       "video": "https://app.ebisusbay.com/files/aunah/trailer.mp4"
     },
     {
@@ -893,9 +927,9 @@
       "end": null,
       "referral": false,
       "is1155": false,
-      "published": true,
+      "published": false,
       "featured": true,
-      "complete": false
+      "complete": true
     },
     {
       "id": 16,
@@ -1133,7 +1167,7 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false
+      "complete": true
     },
     {
       "id": 30,
@@ -1294,7 +1328,7 @@
       "end": null,
       "referral": false,
       "is1155": false,
-      "published": true,
+      "published": false,
       "complete": false
     },
     {
