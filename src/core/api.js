@@ -8,6 +8,7 @@ import { ERC1155, ERC721, MetaPixelsAbi, SouthSideAntsReadAbi } from '../Contrac
 import IPFSGatewayTools from '@pinata/ipfs-gateway-tools/dist/browser';
 import { dataURItoBlob } from '../Store/utils';
 import { SortOption } from '../Components/Models/sort-option.model';
+import { CollectionSortOption } from '../Components/Models/collection-sort-option.model';
 import { FilterOption } from '../Components/Models/filter-option.model';
 import { isMetapixelsCollection, isSouthSideAntsCollection } from '../utils';
 
@@ -230,7 +231,7 @@ export async function sortAndFetchCollectionDetails(page, sort, filter, traits, 
     query = { ...query, ...filter.toApi() };
   }
 
-  if (sort && sort instanceof SortOption) {
+  if (sort && sort instanceof CollectionSortOption) {
     query = { ...query, ...sort.toApi() };
   }
 

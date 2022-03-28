@@ -17,7 +17,7 @@ import { caseInsensitiveCompare, isCrosmocraftsCollection } from '../../utils';
 import TraitsFilter from '../Collection/TraitsFilter';
 import PowertraitsFilter from '../Collection/PowertraitsFilter';
 import SocialsBar from '../Collection/SocialsBar';
-import { SortOption } from '../Models/sort-option.model';
+import { CollectionSortOption } from '../Models/collection-sort-option.model';
 import { FilterOption } from '../Models/filter-option.model';
 import config from '../../Assets/networks/rpc_config.json';
 import Market from '../../Contracts/Marketplace.json';
@@ -69,7 +69,7 @@ const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) 
   };
 
   useEffect(() => {
-    const sortOption = SortOption.default();
+    const sortOption = CollectionSortOption.default();
     sortOption.key = 'id';
     sortOption.direction = 'desc';
     sortOption.label = 'By Id';

@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { Form } from 'react-bootstrap';
 
-import { sortOptions } from './constants/sort-options';
-import { SortOption } from '../Models/sort-option.model';
+import { sortOptions } from './constants/collection-sort-options';
+import { CollectionSortOption } from '../Models/collection-sort-option.model';
 import { listingFilterOptions } from './constants/filter-options';
 import { sortListings, resetListings, searchListings, filterListingsByListed } from '../../GlobalState/collectionSlice';
 
@@ -18,9 +18,9 @@ const CollectionFilterBar = ({ cacheName = null }) => {
 
   const collection = useSelector((state) => state.collection);
 
-  const selectDefaultSortValue = collection.cachedSort[cacheName] ?? SortOption.default();
+  const selectDefaultSortValue = collection.cachedSort[cacheName] ?? CollectionSortOption.default();
 
-  const selectSortOptions = useSelector((state) => {
+  const selectCollectionSortOptions = useSelector((state) => {
     if (state.collection.hasRank) {
       return sortOptions;
     }
@@ -50,13 +50,13 @@ const CollectionFilterBar = ({ cacheName = null }) => {
   );
 
   const handleSearch = debounce((event) => {
-    const { value } = event.target;
-    dispatch(searchListings(value));
+    // const { value } = event.target;
+    // dispatch(searchListings(value));
   }, 300);
 
-  const handleClear = useCallback(() => {
-    dispatch(resetListings());
-  }, [dispatch]);
+  // const handleClear = useCallback(() => {
+  //   dispatch(resetListings());
+  // }, [dispatch]);
 
   const customStyles = {
     option: (base, state) => ({
@@ -105,7 +105,7 @@ const CollectionFilterBar = ({ cacheName = null }) => {
             <Select
               styles={customStyles}
               placeholder={'Sort Listings...'}
-              options={[SortOption.default(), ...selectSortOptions]}
+              options={[CollectionSortOption.default(), ...selectCollectionSortOptions]}
               getOptionLabel={(option) => option.getOptionLabel}
               getOptionValue={(option) => option.getOptionValue}
               defaultValue={selectDefaultSortValue}
