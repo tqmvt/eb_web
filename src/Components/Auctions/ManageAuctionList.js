@@ -21,6 +21,7 @@ const ManageAuctionList = () => {
 
   useEffect(async () => {
     const response = await sortAndFetchAuctions();
+    if (response.auctions === undefined) response.auctions = [];
     setAuctions(response.auctions.filter((a) => [auctionState.NOT_STARTED, auctionState.ACTIVE].includes(a.state)));
   }, []);
 
