@@ -3131,6 +3131,26 @@
         "discord": "https://discord.gg/AEQ2BCpCNZ",
         "medium": "https://medium.com/@LuckySpookies_NFTs"
       }
+    },
+    {
+      "name": "Baby Weird Apes",
+      "slug": "baby-weird-apes",
+      "multiToken": false,
+      "address": "0x89F7114C73d5cef7d7EDCbDb14DaA092EB2194c9",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/weirdapesclub/avatar.png",
+        "card": "/img/collections/weirdapesclub/card.png",
+        "banner": "/img/collections/weirdapesclub/baby/banner.jpg",
+        "maxSupply": 6000,
+        "website": "https://weirdapes.com/",
+        "twitter": "https://twitter.com/WeirdApesClub",
+        "discord": "https://discord.gg/RX9h6mhnTR",
+        "medium": "https://medium.com/@WeirdApesClub"
+      }
     }
   ],
   "drops": [
