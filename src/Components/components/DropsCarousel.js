@@ -105,6 +105,7 @@ export default class Responsive extends Component {
           d.start &&
           d.start > Date.now() &&
           d.start - Date.now() < twelveHours &&
+          !!d.imgPreview &&
           !topLevelKeys.includes(d.slug)
       )
       .sort((a, b) => (a.start < b.start ? 1 : -1));
@@ -136,7 +137,7 @@ export default class Responsive extends Component {
         })
         .reverse();
     }
-    this.featuredDrops = [...upcomingDrops, ...topLevelDrops, ...liveDrops];
+    this.featuredDrops = [...topLevelDrops, ...upcomingDrops, ...liveDrops];
   }
 
   navigateToDrop(drop) {

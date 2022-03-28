@@ -225,7 +225,6 @@ export const getStats =
       // }
 
       const response = await getCollectionSummary(slug);
-      console.log(slug, response);
 
       const traits = await getCollectionTraits(address);
       const powertraits = await getCollectionPowertraits(address);

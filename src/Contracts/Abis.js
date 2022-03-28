@@ -34,6 +34,32 @@ export const EbisuDropAbi = [
 
 export const SouthSideAntsReadAbi = [...ERC721, 'function getNftByUser(address) public view returns (uint256[])'];
 
+export const RewardsPoolAbi = [
+  'event ERC20PaymentReleased(address indexed token, address to, uint256 amount)',
+  'event OwnershipTransferred(address indexed previousOwner, address indexed newOwner)',
+  'event PayeeAdded(address account, uint256 shares)',
+  'event PaymentReceived(address from, uint256 amount)',
+  'event PaymentReleased(address to, uint256 amount)',
+  'function addReward() payable',
+  'function curState() view returns (uint8)',
+  'function endTime() view returns (uint256)',
+  'function finalBalance() view returns (uint256)',
+  'function forwardUnclaimed(address nextPool)',
+  'function isClosed() returns (bool)',
+  'function owner() view returns (address)',
+  'function payee(uint256 index) view returns (address)',
+  'function release(address account)',
+  'function released(address account) view returns (uint256)',
+  'function renounceOwnership()',
+  'function shares(address account) view returns (uint256)',
+  'function totalReceived() view returns (uint256)',
+  'function totalReleased(address token) view returns (uint256)',
+  'function totalReleased() view returns (uint256)',
+  'function totalShares() view returns (uint256)',
+  'function transferOwnership(address newOwner)',
+  'function updateState()',
+];
+
 export const MetaPixelsAbi = [
   {
     type: 'constructor',

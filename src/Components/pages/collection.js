@@ -48,7 +48,7 @@ const Collection = () => {
                   )}
                 </>
               ) : (
-                <Collection721 address={collection.address} slug={slug} />
+                <Collection721 collection={collection} address={collection.address} slug={slug} />
               )}
             </>
           )}

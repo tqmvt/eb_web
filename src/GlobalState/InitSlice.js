@@ -62,6 +62,5 @@ export const appInitializer = () => async (dispatch) => {
     //  Web3Modal will show up. Let the Router redirect the user to main page.
     dispatch(appAuthInitFinished());
   }
-
   dispatch(connectAccount(true));
 };

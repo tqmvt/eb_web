@@ -311,6 +311,10 @@ export const isCroCrowCollection = (address) => {
   return isCollection(address, 'cro-crow');
 };
 
+export const isCrognomidesCollection = (address) => {
+  return isCollection(address, 'crognomides');
+};
+
 export const isMetapixelsCollection = (address) => {
   return isCollection(address, 'metapixels');
 };
@@ -365,4 +369,10 @@ export const findCollectionByAddress = (address, tokenId) => {
     const matchesTokenIf1155 = !c.multiToken || (tokenId && c.id == tokenId);
     return matchesAddress && matchesTokenIf1155;
   });
+};
+
+export const round = (num, decimals) => {
+  if (!decimals) return num;
+  const pow = Math.pow(10, decimals);
+  return Math.round(num * pow) / pow;
 };

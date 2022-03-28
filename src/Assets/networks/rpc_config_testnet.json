@@ -8,7 +8,8 @@
   "api_base": "https://testapi.ebisusbay.biz/",
   "app_base": "https://testapp.ebisusbay.biz/",
   "membership_contract": "0x3F1590A5984C89e6d5831bFB76788F3517Cdf034",
-  "market_contract": "0x15876C450638158F48392F01dE2CEa51eccc7840",
+  "market_contract": "0xb3cB12e7F9e442ef799a2B7e92f65ab8710d7b27",
+  "stake_contract": "0x70A9989dd73B026B34462BE158963587dD9ca16f",
   "auction_contract": "0xba707763609f18bc1439ACCfe342c1E35ba0fDCC",
   "cronie_contract": "0xe9DCa9E03F31CBD538A19a89eA2cA3684AF2788f",
   "elon_contract": "0x2fE1f2722fa215A68b92aECaD425259C0D645972",
@@ -206,7 +207,7 @@
       "multiToken": false,
       "address": "0xFdc26dde39BE26e01f25e26999AF26C672541174",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "",
         "verified": true,
@@ -255,10 +256,11 @@
     },
     {
       "name": "MAG Brew Vikings",
+      "slug": "mag-brew-vikings",
       "multiToken": false,
       "address": "0x3620FC8174199A2666cca88A18Fcf6e9c4B166eB",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "",
         "verified": true,
@@ -368,7 +370,7 @@
       "multiToken": false,
       "address": "0x10F7D2BbaEEF04e7b61335ba4b680412d0B167D6",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "",
         "verified": true,
@@ -446,7 +448,7 @@
       "multiToken": false,
       "address": "0xC10e3eAdaE647E1C8CBA8497256CCd5f278f6E7c",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "",
         "verified": true,
@@ -461,12 +463,42 @@
       }
     },
     {
+      "name": "3DSlothty",
+      "slug": "3d-slothty",
+      "multiToken": false,
+      "address": "0x7d09ff680b210770D6D9a1296b4A74bd5391b341",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "slug": "3d-slothty",
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/slothty/avatar.png",
+        "card": "/img/collections/slothty/card.webp",
+        "banner": "/img/collections/slothty/banner.webp",
+        "maxSupply": 8888,
+        "website": "https://croslothty.com/",
+        "twitter": "https://twitter.com/Slothtynft",
+        "discord": "http://discord.gg/wkq88dHDyA",
+        "telegram": "https://t.me/croslothty"
+      }
+    },
+    {
+      "slug": "super-nft",
+      "name": "Super NFT",
+      "multiToken": false,
+      "address": "0x99a1E178d0AB41DbdA42EED5faaDFAA073c4AA14",
+      "onChain": false,
+      "listable": false,
+      "metadata": {}
+    },
+    {
       "name": "Lolita Friends",
       "slug": "lolita-friends",
       "multiToken": false,
       "address": "0x87de5d738c1a9a3fDEEb85A2fA5c04E54b21AEC4",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "",
         "verified": true,
@@ -485,7 +517,7 @@
       "multiToken": false,
       "address": "0x4668329e1cb30841282c0b209B20e6b069f8C523",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "",
         "verified": true,
@@ -504,14 +536,18 @@
       "slug": "crono-fighters",
       "multiToken": false,
       "address": "0x17e95a737533d93cf4B7180f8f48070914b84706",
-      "avatar": "/img/collections/fighters/avatar.png",
-      "card": "/img/collections/fighters/card.png",
-      "banner": "/img/collections/fighters/banner.png",
-      "maxSupply": 1000,
-      "website": "http://fightersnft.io/",
-      "twitter": "https://twitter.com/FightersNFT",
-      "medium": "https://medium.com/@shahabs/nft-collectors-fighters-are-coming-593cb9865e20",
-      "discord": "http://discord.gg/Bb39m7BBBR"
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/fighters/avatar.png",
+        "card": "/img/collections/fighters/card.png",
+        "banner": "/img/collections/fighters/banner.png",
+        "maxSupply": 1000,
+        "website": "http://fightersnft.io/",
+        "twitter": "https://twitter.com/FightersNFT",
+        "medium": "https://medium.com/@shahabs/nft-collectors-fighters-are-coming-593cb9865e20",
+        "discord": "http://discord.gg/Bb39m7BBBR"
+      }
     },
     {
       "name": "Big Bad Wolves",
@@ -519,7 +555,7 @@
       "multiToken": false,
       "address": "0x0E1B4c3370005b5F9bDBBa12ea97D90aC2dCdaDe",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "",
         "verified": true,
@@ -531,6 +567,64 @@
         "twitter": "https://twitter.com/BigBadWolves_MC",
         "discord": "https://discord.gg/9GetF5Nc5x",
         "medium": "https://t.me/bigbadwolves_nft"
+      }
+    },
+    {
+      "name": "NoBuddies NFT (Gen 2)",
+      "slug": "nobuddies-gen2",
+      "multiToken": false,
+      "address": "0x424616fAb8A0f2DE40627bd798e03Fdd718CfAcd",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "verified": true,
+        "avatar": "/img/collections/nobuddies/avatar.webp",
+        "banner": "/img/collections/nobuddies/banner.webp",
+        "card": "/img/collections/nobuddies/card.webp",
+        "maxSupply": 2250,
+        "website": "https://nobuddiesnft.com/",
+        "twitter": "https://twitter.com/NoBuddiesNFT",
+        "discord": "https://discord.gg/W5TDF7jC34"
+      }
+    },
+    {
+      "name": "MarbleVerse",
+      "slug": "marbleverse",
+      "multiToken": false,
+      "address": "0x5276AEa297c415Be3D9E5AC257C6165C656d3747",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "verified": true,
+        "avatar": "/img/collections/marbleverse/avatar.webp",
+        "banner": "/img/collections/marbleverse/banner.webp",
+        "card": "/img/collections/marbleverse/card.webp",
+        "maxSupply": 20000,
+        "website": "https://www.marbleverse.io/",
+        "twitter": "https://twitter.com/marbleverse_io",
+        "discord": "https://discord.gg/marbleverse",
+        "telegram": "https://t.me/marbleverse_io",
+        "medium": "https://medium.com/@marbleverse_io"
+      }
+    },
+    {
+      "name": "LazyHorse Skybox",
+      "slug": "lazy-horse-skybox",
+      "multiToken": false,
+      "address": "0xC997749351CC4C9770f885B0147F455F5907F11A",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/lazyhorse/avatar.png",
+        "card": "/img/collections/lazyhorse/skybox/card.webp",
+        "banner": "/img/collections/lazyhorse/skybox/banner.webp",
+        "maxSupply": 2100,
+        "website": "https://www.lazyhorseraceclub.com",
+        "twitter": "https://twitter.com/LazyHorseRC",
+        "discord": "https://discord.gg/lhrc",
+        "medium": "https://medium.com/@lazyhorseraceclub"
       }
     }
   ],
@@ -792,7 +886,7 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false,
+      "complete": true,
       "video": "https://app.ebisusbay.com/files/aunah/trailer.mp4"
     },
     {
@@ -834,9 +928,9 @@
       "end": null,
       "referral": false,
       "is1155": false,
-      "published": true,
+      "published": false,
       "featured": true,
-      "complete": false
+      "complete": true
     },
     {
       "id": 16,
@@ -1074,7 +1168,7 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false
+      "complete": true
     },
     {
       "id": 30,
@@ -1235,7 +1329,7 @@
       "end": null,
       "referral": false,
       "is1155": false,
-      "published": true,
+      "published": false,
       "complete": false
     },
     {
@@ -1257,6 +1351,84 @@
       "memberCost": "1",
       "foundersOnly": false,
       "start": 1647288000000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false
+    },
+    {
+      "id": 38,
+      "slug": "nobuddies-gen2",
+      "imgNft": "/img/drops/nobuddies/drop.webp",
+      "imgPreview": "/img/drops/nobuddies/drop.webp",
+      "imgAvatar": "/img/collections/nobuddies/avatar.webp",
+      "imgBanner": "/img/collections/nobuddies/banner.webp",
+      "title": "NoBuddies NFT Gen 2",
+      "subtitle": "NoBuddies NFT Gen 2 is a collection of 2250 uniquely generated NFTs on the Cronos Chain with over 100 attributes.",
+      "description": "NoBuddies is all about community growth, and passive income. We will invest a percentage from mint sales into investments that our team is confident will be beneficial to our holders. After buying your NoBuddie, just sit back and collect your rewards on a regular basis. The more NoBuddies you own, the more rewards you will receive. So what are you waiting for? Come join our community and find out for yourself why you should be a NoBuddie!",
+      "author": { "name": "NoBuddies", "link": "https://nobuddiesnft.com/" },
+      "address": "0x424616fAb8A0f2DE40627bd798e03Fdd718CfAcd",
+      "maxMintPerTx": 10,
+      "maxMintPerAddress": 50,
+      "totalSupply": 2250,
+      "cost": "399",
+      "memberCost": "349",
+      "foundersOnly": false,
+      "start": 1647795651000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false
+    },
+    {
+      "id": 45,
+      "slug": "marbleverse",
+      "imgNft": "/img/drops/marbleverse/drop.webp",
+      "imgPreview": "/img/drops/marbleverse/drop.webp",
+      "imgAvatar": "/img/collections/marbleverse/avatar.webp",
+      "imgBanner": "/img/collections/marbleverse/banner.webp",
+      "title": "MarbleVerse",
+      "subtitle": "Find your favorite marble and try to become the rolling champion of the MarbleVerse",
+      "description": "MarbleVerse will be the 1st P2E NFT game on Cronos Network and welcomes all into an evolving universe where your marbles race to prove their worth and become more valuable racers. Mint your marbles and let it race for you; as it wins races, you will earn too.\n\nAnyone holding Marble NFTs will be able to join marble races and earn valuable rewards based on their marbles success.\n\nMarbleVerse brings a game where you can enjoy racing, winning, earning and owning beautiful pieces of art with the rest of the community.",
+      "author": { "name": "MarbleVerse", "link": "https://www.marbleverse.io/" },
+      "address": "0x5276AEa297c415Be3D9E5AC257C6165C656d3747",
+      "maxMintPerTx": 10,
+      "maxMintPerAddress": 1000,
+      "totalSupply": 20000,
+      "priceDescription": "Mint prices increases by 10 CRO for every 2000 nfts minted",
+      "cost": "80",
+      "memberCost": "80",
+      "foundersOnly": false,
+      "start": null,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false
+    },
+    {
+      "id": 46,
+      "slug": "lazy-horse-skybox",
+      "imgNft": "/img/drops/lazyhorse/skybox/drop1.webp",
+      "imgPreview": "/img/drops/lazyhorse/skybox/drop2.webp",
+      "imgAvatar": "/img/collections/lazyhorse/avatar.png",
+      "imgBanner": "/img/collections/lazyhorse/skybox/banner.webp",
+      "title": "LHRC Skybox",
+      "subtitle": "Full access and control of a private skybox room in the Lazy Horse Metaverse",
+      "description": "The LHRC Skybox is a property asset inside the Lazy Horse Metaverse represented by the LHRC Skybox NFT.  The LHRC Skybox gives each owner full access and control of their own room, 20 sellable seats to every Signature Concert Event, a virtual meeting/conference room for private events, a view of ongoing races in the Lazy Horse Race Game, customizable and licensable wall pictures, and 24/7 access to all the entertainment the Lazy Horse Metaverse has to offer.",
+      "author": { "name": "LazyHorse", "link": "https://www.lazyhorseraceclub.com/" },
+      "address": "0xC997749351CC4C9770f885B0147F455F5907F11A",
+      "maxMintPerTx": 3,
+      "maxMintPerAddress": 50,
+      "totalSupply": 2100,
+      "priceDescription": "Whitelist-only presale for the first 12 hours (limit 1 per address). Public sale after presale ends (limit 3 per transaction).",
+      "cost": "5000",
+      "memberCost": "4000",
+      "whitelistCost": "4000",
+      "foundersOnly": false,
+      "start": 1648225243000,
       "end": null,
       "referral": false,
       "is1155": false,

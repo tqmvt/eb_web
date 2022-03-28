@@ -3995,7 +3995,7 @@ img.img-rounded{
       height: auto;
       margin-left: 10px;
       margin-top: -12px;
-      z-index: 10;
+      z-index: 0;
       left: 0;
       img {
         width: 100%;
@@ -5325,4 +5325,10 @@ blockquote {
 }
 @media only screen and (max-width: 378px) {
 
+}
+button:disabled,
+button[disabled]{
+ cursor: unset;
+  background-color: #cccccc;
+  color: #666666;
 }
