@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
-  sortAndFetchListings,
+  sortAndFetchCollectionDetails,
   getCollectionMetadata,
   getCollectionTraits,
   getCollectionPowertraits,
@@ -163,7 +163,7 @@ export const fetchListings = () => async (dispatch, getState) => {
   const state = getState();
 
   dispatch(listingsLoading());
-  const { response, cancelled } = await sortAndFetchListings(
+  const { response, cancelled } = await sortAndFetchCollectionDetails(
     state.collection.query.page + 1,
     state.collection.query.sort,
     state.collection.query.filter,

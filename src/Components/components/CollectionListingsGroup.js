@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Spinner } from 'react-bootstrap';
 
-import ListingCard from './ListingCard';
+import ListingCardCollection from './ListingCardCollection';
 
 const CollectionListingsGroup = ({
   showLoadMore = true,
@@ -44,7 +44,7 @@ const CollectionListingsGroup = ({
           {listings &&
             listings.map((listing, index) => (
               <div key={index} className="d-item col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12 mb-4 px-2">
-                <ListingCard
+                <ListingCardCollection
                   listing={listing}
                   imgClass="collection"
                   address={address}
@@ -62,7 +62,7 @@ const CollectionListingsGroup = ({
           {listings &&
             listings.map((listing, index) => (
               <div key={index} className="d-item col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12 mb-4 px-2">
-                <ListingCard
+                <ListingCardCollection
                   listing={listing}
                   imgClass="collection"
                   address={address}

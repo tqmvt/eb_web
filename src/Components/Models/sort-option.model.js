@@ -26,7 +26,7 @@ export class SortOption {
 
   toApi() {
     return {
-      sortBy: this.key || 'id',
+      sortBy: this.key || 'listingId',
       direction: this.direction || 'desc',
     };
   }

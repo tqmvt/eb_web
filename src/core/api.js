@@ -46,9 +46,10 @@ export async function sortAndFetchListings(page, sort, filter, traits, powertrai
   let pagesize = 12;
 
   let query = {
+    state: 0,
     page: page,
     pageSize: pagesize,
-    sortBy: 'id',
+    sortBy: 'listingId',
     direction: 'desc',
   };
 
@@ -99,7 +100,7 @@ export async function sortAndFetchListings(page, sort, filter, traits, powertrai
 
   const queryString = new URLSearchParams(query);
 
-  const url = new URL(api.collectionDetails, `${api.baseUrl}`);
+  const url = new URL(api.listings, `${api.baseUrl}`);
   const uri = `${url}?${queryString}`;
 
   //  Debugging
@@ -213,6 +214,104 @@ export async function getCollectionSummary(slug) {
   const queryString = new URLSearchParams(query);
   const uri = `${api.baseUrl}${api.collectionSummary}?${queryString}`;
   return await (await fetch(uri)).json();
+}
+
+export async function sortAndFetchCollectionDetails(page, sort, filter, traits, powertraits, search, filterListed) {
+  let pagesize = 12;
+
+  let query = {
+    page: page,
+    pageSize: pagesize,
+    sortBy: 'id',
+    direction: 'desc',
+  };
+
+  if (filter && filter instanceof FilterOption) {
+    query = { ...query, ...filter.toApi() };
+  }
+
+  if (sort && sort instanceof SortOption) {
+    query = { ...query, ...sort.toApi() };
+  }
+
+  if (traits && Object.keys(traits).length > 0) {
+    //  traits      = { traitCategoryName1: {traitName2: true }, traitCategoryName3: {traitName4: false}}
+    //  traitFilter = { traitCategoryName1: ['traitName2']}
+    const traitFilter = Object.keys(traits)
+      .map((traitCategoryName) => {
+        const traitCategory = traits[traitCategoryName];
+
+        const traitCategoryKeys = Object.keys(traitCategory);
+
+        const truthyFilters = traitCategoryKeys.filter((traitCategoryKey) => traitCategory[traitCategoryKey]);
+
+        return truthyFilters.length === 0 ? {} : { [traitCategoryName]: truthyFilters };
+      })
+      .reduce((prev, curr) => ({ ...prev, ...curr }), {});
+
+    query['traits'] = JSON.stringify(traitFilter);
+  }
+
+  if (powertraits && Object.keys(powertraits).length > 0) {
+    const traitFilter = Object.keys(powertraits)
+      .map((traitCategoryName) => {
+        const traitCategory = powertraits[traitCategoryName];
+
+        const traitCategoryKeys = Object.keys(traitCategory);
+
+        const truthyFilters = traitCategoryKeys.filter((traitCategoryKey) => traitCategory[traitCategoryKey]);
+
+        return truthyFilters.length === 0 ? {} : { [traitCategoryName]: truthyFilters };
+      })
+      .reduce((prev, curr) => ({ ...prev, ...curr }), {});
+
+    query['powertraits'] = JSON.stringify(traitFilter);
+  }
+
+  if (search) query['search'] = search;
+  if (filterListed) query['listed'] = filterListed;
+
+  const queryString = new URLSearchParams(query);
+
+  const url = new URL(api.collectionDetails, `${api.baseUrl}`);
+  const uri = `${url}?${queryString}`;
+
+  //  Debugging
+  const date = new Date();
+  //  Debugging
+  const time = `${date.getSeconds()}-${date.getMilliseconds()}`;
+  //  Debugging
+  const log = (message) => {
+    if (process.env.NODE_ENV === 'development') {
+      console.log(`${time} ${message}`);
+    }
+  };
+
+  try {
+    log(`Ongoing call: ${!!abortController}`);
+
+    if (abortController) {
+      abortController.abort();
+      log(`Cancelled previous call.`);
+    }
+
+    abortController = new AbortController();
+    const { signal } = abortController;
+
+    const response = await fetch(uri, { signal });
+
+    abortController = null;
+    log(`Went through.`);
+
+    return { cancelled: false, response: await response.json() };
+  } catch (error) {
+    if (error && error.name === 'AbortError') {
+      log(`Cancelled.`);
+      return { cancelled: true, response: [] };
+    }
+    abortController = null;
+    throw new TypeError(error);
+  }
 }
 
 export async function getCollectionTraits(contractAddress) {
