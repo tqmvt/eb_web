@@ -3072,6 +3072,26 @@
         "twitter": "https://twitter.com/Platy_Pos",
         "discord": "https://discord.gg/5bxaB6VPAX"
       }
+    },
+    {
+      "name": "Crodeo Apes The First Alliance",
+      "slug": "crodeo-apes-the-first-alliance",
+      "multiToken": false,
+      "address": "0xF67877C2AF584083a68aA3014E82e068527Cf9A3",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": false,
+        "avatar": "/img/collections/crodeoapes/avatar.png",
+        "card": "/img/collections/crodeoapes/card.png",
+        "banner": "/img/collections/crodeoapes/banner.png",
+        "maxSupply": 120,
+        "twitter": "https://twitter.com/CrodeoApes",
+        "website": "https://crodeoapes.com/",
+        "discord": "https://discord.io/Crodeo",
+        "medium": "https://medium.com/@crodeoapes"
+      }
     }
   ],
   "drops": [
