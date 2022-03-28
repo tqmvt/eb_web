@@ -3111,6 +3111,26 @@
         "website": "https://www.finickyfoxes.com/",
         "discord": "https://discord.gg/2V8gX32z"
       }
+    },
+    {
+      "name": "Lucky Spookies Private Club",
+      "slug": "lucky-spookies-private-club",
+      "multiToken": false,
+      "address": "0x3c47Ccb387768459D641dCe4dF556B3560a07855",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": false,
+        "avatar": "/img/collections/luckyspookies/avatar.jpeg",
+        "card": "/img/collections/luckyspookies/card.jpeg",
+        "banner": "/img/collections/luckyspookies/banner.jpg",
+        "maxSupply": 8888,
+        "twitter": "https://twitter.com/LuckySpookiesPC",
+        "website": "https://luckyspookies.club/",
+        "discord": "https://discord.gg/AEQ2BCpCNZ",
+        "medium": "https://medium.com/@LuckySpookies_NFTs"
+      }
     }
   ],
   "drops": [
