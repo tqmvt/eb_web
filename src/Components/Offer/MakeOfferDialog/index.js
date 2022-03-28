@@ -126,24 +126,24 @@ export default function MakeOfferDialog({ isOpen, toggle, nftData, address, coll
       if (!offerPrice || offerPrice < 0) {
         return;
       }
-      const tx = await offerContract.makeOffer(nftData.nftAddress, nftData.nftId, {
+      const tx = await offerContract.makeOffer(nftData.address, nftData.id, {
         value: ethers.utils.parseEther(offerPrice),
       });
       await tx.wait();
     } else if (actionType === 'Cancel') {
-      const tx = await offerContract.cancelOffer(nftData.nftAddress, nftData.nftId);
+      const tx = await offerContract.cancelOffer(nftData.address, nftData.id);
       await tx.wait();
     }
     toggle();
   };
 
   const fullImage = () => {
-    if (nftData.nft.original_image.startsWith('ipfs://')) {
-      const link = nftData.nft.original_image.split('://')[1];
+    if (nftData.image.startsWith('ipfs://')) {
+      const link = nftData.image.split('://')[1];
       return `https://ipfs.io/ipfs/${link}`;
     }
 
-    return nftData.nft.original_image;
+    return nftData.image;
   };
 
   return (
@@ -152,12 +152,10 @@ export default function MakeOfferDialog({ isOpen, toggle, nftData, address, coll
         <DialogTitleContainer>{type} offer</DialogTitleContainer>
         <DialogMainContent>
           <ImageContainer>
-            <img src={croSkullRedPotionImageHack(nftData.nftAddress, nftData.nft.image)} alt={nftData.nft.name} />
-            {nftData && nftData.nft.original_image && (
+            <img src={croSkullRedPotionImageHack(nftData.address, nftData.image)} alt={nftData.name} />
+            {nftData && nftData.image && (
               <div className="nft__item_action mt-2" style={{ cursor: 'pointer' }}>
-                <span
-                  onClick={() => window.open(croSkullRedPotionImageHack(nftData.nftAddress, fullImage()), '_blank')}
-                >
+                <span onClick={() => window.open(croSkullRedPotionImageHack(nftData.address, fullImage()), '_blank')}>
                   <span className="p-2">View Full Image</span>
                   <FontAwesomeIcon icon={faExternalLinkAlt} />
                 </span>
@@ -165,8 +163,8 @@ export default function MakeOfferDialog({ isOpen, toggle, nftData, address, coll
             )}
           </ImageContainer>
           <NftDetailContainer>
-            <NftTitle>{nftData.nft.name}</NftTitle>
-            <NftDescription>{nftData.nft.description}</NftDescription>
+            <NftTitle>{nftData.name}</NftTitle>
+            <NftDescription>{nftData.description}</NftDescription>
             {collectionMetadata && (
               <FlexRow className="row">
                 <div className="item_info">
@@ -180,10 +178,10 @@ export default function MakeOfferDialog({ isOpen, toggle, nftData, address, coll
                       to={`/collection/${address}`}
                     />
 
-                    {typeof nftData.nft.rank !== 'undefined' && nftData.nft.rank !== null && (
+                    {typeof nftData.rank !== 'undefined' && nftData.rank !== null && (
                       <ProfilePreview
                         type="Rarity Rank"
-                        title={nftData.nft.rank}
+                        title={nftData.rank}
                         avatar={collectionMetadata?.rarity === 'rarity_sniper' ? '/img/rarity-sniper.png' : null}
                         hover={
                           collectionMetadata?.rarity === 'rarity_sniper'

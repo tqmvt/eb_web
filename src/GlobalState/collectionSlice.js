@@ -39,7 +39,7 @@ const collectionSlice = createSlice({
     listingsReceived: (state, action) => {
       state.loading = false;
       state.error = false;
-      state.listings.push(...action.payload.listings);
+      state.listings.push(...action.payload.nfts);
       state.query.page = action.payload.page;
       state.totalPages = action.payload.totalPages;
       state.hasRank = action.payload.hasRank;
@@ -174,7 +174,7 @@ export const fetchListings = () => async (dispatch, getState) => {
   );
 
   if (!cancelled) {
-    response.hasRank = response.listings.length > 0 && typeof response.listings[0].nft.rank !== 'undefined';
+    response.hasRank = response.nfts.length > 0 && typeof response.nfts[0].rank !== 'undefined';
     dispatch(listingsReceived(response));
   }
 };

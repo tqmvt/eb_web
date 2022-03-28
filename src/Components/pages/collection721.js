@@ -84,7 +84,7 @@ const Collection721 = ({ address, slug, cacheName = 'collection' }) => {
 
   useEffect(() => {
     const sortOption = SortOption.default();
-    sortOption.key = 'listingId';
+    sortOption.key = 'id';
     sortOption.direction = 'desc';
     sortOption.label = 'By Id';
 
@@ -92,6 +92,7 @@ const Collection721 = ({ address, slug, cacheName = 'collection' }) => {
     filterOption.type = 'collection';
     filterOption.address = address;
     filterOption.name = 'Specific collection';
+    filterOption.slug = slug;
 
     dispatch(
       init(

@@ -26,6 +26,7 @@ const api = {
   auctions: '/auctions',
   unfilteredListings: '/unfilteredlistings',
   collectionSummary: '/collection/summary',
+  collectionDetails: '/collection/details',
 };
 
 export default api;
@@ -45,10 +46,9 @@ export async function sortAndFetchListings(page, sort, filter, traits, powertrai
   let pagesize = 12;
 
   let query = {
-    state: 0,
     page: page,
     pageSize: pagesize,
-    sortBy: 'listingId',
+    sortBy: 'id',
     direction: 'desc',
   };
 
@@ -99,7 +99,7 @@ export async function sortAndFetchListings(page, sort, filter, traits, powertrai
 
   const queryString = new URLSearchParams(query);
 
-  const url = new URL(api.listings, `${api.baseUrl}`);
+  const url = new URL(api.collectionDetails, `${api.baseUrl}`);
   const uri = `${url}?${queryString}`;
 
   //  Debugging

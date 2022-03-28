@@ -3,6 +3,7 @@ export class FilterOption {
   address = null;
   name = 'All';
   id = null;
+  slug = '';
 
   get getOptionLabel() {
     return this.name;
@@ -37,6 +38,13 @@ export class FilterOption {
         tokenId: this.id,
       };
     }
+
+    if (this.slug) {
+      return {
+        slug: this.slug,
+      };
+    }
+
     return {
       [this.type]: this.address.toLowerCase(),
     };

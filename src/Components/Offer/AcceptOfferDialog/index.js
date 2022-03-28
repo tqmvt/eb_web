@@ -118,11 +118,11 @@ const AcceptOfferDialog = ({ isOpen, toggle, nftData, address, collectionMetadat
     <>
       <Dialog onClose={toggle} open={isOpen}>
         <DialogContent>
-          <DialogTitle>Accept offer {nftData.nft.name}</DialogTitle>
+          <DialogTitle>Accept offer {nftData.name}</DialogTitle>
           <Grid container spacing={{ sm: 4 }} columns={2}>
             <Grid item xs={2} md={1} key="1">
               <Container>
-                <CardMedia component="img" src={nftData.nft.original_image} width="150" />
+                <CardMedia component="img" src={nftData.image} width="150" />
               </Container>
             </Grid>
             <Grid item xs={1} key="2">
