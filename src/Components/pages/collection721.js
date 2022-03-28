@@ -11,14 +11,9 @@ import CollectionListingsGroup from '../components/CollectionListingsGroup';
 import CollectionFilterBar from '../components/CollectionFilterBar';
 import LayeredIcon from '../components/LayeredIcon';
 import Footer from '../components/Footer';
+import CollectionInfoBar from '../components/CollectionInfoBar';
 import { init, fetchListings, getStats } from '../../GlobalState/collectionSlice';
-import {
-  caseInsensitiveCompare,
-  isCrosmocraftsCollection,
-  isCrosmocraftsPartsCollection,
-  isFounderCollection,
-  siPrefixedNumber,
-} from '../../utils';
+import { caseInsensitiveCompare, isCrosmocraftsCollection } from '../../utils';
 import TraitsFilter from '../Collection/TraitsFilter';
 import PowertraitsFilter from '../Collection/PowertraitsFilter';
 import SocialsBar from '../Collection/SocialsBar';
@@ -26,9 +21,6 @@ import { SortOption } from '../Models/sort-option.model';
 import { FilterOption } from '../Models/filter-option.model';
 import config from '../../Assets/networks/rpc_config.json';
 import Market from '../../Contracts/Marketplace.json';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
-import CollectionInfoBar from '../components/CollectionInfoBar';
 import stakingPlatforms from '../../core/data/staking-platforms.json';
 
 const knownContracts = config.known_contracts;
@@ -177,10 +169,7 @@ const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) 
           <div className="row">
             {hasRank && collection.metadata.rarity === 'rarity_sniper' && (
               <div className="row">
-                <div
-                  className="col-lg-8 col-sm-10 mx-auto text-center text-sm-end fst-italic"
-                  style={{ fontSize: '0.8em' }}
-                >
+                <div className="col-lg-8 col-sm-10 mx-auto text-center mb-3" style={{ fontSize: '0.8em' }}>
                   Rarity scores and ranks provided by{' '}
                   <a href="https://raritysniper.com/" target="_blank" rel="noreferrer">
                     <span className="color">Rarity Sniper</span>

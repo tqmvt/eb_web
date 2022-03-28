@@ -25,15 +25,12 @@ const Auction = () => {
   const bidHistory = useSelector((state) => state.auction.bidHistory);
   const powertraits = useSelector((state) => state.auction.powertraits);
   const isLoading = useSelector((state) => state.auction.loading);
-  const user = useSelector((state) => state.user);
 
   const collection = useSelector((state) => {
     return knownContracts.find((c) => c.address.toLowerCase() === listing?.nftAddress.toLowerCase());
   });
 
   const [charityMetadata, setCharityMetadata] = useState(false);
-  const [openCheckout, setOpenCheckout] = React.useState(false);
-  const [buying, setBuying] = useState(false);
 
   useEffect(() => {
     dispatch(getAuctionDetails(id));

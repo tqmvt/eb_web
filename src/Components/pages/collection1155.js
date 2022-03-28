@@ -9,12 +9,7 @@ import CollectionListingsGroup from '../components/CollectionListingsGroup';
 import CollectionFilterBar from '../components/CollectionFilterBar';
 import LayeredIcon from '../components/LayeredIcon';
 import { init, fetchListings, getStats } from '../../GlobalState/collectionSlice';
-import {
-  caseInsensitiveCompare,
-  isCrosmocraftsPartsCollection,
-  isFounderCollection,
-  siPrefixedNumber,
-} from '../../utils';
+import { caseInsensitiveCompare, isCrosmocraftsPartsCollection } from '../../utils';
 import TraitsFilter from '../Collection/TraitsFilter';
 import PowertraitsFilter from '../Collection/PowertraitsFilter';
 import SocialsBar from '../Collection/SocialsBar';
@@ -27,7 +22,7 @@ import stakingPlatforms from '../../core/data/staking-platforms.json';
 
 const knownContracts = config.known_contracts;
 
-const Collection1155 = ({ address, tokenId = null, cacheName = 'collection' }) => {
+const Collection1155 = ({ address, tokenId = null, cacheName = 'collection', slug }) => {
   const dispatch = useDispatch();
 
   const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
@@ -83,7 +78,7 @@ const Collection1155 = ({ address, tokenId = null, cacheName = 'collection' }) =
 
   useEffect(() => {
     const sortOption = SortOption.default();
-    sortOption.key = 'listingId';
+    sortOption.key = 'id';
     sortOption.direction = 'desc';
     sortOption.label = 'By Id';
 
@@ -94,6 +89,7 @@ const Collection1155 = ({ address, tokenId = null, cacheName = 'collection' }) =
       filterOption.id = tokenId;
     }
     filterOption.name = 'Specific collection';
+    filterOption.slug = slug;
 
     dispatch(
       init(
@@ -196,10 +192,7 @@ const Collection1155 = ({ address, tokenId = null, cacheName = 'collection' }) =
           <div className="row">
             {hasRank && collectionMetadata?.rarity === 'rarity_sniper' && (
               <div className="row">
-                <div
-                  className="col-lg-8 col-sm-10 mx-auto text-center text-sm-end fst-italic"
-                  style={{ fontSize: '0.8em' }}
-                >
+                <div className="col-lg-8 col-sm-10 mx-auto text-center mb-3" style={{ fontSize: '0.8em' }}>
                   Rarity scores and ranks provided by{' '}
                   <a href="https://raritysniper.com/" target="_blank" rel="noreferrer">
                     <span className="color">Rarity Sniper</span>

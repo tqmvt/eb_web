@@ -4,7 +4,7 @@ import { Redirect, useParams } from 'react-router-dom';
 import Collection1155 from './collection1155';
 import Collection721 from './collection721';
 import config from '../../Assets/networks/rpc_config.json';
-import { caseInsensitiveCompare, collections } from '../../utils';
+import { caseInsensitiveCompare } from '../../utils';
 
 const knownContracts = config.known_contracts;
 
@@ -42,9 +42,9 @@ const Collection = () => {
               {type === '1155' ? (
                 <>
                   {collection.split ? (
-                    <Collection1155 address={collection.address} tokenId={collection.id} />
+                    <Collection1155 address={collection.address} tokenId={collection.id} slug={slug} />
                   ) : (
-                    <Collection1155 address={collection.address} />
+                    <Collection1155 address={collection.address} slug={slug} />
                   )}
                 </>
               ) : (

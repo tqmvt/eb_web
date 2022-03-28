@@ -10,6 +10,10 @@ const CollectionInfoBarContainer = styled.div`
   border-radius: 8px;
   padding: 22px 46px;
 
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoints.lg}) {
+    padding: 22px;
+  }
+
   @media only screen and (max-width: ${({ theme }) => theme.breakpoints.md}) {
     flex-direction: column;
     padding: 22px;
@@ -19,6 +23,8 @@ const CollectionInfoBarContainer = styled.div`
 const InfoItem = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding: 0 16px;
   border-right: solid 4px #ffffff;
 
@@ -60,7 +66,7 @@ const ItemValue = styled.div`
     font-size: 24px;
   }
   @media only screen and (max-width: ${({ theme }) => theme.breakpoints.xl}) {
-    font-size: 18px;
+    font-size: 16px;
   }
   @media only screen and (max-width: ${({ theme }) => theme.breakpoints.md}) {
     order: 2;

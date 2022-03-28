@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 import {
   Box,
   CardMedia,
@@ -30,7 +30,7 @@ const AcceptDialogStepEnum = {
 Object.freeze(AcceptDialogStepEnum);
 
 const AcceptOfferDialog = ({ isOpen, toggle, nftData, address, collectionMetadata }) => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const [salePrice, setSalePrice] = useState(0);
   const [priceError, setPriceError] = useState('');
