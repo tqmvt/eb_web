@@ -3054,6 +3054,24 @@
         "discord": "https://discord.gg/C7saCVJN",
         "medium": "https://medium.com/@cfcgcronos"
       }
+    },
+    {
+      "name": "Cronos Platypos",
+      "slug": "cronos-platypos",
+      "multiToken": false,
+      "address": "0xda1ea383336d5b24c99c630a27d88925e4f0da41",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": false,
+        "avatar": "/img/collections/cronosplatypos/avatar.png",
+        "card": "/img/collections/cronosplatypos/card.png",
+        "banner": "/img/collections/cronosplatypos/banner.png",
+        "maxSupply": 250,
+        "twitter": "https://twitter.com/Platy_Pos",
+        "discord": "https://discord.gg/5bxaB6VPAX"
+      }
     }
   ],
   "drops": [
