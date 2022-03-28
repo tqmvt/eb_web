@@ -295,9 +295,9 @@ const Listing = () => {
                       <li id="Mainbtn2" className="tab">
                         <span onClick={handleBtnClick(2)}>History</span>
                       </li>
-                      <li id="Mainbtn3" className="tab">
+                      {/* <li id="Mainbtn3" className="tab">
                         <span onClick={handleBtnClick(3)}>Offers</span>
-                      </li>
+                      </li> */}
                     </ul>
 
                     <div className="de_tab_content">

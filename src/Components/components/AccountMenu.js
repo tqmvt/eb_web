@@ -316,7 +316,7 @@ const AccountMenu = function () {
                     <span>My Sales</span>
                   </span>
                 </li>
-                <li className="my-offers-menu-item">
+                {/* <li className="my-offers-menu-item">
                   <span onClick={() => navigateTo(`/offers`)}>
                     <span>
                       {' '}
@@ -325,7 +325,7 @@ const AccountMenu = function () {
                     <span>My Offers</span>
                   </span>
                   <div className="notification-badge"></div>
-                </li>
+                </li> */}
                 {(user.vipCount > 0 || user.stakeCount > 0) && (
                   <li>
                     <span onClick={() => navigateTo(`/staking`)}>
