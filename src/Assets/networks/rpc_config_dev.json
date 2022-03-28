@@ -3092,6 +3092,25 @@
         "discord": "https://discord.io/Crodeo",
         "medium": "https://medium.com/@crodeoapes"
       }
+    },
+    {
+      "name": "Finicky Foxes",
+      "slug": "finicky-foxes",
+      "multiToken": false,
+      "address": "0xC0AeBC62334b8Ed7893A77c9FA516d059FDa97e4",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": false,
+        "avatar": "/img/collections/finickyfoxes/avatar.gif",
+        "card": "/img/collections/finickyfoxes/card.png",
+        "banner": "/img/collections/finickyfoxes/banner.png",
+        "maxSupply": 2000,
+        "twitter": "https://twitter.com/FinickyFoxesNFT",
+        "website": "https://www.finickyfoxes.com/",
+        "discord": "https://discord.gg/2V8gX32z"
+      }
     }
   ],
   "drops": [
