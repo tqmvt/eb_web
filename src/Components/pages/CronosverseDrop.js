@@ -20,9 +20,9 @@ import {fetchMemberInfo, fetchVipInfo} from '../../GlobalState/Memberships';
 import { fetchCronieInfo } from '../../GlobalState/Cronies';
 
 import borderboard from '../../Assets/cronosverse/border_board.png'
-import tile1 from '../../Assets/cronosverse/tile1.jpg'
-import tile2 from '../../Assets/cronosverse/tile2.jpg'
-import tile3 from '../../Assets/cronosverse/tile3.jpg'
+import tile1 from '../../Assets/cronosverse/Plain-tile.png'
+import tile2 from '../../Assets/cronosverse/Suburban-tile.png'
+import tile3 from '../../Assets/cronosverse/Commercial-tile.png'
 
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 
@@ -40,7 +40,6 @@ import { EbisuDropAbi } from '../../Contracts/Abis';
 const tiles = [tile1, tile2, tile3]
 
 const tileType = ['Plain', 'Suburban', 'Commerical']
-const yLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 export const drops = config.drops;
 
@@ -450,17 +449,17 @@ export default CronosverseDrop;
 
 const CronosverseMintBoard = ({mintNow, minting, mintedIds, prices}) => {
   const ref0 = useRef();
-  const ref1 = useRef();
   const ref2 = useRef();
   const [tileInfo, setTileInfo] = useState({});
-  const [flag, setFlag] = useState('hidden');
+  const [modalFlag, setModalFlag] = useState('none')
   const [canvasDown, setCanvasDown] = useState(false);
   const [zoomState, setZoomState] = useState({
     offsetX: 0,
     offsetY: 0,
     scale: 1
   });
-
+  const [tempWidth, setTempWidth] = useState(1)
+  const [tempHeight, setTempHeight] = useState(1)
 
   const getTileType = (xPos, yPos) => {
     if (yPos >= 9 && xPos >= 19 && yPos <= 17 && xPos <= 34) {
@@ -517,7 +516,6 @@ const CronosverseMintBoard = ({mintNow, minting, mintedIds, prices}) => {
   }
 
   const changeCanvasState = (ReactZoomPanPinchRef, event) => {
-    console.log(event);
     setZoomState({
       offsetX: ReactZoomPanPinchRef.state.positionX,
       offsetY: ReactZoomPanPinchRef.state.positionY,
@@ -537,8 +535,8 @@ const CronosverseMintBoard = ({mintNow, minting, mintedIds, prices}) => {
     console.log('click: ');
     const mPos = getMousePos(e);
     let scale = zoomState.scale
-    const tileWidth = ref1.current.width / 54;
-    const tileHeight = ref1.current.height / 28;
+    const tileWidth = ref2.current.width / 54;
+    const tileHeight = ref2.current.height / 28;
     const xPos = Math.floor(mPos.x / (tileWidth * scale))
     const yPos = Math.floor(mPos.y / (tileHeight * scale))
     const type = getTileType(xPos, yPos)
@@ -546,13 +544,14 @@ const CronosverseMintBoard = ({mintNow, minting, mintedIds, prices}) => {
     let ctx = ref2.current.getContext("2d");
     ctx.clearRect(0, 0, ref2.current.width, ref2.current.height)
     if (type == 0 || type == 4) {
-      setFlag("hidden");
+      setModalFlag('none')
+      
       return;
     }
     const tokenId = getTokenId(xPos, yPos)
     if (isMinted(tokenId)) {
       console.log('minted')
-      setFlag("hidden")
+      setModalFlag('none')
       return;
     }
 
@@ -569,37 +568,35 @@ const CronosverseMintBoard = ({mintNow, minting, mintedIds, prices}) => {
     ctx.fillStyle = 'rgba(250, 10, 10, 0.5)'
     console.log('tileWidth: ', tileWidth, tileWidth*xPos)
     ctx.fillRect(tileWidth*xPos, tileHeight*yPos+1, tileWidth-1, tileHeight-1)
-    setFlag('visible')
+    setModalFlag('flex')
   };
 
 
   useEffect(() => {
     ref0.current.height = ref0.current.clientWidth * 2703 / 4532;
-    console.log(ref0.current.width, ref0.current.clientWidth)
-    console.log(ref1.current.width, ref1.current.height)
     let canvas_width = ref0.current.clientWidth * 3.65 / 6;
     let canvas_height = canvas_width * 620 / 1189;
-    ref2.current.width = ref1.current.width = canvas_width;
-    ref2.current.height = ref1.current.height = canvas_height;
+    ref2.current.width = canvas_width;
+    ref2.current.height = canvas_height;
 
-    console.log(': ', ref1.current.width, ref1.current.height)
+    setTempWidth(ref2.current.width)
+    setTempHeight(ref2.current.height)
   }, [])
-
+  
   useEffect(() => {
-    const tileWidth = ref1.current.width / 54;
-    const tileHeight = ref1.current.height / 28;
-    let ctx = ref1.current.getContext('2d');
+    const tileWidth = ref2.current.width / 54;
+    const tileHeight = ref2.current.height / 28;
+    
+    let ctx = ref2.current.getContext('2d');
     let img = new Image();
     img.onload = function() {
-  
-      ctx.drawImage(img, 0, 0, ref1.current.width, ref1.current.height);
       for (let i = 0; i < mintedIds.length; i++) {
         const [xPos, yPos] = getPosFromTokenId(parseInt(mintedIds[i]))
         ctx.fillRect(xPos*tileWidth, yPos*tileHeight, tileWidth, tileHeight);
       }
     }
     img.src = borderboard;
-    ctx.clearRect(0, 0, ref1.current.width, ref1.current.height)
+    ctx.clearRect(0, 0, ref2.current.width, ref2.current.height)
     
     ctx.fillStyle = 'rgba(50, 50, 50, 0.5)'
     if (mintedIds?.length == 0) return;
@@ -610,7 +607,7 @@ const CronosverseMintBoard = ({mintNow, minting, mintedIds, prices}) => {
     if (minting == false) {
       let ctx2 = ref2.current.getContext('2d');
       ctx2.clearRect(0, 0, ref2.current.width, ref2.current.height);
-      setFlag('hidden');
+      setModalFlag('none')
     }
   }, [minting])
 
@@ -626,28 +623,39 @@ const CronosverseMintBoard = ({mintNow, minting, mintedIds, prices}) => {
           }
         }}
       >
+            
         <div className='canvas'>
           <TransformWrapper
             onZoom={changeCanvasState} 
-            onPanningStop={changeCanvasState}
             onPinching={changeCanvasState} 
             onPinchingStop={changeCanvasState} 
+            onPanningStop={changeCanvasState}
+            onPanning={() => setModalFlag('none')}
           >
             <TransformComponent>
-              <canvas className='canvasBack' ref={ref1} ></canvas>
+              <img src={borderboard} alt='boardboard' style={{ width: `${tempWidth}px`, height: `${tempHeight}px` }} />
               <canvas className='canvasFront' ref={ref2} onClick={handleClick} ></canvas>
             </TransformComponent>
 
-            <div className='tip_modal' style={{ visibility: flag, left: `${tileInfo.globalX+15}px`, top: `${tileInfo.globalY+15}px`}}>
+            <div 
+              className='tip_modal' 
+              style={{ display: modalFlag, left: `${tileInfo.globalX+15}px`, top: `${tileInfo.globalY+15}px`}}
+            >
               <div className='modal_content'>
-                <div className='cross' onClick={() => setFlag('hidden')} >&times;</div>
+                <div className='cross' onClick={() => setModalFlag('none')}> &times; </div>
                 <img className='tile_img' src={tileInfo.tile} alt="tile" />
                 <div className='tile_items'>
-                  <div>TokenId: {tileInfo.tokenId}</div>
-                  <div>Type: {tileType[tileInfo.type-1]}</div>
-                  <div>Location: {tileInfo.xPos}, { yLetters[tileInfo.yPos-1] } </div>
-                  <div>Price: {tileInfo.price} cro</div>
-                  <button className="btn-main lead" onClick={()=>{mintNow(tileInfo.tokenId, tileInfo.price)}} disabled={minting}>
+                  <div>TokenId:   {tileInfo.tokenId}</div>
+                  <div>Type:      {tileType[tileInfo.type-1]}</div>
+                  <div>Location:  {tileInfo.xPos < 27 ? tileInfo.xPos - 27 : tileInfo.xPos - 26}, 
+                                  {tileInfo.yPos < 14 ? 14 - tileInfo.yPos : 13 - tileInfo.yPos } 
+                  </div>
+                  <div>Price:     {tileInfo.price} CRO</div>
+                  <button 
+                    className="btn-main lead" 
+                    onClick={()=>{mintNow(tileInfo.tokenId, tileInfo.price)}} 
+                    disabled={minting}
+                  >
                     {minting ? (
                       <>
                         Minting...
@@ -662,13 +670,9 @@ const CronosverseMintBoard = ({mintNow, minting, mintedIds, prices}) => {
                 </div>
               </div>
             </div>
-            
           </TransformWrapper>
-         
         </div>
-   
       </div>
- 
     </div>
   )
 }
