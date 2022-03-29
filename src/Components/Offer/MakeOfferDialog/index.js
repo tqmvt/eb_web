@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux';
 import { Dialog, DialogContent, DialogTitle } from '@mui/material';
 import styled from 'styled-components';
 import { ethers } from 'ethers';
+import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Button from 'src/Components/components/Button';
 import Input from 'src/Components/components/common/Input';
@@ -40,12 +42,12 @@ const DialogMainContent = styled.div`
 
 const ImageContainer = styled.div`
   width: 232px;
-  height: 232px;
+  height: auto;
   margin-top: 6px;
+  text-align: center;
 
   img {
     width: 100%;
-    height: 100%;
   }
 
   @media only screen and (max-width: ${({ theme }) => theme.breakpoints.md}) {
@@ -90,6 +92,7 @@ const OfferPrice = styled.div`
 `;
 
 const OfferPriceInput = styled.div`
+  width: 60%;
   display: flex;
   align-items: center;
   font-size: 18px;
@@ -108,7 +111,7 @@ const CloseIconContainer = styled.div`
   }
 `;
 
-export default function MakeOfferDialog({ isOpen, toggle, nftData, address, collectionMetadata }) {
+export default function MakeOfferDialog({ isOpen, toggle, nftData, address, collectionMetadata, type = 'Make' }) {
   const offerContract = useSelector((state) => {
     return state.user.offerContract;
   });
@@ -118,76 +121,103 @@ export default function MakeOfferDialog({ isOpen, toggle, nftData, address, coll
     setOfferPrice(inputEvent.target.value);
   };
 
-  const handleMakeOffer = async () => {
-    console.log(offerContract);
-    console.log(nftData.nftAddress, nftData.nftId, offerPrice, ethers.utils.parseEther(offerPrice));
-    const tx = await offerContract.makeOffer(nftData.nftAddress, nftData.nftId, {
-      value: ethers.utils.parseEther(offerPrice),
-    });
-    const receipt = await tx.wait();
-    console.log(receipt);
+  const handleOfferAction = async (actionType) => {
+    if (actionType === 'Make') {
+      if (!offerPrice || offerPrice < 0) {
+        return;
+      }
+      const tx = await offerContract.makeOffer(nftData.address, nftData.id, {
+        value: ethers.utils.parseEther(offerPrice),
+      });
+      await tx.wait();
+    } else if (actionType === 'Cancel') {
+      const tx = await offerContract.cancelOffer(nftData.address, nftData.id);
+      await tx.wait();
+    }
+    toggle();
+  };
+
+  const fullImage = () => {
+    if (nftData.image.startsWith('ipfs://')) {
+      const link = nftData.image.split('://')[1];
+      return `https://ipfs.io/ipfs/${link}`;
+    }
+
+    return nftData.image;
   };
 
   return (
     <DialogContainer onClose={toggle} open={isOpen} maxWidth="md">
       <DialogContent>
-        <DialogTitleContainer>Make offer</DialogTitleContainer>
+        <DialogTitleContainer>{type} offer</DialogTitleContainer>
         <DialogMainContent>
           <ImageContainer>
-            <img src={croSkullRedPotionImageHack(nftData.nftAddress, nftData.nft.image)} alt={nftData.nft.name} />
+            <img src={croSkullRedPotionImageHack(nftData.address, nftData.image)} alt={nftData.name} />
+            {nftData && nftData.image && (
+              <div className="nft__item_action mt-2" style={{ cursor: 'pointer' }}>
+                <span onClick={() => window.open(croSkullRedPotionImageHack(nftData.address, fullImage()), '_blank')}>
+                  <span className="p-2">View Full Image</span>
+                  <FontAwesomeIcon icon={faExternalLinkAlt} />
+                </span>
+              </div>
+            )}
           </ImageContainer>
           <NftDetailContainer>
-            <NftTitle>{nftData.nft.name}</NftTitle>
-            <NftDescription>{nftData.nft.description}</NftDescription>
-            <FlexRow className="row">
-              <div className="item_info">
-                <div className="row" style={{ gap: '2rem 0' }}>
-                  <ProfilePreview
-                    type="Collection"
-                    title={address && shortAddress(address)}
-                    avatar={collectionMetadata?.avatar}
-                    address={address}
-                    verified={collectionMetadata?.verified}
-                    to={`/collection/${address}`}
-                  />
-
-                  {typeof nftData.nft.rank !== 'undefined' && nftData.nft.rank !== null && (
+            <NftTitle>{nftData.name}</NftTitle>
+            <NftDescription>{nftData.description}</NftDescription>
+            {collectionMetadata && (
+              <FlexRow className="row">
+                <div className="item_info">
+                  <div className="row" style={{ gap: '2rem 0' }}>
                     <ProfilePreview
-                      type="Rarity Rank"
-                      title={nftData.nft.rank}
-                      avatar={collectionMetadata?.rarity === 'rarity_sniper' ? '/img/rarity-sniper.png' : null}
-                      hover={
-                        collectionMetadata?.rarity === 'rarity_sniper'
-                          ? `Ranking provided by ${humanize(collectionMetadata.rarity)}`
-                          : null
-                      }
+                      type="Collection"
+                      title={address && shortAddress(address)}
+                      avatar={collectionMetadata?.avatar}
+                      address={address}
+                      verified={collectionMetadata?.verified}
+                      to={`/collection/${address}`}
                     />
-                  )}
+
+                    {typeof nftData.rank !== 'undefined' && nftData.rank !== null && (
+                      <ProfilePreview
+                        type="Rarity Rank"
+                        title={nftData.rank}
+                        avatar={collectionMetadata?.rarity === 'rarity_sniper' ? '/img/rarity-sniper.png' : null}
+                        hover={
+                          collectionMetadata?.rarity === 'rarity_sniper'
+                            ? `Ranking provided by ${humanize(collectionMetadata.rarity)}`
+                            : null
+                        }
+                      />
+                    )}
+                  </div>
                 </div>
-              </div>
-            </FlexRow>
+              </FlexRow>
+            )}
             <FlexRow>
               <Royalty>Royalty</Royalty>
               <Royalty>{nftData.royalty}</Royalty>
             </FlexRow>
-            <FlexRow>
-              <OfferPrice>Offer Price</OfferPrice>
-              <OfferPriceInput>
-                <Input
-                  type="number"
-                  className="mx-2"
-                  onKeyDown={(e) => {
-                    if (e.code === 'Period') {
-                      e.preventDefault();
-                    }
-                  }}
-                  onChange={onOfferValueChange}
-                />
-                CRO
-              </OfferPriceInput>
-            </FlexRow>
+            {type !== 'Cancel' && (
+              <FlexRow>
+                <OfferPrice>Offer Price</OfferPrice>
+                <OfferPriceInput>
+                  <Input
+                    type="number"
+                    className="mx-2"
+                    onKeyDown={(e) => {
+                      if (e.code === 'Period' || e.code === 'Minus') {
+                        e.preventDefault();
+                      }
+                    }}
+                    onChange={onOfferValueChange}
+                  />
+                  CRO
+                </OfferPriceInput>
+              </FlexRow>
+            )}
             <div>
-              <Button onClick={handleMakeOffer}>Make Offer</Button>
+              <Button onClick={() => handleOfferAction(type)}>{type} Offer</Button>
             </div>
           </NftDetailContainer>
         </DialogMainContent>

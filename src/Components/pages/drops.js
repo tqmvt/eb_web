@@ -9,8 +9,6 @@ import Footer from '../components/Footer';
 import UpcomingDrops from '../Drops/UpcomingDrops';
 import PastDrops from '../Drops/PastDrops';
 
-import FoundingMemberImg from '../../Assets/founding_member.png';
-
 const Drops = () => (
   <div>
     <section style={{ paddingTop: '90px', paddingBottom: '8px', background: 'transparent' }}>
@@ -18,12 +16,12 @@ const Drops = () => (
         <p className="my-auto me-5">
           Enjoy amazing discounts on drops and 50% off service fees while holding an Ebisu's Bay Founding Member NFT.{' '}
           <span className="fw-bold d-block d-md-inline-block text-end">
-            <Link to="/drops/founding-member">Learn More &gt;</Link>
+            <Link to="/collection/founding-member">Learn More &gt;</Link>
           </span>
         </p>
         <div style={{ width: '70px' }} className="my-auto">
-          <Link to="/drops/founding-member">
-            <img src={FoundingMemberImg} className="img-responsive" alt="Founding Member Membership" />
+          <Link to="/collection/founding-member">
+            <img src="/img/founding_member_sm.png" className="img-responsive" alt="Founding Member Membership" />
           </Link>
         </div>
       </div>
@@ -57,7 +55,12 @@ const Drops = () => (
       <div className="row">
         <div className="col-lg-12">
           <div className="text-center">
-            <h2>Upcoming Drops</h2>
+            <h2>
+              Upcoming Drops
+              <a href="https://lootpad.io/collection/aef25aef25aef" target="_blank" rel="noreferrer">
+                <img src="/img/lootpad-ghost.gif" />
+              </a>
+            </h2>
             <div className="small-border"></div>
           </div>
         </div>

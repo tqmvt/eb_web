@@ -4,33 +4,34 @@ import { Contract, ethers } from 'ethers';
 import Blockies from 'react-blockies';
 import { Helmet } from 'react-helmet';
 import { faCheck, faCircle } from '@fortawesome/free-solid-svg-icons';
-import Skeleton from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
+// import Skeleton from 'react-loading-skeleton';
+// import 'react-loading-skeleton/dist/skeleton.css';
 
 import CollectionListingsGroup from '../components/CollectionListingsGroup';
 import CollectionFilterBar from '../components/CollectionFilterBar';
 import LayeredIcon from '../components/LayeredIcon';
 import Footer from '../components/Footer';
+import CollectionInfoBar from '../components/CollectionInfoBar';
 import { init, fetchListings, getStats } from '../../GlobalState/collectionSlice';
-import { caseInsensitiveCompare, isFounderCollection, siPrefixedNumber } from '../../utils';
+import { caseInsensitiveCompare, isCrosmocraftsCollection } from '../../utils';
 import TraitsFilter from '../Collection/TraitsFilter';
 import PowertraitsFilter from '../Collection/PowertraitsFilter';
 import SocialsBar from '../Collection/SocialsBar';
-import { SortOption } from '../Models/sort-option.model';
+import { CollectionSortOption } from '../Models/collection-sort-option.model';
 import { FilterOption } from '../Models/filter-option.model';
 import config from '../../Assets/networks/rpc_config.json';
 import Market from '../../Contracts/Marketplace.json';
+import stakingPlatforms from '../../core/data/staking-platforms.json';
 
 const knownContracts = config.known_contracts;
 
-const Collection721 = ({ address, cacheName = 'collection' }) => {
+const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) => {
   const dispatch = useDispatch();
 
   const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
   const readMarket = new Contract(config.market_contract, Market.abi, readProvider);
 
   const [royalty, setRoyalty] = useState(null);
-  const [metadata, setMetadata] = useState(null);
 
   const collectionCachedTraitsFilter = useSelector((state) => state.collection.cachedTraitsFilter);
   const collectionCachedSort = useSelector((state) => state.collection.cachedSort);
@@ -50,17 +51,6 @@ const Collection721 = ({ address, cacheName = 'collection' }) => {
     return knownContracts.find((c) => c.address.toLowerCase() === address.toLowerCase())?.metadata;
   });
 
-  const collectionName = () => {
-    let contract;
-    if (isFounderCollection(address)) {
-      contract = knownContracts.find((c) => c.metadata?.slug === 'vip-founding-member');
-    } else {
-      contract = knownContracts.find((c) => c.address.toLowerCase() === address.toLowerCase());
-    }
-
-    return contract ? contract.name : 'Collection';
-  };
-
   // const handleCopy = (code) => () => {
   //   navigator.clipboard.writeText(code);
   //   toast.success('Copied!');
@@ -79,46 +69,34 @@ const Collection721 = ({ address, cacheName = 'collection' }) => {
   };
 
   useEffect(() => {
-    const sortOption = SortOption.default();
-    sortOption.key = 'listingId';
+    const sortOption = CollectionSortOption.default();
+    sortOption.key = 'id';
     sortOption.direction = 'desc';
     sortOption.label = 'By Id';
 
     const filterOption = FilterOption.default();
     filterOption.type = 'collection';
-    filterOption.address = address;
+    filterOption.address = collection.address;
     filterOption.name = 'Specific collection';
+    filterOption.slug = slug;
 
     dispatch(
       init(
         filterOption,
         collectionCachedSort[cacheName] ?? sortOption,
-        collectionCachedTraitsFilter[address] ?? {},
-        address
+        collectionCachedTraitsFilter[collection.address] ?? {},
+        collection.address
       )
     );
     dispatch(fetchListings());
     // eslint-disable-next-line
-  }, [dispatch, address]);
-
-  useEffect(() => {
-    let extraData;
-    if (isFounderCollection(address)) {
-      extraData = knownContracts.find((c) => c.metadata?.slug === 'vip-founding-member');
-    } else {
-      extraData = knownContracts.find((c) => caseInsensitiveCompare(c.address, address));
-    }
-
-    if (extraData) {
-      setMetadata(extraData.metadata);
-    }
-  }, [address]);
+  }, [dispatch, collection.address]);
 
   useEffect(() => {
     async function asyncFunc() {
-      dispatch(getStats(address));
+      dispatch(getStats(collection.address, slug));
       try {
-        let royalties = await readMarket.royalties(address);
+        let royalties = await readMarket.royalties(collection.address);
         setRoyalty(Math.round(royalties[1]) / 100);
       } catch (error) {
         console.log('error retrieving royalties for collection', error);
@@ -127,25 +105,25 @@ const Collection721 = ({ address, cacheName = 'collection' }) => {
     }
     asyncFunc();
     // eslint-disable-next-line
-  }, [dispatch, address]);
+  }, [dispatch, collection]);
 
   return (
     <div>
       <Helmet>
-        <title>{collectionName()} | Ebisu's Bay Marketplace</title>
-        <meta name="description" content={`${collectionName()} for Ebisu's Bay Marketplace`} />
-        <meta name="title" content={`${collectionName()} | Ebisu's Bay Marketplace`} />
-        <meta property="og:title" content={`${collectionName()} | Ebisu's Bay Marketplace`} />
-        <meta property="og:url" content={`https://app.ebisusbay.com/collection/${address}`} />
-        <meta property="og:image" content={`https://app.ebisusbay.com${collectionMetadata?.avatar || '/'}`} />
-        <meta name="twitter:title" content={`${collectionName()} | Ebisu's Bay Marketplace`} />
-        <meta name="twitter:image" content={`https://app.ebisusbay.com${collectionMetadata?.avatar || '/'}`} />
+        <title>{collection.name} | Ebisu's Bay Marketplace</title>
+        <meta name="description" content={`${collection.name} for Ebisu's Bay Marketplace`} />
+        <meta name="title" content={`${collection.name} | Ebisu's Bay Marketplace`} />
+        <meta property="og:title" content={`${collection.name} | Ebisu's Bay Marketplace`} />
+        <meta property="og:url" content={`https://app.ebisusbay.com/collection/${collection.slug}`} />
+        <meta property="og:image" content={`https://app.ebisusbay.com${collection.metadata.avatar || '/'}`} />
+        <meta name="twitter:title" content={`${collection.name} | Ebisu's Bay Marketplace`} />
+        <meta name="twitter:image" content={`https://app.ebisusbay.com${collection.metadata.avatar || '/'}`} />
       </Helmet>
       <section
         id="profile_banner"
         className="jumbotron breadcumb no-bg"
         style={{
-          backgroundImage: `url(${metadata?.banner ? metadata.banner : '/img/background/subheader-blue.webp'})`,
+          backgroundImage: `url(${collection.metadata.banner ?? '/img/background/subheader-blue.webp'})`,
           backgroundPosition: '50% 50%',
         }}
       >
@@ -158,22 +136,27 @@ const Collection721 = ({ address, cacheName = 'collection' }) => {
             <div className="d_profile">
               <div className="profile_avatar">
                 <div className="d_profile_img">
-                  {metadata?.avatar ? (
-                    <img src={metadata.avatar} alt={collectionName()} />
+                  {collection.metadata.avatar ? (
+                    <img src={collection.metadata.avatar} alt={collection.name} />
                   ) : (
-                    <Blockies seed={address.toLowerCase()} size={15} scale={10} />
+                    <Blockies seed={collection.address.toLowerCase()} size={15} scale={10} />
                   )}
-                  {metadata?.verified && (
+                  {collection.metadata.verified && (
                     <LayeredIcon icon={faCheck} bgIcon={faCircle} shrink={8} stackClass="eb-avatar_badge" />
                   )}
                 </div>
 
                 <div className="profile_name">
                   <h4>
-                    {collectionName()}
+                    {collection.name}
                     <div className="clearfix" />
-                    <SocialsBar collection={knownContracts.find((c) => caseInsensitiveCompare(c.address, address))} />
                   </h4>
+                  {collection.metadata.description && <p>{collection.metadata.description}</p>}
+                  <span className="fs-4">
+                    <SocialsBar
+                      collection={knownContracts.find((c) => caseInsensitiveCompare(c.address, collection.address))}
+                    />
+                  </span>
                 </div>
               </div>
             </div>
@@ -184,12 +167,9 @@ const Collection721 = ({ address, cacheName = 'collection' }) => {
       <section className="container no-top">
         {collectionStats && (
           <div className="row">
-            {hasRank && collectionMetadata?.rarity === 'rarity_sniper' && (
+            {hasRank && collection.metadata.rarity === 'rarity_sniper' && (
               <div className="row">
-                <div
-                  className="col-lg-8 col-sm-10 mx-auto text-center text-sm-end fst-italic"
-                  style={{ fontSize: '0.8em' }}
-                >
+                <div className="col-lg-8 col-sm-10 mx-auto text-center mb-3" style={{ fontSize: '0.8em' }}>
                   Rarity scores and ranks provided by{' '}
                   <a href="https://raritysniper.com/" target="_blank" rel="noreferrer">
                     <span className="color">Rarity Sniper</span>
@@ -197,85 +177,63 @@ const Collection721 = ({ address, cacheName = 'collection' }) => {
                 </div>
               </div>
             )}
-            <div className="d-item col-lg-8 col-sm-10 mb-4 mx-auto">
-              <div className="nft_attr">
-                <div className="row">
-                  <div className="col-md-2 col-xs-4">
-                    <h5>Floor</h5>
-                    {collectionStats.floorPrice ? (
-                      <h4>{siPrefixedNumber(Number(collectionStats.floorPrice).toFixed(0))} CRO</h4>
-                    ) : (
-                      <h4>-</h4>
-                    )}
-                  </div>
-                  <div className="col-md-2 col-xs-4">
-                    <h5>Volume</h5>
-                    {collectionStats.totalVolume ? (
-                      <h4>{siPrefixedNumber(Number(collectionStats.totalVolume).toFixed(0))} CRO</h4>
-                    ) : (
-                      <h4>-</h4>
-                    )}
-                  </div>
-                  <div className="col-md-2 col-xs-4">
-                    <h5>Sales</h5>
-                    {collectionStats.numberOfSales ? (
-                      <h4>{siPrefixedNumber(collectionStats.numberOfSales)}</h4>
-                    ) : (
-                      <h4>-</h4>
-                    )}
-                  </div>
-                  <div className="col-md-2 col-xs-4">
-                    <h5>Avg. Sale</h5>
-                    {collectionStats.averageSalePrice ? (
-                      <h4>{siPrefixedNumber(Number(collectionStats.averageSalePrice).toFixed(0))} CRO</h4>
-                    ) : (
-                      <h4>-</h4>
-                    )}
-                  </div>
-                  <div className="col-md-2 col-xs-4">
-                    <h5>Royalty</h5>
-                    {royalty ? <h4>{royalty}%</h4> : <h4>-</h4>}
-                  </div>
-                  <div className="col-md-2 col-xs-4">
-                    <h5>Active Listings</h5>
-                    {collectionStats.numberActive ? (
-                      <h4>{siPrefixedNumber(collectionStats.numberActive)}</h4>
-                    ) : (
-                      <h4>-</h4>
-                    )}
-                  </div>
+            <div className="d-item col-lg-10 col-md-12 mb-4 mx-auto">
+              <CollectionInfoBar collectionStats={collectionStats} royalty={royalty} />
+            </div>
+            {collection.address.toLowerCase() == '0x7D5f8F9560103E1ad958A6Ca43d49F954055340a'.toLowerCase() && (
+              <div className="row m-3">
+                <div className="mx-auto text-center fw-bold" style={{ fontSize: '1.2em' }}>
+                  {'  '} Please visit{' '}
+                  <a href="/collection/weird-apes-club-v2">
+                    <span className="color">here </span>
+                  </a>
+                  for the newer, migrated contract until these pages are unified
                 </div>
               </div>
-            </div>
-            {collectionMetadata?.staking === 'crodex' && (
+            )}
+            {isCrosmocraftsCollection(collection.address) && (
+              <div className="row">
+                <div className="mx-auto text-center fw-bold" style={{ fontSize: '0.8em' }}>
+                  Got Crosmocraft parts?{' '}
+                  <a href="/build-ship">
+                    <span className="color">build your Crosmocraft!</span>
+                  </a>
+                </div>
+              </div>
+            )}
+            {collection.metadata.staking && (
               <div className="row">
                 <div className="mx-auto text-center fw-bold" style={{ fontSize: '0.8em' }}>
                   NFTs from this collection can be staked at{' '}
-                  <a href="https://swap.crodex.app/#/rewards/nft" target="_blank" rel="noreferrer">
-                    <span className="color">Crodex</span>
+                  <a href={stakingPlatforms[collection.metadata.staking].url} target="_blank" rel="noreferrer">
+                    <span className="color">{stakingPlatforms[collection.metadata.staking].name}</span>
                   </a>
                 </div>
               </div>
             )}
           </div>
         )}
-        {!collectionStatsLoading && (
-          <div className="row">
-            <div className={hasTraits() || hasPowertraits() ? 'offset-md-3 col-md-9' : 'col-md-12'}>
-              <CollectionFilterBar showFilter={false} cacheName={cacheName} />
-            </div>
-          </div>
-        )}
+
+        <div className="row">
+          <CollectionFilterBar
+            showFilter={false}
+            cacheName={cacheName}
+            address={collection.address}
+            traits={collectionStats?.traits}
+            powertraits={collectionStats?.powertraits}
+          />
+        </div>
         <div className="row">
           {collectionStatsLoading ? (
-            <div className="col-md-3 mb-4">
-              <Skeleton count={5} type="rect" />
-            </div>
+            <></>
           ) : (
+            // <div className="col-md-3 mb-4">
+            //   <Skeleton count={5} type="rect" />
+            // </div>
             (hasTraits() || hasPowertraits()) && (
               <div className="col-md-3 mb-4">
-                {hasTraits() && <TraitsFilter address={address} />}
-                {hasPowertraits() && <PowertraitsFilter address={address} />}
+                {hasTraits() && <TraitsFilter address={collection.address} />}
+                {hasPowertraits() && <PowertraitsFilter address={collection.address} />}
               </div>
             )
           )}

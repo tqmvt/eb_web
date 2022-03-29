@@ -1,12 +1,13 @@
 import React, { memo, useCallback } from 'react';
 import Select from 'react-select';
 import { useDispatch, useSelector } from 'react-redux';
-import { sortOptions } from './constants/sort-options';
-import { SortOption } from '../Models/sort-option.model';
-import { listingFilterOptions } from './constants/filter-options';
-import { sortListings, resetListings, searchListings } from '../../GlobalState/collectionSlice';
-import { Form } from 'react-bootstrap';
 import styled from 'styled-components';
+import { Form } from 'react-bootstrap';
+
+import { sortOptions } from './constants/collection-sort-options';
+import { CollectionSortOption } from '../Models/collection-sort-option.model';
+import { listingFilterOptions } from './constants/filter-options';
+import { sortListings, resetListings, searchListings, filterListingsByListed } from '../../GlobalState/collectionSlice';
 
 const CollectionFilterBarContainer = styled.div`
   margin: 0 0 22px;
@@ -17,9 +18,9 @@ const CollectionFilterBar = ({ cacheName = null }) => {
 
   const collection = useSelector((state) => state.collection);
 
-  const selectDefaultSortValue = collection.cachedSort[cacheName] ?? SortOption.default();
+  const selectDefaultSortValue = collection.cachedSort[cacheName] ?? CollectionSortOption.default();
 
-  const selectSortOptions = useSelector((state) => {
+  const selectCollectionSortOptions = useSelector((state) => {
     if (state.collection.hasRank) {
       return sortOptions;
     }
@@ -34,14 +35,28 @@ const CollectionFilterBar = ({ cacheName = null }) => {
     [dispatch]
   );
 
+  const handleCollectionFilter = useCallback(
+    (filterOption) => {
+      let option = '';
+      if (filterOption.key === 'listed') {
+        option = '1';
+      } else if (filterOption.key === 'unlisted') {
+        option = '0';
+      }
+
+      dispatch(filterListingsByListed(option));
+    },
+    [dispatch]
+  );
+
   const handleSearch = debounce((event) => {
-    const { value } = event.target;
-    dispatch(searchListings(value));
+    // const { value } = event.target;
+    // dispatch(searchListings(value));
   }, 300);
 
-  const handleClear = useCallback(() => {
-    dispatch(resetListings());
-  }, [dispatch]);
+  // const handleClear = useCallback(() => {
+  //   dispatch(resetListings());
+  // }, [dispatch]);
 
   const customStyles = {
     option: (base, state) => ({
@@ -86,11 +101,11 @@ const CollectionFilterBar = ({ cacheName = null }) => {
     <CollectionFilterBarContainer className="row align-items-center">
       <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12 px-2 mt-2">
         <div className="items_filter" style={{ marginBottom: 0, marginTop: 0 }}>
-          <div className="dropdownSelect two">
+          <div className="dropdownSelect two w-100 mr-0 mb-0">
             <Select
               styles={customStyles}
               placeholder={'Sort Listings...'}
-              options={[SortOption.default(), ...selectSortOptions]}
+              options={[CollectionSortOption.default(), ...selectCollectionSortOptions]}
               getOptionLabel={(option) => option.getOptionLabel}
               getOptionValue={(option) => option.getOptionValue}
               defaultValue={selectDefaultSortValue}
@@ -108,17 +123,17 @@ const CollectionFilterBar = ({ cacheName = null }) => {
         />
       </div>
       <div className="col-xl-3 px-2 mt-2 col-md-6 col-sm-12 d-sm-flex d-lg-none d-xl-flex">
-        Total results (x out of z)
+        Total results ({collection?.listings?.length || 0} / {collection?.stats?.active || 0})
       </div>
       <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12 px-2 mt-2">
         <div className="items_filter" style={{ marginBottom: 0, marginTop: 0 }}>
-          <div className="dropdownSelect two">
+          <div className="dropdownSelect two w-100 mr-0 mb-0">
             <Select
               styles={customStyles}
-              placeholder={'Sort Listings...'}
+              placeholder={'Filter Listings...'}
               options={listingFilterOptions}
               defaultValue={listingFilterOptions[0]}
-              onChange={onSortChange}
+              onChange={handleCollectionFilter}
             />
           </div>
         </div>

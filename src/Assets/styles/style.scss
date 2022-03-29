@@ -676,7 +676,74 @@ p.lead {
         background:$white;
       }
     }
+    &:disabled {
+      background: #707070 !important;
+      cursor: default;
+    }
 }
+
+.btn-success {
+  display: block;
+  width: max-content;
+  text-align: center;
+  color: #fff !important;
+  background: green;
+  border-radius: 6px;
+  letter-spacing: normal;
+  outline: 0;
+  font-weight: 800;
+  text-decoration: none;
+  padding: 8px 40px;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 2px 2px 20px 0px rgba(131, 100, 226, 0);
+  transition: all 0.3s ease;
+  &:hover{
+    box-shadow: 2px 2px 20px 0px rgba(131, 100, 226, 0.5);
+    transition: all 0.3s ease;
+  }
+  &.inline{
+    display: inline-block;
+    margin-right: 15px;
+    &.white{
+      color: $color_more !important;
+      background:$white;
+    }
+  }
+}
+
+.btn-warning {
+  display: block;
+  width: max-content;
+  text-align: center;
+  color: #fff !important;
+  background: #ad1029;
+  border-radius: 6px;
+  letter-spacing: normal;
+  outline: 0;
+  font-weight: 800;
+  text-decoration: none;
+  padding: 8px 40px;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 2px 2px 20px 0px rgba(131, 100, 226, 0);
+  transition: all 0.3s ease;
+  &:hover{
+    box-shadow: 2px 2px 20px 0px rgba(131, 100, 226, 0.5);
+    transition: all 0.3s ease;
+  }
+  &.inline{
+    display: inline-block;
+    margin-right: 15px;
+    &.white{
+      color: $color_more !important;
+      background:$white;
+    }
+  }
+}
+
 a{
   text-decoration: none;
   color: inherit;
@@ -3099,11 +3166,11 @@ i.font60 {
     margin-bottom: 30px;
     margin-top: -14px;
     .dropdownSelect{
-      // display: inline-block;
-      // width: 200px;
-      // position: relative;
-      // margin-right: 10px;
-      // margin-bottom: 5px;
+      display: inline-block;
+      width: 200px;
+      position: relative;
+      margin-right: 10px;
+      margin-bottom: 5px;
       z-index: 2;
       .css-1okebmr-indicatorSeparator{
         background: none;
@@ -3928,7 +3995,7 @@ img.img-rounded{
       height: auto;
       margin-left: 10px;
       margin-top: -12px;
-      z-index: 10;
+      z-index: 0;
       left: 0;
       img {
         width: 100%;
@@ -5258,4 +5325,10 @@ blockquote {
 }
 @media only screen and (max-width: 378px) {
 
+}
+button:disabled,
+button[disabled]{
+ cursor: unset;
+  background-color: #cccccc;
+  color: #666666;
 }

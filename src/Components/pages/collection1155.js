@@ -9,18 +9,20 @@ import CollectionListingsGroup from '../components/CollectionListingsGroup';
 import CollectionFilterBar from '../components/CollectionFilterBar';
 import LayeredIcon from '../components/LayeredIcon';
 import { init, fetchListings, getStats } from '../../GlobalState/collectionSlice';
-import { caseInsensitiveCompare, isFounderCollection, siPrefixedNumber } from '../../utils';
+import { caseInsensitiveCompare, isCrosmocraftsPartsCollection } from '../../utils';
 import TraitsFilter from '../Collection/TraitsFilter';
 import PowertraitsFilter from '../Collection/PowertraitsFilter';
 import SocialsBar from '../Collection/SocialsBar';
-import { SortOption } from '../Models/sort-option.model';
+import { CollectionSortOption } from '../Models/collection-sort-option.model';
 import { FilterOption } from '../Models/filter-option.model';
 import config from '../../Assets/networks/rpc_config.json';
 import Market from '../../Contracts/Marketplace.json';
+import CollectionInfoBar from '../components/CollectionInfoBar';
+import stakingPlatforms from '../../core/data/staking-platforms.json';
 
 const knownContracts = config.known_contracts;
 
-const Collection1155 = ({ address, cacheName = 'collection' }) => {
+const Collection1155 = ({ address, tokenId = null, cacheName = 'collection', slug }) => {
   const dispatch = useDispatch();
 
   const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
@@ -48,10 +50,10 @@ const Collection1155 = ({ address, cacheName = 'collection' }) => {
 
   const collectionName = () => {
     let contract;
-    if (isFounderCollection(address)) {
-      contract = knownContracts.find((c) => c.metadata?.slug === 'vip-founding-member');
+    if (tokenId != null) {
+      contract = knownContracts.find((c) => caseInsensitiveCompare(c.address, address) && c.id === tokenId);
     } else {
-      contract = knownContracts.find((c) => c.address.toLowerCase() === address.toLowerCase());
+      contract = knownContracts.find((c) => caseInsensitiveCompare(c.address, address));
     }
 
     return contract ? contract.name : 'Collection';
@@ -75,15 +77,19 @@ const Collection1155 = ({ address, cacheName = 'collection' }) => {
   };
 
   useEffect(() => {
-    const sortOption = SortOption.default();
-    sortOption.key = 'listingId';
+    const sortOption = CollectionSortOption.default();
+    sortOption.key = 'id';
     sortOption.direction = 'desc';
     sortOption.label = 'By Id';
 
     const filterOption = FilterOption.default();
     filterOption.type = 'collection';
     filterOption.address = address;
+    if (tokenId != null) {
+      filterOption.id = tokenId;
+    }
     filterOption.name = 'Specific collection';
+    filterOption.slug = slug;
 
     dispatch(
       init(
@@ -99,8 +105,8 @@ const Collection1155 = ({ address, cacheName = 'collection' }) => {
 
   useEffect(() => {
     let extraData;
-    if (isFounderCollection(address)) {
-      extraData = knownContracts.find((c) => c.metadata?.slug === 'vip-founding-member');
+    if (tokenId != null) {
+      extraData = knownContracts.find((c) => caseInsensitiveCompare(c.address, address) && c.id === tokenId);
     } else {
       extraData = knownContracts.find((c) => caseInsensitiveCompare(c.address, address));
     }
@@ -112,7 +118,11 @@ const Collection1155 = ({ address, cacheName = 'collection' }) => {
 
   useEffect(() => {
     async function asyncFunc() {
-      dispatch(getStats(address));
+      if (tokenId != null) {
+        dispatch(getStats(address, tokenId));
+      } else {
+        dispatch(getStats(address));
+      }
       try {
         let royalties = await readMarket.royalties(address);
         setRoyalty(Math.round(royalties[1]) / 100);
@@ -182,7 +192,7 @@ const Collection1155 = ({ address, cacheName = 'collection' }) => {
           <div className="row">
             {hasRank && collectionMetadata?.rarity === 'rarity_sniper' && (
               <div className="row">
-                <div className="col-lg-8 col-sm-10 mx-auto text-center text-sm-end fst-italic" style={{ fontSize: '0.8em' }}>
+                <div className="col-lg-8 col-sm-10 mx-auto text-center mb-3" style={{ fontSize: '0.8em' }}>
                   Rarity scores and ranks provided by{' '}
                   <a href="https://raritysniper.com/" target="_blank" rel="noreferrer">
                     <span className="color">Rarity Sniper</span>
@@ -190,62 +200,25 @@ const Collection1155 = ({ address, cacheName = 'collection' }) => {
                 </div>
               </div>
             )}
-            <div className="d-item col-lg-8 col-sm-10 mb-4 mx-auto">
-              <div className="nft_attr">
-                <div className="row">
-                  <div className="col-md-2 col-xs-4">
-                    <h5>Floor</h5>
-                    {collectionStats.floorPrice ? (
-                      <h4>{siPrefixedNumber(Number(collectionStats.floorPrice).toFixed(0))} CRO</h4>
-                    ) : (
-                      <h4>-</h4>
-                    )}
-                  </div>
-                  <div className="col-md-2 col-xs-4">
-                    <h5>Volume</h5>
-                    {collectionStats.totalVolume ? (
-                      <h4>{siPrefixedNumber(Number(collectionStats.totalVolume).toFixed(0))} CRO</h4>
-                    ) : (
-                      <h4>-</h4>
-                    )}
-                  </div>
-                  <div className="col-md-2 col-xs-4">
-                    <h5>Sales</h5>
-                    {collectionStats.numberOfSales ? (
-                      <h4>{siPrefixedNumber(collectionStats.numberOfSales)}</h4>
-                    ) : (
-                      <h4>-</h4>
-                    )}
-                  </div>
-                  <div className="col-md-2 col-xs-4">
-                    <h5>Avg. Sale</h5>
-                    {collectionStats.averageSalePrice ? (
-                      <h4>{siPrefixedNumber(Number(collectionStats.averageSalePrice).toFixed(0))} CRO</h4>
-                    ) : (
-                      <h4>-</h4>
-                    )}
-                  </div>
-                  <div className="col-md-2 col-xs-4">
-                    <h5>Royalty</h5>
-                    {royalty ? <h4>{royalty}%</h4> : <h4>-</h4>}
-                  </div>
-                  <div className="col-md-2 col-xs-4">
-                    <h5>Active Listings</h5>
-                    {collectionStats.numberActive ? (
-                      <h4>{siPrefixedNumber(collectionStats.numberActive)}</h4>
-                    ) : (
-                      <h4>-</h4>
-                    )}
-                  </div>
-                </div>
-              </div>
+            <div className="d-item col-lg-10 col-md-12 mb-4 mx-auto">
+              <CollectionInfoBar collectionStats={collectionStats} royalty={royalty} />
             </div>
-            {collectionMetadata?.staking === 'crodex' && (
+            {isCrosmocraftsPartsCollection(address) && (
               <div className="row">
                 <div className="mx-auto text-center fw-bold" style={{ fontSize: '0.8em' }}>
-                  NFTs from this collection can be staked at {' '}
-                  <a href="https://swap.crodex.app/#/rewards/nft" target="_blank" rel="noreferrer">
-                    <span className="color">Crodex</span>
+                  Collect Crosmocraft parts to{' '}
+                  <a href="/build-ship">
+                    <span className="color">build your Crosmocraft!</span>
+                  </a>
+                </div>
+              </div>
+            )}
+            {collectionMetadata?.staking && (
+              <div className="row">
+                <div className="mx-auto text-center fw-bold" style={{ fontSize: '0.8em' }}>
+                  NFTs from this collection can be staked at{' '}
+                  <a href={stakingPlatforms[collectionMetadata.staking].url} target="_blank" rel="noreferrer">
+                    <span className="color">{stakingPlatforms[collectionMetadata.staking].name}</span>
                   </a>
                 </div>
               </div>

@@ -1,11 +1,53 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import styled from 'styled-components';
 
 import Footer from '../components/Footer';
+import MadeOffers from '../Offer/MadeOffers';
+import ReceivedOffers from '../Offer/ReceivedOffers';
+
+const OFFERS_TAB = {
+  make: 'Made Offers',
+  receive: 'Received Offers',
+};
+
+const Tabs = styled.div`
+  display: flex;
+  margin-left: 80px;
+  margin-bottom: 60px;
+
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    margin: 0px;
+    justify-content: space-between;
+  }
+`;
+
+const Tab = styled.div`
+  cursor: pointer;
+  color: ${({ theme }) => theme.colors.textColor3};
+  font-size: 18px;
+  font-weight: bold;
+  padding: 2px 18px;
+  margin-right: 50px;
+  border-bottom: solid 6px ${({ theme }) => theme.colors.borderColor4};
+
+  &.active {
+    border-bottom: solid 6px ${({ theme }) => theme.colors.borderColor3};
+  }
+
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    margin-right: 0px;
+    padding: 2px 0px;
+    &:first-child {
+      margin-right: 10px;
+    }
+  }
+`;
 
 const MyOffers = () => {
   const walletAddress = useSelector((state) => state.user.address);
+  const [tab, setTab] = useState(OFFERS_TAB.make);
 
   const Content = () => (
     <>
@@ -21,7 +63,18 @@ const MyOffers = () => {
         </div>
       </section>
 
-      <section className="container"></section>
+      <section className="container">
+        <Tabs>
+          <Tab onClick={() => setTab(OFFERS_TAB.make)} className={`${tab === OFFERS_TAB.make ? 'active' : ''}`}>
+            {OFFERS_TAB.make}
+          </Tab>
+          <Tab onClick={() => setTab(OFFERS_TAB.receive)} className={`${tab === OFFERS_TAB.receive ? 'active' : ''}`}>
+            {OFFERS_TAB.receive}
+          </Tab>
+        </Tabs>
+        {tab === OFFERS_TAB.make && <MadeOffers />}
+        {tab === OFFERS_TAB.receive && <ReceivedOffers />}
+      </section>
 
       <Footer />
     </>

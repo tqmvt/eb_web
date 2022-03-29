@@ -94,16 +94,32 @@ export default class Responsive extends Component {
     const twelveHours = 3600000 * 12;
     const twoDays = 3600000 * 24 * 2;
 
+    const topLevelDrops = drops.filter((d) => !d.complete && d.featured);
+    const topLevelKeys = topLevelDrops.map((d) => d.slug);
+
     const upcomingDrops = drops
       .filter(
-        (d) => !d.complete && d.published && d.start && d.start > Date.now() && d.start - Date.now() < twelveHours
+        (d) =>
+          !d.complete &&
+          d.published &&
+          d.start &&
+          d.start > Date.now() &&
+          d.start - Date.now() < twelveHours &&
+          !!d.imgPreview &&
+          !topLevelKeys.includes(d.slug)
       )
       .sort((a, b) => (a.start < b.start ? 1 : -1));
     let liveDrops = drops
-      .filter((d) => !d.complete && d.published && d.start && d.start < Date.now())
+      .filter(
+        (d) =>
+          !d.complete &&
+          d.published &&
+          d.start &&
+          d.start < Date.now() &&
+          !!d.imgPreview &&
+          !topLevelKeys.includes(d.slug)
+      )
       .sort((a, b) => (a.start < b.start ? 1 : -1));
-
-    liveDrops = liveDrops.filter((d) => !!d.imgPreview);
 
     if (liveDrops.length > 3) {
       let c = 0;
@@ -121,7 +137,7 @@ export default class Responsive extends Component {
         })
         .reverse();
     }
-    this.featuredDrops = [...upcomingDrops, ...liveDrops];
+    this.featuredDrops = [...topLevelDrops, ...upcomingDrops, ...liveDrops];
   }
 
   navigateToDrop(drop) {

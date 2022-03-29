@@ -1,9 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
-  sortAndFetchListings,
+  sortAndFetchCollectionDetails,
   getCollectionMetadata,
   getCollectionTraits,
   getCollectionPowertraits,
+  getCollectionSummary,
 } from '../core/api';
 
 const collectionSlice = createSlice({
@@ -19,6 +20,7 @@ const collectionSlice = createSlice({
       search: null,
       traits: {},
       powertraits: {},
+      filterListed: '',
     },
     totalPages: 0,
     statsLoading: false,
@@ -37,7 +39,7 @@ const collectionSlice = createSlice({
     listingsReceived: (state, action) => {
       state.loading = false;
       state.error = false;
-      state.listings.push(...action.payload.listings);
+      state.listings.push(...action.payload.nfts);
       state.query.page = action.payload.page;
       state.totalPages = action.payload.totalPages;
       state.hasRank = action.payload.hasRank;
@@ -90,6 +92,12 @@ const collectionSlice = createSlice({
       state.query.page = 0;
       state.query.search = action.payload;
     },
+    onListedFilter: (state, action) => {
+      state.listings = [];
+      state.totalPages = 0;
+      state.query.page = 0;
+      state.query.filterListed = action.payload;
+    },
     onTraitFilter: (state, action) => {
       const { address, traits, powertraits } = action.payload;
 
@@ -127,6 +135,7 @@ export const {
   onFilter,
   onSort,
   onSearch,
+  onListedFilter,
   onTraitFilter,
   clearSet,
   onCollectionStatsLoading,
@@ -154,17 +163,18 @@ export const fetchListings = () => async (dispatch, getState) => {
   const state = getState();
 
   dispatch(listingsLoading());
-  const { response, cancelled } = await sortAndFetchListings(
+  const { response, cancelled } = await sortAndFetchCollectionDetails(
     state.collection.query.page + 1,
     state.collection.query.sort,
     state.collection.query.filter,
     state.collection.query.traits,
     state.collection.query.powertraits,
-    state.collection.query.search
+    state.collection.query.search,
+    state.collection.query.filterListed
   );
 
   if (!cancelled) {
-    response.hasRank = response.listings.length > 0 && typeof response.listings[0].nft.rank !== 'undefined';
+    response.hasRank = response.nfts.length > 0 && typeof response.nfts[0].rank !== 'undefined';
     dispatch(listingsReceived(response));
   }
 };
@@ -184,6 +194,11 @@ export const searchListings = (value) => async (dispatch) => {
   dispatch(fetchListings());
 };
 
+export const filterListingsByListed = (options) => async (dispatch) => {
+  dispatch(onListedFilter(options));
+  dispatch(fetchListings());
+};
+
 export const filterListingsByTrait =
   ({ traits, powertraits, address }) =>
   async (dispatch) => {
@@ -196,24 +211,35 @@ export const resetListings = () => async (dispatch) => {
   dispatch(fetchListings());
 };
 
-export const getStats = (address) => async (dispatch) => {
-  try {
-    dispatch(onCollectionStatsLoading());
-    const response = await getCollectionMetadata(address);
-    const traits = await getCollectionTraits(address);
-    const powertraits = await getCollectionPowertraits(address);
-    dispatch(
-      onCollectionStatsLoaded({
-        stats: {
-          ...response.collections[0],
-          ...{
-            traits: traits,
-            powertraits: powertraits,
+export const getStats =
+  (address, slug, id = null) =>
+  async (dispatch) => {
+    try {
+      dispatch(onCollectionStatsLoading());
+
+      // var response;
+      // if (id != null) {
+      //   response = await getCollectionMetadata(address, null, { type: 'tokenId', value: id });
+      // } else {
+      //   response = await getCollectionMetadata(address);
+      // }
+
+      const response = await getCollectionSummary(slug);
+
+      const traits = await getCollectionTraits(address);
+      const powertraits = await getCollectionPowertraits(address);
+      dispatch(
+        onCollectionStatsLoaded({
+          stats: {
+            ...response.collections[0].activity,
+            ...{
+              traits: traits,
+              powertraits: powertraits,
+            },
           },
-        },
-      })
-    );
-  } catch (error) {
-    console.log(error);
-  }
-};
+        })
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };

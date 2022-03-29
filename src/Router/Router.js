@@ -15,13 +15,16 @@ import MyNfts from '../Components/pages/myNfts';
 import Header from '../Components/menu/header';
 import Drops from '../Components/pages/drops';
 import Drop from '../Components/pages/drop';
+import DropBuildShip from '../Components/pages/dropBuildShip';
 import MyListings from '../Components/pages/myListings';
 import MySales from '../Components/pages/mySales';
 import MyOffers from '../Components/pages/myOffers';
+import MyStaking from '../Components/pages/myStaking';
 import Collections from '../Components/pages/collections';
 import CharityBall from '../Components/pages/charityBall';
-import { ErrorPage } from '../Components/pages/ErrorPage';
+import Rugsurance from '../Components/pages/rugsurance';
 import history from '../history';
+import { ErrorPage } from '../Components/pages/ErrorPage';
 
 const SentryEnhancedRoute = Sentry.withSentryRouting(Route);
 
@@ -75,18 +78,31 @@ const Component = ({ walletAddress, authInitFinished }) => {
           <PrivateRoute exact path="/nfts" component={MyNfts} />
           <PrivateRoute exact path="/sales" component={MySales} />
           <PrivateRoute exact path="/offers" component={MyOffers} />
+          <PrivateRoute exact path="/staking" component={MyStaking} />
           <PrivateRoute exact path="/wallet/listings" component={MyListings} />
+          <SentryEnhancedRoute exact path="/build-ship" component={DropBuildShip} />
 
           <SentryEnhancedRoute exact path="/drops" component={Drops} />
+          <SentryEnhancedRoute
+            exact
+            path="/drops/founding-member"
+            render={() => <Redirect to="/collection/founding-member" />}
+          />
           <SentryEnhancedRoute exact path="/drops/:slug" component={Drop} />
           <SentryEnhancedRoute exact path="/listing/:id" component={Listing} />
           {/*<SentryEnhancedRoute exact path="/manage/auctions" component={ManageAuctions}/>*/}
           <SentryEnhancedRoute exact path="/auctions/:id" component={Auction} />
           <SentryEnhancedRoute exact path="/collections" component={Collections} />
+          <SentryEnhancedRoute
+            exact
+            path="/collection/mad-treehouse"
+            render={() => <Redirect to="/collection/mm-treehouse" />}
+          />
           <SentryEnhancedRoute exact path="/collection/:slug" component={Collection} />
           <SentryEnhancedRoute exact path="/collection/:slug/:id" component={Nft} />
           <SentryEnhancedRoute exact path="/seller/:address" component={Seller} />
           <SentryEnhancedRoute exact path="/charity-ball" component={CharityBall} />
+          <SentryEnhancedRoute exact path="/slothty-rugsurance" component={Rugsurance} />
           <SentryEnhancedRoute path="*" render={() => <Redirect to="/" />} />
         </Switch>
       </Sentry.ErrorBoundary>

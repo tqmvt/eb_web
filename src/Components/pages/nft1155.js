@@ -9,11 +9,17 @@ import { Helmet } from 'react-helmet';
 
 import ProfilePreview from '../components/ProfilePreview';
 import Footer from '../components/Footer';
-import { humanize, relativePrecision, shortAddress, timeSince } from '../../utils';
+import {
+  findCollectionByAddress,
+  humanize,
+  isCrosmocraftsPartsDrop,
+  relativePrecision,
+  shortAddress,
+  timeSince,
+} from '../../utils';
 import { getNftDetails } from '../../GlobalState/nftSlice';
 import config from '../../Assets/networks/rpc_config.json';
 import { croSkullRedPotionImageHack } from '../../hacks';
-const knownContracts = config.known_contracts;
 
 const Nft1155 = ({ address, id }) => {
   const dispatch = useDispatch();
@@ -25,10 +31,13 @@ const Nft1155 = ({ address, id }) => {
   );
   const powertraits = useSelector((state) => state.nft.nft?.powertraits);
   const collectionMetadata = useSelector((state) => {
-    return knownContracts.find((c) => c.address.toLowerCase() === address.toLowerCase())?.metadata;
+    return findCollectionByAddress(address, id)?.metadata;
   });
   const collectionName = useSelector((state) => {
-    return knownContracts.find((c) => c.address.toLowerCase() === address.toLowerCase())?.name;
+    return findCollectionByAddress(address, id)?.name;
+  });
+  const collectionSlug = useSelector((state) => {
+    return findCollectionByAddress(address, id)?.slug;
   });
 
   useEffect(() => {
@@ -109,14 +118,14 @@ const Nft1155 = ({ address, id }) => {
                     avatar={collectionMetadata?.avatar}
                     address={address}
                     verified={collectionMetadata?.verified}
-                    to={`/collection/${address}`}
+                    to={`/collection/${collectionSlug}`}
                   />
 
                   {typeof nft.rank !== 'undefined' && nft.rank !== null && (
                     <ProfilePreview
                       type="Rarity Rank"
                       title={nft.rank}
-                      avatar={collectionMetadata.rarity === 'rarity_sniper' ? '/img/rarity-sniper.png' : null}
+                      avatar={collectionMetadata.rarity === 'rarity_sniper' ? '/img/logos/rarity-sniper.png' : null}
                       hover={
                         collectionMetadata.rarity === 'rarity_sniper'
                           ? `Ranking provided by ${humanize(collectionMetadata.rarity)}`
@@ -176,7 +185,7 @@ const Nft1155 = ({ address, id }) => {
                                     <div key={i} className="col-lg-4 col-md-6 col-sm-6">
                                       <div className="nft_attr">
                                         <h5>{humanize(data.trait_type)}</h5>
-                                        <h4>{humanize(data.value)}</h4>
+                                        <h4>{humanize(isCrosmocraftsPartsDrop(address) ? data.Value : data.value)}</h4>
                                         {data.occurrence ? (
                                           <span>{Math.round(data.occurrence * 100)}% have this trait</span>
                                         ) : (

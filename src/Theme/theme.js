@@ -2,16 +2,24 @@ export const lightTheme = {
   textColor1: '#FFFFFF',
   textColor2: '#E97B05',
   textColor3: '#000000',
+  textColor4: '#0078CB',
   borderColor1: '#EB7D07',
   borderColor2: '#707070',
+  borderColor3: '#0078CB',
+  borderColor4: '#727272',
+  borderColor5: '#8D8D8D',
 };
 
 export const darkTheme = {
   textColor1: '#000000',
   textColor2: '#E97B05',
   textColor3: '#FFFFFF',
+  textColor4: '#0078CB',
   borderColor1: '#EB7D07',
   borderColor2: '#707070',
+  borderColor3: '#0078CB',
+  borderColor4: '#727272',
+  borderColor5: '#8D8D8D',
 };
 
 export const theme = {

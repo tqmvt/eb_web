@@ -6,7 +6,7 @@ import MetaMaskOnboarding from '@metamask/onboarding';
 import { Spinner } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import Blockies from 'react-blockies';
-import { faCrow, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+import { faCrow, faExternalLinkAlt, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as Sentry from '@sentry/react';
 import { Helmet } from 'react-helmet';
@@ -17,15 +17,19 @@ import Footer from '../components/Footer';
 import { getListingDetails, listingUpdated } from '../../GlobalState/listingSlice';
 import { connectAccount, chainConnect } from '../../GlobalState/User';
 import {
+  findCollectionByAddress,
   createSuccessfulTransactionToastContent,
   humanize,
   isCroCrowCollection,
+  isCrosmocraftsPartsDrop,
   relativePrecision,
   shortAddress,
   timeSince,
+  isCrognomidesCollection,
 } from '../../utils';
 import config from '../../Assets/networks/rpc_config.json';
 import { croSkullRedPotionImageHack } from '../../hacks';
+import NFTTabOffers from '../Offer/NFTTabOffers';
 
 const knownContracts = config.known_contracts;
 
@@ -42,12 +46,16 @@ const Listing = () => {
   const user = useSelector((state) => state.user);
 
   const collection = useSelector((state) => {
-    return knownContracts.find((c) => c.address.toLowerCase() === listing?.nftAddress.toLowerCase());
+    if (listing) {
+      return findCollectionByAddress(listing.nftAddress, listing.is1155 ? listing.nftId : null);
+    }
   });
 
   const [openCheckout, setOpenCheckout] = React.useState(false);
   // const [buying, setBuying] = useState(false);
+
   const [croCrowBreed, setCroCrowBreed] = useState(null);
+  const [crognomideBreed, setCrognomideBreed] = useState(null);
 
   useEffect(() => {
     dispatch(getListingDetails(id));
@@ -77,6 +85,23 @@ const Listing = () => {
             }
           }
         }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }, [listing]);
+
+  useEffect(async () => {
+    if (listing && isCrognomidesCollection(listing.nftAddress) && crognomideBreed === null) {
+      const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
+      const contract = new Contract(
+        '0xE57742748f98ab8e08b565160D3A9A32BFEF7352',
+        ['function crognomidUsed(uint256) public view returns (bool)'],
+        readProvider
+      );
+      try {
+        const used = await contract.crognomidUsed(listing.nftId);
+        setCrognomideBreed(used);
       } catch (error) {
         console.log(error);
       }
@@ -219,6 +244,18 @@ const Listing = () => {
                       <span className="fw-bold">This CRO Crow has been bred for a CrowPunk</span>
                     </div>
                   )}
+                  {isCrognomidesCollection(listing.nftAddress) && crognomideBreed && (
+                    <div className="d-flex flex-row align-items-center mb-4">
+                      <LayeredIcon
+                        icon={faHeart}
+                        bgColor={'#fff'}
+                        color={'#dc143c'}
+                        inverse={false}
+                        title="This Crognomide has been bred for a Croby!"
+                      />
+                      <span className="fw-bold">This Crognomide has been bred for a Croby</span>
+                    </div>
+                  )}
                   <div className="row" style={{ gap: '2rem 0' }}>
                     <ProfilePreview type="Seller" address={listing.seller} to={`/seller/${listing.seller}`} />
                     <ProfilePreview
@@ -233,7 +270,7 @@ const Listing = () => {
                       <ProfilePreview
                         type="Rarity Rank"
                         title={listing.nft.rank}
-                        avatar={collection.metadata.rarity === 'rarity_sniper' ? '/img/rarity-sniper.png' : null}
+                        avatar={collection.metadata.rarity === 'rarity_sniper' ? '/img/logos/rarity-sniper.png' : null}
                         hover={
                           collection.metadata.rarity === 'rarity_sniper'
                             ? `Ranking provided by ${humanize(collection.metadata.rarity)}`
@@ -258,23 +295,54 @@ const Listing = () => {
                       <li id="Mainbtn2" className="tab">
                         <span onClick={handleBtnClick(2)}>History</span>
                       </li>
+                      {/* <li id="Mainbtn3" className="tab">
+                        <span onClick={handleBtnClick(3)}>Offers</span>
+                      </li> */}
                     </ul>
 
                     <div className="de_tab_content">
                       {openMenu === 0 && (
                         <div className="tab-1 onStep fadeIn">
-                          {listing.nft.attributes && listing.nft.attributes.length > 0 ? (
+                          {(listing.nft.attributes &&
+                            Array.isArray(listing.nft.attributes) &&
+                            listing.nft.attributes.length > 0) ||
+                          (listing.nft.properties &&
+                            Array.isArray(listing.nft.properties) &&
+                            listing.nft.properties.length > 0) ? (
                             <>
                               <div className="d-block mb-3">
                                 <div className="row mt-5 gx-3 gy-2">
-                                  {listing.nft.attributes
-                                    .filter((data) => data.value !== 'None')
-                                    .map((data, i) => {
+                                  {listing.nft.attributes &&
+                                    Array.isArray(listing.nft.attributes) &&
+                                    listing.nft.attributes
+                                      .filter((data) => data.value !== 'None')
+                                      .map((data, i) => {
+                                        return (
+                                          <div key={i} className="col-lg-4 col-md-6 col-sm-6">
+                                            <div className="nft_attr">
+                                              <h5>{humanize(data.trait_type)}</h5>
+                                              <h4>{humanize(data.value)}</h4>
+                                              {data.occurrence ? (
+                                                <span>{relativePrecision(data.occurrence)}% have this trait</span>
+                                              ) : (
+                                                data.percent && <span>{data.percent}% have this trait</span>
+                                              )}
+                                            </div>
+                                          </div>
+                                        );
+                                      })}
+                                  {listing.nft.properties &&
+                                    Array.isArray(listing.nft.properties) &&
+                                    listing.nft.properties.map((data, i) => {
                                       return (
                                         <div key={i} className="col-lg-4 col-md-6 col-sm-6">
                                           <div className="nft_attr">
                                             <h5>{humanize(data.trait_type)}</h5>
-                                            <h4>{humanize(data.value)}</h4>
+                                            <h4>
+                                              {humanize(
+                                                isCrosmocraftsPartsDrop(collection.address) ? data.Value : data.value
+                                              )}
+                                            </h4>
                                             {data.occurrence ? (
                                               <span>{relativePrecision(data.occurrence)}% have this trait</span>
                                             ) : (
@@ -353,6 +421,8 @@ const Listing = () => {
                           )}
                         </div>
                       )}
+
+                      {openMenu === 3 && <NFTTabOffers />}
 
                       {/* button for checkout */}
                       {listing.state === 0 ? (

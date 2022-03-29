@@ -3,6 +3,7 @@ import { Contract, ethers, BigNumber } from 'ethers';
 import config from '../Assets/networks/rpc_config.json';
 import Membership from '../Contracts/EbisusBayMembership.json';
 import Cronies from '../Contracts/CronosToken.json';
+import StakeABI from '../Contracts/Stake.json';
 import Market from '../Contracts/Marketplace.json';
 import Auction from '../Contracts/Auction.json';
 import Offer from '../Contracts/Offer.json';
@@ -10,8 +11,8 @@ import Web3Modal from 'web3modal';
 
 import detectEthereumProvider from '@metamask/detect-provider';
 import { DeFiWeb3Connector } from 'deficonnect';
-import WalletConnectProvider from '@deficonnect/web3-provider';
-import cdcLogo from '../Assets/cdc_logo.svg';
+import WalletConnectProvider from '@walletconnect/web3-provider';
+import * as DefiWalletConnectProvider from '@deficonnect/web3-provider';
 import { getNftRankings, getNftSalesForAddress, getNftsForAddress, getUnfilteredListingsForAddress } from '../core/api';
 import { toast } from 'react-toastify';
 import { createSuccessfulTransactionToastContent, sliceIntoChunks } from '../utils';
@@ -34,12 +35,15 @@ const userSlice = createSlice({
     cronies: [],
     founderCount: 0,
     vipCount: 0,
+    stakeCount: 0,
     needsOnboard: false,
+    isStaking: false,
 
     // Contracts
     membershipContract: null,
     croniesContract: null,
     marketContract: null,
+    stateContract: null,
     auctionContract: null,
     offerContract: null,
     // ebisuContract : null,
@@ -81,12 +85,15 @@ const userSlice = createSlice({
   reducers: {
     accountChanged(state, action) {
       state.membershipContract = action.payload.membershipContract;
+      state.stakeContract = action.payload.stakeContract;
       state.croniesContract = action.payload.croniesContract;
 
       state.balance = action.payload.balance;
       state.code = action.payload.code;
       state.rewards = action.payload.rewards;
       state.isMember = action.payload.isMember;
+      state.vipCount = action.payload.vipCount;
+      state.stakeCount = action.payload.stakeCount;
       state.marketContract = action.payload.marketContract;
       state.marketBalance = action.payload.marketBalance;
       state.auctionContract = action.payload.auctionContract;
@@ -249,6 +256,8 @@ const userSlice = createSlice({
       state.rewards = null;
       state.marketBalance = null;
       state.isMember = false;
+      state.vipCount = 0;
+      state.stakeCount = 0;
       state.fetchingNfts = false;
       state.nftsInitialized = false;
       state.nfts = [];
@@ -263,6 +272,12 @@ const userSlice = createSlice({
     },
     balanceUpdated(state, action) {
       state.balance = action.payload;
+    },
+    setVIPCount(state, action) {
+      state.vipCount = action.payload;
+    },
+    setStakeCount(state, action) {
+      state.stakeCount = action.payload;
     },
   },
 });
@@ -298,6 +313,8 @@ export const {
   onLogout,
   elonContract,
   onThemeChanged,
+  setVIPCount,
+  setStakeCount,
 } = userSlice.actions;
 export const user = userSlice.reducer;
 
@@ -308,7 +325,7 @@ export const updateListed =
   };
 
 export const connectAccount =
-  (firstRun = false) =>
+  (firstRun = false, type = '') =>
   async (dispatch) => {
     const providerOptions = {
       injected: {
@@ -321,16 +338,16 @@ export const connectAccount =
       },
       'custom-defiwallet': {
         display: {
-          logo: cdcLogo,
+          logo: '/img/logos/cdc_logo.svg',
           name: 'Crypto.com DeFi Wallet',
           description: 'Connect with the CDC DeFi Wallet',
         },
         options: {},
-        package: WalletConnectProvider,
+        package: DefiWalletConnectProvider,
         connector: async (ProviderPackage, options) => {
           const connector = new DeFiWeb3Connector({
             supportedChainIds: [25],
-            rpc: { 25: 'https://evm-cronos.crypto.org' },
+            rpc: { 25: 'https://gateway.nebkas.ro' },
             pollingInterval: 15000,
             metadata: {
               icons: ['https://ebisusbay.com/vector%20-%20face.svg'],
@@ -344,6 +361,23 @@ export const connectAccount =
         },
       },
     };
+
+    if (type !== 'defi') {
+      providerOptions.walletconnect = {
+        package: WalletConnectProvider, // required
+        options: {
+          chainId: 25,
+          rpc: {
+            25: 'https://gateway.nebkas.ro',
+          },
+          network: 'cronos',
+          metadata: {
+            icons: ['https://ebisusbay.com/vector%20-%20face.svg'],
+            description: 'Cronos NFT Marketplace',
+          },
+        },
+      };
+    }
 
     const web3ModalWillShowUp = !localStorage.getItem('WEB3_CONNECT_CACHED_PROVIDER');
 
@@ -408,7 +442,6 @@ export const connectAccount =
       if (firstRun) {
         dispatch(appAuthInitFinished());
       }
-
       web3provider.on('DeFiConnectorDeactivate', (error) => {
         dispatch(onLogout());
       });
@@ -436,6 +469,7 @@ export const connectAccount =
 
       let mc;
       let cc;
+      let sc;
       let code;
       let balance;
       let rewards;
@@ -445,16 +479,19 @@ export const connectAccount =
       let auction;
       let offer;
       let sales;
+      let stakeCount = 0;
       // let ebisu;
 
       if (signer && correctChain) {
         mc = new Contract(config.membership_contract, Membership.abi, signer);
+        sc = new Contract(config.stake_contract, StakeABI.abi, signer);
         cc = new Contract(config.cronie_contract, Cronies.abi, signer);
         const rawCode = await mc.codes(address);
         code = ethers.utils.parseBytes32String(rawCode);
         rewards = ethers.utils.formatEther(await mc.payments(address));
         ownedFounder = await mc.balanceOf(address, 1);
         ownedVip = await mc.balanceOf(address, 2);
+        stakeCount = await sc.amountStaked(address);
         market = new Contract(config.market_contract, Market.abi, signer);
         auction = new Contract(config.auction_contract, Auction.abi, signer);
         offer = new Contract(config.offer_contract, Offer.abi, signer);
@@ -475,11 +512,14 @@ export const connectAccount =
           needsOnboard: false,
           correctChain: correctChain,
           membershipContract: mc,
+          stakeContract: sc,
           croniesContract: cc,
           code: code,
           balance: balance,
           rewards: rewards,
-          isMember: ownedVip > 0 || ownedFounder > 0,
+          isMember: ownedVip > 0 || ownedFounder > 0 || stakeCount > 0,
+          vipCount: ownedVip ? ownedVip.toNumber() : ownedVip,
+          stakeCount: stakeCount ? stakeCount.toNumber() : stakeCount,
           marketContract: market,
           auctionContract: auction,
           offerContract: offer,
@@ -594,7 +634,7 @@ export const chainConnect = (type) => async (dispatch) => {
   } else {
     const web3Provider = new WalletConnectProvider({
       rpc: {
-        25: 'https://evm-cronos.crypto.org',
+        25: 'https://evm.cronos.org',
       },
       chainId: 25,
     });

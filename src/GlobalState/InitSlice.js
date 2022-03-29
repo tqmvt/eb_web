@@ -45,22 +45,11 @@ export const appInitializer = () => async (dispatch) => {
   //  If public routes have initializations then check should be added to Router file to wait for public initialization
   dispatch(publicInitFinished());
 
-  let defiLink = localStorage.getItem('DeFiLink_session_storage_extension');
-  if (defiLink) {
-    try {
-      const json = JSON.parse(defiLink);
-      if (!json.connected) {
-        dispatch(onLogout());
-      }
-    } catch (error) {
-      dispatch(onLogout());
-    }
-  }
-
   const isConnectSupported =
     localStorage.getItem('WEB3_CONNECT_CACHED_PROVIDER') ||
     window.ethereum ||
-    localStorage.getItem('DeFiLink_session_storage_extension');
+    localStorage.getItem('DeFiLink_session_storage_extension') ||
+    window.navigator.userAgent.includes('Crypto.com DeFiWallet');
 
   if (!isConnectSupported) {
     dispatch(appAuthInitFinished());
@@ -73,6 +62,5 @@ export const appInitializer = () => async (dispatch) => {
     //  Web3Modal will show up. Let the Router redirect the user to main page.
     dispatch(appAuthInitFinished());
   }
-
   dispatch(connectAccount(true));
 };

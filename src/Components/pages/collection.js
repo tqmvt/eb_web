@@ -40,9 +40,15 @@ const Collection = () => {
           ) : (
             <>
               {type === '1155' ? (
-                <Collection1155 address={collection.address} />
+                <>
+                  {collection.split ? (
+                    <Collection1155 address={collection.address} tokenId={collection.id} slug={slug} />
+                  ) : (
+                    <Collection1155 address={collection.address} slug={slug} />
+                  )}
+                </>
               ) : (
-                <Collection721 address={collection.address} />
+                <Collection721 collection={collection} address={collection.address} slug={slug} />
               )}
             </>
           )}

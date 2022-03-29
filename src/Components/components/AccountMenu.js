@@ -12,6 +12,7 @@ import {
   faSignOutAlt,
   faExclamationCircle,
   faHandHoldingHeart,
+  faShoppingBag,
 } from '@fortawesome/free-solid-svg-icons';
 import { toast } from 'react-toastify';
 import MetaMaskOnboarding from '@metamask/onboarding';
@@ -115,14 +116,25 @@ const AccountMenu = function () {
         dispatch(onLogout());
       }
     }
-
     if (
       localStorage.getItem('WEB3_CONNECT_CACHED_PROVIDER') ||
       window.ethereum ||
       localStorage.getItem('DeFiLink_session_storage_extension')
     ) {
-      if (!user.provider) dispatch(connectAccount());
+      if (!user.provider) {
+        if (window.navigator.userAgent.includes('Crypto.com DeFiWallet')) {
+          dispatch(connectAccount(false, 'defi'));
+        } else {
+          dispatch(connectAccount());
+        }
+      }
     }
+    if (!user.provider) {
+      if (window.navigator.userAgent.includes('Crypto.com DeFiWallet')) {
+        dispatch(connectAccount(false, 'defi'));
+      }
+    }
+
     // eslint-disable-next-line
   }, []);
 
@@ -304,7 +316,7 @@ const AccountMenu = function () {
                     <span>My Sales</span>
                   </span>
                 </li>
-                <li className="my-offers-menu-item">
+                {/* <li className="my-offers-menu-item">
                   <span onClick={() => navigateTo(`/offers`)}>
                     <span>
                       {' '}
@@ -313,7 +325,18 @@ const AccountMenu = function () {
                     <span>My Offers</span>
                   </span>
                   <div className="notification-badge"></div>
-                </li>
+                </li> */}
+                {(user.vipCount > 0 || user.stakeCount > 0) && (
+                  <li>
+                    <span onClick={() => navigateTo(`/staking`)}>
+                      <span>
+                        {' '}
+                        <FontAwesomeIcon icon={faShoppingBag} />{' '}
+                      </span>
+                      <span>My Staking</span>
+                    </span>
+                  </li>
+                )}
                 <li>
                   <span onClick={clearCookies}>
                     <span>
