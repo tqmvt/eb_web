@@ -9,18 +9,18 @@ export const drops = config.drops;
 
 function getMetaverseUrl() {
   if (window.location.host === "localhost:3000") {
-    return "https://localhost:8080/"
+    return "https://localhost:8080/?assignRoom=true"
   }
   if (window.location.host === "app.ebisusbay.biz") {
-    return "https://metaverse.ebisusbay.biz"
+    return "https://metaverse.ebisusbay.biz/?assignRoom=true"
   }
   if (window.location.host === "testapp.ebisusbay.biz") {
-    return "https://metaverse.ebisusbay.biz"
+    return "https://metaverse.ebisusbay.biz/?assignRoom=true"
   }
   if (window.location.host === "testapp2.ebisusbay.biz") {
     return "https://metaverse.ebisusbay.biz"
   }
-  return "https://metaverse.ebisusbay.com"
+  return "https://metaverse.ebisusbay.com/?assignRoom=true"
 }
 
 const MetaverseAuctions = () => {
