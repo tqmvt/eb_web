@@ -38,7 +38,7 @@ const MetaverseAuctions = () => {
           </div>
           <div className="col-lg-6 pt-3">
             <div className="card eb-nft__card h-100 shadow">
-              <img class="card-img-top" src="/img/metaverse_gallery.png" />
+              <img className="card-img-top" src="/img/metaverse_gallery.png" />
               <div className="card-body d-flex flex-column align-middle">
                 <a className="btn-main lead mr15 mx-auto" href={metaverseUrl}>Enter Metaverse</a>
               </div>
