@@ -884,8 +884,8 @@
       }
     },
     {
-      "name": "Cronos Nanas",
-      "slug": "cronos-nanas",
+      "name": "Nifty Nanas",
+      "slug": "nifty-nanas",
       "multiToken": false,
       "address": "0x70c6062100b09aF2Ec63345cda372d52423BE4aC",
       "onChain": false,
