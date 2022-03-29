@@ -623,8 +623,6 @@ const CronosverseMintBoard = ({mintNow, minting, mintedIds, prices}) => {
             return
           } else if (canvasDown === true) {
             setCanvasDown(false)
-          } else {
-            setFlag('hidden')
           }
         }}
       >
@@ -642,6 +640,7 @@ const CronosverseMintBoard = ({mintNow, minting, mintedIds, prices}) => {
 
             <div className='tip_modal' style={{ visibility: flag, left: `${tileInfo.globalX+15}px`, top: `${tileInfo.globalY+15}px`}}>
               <div className='modal_content'>
+                <div className='cross' onClick={() => setFlag('hidden')} >&times;</div>
                 <img className='tile_img' src={tileInfo.tile} alt="tile" />
                 <div className='tile_items'>
                   <div>TokenId: {tileInfo.tokenId}</div>
