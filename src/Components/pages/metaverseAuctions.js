@@ -45,7 +45,7 @@ const MetaverseAuctions = () => {
             </div>
           </div>
           <div className="col-lg-6 text-center align-middle d-flex align-items-center">
-            <div className="heading">Gather, share and collaborate together, in a virtual, private and safe place</div>
+            <div className="heading mt-3">Gather, share and collaborate together, in a virtual, private and safe place</div>
           </div>
         </div>
       </section>
