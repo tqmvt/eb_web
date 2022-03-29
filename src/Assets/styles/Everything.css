@@ -12,9 +12,10 @@
   margin-top: 16%;
   margin-bottom: 12%; 
   padding-right: 1%;
-  width: 100%; 
+  /* width: 100%;  */
   display: flex; 
   justify-content: center;
+  position: relative;
 }
 
 .canvasBack {
@@ -29,12 +30,14 @@
 }
 
 .tip_modal {
-  position: fixed; 
+  position: absolute; 
   background-color: white; 
   border-radius: 5px;
   border: 1px solid black; 
   padding: 10px; 
-  z-index: 3;
+  z-index: 10;
+
+  min-width:206px;
 }
 
 .tip_modal .modal_content {

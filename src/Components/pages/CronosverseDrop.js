@@ -24,6 +24,9 @@ import tile1 from '../../Assets/cronosverse/tile1.jpg'
 import tile2 from '../../Assets/cronosverse/tile2.jpg'
 import tile3 from '../../Assets/cronosverse/tile3.jpg'
 
+import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+
+
 import {
   createSuccessfulTransactionToastContent,
   isFounderDrop, isFounderVipDrop,
@@ -36,6 +39,8 @@ import { EbisuDropAbi } from '../../Contracts/Abis';
 
 const tiles = [tile1, tile2, tile3]
 
+const tileType = ['Plain', 'Suburban', 'Commerical']
+const yLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 export const drops = config.drops;
 
@@ -450,14 +455,12 @@ const CronosverseMintBoard = ({mintNow, minting, mintedIds, prices}) => {
   const [tileInfo, setTileInfo] = useState({});
   const [flag, setFlag] = useState('hidden');
   const [canvasDown, setCanvasDown] = useState(false);
+  const [zoomState, setZoomState] = useState({
+    offsetX: 0,
+    offsetY: 0,
+    scale: 1
+  });
 
-  const getMousePos = (e) => {
-    var rect = e.target.getBoundingClientRect();
-    return {
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top
-    };
-  }
 
   const getTileType = (xPos, yPos) => {
     if (yPos >= 9 && xPos >= 19 && yPos <= 17 && xPos <= 34) {
@@ -513,13 +516,31 @@ const CronosverseMintBoard = ({mintNow, minting, mintedIds, prices}) => {
     return mintedIds?.some(id => tokenId == id)
   }
 
+  const changeCanvasState = (ReactZoomPanPinchRef, event) => {
+    console.log(event);
+    setZoomState({
+      offsetX: ReactZoomPanPinchRef.state.positionX,
+      offsetY: ReactZoomPanPinchRef.state.positionY,
+      scale: ReactZoomPanPinchRef.state.scale
+    });
+  };
+
+  const getMousePos = (e) => {
+    var rect = e.target.getBoundingClientRect();
+    return {
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top
+    };
+  }
+
   const handleClick = (e) => {
     console.log('click: ');
     const mPos = getMousePos(e);
+    let scale = zoomState.scale
     const tileWidth = ref1.current.width / 54;
     const tileHeight = ref1.current.height / 28;
-    const xPos = Math.floor(mPos.x / tileWidth)
-    const yPos = Math.floor(mPos.y / tileHeight)
+    const xPos = Math.floor(mPos.x / (tileWidth * scale))
+    const yPos = Math.floor(mPos.y / (tileHeight * scale))
     const type = getTileType(xPos, yPos)
     console.log(type, xPos, yPos, tileInfo)
     let ctx = ref2.current.getContext("2d");
@@ -542,12 +563,12 @@ const CronosverseMintBoard = ({mintNow, minting, mintedIds, prices}) => {
       xPos: xPos,
       yPos: yPos,
       price: prices?.[type-1],
-      globalX: e.clientX,
-      globalY: e.clientY
+      globalX: mPos.x + zoomState.offsetX,
+      globalY: mPos.y + zoomState.offsetY
     })
     ctx.fillStyle = 'rgba(250, 10, 10, 0.5)'
     console.log('tileWidth: ', tileWidth, tileWidth*xPos)
-    ctx.fillRect(tileWidth*xPos, tileHeight*yPos+1, tileWidth-2, tileHeight-1)
+    ctx.fillRect(tileWidth*xPos, tileHeight*yPos+1, tileWidth-1, tileHeight-1)
     setFlag('visible')
   };
 
@@ -608,33 +629,47 @@ const CronosverseMintBoard = ({mintNow, minting, mintedIds, prices}) => {
         }}
       >
         <div className='canvas'>
-          <canvas className='canvasBack' ref={ref1} ></canvas>
-          <canvas className='canvasFront' ref={ref2} onClick={handleClick}  ></canvas>
+          <TransformWrapper
+            onZoom={changeCanvasState} 
+            onPanningStop={changeCanvasState}
+            onPinching={changeCanvasState} 
+            onPinchingStop={changeCanvasState} 
+          >
+            <TransformComponent>
+              <canvas className='canvasBack' ref={ref1} ></canvas>
+              <canvas className='canvasFront' ref={ref2} onClick={handleClick} ></canvas>
+            </TransformComponent>
+
+            <div className='tip_modal' style={{ visibility: flag, left: `${tileInfo.globalX+15}px`, top: `${tileInfo.globalY+15}px`}}>
+              <div className='modal_content'>
+                <img className='tile_img' src={tileInfo.tile} alt="tile" />
+                <div className='tile_items'>
+                  <div>TokenId: {tileInfo.tokenId}</div>
+                  <div>Type: {tileType[tileInfo.type-1]}</div>
+                  <div>Location: {tileInfo.xPos}, { yLetters[tileInfo.yPos-1] } </div>
+                  <div>Price: {tileInfo.price} cro</div>
+                  <button className="btn-main lead" onClick={()=>{mintNow(tileInfo.tokenId, tileInfo.price)}} disabled={minting}>
+                    {minting ? (
+                      <>
+                        Minting...
+                        <Spinner animation="border" role="status" size="sm" className="ms-1">
+                          <span className="visually-hidden">Loading...</span>
+                        </Spinner>
+                      </>
+                    ) : (
+                      <>Mint</>
+                    )}
+                  </button>
+                </div>
+              </div>
+            </div>
+            
+          </TransformWrapper>
+         
         </div>
+   
       </div>
-      <div className='tip_modal' style={{ visibility: flag, left: `${tileInfo.globalX+15}px`, top: `${tileInfo.globalY+15}px`}}>
-        <div className='modal_content'>
-          <img className='tile_img' src={tileInfo.tile} alt="tile" />
-          <div className='tile_items'>
-            <div>TokenId: {tileInfo.tokenId}</div>
-            <div>Type: {tileInfo.type}</div>
-            <div>Location: {tileInfo.xPos}, {tileInfo.yPos} </div>
-            <div>Price: {tileInfo.price} ether</div>
-            <button className="btn-main lead" onClick={()=>{mintNow(tileInfo.tokenId, tileInfo.price)}} disabled={minting}>
-              {minting ? (
-                <>
-                  Minting...
-                  <Spinner animation="border" role="status" size="sm" className="ms-1">
-                    <span className="visually-hidden">Loading...</span>
-                  </Spinner>
-                </>
-              ) : (
-                <>Mint</>
-              )}
-            </button>
-          </div>
-        </div>
-      </div>
+ 
     </div>
   )
 }
