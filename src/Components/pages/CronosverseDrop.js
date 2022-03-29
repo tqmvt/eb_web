@@ -113,14 +113,6 @@ const CronosverseDrop = () => {
     });
   }, []);
 
-  useEffect(() => {
-    dispatch(fetchMemberInfo());
-    if (process.env.NODE_ENV === 'development') {
-      dispatch(fetchVipInfo());
-    }
-    dispatch(fetchCronieInfo());
-  }, []);
-
   const user = useSelector((state) => {
     return state.user;
   });
@@ -439,14 +431,21 @@ const CronosverseDrop = () => {
               </div>
             </div>
           </div>
-          <div className="row mt-md-5 pt-md-4">
-            <CronosverseMintBoard
-              mintNow={mintNow}
-              minting={minting}
-              mintedIds={mintedIds}
-              prices={user.isMember?memberCost:regularCost}
+          {!drop.start ? (
+            <div className="me-4">
+              <h6 className="mb-1">Minting Starts</h6>
+              <h3>TBA</h3>
+            </div>
+          ) : (
+            <div className="row mt-md-5 pt-md-4">
+              <CronosverseMintBoard
+                  mintNow={mintNow}
+                  minting={minting}
+                  mintedIds={mintedIds}
+                  prices={user.isMember?memberCost:regularCost}
               />
-          </div>
+            </div>
+          )}
         </section>
       </>
       <Footer />
