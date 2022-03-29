@@ -18,7 +18,7 @@ function getMetaverseUrl() {
     return "https://metaverse.ebisusbay.biz/?assignRoom=true"
   }
   if (window.location.host === "testapp2.ebisusbay.biz") {
-    return "https://metaverse.ebisusbay.biz"
+    return "https://metaverse.ebisusbay.biz?assignRoom=true"
   }
   return "https://metaverse.ebisusbay.com/?assignRoom=true"
 }
