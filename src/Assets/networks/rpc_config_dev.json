@@ -2522,7 +2522,7 @@
       "multiToken": false,
       "address": "0xDdb5DE96A5A639AA6b0357c5A325444dA2BcE913",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "",
         "verified": true,
@@ -3144,7 +3144,7 @@
         "verified": true,
         "avatar": "/img/collections/weirdapesclub/avatar.png",
         "card": "/img/collections/weirdapesclub/card.png",
-        "banner": "/img/collections/weirdapesclub/baby/banner.jpg",
+        "banner": "/img/collections/weirdapesclub/banner.webp",
         "maxSupply": 6000,
         "website": "https://weirdapes.com/",
         "twitter": "https://twitter.com/WeirdApesClub",
@@ -3958,7 +3958,7 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false,
+      "complete": true,
       "redirect": "https://badaliens.io/mint/"
     },
     {
