@@ -46,7 +46,6 @@ const ManageAuctions = () => {
 
   return (
     <div>
-      <GlobalStyles />
 
       <section
         className="jumbotron breadcumb no-bg"

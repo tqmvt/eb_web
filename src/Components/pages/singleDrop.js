@@ -713,7 +713,7 @@ const SingleDrop = () => {
                                       </Spinner>
                                     </>
                                 ) : (
-                                    <>{drop.maxMintPerTx && drop.maxMintPerTx > 1 ? <>Mint {numToMint}</> : <>Mint</>}</>
+                                    <>{maxMintPerTx > 1 ? <>Mint {numToMint}</> : <>Mint</>}</>
                                 )}
                               </button>
                               {drop.erc20Unit && (

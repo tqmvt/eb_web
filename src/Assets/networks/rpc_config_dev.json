@@ -11,6 +11,7 @@
   "auction_contract": "0x08254C5B77615E7B4d2f7df0Dc36e1AEb9025D10",
   "cronie_contract": "0xD961956B319A10CBdF89409C0aE7059788A4DaBb",
   "market_contract": "0x7a3CdB2364f92369a602CAE81167d0679087e6a3",
+  "stake_contract": "0xeb074cc764F20d8fE4317ab63f45A85bcE2bEcB1",
   "elon_contract": "0x3Bf0a68a03fE82A5D21445f3a2306bB012dd50D9",
   "ebisu_contract": "0xd036b2223bcc2A96164B023022D6b78CD71A1a12",
   "known_tokens": {
@@ -883,8 +884,8 @@
       }
     },
     {
-      "name": "Cronos Nanas",
-      "slug": "cronos-nanas",
+      "name": "Nifty Nanas",
+      "slug": "nifty-nanas",
       "multiToken": false,
       "address": "0x70c6062100b09aF2Ec63345cda372d52423BE4aC",
       "onChain": false,
@@ -967,7 +968,8 @@
         "website": "https://croskull.com/",
         "twitter": "https://twitter.com/CroskullNFT",
         "discord": "https://discord.gg/aU5YmPuqKy",
-        "medium": "https://medium.com/@croskullnft"
+        "medium": "https://medium.com/@croskullnft",
+        "staking": "croskull"
       }
     },
     {
@@ -1018,7 +1020,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "Scaling the Cronos Blockchain.",
+        "description": "Cronos Lizards are a collection of 797 OG Lizards and 2203 Gen2 Lizards scaling the Cronos Jungle. Holding a Cronos Lizard gives you exclusive access to the LizzyDAO, Cronos' first NFT project DAO. With 100% royalty sharing and unique tokenomics to breed Baby Space Lizards, Cronos Lizards transcend the typical PFP project.",
         "verified": true,
         "avatar": "/img/collections/cronoslizards/avatar.png",
         "card": "/img/collections/cronoslizards/card.png",
@@ -1046,8 +1048,7 @@
         "website": "https://cronospb.com/",
         "twitter": "https://twitter.com/PrimateCronos",
         "discord": "https://discord.gg/qXxkanCKBB",
-        "medium": "https://medium.com/cronos-monkey-business",
-        "staking": "crodex"
+        "medium": "https://medium.com/cronos-monkey-business"
       }
     },
     {
@@ -1723,7 +1724,7 @@
       "metadata": {
         "description": "The official NFT of Cronodes",
         "verified": true,
-        "avatar": "/img/collections/cronodes/avatar.gif",
+        "avatar": "https://files.ebisusbay.com/img/collections/cronodes/avatar.gif",
         "card": "/img/collections/cronodes/card.png",
         "banner": "/img/collections/cronodes/banner.png",
         "maxSupply": 3300,
@@ -2286,7 +2287,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "Scaling the Cronos Blockchain.",
+        "description": "Cronos Lizards are a collection of 797 OG Lizards and 2203 Gen2 Lizards scaling the Cronos Jungle. Holding a Cronos Lizard gives you exclusive access to the LizzyDAO, Cronos' first NFT project DAO. With 100% royalty sharing and unique tokenomics to breed Baby Space Lizards, Cronos Lizards transcend the typical PFP project.",
         "verified": true,
         "avatar": "/img/collections/cronoslizards/gen2/avatar.webp",
         "card": "/img/collections/cronoslizards/gen2/card.webp",
@@ -2521,7 +2522,7 @@
       "multiToken": false,
       "address": "0xDdb5DE96A5A639AA6b0357c5A325444dA2BcE913",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "",
         "verified": true,
@@ -2927,7 +2928,7 @@
       "multiToken": false,
       "address": "0xADFf544D633747aE216c85421b6e9Ad7445a4681",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "verified": false,
         "avatar": "/img/collections/slavikfruitfarm/avatar.gif",
@@ -2945,7 +2946,7 @@
       "multiToken": false,
       "address": "0xe7f4b4c26912dbB5764353eBD8D6aCD56A5B7435",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "verified": false,
         "avatar": "/img/collections/crodoges/avatar.gif",
@@ -2994,6 +2995,162 @@
         "twitter": "https://twitter.com/boarsgonewild",
         "discord": "https://discord.gg/nA33tCUphh"
       }
+    },
+    {
+      "name": "CRO Homes",
+      "slug": "cro-homes",
+      "multiToken": false,
+      "address": "0x59b554B12B80cAc8629Bf541a2D6359639AF2A63",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "verified": false,
+        "avatar": "/img/collections/crohomes/avatar.png",
+        "banner": "/img/collections/crohomes/banner.png",
+        "card": "/img/collections/crohomes/card.png",
+        "maxSupply": 3333,
+        "website": "https://cro.homes",
+        "twitter": "https://twitter.com/CROHomesNFT",
+        "discord": "https://discord.gg/crohomes",
+        "medium": "https://medium.com/@CROHomes"
+      }
+    },
+    {
+      "name": "LazyHorse Skybox",
+      "slug": "lazy-horse-skybox",
+      "multiToken": false,
+      "address": "0x96e99d6539bA2a816DEe7239DCDdC48be52835E4",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/lazyhorse/avatar.png",
+        "card": "/img/collections/lazyhorse/skybox/card.webp",
+        "banner": "/img/collections/lazyhorse/skybox/banner.webp",
+        "maxSupply": 2100,
+        "website": "https://www.lazyhorseraceclub.com",
+        "twitter": "https://twitter.com/LazyHorseRC",
+        "discord": "https://discord.gg/lhrc",
+        "medium": "https://medium.com/@lazyhorseraceclub"
+      }
+    },
+    {
+      "name": "Cronos Football Club",
+      "slug": "cronos-fc",
+      "multiToken": false,
+      "address": "0xd8cdcA552c2419DaeEF7598C9a4C6Ff3526d35AC",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": false,
+        "avatar": "/img/collections/cronosfc/avatar.webp",
+        "card": "/img/collections/cronosfc/card.webp",
+        "banner": "/img/collections/cronosfc/banner.webp",
+        "maxSupply": 25000,
+        "website": "https://cronosfc.club/",
+        "twitter": "https://twitter.com/Cronos__FC",
+        "discord": "https://discord.gg/C7saCVJN",
+        "medium": "https://medium.com/@cfcgcronos"
+      }
+    },
+    {
+      "name": "Cronos Platypos",
+      "slug": "cronos-platypos",
+      "multiToken": false,
+      "address": "0xda1ea383336d5b24c99c630a27d88925e4f0da41",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": false,
+        "avatar": "/img/collections/cronosplatypos/avatar.png",
+        "card": "/img/collections/cronosplatypos/card.png",
+        "banner": "/img/collections/cronosplatypos/banner.png",
+        "maxSupply": 250,
+        "twitter": "https://twitter.com/Platy_Pos",
+        "discord": "https://discord.gg/5bxaB6VPAX"
+      }
+    },
+    {
+      "name": "Crodeo Apes The First Alliance",
+      "slug": "crodeo-apes-the-first-alliance",
+      "multiToken": false,
+      "address": "0xF67877C2AF584083a68aA3014E82e068527Cf9A3",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": false,
+        "avatar": "/img/collections/crodeoapes/avatar.png",
+        "card": "/img/collections/crodeoapes/card.png",
+        "banner": "/img/collections/crodeoapes/banner.png",
+        "maxSupply": 120,
+        "twitter": "https://twitter.com/CrodeoApes",
+        "website": "https://crodeoapes.com/",
+        "discord": "https://discord.io/Crodeo",
+        "medium": "https://medium.com/@crodeoapes"
+      }
+    },
+    {
+      "name": "Finicky Foxes",
+      "slug": "finicky-foxes",
+      "multiToken": false,
+      "address": "0xC0AeBC62334b8Ed7893A77c9FA516d059FDa97e4",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": false,
+        "avatar": "/img/collections/finickyfoxes/avatar.gif",
+        "card": "/img/collections/finickyfoxes/card.png",
+        "banner": "/img/collections/finickyfoxes/banner.png",
+        "maxSupply": 2000,
+        "twitter": "https://twitter.com/FinickyFoxesNFT",
+        "website": "https://www.finickyfoxes.com/",
+        "discord": "https://discord.gg/2V8gX32z"
+      }
+    },
+    {
+      "name": "Lucky Spookies Private Club",
+      "slug": "lucky-spookies-private-club",
+      "multiToken": false,
+      "address": "0x3c47Ccb387768459D641dCe4dF556B3560a07855",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": false,
+        "avatar": "/img/collections/luckyspookies/avatar.jpeg",
+        "card": "/img/collections/luckyspookies/card.jpeg",
+        "banner": "/img/collections/luckyspookies/banner.jpg",
+        "maxSupply": 8888,
+        "twitter": "https://twitter.com/LuckySpookiesPC",
+        "website": "https://luckyspookies.club/",
+        "discord": "https://discord.gg/AEQ2BCpCNZ",
+        "medium": "https://medium.com/@LuckySpookies_NFTs"
+      }
+    },
+    {
+      "name": "baby Weird Apes",
+      "slug": "baby-weird-apes",
+      "multiToken": false,
+      "address": "0x89F7114C73d5cef7d7EDCbDb14DaA092EB2194c9",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/weirdapesclub/avatar.png",
+        "card": "/img/collections/weirdapesclub/card.png",
+        "banner": "/img/collections/weirdapesclub/banner.webp",
+        "maxSupply": 6000,
+        "website": "https://weirdapes.com/",
+        "twitter": "https://twitter.com/WeirdApesClub",
+        "discord": "https://discord.gg/RX9h6mhnTR",
+        "medium": "https://medium.com/@WeirdApesClub"
+      }
     }
   ],
   "drops": [
@@ -3005,9 +3162,7 @@
       "imgAvatar": "/img/avatar.jpg",
       "title": "Cronies",
       "subtitle": "Commemorating the launch of the Cronos network",
-      "p1": "Cronies are a NFT to commemorate the launch of the Cronos network. Here we will take advantage of the low gas fees on Cronos and produce a randomly generated 100% on-chain SVG with the Cronos logo and the block number in which it was minted.",
-      "p2": "We are really excited to see the unique collections you will build. Such as, sequential block numbers, block numbers that have a special meaning to you like a birthday, and color schemes. The Cronies minting contract will self destruct after the 1 millionth block validated.",
-      "description": "Cronies are a NFT to commemorate the launch of the Cronos network. Here we will take advantage of the low gas fees on Cronos and produce a randomly generated 100% on-chain SVG with the Cronos logo and the block number in which it was minted. We are really excited to see the unique collections you will build. Such as, sequential block numbers, block numbers that have a special meaning to you like a birthday, and color schemes. The Cronies minting contract will self destruct after the 1 millionth block validated.",
+      "description": "Cronies are a NFT to commemorate the launch of the Cronos network. Here we will take advantage of the low gas fees on Cronos and produce a randomly generated 100% on-chain SVG with the Cronos logo and the block number in which it was minted.\n\nWe are really excited to see the unique collections you will build. Such as, sequential block numbers, block numbers that have a special meaning to you like a birthday, and color schemes. The Cronies minting contract will self destruct after the 1 millionth block validated.",
       "author": { "name": "Ebisu's Bay", "link": "https://app.ebisusbay.com" },
       "address": "",
       "maxMintPerTx": 5,
@@ -3032,9 +3187,7 @@
       "imgAvatar": "/img/avatar.jpg",
       "title": "Founding Member",
       "subtitle": "Early access to features and reduced fees forever.",
-      "p1": "If you hold a Founding Member NFT you will have access to the NFT launchpad, beta features, and receive the benefit of reduced service fees.",
-      "p2": "The Founding Member NFT has an on-chain referral system. Refer a friend and receive 5% of the NFT cost and they receive 5% off. Founding Member NFTs will be limited to 10,000.",
-      "description": "If you hold a Founding Member NFT you will have access to the NFT launchpad, beta features, and receive the benefit of reduced service fees. The Founding Member NFT has an on-chain referral system. Refer a friend and receive 5% of the NFT cost and they receive 5% off. Founding Member NFTs will be limited to 10,000.",
+      "description": "If you hold a Founding Member NFT you will have access to the NFT launchpad, beta features, and receive the benefit of reduced service fees.\n\nThe Founding Member NFT has an on-chain referral system. Refer a friend and receive 5% of the NFT cost and they receive 5% off. Founding Member NFTs will be limited to 10,000.",
       "author": { "name": "Ebisu's Bay", "link": "https://app.ebisusbay.com" },
       "address": "0x8d9232Ebc4f06B7b8005CCff0ca401675ceb25F5",
       "maxMintPerTx": 10,
@@ -3805,7 +3958,7 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false,
+      "complete": true,
       "redirect": "https://badaliens.io/mint/"
     },
     {
@@ -4270,12 +4423,12 @@
       "cost": "",
       "whitelistCost": "",
       "foundersOnly": false,
-      "start": 1648144800000,
+      "start": 1645240287000,
       "end": null,
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false,
+      "complete": true,
       "featured": false,
       "redirect": "https://lootpad.io/collection/crodoges"
     },
@@ -4355,7 +4508,62 @@
       "published": true,
       "complete": false,
       "featured": false,
-      "redirect": "https://cronoslioness.club/"
+      "redirect": "https://mint.i-n-u.com/"
+    },
+    {
+      "id": 50,
+      "slug": "lazy-horse-skybox",
+      "imgNft": "/img/drops/lazyhorse/skybox/drop1.webp",
+      "imgPreview": "/img/drops/lazyhorse/skybox/drop2.webp",
+      "imgAvatar": "/img/collections/lazyhorse/avatar.png",
+      "imgBanner": "/img/collections/lazyhorse/skybox/banner.webp",
+      "title": "LHRC Skybox",
+      "subtitle": "Full access and control of a private skybox room in the Lazy Horse Metaverse",
+      "description": "The LHRC Skybox is a property asset inside the Lazy Horse Metaverse represented by the LHRC Skybox NFT.  The LHRC Skybox gives each owner full access and control of their own room, 20 sellable seats to every Signature Concert Event, a virtual meeting/conference room for private events, a view of ongoing races in the Lazy Horse Race Game, customizable and licensable wall pictures, and 24/7 access to all the entertainment the Lazy Horse Metaverse has to offer.",
+      "author": { "name": "LazyHorse", "link": "https://www.lazyhorseraceclub.com/" },
+      "address": "0x96e99d6539bA2a816DEe7239DCDdC48be52835E4",
+      "maxMintPerTx": 3,
+      "maxMintPerAddress": 50,
+      "totalSupply": 2100,
+      "priceDescription": "Whitelist-only presale for the first 12 hours (limit 1 per address). Public sale after presale ends (limit 3 per transaction).",
+      "cost": "5000",
+      "memberCost": "4000",
+      "whitelistCost": "4000",
+      "foundersOnly": false,
+      "start": 1648306800000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false,
+      "featured": true,
+      "video": "https://vz-04b9a6bb-09d.b-cdn.net/72f28eef-3661-4a78-9816-3683dad31cc0/playlist.m3u8"
+    },
+    {
+      "id": 51,
+      "slug": "slavik-fruit-farm",
+      "imgNft": "",
+      "imgPreview": "",
+      "imgAvatar": "/img/collections/slavikfruitfarm/avatar.gif",
+      "title": "Slavik Fruit Farm",
+      "subtitle": "",
+      "description": "",
+      "author": { "name": "Slavik Fruit Farm", "link": "https://slavikfruitfarm.io/" },
+      "address": "",
+      "maxMintPerTx": 0,
+      "maxMintPerAddress": 0,
+      "totalSupply": 0,
+      "cost": "",
+      "whitelistCost": "",
+      "foundersOnly": false,
+      "start": 1645240287000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false,
+      "featured": false,
+      "redirect": "https://lootpad.io/collection/slavikfruitfarm"
     }
   ],
   "auctions": [

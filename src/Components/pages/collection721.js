@@ -11,8 +11,6 @@ import LayeredIcon from '../components/LayeredIcon';
 import { init, fetchListings, getStats } from '../../GlobalState/collectionSlice';
 import {
   caseInsensitiveCompare, isCrosmocraftsCollection,
-  isCrosmocraftsPartsCollection,
-  isFounderCollection,
   siPrefixedNumber
 } from '../../utils';
 import TraitsFilter from '../Collection/TraitsFilter';
@@ -22,8 +20,7 @@ import { SortOption } from '../Models/sort-option.model';
 import { FilterOption } from '../Models/filter-option.model';
 import config from '../../Assets/networks/rpc_config.json';
 import Market from '../../Contracts/Marketplace.json';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
+import stakingPlatforms from '../../core/data/staking-platforms.json';
 
 const knownContracts = config.known_contracts;
 
@@ -244,12 +241,12 @@ const Collection721 = ({ collection, cacheName = 'collection' }) => {
                 </div>
               </div>
             )}
-            {collection.metadata.staking === 'crodex' && (
+            {collection.metadata.staking && (
               <div className="row">
                 <div className="mx-auto text-center fw-bold" style={{ fontSize: '0.8em' }}>
                   NFTs from this collection can be staked at {' '}
-                  <a href="https://swap.crodex.app/#/rewards/nft" target="_blank" rel="noreferrer">
-                    <span className="color">Crodex</span>
+                  <a href={stakingPlatforms[collection.metadata.staking].url} target="_blank" rel="noreferrer">
+                    <span className="color">{stakingPlatforms[collection.metadata.staking].name}</span>
                   </a>
                 </div>
               </div>

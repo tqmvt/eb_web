@@ -136,7 +136,7 @@ export default class Responsive extends Component {
         })
         .reverse();
     }
-    this.featuredDrops = [...upcomingDrops, ...topLevelDrops, ...liveDrops];
+    this.featuredDrops = [...topLevelDrops, ...upcomingDrops, ...liveDrops];
   }
 
   navigateToDrop(drop) {
