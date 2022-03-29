@@ -571,6 +571,26 @@
         "telegram": "https://t.me/marbleverse_io",
         "medium": "https://medium.com/@marbleverse_io"
       }
+    },
+    {
+      "name": "CronosVerse",
+      "slug": "cronosverse",
+      "multiToken": false,
+      "address": "0x93C08f7A59a43D17cb4BD57CAAb16401BC1067f4",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/cronosverse/avatar.png",
+        "card": "/img/collections/cronosverse/card.png",
+        "banner": "/img/collections/cronosverse/banner.png",
+        "maxSupply": 1208,
+        "website": "https://www.bigbadwolves.club/",
+        "twitter": "https://twitter.com/BigBadWolves_MC",
+        "discord": "https://discord.gg/9GetF5Nc5x",
+        "medium": "https://t.me/bigbadwolves_nft"
+      }
     }
   ],
   "drops": [
@@ -584,7 +604,7 @@
       "title": "Deplone",
       "subtitle": "Deplone is a young visual artist, who turned his life upside down to chase what he really loves. Since he discovered his passion for 3D art and motion design he has developed his own distinct style. Tries to stay humble and anonymous. Works often influenced by the events from his personal life or day-to-day reflections about the world around him.",
       "description": "This 6 piece collection was created with an intention to admire certain elements important to the creative process, but also life in general. The aim of every one of these six artworks is to make the new owner just take a small break and ponder about one of those topics, as well as admire their influence on the surrounding world. I chose the form factor of a surreal museum-like space, because ever since I was a small child, I thought about modern art galleries as the calm, quiet places designed to let the observer admire and reflect upon the odd, non-conventional and often controversial concepts. I hope that events taking place in this little space I designed in my head will succeed in their goal.",
-      "author": { "name": "Deplone", "link": "https://www.instagram.com/deplone_/" },
+      "author": { "name": "Deplone", "link": "" },
       "address": "0xBf792Bdfd565Bc9D4619ed085d4E8B8EA4d9E79E",
       "maxMintPerTx": 1,
       "totalSupply": 22,
@@ -1361,10 +1381,10 @@
       "imgPreview": "/img/drops/cronosverse/drop.png",
       "imgAvatar": "/img/collections/cronosverse/avatar.png",
       "imgBanner": "/img/collections/cronosverse/banner.png",
-      "title": "Cronosverse",
-      "subtitle": "Cronosverse is a community based NFT project including real time video game, metaverse integration and big marketing campaign.\nHolding the NFT gives you a PRIVILEGED position.\nWelcome to THE PACK!",
-      "description": "Cronosverse is a community NFT collection heading towards a gory multiplayer video game and metaverse integration. Join the ride and access staking, giveaways, airdrops, and rewarded Art & Memes contests!\n\nHolder WILL be rewarded.\n\n1/1 are unique and exclusive artworks made by several artists.\n\nAll NFTs in the collection have random stats for strength, agility, stamina, speed and ferocity. These stats will change the way to play the video game.",
-      "author": { "name": "Cronosverse", "link": "https://www.bigbadwolves.club/" },
+      "title": "CronosVerse",
+      "subtitle": "Buy your digital land plot, develop your property & enter The CronosVerse!",
+      "description": "The CronosVerse aims to be the first metaverse social MMO on the Cronos Chain.\n\nLand owners will be able to build structures on their land for their NFT characters, friends, and community members to enjoy. Build using preloaded building materials with absolutely no coding required.\n\nTypes of Lands:\n\nPlains Tiles- Allows for building of rustic style structures (max amalgamation of 16 tiles)\n\nSuburban Tiles- Allows for suburban style structures (max amalgamation of 4 tiles)\n\nCommercial Tiles- Allows for retail, office, entertainment and other commercial structures (max amalgamation of 4 tiles)",
+      "author": { "name": "CronosVerse", "link": "https://thecronosverse.com/" },
       "address": "0x93C08f7A59a43D17cb4BD57CAAb16401BC1067f4",
       "maxMintPerTx": 1,
       "maxMintPerAddress": 1208,
