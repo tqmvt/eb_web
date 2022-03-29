@@ -1,70 +1,104 @@
-import React, {useCallback, useState} from 'react';
-import { useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import React, {useEffect, useState} from 'react';
 import { Helmet } from 'react-helmet';
-
-import ListingCollection from '../components/ListingCollection';
 import Footer from '../components/Footer';
-import TopFilterBar from '../components/TopFilterBar';
-import { sortOptions } from '../components/constants/sort-options';
-import { SortOption } from '../Models/sort-option.model';
-import { sortListings } from '../../GlobalState/marketplaceSlice';
 import {caseInsensitiveCompare, shortAddress} from 'src/utils';
-import {Button, FormControl, InputGroup, Spinner} from "react-bootstrap";
+import {FormControl, InputGroup, Spinner} from "react-bootstrap";
 import { usePapaParse } from 'react-papaparse';
-import {commify} from "ethers/lib.esm/utils";
+import {ethers} from "ethers";
+import config from "../../Assets/networks/rpc_config.json";
+import {
+    getSlothty721NftsFromIds,
+    getSlothty721NftsFromWallet
+} from "../../core/api/chain";
+import styled from "styled-components";
+const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
+
+const GreyscaleImg = styled.img`
+  -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+  filter: grayscale(100%);
+`;
 
 const Rugsurance = () => {
-  const cacheName = 'sellerPage';
   const { readRemoteFile } = usePapaParse();
 
-  const dispatch = useDispatch();
   const [isChecking, setIsChecking] = useState(false);
   const [address, setAddress] = useState('');
-  const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
 
-  const checkCsv = async (address) => {
-      setResult(null);
-      setError(false);
+  const [nfts, setNfts] = useState([]);
+  const [selectedNfts, setSelectedNfts] = useState([]);
 
+  const checkCsv = async (address) => {
+      return new Promise((resolve, reject) => {
+          readRemoteFile('/3dslothty-refunds.csv', {
+              header: true,
+              complete: (results) => {
+                  const record = results.data.find(o => caseInsensitiveCompare(o.Address, address.trim()));
+                  if (record) {
+                      resolve({
+                          error: null,
+                          result: {
+                              address: address,
+                              costPerSlothty: record['Cost Per Slothty'],
+                              ids: JSON.parse(record.IDs),
+                              minted: record.Minted,
+                              totalCost: record['Total Cost']
+                          }
+                      });
+                  } else {
+                      resolve({
+                          error: 'No Slothtys found for this address',
+                          result: {
+                              ids: []
+                          }
+                      });
+                  }
+              },
+          });
+      });
+  }
+
+  const calculateBurnEligibility = async (walletAddress) => {
+      setIsChecking(true);
+      setError(false);
+      setNfts([]);
       if (!address) {
           setError('Please provide an address');
+          setIsChecking(false);
           return;
       }
 
-      readRemoteFile('/3dslothty-refunds.csv', {
-        header: true,
-        complete: (results) => {
-          const record = results.data.find(o => caseInsensitiveCompare(o.Address, address.trim()));
-          if (record) {
-              setResult({
-                  address: address,
-                  costPerSlothty: record['Cost Per Slothty'],
-                  ids: JSON.parse(record.IDs),
-                  minted: record.Minted,
-                  totalCost: record['Total Cost']
-              })
-          } else {
-              setError('No Slothtys found for this address');
-          }
-        },
-      });
+      const slothtyAddress = '0x966B18Afe9D9062d611D0C246A1959b7a25FCdDe';
+      const rugAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3';
+      try {
+          const csvData = await checkCsv(walletAddress) ?? [];
+          console.log('ei', csvData);
+          const nftsFromWallet = await getSlothty721NftsFromWallet(slothtyAddress, walletAddress);
+          const nftsFromCsv = !csvData.error ? await getSlothty721NftsFromIds(slothtyAddress, csvData.result.ids) : [];
+          console.log(csvData.result.ids, nftsFromWallet, nftsFromCsv);
+          const allNfts = nftsFromWallet
+              .map((n) => {
+                  n.isEligible = csvData.result.ids.includes(n.id);
 
-//     const response = await fetch('/3dslothty-refunds.csv');
-//
-//     const reader = response.body.getReader();
-//     const rd = await reader.read();
-//     const decoder = new TextDecoder('utf-8');
-//     const csv = await decoder.decode(rd.value);
-// console.log('lenfth', csv.length);
-//
-//     const jsonList = await Papa.parse(csv, {header: true});
-//     const addressList = jsonList.data;
-//     console.log('res', addressList);
-//
-//     console.log('res', foundAddress);
+                  return n;
+              })
+              .concat(nftsFromCsv.map((n) => {
+                  n.isEligible = nftsFromWallet.map(a => a.id).includes(n.id);
+
+                  return n;
+              }))
+              .filter((v,i,a)=>a.findIndex(v2=>(v2.id===v.id))===i)
+              .sort((a, b) => (a.id > b.id ? 1 : -1));
+console.log(allNfts);
+          setNfts(allNfts);
+      } finally {
+          setIsChecking(false);
+      }
   }
+
+  useEffect(() => {
+      console.log('updatd nfts', nfts);
+  }, [nfts])
 
   const handleChangeAddress = (event) => {
     const { value } = event.target;
@@ -94,48 +128,87 @@ const Rugsurance = () => {
       </section>
       <section className="container">
         <div className="row">
-          <div className="col-lg-12 text-center">
-            <p>Refunds for the 3DSlothty drop will be available later this week. In the meantime, you may check your address below to confirm your eligibility for a refund.</p>
-              <FormControl
-                  onChange={handleChangeAddress}
-                  placeholder="Enter Wallet Address"
-                  aria-label="Wallet Address"
-              />
-              <button className="btn-main lead mb-5 mr15" onClick={() => checkCsv(address)} disabled={isChecking}>
-                {isChecking ? (
-                    <>
-                      Checking...
-                      <Spinner animation="border" role="status" size="sm" className="ms-1">
-                        <span className="visually-hidden">Loading...</span>
-                      </Spinner>
-                    </>
-                ) : (
-                    <>Check Now</>
-                )}
-              </button>
+          <div className="col-lg-12">
+            <p className="text-center">Refunds for the 3DSlothty drop will be available later this week. In the meantime, you may check your address below to confirm your eligibility for a refund.</p>
+            <h3>Wallet Address</h3>
+            <FormControl
+              onChange={handleChangeAddress}
+              placeholder="Enter Wallet Address"
+              aria-label="Wallet Address"
+            />
+            <button className="btn-main lead mb-5 mr15" onClick={() => calculateBurnEligibility(address)} disabled={isChecking}>
+              {isChecking ? (
+                <>
+                  Checking...
+                  <Spinner animation="border" role="status" size="sm" className="ms-1">
+                    <span className="visually-hidden">Loading...</span>
+                  </Spinner>
+                </>
+              ) : (
+                <>Check Now</>
+              )}
+            </button>
           </div>
         </div>
-        <div className="row">
-            <div className="col text-center">
-                {result && (
-                    <>
-                        <div className="card eb-nft__card h-100 shadow px-4">
-                            <div className="card-body d-flex flex-column">
-                                <h5>Information</h5>
-                                <p><strong>Address</strong>: {result.address}</p>
-                                <p><strong>Cost Per Slothty</strong>: {result.costPerSlothty} CRO</p>
-                                <p><strong>Total Minted</strong>: {result.minted}</p>
-                                <p><strong>Eligible IDs to be burned</strong>: {result.ids.join(', ')}</p>
-                                <p><strong>Maximum Eligible Refund</strong>: {commify(result.totalCost)} CRO</p>
-                            </div>
-                        </div>
-                    </>
-                )}
-                {!result && error && (
-                    <p>{error}</p>
-                )}
+        {nfts.length > 0 && (
+          <>
+            <div className="row">
+              <div className="col">
+                  <h3>Tokens Refundable for {address}</h3>
+                  <p>{nfts.length} results found</p>
+              </div>
             </div>
-        </div>
+            <div className="row">
+              <div className="col">
+                <div className="card-group">
+                  {nfts.map((nft, index) => (
+                    <div key={index} className="d-item col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12 mb-4 px-2">
+                      <div className="card eb-nft__card h-100 shadow">
+                          {nft.isEligible ? (
+                              <img
+                                  src={nft.image}
+                                  className={`card-img-top`}
+                                  alt={nft.name}
+                              />
+                          ) : (
+                              <GreyscaleImg
+                                  src={nft.image}
+                                  className={`card-img-top`}
+                                  alt={nft.name}
+                              />
+                          )}
+                        <div className="card-body d-flex flex-column">
+                          <h6 className="card-title mt-auto">{nft.name}</h6>
+                          <div className="nft__item_action">
+                              {nft.isEligible ? (
+                                  <span style={{cursor:'pointer'}}>Select for Burn</span>
+                              ) : (
+                                  <span className="text-grey">Cannot be selected for Burn</span>
+                              )}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+              <div className="row">
+                  <div className="col">
+                      <button className="btn-main lead mb-5 mr15 ms-auto">
+                          Process Refund
+                      </button>
+                  </div>
+              </div>
+          </>
+        )}
+        {error && (
+          <div className="row">
+            <div className="col text-center">
+              <p>{error}</p>
+            </div>
+          </div>
+        )}
       </section>
 
       <Footer />
