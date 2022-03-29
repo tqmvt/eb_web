@@ -431,6 +431,14 @@ const CronosverseDrop = () => {
           </div>
         </section>
         <section className="container no-top">
+          <div className="row">
+            <div className="col">
+              <div className="item_info">
+                <h2>{drop.title}</h2>
+                <div className="mt-3">{newlineText(drop.description)}</div>
+              </div>
+            </div>
+          </div>
           <div className="row mt-md-5 pt-md-4">
             <CronosverseMintBoard
               mintNow={mintNow}
