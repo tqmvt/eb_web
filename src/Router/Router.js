@@ -18,7 +18,7 @@ import MyListings from '../Components/pages/myListings';
 import MySales from '../Components/pages/mySales';
 import MyStaking from '../Components/pages/myStaking';
 import Collections from '../Components/pages/collections';
-import CharityBall from '../Components/pages/charityBall';
+import MetaverseAuctions from '../Components/pages/metaverseAuctions';
 import Rugsurance from '../Components/pages/rugsurance';
 import history from '../history';
 import { ErrorPage } from '../Components/pages/ErrorPage';
@@ -90,7 +90,7 @@ const Component = ({ walletAddress, authInitFinished }) => {
           <SentryEnhancedRoute exact path="/collection/:slug" component={Collection} />
           <SentryEnhancedRoute exact path="/collection/:slug/:id" component={Nft} />
           <SentryEnhancedRoute exact path="/seller/:address" component={Seller} />
-          <SentryEnhancedRoute exact path="/charity-ball" component={CharityBall} />
+          <SentryEnhancedRoute exact path="/metaverse-auctions" component={MetaverseAuctions} />
           <SentryEnhancedRoute exact path="/slothty-rugsurance" component={Rugsurance} />
           <SentryEnhancedRoute path="*" render={() => <Redirect to="/" />} />
         </Switch>
