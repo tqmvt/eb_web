@@ -1459,6 +1459,31 @@
       "is1155": false,
       "published": true,
       "complete": false
+    },
+    {
+      "id": 48,
+      "slug": "3d-slothty",
+      "imgNft": "/img/drops/slothty/card.png",
+      "imgPreview": "/img/drops/slothty/card.png",
+      "title": "4DSlothty",
+      "subtitle": "",
+      "description": "",
+      "author": { "name": "Ebisu's Bay", "link": "https://app.ebisusbay.com" },
+      "address": "",
+      "maxMintPerTx": 0,
+      "maxMintPerAddress": 0,
+      "totalSupply": 0,
+      "cost": "250",
+      "whitelistCost": "200",
+      "foundersOnly": false,
+      "start": 1645240287000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false,
+      "featured": true,
+      "redirect": "/slothy-rugsurance"
     }
   ],
   "auctions": [
