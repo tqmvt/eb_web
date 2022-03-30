@@ -41,6 +41,7 @@ const Rugsurance = () => {
   const [openConfirmationDialog, setOpenConfirmationDialog] = useState(false);
   const [isApproved, setIsApproved] = useState(false);
   const [isInitializing, setIsInitializing] = useState(true);
+  const [forceRefresh, setForceRefresh] = useState(false);
 
   const checkBurnList = async (address) => {
     const readContract = new Contract(rugContractAddress, RugsuranceAbi.abi, readProvider);
@@ -67,6 +68,7 @@ const Rugsurance = () => {
   };
 
   const calculateBurnEligibility = async () => {
+      setSelectedNfts([]);
       setNonRefundableNfts([]);
       setNfts([]);
 
@@ -114,7 +116,7 @@ const Rugsurance = () => {
       setSelectedNfts(currentSelectedNfts);
   };
 
-  const executeBurn = () => async () => {
+  const executeBurn = async () => {
     const writeContract = new Contract(rugContractAddress, RugsuranceAbi.abi, user.provider.getSigner());
 
     try {
@@ -133,6 +135,11 @@ const Rugsurance = () => {
         }
     }
   };
+
+  const onBurnComplete = async () => {
+    setOpenConfirmationDialog(false);
+    setForceRefresh(true);
+  }
 
   const setApprovalForAll = async () => {
     const slothtyAddress = knownContracts.find((c) => c.slug === '3d-slothty').address;
@@ -209,6 +216,8 @@ const Rugsurance = () => {
                         workingTitle="Checking"
                         style="mx-auto"
                         onClick={() => calculateBurnEligibility()}
+                        onComplete={() => setForceRefresh(false)}
+                        doWorkNow={forceRefresh}
                       />
                     )}
                     {!isApproved && (
@@ -345,13 +354,13 @@ const Rugsurance = () => {
                 <div className="heading">
                     <h3>Are you sure you want to burn Slothty?</h3>
                 </div>
-                <p>To burn and receive your refund, please follow the prompts in your</p>
+                <p>To burn and receive your refund, please click the button below and follow the prompts in your wallet.</p>
 
                 <ActionButton
                   title="Burn Slothty"
                   workingTitle="Burning Slothty"
-                  onClick={executeBurn()}
-                  onComplete={() => {setOpenConfirmationDialog(false)}}
+                  onClick={executeBurn}
+                  onComplete={onBurnComplete}
                 />
             </div>
         </div>
@@ -363,7 +372,7 @@ const Rugsurance = () => {
 };
 export default Rugsurance;
 
-const ActionButton = ({onClick, title, workingTitle, style, onComplete = null}) => {
+const ActionButton = ({onClick, title, workingTitle, style, onComplete = null, doWorkNow = false}) => {
 
   const [isWorking, setIsWorking] = useState(false);
 
@@ -375,6 +384,12 @@ const ActionButton = ({onClick, title, workingTitle, style, onComplete = null}) 
       onComplete();
     }
   }
+
+  useEffect(async () => {
+    if (doWorkNow) {
+      await doWork();
+    }
+  }, [doWorkNow]);
 
   return (
     <button className={`btn-main lead mb-5 ${style}`} onClick={doWork} disabled={isWorking}>
