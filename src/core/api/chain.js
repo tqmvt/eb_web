@@ -15,16 +15,18 @@ export const getSlothty721NftsFromWallet = async (collectionAddress, walletAddre
 
     let nfts = [];
 
-    for (let i = 0; i < count; i++) {
-        let id;
+    const iterativeArray = Array.from(Array(count.toNumber()).keys());
+    const promises = iterativeArray.map(async (i) => {
         try {
-            id = await readContract.tokenOfOwnerByIndex(walletAddress, i);
+            const id = await readContract.tokenOfOwnerByIndex(walletAddress, i);
+            const nft = await get721NftById(collectionAddress, id, readContract);
+            nfts.push(nft);
         } catch (error) {
-            continue;
+            console.log(error);
         }
-        const nft = await get721NftById(collectionAddress, id, readContract);
-        nfts.push(nft);
-    }
+    });
+
+    await Promise.all(promises);
 
     return nfts;
 }
@@ -34,10 +36,17 @@ export const getSlothty721NftsFromIds = async (collectionAddress, tokenIds) => {
 
     let nfts = [];
 
-    for (let i = 0; i < tokenIds.length; i++) {
-        const nft = await get721NftById(collectionAddress, tokenIds[i], readContract);
-        nfts.push(nft);
-    }
+    const iterativeArray = Array.from(Array(tokenIds.length).keys());
+    const promises = iterativeArray.map(async (i) => {
+        try {
+            const nft = await get721NftById(collectionAddress, tokenIds[i], readContract);
+            nfts.push(nft);
+        } catch (error) {
+            console.log(error);
+        }
+    });
+
+    await Promise.all(promises);
 
     return nfts;
 }
@@ -64,7 +73,7 @@ const get721NftById = async (collectionAddress, tokenId, readContract = null) =>
     })();
 
     let json = await (await fetch(checkedUri)).json();
-    const image = getImageFromMetadata(json);
+    const image = await getImageFromMetadata(json);
 
     const numberId = tokenId instanceof BigNumber ? tokenId.toNumber() : tokenId;
     return {
@@ -78,7 +87,7 @@ const get721NftById = async (collectionAddress, tokenId, readContract = null) =>
     };
 }
 
-const getImageFromMetadata = (json) => {
+const getImageFromMetadata = async (json) => {
     let image;
     if (json.image.startsWith('ipfs')) {
         image = `${gateway}/ipfs/${json.image.substring(7)}`;
