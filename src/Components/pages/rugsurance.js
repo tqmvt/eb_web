@@ -33,6 +33,7 @@ const txExtras = {
 
 const Rugsurance = () => {
   const dispatch = useDispatch();
+  let audio = new Audio("https://files.ebisusbay.com/slothty/slothty-burning.mp4")
   const user = useSelector((state) => state.user);
 
   const [nfts, setNfts] = useState([]);
@@ -122,6 +123,7 @@ const Rugsurance = () => {
     try {
         console.log('burning...', user.address, selectedNfts);
         const tx = await writeContract.claimRefund(user.address, selectedNfts);
+        await audio.play();
         const receipt = await tx.wait();
         toast.success(createSuccessfulTransactionToastContent(receipt.transactionHash));
     } catch (error) {
