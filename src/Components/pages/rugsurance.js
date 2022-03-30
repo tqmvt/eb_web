@@ -36,6 +36,7 @@ const Rugsurance = () => {
   const user = useSelector((state) => state.user);
 
   const [nfts, setNfts] = useState([]);
+  const [nonRefundableNfts, setNonRefundableNfts] = useState([]);
   const [selectedNfts, setSelectedNfts] = useState([]);
   const [openConfirmationDialog, setOpenConfirmationDialog] = useState(false);
   const [isApproved, setIsApproved] = useState(false);
@@ -66,6 +67,7 @@ const Rugsurance = () => {
   };
 
   const calculateBurnEligibility = async () => {
+      setNonRefundableNfts([]);
       setNfts([]);
 
       const slothtyAddress = knownContracts.find((c) => c.slug === '3d-slothty').address;
@@ -78,7 +80,7 @@ const Rugsurance = () => {
               // Will catch tokens that are in user wallet but not eligible ID list
               n.isEligible = eligibleIds.includes(n.id);
               if (!n.isEligible) {
-                n.reason = "Not original owner"
+                n.reason = "Airdrop or Not original owner"
               }
 
               return n;
@@ -95,7 +97,8 @@ const Rugsurance = () => {
             .filter((v,i,a)=>a.findIndex(v2=>(v2.id===v.id))===i)
             .sort((a, b) => (a.id > b.id ? 1 : -1));
 
-          setNfts(allNfts);
+          setNfts(allNfts.filter((n) => n.isEligible));
+          setNonRefundableNfts(allNfts.filter((n) => !n.isEligible));
       } catch (error) {
         console.log(error);
       }
@@ -298,6 +301,37 @@ const Rugsurance = () => {
                       </button>
                   </div>
               </div>
+          </>
+        )}
+        {nonRefundableNfts.length > 0 && (
+          <>
+            <div className="row">
+              <div className="col">
+                <h3>Tokens NOT Refundable</h3>
+                <p>{nonRefundableNfts.length} results found</p>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col">
+                <div className="card-group">
+                  {nonRefundableNfts.map((nft, index) => (
+                    <div key={index} className="d-item col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12 mb-4 px-2">
+                      <div className="card eb-nft__card h-100 shadow">
+                        <GreyscaleImg
+                          src={nft.image}
+                          className={`card-img-top`}
+                          alt={nft.name}
+                        />
+                        <div className="card-body d-flex flex-column">
+                          <span className="fw-bold" style={{color:'red', fontSize:'0.7rem'}}>{nft.reason.toUpperCase()}</span>
+                          <h6 className="card-title mt-auto">{nft.name}</h6>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
           </>
         )}
       </section>
