@@ -1,108 +1,129 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import { Helmet } from 'react-helmet';
 import Footer from '../components/Footer';
-import {caseInsensitiveCompare, shortAddress} from 'src/utils';
+import {createSuccessfulTransactionToastContent} from 'src/utils';
 import {FormControl, InputGroup, Spinner} from "react-bootstrap";
-import { usePapaParse } from 'react-papaparse';
-import {ethers} from "ethers";
+import {Contract, ethers} from "ethers";
 import config from "../../Assets/networks/rpc_config.json";
 import {
     getSlothty721NftsFromIds,
     getSlothty721NftsFromWallet
 } from "../../core/api/chain";
 import styled from "styled-components";
+import RugsuranceAbi from '../../Contracts/SlothtyRugsurance.json';
+import {useDispatch, useSelector} from "react-redux";
+import {toast} from "react-toastify";
+import MetaMaskOnboarding from "@metamask/onboarding";
+import {chainConnect, connectAccount} from "../../GlobalState/User";
+
+const knownContracts = config.known_contracts;
 const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
 
 const GreyscaleImg = styled.img`
   -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
   filter: grayscale(100%);
 `;
+const rugContractAddress = '0x99F3960E8219384BF0624D388cAD698d5A54AE6C';
 
 const Rugsurance = () => {
-  const { readRemoteFile } = usePapaParse();
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
 
   const [isChecking, setIsChecking] = useState(false);
-  const [address, setAddress] = useState('');
   const [error, setError] = useState(null);
 
   const [nfts, setNfts] = useState([]);
   const [selectedNfts, setSelectedNfts] = useState([]);
+  const [openConfirmationDialog, setOpenConfirmationDialog] = useState(false);
+  const [executingBurn, setisExecutingBurn] = useState(false);
+  const [burnError, setBurnError] = useState(null);
 
-  const checkCsv = async (address) => {
-      return new Promise((resolve, reject) => {
-          readRemoteFile('/3dslothty-refunds.csv', {
-              header: true,
-              complete: (results) => {
-                  const record = results.data.find(o => caseInsensitiveCompare(o.Address, address.trim()));
-                  if (record) {
-                      resolve({
-                          error: null,
-                          result: {
-                              address: address,
-                              costPerSlothty: record['Cost Per Slothty'],
-                              ids: JSON.parse(record.IDs),
-                              minted: record.Minted,
-                              totalCost: record['Total Cost']
-                          }
-                      });
-                  } else {
-                      resolve({
-                          error: 'No Slothtys found for this address',
-                          result: {
-                              ids: []
-                          }
-                      });
-                  }
-              },
-          });
-      });
+  const checkBurnList = async (address) => {
+    const readContract = new Contract(rugContractAddress, RugsuranceAbi.abi, readProvider);
+
+    try {
+      const result = await readContract.getRefundInfo(address);
+      return result.Ids.map((i) => i.toNumber());
+    } catch (e) {
+      return [];
+    }
   }
 
-  const calculateBurnEligibility = async (walletAddress) => {
-      setIsChecking(true);
-      setError(false);
-      setNfts([]);
-      if (!address) {
-          setError('Please provide an address');
-          setIsChecking(false);
+  const calculateBurnEligibility = async () => {
+      if (!user.address) {
+          if (user.needsOnboard) {
+              const onboarding = new MetaMaskOnboarding();
+              onboarding.startOnboarding();
+          } else if (!user.address) {
+              dispatch(connectAccount());
+          } else if (!user.correctChain) {
+              dispatch(chainConnect());
+          }
           return;
       }
 
-      const slothtyAddress = '0x966B18Afe9D9062d611D0C246A1959b7a25FCdDe';
-      const rugAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3';
+      setIsChecking(true);
+      setError(false);
+      setNfts([]);
+
+      const slothtyAddress = knownContracts.find((c) => c.slug === '3d-slothty').address;
       try {
-          const csvData = await checkCsv(walletAddress) ?? [];
-          console.log('ei', csvData);
-          const nftsFromWallet = await getSlothty721NftsFromWallet(slothtyAddress, walletAddress);
-          const nftsFromCsv = !csvData.error ? await getSlothty721NftsFromIds(slothtyAddress, csvData.result.ids) : [];
-          console.log(csvData.result.ids, nftsFromWallet, nftsFromCsv);
+          const eligibleIds = await checkBurnList(user.address) ?? [];
+          const nftsFromWallet = await getSlothty721NftsFromWallet(slothtyAddress, user.address);
+          const nftsFromCsv = await getSlothty721NftsFromIds(slothtyAddress, eligibleIds);
           const allNfts = nftsFromWallet
               .map((n) => {
-                  n.isEligible = csvData.result.ids.includes(n.id);
+                  // Will catch tokens that are in user wallet but not eligible ID list
+                  n.isEligible = eligibleIds.includes(n.id);
 
                   return n;
               })
               .concat(nftsFromCsv.map((n) => {
+                  // Will catch tokens not in user wallet but in eligible ID list
                   n.isEligible = nftsFromWallet.map(a => a.id).includes(n.id);
 
                   return n;
               }))
               .filter((v,i,a)=>a.findIndex(v2=>(v2.id===v.id))===i)
               .sort((a, b) => (a.id > b.id ? 1 : -1));
-console.log(allNfts);
+
           setNfts(allNfts);
       } finally {
           setIsChecking(false);
       }
   }
 
-  useEffect(() => {
-      console.log('updatd nfts', nfts);
-  }, [nfts])
+  const selectNft = (nftId) => {
+      let currentSelectedNfts;
+      if (selectedNfts.includes(nftId)) {
+          currentSelectedNfts = selectedNfts.filter((n) => n !== nftId);
+      } else {
+          currentSelectedNfts = [...selectedNfts, nftId];
+      }
+      setSelectedNfts(currentSelectedNfts);
+  };
 
-  const handleChangeAddress = (event) => {
-    const { value } = event.target;
-    setAddress(value);
+  const executeBurn = () => async () => {
+    setisExecutingBurn(true);
+    const writeContract = new Contract(rugContractAddress, RugsuranceAbi.abi, user.provider.getSigner());
+
+    try {
+        console.log('burning...', user.address, selectedNfts);
+        const tx = await writeContract.claimRefund(user.address, selectedNfts);
+        const receipt = await tx.wait();
+        toast.success(createSuccessfulTransactionToastContent(receipt.transactionHash));
+    } catch (error) {
+        if (error.data) {
+            toast.error(error.data.message);
+        } else if (error.message) {
+            toast.error(error.message);
+        } else {
+            console.log(error);
+            toast.error('Unknown Error');
+        }
+    } finally {
+        setisExecutingBurn(false);
+    }
   };
 
   return (
@@ -129,14 +150,8 @@ console.log(allNfts);
       <section className="container">
         <div className="row">
           <div className="col-lg-12">
-            <p className="text-center">Refunds for the 3DSlothty drop will be available later this week. In the meantime, you may check your address below to confirm your eligibility for a refund.</p>
-            <h3>Wallet Address</h3>
-            <FormControl
-              onChange={handleChangeAddress}
-              placeholder="Enter Wallet Address"
-              aria-label="Wallet Address"
-            />
-            <button className="btn-main lead mb-5 mr15" onClick={() => calculateBurnEligibility(address)} disabled={isChecking}>
+            <p className="text-center">Slothty NFTs can only be refunded to the wallet they were originally minted from. Any unselectable NFTs below must be returned to the original wallet to process a refund.</p>
+            <button className="btn-main lead mb-5 mr15 mx-auto" onClick={() => calculateBurnEligibility()} disabled={isChecking}>
               {isChecking ? (
                 <>
                   Checking...
@@ -145,7 +160,7 @@ console.log(allNfts);
                   </Spinner>
                 </>
               ) : (
-                <>Check Now</>
+                <>Check My Eligibility</>
               )}
             </button>
           </div>
@@ -154,7 +169,7 @@ console.log(allNfts);
           <>
             <div className="row">
               <div className="col">
-                  <h3>Tokens Refundable for {address}</h3>
+                  <h3>Tokens Refundable</h3>
                   <p>{nfts.length} results found</p>
               </div>
             </div>
@@ -181,7 +196,13 @@ console.log(allNfts);
                           <h6 className="card-title mt-auto">{nft.name}</h6>
                           <div className="nft__item_action">
                               {nft.isEligible ? (
-                                  <span style={{cursor:'pointer'}}>Select for Burn</span>
+                                  <span style={{cursor:'pointer'}} onClick={() => selectNft(nft.id)}>
+                                      {selectedNfts.includes(nft.id) ? (
+                                          <>Unselect</>
+                                      ) : (
+                                          <>Select for Burn</>
+                                      )}
+                                  </span>
                               ) : (
                                   <span className="text-grey">Cannot be selected for Burn</span>
                               )}
@@ -194,8 +215,9 @@ console.log(allNfts);
               </div>
             </div>
               <div className="row">
-                  <div className="col">
-                      <button className="btn-main lead mb-5 mr15 ms-auto">
+                  <div className="col d-flex flex-row justify-content-end">
+                      <span className="my-auto fst-italic">{selectedNfts.length} selected</span>
+                      <button className="btn-main lead mr15 ms-4 my-auto" onClick={() => setOpenConfirmationDialog(true)} disabled={selectedNfts < 1}>
                           Process Refund
                       </button>
                   </div>
@@ -210,6 +232,37 @@ console.log(allNfts);
           </div>
         )}
       </section>
+
+      {openConfirmationDialog && (
+        <div className="checkout">
+            <div className="maincheckout">
+                <button className="btn-close" onClick={() => setOpenConfirmationDialog(false)}>
+                    x
+                </button>
+                <div className="heading">
+                    <h3>Are you sure you want to burn Slothty?</h3>
+                </div>
+                <p>To burn and receive your refund, please follow the prompts in your</p>
+
+                <button
+                    className="btn-main lead mb-5"
+                    onClick={executeBurn()}
+                    disabled={!!burnError || executingBurn}
+                >
+                    {executingBurn ? (
+                        <>
+                            Burning Slothty...
+                            <Spinner animation="border" role="status" size="sm" className="ms-1">
+                                <span className="visually-hidden">Loading...</span>
+                            </Spinner>
+                        </>
+                    ) : (
+                        <>Burn Slothty</>
+                    )}
+                </button>
+            </div>
+        </div>
+      )}
 
       <Footer />
     </div>

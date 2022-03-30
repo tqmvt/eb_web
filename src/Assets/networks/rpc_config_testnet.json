@@ -1433,6 +1433,32 @@
       "is1155": false,
       "published": true,
       "complete": false
+    },
+    {
+      "id": 47,
+      "slug": "3d-slothty",
+      "imgNft": "/img/drops/slothty/drop.png",
+      "imgPreview": "/img/drops/slothty/drop.png",
+      "imgAvatar": "/img/collections/slothty/avatar.png",
+      "imgBanner": "/img/collections/slothty/banner.webp",
+      "title": "3DSlothty",
+      "subtitle": "Slothy Burn Mint",
+      "description": "Mint 3dSlothty to burn later",
+      "author": { "name": "Slothty", "link": "" },
+      "address": "0x7d09ff680b210770D6D9a1296b4A74bd5391b341",
+      "maxMintPerTx": 3,
+      "maxMintPerAddress": 50,
+      "totalSupply": 2100,
+      "cost": "3",
+      "memberCost": "2",
+      "whitelistCost": "1",
+      "foundersOnly": false,
+      "start": 1638225243000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false
     }
   ],
   "auctions": [
