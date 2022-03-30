@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { Helmet } from 'react-helmet';
 import Footer from '../components/Footer';
 import {createSuccessfulTransactionToastContent} from 'src/utils';
@@ -15,6 +15,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {toast} from "react-toastify";
 import MetaMaskOnboarding from "@metamask/onboarding";
 import {chainConnect, connectAccount} from "../../GlobalState/User";
+import {ERC721} from "../../Contracts/Abis";
 
 const knownContracts = config.known_contracts;
 const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
@@ -24,6 +25,11 @@ const GreyscaleImg = styled.img`
   filter: grayscale(100%);
 `;
 const rugContractAddress = '0x99F3960E8219384BF0624D388cAD698d5A54AE6C';
+
+const txExtras = {
+  gasPrice: ethers.utils.parseUnits('5000', 'gwei'),
+}
+
 
 const Rugsurance = () => {
   const dispatch = useDispatch();
@@ -37,6 +43,8 @@ const Rugsurance = () => {
   const [openConfirmationDialog, setOpenConfirmationDialog] = useState(false);
   const [executingBurn, setisExecutingBurn] = useState(false);
   const [burnError, setBurnError] = useState(null);
+  const [isApproved, setIsApproved] = useState(false);
+  const [isInitializing, setIsInitializing] = useState(true);
 
   const checkBurnList = async (address) => {
     const readContract = new Contract(rugContractAddress, RugsuranceAbi.abi, readProvider);
@@ -49,19 +57,20 @@ const Rugsurance = () => {
     }
   }
 
-  const calculateBurnEligibility = async () => {
-      if (!user.address) {
-          if (user.needsOnboard) {
-              const onboarding = new MetaMaskOnboarding();
-              onboarding.startOnboarding();
-          } else if (!user.address) {
-              dispatch(connectAccount());
-          } else if (!user.correctChain) {
-              dispatch(chainConnect());
-          }
-          return;
+  const connectWallet = async () => {
+    if (!user.address) {
+      if (user.needsOnboard) {
+        const onboarding = new MetaMaskOnboarding();
+        onboarding.startOnboarding();
+      } else if (!user.address) {
+        dispatch(connectAccount());
+      } else if (!user.correctChain) {
+        dispatch(chainConnect());
       }
+    }
+  };
 
+  const calculateBurnEligibility = async () => {
       setIsChecking(true);
       setError(false);
       setNfts([]);
@@ -72,20 +81,26 @@ const Rugsurance = () => {
           const nftsFromWallet = await getSlothty721NftsFromWallet(slothtyAddress, user.address);
           const nftsFromCsv = await getSlothty721NftsFromIds(slothtyAddress, eligibleIds);
           const allNfts = nftsFromWallet
-              .map((n) => {
-                  // Will catch tokens that are in user wallet but not eligible ID list
-                  n.isEligible = eligibleIds.includes(n.id);
+            .map((n) => {
+              // Will catch tokens that are in user wallet but not eligible ID list
+              n.isEligible = eligibleIds.includes(n.id);
+              if (!n.isEligible) {
+                n.reason = "Not original owner"
+              }
 
-                  return n;
-              })
-              .concat(nftsFromCsv.map((n) => {
-                  // Will catch tokens not in user wallet but in eligible ID list
-                  n.isEligible = nftsFromWallet.map(a => a.id).includes(n.id);
+              return n;
+            })
+            .concat(nftsFromCsv.map((n) => {
+              // Will catch tokens not in user wallet but in eligible ID list
+              n.isEligible = nftsFromWallet.map(a => a.id).includes(n.id);
+              if (!n.isEligible) {
+                n.reason = "Must be present in your wallet"
+              }
 
-                  return n;
-              }))
-              .filter((v,i,a)=>a.findIndex(v2=>(v2.id===v.id))===i)
-              .sort((a, b) => (a.id > b.id ? 1 : -1));
+              return n;
+            }))
+            .filter((v,i,a)=>a.findIndex(v2=>(v2.id===v.id))===i)
+            .sort((a, b) => (a.id > b.id ? 1 : -1));
 
           setNfts(allNfts);
       } finally {
@@ -126,6 +141,46 @@ const Rugsurance = () => {
     }
   };
 
+  const setApprovalForAll = async () => {
+    const slothtyAddress = knownContracts.find((c) => c.slug === '3d-slothty').address;
+    const slothtyContract = new Contract(slothtyAddress, ERC721, user.provider.getSigner());
+    const isApproved = await slothtyContract.isApprovedForAll(user.address, rugContractAddress);
+    if (!isApproved) {
+      let tx = await slothtyContract.setApprovalForAll(rugContractAddress, true, txExtras);
+      await tx.wait();
+    }
+  };
+
+  const approve = async () => {
+    try {
+      await setApprovalForAll();
+      setIsApproved(true);
+    } catch (error) {
+      if (error.data) {
+        toast.error(error.data.message);
+      } else if (error.message) {
+        toast.error(error.message);
+      } else {
+        toast.error('Unknown Error');
+      }
+    }
+  }
+
+  useEffect(async () => {
+    if (!user.connectingWallet && user.membershipContract) {
+      try {
+        const slothtyAddress = knownContracts.find((c) => c.slug === '3d-slothty').address;
+        const slothtyContract = new Contract(slothtyAddress, ERC721, user.provider.getSigner());
+        const isApproved = await slothtyContract.isApprovedForAll(user.address, rugContractAddress);
+        setIsApproved(isApproved);
+      } catch (e) {
+        console.log(e);
+      } finally {
+        setIsInitializing(false);
+      }
+    }
+  }, [user.connectingWallet]);
+
   return (
     <div>
       <Helmet>
@@ -151,18 +206,46 @@ const Rugsurance = () => {
         <div className="row">
           <div className="col-lg-12">
             <p className="text-center">Slothty NFTs can only be refunded to the wallet they were originally minted from. Any unselectable NFTs below must be returned to the original wallet to process a refund.</p>
-            <button className="btn-main lead mb-5 mr15 mx-auto" onClick={() => calculateBurnEligibility()} disabled={isChecking}>
-              {isChecking ? (
-                <>
-                  Checking...
-                  <Spinner animation="border" role="status" size="sm" className="ms-1">
-                    <span className="visually-hidden">Loading...</span>
-                  </Spinner>
-                </>
-              ) : (
-                <>Check My Eligibility</>
-              )}
-            </button>
+            {!isInitializing ? (
+              <>
+                {user.address ? (
+                  <>
+                    {isApproved && (
+                      <ActionButton
+                        title="Check My Eligibility"
+                        workingTitle="Checking"
+                        style="mx-auto"
+                        onClick={() => calculateBurnEligibility()}
+                      />
+                    )}
+                    {!isApproved && (
+                      <>
+                        <p className="text-center">Please approve the contract to proceed</p>
+                        <ActionButton
+                          title="Approve"
+                          workingTitle="Approving"
+                          style="mx-auto"
+                          onClick={approve}
+                        />
+                      </>
+                    )}
+                  </>
+                ) : (
+                  <ActionButton
+                    title="Connect Wallet"
+                    workingTitle="Connecting"
+                    style="mx-auto"
+                    onClick={() => connectWallet()}
+                  />
+                )}
+              </>
+            ) : (
+              <div className="text-center">
+                <Spinner animation="border" role="status" className="ms-1">
+                  <span className="visually-hidden">Loading...</span>
+                </Spinner>
+              </div>
+            )}
           </div>
         </div>
         {nfts.length > 0 && (
@@ -193,20 +276,23 @@ const Rugsurance = () => {
                               />
                           )}
                         <div className="card-body d-flex flex-column">
+                          {!nft.isEligible && (
+                            <span className="fw-bold" style={{color:'red', fontSize:'0.7rem'}}>{nft.reason.toUpperCase()}</span>
+                          )}
                           <h6 className="card-title mt-auto">{nft.name}</h6>
-                          <div className="nft__item_action">
-                              {nft.isEligible ? (
-                                  <span style={{cursor:'pointer'}} onClick={() => selectNft(nft.id)}>
-                                      {selectedNfts.includes(nft.id) ? (
-                                          <>Unselect</>
-                                      ) : (
-                                          <>Select for Burn</>
-                                      )}
-                                  </span>
-                              ) : (
-                                  <span className="text-grey">Cannot be selected for Burn</span>
-                              )}
-                          </div>
+                          {nft.isEligible ? (
+                            <div className="nft__item_action">
+                              <span style={{cursor:'pointer'}} onClick={() => selectNft(nft.id)}>
+                                  {selectedNfts.includes(nft.id) ? (
+                                      <>Unselect</>
+                                  ) : (
+                                      <>Select for Burn</>
+                                  )}
+                              </span>
+                            </div>
+                          ) : (
+                            <span className="text-grey" style={{fontSize:'14px'}}>Cannot be selected for Burn</span>
+                          )}
                         </div>
                       </div>
                     </div>
@@ -244,22 +330,12 @@ const Rugsurance = () => {
                 </div>
                 <p>To burn and receive your refund, please follow the prompts in your</p>
 
-                <button
-                    className="btn-main lead mb-5"
-                    onClick={executeBurn()}
-                    disabled={!!burnError || executingBurn}
-                >
-                    {executingBurn ? (
-                        <>
-                            Burning Slothty...
-                            <Spinner animation="border" role="status" size="sm" className="ms-1">
-                                <span className="visually-hidden">Loading...</span>
-                            </Spinner>
-                        </>
-                    ) : (
-                        <>Burn Slothty</>
-                    )}
-                </button>
+                <ActionButton
+                  title="Burn Slothty"
+                  workingTitle="Burning Slothty"
+                  onClick={executeBurn()}
+                  onComplete={() => {setOpenConfirmationDialog(false)}}
+                />
             </div>
         </div>
       )}
@@ -269,3 +345,32 @@ const Rugsurance = () => {
   );
 };
 export default Rugsurance;
+
+const ActionButton = ({onClick, title, workingTitle, style, onComplete = null}) => {
+
+  const [isWorking, setIsWorking] = useState(false);
+
+  const doWork = async () => {
+    setIsWorking(true);
+    await onClick();
+    setIsWorking(false);
+    if (onComplete) {
+      onComplete();
+    }
+  }
+
+  return (
+    <button className={`btn-main lead mb-5 ${style}`} onClick={doWork} disabled={isWorking}>
+      {isWorking ? (
+        <>
+          {workingTitle}...
+          <Spinner animation="border" role="status" size="sm" className="ms-1">
+            <span className="visually-hidden">Loading...</span>
+          </Spinner>
+        </>
+      ) : (
+        <>{title}</>
+      )}
+    </button>
+  )
+}
