@@ -10,10 +10,10 @@ const data = {
 export default function NFTTabOffers() {
   return (
     <div>
-      <OffersRow data={data} type="Received" />
+      {/* <OffersRow data={data} type="Received" />
       <OffersRow data={data} type="Received" />
       <OffersRow data={data} type="Made" />
-      <OffersRow data={data} type="Made" />
+      <OffersRow data={data} type="Made" /> */}
       <OffersRow data={data} type="Observer" />
       <OffersRow data={data} type="Observer" />
     </div>
