@@ -35,14 +35,9 @@ const Rugsurance = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
 
-  const [isChecking, setIsChecking] = useState(false);
-  const [error, setError] = useState(null);
-
   const [nfts, setNfts] = useState([]);
   const [selectedNfts, setSelectedNfts] = useState([]);
   const [openConfirmationDialog, setOpenConfirmationDialog] = useState(false);
-  const [executingBurn, setisExecutingBurn] = useState(false);
-  const [burnError, setBurnError] = useState(null);
   const [isApproved, setIsApproved] = useState(false);
   const [isInitializing, setIsInitializing] = useState(true);
 
@@ -71,8 +66,6 @@ const Rugsurance = () => {
   };
 
   const calculateBurnEligibility = async () => {
-      setIsChecking(true);
-      setError(false);
       setNfts([]);
 
       const slothtyAddress = knownContracts.find((c) => c.slug === '3d-slothty').address;
@@ -103,8 +96,8 @@ const Rugsurance = () => {
             .sort((a, b) => (a.id > b.id ? 1 : -1));
 
           setNfts(allNfts);
-      } finally {
-          setIsChecking(false);
+      } catch (error) {
+        console.log(error);
       }
   }
 
@@ -119,7 +112,6 @@ const Rugsurance = () => {
   };
 
   const executeBurn = () => async () => {
-    setisExecutingBurn(true);
     const writeContract = new Contract(rugContractAddress, RugsuranceAbi.abi, user.provider.getSigner());
 
     try {
@@ -136,8 +128,6 @@ const Rugsurance = () => {
             console.log(error);
             toast.error('Unknown Error');
         }
-    } finally {
-        setisExecutingBurn(false);
     }
   };
 
@@ -309,13 +299,6 @@ const Rugsurance = () => {
                   </div>
               </div>
           </>
-        )}
-        {error && (
-          <div className="row">
-            <div className="col text-center">
-              <p>{error}</p>
-            </div>
-          </div>
         )}
       </section>
 
