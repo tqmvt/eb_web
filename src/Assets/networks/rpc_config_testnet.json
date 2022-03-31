@@ -1457,7 +1457,7 @@
     {
       "id": 47,
       "slug": "cronosverse",
-      "abi": "Cronoverse.json",
+      "abi": "cronosverse.json",
       "imgNft": "/img/drops/cronosverse/drop.webp",
       "imgPreview": "/img/drops/cronosverse/drop.webp",
       "imgAvatar": "/img/collections/cronosverse/avatar.webp",
