@@ -205,6 +205,7 @@ const CronosverseDrop = () => {
     setMaxSupply(drop.totalSupply);
     setMemberCost(drop.memberCost);
     setRegularCost(drop.cost);
+    setWhitelistCost(drop.whitelistCost);
     setTotalSupply(supply);
   };
 
@@ -432,27 +433,56 @@ const CronosverseDrop = () => {
         </section>
         <section className="container no-top">
           <div className="row">
-            <div className="col">
-              <div className="item_info">
-                <h2>{drop.title}</h2>
-                <div className="mt-3">{newlineText(drop.description)}</div>
-              </div>
+            <div className="item_info">
+              <h2>{drop.title}</h2>
+              <div className="mt-3">{newlineText(drop.description)}</div>
             </div>
           </div>
-          {!drop.start ? (
+          <div className="d-flex flex-row">
             <div className="me-4">
+              <h6 className="mb-1">Mint Price</h6>
+              <h5>{regularCost.join(', ')} CRO</h5>
+            </div>
+            {memberCost && (
+              <div className="me-4">
+                <h6 className="mb-1">Founding Member Price</h6>
+                <h5>{memberCost.join(', ')} CRO</h5>
+              </div>
+            )}
+            {whitelistCost && (
+              <div className="me-4">
+                <h6 className="mb-1">Whitelist Price</h6>
+                <h5>{whitelistCost.join(', ')} CRO</h5>
+              </div>
+            )}
+          </div>
+          {status === statuses.NOT_STARTED && drop.start && (
+            <div className="me-4 mt-4">
+              <h6 className="mb-1">Minting Starts</h6>
+              <h3>
+                {new Date(drop.start).toDateString()}, {new Date(drop.start).toTimeString()}
+              </h3>
+            </div>
+          )}
+          {status === statuses.NOT_STARTED && !drop.start && (
+            <div className="me-4 mt-4">
               <h6 className="mb-1">Minting Starts</h6>
               <h3>TBA</h3>
             </div>
-          ) : (
-            <div className="row mt-md-5 pt-md-4">
-              <CronosverseMintBoard
+          )}
+          {status >= statuses.LIVE && !drop.complete && (
+            <>
+              {status === statuses.SOLD_OUT && <p className="mt-5">MINT HAS SOLD OUT</p>}
+              {status === statuses.EXPIRED && <p className="mt-5">MINT HAS ENDED</p>}
+              <div className="row mt-md-2">
+                <CronosverseMintBoard
                   mintNow={mintNow}
                   minting={minting}
                   mintedIds={mintedIds}
                   prices={whitelisted ? whitelistCost : (user.isMember?memberCost:regularCost)}
-              />
-            </div>
+                />
+              </div>
+            </>
           )}
         </section>
       </>
