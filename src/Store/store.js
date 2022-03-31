@@ -27,7 +27,7 @@ const rootReducer = combineReducers({
   user: user,
   appInitialize: appInitializeStateReducer,
   collections: collectionsReducer,
-  collection: collectionReducer,
+  collection: collectionReducer
 });
 
 const reduxDevToolsComposeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

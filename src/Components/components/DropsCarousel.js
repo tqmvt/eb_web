@@ -260,19 +260,22 @@ export default class Responsive extends Component {
                         <div className="d-attr">
                           <div className="col">
                             <span className="d-title">Mint Price</span>
-                            <h3>{ethers.utils.commify(drop.cost)} CRO</h3>
+                            {Array.isArray(drop.cost)?(<h3>{drop.cost.join(', ')} CRO</h3>):
+                            (<h3>{ethers.utils.commify(drop.cost)} CRO</h3>)}
                             {drop.erc20Cost && drop.erc20Unit && (
                               <h3>
                                 {ethers.utils.commify(drop.erc20Cost)} {drop.erc20Unit}
                               </h3>
                             )}
-                            {drop.memberCost && <h5>Members: {ethers.utils.commify(drop.memberCost)} CRO</h5>}
+                            {drop.memberCost && (Array.isArray(drop.memberCost) ? (<h5>Members: {drop.memberCost.join(', ')} CRO</h5>):
+                            (<h5>Members: {ethers.utils.commify(drop.memberCost)} CRO</h5>))}
                             {drop.erc20MemberCost && drop.erc20Unit && (
                               <h5>
                                 Members: {ethers.utils.commify(drop.erc20MemberCost)} {drop.erc20Unit}
                               </h5>
                             )}
-                            {drop.whitelistCost && <h5>Whitelist: {ethers.utils.commify(drop.whitelistCost)} CRO</h5>}
+                            {drop.whitelistCost && (Array.isArray(drop.whitelistCost) ? (<h5>Members: {drop.memberCost.join(', ')} CRO</h5>):
+                            (<h5>Whitelist: {ethers.utils.commify(drop.whitelistCost)} CRO</h5>))}
                             {drop.specialWhitelistCost && (
                               <h5>Special Whitelist: {ethers.utils.commify(drop.specialWhitelistCost)} CRO</h5>
                             )}

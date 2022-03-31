@@ -572,8 +572,7 @@ const SingleDrop = () => {
             </div>
           </div>
         </section>
-
-        <section className="container no-top">
+          <section className="container no-top">
             <div className="row mt-md-5 pt-md-4">
               <div className="col-md-6 text-center">
                 <img src={drop.imgNft} className="img-fluid img-rounded mb-sm-30" alt={drop.title}/>
@@ -756,6 +755,7 @@ const SingleDrop = () => {
               </div>
             </div>
           </section>
+        
       </>
       <Footer />
     </div>

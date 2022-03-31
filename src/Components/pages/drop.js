@@ -32,6 +32,7 @@ import { dropState as statuses } from '../../core/api/enums';
 import { EbisuDropAbi } from '../../Contracts/Abis';
 import MultiDrop from "./multiDrop";
 import SingleDrop from "./singleDrop";
+import CronosverseDrop from "./CronosverseDrop";
 
 export const drops = config.drops;
 
@@ -39,6 +40,7 @@ const Drop = () => {
   const { slug } = useParams();
 
   const [isMultiDrop, setIsMultiDrop] = useState(false);
+  const [isMultiPrice, setIsMultiPrice] = useState(false);
   const [drop, setDrop] = useState(null);
 
   useEffect(() => {
@@ -46,6 +48,7 @@ const Drop = () => {
     if (drop) {
       setDrop(drop);
       setIsMultiDrop(drop.multiMint);
+      setIsMultiPrice(drop.multiPrice);
     }
   }, [slug]);
 
@@ -54,10 +57,10 @@ const Drop = () => {
         {drop && (
             <>
               {isMultiDrop ? (
-                  <MultiDrop drop={drop} />
-              ) : (
-                  <SingleDrop drop={drop} />
-              )}
+                <MultiDrop drop={drop} />
+              ) : ( isMultiPrice ? (
+                <CronosverseDrop drop={drop} />
+              ) : (<SingleDrop drop={drop} />))}
             </>
         )}
       </>
