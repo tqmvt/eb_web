@@ -92,7 +92,7 @@ const Rugsurance = () => {
               // Will catch tokens not in user wallet but in eligible ID list
               n.isEligible = nftsFromWallet.map(a => a.id).includes(n.id);
               if (!n.isEligible) {
-                n.reason = "Must be present in your wallet"
+                n.reason = "Not present in wallet"
               }
 
               return n;
@@ -107,12 +107,12 @@ const Rugsurance = () => {
       }
   }
 
-  const selectNft = (nftId) => {
+  const selectNft = (nft) => {
       let currentSelectedNfts;
-      if (selectedNfts.includes(nftId)) {
-          currentSelectedNfts = selectedNfts.filter((n) => n !== nftId);
+      if (selectedNfts.some((n) => n.id === nft.id)) {
+          currentSelectedNfts = selectedNfts.filter((n) => n.id !== nft.id);
       } else {
-          currentSelectedNfts = [...selectedNfts, nftId];
+          currentSelectedNfts = [...selectedNfts, nft];
       }
       setSelectedNfts(currentSelectedNfts);
   };
@@ -121,8 +121,7 @@ const Rugsurance = () => {
     const writeContract = new Contract(rugContractAddress, RugsuranceAbi.abi, user.provider.getSigner());
 
     try {
-        console.log('burning...', user.address, selectedNfts);
-        const tx = await writeContract.claimRefund(user.address, selectedNfts);
+        const tx = await writeContract.claimRefund(user.address, selectedNfts.map(n => n.id));
         await audio.play();
         const receipt = await tx.wait();
         toast.success(createSuccessfulTransactionToastContent(receipt.transactionHash));
@@ -286,7 +285,7 @@ const Rugsurance = () => {
                           <h6 className="card-title mt-auto">{nft.name}</h6>
                           {nft.isEligible ? (
                             <div className="nft__item_action">
-                              <span style={{cursor:'pointer'}} onClick={() => selectNft(nft.id)}>
+                              <span style={{cursor:'pointer'}} onClick={() => selectNft(nft)}>
                                   {selectedNfts.includes(nft.id) ? (
                                       <>Unselect</>
                                   ) : (
@@ -354,7 +353,7 @@ const Rugsurance = () => {
                     x
                 </button>
                 <div className="heading">
-                    <h3>Are you sure you want to burn Slothty?</h3>
+                    <h3>Are you sure you want to burn {selectedNfts.length} Slothty?</h3>
                 </div>
                 <p>To burn and receive your refund, please click the button below and follow the prompts in your wallet.</p>
 
