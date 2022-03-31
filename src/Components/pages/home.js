@@ -145,6 +145,8 @@ const Home = () => {
 
   useEffect(async function () {
     dispatch(getMarketData());
+
+    // dispatch(fetchMintData)
   }, []);
 
   const JumbotronData = () => {

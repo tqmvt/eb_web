@@ -8,12 +8,13 @@
   "api_base": "https://api.ebisusbay.com/",
   "app_base": "https://app.ebisusbay.com/",
   "membership_contract": "0x8d9232Ebc4f06B7b8005CCff0ca401675ceb25F5",
-  "auction_contract": "0x08254C5B77615E7B4d2f7df0Dc36e1AEb9025D10",
+  "auction_contract": "0xf3644a8896A51b947Dd29CD3e91aE0cbF4dC785A",
   "cronie_contract": "0xD961956B319A10CBdF89409C0aE7059788A4DaBb",
   "market_contract": "0x7a3CdB2364f92369a602CAE81167d0679087e6a3",
   "stake_contract": "0xeb074cc764F20d8fE4317ab63f45A85bcE2bEcB1",
   "elon_contract": "0x3Bf0a68a03fE82A5D21445f3a2306bB012dd50D9",
   "ebisu_contract": "0xd036b2223bcc2A96164B023022D6b78CD71A1a12",
+  "slothy_rugsurance_contract": "0xE9A540CBb2247f9bD86e98d1121aBDD084Ca0e89",
   "known_tokens": {
     "loot": {
       "name": "LOOT",
@@ -3191,6 +3192,40 @@
         "website": "https://www.cronosgoats.com/",
         "discord": "https://discord.com/invite/EBuTEBtaG6"
       }
+    },
+    {
+      "name": "CronosVerse",
+      "slug": "cronosverse",
+      "multiToken": false,
+      "address": "",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/cronosverse/avatar.webp",
+        "card": "/img/collections/cronosverse/card.webp",
+        "banner": "/img/collections/cronosverse/banner.webp",
+        "maxSupply": 1208,
+        "website": "https://thecronosverse.com/",
+        "twitter": "https://twitter.com/thecronosverse",
+        "discord": "https://discord.gg/HfCHkvNy6K"
+      }
+    },
+    {
+      "name": "Slothty Rugsurance",
+      "slug": "slothty-rugsurance",
+      "multiToken": false,
+      "address": "",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": false,
+        "avatar": "/img/avatar.jpg",
+        "card": "/img/collections/slothty/card.webp",
+        "banner": "/img/collections/slothty/banner.webp"
+      }
     }
   ],
   "drops": [
@@ -4576,7 +4611,7 @@
       "is1155": false,
       "published": true,
       "complete": false,
-      "featured": true,
+      "featured": false,
       "video": "https://vz-04b9a6bb-09d.b-cdn.net/72f28eef-3661-4a78-9816-3683dad31cc0/playlist.m3u8"
     },
     {
@@ -4604,6 +4639,61 @@
       "complete": false,
       "featured": false,
       "redirect": "https://lootpad.io/collection/slavikfruitfarm"
+    },
+    {
+      "id": 52,
+      "slug": "cronosverse",
+      "abi": "cronosverse.json",
+      "imgNft": "/img/drops/cronosverse/drop.webp",
+      "imgPreview": "/img/drops/cronosverse/drop.webp",
+      "imgAvatar": "/img/collections/cronosverse/avatar.webp",
+      "imgBanner": "/img/collections/cronosverse/banner.webp",
+      "title": "CronosVerse",
+      "subtitle": "Buy your digital land plot, develop your property & enter The CronosVerse!",
+      "description": "The CronosVerse aims to be the first metaverse social MMO on the Cronos Chain.\n\nLand owners will be able to build structures on their land for their NFT characters, friends, and community members to enjoy. Build using preloaded building materials with absolutely no coding required.\n\nTypes of Lands:\n\nPlains Tiles- Allows for building of rustic style structures (max amalgamation of 16 tiles)\n\nSuburban Tiles- Allows for suburban style structures (max amalgamation of 4 tiles)\n\nCommercial Tiles- Allows for retail, office, entertainment and other commercial structures (max amalgamation of 4 tiles)",
+      "author": { "name": "CronosVerse", "link": "https://thecronosverse.com/" },
+      "address": "",
+      "maxMintPerTx": 1,
+      "maxMintPerAddress": 1208,
+      "totalSupply": 1208,
+      "cost": ["695", "895", "1250"],
+      "memberCost": ["670", "870", "1225"],
+      "whitelistCost": ["670", "870", "1225"],
+      "foundersOnly": false,
+      "start": null,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false,
+      "multiPrice": true
+    },
+    {
+      "id": 53,
+      "slug": "slothty-rugsurance",
+      "imgAvatar": "/img/avatar.jpg",
+      "imgNft": "/img/drops/slothty/4d-drop.webp",
+      "imgPreview": "/img/drops/slothty/4d-drop.webp",
+      "title": "4DSlothty",
+      "subtitle": "",
+      "description": "",
+      "author": { "name": "Ebisu's Bay", "link": "https://app.ebisusbay.com/slothty-rugsurance" },
+      "address": "",
+      "maxMintPerTx": 0,
+      "maxMintPerAddress": 0,
+      "totalSupply": 0,
+      "cost": "250",
+      "memberCost": "225",
+      "whitelistCost": "200",
+      "foundersOnly": false,
+      "start": 1648771200000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false,
+      "featured": true,
+      "redirect": "/slothty-rugsurance"
     }
   ],
   "auctions": [
