@@ -14,6 +14,7 @@
   "stake_contract": "0xeb074cc764F20d8fE4317ab63f45A85bcE2bEcB1",
   "elon_contract": "0x3Bf0a68a03fE82A5D21445f3a2306bB012dd50D9",
   "ebisu_contract": "0xd036b2223bcc2A96164B023022D6b78CD71A1a12",
+  "slothy_rugsurance_contract": "0xE9A540CBb2247f9bD86e98d1121aBDD084Ca0e89",
   "known_tokens": {
     "loot": {
       "name": "LOOT",
@@ -3210,6 +3211,21 @@
         "twitter": "https://twitter.com/thecronosverse",
         "discord": "https://discord.gg/HfCHkvNy6K"
       }
+    },
+    {
+      "name": "Slothty Rugsurance",
+      "slug": "slothty-rugsurance",
+      "multiToken": false,
+      "address": "",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": false,
+        "avatar": "/img/avatar.jpg",
+        "card": "/img/collections/slothty/card.webp",
+        "banner": "/img/collections/slothty/banner.webp"
+      }
     }
   ],
   "drops": [
@@ -4595,7 +4611,7 @@
       "is1155": false,
       "published": true,
       "complete": false,
-      "featured": true,
+      "featured": false,
       "video": "https://vz-04b9a6bb-09d.b-cdn.net/72f28eef-3661-4a78-9816-3683dad31cc0/playlist.m3u8"
     },
     {
@@ -4651,6 +4667,33 @@
       "published": true,
       "complete": false,
       "multiPrice": true
+    },
+    {
+      "id": 53,
+      "slug": "slothty-rugsurance",
+      "imgAvatar": "/img/avatar.jpg",
+      "imgNft": "/img/drops/slothty/4d-drop.webp",
+      "imgPreview": "/img/drops/slothty/4d-drop.webp",
+      "title": "4DSlothty",
+      "subtitle": "",
+      "description": "",
+      "author": { "name": "Ebisu's Bay", "link": "https://app.ebisusbay.com/slothty-rugsurance" },
+      "address": "",
+      "maxMintPerTx": 0,
+      "maxMintPerAddress": 0,
+      "totalSupply": 0,
+      "cost": "250",
+      "memberCost": "225",
+      "whitelistCost": "200",
+      "foundersOnly": false,
+      "start": 1648771200000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false,
+      "featured": true,
+      "redirect": "/slothty-rugsurance"
     }
   ],
   "auctions": [
