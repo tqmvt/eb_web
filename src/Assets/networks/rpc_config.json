@@ -14,6 +14,7 @@
   "stake_contract": "0xeb074cc764F20d8fE4317ab63f45A85bcE2bEcB1",
   "elon_contract": "0x3Bf0a68a03fE82A5D21445f3a2306bB012dd50D9",
   "ebisu_contract": "0xd036b2223bcc2A96164B023022D6b78CD71A1a12",
+  "slothy_rugsurance_contract": "0xE9A540CBb2247f9bD86e98d1121aBDD084Ca0e89",
   "known_tokens": {
     "loot": {
       "name": "LOOT",

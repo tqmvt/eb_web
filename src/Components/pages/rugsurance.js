@@ -26,7 +26,7 @@ const GreyscaleImg = styled.img`
   -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
   filter: grayscale(100%);
 `;
-const rugContractAddress = '0x99F3960E8219384BF0624D388cAD698d5A54AE6C';
+const rugContractAddress = config.slothy_rugsurance_contract;
 
 const txExtras = {
   gasPrice: ethers.utils.parseUnits('5000', 'gwei'),
@@ -211,6 +211,7 @@ const Rugsurance = () => {
         <div className="row">
           <div className="col-lg-12">
             <p className="text-center">Slothty NFTs can only be refunded to the wallet they were originally minted from. Any unselectable NFTs below must be returned to the original wallet to process a refund.</p>
+            <p className="text-center fw-bold">Deadline to claim your refund is April 6th at 11:59 GMT. After this, you will not be able to claim a refund!</p>
             {!isInitializing ? (
               <>
                 {user.address ? (
