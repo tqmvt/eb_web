@@ -4,6 +4,7 @@ import * as Sentry from '@sentry/react';
 import { connect } from 'react-redux';
 import { Spinner } from 'react-bootstrap';
 
+import history from '../history';
 import Home from '../Components/pages/home';
 import Marketplace from '../Components/pages/marketplace';
 import Collection from '../Components/pages/collection';
@@ -23,8 +24,8 @@ import MyStaking from '../Components/pages/myStaking';
 import Collections from '../Components/pages/collections';
 import CharityBall from '../Components/pages/charityBall';
 import Rugsurance from '../Components/pages/rugsurance';
-import history from '../history';
 import { ErrorPage } from '../Components/pages/ErrorPage';
+import CollectionDetail from 'src/Components/pages/collectionDetail';
 
 const SentryEnhancedRoute = Sentry.withSentryRouting(Route);
 
@@ -100,6 +101,7 @@ const Component = ({ walletAddress, authInitFinished }) => {
           />
           <SentryEnhancedRoute exact path="/collection/:slug" component={Collection} />
           <SentryEnhancedRoute exact path="/collection/:slug/:id" component={Nft} />
+          {/* <SentryEnhancedRoute exact path="/collection-detail/:id" component={CollectionDetail} /> */}
           <SentryEnhancedRoute exact path="/seller/:address" component={Seller} />
           <SentryEnhancedRoute exact path="/charity-ball" component={CharityBall} />
           <SentryEnhancedRoute exact path="/slothty-rugsurance" component={Rugsurance} />

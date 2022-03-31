@@ -31,11 +31,12 @@ import config from '../../Assets/networks/rpc_config.json';
 import { croSkullRedPotionImageHack } from '../../hacks';
 import NFTTabOffers from '../Offer/NFTTabOffers';
 
-const Listing = () => {
+const CollectionDetail = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
 
   const listing = useSelector((state) => state.listing.listing);
+  console.log(listing, 'asdfasdfsafd');
   const history = useSelector((state) =>
     state.listing.history.filter((i) => i.state === 1).sort((a, b) => (a.saleTime < b.saleTime ? 1 : -1))
   );
@@ -474,4 +475,4 @@ const Listing = () => {
   );
 };
 
-export default memo(Listing);
+export default memo(CollectionDetail);

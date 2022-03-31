@@ -58,7 +58,11 @@ const ListingCardCollection = ({ listing, imgClass = 'marketplace', watermark, a
 
   const history = useHistory();
   const handleBuy = () => {
-    history.push(`/listing/${listing.id}`);
+    if (listing.market?.id) {
+      history.push(`/listing/${listing.market?.id}`);
+    } else {
+      history.push(`/collection/${listing.address}/${listing.id}`);
+    }
   };
 
   const getIsNftListed = () => {
