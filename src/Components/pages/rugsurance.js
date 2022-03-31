@@ -125,6 +125,22 @@ const Rugsurance = () => {
       }
       setSelectedNfts(currentSelectedNfts);
   };
+  const fadeAudio = async () => {
+    try {
+      if(audio.volume > 0){
+        if (audio.volume <= 0.01) {
+          audio.volume = 0;
+        } else {
+          audio.volume -= 0.01;
+        }
+        setTimeout(fadeAudio, 60);
+      }else{
+        audio.pause();
+      }
+    } catch (error) {
+      //absorb
+    }
+  }
 
   const executeBurn = async () => {
     const writeContract = new Contract(rugContractAddress, RugsuranceAbi.abi, user.provider.getSigner());
@@ -132,6 +148,7 @@ const Rugsurance = () => {
     try {
         const tx = await writeContract.claimRefund(user.address, selectedNfts.map(n => n.id));
         await audio.play();
+        await fadeAudio();
         setIsBurning(true);
         const receipt = await tx.wait();
         toast.success(createSuccessfulTransactionToastContent(receipt.transactionHash));
