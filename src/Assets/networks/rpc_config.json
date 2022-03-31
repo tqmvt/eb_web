@@ -3172,6 +3172,25 @@
         "discord": "https://discord.gg/JDXQp85yNh",
         "medium" : "https://medium.com/@crayonapeac"
       }
+    },
+    {
+      "name": "Bad Billy Goats",
+      "slug": "bad-billy-goats",
+      "multiToken": false,
+      "address": "0xd055ECAedD74815DB72458C055Daffdc12e59E41",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": false,
+        "avatar": "/img/collections/cronosgoats/badbillygoats/avatar.png",
+        "card": "/img/collections/cronosgoats/badbillygoats/card.png",
+        "banner": "/img/collections/cronosgoats/badbillygoats/banner.png",
+        "maxSupply": 8888,
+        "twitter": "https://twitter.com/CronosGoatsNFT",
+        "website": "https://www.cronosgoats.com/",
+        "discord": "https://discord.com/invite/EBuTEBtaG6"
+      }
     }
   ],
   "drops": [
