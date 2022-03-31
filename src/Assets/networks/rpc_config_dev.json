@@ -1944,7 +1944,8 @@
         "maxSupply": 2750,
         "twitter": "https://twitter.com/CrayonApe",
         "website": "https://crayon-ape.com/",
-        "discord": "https://discord.gg/JDXQp85yNh"
+        "discord": "https://discord.gg/JDXQp85yNh",
+        "medium" : "https://medium.com/@crayonapeac"
       }
     },
     {
@@ -3150,6 +3151,26 @@
         "twitter": "https://twitter.com/WeirdApesClub",
         "discord": "https://discord.gg/RX9h6mhnTR",
         "medium": "https://medium.com/@WeirdApesClub"
+      }
+    },
+    {
+      "name": "CAAC:Custom",
+      "slug": "caac-custom",
+      "multiToken": false,
+      "address": "0xc3C8F09BAA5f54eC27E82417ab4f92F34fA088D9",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": false,
+        "avatar": "/img/collections/crayonartapeclub/avatar.gif",
+        "card": "/img/collections/crayonartapeclub/card.webp",
+        "banner": "/img/collections/crayonartapeclub/banner.webp",
+        "maxSupply": 1000,
+        "twitter": "https://twitter.com/CrayonApe",
+        "website": "https://crayon-ape.com/",
+        "discord": "https://discord.gg/JDXQp85yNh",
+        "medium" : "https://medium.com/@crayonapeac"
       }
     }
   ],
