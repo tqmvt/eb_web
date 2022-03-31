@@ -44,6 +44,9 @@ const Rugsurance = () => {
   const [isApproved, setIsApproved] = useState(false);
   const [isInitializing, setIsInitializing] = useState(true);
   const [forceRefresh, setForceRefresh] = useState(false);
+
+  const [isSearching, setIsSearching] = useState(false);
+  const [initialSearchComplete, setInitialSearchComplete] = useState(false);
   const [isBurning, setIsBurning] = useState(false);
 
   const checkBurnList = async (address) => {
@@ -74,6 +77,7 @@ const Rugsurance = () => {
       setSelectedNfts([]);
       setNonRefundableNfts([]);
       setNfts([]);
+      setIsSearching(true);
 
       const slothtyAddress = knownContracts.find((c) => c.slug === '3d-slothty').address;
       try {
@@ -106,6 +110,9 @@ const Rugsurance = () => {
           setNonRefundableNfts(allNfts.filter((n) => !n.isEligible));
       } catch (error) {
         console.log(error);
+      } finally {
+        setIsSearching(false);
+        setInitialSearchComplete(true);
       }
   }
 
@@ -173,6 +180,7 @@ const Rugsurance = () => {
 
   useEffect(async () => {
     setIsInitializing(true);
+    setInitialSearchComplete(false);
     if (!user.connectingWallet) {
       if (user.membershipContract && user.provider) {
         try {
@@ -189,7 +197,7 @@ const Rugsurance = () => {
         setIsInitializing(false);
       }
     }
-  }, [user.connectingWallet]);
+  }, [user.connectingWallet, user.address]);
 
   return (
     <div>
@@ -261,7 +269,7 @@ const Rugsurance = () => {
             )}
           </div>
         </div>
-        {nfts.length > 0 && (
+        {initialSearchComplete && !isSearching && (
           <>
             <div className="row">
               <div className="col">
@@ -313,17 +321,19 @@ const Rugsurance = () => {
                 </div>
               </div>
             </div>
+            {nfts.length > 0 && (
               <div className="row">
-                  <div className="col d-flex flex-row justify-content-end">
-                      <span className="my-auto fst-italic">{selectedNfts.length} selected</span>
-                      <button className="btn-main lead mr15 ms-4 my-auto" onClick={() => setOpenConfirmationDialog(true)} disabled={selectedNfts < 1}>
-                          Process Refund
-                      </button>
-                  </div>
+                <div className="col d-flex flex-row justify-content-end">
+                  <span className="my-auto fst-italic">{selectedNfts.length} selected</span>
+                  <button className="btn-main lead mr15 ms-4 my-auto" onClick={() => setOpenConfirmationDialog(true)} disabled={selectedNfts < 1}>
+                    Process Refund
+                  </button>
+                </div>
               </div>
+            )}
           </>
         )}
-        {nonRefundableNfts.length > 0 && (
+        {initialSearchComplete && !isSearching && (
           <>
             <div className="row">
               <div className="col">
