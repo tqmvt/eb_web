@@ -400,8 +400,7 @@ const Rugsurance = () => {
             <ActionButton
               title="Nooo! Save the Slothty!"
               workingTitle="Burning Slothty"
-              onClick={executeBurn}
-              onComplete={onBurnComplete}
+              onClick={() => setOpenConfirmationDialog(false)}
               extraClass="btn-outline white inline mb-3 mb-md-0 my-auto"
               extraStyle={{ outline: '1px solid #DDD' }}
             />
