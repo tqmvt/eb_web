@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import './Assets/styles/style.scss';
 import './Assets/styles/style_grey.scss';
 import './Assets/styles/override.scss';
+import './Assets/styles/Everything.css'
 import App from './App';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';

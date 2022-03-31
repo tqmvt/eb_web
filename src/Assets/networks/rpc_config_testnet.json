@@ -10,7 +10,7 @@
   "membership_contract": "0x3F1590A5984C89e6d5831bFB76788F3517Cdf034",
   "market_contract": "0xb3cB12e7F9e442ef799a2B7e92f65ab8710d7b27",
   "stake_contract": "0x70A9989dd73B026B34462BE158963587dD9ca16f",
-  "auction_contract": "0xba707763609f18bc1439ACCfe342c1E35ba0fDCC",
+  "auction_contract": "0x12a277c1d2A7632F37f698ebCfc7E9FFa8B25f66",
   "cronie_contract": "0xe9DCa9E03F31CBD538A19a89eA2cA3684AF2788f",
   "elon_contract": "0x2fE1f2722fa215A68b92aECaD425259C0D645972",
   "ebisu_contract": "0x65A422AB9c95fc94208E010B8d4ab50F7E79af19",
@@ -624,6 +624,25 @@
         "twitter": "https://twitter.com/LazyHorseRC",
         "discord": "https://discord.gg/lhrc",
         "medium": "https://medium.com/@lazyhorseraceclub"
+      }
+    },
+    {
+      "name": "CronosVerse",
+      "slug": "cronosverse",
+      "multiToken": false,
+      "address": "0xb8dE86fEF02D3b5225DC71b3Ddc8ec01c0711853",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/cronosverse/avatar.webp",
+        "card": "/img/collections/cronosverse/card.webp",
+        "banner": "/img/collections/cronosverse/banner.webp",
+        "maxSupply": 1208,
+        "website": "https://thecronosverse.com/",
+        "twitter": "https://twitter.com/thecronosverse",
+        "discord": "https://discord.gg/HfCHkvNy6K"
       }
     }
   ],
@@ -1433,6 +1452,34 @@
       "is1155": false,
       "published": true,
       "complete": false
+    },
+    {
+      "id": 47,
+      "slug": "cronosverse",
+      "abi": "cronosverse.json",
+      "imgNft": "/img/drops/cronosverse/drop.webp",
+      "imgPreview": "/img/drops/cronosverse/drop.webp",
+      "imgAvatar": "/img/collections/cronosverse/avatar.webp",
+      "imgBanner": "/img/collections/cronosverse/banner.webp",
+      "title": "CronosVerse",
+      "subtitle": "Buy your digital land plot, develop your property & enter The CronosVerse!",
+      "description": "The CronosVerse aims to be the first metaverse social MMO on the Cronos Chain.\n\nLand owners will be able to build structures on their land for their NFT characters, friends, and community members to enjoy. Build using preloaded building materials with absolutely no coding required.\n\nTypes of Lands:\n\nPlains Tiles- Allows for building of rustic style structures (max amalgamation of 16 tiles)\n\nSuburban Tiles- Allows for suburban style structures (max amalgamation of 4 tiles)\n\nCommercial Tiles- Allows for retail, office, entertainment and other commercial structures (max amalgamation of 4 tiles)",
+      "author": { "name": "CronosVerse", "link": "https://thecronosverse.com/" },
+      "address": "0xb8dE86fEF02D3b5225DC71b3Ddc8ec01c0711853",
+      "maxMintPerTx": 1,
+      "maxMintPerAddress": 1208,
+      "totalSupply": 1208,
+      "cost": ["2", "3", "4"],
+      "memberCost": ["1", "2", "3"],
+      "whitelistCost": ["1", "2", "3"],
+      "foundersOnly": false,
+      "start": 1647288000000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false,
+      "multiPrice": true
     },
     {
       "id": 47,

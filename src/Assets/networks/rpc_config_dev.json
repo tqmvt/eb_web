@@ -8,7 +8,7 @@
   "api_base": "https://api.ebisusbay.biz/",
   "app_base": "https://app.ebisusbay.biz/",
   "membership_contract": "0x8d9232Ebc4f06B7b8005CCff0ca401675ceb25F5",
-  "auction_contract": "0x08254C5B77615E7B4d2f7df0Dc36e1AEb9025D10",
+  "auction_contract": "0xf3644a8896A51b947Dd29CD3e91aE0cbF4dC785A",
   "cronie_contract": "0xD961956B319A10CBdF89409C0aE7059788A4DaBb",
   "market_contract": "0x7a3CdB2364f92369a602CAE81167d0679087e6a3",
   "stake_contract": "0xeb074cc764F20d8fE4317ab63f45A85bcE2bEcB1",
@@ -884,8 +884,8 @@
       }
     },
     {
-      "name": "Cronos Nanas",
-      "slug": "cronos-nanas",
+      "name": "Nifty Nanas",
+      "slug": "nifty-nanas",
       "multiToken": false,
       "address": "0x70c6062100b09aF2Ec63345cda372d52423BE4aC",
       "onChain": false,
@@ -1944,7 +1944,8 @@
         "maxSupply": 2750,
         "twitter": "https://twitter.com/CrayonApe",
         "website": "https://crayon-ape.com/",
-        "discord": "https://discord.gg/JDXQp85yNh"
+        "discord": "https://discord.gg/JDXQp85yNh",
+        "medium" : "https://medium.com/@crayonapeac"
       }
     },
     {
@@ -2522,7 +2523,7 @@
       "multiToken": false,
       "address": "0xDdb5DE96A5A639AA6b0357c5A325444dA2BcE913",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "",
         "verified": true,
@@ -3133,7 +3134,7 @@
       }
     },
     {
-      "name": "baby Weird Apes",
+      "name": "Baby Weird Apes",
       "slug": "baby-weird-apes",
       "multiToken": false,
       "address": "0x89F7114C73d5cef7d7EDCbDb14DaA092EB2194c9",
@@ -3144,12 +3145,70 @@
         "verified": true,
         "avatar": "/img/collections/weirdapesclub/avatar.png",
         "card": "/img/collections/weirdapesclub/card.png",
-        "banner": "/img/collections/weirdapesclub/baby/banner.jpg",
+        "banner": "/img/collections/weirdapesclub/banner.webp",
         "maxSupply": 6000,
         "website": "https://weirdapes.com/",
         "twitter": "https://twitter.com/WeirdApesClub",
         "discord": "https://discord.gg/RX9h6mhnTR",
         "medium": "https://medium.com/@WeirdApesClub"
+      }
+    },
+    {
+      "name": "CAAC:Custom",
+      "slug": "caac-custom",
+      "multiToken": false,
+      "address": "0xc3C8F09BAA5f54eC27E82417ab4f92F34fA088D9",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": false,
+        "avatar": "/img/collections/crayonartapeclub/avatar.gif",
+        "card": "/img/collections/crayonartapeclub/card.webp",
+        "banner": "/img/collections/crayonartapeclub/banner.webp",
+        "maxSupply": 1000,
+        "twitter": "https://twitter.com/CrayonApe",
+        "website": "https://crayon-ape.com/",
+        "discord": "https://discord.gg/JDXQp85yNh",
+        "medium" : "https://medium.com/@crayonapeac"
+      }
+    },
+    {
+      "name": "Bad Billy Goats",
+      "slug": "bad-billy-goats",
+      "multiToken": false,
+      "address": "0xd055ECAedD74815DB72458C055Daffdc12e59E41",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": false,
+        "avatar": "/img/collections/cronosgoats/badbillygoats/avatar.png",
+        "card": "/img/collections/cronosgoats/badbillygoats/card.png",
+        "banner": "/img/collections/cronosgoats/badbillygoats/banner.png",
+        "maxSupply": 8888,
+        "twitter": "https://twitter.com/CronosGoatsNFT",
+        "website": "https://www.cronosgoats.com/",
+        "discord": "https://discord.com/invite/EBuTEBtaG6"
+      }
+    },
+    {
+      "name": "CronosVerse",
+      "slug": "cronosverse",
+      "multiToken": false,
+      "address": "",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/cronosverse/avatar.webp",
+        "card": "/img/collections/cronosverse/card.webp",
+        "banner": "/img/collections/cronosverse/banner.webp",
+        "maxSupply": 1208,
+        "website": "https://thecronosverse.com/",
+        "twitter": "https://twitter.com/thecronosverse",
+        "discord": "https://discord.gg/HfCHkvNy6K"
       }
     }
   ],
@@ -3958,7 +4017,7 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false,
+      "complete": true,
       "redirect": "https://badaliens.io/mint/"
     },
     {
@@ -4564,6 +4623,34 @@
       "complete": false,
       "featured": false,
       "redirect": "https://lootpad.io/collection/slavikfruitfarm"
+    },
+    {
+      "id": 52,
+      "slug": "cronosverse",
+      "abi": "cronosverse.json",
+      "imgNft": "/img/drops/cronosverse/drop.webp",
+      "imgPreview": "/img/drops/cronosverse/drop.webp",
+      "imgAvatar": "/img/collections/cronosverse/avatar.webp",
+      "imgBanner": "/img/collections/cronosverse/banner.webp",
+      "title": "CronosVerse",
+      "subtitle": "Buy your digital land plot, develop your property & enter The CronosVerse!",
+      "description": "The CronosVerse aims to be the first metaverse social MMO on the Cronos Chain.\n\nLand owners will be able to build structures on their land for their NFT characters, friends, and community members to enjoy. Build using preloaded building materials with absolutely no coding required.\n\nTypes of Lands:\n\nPlains Tiles- Allows for building of rustic style structures (max amalgamation of 16 tiles)\n\nSuburban Tiles- Allows for suburban style structures (max amalgamation of 4 tiles)\n\nCommercial Tiles- Allows for retail, office, entertainment and other commercial structures (max amalgamation of 4 tiles)",
+      "author": { "name": "CronosVerse", "link": "https://thecronosverse.com/" },
+      "address": "",
+      "maxMintPerTx": 1,
+      "maxMintPerAddress": 1208,
+      "totalSupply": 1208,
+      "cost": ["695", "895", "1250"],
+      "memberCost": ["670", "870", "1225"],
+      "whitelistCost": ["670", "870", "1225"],
+      "foundersOnly": false,
+      "start": null,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false,
+      "multiPrice": true
     }
   ],
   "auctions": [
