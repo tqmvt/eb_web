@@ -98,10 +98,12 @@ const CronosverseDrop = () => {
   const [referral, setReferral] = useState('');
   const [dropObject, setDropObject] = useState(null);
   const [status, setStatus] = useState(statuses.UNSET);
+  const [whitelisted, setWhiteListed] = useState(false);
 
   const [abi, setAbi] = useState(null);
   const [mintedIds, setMintedIds] = useState([]);
   const [maxSupply, setMaxSupply] = useState(0);
+  const [whitelistCost, setWhitelistCost] = useState([]);
   const [memberCost, setMemberCost] = useState([]);
   const [regularCost, setRegularCost] = useState([]);
   const [totalSupply, setTotalSupply] = useState(0);
@@ -168,7 +170,13 @@ const CronosverseDrop = () => {
         let readContract = await new ethers.Contract(currentDrop.address, abi, readProvider);
         const infos = await readContract.getInfo();
         const canMint = user.address ? await readContract.canMint(user.address) : 0;
+        const isWhitelisted = user.address ? await readContract.isWhiteList(user.address) : false;
+        console.log('isWhitelisted: ', isWhitelisted)
+        setWhiteListed(isWhitelisted);
         setMaxSupply(infos.maxSupply);
+        setWhitelistCost([ethers.utils.formatEther(infos.whitelistCost[0]), 
+                      ethers.utils.formatEther(infos.whitelistCost[1]), 
+                      ethers.utils.formatEther(infos.whitelistCost[2])]);
         setMemberCost([ethers.utils.formatEther(infos.memberCost[0]), 
                       ethers.utils.formatEther(infos.memberCost[1]), 
                       ethers.utils.formatEther(infos.memberCost[2])]);
@@ -442,7 +450,7 @@ const CronosverseDrop = () => {
                   mintNow={mintNow}
                   minting={minting}
                   mintedIds={mintedIds}
-                  prices={user.isMember?memberCost:regularCost}
+                  prices={whitelisted ? whitelistCost : (user.isMember?memberCost:regularCost)}
               />
             </div>
           )}
