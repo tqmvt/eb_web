@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { Helmet } from 'react-helmet';
 import Footer from '../components/Footer';
 import {createSuccessfulTransactionToastContent} from 'src/utils';
-import {FormControl, InputGroup, Spinner} from "react-bootstrap";
+import {Modal, Spinner} from "react-bootstrap";
 import {Contract, ethers} from "ethers";
 import config from "../../Assets/networks/rpc_config.json";
 import {
@@ -31,7 +31,6 @@ const rugContractAddress = '0x99F3960E8219384BF0624D388cAD698d5A54AE6C';
 const txExtras = {
   gasPrice: ethers.utils.parseUnits('5000', 'gwei'),
 }
-
 
 const Rugsurance = () => {
   const dispatch = useDispatch();
@@ -220,7 +219,7 @@ const Rugsurance = () => {
                       <ActionButton
                         title="Check My Eligibility"
                         workingTitle="Checking"
-                        style="mx-auto"
+                        extraClass="mx-auto"
                         onClick={() => calculateBurnEligibility()}
                         onComplete={() => setForceRefresh(false)}
                         doWorkNow={forceRefresh}
@@ -232,7 +231,7 @@ const Rugsurance = () => {
                         <ActionButton
                           title="Approve"
                           workingTitle="Approving"
-                          style="mx-auto"
+                          extraClass="mx-auto"
                           onClick={approve}
                         />
                       </>
@@ -242,7 +241,7 @@ const Rugsurance = () => {
                   <ActionButton
                     title="Connect Wallet"
                     workingTitle="Connecting"
-                    style="mx-auto"
+                    extraClass="mx-auto"
                     onClick={() => connectWallet()}
                   />
                 )}
@@ -351,31 +350,38 @@ const Rugsurance = () => {
         )}
       </section>
 
-      {openConfirmationDialog && (
-        <div className="checkout">
-            <div className="maincheckout">
-                <button className="btn-close" onClick={() => setOpenConfirmationDialog(false)}>
-                    x
-                </button>
-                <div className="heading">
-                    <h3>Are you sure you want to burn {selectedNfts.length} Slothty?</h3>
-                </div>
+      <Modal show={openConfirmationDialog} size="md" onHide={() => setOpenConfirmationDialog(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Are you sure you want to burn {selectedNfts.length} Slothty?</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="d-flex flex-column overflow-hidden mb-4">
+            <img className={`${isBurning ? 'animate__animated animate__fadeOutDown2' : ''} mx-auto`} style={{animationDuration: '10s', zIndex:'4'}} width="60%" src={selectedNfts[0]?.image} />
+            <Fire />
+          </div>
+          <p>To burn and receive your refund, please click the button below and follow the prompts in your wallet.</p>
 
-                <div className="d-flex flex-column overflow-hidden mb-4">
-                  <img className={`${isBurning ? 'animate__animated animate__fadeOutDown2' : ''} mx-auto`} style={{animationDuration: '10s', zIndex:'4'}} width="60%" src={selectedNfts[0].image} />
-                  <Fire />
-                </div>
-                <p>To burn and receive your refund, please click the button below and follow the prompts in your wallet.</p>
-
-                <ActionButton
-                  title="Burn Slothty"
-                  workingTitle="Burning Slothty"
-                  onClick={executeBurn}
-                  onComplete={onBurnComplete}
-                />
-            </div>
-        </div>
-      )}
+        </Modal.Body>
+        <Modal.Footer>
+          <div className="d-flex flex-wrap justify-content-center">
+            <ActionButton
+              title="Nooo! Save the Slothty!"
+              workingTitle="Burning Slothty"
+              onClick={executeBurn}
+              onComplete={onBurnComplete}
+              extraClass="btn-outline white inline mb-3 mb-md-0 my-auto"
+              extraStyle={{ outline: '1px solid #DDD' }}
+            />
+            <ActionButton
+              title="Burn Slothty &#128561;"
+              workingTitle="Burning Slothty"
+              onClick={executeBurn}
+              onComplete={onBurnComplete}
+              extraClass="mb-3 mb-md-0 my-auto"
+            />
+          </div>
+        </Modal.Footer>
+      </Modal>
 
       <Footer />
     </div>
@@ -383,7 +389,7 @@ const Rugsurance = () => {
 };
 export default Rugsurance;
 
-const ActionButton = ({onClick, title, workingTitle, style, onComplete = null, doWorkNow = false}) => {
+const ActionButton = ({onClick, title, workingTitle, extraClass, extraStyle, onComplete = null, doWorkNow = false}) => {
 
   const [isWorking, setIsWorking] = useState(false);
 
@@ -403,7 +409,7 @@ const ActionButton = ({onClick, title, workingTitle, style, onComplete = null, d
   }, [doWorkNow]);
 
   return (
-    <button className={`btn-main lead mb-5 ${style}`} onClick={doWork} disabled={isWorking}>
+    <button className={`btn-main lead ${extraClass}`} style={extraStyle} onClick={doWork} disabled={isWorking}>
       {isWorking ? (
         <>
           {workingTitle}...
