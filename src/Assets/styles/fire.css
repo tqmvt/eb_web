@@ -1,0 +1,96 @@
+@-webkit-keyframes fadeOutDown {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+        -webkit-transform: translate3d(0, 190%, 0);
+        transform: translate3d(0, 190%, 0);
+    }
+}
+@keyframes fadeOutDown {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+        -webkit-transform: translate3d(0, 190%, 0);
+        transform: translate3d(0, 190%, 0);
+    }
+}
+.animate__fadeOutDown2 {
+    -webkit-animation-name: fadeOutDown;
+    animation-name: fadeOutDown;
+}
+
+.mo-fire svg {
+    width: 100%;
+    height: auto;
+    position:relative;
+    bottom:-20px;
+    z-index: 10;
+}
+.flame {
+    animation-name: flameDisappear;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    opacity: 0.5;
+    transform-origin: 45% 45% 0;
+}
+.flame.one {
+    animation-delay: 1s;
+    animation-duration: 3s;
+}
+.flame.two{
+    animation-duration: 5s;
+    animation-delay: 1s;
+}
+
+
+.flame-main {
+    animation-name: flameMovement;
+    animation-duration: 2s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+}
+.flame-main.one {
+    animation-duration: 2.2s;
+    animation-delay: 1s;
+}
+.flame-main.two {
+    animation-duration: 2s;
+    animation-delay: 1s;
+}
+.flame-main.three {
+    animation-duration: 2.1s;
+    animation-delay: 3s;
+}
+.flame-main.four {
+    animation-duration: 3.2s;
+    animation-delay: 4s;
+}
+.flame-main.five {
+    animation-duration: 2.5s;
+    animation-delay: 5s;
+}
+@keyframes flameMovement {
+    50% {
+        transform: scale(0.98,1.0) translate(0, 2px) rotate(-1deg);
+    }
+}
+@keyframes flameDisappear {
+    0% {
+        transform: translate(0) rotate(180deg);
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-10px, -40px) rotate(180deg);
+        opacity: 0;
+    }
+
+}
