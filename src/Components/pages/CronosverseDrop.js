@@ -465,9 +465,15 @@ const CronosverseMintBoard = ({mintNow, minting, mintedIds, prices}) => {
     offsetY: 0,
     scale: 1
   });
+  const [isMintingFlag, setIsMintingFlag] = useState(false)
+
   const [tempWidth, setTempWidth] = useState(1)
   const [tempHeight, setTempHeight] = useState(1)
+  // const previousX = useRef()
+  // const previousY = useRef()
 
+  const [subDistance, setSubDistance] = useState(0)
+  let sub = 0
   const getTileType = (xPos, yPos) => {
     if (yPos >= 9 && xPos >= 19 && yPos <= 17 && xPos <= 34) {
       return 4
@@ -539,7 +545,14 @@ const CronosverseMintBoard = ({mintNow, minting, mintedIds, prices}) => {
   }
 
   const handleClick = (e) => {
+    if (isMintingFlag) {
+      return
+    }
     console.log('click: ');
+    if (subDistance > 0) {
+      console.log('too right: ', sub);
+
+    }
     const mPos = getMousePos(e);
     let scale = zoomState.scale
     const tileWidth = ref2.current.width / 54;
@@ -549,7 +562,7 @@ const CronosverseMintBoard = ({mintNow, minting, mintedIds, prices}) => {
     const type = getTileType(xPos, yPos)
     console.log(type, xPos, yPos, tileInfo)
     let ctx = ref2.current.getContext("2d");
-    ctx.clearRect(0, 0, ref2.current.width, ref2.current.height)
+    ctx.clearRect(tileWidth * tileInfo.xPos - 1, tileHeight * tileInfo.yPos - 1, tileWidth + 1, tileHeight + 2)
     if (type == 0 || type == 4) {
       setModalFlag('none')
       
@@ -569,13 +582,15 @@ const CronosverseMintBoard = ({mintNow, minting, mintedIds, prices}) => {
       xPos: xPos,
       yPos: yPos,
       price: prices?.[type-1],
-      globalX: mPos.x + zoomState.offsetX,
+      globalX: mPos.x + zoomState.offsetX - (subDistance>0 ? 240 - subDistance : 0),
       globalY: mPos.y + zoomState.offsetY
     })
+    
     ctx.fillStyle = 'rgba(250, 10, 10, 0.5)'
     console.log('tileWidth: ', tileWidth, tileWidth*xPos)
     ctx.fillRect(tileWidth*xPos, tileHeight*yPos+1, tileWidth-1, tileHeight-1)
     setModalFlag('flex')
+    setSubDistance(0)
   };
 
 
@@ -595,35 +610,38 @@ const CronosverseMintBoard = ({mintNow, minting, mintedIds, prices}) => {
     const tileHeight = ref2.current.height / 28;
     
     let ctx = ref2.current.getContext('2d');
-    let img = new Image();
-    img.onload = function() {
+    ctx.clearRect(0, 0, ref2.current.width, ref2.current.height)
+    ctx.fillStyle = 'rgba(50, 50, 50, 0.5)'
+    if (mintedIds?.length == 0) {
+      return;
+    } else {
       for (let i = 0; i < mintedIds.length; i++) {
         const [xPos, yPos] = getPosFromTokenId(parseInt(mintedIds[i]))
         ctx.fillRect(xPos*tileWidth, yPos*tileHeight, tileWidth, tileHeight);
       }
     }
-    img.src = borderboard;
-    ctx.clearRect(0, 0, ref2.current.width, ref2.current.height)
-    
-    ctx.fillStyle = 'rgba(50, 50, 50, 0.5)'
-    if (mintedIds?.length == 0) return;
-    
   }, [mintedIds])
 
   useEffect(() => {
     if (minting == false) {
-      let ctx2 = ref2.current.getContext('2d');
-      ctx2.clearRect(0, 0, ref2.current.width, ref2.current.height);
+      // let ctx2 = ref2.current.getContext('2d');
+      // ctx2.clearRect(0, 0, ref2.current.width, ref2.current.height);
+      setTileInfo({...tileInfo, xPos: null,yPos: null,})
       setModalFlag('none')
     }
   }, [minting])
+
 
   return (
     <div>
       <div className='bitpixel_back'
         ref={ref0}
         onMouseDown={(e) => {
-          if (minting === true) {
+          if ((window.innerWidth - e.clientX) < 240) {
+            sub = window.innerWidth - e.clientX
+            setSubDistance(sub)
+          }
+          if (minting === true || isMintingFlag === true) {
             return
           } else if (canvasDown === true) {
             setCanvasDown(false)
@@ -649,7 +667,13 @@ const CronosverseMintBoard = ({mintNow, minting, mintedIds, prices}) => {
               style={{ display: modalFlag, left: `${tileInfo.globalX+15}px`, top: `${tileInfo.globalY+15}px`}}
             >
               <div className='modal_content'>
-                <div className='cross' onClick={() => setModalFlag('none')}> &times; </div>
+                <div className='cross' onClick={() => {
+                  if (!isMintingFlag) {
+                    setModalFlag('none')
+                  }
+                }}>
+                  &times; 
+                </div>
                 <img className='tile_img' src={tileInfo.tile} alt="tile" />
                 <div className='tile_items'>
                   <div>TokenId:   {tileInfo.tokenId}</div>
@@ -660,7 +684,12 @@ const CronosverseMintBoard = ({mintNow, minting, mintedIds, prices}) => {
                   <div>Price:     {tileInfo.price} CRO</div>
                   <button 
                     className="btn-main lead" 
-                    onClick={()=>{mintNow(tileInfo.tokenId, tileInfo.price)}} 
+                    onClick={async ()=>{
+                      setIsMintingFlag(true)
+                      await mintNow(tileInfo.tokenId, tileInfo.price)
+                      
+                      setIsMintingFlag(false)
+                    }} 
                     disabled={minting}
                   >
                     {minting ? (
