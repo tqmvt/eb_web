@@ -13,6 +13,8 @@ import { humanize, relativePrecision, shortAddress, timeSince } from '../../util
 import { getNftDetails } from '../../GlobalState/nftSlice';
 import config from '../../Assets/networks/rpc_config.json';
 import { croSkullRedPotionImageHack } from '../../hacks';
+import NFTTabOffers from '../Offer/NFTTabOffers';
+
 const knownContracts = config.known_contracts;
 
 const Nft721 = ({ address, id }) => {
@@ -141,6 +143,9 @@ const Nft721 = ({ address, id }) => {
                     <li id="Mainbtn2" className="tab">
                       <span onClick={handleBtnClick(2)}>History</span>
                     </li>
+                    <li id="Mainbtn3" className="tab">
+                      <span onClick={handleBtnClick(3)}>Offers</span>
+                    </li>
                   </ul>
 
                   <div className="de_tab_content">
@@ -254,6 +259,8 @@ const Nft721 = ({ address, id }) => {
                         )}
                       </div>
                     )}
+
+                    {openMenu === 3 && <NFTTabOffers />}
                   </div>
                 </div>
               </div>
