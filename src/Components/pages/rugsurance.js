@@ -172,15 +172,20 @@ const Rugsurance = () => {
   }
 
   useEffect(async () => {
-    if (!user.connectingWallet && user.membershipContract) {
-      try {
-        const slothtyAddress = knownContracts.find((c) => c.slug === '3d-slothty').address;
-        const slothtyContract = new Contract(slothtyAddress, ERC721, user.provider.getSigner());
-        const isApproved = await slothtyContract.isApprovedForAll(user.address, rugContractAddress);
-        setIsApproved(isApproved);
-      } catch (e) {
-        console.log(e);
-      } finally {
+    setIsInitializing(true);
+    if (!user.connectingWallet) {
+      if (user.membershipContract && user.provider) {
+        try {
+          const slothtyAddress = knownContracts.find((c) => c.slug === '3d-slothty').address;
+          const slothtyContract = new Contract(slothtyAddress, ERC721, user.provider.getSigner());
+          const isApproved = await slothtyContract.isApprovedForAll(user.address, rugContractAddress);
+          setIsApproved(isApproved);
+        } catch (e) {
+          console.log(e);
+        } finally {
+          setIsInitializing(false);
+        }
+      } else {
         setIsInitializing(false);
       }
     }
