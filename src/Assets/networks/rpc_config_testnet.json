@@ -1472,6 +1472,7 @@
       "totalSupply": 1208,
       "cost": ["2", "3", "4"],
       "memberCost": ["1", "2", "3"],
+      "whitelistCost": ["11", "22", "33"],
       "foundersOnly": false,
       "start": 1647288000000,
       "end": null,
