@@ -86,6 +86,8 @@ const Listing = () => {
       } catch (error) {
         console.log(error);
       }
+    } else {
+      setCroCrowBreed(null);
     }
   }, [listing]);
 
@@ -103,6 +105,8 @@ const Listing = () => {
       } catch (error) {
         console.log(error);
       }
+    } else {
+      setCrognomideBreed(null);
     }
   }, [listing]);
 
@@ -122,6 +126,8 @@ const Listing = () => {
       } catch (error) {
         console.log(error);
       }
+    } else {
+      setBabyWeirdApeBreed(null);
     }
   }, [listing]);
 
@@ -440,13 +446,13 @@ const Listing = () => {
                                   <h4>{new Date(babyWeirdApeBreed.birthdate.toNumber() * 1000).toLocaleDateString()}</h4>
                                 </div>
                               </div>
-                              <div key={0} className="col-lg-4 col-md-6 col-sm-6">
+                              <div key={1} className="col-lg-4 col-md-6 col-sm-6">
                                 <div className="nft_attr">
                                   <h5>Mother</h5>
                                   <h4>{babyWeirdApeBreed.mother.toNumber()}</h4>
                                 </div>
                               </div>
-                              <div key={0} className="col-lg-4 col-md-6 col-sm-6">
+                              <div key={2} className="col-lg-4 col-md-6 col-sm-6">
                                 <div className="nft_attr">
                                   <h5>Father</h5>
                                   <h4><a href={`/collection/weird-apes-club/${babyWeirdApeBreed.father.toNumber()}`}>{babyWeirdApeBreed.father.toNumber()}</a></h4>
