@@ -3213,6 +3213,25 @@
       }
     },
     {
+      "name": "Alpha Tacky Tortoise",
+      "slug": "alpha-tacky-tortoise",
+      "multiToken": false,
+      "address": "0x18B98d3D4408A18eA4d571F39B31c873F0aAFecD",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": false,
+        "avatar": "/img/collections/alphatackytortoise/avatar.png",
+        "card": "/img/collections/alphatackytortoise/card.png",
+        "banner": "/img/collections/alphatackytortoise/banner.png",
+        "maxSupply": 1420,
+        "website": "https://www.tackytortoise.com/",
+        "twitter": "https://twitter.com/NFTtackyTortois",
+        "discord": "https://discord.gg/JkVmwW2bhu"
+      }
+    },
+    {
       "name": "Slothty Rugsurance",
       "slug": "slothty-rugsurance",
       "multiToken": false,
@@ -4532,32 +4551,6 @@
       "complete": false,
       "featured": false,
       "redirect": "https://cronossociety.com/"
-    },
-    {
-      "id": 48,
-      "slug": "zombabies",
-      "imgNft": "",
-      "imgPreview": "",
-      "imgAvatar": "/img/collections/zombabies/avatar.png",
-      "title": "Zombabies",
-      "subtitle": "",
-      "description": "",
-      "author": { "name": "Zombabies", "link": "https://www.zombabies.io/" },
-      "address": "",
-      "maxMintPerTx": 0,
-      "maxMintPerAddress": 0,
-      "totalSupply": 0,
-      "cost": "",
-      "whitelistCost": "",
-      "foundersOnly": false,
-      "start": 1645240287000,
-      "end": null,
-      "referral": false,
-      "is1155": false,
-      "published": true,
-      "complete": false,
-      "featured": false,
-      "redirect": "https://lootpad.io/collection/zombabies"
     },
     {
       "id": 49,
