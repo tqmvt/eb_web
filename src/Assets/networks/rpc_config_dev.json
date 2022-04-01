@@ -3232,6 +3232,26 @@
       }
     },
     {
+      "name": "D.G.Pals Genesis I",
+      "slug": "dg-pals-genesis-i",
+      "multiToken": false,
+      "address": "0xeFc73c41EF829C0B87E3245aCF033b867cCD0F84",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/dgpals/avatar.png",
+        "card": "/img/collections/dgpals/card.png",
+        "banner": "/img/collections/dgpals/banner.png",
+        "maxSupply": 10000,
+        "website": "https://dgpals.io/",
+        "twitter": "https://twitter.com/officialdgpals",
+        "discord": "https://discord.gg/dgpals",
+        "medium" : "https://medium.com/officialdgpals"
+      }
+    },
+    {
       "name": "Slothty Rugsurance",
       "slug": "slothty-rugsurance",
       "multiToken": false,
