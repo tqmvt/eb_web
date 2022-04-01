@@ -2968,7 +2968,7 @@
       "multiToken": false,
       "address": "0xAE36CaD133c11E590bfA4c632A02f85965101BB7",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "verified": false,
         "avatar": "/img/collections/cronosbullsandbears/avatar.png",
