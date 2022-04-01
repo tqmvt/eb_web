@@ -645,6 +645,25 @@
         "twitter": "https://twitter.com/thecronosverse",
         "discord": "https://discord.gg/HfCHkvNy6K"
       }
+    },
+    {
+      "name": "Cro Succubus",
+      "slug": "cro-succubus",
+      "multiToken": false,
+      "address": "0xF409eDc80a93E96F224d615Df92F5ab3Aa8aFCfE",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/succubus/avatar.gif",
+        "card": "/img/collections/succubus/card.png",
+        "banner": "/img/collections/succubus/banner.png",
+        "maxSupply": 2666,
+        "website": "https://www.hypednftclub.com/crosuccubus",
+        "twitter": "https://twitter.com/CroSuccubus",
+        "discord": "https://discord.gg/ruKabM5A4U"
+      }
     }
   ],
   "drops": [
@@ -1532,6 +1551,32 @@
       "complete": false,
       "featured": true,
       "redirect": "/slothty-rugsurance"
+    },
+    {
+      "id": 49,
+      "slug": "cro-succubus",
+      "imgNft": "/img/drops/succubus/drop.gif",
+      "imgPreview": "/img/drops/succubus/drop.gif",
+      "imgAvatar": "/img/collections/succubus/avatar.gif",
+      "imgBanner": "/img/collections/succubus/banner.png",
+      "title": "Cro Succubus",
+      "subtitle": "A succubus is 2666 NFT collection, a demon in female form that will forever live on Cronos Smartchain. We are just starting to unleash Hell on cronos. \"Keep your mind awake, because your soul I might take.\"",
+      "description": "A succubus is 2666 NFT collection, a demon in female form that will forever live on Cronos Smartchain. We are just starting to unleash Hell on cronos. Come join us on this delicious dream and vision for the NFT world. \nEnjoy all membership perks of Hyped NFT Club, future staking utility and more!\n\"Keep your mind awake, because your soul I might take.\"",
+      "author": { "name": "Cro Succubus", "link": "https://www.hypednftclub.com/crosuccubus" },
+      "address": "0xF409eDc80a93E96F224d615Df92F5ab3Aa8aFCfE",
+      "maxMintPerTx": 5,
+      "maxMintPerAddress": 50,
+      "totalSupply": 2666,
+      "cost": "220",
+      "memberCost": "180",
+      "whitelistCost": "160",
+      "foundersOnly": false,
+      "start": 1647795651000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false
     }
   ],
   "auctions": [
