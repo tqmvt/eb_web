@@ -318,7 +318,7 @@ const Listing = () => {
                       <li id="Mainbtn2" className="tab">
                         <span onClick={handleBtnClick(2)}>History</span>
                       </li>
-                      {babyWeirdApeBreed && babyWeirdApeBreed.breedStatus && (
+                      {babyWeirdApeBreed && (
                         <li id="Mainbtn9" className="tab">
                           <span onClick={handleBtnClick(9)}>Breed Info</span>
                         </li>
@@ -436,25 +436,31 @@ const Listing = () => {
                           )}
                         </div>
                       )}
-                      {openMenu === 9 && babyWeirdApeBreed && babyWeirdApeBreed.breedStatus && (
+                      {openMenu === 9 && babyWeirdApeBreed && (
                         <div className="tab-2 onStep fadeIn">
                           <div className="d-block mb-3">
                             <div className="row mt-5 gx-3 gy-2">
-                              <div key={0} className="col-lg-4 col-md-6 col-sm-6">
-                                <div className="nft_attr">
-                                  <h5>Birthdate</h5>
-                                  <h4>{new Date(babyWeirdApeBreed.birthdate.toNumber() * 1000).toLocaleDateString()}</h4>
+                              {babyWeirdApeBreed.breedStatus && (
+                                <div key={0} className="col-lg-4 col-md-6 col-sm-6">
+                                  <div className="nft_attr">
+                                    <h5>Birthdate</h5>
+                                    {babyWeirdApeBreed.birthdate.gt(0) ? (
+                                      <h4>{new Date(babyWeirdApeBreed.birthdate.toNumber() * 1000).toLocaleDateString()}</h4>
+                                    ): (
+                                      <h4>Unknown</h4>
+                                    )}
+                                  </div>
                                 </div>
-                              </div>
+                              )}
                               <div key={1} className="col-lg-4 col-md-6 col-sm-6">
                                 <div className="nft_attr">
-                                  <h5>Mother</h5>
+                                  <h5>Mother ID</h5>
                                   <h4>{babyWeirdApeBreed.mother.toNumber()}</h4>
                                 </div>
                               </div>
                               <div key={2} className="col-lg-4 col-md-6 col-sm-6">
                                 <div className="nft_attr">
-                                  <h5>Father</h5>
+                                  <h5>Father ID</h5>
                                   <h4><a href={`/collection/weird-apes-club/${babyWeirdApeBreed.father.toNumber()}`}>{babyWeirdApeBreed.father.toNumber()}</a></h4>
                                 </div>
                               </div>
