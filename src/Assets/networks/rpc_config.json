@@ -3250,6 +3250,26 @@
         "discord": "https://discord.gg/dgpals",
         "medium" : "https://medium.com/officialdgpals"
       }
+    },
+    {
+      "name": "WL OG Access Pass",
+      "slug": "wl-og-access-pass",
+      "multiToken": false,
+      "address": "0xA116e305EB32987551c164b13480E9EBBA1ba6CA",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": false,
+        "avatar": "/img/collections/wlogaccesspass/avatar.gif",
+        "card": "/img/collections/wlogaccesspass/card.png",
+        "banner": "/img/collections/wlogaccesspass/banner.png",
+        "maxSupply": 200,
+        "website": "https://wlpass.com/",
+        "twitter": "https://twitter.com/wl_pass",
+        "discord": "https://discord.gg/Bzu7Ym65NA",
+        "medium" : "https://medium.com/@wlaccess/wl-access-pass-overview-f6b2e96a7400"
+      }
     }
   ],
   "drops": [
