@@ -3290,6 +3290,25 @@
         "discord": "https://discord.gg/27XPAwZHJg",
         "medium": "https://medium.com/@bushicro"
       }
+    },
+    {
+      "name": "Braindead Monkeys ",
+      "slug": "braindead-monkeys",
+      "multiToken": false,
+      "address": "0xda663336FEC3Ef6e310be6522F35E391aAE6F43a",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "Braindead Monkeys have landed on earth to collect CRO and take it to the moon!",
+        "verified": false,
+        "avatar": "/img/collections/braindeadmonekys/avatar.gif",
+        "card": "/img/collections/braindeadmonekys/card.jpg",
+        "banner": "/img/collections/braindeadmonekys/banner.jpg",
+        "maxSupply": 1111,
+        "twitter": "https://twitter.com/BDMNFT_",
+        "website": "https://www.braindeadmonkeys.com/",
+        "discord": "https://discord.gg/7cQcBvzZmy"
+      }
     }
   ],
   "drops": [
