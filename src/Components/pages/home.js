@@ -174,6 +174,9 @@ const Home = () => {
             >
               Explore
             </span>
+            <span onClick={ () => window.open('https://forms.gle/rRtn6gp16tyavQge9', "_blank") }
+                  className="m-0 text-nowrap p-4 pt-2 pb-2 btn-main btn-outline inline white lead"
+                  style={ { outline: '1px solid #DDD' } }>Become a Creator</span>
 
             <span
               onClick={() => window.open(`/collection/founding-member`, '_self')}
