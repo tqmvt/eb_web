@@ -220,7 +220,7 @@ const AccountMenu = function () {
                   )}
                 </div>
               </div>
-              {user.isMember && (
+              {user.isMember && user.rewards !== '0.0' && (
                 <>
                   <div className="d-wallet">
                     <h4>Referral Balance</h4>
@@ -253,28 +253,6 @@ const AccountMenu = function () {
                       )}
                     </div>
                   </div>
-                  {user.code && user.code.length > 0 ? (
-                    <div className="d-wallet">
-                      <h4>Referral Code</h4>
-                      <div className="d-flex justify-content-between">
-                        <span id="wallet" className="d-wallet-address">
-                          {user.code}
-                        </span>
-                        <button className="btn_menu" title="Copy Referral Code" onClick={handleCopy(user.code)}>
-                          Copy
-                        </button>
-                      </div>
-                    </div>
-                  ) : (
-                    <div className="d-wallet">
-                      <h4>Referral Code</h4>
-                      <div className="d-flex justify-content-between">
-                        <button className="btn_menu" title="Register Referral Code" onClick={registerCode}>
-                          Register
-                        </button>
-                      </div>
-                    </div>
-                  )}
                 </>
               )}
               <div className="d-line"></div>
