@@ -3250,6 +3250,65 @@
         "discord": "https://discord.gg/dgpals",
         "medium" : "https://medium.com/officialdgpals"
       }
+    },
+    {
+      "name": "WL OG Access Pass",
+      "slug": "wl-og-access-pass",
+      "multiToken": false,
+      "address": "0xA116e305EB32987551c164b13480E9EBBA1ba6CA",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": false,
+        "avatar": "/img/collections/wlogaccesspass/avatar.gif",
+        "card": "/img/collections/wlogaccesspass/card.png",
+        "banner": "/img/collections/wlogaccesspass/banner.png",
+        "maxSupply": 200,
+        "website": "https://wlpass.com/",
+        "twitter": "https://twitter.com/wl_pass",
+        "discord": "https://discord.gg/Bzu7Ym65NA",
+        "medium" : "https://medium.com/@wlaccess/wl-access-pass-overview-f6b2e96a7400"
+      }
+    },
+    {
+      "name": "Female Warriors",
+      "slug": "female-warriors",
+      "multiToken": false,
+      "address": "0x0D21051BD422A9A54988d25b1Be1211Dc7f3D7bD",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "Made with fighting spirit",
+        "verified": true,
+        "avatar": "/img/collections/bushicro/femalewarriors/avatar.gif",
+        "card": "/img/collections/bushicro/femalewarriors/card.jpg",
+        "banner": "/img/collections/bushicro/femalewarriors/banner.png",
+        "maxSupply": 2666,
+        "twitter": "https://twitter.com/bushicro",
+        "website": "https://bushicro.io/",
+        "discord": "https://discord.gg/27XPAwZHJg",
+        "medium": "https://medium.com/@bushicro"
+      }
+    },
+    {
+      "name": "Braindead Monkeys ",
+      "slug": "braindead-monkeys",
+      "multiToken": false,
+      "address": "0xda663336FEC3Ef6e310be6522F35E391aAE6F43a",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "Braindead Monkeys have landed on earth to collect CRO and take it to the moon!",
+        "verified": false,
+        "avatar": "/img/collections/braindeadmonekys/avatar.gif",
+        "card": "/img/collections/braindeadmonekys/card.jpg",
+        "banner": "/img/collections/braindeadmonekys/banner.jpg",
+        "maxSupply": 1111,
+        "twitter": "https://twitter.com/BDMNFT_",
+        "website": "https://www.braindeadmonkeys.com/",
+        "discord": "https://discord.gg/7cQcBvzZmy"
+      }
     }
   ],
   "drops": [
@@ -4665,6 +4724,32 @@
       "published": true,
       "complete": false,
       "multiPrice": true
+    },
+    {
+      "id": 53,
+      "slug": "female-warriors",
+      "imgNft": "",
+      "imgPreview": "",
+      "imgAvatar": "/img/collections/bushicro/femalewarriors/avatar.gif",
+      "title": "Female Warriors",
+      "subtitle": "",
+      "description": "",
+      "author": { "name": "Bushicro", "link": "https://bushicro.io" },
+      "address": "",
+      "maxMintPerTx": 0,
+      "maxMintPerAddress": 0,
+      "totalSupply": 0,
+      "cost": "",
+      "whitelistCost": "",
+      "foundersOnly": false,
+      "start": 1645240287000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false,
+      "featured": false,
+      "redirect": "https://bushicro.io/#Mint"
     }
   ],
   "auctions": [
