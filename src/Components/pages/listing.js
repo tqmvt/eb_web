@@ -461,7 +461,7 @@ const Listing = () => {
                               <div key={2} className="col-lg-4 col-md-6 col-sm-6">
                                 <div className="nft_attr">
                                   <h5>Father ID</h5>
-                                  <h4><a href={`/collection/weird-apes-club/${babyWeirdApeBreed.father.toNumber()}`}>{babyWeirdApeBreed.father.toNumber()}</a></h4>
+                                  <h4><a href={`/collection/weird-apes-club-v2/${babyWeirdApeBreed.father.toNumber()}`}>{babyWeirdApeBreed.father.toNumber()}</a></h4>
                                 </div>
                               </div>
                             </div>
