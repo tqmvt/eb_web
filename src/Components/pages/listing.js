@@ -122,7 +122,6 @@ const Listing = () => {
       try {
         const apeInfo = await contract.apeInfo(listing.nftId);
         setBabyWeirdApeBreed(apeInfo);
-        console.log(apeInfo);
       } catch (error) {
         console.log(error);
       }
@@ -440,7 +439,7 @@ const Listing = () => {
                         <div className="tab-2 onStep fadeIn">
                           <div className="d-block mb-3">
                             <div className="row mt-5 gx-3 gy-2">
-                              {babyWeirdApeBreed.breedStatus && (
+                              {babyWeirdApeBreed.breedStatus ? (
                                 <div key={0} className="col-lg-4 col-md-6 col-sm-6">
                                   <div className="nft_attr">
                                     <h5>Birthdate</h5>
@@ -449,6 +448,13 @@ const Listing = () => {
                                     ): (
                                       <h4>Unknown</h4>
                                     )}
+                                  </div>
+                                </div>
+                              ) : (
+                                <div key={0} className="col-lg-4 col-md-6 col-sm-6">
+                                  <div className="nft_attr">
+                                    <h5>Incubator ID</h5>
+                                    <h4>{listing.nftId}</h4>
                                   </div>
                                 </div>
                               )}
