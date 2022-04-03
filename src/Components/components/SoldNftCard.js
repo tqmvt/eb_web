@@ -22,7 +22,10 @@ const SoldNftCard = ({ nft, index, className = 'col-sm-12 col-md-12 col-lg-6 d-i
   };
 
   const viewListingDetails = () => {
-    navigateTo(`/listing/${nft.listingId}`);
+    const missingInfo = !nft.nft || nft.nft.missing;
+    if (!missingInfo) {
+      navigateTo(`/listing/${nft.listingId}`);
+    }
   };
 
   return (
@@ -31,13 +34,13 @@ const SoldNftCard = ({ nft, index, className = 'col-sm-12 col-md-12 col-lg-6 d-i
         <div style={{ height: `100px` }}>
           <div className="h-100" style={width ? { width: `${width}px` } : {}}>
             <Outer>
-              <img onLoad={onImgLoad} className="h-100" src={nft.nft.image} alt={nft.nft.name} />
+              <img onLoad={onImgLoad} className="h-100" src={nft.nft?.image} alt={nft.nft?.name} />
             </Outer>
           </div>
         </div>
         <div className="nft__item_info">
           <span>
-            <h4>{nft.nft.name}</h4>
+            <h4>{nft.nft?.name}</h4>
           </span>
           <div className="nft__item_price">
             <span className="m-0">Sold for {ethers.utils.commify(nft.price)} CRO</span>

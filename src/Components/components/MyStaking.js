@@ -1,4 +1,4 @@
-import React, { memo, useState, useEffect, useCallback } from 'react';
+import React, { memo, useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setStakeCount, setVIPCount } from '../../GlobalState/User';
 import {Form, Spinner} from 'react-bootstrap';
@@ -14,7 +14,7 @@ import {
   faBatteryEmpty,
   faBatteryFull, faBatteryHalf,
   faBatteryQuarter, faBatteryThreeQuarters,
-  faBolt, faChargingStation,
+  faBolt, faChargingStation, faExclamationTriangle,
   faExternalLinkAlt,
   faTrophy
 } from "@fortawesome/free-solid-svg-icons";
@@ -138,7 +138,6 @@ const MyStaking = () => {
   };
 
   const DynamicBattery = () => {
-    console.log('battery check', stakeCount, vipCount)
     if (!(stakeCount + vipCount > 0)) return <FontAwesomeIcon icon={faBatteryEmpty} />;
 
     const percent = stakeCount / (stakeCount + vipCount);
@@ -159,7 +158,7 @@ const MyStaking = () => {
           <div className="col-md-8">
             <div className="item_info">
               <h2>VIP Founding Member Staking</h2>
-              <div className="my-2">Earn rewards generated through platform sales. <a href="#" className="fw-bold">Learn More <FontAwesomeIcon icon={faExternalLinkAlt} /></a></div>
+              <div className="my-2">Earn rewards generated through platform sales. <a href="https://blog.ebisusbay.com/founding-member-vip-staking-6f7405a68eed" className="fw-bold" target="_blank">Learn More <FontAwesomeIcon icon={faExternalLinkAlt} /></a></div>
               {isApproved && (
                 <div className="item_info_counts">
                   <div>
@@ -170,6 +169,11 @@ const MyStaking = () => {
                   </div>
                 </div>
               )}
+
+              <div className="alert alert-warning d-flex align-items-center" role="alert">
+                <FontAwesomeIcon size="md" icon={faExclamationTriangle} className="me-3"/>
+                <div>Harvestable rewards must be harvested before the next epoch, otherwise they will be forefited back to the rewards pool!</div>
+              </div>
 
               <div className="spacer-20"></div>
 

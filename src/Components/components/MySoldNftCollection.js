@@ -6,6 +6,8 @@ import { getAnalytics, logEvent } from '@firebase/analytics';
 import SoldNftCard from './SoldNftCard';
 import InvalidListingsPopup from './InvalidListingsPopup';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import config from '../../Assets/networks/rpc_config.json';
+import {caseInsensitiveCompare} from "../../utils";
 // import HiddenCard from './HiddenCard';
 // import ListingCard from './ListingCard';
 // import { fetchListings } from '../../GlobalState/marketplaceSlice';
@@ -63,7 +65,18 @@ const MySoldNftCollection = ({ walletAddress = null }) => {
       >
         <div className="row">
           {mySoldNfts &&
-            mySoldNfts.map((nft, index) => <SoldNftCard nft={nft} index={index} onImgLoad={onImgLoad} width={width} />)}
+            mySoldNfts.map((nft, index) => {
+              if (!nft.nft) {
+                const contract = config.known_contracts.find(c => caseInsensitiveCompare(c.address, nft.nftAddress))
+                nft = {...nft, ...{nft:{
+                  missing: true,
+                  name: `${contract.name} #${nft.nftId}`
+                }}}
+              }
+              return (
+                <SoldNftCard nft={nft} index={index} onImgLoad={onImgLoad} width={width} />
+              )
+            })}
         </div>
       </InfiniteScroll>
 

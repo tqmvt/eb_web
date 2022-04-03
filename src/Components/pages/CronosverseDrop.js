@@ -431,18 +431,30 @@ const CronosverseDrop = () => {
           <div className="d-flex flex-row">
             <div className="me-4">
               <h6 className="mb-1">Mint Price</h6>
-              <h5>{regularCost.join(', ')} CRO</h5>
+              <ul className="list-unstyled">
+                <li>{regularCost[0]} CRO (Plain)</li>
+                <li>{regularCost[1]} CRO (Suburban)</li>
+                <li>{regularCost[2]} CRO (Commercial)</li>
+              </ul>
             </div>
             {memberCost && (
               <div className="me-4">
                 <h6 className="mb-1">Founding Member Price</h6>
-                <h5>{memberCost.join(', ')} CRO</h5>
+                <ul className="list-unstyled">
+                  <li>{memberCost[0]} CRO (Plain)</li>
+                  <li>{memberCost[1]} CRO (Suburban)</li>
+                  <li>{memberCost[2]} CRO (Commercial)</li>
+                </ul>
               </div>
             )}
             {whitelistCost && (
               <div className="me-4">
                 <h6 className="mb-1">Whitelist Price</h6>
-                <h5>{whitelistCost.join(', ')} CRO</h5>
+                <ul className="list-unstyled">
+                  <li>{whitelistCost[0]} CRO (Plain)</li>
+                  <li>{whitelistCost[1]} CRO (Suburban)</li>
+                  <li>{whitelistCost[2]} CRO (Commercial)</li>
+                </ul>
               </div>
             )}
           </div>
