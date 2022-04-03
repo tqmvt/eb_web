@@ -3330,6 +3330,26 @@
         "discord": "https://discord.gg/DZs6XTnFCV",
         "telegram": "https://t.me/babycrogecoinn"
       }
+    },
+    {
+      "name": "Blockchain Bingo Balls Tilted Dabbers OG",
+      "slug": "blockchain-bingo-balls-tilted-dabbers-og",
+      "multiToken": false,
+      "address": "0x8C7292ba9c36C1ad037Adddb257728578C5C8fc0",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": false,
+        "avatar": "/img/collections/blockchainbingo/avatar.png",
+        "card": "/img/collections/blockchainbingo/card.png",
+        "banner": "/img/collections/blockchainbingo/banner.png",
+        "maxSupply": 75,
+        "twitter": "https://twitter.com/BlockBingoBall",
+        "website": "https://www.blockchainbingoballs.com",
+        "discord": "https://discord.gg/madjz2tNu4",
+        "medium": "https://medium.com/@BlockchainBingoBalls"
+      }
     }
   ],
   "drops": [
