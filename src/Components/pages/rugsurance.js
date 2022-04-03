@@ -16,7 +16,7 @@ import {toast} from "react-toastify";
 import MetaMaskOnboarding from "@metamask/onboarding";
 import {chainConnect, connectAccount} from "../../GlobalState/User";
 import {ERC721} from "../../Contracts/Abis";
-import 'animate.css';
+// import 'animate.css';
 import "../../Assets/styles/fire.css";
 
 const knownContracts = config.known_contracts;
