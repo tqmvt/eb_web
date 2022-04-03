@@ -3298,7 +3298,7 @@
       "multiToken": false,
       "address": "0xda663336FEC3Ef6e310be6522F35E391aAE6F43a",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "Braindead Monkeys have landed on earth to collect CRO and take it to the moon!",
         "verified": false,
