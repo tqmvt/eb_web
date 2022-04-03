@@ -3004,8 +3004,9 @@
       "multiToken": false,
       "address": "0x59b554B12B80cAc8629Bf541a2D6359639AF2A63",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
+        "description": "WL Access Pass gives the holders the access to an extremely exclusive community on the Cronos Chain.\n\nBy owning our OG Pass, you will be elegible to win WL Spots for our Partner’s Projects, Stake your Pass to earn WL$PASS Coins that you will be able to exchange for Guaranteed WL Spots and always be on the cutting edge in term of Researching the next Cronos Blue Chip Project.\n\nOnly 200 OG Pass will EVER be available!",
         "verified": false,
         "avatar": "/img/collections/crohomes/avatar.png",
         "banner": "/img/collections/crohomes/banner.png",
@@ -3297,7 +3298,7 @@
       "multiToken": false,
       "address": "0xda663336FEC3Ef6e310be6522F35E391aAE6F43a",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "Braindead Monkeys have landed on earth to collect CRO and take it to the moon!",
         "verified": false,
@@ -3308,6 +3309,46 @@
         "twitter": "https://twitter.com/BDMNFT_",
         "website": "https://www.braindeadmonkeys.com/",
         "discord": "https://discord.gg/7cQcBvzZmy"
+      }
+    },
+    {
+      "name": "Baby Croges",
+      "slug": "baby-croges",
+      "multiToken": false,
+      "address": "0x1d954Bd544f203bdDC52Fd8f03Eb7Ea4aDbDF3e2",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": false,
+        "avatar": "/img/collections/babycroge/avatar.png",
+        "card": "/img/collections/babycroge/card.png",
+        "banner": "/img/collections/babycroge/banner.png",
+        "maxSupply": 400,
+        "twitter": "https://twitter.com/BabyCrogeCoin",
+        "website": "https://babycroge.io",
+        "discord": "https://discord.gg/DZs6XTnFCV",
+        "telegram": "https://t.me/babycrogecoinn"
+      }
+    },
+    {
+      "name": "Blockchain Bingo Balls Tilted Dabbers OG",
+      "slug": "blockchain-bingo-balls-tilted-dabbers-og",
+      "multiToken": false,
+      "address": "0x8C7292ba9c36C1ad037Adddb257728578C5C8fc0",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": false,
+        "avatar": "/img/collections/blockchainbingo/avatar.png",
+        "card": "/img/collections/blockchainbingo/card.png",
+        "banner": "/img/collections/blockchainbingo/banner.png",
+        "maxSupply": 75,
+        "twitter": "https://twitter.com/BlockBingoBall",
+        "website": "https://www.blockchainbingoballs.com",
+        "discord": "https://discord.gg/madjz2tNu4",
+        "medium": "https://medium.com/@BlockchainBingoBalls"
       }
     },
     {
