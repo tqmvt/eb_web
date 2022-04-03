@@ -3004,7 +3004,7 @@
       "multiToken": false,
       "address": "0x59b554B12B80cAc8629Bf541a2D6359639AF2A63",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "verified": false,
         "avatar": "/img/collections/crohomes/avatar.png",
