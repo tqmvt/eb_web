@@ -3310,6 +3310,26 @@
         "website": "https://www.braindeadmonkeys.com/",
         "discord": "https://discord.gg/7cQcBvzZmy"
       }
+    },
+    {
+      "name": "Baby Croges",
+      "slug": "baby-croges",
+      "multiToken": false,
+      "address": "0x1d954Bd544f203bdDC52Fd8f03Eb7Ea4aDbDF3e2",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": false,
+        "avatar": "/img/collections/babycroge/avatar.png",
+        "card": "/img/collections/babycroge/card.png",
+        "banner": "/img/collections/babycroge/banner.png",
+        "maxSupply": 400,
+        "twitter": "https://twitter.com/BabyCrogeCoin",
+        "website": "https://babycroge.io",
+        "discord": "https://discord.gg/DZs6XTnFCV",
+        "telegram": "https://t.me/babycrogecoinn"
+      }
     }
   ],
   "drops": [
