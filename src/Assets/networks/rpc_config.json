@@ -4835,8 +4835,7 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false,
-      "multiPrice": true
+      "complete": false
     }
   ],
   "auctions": [
