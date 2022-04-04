@@ -4904,6 +4904,7 @@
       "cost": "499",
       "memberCost": "449",
       "whitelistCost": "399",
+      "priceDescription": "WL price only valid for up to 3 per whitelisted address",
       "foundersOnly": false,
       "start": null,
       "end": null,
