@@ -1298,7 +1298,8 @@
         "website": "https://weirdapes.com/",
         "twitter": "https://twitter.com/WeirdApesClub",
         "discord": "https://discord.gg/d6WvCpfn9W",
-        "medium": "https://medium.com/@WeirdApesClub"
+        "medium": "https://medium.com/@WeirdApesClub",
+        "gitbook": "https://weirdape.gitbook.io/weird-apes-club/weird-apes-club/summary"
       }
     },
     {
@@ -1318,7 +1319,8 @@
         "website": "https://weirdapes.com/",
         "twitter": "https://twitter.com/WeirdApesClub",
         "discord": "https://discord.gg/d6WvCpfn9W",
-        "medium": "https://medium.com/@WeirdApesClub"
+        "medium": "https://medium.com/@WeirdApesClub",
+        "gitbook": "https://weirdape.gitbook.io/weird-apes-club/weird-apes-club/summary"
       }
     },
     {
@@ -2632,7 +2634,8 @@
         "website": "https://weirdapes.com/",
         "twitter": "https://twitter.com/WeirdApesClub",
         "discord": "https://discord.gg/RX9h6mhnTR",
-        "medium": "https://medium.com/@WeirdApesClub"
+        "medium": "https://medium.com/@WeirdApesClub",
+        "gitbook": "https://weirdape.gitbook.io/weird-apes-club/weird-apes-club/summary"
       }
     },
     {
@@ -3152,7 +3155,8 @@
         "website": "https://weirdapes.com/",
         "twitter": "https://twitter.com/WeirdApesClub",
         "discord": "https://discord.gg/RX9h6mhnTR",
-        "medium": "https://medium.com/@WeirdApesClub"
+        "medium": "https://medium.com/@WeirdApesClub",
+        "gitbook": "https://weirdape.gitbook.io/weird-apes-club/weird-apes-club/summary"
       }
     },
     {
@@ -4808,7 +4812,7 @@
       "is1155": false,
       "published": true,
       "complete": false,
-      "featured": true,
+      "featured": false,
       "redirect": "/slothty-rugsurance"
     },
     {
