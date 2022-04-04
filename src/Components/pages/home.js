@@ -12,7 +12,7 @@ import CurrentDrops from '../components/CurrentDrops';
 import { getMarketData } from '../../GlobalState/marketplaceSlice';
 import { siPrefixedNumber } from '../../utils';
 import { theme } from '../../Theme/theme';
-import {faFire} from "@fortawesome/free-solid-svg-icons";
+import {faBullhorn, faFire} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const fadeInUp = keyframes`
@@ -52,14 +52,8 @@ const GlobalStyles = createGlobalStyle`
   
   .promo {
     padding-bottom: 8px;
-    background: #15B619;
-    color: #fff;
-    animation: mymove 6s infinite alternate-reverse;
-  }
-  
-  @keyframes mymove {
-    from {background-color: #15B619;}
-    to {background-color: #b63d15;}
+    background: #ffee99;
+    color: #555;
   }
 
   @media only screen and (max-width: 1199.98px) {
@@ -230,16 +224,13 @@ const Home = () => {
   return (
     <div>
       <GlobalStyles />
-      {/*<section className="promo">*/}
-      {/*  <div className="d-flex justify-content-center px-3">*/}
-      {/*    <p className="my-auto me-3">*/}
-      {/*      Founding Member NFTs are over 90% minted! Grab one now to enjoy amazing discounts on drops and 50% off service fees.{' '}*/}
-      {/*      <span className="fw-bold d-block d-md-inline-block text-end">*/}
-      {/*      <Link to="/drops/founding-member">Learn More &gt;</Link>*/}
-      {/*    </span>*/}
-      {/*    </p>*/}
-      {/*  </div>*/}
-      {/*</section>*/}
+      <section className="promo">
+        <div className="d-flex justify-content-center px-3">
+          <p className="my-auto me-3">
+            <FontAwesomeIcon icon={faBullhorn} /> The Cronos chain is currently experiencing intermittent issues preventing successful transactions. For Metamask users, please try temporarily changing your RPC URL
+          </p>
+        </div>
+      </section>
       <Jumbotron.Host>{!mobile && <div className="container">{JumbotronData()}</div>}</Jumbotron.Host>
       {mobile && JumbotronData()}
 
