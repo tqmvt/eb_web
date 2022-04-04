@@ -3393,6 +3393,25 @@
         "discord": "https://discord.gg/x9bvzuSBeV",
         "medium": "https://medium.com/@mariescyborgs/cyborg-brotherhood-28173eccf03a"
       }
+    },
+    {
+      "name": "Mushroom Houses",
+      "slug": "mushroom-houses",
+      "multiToken": false,
+      "address": "0x00095839d3b6ea654a3Bf46b77886e749E16dC86",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "2000 Crognome Mushroom houses for every Crognome family to live in",
+        "verified": true,
+        "avatar": "/img/collections/mushroomhouses/avatar.webp",
+        "card": "/img/collections/mushroomhouses/card.webp",
+        "banner": "/img/collections/mushroomhouses/banner.webp",
+        "maxSupply": 2000,
+        "website": "https://www.crognomes.com/",
+        "twitter": "https://twitter.com/CroGnomes",
+        "discord": "https://discord.gg/BCnVzv5jx3"
+      }
     }
   ],
   "drops": [
@@ -4904,6 +4923,7 @@
       "cost": "499",
       "memberCost": "449",
       "whitelistCost": "399",
+      "priceDescription": "WL price only valid for up to 3 per whitelisted address",
       "foundersOnly": false,
       "start": null,
       "end": null,
