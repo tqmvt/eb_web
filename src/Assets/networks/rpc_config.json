@@ -3373,6 +3373,26 @@
         "twitter": "https://twitter.com/CroSuccubus",
         "discord": "https://discord.gg/ruKabM5A4U"
       }
+    },
+    {
+      "name": "Cyborg Brotherhood",
+      "slug": "cyborg-brotherhood",
+      "multiToken": false,
+      "address": "",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/cyborgbrotherhood/avatar.webp",
+        "card": "/img/collections/cyborgbrotherhood/card.webp",
+        "banner": "/img/collections/cyborgbrotherhood/banner.webp",
+        "maxSupply": 3333,
+        "website": "https://www.cyborgbh.io/",
+        "twitter": "https://twitter.com/mariescyborgs",
+        "discord": "https://discord.gg/x9bvzuSBeV",
+        "medium": "https://medium.com/@mariescyborgs/cyborg-brotherhood-28173eccf03a"
+      }
     }
   ],
   "drops": [
@@ -4858,6 +4878,32 @@
       "totalSupply": 2222,
       "cost": "350",
       "memberCost": "300",
+      "foundersOnly": false,
+      "start": 1649268000000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false
+    },
+    {
+      "id": 56,
+      "slug": "cyborg-brotherhood",
+      "imgNft": "/img/drops/cyborgbrotherhood/drop.webp",
+      "imgPreview": "/img/drops/cyborgbrotherhood/drop.webp",
+      "imgAvatar": "/img/collections/cyborgbrotherhood/avatar.webp",
+      "imgBanner": "/img/collections/cyborgbrotherhood/banner.webp",
+      "title": "Cyborg Brotherhood",
+      "subtitle": "For as long as my forefathers can remember my family has been part of the Brotherhood. We are faithful servants of the last noble cause, we have put our skill of arms at the service of justice, of our justice. In a world where good and evil only have differences if the forbiddens ones dare to speaks them, we secretly and faithfully maintained the balance.",
+      "description": "Join the Cyborg Brotherhood and become an Assassin\n\n- 10% of the mint sale of the Cyborg Brotherhood divided among Assassins and all future MC projects\n- 10% on the first mint of all the projects we will help to launch through our incubator\n- Increased decision-making power on all MC decisions (real DAO)",
+      "author": { "name": "Marie's Cyborgs", "link": "https://www.mariescyborgs.io/" },
+      "address": "",
+      "maxMintPerTx": 25,
+      "maxMintPerAddress": 100,
+      "totalSupply": 3333,
+      "cost": "499",
+      "memberCost": "449",
+      "whitelistCost": "399",
       "foundersOnly": false,
       "start": null,
       "end": null,

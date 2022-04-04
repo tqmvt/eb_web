@@ -669,7 +669,7 @@
       "name": "Crobees",
       "slug": "crobees",
       "multiToken": false,
-      "address": "0xaC7Bf0418B62b6Ec0103bCb929572e8Cd2817256",
+      "address": "0xBde6bc3dd2265b23684435C4C87AA7DD85910739",
       "onChain": false,
       "listable": false,
       "metadata": {
@@ -1609,7 +1609,7 @@
       "subtitle": "Jump into the hive and discover the beautiful universe around the bees. With more than 110 attributes, all these unique NFTs was drawn with love and high design quality!",
       "description": "The Crobees - A 2222 NFTs collection of bees with more than 110 attributes. The crobees is putting forward a project where the community is in the heart of it. With the mindset to build a hive in the cronos chain, to gather people from all background (DeFi, NFTs...) into a huge family. \n\nHolding a NFT gives you some premium access as the DAO/Staking/Queen's Lottery/BeeShop. The DAO gives you the power to choose the futur of the project, to take part in the decisions by vote (already live in Discord).\n\nThe staking of your Crobees NFTs generates our own token, which opens the doors of the BeeShop.With this token, you can buy WL/Airdrops/Merchandise/Charity Vouchers/Queen's Lottery Tickets/... .Visit our website or medium to check the entire Roadmap.\n\nJoin the Hive right now and let's build it!",
       "author": { "name": "Crobees", "link": "http://crobees.com/" },
-      "address": "0xaC7Bf0418B62b6Ec0103bCb929572e8Cd2817256",
+      "address": "0xBde6bc3dd2265b23684435C4C87AA7DD85910739",
       "maxMintPerTx": 10,
       "maxMintPerAddress": 50,
       "totalSupply": 2222,
