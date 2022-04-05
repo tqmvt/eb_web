@@ -3321,7 +3321,7 @@
       "multiToken": false,
       "address": "0x1d954Bd544f203bdDC52Fd8f03Eb7Ea4aDbDF3e2",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "",
         "verified": false,
