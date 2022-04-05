@@ -4820,7 +4820,11 @@
       "memberCost": ["670", "870", "1225"],
       "whitelistCost": ["670", "870", "1225"],
       "foundersOnly": false,
-      "start": null,
+      "start": 1649613600000,
+      "salePeriods": {
+        "presale": 1649613600000,
+        "public": 1649617200000
+      },
       "end": null,
       "referral": false,
       "is1155": false,

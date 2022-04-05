@@ -458,14 +458,18 @@ const CronosverseDrop = () => {
               </div>
             )}
           </div>
-          {status === statuses.NOT_STARTED && drop.start && (
-            <div className="me-4 mt-4">
-              <h6 className="mb-1">Minting Starts</h6>
-              <h3>
-                {new Date(drop.start).toDateString()}, {new Date(drop.start).toTimeString()}
-              </h3>
-            </div>
-          )}
+          <div className="me-4 mt-4">
+            <h6 className="mb-1">Presale Starts</h6>
+            <h3>
+              {new Date(drop.salePeriods.presale).toDateString()}, {new Date(drop.salePeriods.presale).toTimeString()}
+            </h3>
+          </div>
+          <div className="me-4 mt-4">
+            <h6 className="mb-1">Public Sale Starts</h6>
+            <h3>
+              {new Date(drop.salePeriods.public).toDateString()}, {new Date(drop.salePeriods.public).toTimeString()}
+            </h3>
+          </div>
           {status === statuses.NOT_STARTED && !drop.start && (
             <div className="me-4 mt-4">
               <h6 className="mb-1">Minting Starts</h6>
