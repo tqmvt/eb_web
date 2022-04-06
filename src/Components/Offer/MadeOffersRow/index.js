@@ -1,8 +1,13 @@
 import React from 'react';
 import Button from 'src/Components/components/Button';
 import styled from 'styled-components';
+import moment from 'moment';
 
+import { shortAddress } from 'src/utils';
+import config from 'src/Assets/networks/rpc_config.json';
 // import MakeOfferDialog from '../MakeOfferDialog';
+
+const knownContracts = config.known_contracts;
 
 const TableRowContainer = styled.div`
   display: flex;
@@ -81,32 +86,65 @@ const ItemRow = styled.div`
 `;
 
 export default function TableRow({ data, type }) {
+  const { state, timeCreated, seller, price, nftAddress, nftId } = data;
   // const [openMakeOfferDialog, setOpenMakeOfferDialog] = useState(false);
   const handleUpdateOffer = () => {
     // setOpenMakeOfferDialog(!openMakeOfferDialog);
+  };
+
+  const collectionData = knownContracts.find((c) => c.address.toLowerCase() === nftAddress.toLowerCase());
+  const getCollectionName = () => {
+    const { name } = collectionData;
+    return name;
+  };
+
+  const getCollectionAvatar = () => {
+    const {
+      metadata: { avatar },
+    } = collectionData;
+    return avatar;
+  };
+
+  const getState = (offerState) => {
+    if (offerState === '0') {
+      return 'Active';
+    } else if (offerState === '1') {
+      return 'Accepted';
+    } else if (offerState === '2') {
+      return 'Rejected';
+    } else if (offerState === '3') {
+      return 'Cancelled';
+    } else {
+      return '';
+    }
+  };
+
+  const getOfferDate = (timestamp) => {
+    const offerDate = moment(new Date(timestamp * 1000)).format('DD/MM/YYYY');
+    return offerDate;
   };
 
   return (
     <>
       <TableRowContainer>
         <div className="table-row-item">
-          <a href="/collection/mad-meerkat">
+          <a href={`/collection/${collectionData?.slug}`}>
             <img
               className="lazy"
-              src="/img/collections/meerkats/avatar.png"
-              alt="Mad Meerkat"
+              src={getCollectionAvatar()}
+              alt={getCollectionName()}
               width="50"
               height="50"
               style={{ marginRight: '10px' }}
             />
           </a>
-          <div className="collection-name">{data.name}</div>
+          <div className="collection-name">{getCollectionName()}</div>
         </div>
-        <div className="table-row-item nft-title">{data.title}</div>
-        <div className="table-row-item">{data.status}</div>
-        <div className="table-row-item">{data.offerDate}</div>
-        <div className="table-row-item">{data.owner}</div>
-        <div className="table-row-item">{data.offerPrice}</div>
+        <div className="table-row-item nft-title">{nftId}</div>
+        <div className="table-row-item">{getState(state)}</div>
+        <div className="table-row-item">{getOfferDate(timeCreated)}</div>
+        <div className="table-row-item">{shortAddress(seller || '')}</div>
+        <div className="table-row-item">{price} CRO</div>
         <div className="table-row-item">
           {type === 'Made' && <Button onClick={handleUpdateOffer}>Update</Button>}
           {type === 'Received' && <Button onClick={handleUpdateOffer}>Accept</Button>}
@@ -125,11 +163,11 @@ export default function TableRow({ data, type }) {
       </TableRowContainer>
       <TableRowContainerMobile>
         <div className="collection-logo">
-          <a href="/collection/mad-meerkat">
+          <a href={`/collection/${collectionData?.slug}`}>
             <img
               className="lazy"
-              src="/img/collections/meerkats/avatar.png"
-              alt="Mad Meerkat"
+              src={getCollectionAvatar()}
+              alt={getCollectionName()}
               width="50"
               height="50"
               style={{ marginRight: '10px' }}
@@ -138,27 +176,27 @@ export default function TableRow({ data, type }) {
         </div>
         <ItemRow>
           <div>Collection Name</div>
-          <div>{data.name}</div>
+          <div>{getCollectionName()}</div>
         </ItemRow>
         <ItemRow>
           <div>NFT title</div>
-          <div className="nft-title">{data.title}</div>
+          <div className="nft-title">{nftId}</div>
         </ItemRow>
         <ItemRow>
           <div>Status</div>
-          <div>{data.status}</div>
+          <div>{getState(state)}</div>
         </ItemRow>
         <ItemRow>
           <div>Date</div>
-          <div>{data.offerDate}</div>
+          <div>{getOfferDate(timeCreated)}</div>
         </ItemRow>
         <ItemRow>
           <div>Owner</div>
-          <div>{data.owner}</div>
+          <div>{shortAddress(seller || '')}</div>
         </ItemRow>
         <ItemRow>
           <div>Offer Price</div>
-          <div>{data.offerPrice}</div>
+          <div>{price} CRO</div>
         </ItemRow>
         <ItemRow>
           <div className="table-row-button">

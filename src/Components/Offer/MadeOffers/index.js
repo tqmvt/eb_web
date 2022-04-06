@@ -11,15 +11,13 @@ const data = {
   offerPrice: '1500 CRO',
 };
 
-export default function MadeOffers() {
+export default function MadeOffers({ offers }) {
   return (
     <div>
       <TableHeader />
-      <TableRow data={data} type="Made" />
-      <TableRow data={data} type="Made" />
-      <TableRow data={data} type="Made" />
-      <TableRow data={data} type="Made" />
-      <TableRow data={data} type="Made" />
+      {offers.map((offer, index) => (
+        <TableRow key={index} data={offer} type="Made" />
+      ))}
     </div>
   );
 }

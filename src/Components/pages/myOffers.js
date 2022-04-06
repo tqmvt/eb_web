@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import styled from 'styled-components';
 
+import { fetchMadeOffers } from '../../GlobalState/offerSlice';
 import Footer from '../components/Footer';
 import MadeOffers from '../Offer/MadeOffers';
 import ReceivedOffers from '../Offer/ReceivedOffers';
@@ -47,7 +48,15 @@ const Tab = styled.div`
 
 const MyOffers = () => {
   const walletAddress = useSelector((state) => state.user.address);
+  const madeOffers = useSelector((state) => state.offer.madeOffers);
+  const receivedOffers = useSelector((state) => state.offer.receivedOffers);
   const [tab, setTab] = useState(OFFERS_TAB.make);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchMadeOffers('0x1bbc3c2e674c26264c08bbd8a7911c404d4e3afb'.toLowerCase()));
+    // dispatch(fetchMadeOffers('0x1bbc3c2e674c26264c08bbd8a7911c404d4e3afb'));
+  }, []);
 
   const Content = () => (
     <>
@@ -72,8 +81,8 @@ const MyOffers = () => {
             {OFFERS_TAB.receive}
           </Tab>
         </Tabs>
-        {tab === OFFERS_TAB.make && <MadeOffers />}
-        {tab === OFFERS_TAB.receive && <ReceivedOffers />}
+        {tab === OFFERS_TAB.make && <MadeOffers offers={madeOffers} />}
+        {/* {tab === OFFERS_TAB.receive && <ReceivedOffers offers={receivedOffers} />} */}
       </section>
 
       <Footer />
