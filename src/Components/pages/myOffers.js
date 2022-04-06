@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { fetchMadeOffers } from '../../GlobalState/offerSlice';
+import { fetchMadeOffers, fetchReceivedOffers } from '../../GlobalState/offerSlice';
 import Footer from '../components/Footer';
 import MadeOffers from '../Offer/MadeOffers';
 import ReceivedOffers from '../Offer/ReceivedOffers';
@@ -54,8 +54,8 @@ const MyOffers = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchMadeOffers('0x1bbc3c2e674c26264c08bbd8a7911c404d4e3afb'.toLowerCase()));
-    // dispatch(fetchMadeOffers('0x1bbc3c2e674c26264c08bbd8a7911c404d4e3afb'));
+    dispatch(fetchMadeOffers('0x1bbc3c2e674c26264c08bbd8a7911c404d4e3afb'));
+    dispatch(fetchReceivedOffers('0x1bbc3c2e674c26264c08bbd8a7911c404d4e3afb'));
   }, []);
 
   const Content = () => (
@@ -82,7 +82,7 @@ const MyOffers = () => {
           </Tab>
         </Tabs>
         {tab === OFFERS_TAB.make && <MadeOffers offers={madeOffers} />}
-        {/* {tab === OFFERS_TAB.receive && <ReceivedOffers offers={receivedOffers} />} */}
+        {tab === OFFERS_TAB.receive && <ReceivedOffers offers={receivedOffers} />}
       </section>
 
       <Footer />

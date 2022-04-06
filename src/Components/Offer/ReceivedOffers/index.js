@@ -11,13 +11,13 @@ const data = {
   offerPrice: '1500 CRO',
 };
 
-export default function ReceivedOffers() {
+export default function ReceivedOffers({ offers }) {
   return (
     <div>
       <TableHeader />
-      <TableRow data={data} type="Received" />
-      <TableRow data={data} type="Received" />
-      <TableRow data={data} type="Received" />
+      {offers.map((offer, index) => (
+        <TableRow key={index} data={offer} type="Received" />
+      ))}
     </div>
   );
 }

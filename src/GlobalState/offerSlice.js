@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getMyOffers } from '../core/subgraph';
+import { getMyOffers, getReceivedOffers } from '../core/subgraph';
 
 const offerSlice = createSlice({
   name: 'offer',
@@ -22,17 +22,33 @@ const offerSlice = createSlice({
       state.error = false;
       state.madeOffers = action.payload;
     },
+    receivedOffersLoading: (state) => {
+      state.receivedOffersLoading = true;
+      state.error = false;
+    },
+    receivedOffersLoaded: (state, action) => {
+      state.receivedOffersLoading = false;
+      state.error = false;
+      state.receivedOffers = action.payload;
+    },
   },
 });
 
-export const { madeOffersLoading, madeOffersLoaded } = offerSlice.actions;
+export const { madeOffersLoading, madeOffersLoaded, receivedOffersLoading, receivedOffersLoaded } = offerSlice.actions;
 
 export default offerSlice.reducer;
 
 export const fetchMadeOffers = (address) => async (dispatch) => {
   dispatch(madeOffersLoading());
   const { data } = await getMyOffers(address);
-  console.log('data', data);
 
   if (data) dispatch(madeOffersLoaded(data));
+};
+
+export const fetchReceivedOffers = (address) => async (dispatch) => {
+  dispatch(receivedOffersLoading());
+  const { data } = await getReceivedOffers(address);
+  console.log('data', data);
+
+  if (data) dispatch(receivedOffersLoaded(data));
 };

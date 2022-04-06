@@ -39,7 +39,7 @@ export const getInitial = () => {
 export const getMyOffers = async (myAddress) => {
   const myOffersQuery = `
   query($first: Int) {
-    offers(first: 10, where: {buyer: "${myAddress}"}) {
+    offers(first: 10, where: {buyer: "${myAddress.toLowerCase()}"}) {
         id
         hash
         offerIndex
@@ -69,7 +69,45 @@ export const getMyOffers = async (myAddress) => {
   });
 
   const { offers } = response.data;
-  console.log(offers);
+
+  return {
+    data: offers,
+  };
+};
+
+export const getReceivedOffers = async (myAddress) => {
+  const myOffersQuery = `
+  query($first: Int) {
+    offers(first: 10, where: {seller: "${myAddress.toLowerCase()}"}) {
+        id
+        hash
+        offerIndex
+        nftAddress
+        nftId
+        buyer
+        seller
+        coinAddress
+        price
+        state
+        timeCreated
+        timeUpdated
+        timeEnded
+    }
+  }
+`;
+
+  const response = await new Promise((resolve) => {
+    resolve(
+      client.query({
+        query: gql(myOffersQuery),
+        variables: {
+          first: 100,
+        },
+      })
+    );
+  });
+
+  const { offers } = response.data;
 
   return {
     data: offers,
