@@ -135,12 +135,14 @@ export default function TableRow({ data, type }) {
               alt={getCollectionName()}
               width="50"
               height="50"
-              style={{ marginRight: '10px' }}
+              style={{ marginRight: '10px', borderRadius: '100px' }}
             />
           </a>
           <div className="collection-name">{getCollectionName()}</div>
         </div>
-        <div className="table-row-item nft-title">{nftId}</div>
+        <div className="table-row-item nft-title">
+          <a href={`/collection/${collectionData?.slug}/${nftId}`}>{nftId}</a>
+        </div>
         <div className="table-row-item">{getState(state)}</div>
         <div className="table-row-item">{getOfferDate(timeCreated)}</div>
         <div className="table-row-item">{shortAddress(seller || '')}</div>
@@ -170,7 +172,7 @@ export default function TableRow({ data, type }) {
               alt={getCollectionName()}
               width="50"
               height="50"
-              style={{ marginRight: '10px' }}
+              style={{ marginRight: '10px', borderRadius: '100px' }}
             />
           </a>
         </div>
@@ -180,7 +182,9 @@ export default function TableRow({ data, type }) {
         </ItemRow>
         <ItemRow>
           <div>NFT title</div>
-          <div className="nft-title">{nftId}</div>
+          <div className="nft-title">
+            <a href={`/collection/${collectionData?.slug}/${nftId}`}>{nftId}</a>
+          </div>
         </ItemRow>
         <ItemRow>
           <div>Status</div>

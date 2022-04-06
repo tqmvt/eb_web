@@ -54,8 +54,8 @@ const MyOffers = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchMadeOffers('0x1bbc3c2e674c26264c08bbd8a7911c404d4e3afb'));
-    dispatch(fetchReceivedOffers('0x1bbc3c2e674c26264c08bbd8a7911c404d4e3afb'));
+    dispatch(fetchMadeOffers(walletAddress));
+    dispatch(fetchReceivedOffers(walletAddress));
   }, []);
 
   const Content = () => (
