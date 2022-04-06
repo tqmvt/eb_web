@@ -36,7 +36,7 @@
       "anonymous": false,
       "inputs": [
         {
-          "indexed": false,
+          "indexed": true,
           "internalType": "address",
           "name": "nft",
           "type": "address"
@@ -49,12 +49,18 @@
         },
         {
           "indexed": false,
+          "internalType": "uint256",
+          "name": "offerIndex",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
           "internalType": "address",
           "name": "buyer",
           "type": "address"
         },
         {
-          "indexed": false,
+          "indexed": true,
           "internalType": "address",
           "name": "seller",
           "type": "address"
@@ -85,7 +91,7 @@
       "anonymous": false,
       "inputs": [
         {
-          "indexed": false,
+          "indexed": true,
           "internalType": "address",
           "name": "nft",
           "type": "address"
@@ -98,6 +104,12 @@
         },
         {
           "indexed": false,
+          "internalType": "uint256",
+          "name": "offerIndex",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
           "internalType": "address",
           "name": "buyer",
           "type": "address"
@@ -116,7 +128,7 @@
       "anonymous": false,
       "inputs": [
         {
-          "indexed": false,
+          "indexed": true,
           "internalType": "address",
           "name": "nft",
           "type": "address"
@@ -129,6 +141,12 @@
         },
         {
           "indexed": false,
+          "internalType": "uint256",
+          "name": "offerIndex",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
           "internalType": "address",
           "name": "buyer",
           "type": "address"
@@ -159,7 +177,7 @@
       "anonymous": false,
       "inputs": [
         {
-          "indexed": false,
+          "indexed": true,
           "internalType": "address",
           "name": "nft",
           "type": "address"
@@ -172,12 +190,18 @@
         },
         {
           "indexed": false,
+          "internalType": "uint256",
+          "name": "offerIndex",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
           "internalType": "address",
           "name": "buyer",
           "type": "address"
         },
         {
-          "indexed": false,
+          "indexed": true,
           "internalType": "address",
           "name": "seller",
           "type": "address"
@@ -202,6 +226,55 @@
         }
       ],
       "name": "OfferRejected",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "nft",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "offerIndex",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "buyer",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "coinAddress",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "time",
+          "type": "uint256"
+        }
+      ],
+      "name": "OfferUpdated",
       "type": "event"
     },
     {
@@ -295,80 +368,42 @@
     {
       "inputs": [],
       "name": "DEFAULT_ADMIN_ROLE",
-      "outputs": [
-        {
-          "internalType": "bytes32",
-          "name": "",
-          "type": "bytes32"
-        }
-      ],
+      "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }],
       "stateMutability": "view",
       "type": "function"
     },
     {
       "inputs": [],
       "name": "IID_IERC1155",
-      "outputs": [
-        {
-          "internalType": "bytes4",
-          "name": "",
-          "type": "bytes4"
-        }
-      ],
+      "outputs": [{ "internalType": "bytes4", "name": "", "type": "bytes4" }],
       "stateMutability": "view",
       "type": "function"
     },
     {
       "inputs": [],
       "name": "IID_IERC721",
-      "outputs": [
-        {
-          "internalType": "bytes4",
-          "name": "",
-          "type": "bytes4"
-        }
-      ],
+      "outputs": [{ "internalType": "bytes4", "name": "", "type": "bytes4" }],
       "stateMutability": "view",
       "type": "function"
     },
     {
       "inputs": [],
       "name": "STAFF_ROLE",
-      "outputs": [
-        {
-          "internalType": "bytes32",
-          "name": "",
-          "type": "bytes32"
-        }
-      ],
+      "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }],
       "stateMutability": "view",
       "type": "function"
     },
     {
       "inputs": [],
       "name": "UPGRADER_ROLE",
-      "outputs": [
-        {
-          "internalType": "bytes32",
-          "name": "",
-          "type": "bytes32"
-        }
-      ],
+      "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }],
       "stateMutability": "view",
       "type": "function"
     },
     {
       "inputs": [
-        {
-          "internalType": "bytes32",
-          "name": "_hash",
-          "type": "bytes32"
-        },
-        {
-          "internalType": "uint256",
-          "name": "_offerIndex",
-          "type": "uint256"
-        }
+        { "internalType": "bytes32", "name": "_hash", "type": "bytes32" },
+        { "internalType": "uint256", "name": "_offerIndex", "type": "uint256" }
       ],
       "name": "acceptOffer",
       "outputs": [],
@@ -377,108 +412,46 @@
     },
     {
       "inputs": [
-        {
-          "internalType": "bytes32",
-          "name": "_hash",
-          "type": "bytes32"
-        },
-        {
-          "internalType": "uint256",
-          "name": "_offerIndex",
-          "type": "uint256"
-        }
+        { "internalType": "bytes32", "name": "_hash", "type": "bytes32" },
+        { "internalType": "uint256", "name": "_offerIndex", "type": "uint256" }
       ],
-      "name": "cancellOffer",
+      "name": "cancelOffer",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
     },
     {
       "inputs": [
-        {
-          "internalType": "address",
-          "name": "_nft",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "_nftId",
-          "type": "uint256"
-        }
+        { "internalType": "address", "name": "_nft", "type": "address" },
+        { "internalType": "uint256", "name": "_nftId", "type": "uint256" }
       ],
       "name": "generateHash",
-      "outputs": [
-        {
-          "internalType": "bytes32",
-          "name": "",
-          "type": "bytes32"
-        }
-      ],
+      "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }],
       "stateMutability": "pure",
       "type": "function"
     },
     {
       "inputs": [
-        {
-          "internalType": "bytes32",
-          "name": "_hash",
-          "type": "bytes32"
-        },
-        {
-          "internalType": "uint256",
-          "name": "_offerIndex",
-          "type": "uint256"
-        }
+        { "internalType": "bytes32", "name": "_hash", "type": "bytes32" },
+        { "internalType": "uint256", "name": "_offerIndex", "type": "uint256" }
       ],
       "name": "getOffer",
       "outputs": [
-        {
-          "internalType": "bool",
-          "name": "",
-          "type": "bool"
-        },
+        { "internalType": "bool", "name": "", "type": "bool" },
         {
           "components": [
-            {
-              "internalType": "address",
-              "name": "nft",
-              "type": "address"
-            },
-            {
-              "internalType": "address",
-              "name": "seller",
-              "type": "address"
-            },
-            {
-              "internalType": "address",
-              "name": "buyer",
-              "type": "address"
-            },
+            { "internalType": "address", "name": "nft", "type": "address" },
+            { "internalType": "address", "name": "seller", "type": "address" },
+            { "internalType": "address", "name": "buyer", "type": "address" },
             {
               "internalType": "address",
               "name": "coinAddress",
               "type": "address"
             },
-            {
-              "internalType": "enum Status",
-              "name": "status",
-              "type": "uint8"
-            },
-            {
-              "internalType": "uint256",
-              "name": "id",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "amount",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "date",
-              "type": "uint256"
-            }
+            { "internalType": "enum Status", "name": "status", "type": "uint8" },
+            { "internalType": "uint256", "name": "id", "type": "uint256" },
+            { "internalType": "uint256", "name": "amount", "type": "uint256" },
+            { "internalType": "uint256", "name": "date", "type": "uint256" }
           ],
           "internalType": "struct Offer",
           "name": "offer",
@@ -490,61 +463,25 @@
     },
     {
       "inputs": [
-        {
-          "internalType": "address",
-          "name": "_nft",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "_id",
-          "type": "uint256"
-        }
+        { "internalType": "address", "name": "_nft", "type": "address" },
+        { "internalType": "uint256", "name": "_id", "type": "uint256" }
       ],
       "name": "getOffers",
       "outputs": [
         {
           "components": [
-            {
-              "internalType": "address",
-              "name": "nft",
-              "type": "address"
-            },
-            {
-              "internalType": "address",
-              "name": "seller",
-              "type": "address"
-            },
-            {
-              "internalType": "address",
-              "name": "buyer",
-              "type": "address"
-            },
+            { "internalType": "address", "name": "nft", "type": "address" },
+            { "internalType": "address", "name": "seller", "type": "address" },
+            { "internalType": "address", "name": "buyer", "type": "address" },
             {
               "internalType": "address",
               "name": "coinAddress",
               "type": "address"
             },
-            {
-              "internalType": "enum Status",
-              "name": "status",
-              "type": "uint8"
-            },
-            {
-              "internalType": "uint256",
-              "name": "id",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "amount",
-              "type": "uint256"
-            },
-            {
-              "internalType": "uint256",
-              "name": "date",
-              "type": "uint256"
-            }
+            { "internalType": "enum Status", "name": "status", "type": "uint8" },
+            { "internalType": "uint256", "name": "id", "type": "uint256" },
+            { "internalType": "uint256", "name": "amount", "type": "uint256" },
+            { "internalType": "uint256", "name": "date", "type": "uint256" }
           ],
           "internalType": "struct Offer[]",
           "name": "",
@@ -555,36 +492,16 @@
       "type": "function"
     },
     {
-      "inputs": [
-        {
-          "internalType": "bytes32",
-          "name": "role",
-          "type": "bytes32"
-        }
-      ],
+      "inputs": [{ "internalType": "bytes32", "name": "role", "type": "bytes32" }],
       "name": "getRoleAdmin",
-      "outputs": [
-        {
-          "internalType": "bytes32",
-          "name": "",
-          "type": "bytes32"
-        }
-      ],
+      "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }],
       "stateMutability": "view",
       "type": "function"
     },
     {
       "inputs": [
-        {
-          "internalType": "bytes32",
-          "name": "role",
-          "type": "bytes32"
-        },
-        {
-          "internalType": "address",
-          "name": "account",
-          "type": "address"
-        }
+        { "internalType": "bytes32", "name": "role", "type": "bytes32" },
+        { "internalType": "address", "name": "account", "type": "address" }
       ],
       "name": "grantRole",
       "outputs": [],
@@ -593,25 +510,11 @@
     },
     {
       "inputs": [
-        {
-          "internalType": "bytes32",
-          "name": "role",
-          "type": "bytes32"
-        },
-        {
-          "internalType": "address",
-          "name": "account",
-          "type": "address"
-        }
+        { "internalType": "bytes32", "name": "role", "type": "bytes32" },
+        { "internalType": "address", "name": "account", "type": "address" }
       ],
       "name": "hasRole",
-      "outputs": [
-        {
-          "internalType": "bool",
-          "name": "",
-          "type": "bool"
-        }
-      ],
+      "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
       "stateMutability": "view",
       "type": "function"
     },
@@ -621,6 +524,11 @@
           "internalType": "address payable",
           "name": "_market",
           "type": "address"
+        },
+        {
+          "internalType": "address payable",
+          "name": "_stakerAddress",
+          "type": "address"
         }
       ],
       "name": "initialize",
@@ -629,55 +537,23 @@
       "type": "function"
     },
     {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "_nft",
-          "type": "address"
-        }
-      ],
+      "inputs": [{ "internalType": "address", "name": "_nft", "type": "address" }],
       "name": "is1155",
-      "outputs": [
-        {
-          "internalType": "bool",
-          "name": "",
-          "type": "bool"
-        }
-      ],
+      "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
       "stateMutability": "view",
       "type": "function"
     },
     {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "_nft",
-          "type": "address"
-        }
-      ],
+      "inputs": [{ "internalType": "address", "name": "_nft", "type": "address" }],
       "name": "is721",
-      "outputs": [
-        {
-          "internalType": "bool",
-          "name": "",
-          "type": "bool"
-        }
-      ],
+      "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
       "stateMutability": "view",
       "type": "function"
     },
     {
       "inputs": [
-        {
-          "internalType": "address",
-          "name": "_nft",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "_id",
-          "type": "uint256"
-        }
+        { "internalType": "address", "name": "_nft", "type": "address" },
+        { "internalType": "uint256", "name": "_id", "type": "uint256" }
       ],
       "name": "makeOffer",
       "outputs": [],
@@ -686,57 +562,8 @@
     },
     {
       "inputs": [
-        {
-          "internalType": "address",
-          "name": "_nft",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "_id",
-          "type": "uint256"
-        },
-        {
-          "internalType": "uint256",
-          "name": "_amount",
-          "type": "uint256"
-        },
-        {
-          "internalType": "address",
-          "name": "_coinAddress",
-          "type": "address"
-        }
-      ],
-      "name": "makeOfferWithToken",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "proxiableUUID",
-      "outputs": [
-        {
-          "internalType": "bytes32",
-          "name": "",
-          "type": "bytes32"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "bytes32",
-          "name": "_hash",
-          "type": "bytes32"
-        },
-        {
-          "internalType": "uint256",
-          "name": "_offerIndex",
-          "type": "uint256"
-        }
+        { "internalType": "bytes32", "name": "_hash", "type": "bytes32" },
+        { "internalType": "uint256", "name": "_offerIndex", "type": "uint256" }
       ],
       "name": "rejectOffer",
       "outputs": [],
@@ -745,16 +572,8 @@
     },
     {
       "inputs": [
-        {
-          "internalType": "bytes32",
-          "name": "role",
-          "type": "bytes32"
-        },
-        {
-          "internalType": "address",
-          "name": "account",
-          "type": "address"
-        }
+        { "internalType": "bytes32", "name": "role", "type": "bytes32" },
+        { "internalType": "address", "name": "account", "type": "address" }
       ],
       "name": "renounceRole",
       "outputs": [],
@@ -763,16 +582,8 @@
     },
     {
       "inputs": [
-        {
-          "internalType": "bytes32",
-          "name": "role",
-          "type": "bytes32"
-        },
-        {
-          "internalType": "address",
-          "name": "account",
-          "type": "address"
-        }
+        { "internalType": "bytes32", "name": "role", "type": "bytes32" },
+        { "internalType": "address", "name": "account", "type": "address" }
       ],
       "name": "revokeRole",
       "outputs": [],
@@ -780,21 +591,9 @@
       "type": "function"
     },
     {
-      "inputs": [
-        {
-          "internalType": "bytes4",
-          "name": "interfaceId",
-          "type": "bytes4"
-        }
-      ],
+      "inputs": [{ "internalType": "bytes4", "name": "interfaceId", "type": "bytes4" }],
       "name": "supportsInterface",
-      "outputs": [
-        {
-          "internalType": "bool",
-          "name": "",
-          "type": "bool"
-        }
-      ],
+      "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
       "stateMutability": "view",
       "type": "function"
     },
@@ -818,11 +617,7 @@
           "name": "newImplementation",
           "type": "address"
         },
-        {
-          "internalType": "bytes",
-          "name": "data",
-          "type": "bytes"
-        }
+        { "internalType": "bytes", "name": "data", "type": "bytes" }
       ],
       "name": "upgradeToAndCall",
       "outputs": [],

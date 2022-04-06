@@ -148,6 +148,7 @@ export default function TableRow({ data, type }) {
         isOpen={!!offerType}
         toggle={handleOffer}
         nftData={nft}
+        offerData={data}
         collectionMetadata={collectionData?.metadata}
         type={offerType}
       />

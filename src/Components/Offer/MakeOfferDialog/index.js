@@ -113,7 +113,7 @@ const CloseIconContainer = styled.div`
   }
 `;
 
-export default function MakeOfferDialog({ isOpen, toggle, nftData, collectionMetadata, type = 'Make' }) {
+export default function MakeOfferDialog({ isOpen, toggle, type = 'Make', nftData, offerData, collectionMetadata }) {
   const offerContract = useSelector((state) => {
     return state.user.offerContract;
   });
@@ -146,7 +146,7 @@ export default function MakeOfferDialog({ isOpen, toggle, nftData, collectionMet
         });
         receipt = await tx.wait();
       } else if (actionType === OFFER_TYPE.cancel) {
-        tx = await offerContract.cancelOffer(nftData.address, nftData.id);
+        tx = await offerContract.cancelOffer(offerData?.hash, offerData?.offerIndex);
         receipt = await tx.wait();
       }
       dispatch(updateOfferSuccess(receipt.transactionHash));
