@@ -6,11 +6,14 @@ const offerSlice = createSlice({
   initialState: {
     error: false,
 
+    // offers list
     madeOffersLoading: false,
     madeOffers: [],
 
     receivedOffersLoading: false,
     receivedOffers: [],
+
+    // update offer
   },
   reducers: {
     madeOffersLoading: (state) => {

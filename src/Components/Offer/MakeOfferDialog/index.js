@@ -11,6 +11,7 @@ import Input from 'src/Components/components/common/Input';
 import ProfilePreview from 'src/Components/components/ProfilePreview';
 import { croSkullRedPotionImageHack } from 'src/hacks';
 import { humanize, shortAddress } from 'src/utils';
+import { OFFER_TYPE } from '../MadeOffersRow';
 import CloseIcon from 'src/Assets/images/close-icon-orange-grad.svg';
 
 const DialogContainer = styled(Dialog)`
@@ -111,7 +112,7 @@ const CloseIconContainer = styled.div`
   }
 `;
 
-export default function MakeOfferDialog({ isOpen, toggle, nftData, address, collectionMetadata, type = 'Make' }) {
+export default function MakeOfferDialog({ isOpen, toggle, nftData, collectionMetadata, type = 'Make' }) {
   const offerContract = useSelector((state) => {
     return state.user.offerContract;
   });
@@ -121,8 +122,13 @@ export default function MakeOfferDialog({ isOpen, toggle, nftData, address, coll
     setOfferPrice(inputEvent.target.value);
   };
 
+  if (!nftData) {
+    return <></>;
+  }
+
   const handleOfferAction = async (actionType) => {
-    if (actionType === 'Make') {
+    console.log('nftData', nftData);
+    if (actionType === OFFER_TYPE.make) {
       if (!offerPrice || offerPrice < 0) {
         return;
       }
@@ -130,11 +136,20 @@ export default function MakeOfferDialog({ isOpen, toggle, nftData, address, coll
         value: ethers.utils.parseEther(offerPrice),
       });
       await tx.wait();
-    } else if (actionType === 'Cancel') {
+    } else if (actionType === OFFER_TYPE.update) {
+      try {
+        const tx = await offerContract.makeOffer(nftData.address, nftData.id, {
+          value: ethers.utils.parseEther(offerPrice),
+        });
+        await tx.wait();
+      } catch (e) {
+        console.log(e);
+      }
+    } else if (actionType === OFFER_TYPE.cancel) {
       const tx = await offerContract.cancelOffer(nftData.address, nftData.id);
       await tx.wait();
     }
-    toggle();
+    toggle(OFFER_TYPE.none);
   };
 
   const fullImage = () => {
@@ -147,7 +162,7 @@ export default function MakeOfferDialog({ isOpen, toggle, nftData, address, coll
   };
 
   return (
-    <DialogContainer onClose={toggle} open={isOpen} maxWidth="md">
+    <DialogContainer onClose={() => toggle(OFFER_TYPE.none)} open={isOpen} maxWidth="md">
       <DialogContent>
         <DialogTitleContainer>{type} offer</DialogTitleContainer>
         <DialogMainContent>
@@ -171,11 +186,11 @@ export default function MakeOfferDialog({ isOpen, toggle, nftData, address, coll
                   <div className="row" style={{ gap: '2rem 0' }}>
                     <ProfilePreview
                       type="Collection"
-                      title={address && shortAddress(address)}
+                      title={nftData.address && shortAddress(nftData.address)}
                       avatar={collectionMetadata?.avatar}
-                      address={address}
+                      address={nftData.address}
                       verified={collectionMetadata?.verified}
-                      to={`/collection/${address}`}
+                      to={`/collection/${nftData.address}`}
                     />
 
                     {typeof nftData.rank !== 'undefined' && nftData.rank !== null && (
@@ -221,7 +236,7 @@ export default function MakeOfferDialog({ isOpen, toggle, nftData, address, coll
             </div>
           </NftDetailContainer>
         </DialogMainContent>
-        <CloseIconContainer onClick={toggle}>
+        <CloseIconContainer onClick={() => toggle(OFFER_TYPE.none)}>
           <img src={CloseIcon} alt="close" />
         </CloseIconContainer>
       </DialogContent>

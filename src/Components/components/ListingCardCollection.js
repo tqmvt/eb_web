@@ -120,7 +120,6 @@ const ListingCardCollection = ({ listing, imgClass = 'marketplace', watermark, a
         isOpen={openMakeOfferDialog}
         toggle={() => setOpenMakeOfferDialog(!openMakeOfferDialog)}
         nftData={listing}
-        address={address}
         collectionMetadata={collectionMetadata}
         type={modalType}
       />

@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import Button from 'src/Components/components/Button';
 import styled from 'styled-components';
 import moment from 'moment';
 
 import { shortAddress } from 'src/utils';
 import config from 'src/Assets/networks/rpc_config.json';
-// import MakeOfferDialog from '../MakeOfferDialog';
+import MakeOfferDialog from '../MakeOfferDialog';
+import { getNftDetails } from 'src/GlobalState/nftSlice';
 
 const knownContracts = config.known_contracts;
 
@@ -85,11 +87,31 @@ const ItemRow = styled.div`
   }
 `;
 
+export const OFFER_TYPE = {
+  make: 'Make',
+  update: 'Update',
+  accept: 'Accept',
+  reject: 'Reject',
+  cancel: 'Cancel',
+  none: '', // close modal
+};
+
 export default function TableRow({ data, type }) {
   const { state, timeCreated, seller, price, nftAddress, nftId } = data;
-  // const [openMakeOfferDialog, setOpenMakeOfferDialog] = useState(false);
-  const handleUpdateOffer = () => {
-    // setOpenMakeOfferDialog(!openMakeOfferDialog);
+
+  let nft = useSelector((state) => state.nft.nft);
+  nft = { ...nft, address: nftAddress };
+
+  const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   dispatch(getNftDetails(nftAddress, nftId));
+  // }, [dispatch, nftAddress, nftId]);
+
+  const [offerType, setOfferType] = useState(OFFER_TYPE.none);
+  const handleOffer = (type) => {
+    dispatch(getNftDetails(nftAddress, nftId));
+    setOfferType(type);
   };
 
   const collectionData = knownContracts.find((c) => c.address.toLowerCase() === nftAddress.toLowerCase());
@@ -126,6 +148,13 @@ export default function TableRow({ data, type }) {
 
   return (
     <>
+      <MakeOfferDialog
+        isOpen={!!offerType}
+        toggle={handleOffer}
+        nftData={nft}
+        collectionMetadata={collectionData?.metadata}
+        type={offerType}
+      />
       <TableRowContainer>
         <div className="table-row-item">
           <a href={`/collection/${collectionData?.slug}`}>
@@ -148,20 +177,21 @@ export default function TableRow({ data, type }) {
         <div className="table-row-item">{shortAddress(seller || '')}</div>
         <div className="table-row-item">{price} CRO</div>
         <div className="table-row-item">
-          {type === 'Made' && <Button onClick={handleUpdateOffer}>Update</Button>}
-          {type === 'Received' && <Button onClick={handleUpdateOffer}>Accept</Button>}
+          {type === 'Made' && <Button onClick={() => handleOffer(OFFER_TYPE.update)}>Update</Button>}
+          {type === 'Received' && <Button onClick={() => handleOffer(OFFER_TYPE.accept)}>Accept</Button>}
         </div>
         <div className="table-row-item">
-          {type === 'Made' && <Button type="outlined">Withdraw</Button>}
-          {type === 'Received' && <Button type="outlined">Decline</Button>}
+          {type === 'Made' && (
+            <Button type="outlined" onClick={() => handleOffer(OFFER_TYPE.cancel)}>
+              Cancel
+            </Button>
+          )}
+          {type === 'Received' && (
+            <Button type="outlined" onClick={() => handleOffer(OFFER_TYPE.reject)}>
+              Reject
+            </Button>
+          )}
         </div>
-        {/* <MakeOfferDialog
-        isOpen={openMakeOfferDialog}
-        toggle={handleUpdateOffer}
-        nftData={listing}
-        address={address}
-        collectionMetadata={collectionMetadata}
-      /> */}
       </TableRowContainer>
       <TableRowContainerMobile>
         <div className="collection-logo">
@@ -204,12 +234,20 @@ export default function TableRow({ data, type }) {
         </ItemRow>
         <ItemRow>
           <div className="table-row-button">
-            {type === 'Made' && <Button onClick={handleUpdateOffer}>Update</Button>}
-            {type === 'Received' && <Button onClick={handleUpdateOffer}>Accept</Button>}
+            {type === 'Made' && <Button onClick={() => handleOffer(OFFER_TYPE.update)}>Update</Button>}
+            {type === 'Received' && <Button onClick={() => handleOffer(OFFER_TYPE.accept)}>Accept</Button>}
           </div>
           <div className="table-row-button">
-            {type === 'Made' && <Button type="outlined">Withdraw</Button>}
-            {type === 'Received' && <Button type="outlined">Decline</Button>}
+            {type === 'Made' && (
+              <Button type="outlined" onClick={() => handleOffer(OFFER_TYPE.cancel)}>
+                Cancel
+              </Button>
+            )}
+            {type === 'Received' && (
+              <Button type="outlined" onClick={() => handleOffer(OFFER_TYPE.reject)}>
+                Reject
+              </Button>
+            )}
           </div>
         </ItemRow>
       </TableRowContainerMobile>

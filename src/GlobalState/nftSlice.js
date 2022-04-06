@@ -29,8 +29,10 @@ export const { nftLoading, nftReceived } = nftSlice.actions;
 
 export default nftSlice.reducer;
 
-export const getNftDetails = (collectionId, nftId) => async (dispatch, getState) => {
+export const getNftDetails = (collectionAddress, nftId) => async (dispatch, getState) => {
   dispatch(nftLoading());
-  const nft = await getNft(collectionId, nftId);
+  let nft = await getNft(collectionAddress, nftId);
+  nft.nft = { ...nft.nft, address: collectionAddress, id: nftId };
+
   dispatch(nftReceived(nft));
 };
