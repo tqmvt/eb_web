@@ -2892,7 +2892,7 @@
       "name": "MarbleVerse",
       "slug": "marbleverse",
       "multiToken": false,
-      "address": "",
+      "address": "0xc427e0b2e4C9b79F856391b1EF37fD7ee7457d8D",
       "onChain": false,
       "listable": true,
       "metadata": {
@@ -4652,7 +4652,7 @@
       "subtitle": "Find your favorite marble and try to become the rolling champion of the MarbleVerse",
       "description": "MarbleVerse will be the 1st P2E NFT game on Cronos Network and welcomes all into an evolving universe where your marbles race to prove their worth and become more valuable racers. Mint your marbles and let it race for you; as it wins races, you will earn too.\n\nAnyone holding Marble NFTs will be able to join marble races and earn valuable rewards based on their marbles success.\n\nMarbleVerse brings a game where you can enjoy racing, winning, earning and owning beautiful pieces of art with the rest of the community.",
       "author": { "name": "MarbleVerse", "link": "https://www.marbleverse.io/" },
-      "address": "",
+      "address": "0xc427e0b2e4C9b79F856391b1EF37fD7ee7457d8D",
       "maxMintPerTx": 10,
       "maxMintPerAddress": 1000,
       "totalSupply": 20000,
