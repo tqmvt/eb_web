@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Button from 'src/Components/components/Button';
 import styled from 'styled-components';
@@ -103,10 +103,6 @@ export default function TableRow({ data, type }) {
   nft = { ...nft, address: nftAddress };
 
   const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   dispatch(getNftDetails(nftAddress, nftId));
-  // }, [dispatch, nftAddress, nftId]);
 
   const [offerType, setOfferType] = useState(OFFER_TYPE.none);
   const handleOffer = (type) => {

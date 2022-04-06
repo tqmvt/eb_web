@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Dialog, DialogContent, DialogTitle } from '@mui/material';
 import styled from 'styled-components';
 import { ethers } from 'ethers';
@@ -13,6 +13,7 @@ import { croSkullRedPotionImageHack } from 'src/hacks';
 import { humanize, shortAddress } from 'src/utils';
 import { OFFER_TYPE } from '../MadeOffersRow';
 import CloseIcon from 'src/Assets/images/close-icon-orange-grad.svg';
+import { updateOfferSuccess, updateOfferFailed } from 'src/GlobalState/offerSlice';
 
 const DialogContainer = styled(Dialog)`
   .MuiDialogContent-root {
@@ -117,6 +118,8 @@ export default function MakeOfferDialog({ isOpen, toggle, nftData, collectionMet
     return state.user.offerContract;
   });
 
+  const dispatch = useDispatch();
+
   const [offerPrice, setOfferPrice] = useState(0);
   const onOfferValueChange = (inputEvent) => {
     setOfferPrice(inputEvent.target.value);
@@ -127,27 +130,28 @@ export default function MakeOfferDialog({ isOpen, toggle, nftData, collectionMet
   }
 
   const handleOfferAction = async (actionType) => {
-    console.log('nftData', nftData);
-    if (actionType === OFFER_TYPE.make) {
-      if (!offerPrice || offerPrice < 0) {
-        return;
-      }
-      const tx = await offerContract.makeOffer(nftData.address, nftData.id, {
-        value: ethers.utils.parseEther(offerPrice),
-      });
-      await tx.wait();
-    } else if (actionType === OFFER_TYPE.update) {
-      try {
-        const tx = await offerContract.makeOffer(nftData.address, nftData.id, {
+    try {
+      let tx, receipt;
+      if (actionType === OFFER_TYPE.make) {
+        if (!offerPrice || offerPrice < 0) {
+          return;
+        }
+        tx = await offerContract.makeOffer(nftData.address, nftData.id, {
           value: ethers.utils.parseEther(offerPrice),
         });
-        await tx.wait();
-      } catch (e) {
-        console.log(e);
+        receipt = await tx.wait();
+      } else if (actionType === OFFER_TYPE.update) {
+        tx = await offerContract.makeOffer(nftData.address, nftData.id, {
+          value: ethers.utils.parseEther(offerPrice),
+        });
+        receipt = await tx.wait();
+      } else if (actionType === OFFER_TYPE.cancel) {
+        tx = await offerContract.cancelOffer(nftData.address, nftData.id);
+        receipt = await tx.wait();
       }
-    } else if (actionType === OFFER_TYPE.cancel) {
-      const tx = await offerContract.cancelOffer(nftData.address, nftData.id);
-      await tx.wait();
+      dispatch(updateOfferSuccess(receipt.transactionHash));
+    } catch (e) {
+      dispatch(updateOfferFailed(e));
     }
     toggle(OFFER_TYPE.none);
   };
