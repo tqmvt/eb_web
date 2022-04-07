@@ -224,13 +224,13 @@ const Home = () => {
   return (
     <div>
       <GlobalStyles />
-      <section className="promo">
-        <div className="d-flex justify-content-center px-3">
-          <p className="my-auto me-3">
-            <FontAwesomeIcon icon={faBullhorn} /> The Cronos chain is currently experiencing intermittent issues preventing successful transactions. For Metamask users, please try temporarily changing your RPC URL
-          </p>
-        </div>
-      </section>
+      {/*<section className="promo">*/}
+      {/*  <div className="d-flex justify-content-center px-3">*/}
+      {/*    <p className="my-auto me-3">*/}
+      {/*      <FontAwesomeIcon icon={faBullhorn} /> The Cronos chain is currently experiencing intermittent issues preventing successful transactions. For Metamask users, please try temporarily changing your RPC URL*/}
+      {/*    </p>*/}
+      {/*  </div>*/}
+      {/*</section>*/}
       <Jumbotron.Host>{!mobile && <div className="container">{JumbotronData()}</div>}</Jumbotron.Host>
       {mobile && JumbotronData()}
 
