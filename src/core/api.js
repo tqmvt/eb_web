@@ -198,7 +198,11 @@ export async function getCollectionMetadata(contractAddress, sort, filter) {
     };
     query = { ...query, ...sortProps };
   }
-  if (contractAddress != null) query['collection'] = ethers.utils.getAddress(contractAddress.toLowerCase());
+  if (contractAddress != null) {
+    query['collection'] = Array.isArray(contractAddress) ?
+      contractAddress.map(c => ethers.utils.getAddress(c.toLowerCase())) :
+      ethers.utils.getAddress(contractAddress.toLowerCase());
+  }
 
   const queryString = new URLSearchParams(query);
 
