@@ -303,15 +303,6 @@ const AccountMenu = function () {
                   </li>
                 )}
                 <li>
-                  <span onClick={() => navigateTo(`/slothty-rugsurance`)}>
-                    <span>
-                      {' '}
-                      <FontAwesomeIcon icon={faReceipt} />{' '}
-                    </span>
-                    <span>Slothty Rugsurance</span>
-                  </span>
-                </li>
-                <li>
                   <span onClick={clearCookies}>
                     <span>
                       {' '}

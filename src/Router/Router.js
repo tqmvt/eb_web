@@ -91,7 +91,7 @@ const Component = ({ walletAddress, authInitFinished }) => {
           <SentryEnhancedRoute exact path="/collection/:slug/:id" component={Nft} />
           <SentryEnhancedRoute exact path="/seller/:address" component={Seller} />
           <SentryEnhancedRoute exact path="/metaverse-auctions" component={MetaverseAuctions} />
-          <SentryEnhancedRoute exact path="/slothty-rugsurance" component={Rugsurance} />
+          {/*<SentryEnhancedRoute exact path="/slothty-rugsurance" component={Rugsurance} />*/}
           <SentryEnhancedRoute path="*" render={() => <Redirect to="/" />} />
         </Switch>
       </Sentry.ErrorBoundary>
