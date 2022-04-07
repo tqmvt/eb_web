@@ -89,7 +89,7 @@ const Collection721 = ({ collection, cacheName = 'collection' }) => {
 
   useEffect(() => {
     async function asyncFunc() {
-      dispatch(getStats(collection.address));
+      dispatch(getStats(collection.address, null, collection.mergedAddresses));
       try {
         let royalties = await readMarket.royalties(collection.address);
         setRoyalty(Math.round(royalties[1]) / 100);
