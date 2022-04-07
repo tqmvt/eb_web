@@ -115,17 +115,10 @@ function mergeStats(contract, response, index) {
         sales1d: parseInt(a.sales1d) + parseInt(b.sales1d),
         sales7d: parseInt(a.sales7d) + parseInt(b.sales7d),
         sales30d: parseInt(a.sales30d) + parseInt(b.sales30d),
-        totalRoyalties: parseInt(a.totalRoyalties) + parseInt(b.totalRoyalties)
+        totalRoyalties: parseInt(a.totalRoyalties) + parseInt(b.totalRoyalties),
+        floorPrice: parseInt(a.floorPrice) < parseInt(b.floorPrice) ? parseInt(a.floorPrice) : parseInt(b.floorPrice),
+        averageSalePrice: (parseInt(a.averageSalePrice) + parseInt(b.averageSalePrice)) / 2
       }
     });
-  response.collections[index].numberActive = merged.numberActive;
-  response.collections[index].volume1d = merged.numberActive;
-  response.collections[index].volume7d = merged.volume7d;
-  response.collections[index].volume30d = merged.volume30d;
-  response.collections[index].totalVolume = merged.totalVolume;
-  response.collections[index].numberOfSales = merged.numberOfSales;
-  response.collections[index].sales1d = merged.sales1d;
-  response.collections[index].sales7d = merged.sales7d;
-  response.collections[index].sales30d = merged.sales30d;
-  response.collections[index].totalRoyalties = merged.totalRoyalties;
+  response.collections[index] = {...response.collections[index], ...merged};
 }

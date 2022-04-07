@@ -230,7 +230,7 @@ export const getStats = (address, id = null, extraAddresses = null) => async (di
  * @returns {*}
  */
 const combineStats = (collectionStats, anchor) => {
-  const anchoredStats = collectionStats.find(c => caseInsensitiveCompare(c.address, anchor));
+  const anchoredStats = collectionStats.find(c => caseInsensitiveCompare(c.collection, anchor));
   const combined = collectionStats.reduce((a, b) => {
     return {
       numberActive: parseInt(a.numberActive) + parseInt(b.numberActive),
@@ -242,7 +242,9 @@ const combineStats = (collectionStats, anchor) => {
       sales1d: parseInt(a.sales1d) + parseInt(b.sales1d),
       sales7d: parseInt(a.sales7d) + parseInt(b.sales7d),
       sales30d: parseInt(a.sales30d) + parseInt(b.sales30d),
-      totalRoyalties: parseInt(a.totalRoyalties) + parseInt(b.totalRoyalties)
+      totalRoyalties: parseInt(a.totalRoyalties) + parseInt(b.totalRoyalties),
+      floorPrice: parseInt(a.floorPrice) < parseInt(b.floorPrice) ? parseInt(a.floorPrice) : parseInt(b.floorPrice),
+      averageSalePrice: (parseInt(a.averageSalePrice) + parseInt(b.averageSalePrice)) / 2
     }
   })
 
