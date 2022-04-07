@@ -704,6 +704,25 @@
         "discord": "https://discord.gg/x9bvzuSBeV",
         "medium": "https://medium.com/@mariescyborgs/cyborg-brotherhood-28173eccf03a"
       }
+    },
+    {
+      "name": "Lady Ri",
+      "slug": "lady-ri",
+      "multiToken": false,
+      "address": "0x231729415031099336930158078859A19409D1c6",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/ladyri/avatar.jpg",
+        "card": "/img/collections/ladyri/card.jpg",
+        "banner": "/img/collections/ladyri/banner.jpg",
+        "maxSupply": 1111,
+        "website": "",
+        "twitter": "",
+        "discord": ""
+      }
     }
   ],
   "drops": [
