@@ -49,10 +49,14 @@ export const getAllCollections =
         }
 
         if (contract) {
+          if (contract.mergedAddresses) {
+            mergeStats(contract, response, index);
+          }
           response.collections[index].name = contract.name;
           response.collections[index].slug = contract.slug;
           response.collections[index].metadata = contract.metadata;
           response.collections[index].listable = contract.listable;
+          response.collections[index].skip = !!contract.mergedWith;
         }
       });
 
@@ -60,7 +64,7 @@ export const getAllCollections =
 
       dispatch(
         collectionsReceived({
-          collections: sortedCollections.filter((c) => c.listable),
+          collections: sortedCollections.filter((c) => c.listable && !c.skip),
           sort: {
             key: sortKey,
             direction: sortDirection,
@@ -91,4 +95,37 @@ function isNumeric(str) {
     !isNaN(str) && // use type coercion to parse the _entirety_ of the string (`parseFloat` alone does not do this)...
     !isNaN(parseFloat(str))
   ); // ...and ensure strings of whitespace fail
+}
+
+function mergeStats(contract, response, index) {
+  const merged = response
+    .collections
+    .filter(c => {
+      const addresses = [contract.address, ...contract.mergedAddresses];
+      return addresses.includes(c.collection)
+    })
+    .reduce((a, b) => {
+      return {
+        numberActive: parseInt(a.numberActive) + parseInt(b.numberActive),
+        volume1d: parseInt(a.volume1d) + parseInt(b.volume1d),
+        volume7d: parseInt(a.volume7d) + parseInt(b.volume7d),
+        volume30d: parseInt(a.volume30d) + parseInt(b.volume30d),
+        totalVolume: parseInt(a.totalVolume) + parseInt(b.totalVolume),
+        numberOfSales: parseInt(a.numberOfSales) + parseInt(b.numberOfSales),
+        sales1d: parseInt(a.sales1d) + parseInt(b.sales1d),
+        sales7d: parseInt(a.sales7d) + parseInt(b.sales7d),
+        sales30d: parseInt(a.sales30d) + parseInt(b.sales30d),
+        totalRoyalties: parseInt(a.totalRoyalties) + parseInt(b.totalRoyalties)
+      }
+    });
+  response.collections[index].numberActive = merged.numberActive;
+  response.collections[index].volume1d = merged.numberActive;
+  response.collections[index].volume7d = merged.volume7d;
+  response.collections[index].volume30d = merged.volume30d;
+  response.collections[index].totalVolume = merged.totalVolume;
+  response.collections[index].numberOfSales = merged.numberOfSales;
+  response.collections[index].sales1d = merged.sales1d;
+  response.collections[index].sales7d = merged.sales7d;
+  response.collections[index].sales30d = merged.sales30d;
+  response.collections[index].totalRoyalties = merged.totalRoyalties;
 }
