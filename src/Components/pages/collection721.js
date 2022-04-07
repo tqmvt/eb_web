@@ -70,7 +70,9 @@ const Collection721 = ({ collection, cacheName = 'collection' }) => {
 
     const filterOption = FilterOption.default();
     filterOption.type = 'collection';
-    filterOption.address = collection.address;
+    filterOption.address = collection.mergedAddresses ?
+      [collection.address, ...collection.mergedAddresses] :
+      collection.address;
     filterOption.name = 'Specific collection';
 
     dispatch(
