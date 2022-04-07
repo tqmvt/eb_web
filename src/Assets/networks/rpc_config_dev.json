@@ -3412,6 +3412,25 @@
         "twitter": "https://twitter.com/CroGnomes",
         "discord": "https://discord.gg/BCnVzv5jx3"
       }
+    },
+    {
+      "name": "Lady Ri",
+      "slug": "lady-ri",
+      "multiToken": false,
+      "address": "",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/ladyri/avatar.jpg",
+        "card": "/img/collections/ladyri/card.jpg",
+        "banner": "/img/collections/ladyri/banner.jpg",
+        "maxSupply": 1111,
+        "website": "",
+        "twitter": "",
+        "discord": ""
+      }
     }
   ],
   "drops": [
