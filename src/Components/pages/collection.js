@@ -12,12 +12,17 @@ const Collection = () => {
 
   const [type, setType] = useState('721');
   const [collection, setCollection] = useState(null);
-  const [redirect, setRedirect] = useState(false);
+  const [redirect, setRedirect] = useState(null);
+  const [initialized, setInitialized] = useState(false);
 
   useEffect(() => {
-    setRedirect(false);
+    setRedirect(null);
     let col = knownContracts.find((c) => c.slug === slug);
     if (col) {
+      if (!!col.mergedWith) {
+        let redirectToCollection = knownContracts.find((c) => caseInsensitiveCompare(c.address, col.mergedWith));
+        setRedirect(redirectToCollection.slug);
+      }
       setCollection(col);
       setType(col.multiToken ? '1155' : '721');
       if (col.multiToken) setType(col.multiToken ? '1155' : '721');
@@ -25,29 +30,36 @@ const Collection = () => {
       col = knownContracts.find((c) => caseInsensitiveCompare(c.address, slug));
       if (col) {
         setCollection(col);
-        setRedirect(true);
+        setRedirect(col.slug);
       }
     }
+    setInitialized(true);
   }, [slug]);
 
   return (
     <>
-      {collection && (
+      {initialized && (
         <>
           {redirect ? (
-            <Redirect to={`/collection/${collection.slug}`} />
+            <Redirect to={`/collection/${redirect}`} />
           ) : (
             <>
-              {type === '1155' ? (
+              {collection ? (
                 <>
-                {collection.split ? (
-                  <Collection1155 address={collection.address} tokenId={collection.id} />
-                ) : (
-                  <Collection1155 address={collection.address} />
-                )}
+                  {type === '1155' ? (
+                    <>
+                      {collection.split ? (
+                        <Collection1155 address={collection.address} tokenId={collection.id} />
+                      ) : (
+                        <Collection1155 address={collection.address} />
+                      )}
+                    </>
+                  ) : (
+                    <Collection721 collection={collection} />
+                  )}
                 </>
               ) : (
-                <Collection721 collection={collection} />
+                <Redirect to="/" />
               )}
             </>
           )}
