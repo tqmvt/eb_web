@@ -175,7 +175,7 @@ export default function TableRow({ data, type }) {
         </div>
         <div className="table-row-item">{getState(state)}</div>
         <div className="table-row-item">{getOfferDate(timeCreated)}</div>
-        <div className="table-row-item">{shortAddress(seller || '')}</div>
+        <div className="table-row-item">{seller ? shortAddress(seller) : '-'}</div>
         <div className="table-row-item">{price} CRO</div>
         <div className="table-row-item">
           {type === 'Made' && <Button onClick={() => handleOffer(OFFER_TYPE.update)}>Update</Button>}
@@ -227,7 +227,7 @@ export default function TableRow({ data, type }) {
         </ItemRow>
         <ItemRow>
           <div>Owner</div>
-          <div>{shortAddress(seller || '')}</div>
+          <div>{seller ? shortAddress(seller) : '-'}</div>
         </ItemRow>
         <ItemRow>
           <div>Offer Price</div>
