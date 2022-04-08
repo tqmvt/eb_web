@@ -442,7 +442,7 @@ const MultiDrop = () => {
           </div>
         </section>
 
-        <section className="container no-top" id="drop_detail">
+        <section className="container no-top no-bottom mb-4" id="drop_detail">
           <div className="row">
             <div className="text-center">
               <h2>{drop.title}</h2>
@@ -474,21 +474,21 @@ const MultiDrop = () => {
                   )}
               </div>
 
-              <div className="mt-4">
-                <div>
-                  <h6 className="mb-1">Presale Starts</h6>
-                  <h3>
-                    {new Date(drop.salePeriods.presale).toDateString()}, {new Date(drop.salePeriods.presale).toTimeString()}
-                  </h3>
-                </div>
+              {/*<div className="mt-4">*/}
+              {/*  <div>*/}
+              {/*    <h6 className="mb-1">Presale Starts</h6>*/}
+              {/*    <h3>*/}
+              {/*      {new Date(drop.salePeriods.presale).toDateString()}, {new Date(drop.salePeriods.presale).toTimeString()}*/}
+              {/*    </h3>*/}
+              {/*  </div>*/}
 
-                <div>
-                  <h6 className="mb-1">Public Sale Starts</h6>
-                  <h3>
-                    {new Date(drop.salePeriods.public).toDateString()}, {new Date(drop.salePeriods.public).toTimeString()}
-                  </h3>
-                </div>
-              </div>
+              {/*  <div>*/}
+              {/*    <h6 className="mb-1">Public Sale Starts</h6>*/}
+              {/*    <h3>*/}
+              {/*      {new Date(drop.salePeriods.public).toDateString()}, {new Date(drop.salePeriods.public).toTimeString()}*/}
+              {/*    </h3>*/}
+              {/*  </div>*/}
+              {/*</div>*/}
             </div>
           </div>
 
