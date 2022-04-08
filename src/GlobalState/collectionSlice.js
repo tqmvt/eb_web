@@ -5,6 +5,7 @@ import {
   getCollectionTraits,
   getCollectionPowertraits,
 } from '../core/api';
+import {caseInsensitiveCompare} from "../utils";
 
 const collectionSlice = createSlice({
   name: 'collection',
@@ -83,7 +84,6 @@ const collectionSlice = createSlice({
       }
     },
     onSearch: (state, action) => {
-      console.log(action.payload);
       state.listings = [];
       state.totalPages = 0;
       state.query.page = 0;
@@ -189,20 +189,27 @@ export const resetListings = () => async (dispatch) => {
   dispatch(fetchListings());
 };
 
-export const getStats = (address, id=null) => async (dispatch) => {
+export const getStats = (address, id = null, extraAddresses = null) => async (dispatch) => {
   try {
+    const mergedAddresses = extraAddresses ? [address, ...extraAddresses] : address;
     var response;
     if (id != null) {
-      response = await getCollectionMetadata(address, null, {type: "tokenId", value: id});
+      response = await getCollectionMetadata(
+        mergedAddresses,
+        null, {
+          type: "tokenId",
+          value: id
+        }
+      );
     } else {
-      response = await getCollectionMetadata(address);
-    }    
+      response = await getCollectionMetadata(mergedAddresses);
+    }
     const traits = await getCollectionTraits(address);
     const powertraits = await getCollectionPowertraits(address);
     dispatch(
       onCollectionStatsLoaded({
         stats: {
-          ...response.collections[0],
+          ...combineStats(response.collections, address),
           ...{
             traits: traits,
             powertraits: powertraits,
@@ -214,3 +221,32 @@ export const getStats = (address, id=null) => async (dispatch) => {
     console.log(error);
   }
 };
+
+/**
+ * Combine stats if a collection tracks multiple contracts
+ *
+ * @param collectionStats stats returned from the API
+ * @param anchor primary collection address in which to merge the stats
+ * @returns {*}
+ */
+const combineStats = (collectionStats, anchor) => {
+  const anchoredStats = collectionStats.find(c => caseInsensitiveCompare(c.collection, anchor));
+  const combined = collectionStats.reduce((a, b) => {
+    return {
+      numberActive: parseInt(a.numberActive) + parseInt(b.numberActive),
+      volume1d: parseInt(a.volume1d) + parseInt(b.volume1d),
+      volume7d: parseInt(a.volume7d) + parseInt(b.volume7d),
+      volume30d: parseInt(a.volume30d) + parseInt(b.volume30d),
+      totalVolume: parseInt(a.totalVolume) + parseInt(b.totalVolume),
+      numberOfSales: parseInt(a.numberOfSales) + parseInt(b.numberOfSales),
+      sales1d: parseInt(a.sales1d) + parseInt(b.sales1d),
+      sales7d: parseInt(a.sales7d) + parseInt(b.sales7d),
+      sales30d: parseInt(a.sales30d) + parseInt(b.sales30d),
+      totalRoyalties: parseInt(a.totalRoyalties) + parseInt(b.totalRoyalties),
+      floorPrice: parseInt(a.floorPrice) < parseInt(b.floorPrice) ? parseInt(a.floorPrice) : parseInt(b.floorPrice),
+      averageSalePrice: (parseInt(a.averageSalePrice) + parseInt(b.averageSalePrice)) / 2
+    }
+  })
+
+  return {...anchoredStats, ...combined};
+}
