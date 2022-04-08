@@ -137,6 +137,8 @@ export default function MakeOfferDialog({ isOpen, toggle, type = 'Make', nftData
     setOfferPrice(inputEvent.target.value);
   };
 
+  const [isOnAction, setIsOnAction] = useState(false);
+
   if (!nftData) {
     return <></>;
   }
@@ -144,6 +146,7 @@ export default function MakeOfferDialog({ isOpen, toggle, type = 'Make', nftData
   const handleOfferAction = async (actionType) => {
     try {
       let tx, receipt;
+      setIsOnAction(true);
       if (actionType === OFFER_TYPE.make) {
         if (!offerPrice || offerPrice < 0) {
           return;
@@ -165,6 +168,7 @@ export default function MakeOfferDialog({ isOpen, toggle, type = 'Make', nftData
     } catch (e) {
       dispatch(updateOfferFailed(e));
     }
+    setIsOnAction(false);
     toggle(OFFER_TYPE.none);
   };
 
@@ -249,7 +253,9 @@ export default function MakeOfferDialog({ isOpen, toggle, type = 'Make', nftData
                 </FlexRow>
               )}
               <div>
-                <Button onClick={() => handleOfferAction(type)}>{type} Offer</Button>
+                <Button onClick={() => handleOfferAction(type)} isLoading={isOnAction} disabled={isOnAction}>
+                  {type} Offer
+                </Button>
               </div>
             </NftDetailContainer>
           </DialogMainContent>

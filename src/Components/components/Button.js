@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Spinner } from 'react-bootstrap';
 
 const DefaultButton = styled.button`
   font-size: 18px;
@@ -14,6 +15,12 @@ const DefaultButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  &:disabled {
+    color: ${({ theme }) => theme.colors.textColor1};
+    background: #cbcbcb 0% 0% no-repeat padding-box;
+    border: 1px solid #cbcbcb;
+  }
 `;
 
 const OutlinedButton = styled.button`
@@ -29,11 +36,47 @@ const OutlinedButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  &:disabled {
+    color: ${({ theme }) => theme.colors.textColor1};
+    background: #cbcbcb 0% 0% no-repeat padding-box;
+    border: 1px solid #cbcbcb;
+  }
 `;
 
-export default function Button({ type = 'default', children, ...props }) {
+const SpinnerContainer = styled.div`
+  margin-right: 6px;
+`;
+
+export default function Button({ type = 'default', isLoading = false, children, ...props }) {
   if (type === 'outlined') {
-    return <OutlinedButton {...props}>{children}</OutlinedButton>;
+    return (
+      <>
+        <OutlinedButton {...props}>
+          {isLoading && (
+            <SpinnerContainer>
+              <Spinner animation="border" role="status" size="sm">
+                <span className="visually-hidden">Loading...</span>
+              </Spinner>
+            </SpinnerContainer>
+          )}
+          {children}
+        </OutlinedButton>
+      </>
+    );
   }
-  return <DefaultButton {...props}>{children}</DefaultButton>;
+  return (
+    <>
+      <DefaultButton {...props}>
+        {isLoading && (
+          <SpinnerContainer>
+            <Spinner animation="border" role="status" size="sm">
+              <span className="visually-hidden">Loading...</span>
+            </Spinner>
+          </SpinnerContainer>
+        )}
+        {children}
+      </DefaultButton>
+    </>
+  );
 }
