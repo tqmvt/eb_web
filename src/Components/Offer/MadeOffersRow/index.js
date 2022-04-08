@@ -159,7 +159,7 @@ export default function TableRow({ data, type }) {
           type={offerType}
         />
       )}
-      {offerType === OFFER_TYPE.accept && (
+      {!!offerType && offerType === OFFER_TYPE.accept && (
         <AcceptOfferDialog
           isOpen={!!offerType}
           toggle={handleOffer}

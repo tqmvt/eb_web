@@ -1,7 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { BigNumber, Contract, ethers } from 'ethers';
 import { toast } from 'react-toastify';
+
 import { getMyOffers, getReceivedOffers, getOffersForSingleNFT } from '../core/subgraph';
 import { createSuccessfulTransactionToastContent } from '../utils';
+import { ERC1155, ERC721, MetaPixelsAbi, SouthSideAntsReadAbi } from '../Contracts/Abis';
+import { isMetapixelsCollection, isSouthSideAntsCollection } from '../utils';
+import config from '../Assets/networks/rpc_config.json';
+
+const knownContracts = config.known_contracts;
 
 const offerSlice = createSlice({
   name: 'offer',
@@ -17,6 +24,8 @@ const offerSlice = createSlice({
 
     offersForSingleNFTLoading: false,
     offersForSingleNFT: [],
+
+    contract: null,
   },
   reducers: {
     madeOffersLoading: (state) => {
@@ -53,6 +62,10 @@ const offerSlice = createSlice({
     offerActionFailed: (state, action) => {
       state.error = action.payload;
     },
+    // update nft contract instance
+    updateContractInstanceSuccess: (state, action) => {
+      state.contract = action.payload;
+    },
   },
 });
 
@@ -65,6 +78,7 @@ export const {
   offersForSingleNFTLoaded,
   offerActionSuccess,
   offerActionFailed,
+  updateContractInstanceSuccess,
 } = offerSlice.actions;
 
 export default offerSlice.reducer;
@@ -105,4 +119,23 @@ export const updateOfferFailed = (error) => async (dispatch) => {
     console.log(error);
     toast.error('Unknown Error');
   }
+};
+
+export const updateContractInstance = (walletProvider, nftAddress) => async (dispatch) => {
+  const signer = walletProvider.getSigner();
+  let nftInfo = knownContracts.find((c) => c.address.toLowerCase() === nftAddress.toLowerCase());
+
+  let contractInstance;
+  // ERC 1155
+  if (nftInfo && nftInfo.multiToken) {
+    contractInstance = new Contract(nftAddress, ERC1155, signer);
+  }
+  if (isMetapixelsCollection(nftAddress)) {
+    contractInstance = new Contract(nftAddress, MetaPixelsAbi, signer);
+  }
+
+  // ERC 721
+  contractInstance = new Contract(nftAddress, ERC721, signer);
+
+  dispatch(updateContractInstanceSuccess(contractInstance));
 };

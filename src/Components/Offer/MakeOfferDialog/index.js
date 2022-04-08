@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { ethers } from 'ethers';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Card, Form, Spinner } from 'react-bootstrap';
+import { Spinner } from 'react-bootstrap';
 
 import Button from 'src/Components/components/Button';
 import Input from 'src/Components/components/common/Input';
@@ -162,9 +162,6 @@ export default function MakeOfferDialog({ isOpen, toggle, type = 'Make', nftData
         receipt = await tx.wait();
       } else if (actionType === OFFER_TYPE.cancel) {
         tx = await offerContract.cancelOffer(offerData?.hash, offerData?.offerIndex);
-        receipt = await tx.wait();
-      } else if (actionType === OFFER_TYPE.accept) {
-        tx = await offerContract.acceptOffer(offerData?.hash, offerData?.offerIndex);
         receipt = await tx.wait();
       } else if (actionType === OFFER_TYPE.reject) {
         tx = await offerContract.rejectOffer(offerData?.hash, offerData?.offerIndex);
