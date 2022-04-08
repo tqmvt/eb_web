@@ -48,7 +48,9 @@ const Tab = styled.div`
 
 const MyOffers = () => {
   const walletAddress = useSelector((state) => state.user.address);
+  const madeOffersLoading = useSelector((state) => state.offer.madeOffersLoading);
   const madeOffers = useSelector((state) => state.offer.madeOffers);
+  const receivedOffersLoading = useSelector((state) => state.offer.receivedOffersLoading);
   const receivedOffers = useSelector((state) => state.offer.receivedOffers);
   const [tab, setTab] = useState(OFFERS_TAB.make);
   const dispatch = useDispatch();
@@ -81,8 +83,8 @@ const MyOffers = () => {
             {OFFERS_TAB.receive}
           </Tab>
         </Tabs>
-        {tab === OFFERS_TAB.make && <MadeOffers offers={madeOffers} />}
-        {tab === OFFERS_TAB.receive && <ReceivedOffers offers={madeOffers} />}
+        {tab === OFFERS_TAB.make && <MadeOffers offers={madeOffers} isLoading={madeOffersLoading} />}
+        {tab === OFFERS_TAB.receive && <ReceivedOffers offers={madeOffers} isLoading={receivedOffersLoading} />}
       </section>
 
       <Footer />
