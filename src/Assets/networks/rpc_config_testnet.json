@@ -647,6 +647,7 @@
       "onChain": false,
       "listable": false,
       "metadata": {
+        "description": "",
         "verified": true,
         "avatar": "/img/collections/nobuddies/avatar.webp",
         "banner": "/img/collections/nobuddies/banner.webp",
@@ -665,6 +666,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
+        "description": "",
         "verified": true,
         "avatar": "/img/collections/marbleverse/avatar.webp",
         "banner": "/img/collections/marbleverse/banner.webp",
