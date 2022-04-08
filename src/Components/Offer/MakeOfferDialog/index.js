@@ -237,25 +237,24 @@ export default function MakeOfferDialog({ isOpen, toggle, type = 'Make', nftData
                 <Royalty>Royalty</Royalty>
                 <Royalty>{nftData?.royalty ?? '-'}</Royalty>
               </FlexRow>
-              {type === OFFER_TYPE.make ||
-                (type === OFFER_TYPE.update && (
-                  <FlexRow>
-                    <OfferPrice>Offer Price</OfferPrice>
-                    <OfferPriceInput>
-                      <Input
-                        type="number"
-                        className="mx-2"
-                        onKeyDown={(e) => {
-                          if (e.code === 'Period' || e.code === 'Minus') {
-                            e.preventDefault();
-                          }
-                        }}
-                        onChange={onOfferValueChange}
-                      />
-                      CRO
-                    </OfferPriceInput>
-                  </FlexRow>
-                ))}
+              {(type === OFFER_TYPE.make || type === OFFER_TYPE.update) && (
+                <FlexRow>
+                  <OfferPrice>Offer Price</OfferPrice>
+                  <OfferPriceInput>
+                    <Input
+                      type="number"
+                      className="mx-2"
+                      onKeyDown={(e) => {
+                        if (e.code === 'Period' || e.code === 'Minus') {
+                          e.preventDefault();
+                        }
+                      }}
+                      onChange={onOfferValueChange}
+                    />
+                    CRO
+                  </OfferPriceInput>
+                </FlexRow>
+              )}
               <div>
                 <Button onClick={() => handleOfferAction(type)} isLoading={isOnAction} disabled={isOnAction}>
                   {type} Offer
