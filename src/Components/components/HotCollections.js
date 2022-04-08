@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import Slider from 'react-slick';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
@@ -8,33 +8,24 @@ import 'slick-carousel/slick/slick-theme.css';
 
 import { settings } from './constants';
 import CustomSlide from './CustomSlide';
-import config from '../../Assets/networks/rpc_config.json';
-export const collections = config.known_contracts;
+import {getAllCollections} from "../../GlobalState/collectionsSlice";
 
 const HotCollections = () => {
   const dispatch = useDispatch();
 
-  const [hotCollections, setHotCollections] = useState([]);
-
-  function arrangeCollections() {
-    const shortList = ['mm-treehouse', 'mad-meerkat', 'croskull', 'meta-cyborgs', 'crobots', 'lazy-horse', 'barn-cats'];
-
-    const featuredCollections = [];
-    shortList.forEach(function (val, index) {
-      const collection = collections.find((c) => c.metadata?.card && c.slug === val);
-      if (collection) featuredCollections.push(collection);
-    });
-
-    const otherCollections = collections
-      .filter((c) => c.metadata?.card && !shortList.includes(c.slug))
-      .sort((a, b) => (a.name > b.name ? 1 : -1));
-
-    const listableCollections = [...featuredCollections, ...otherCollections].filter((c) => c.listable);
-    setHotCollections(listableCollections);
-  }
+  const hotCollections = useSelector((state) => {
+    return state.collections.collections
+      .slice()
+      .sort((a, b) => {
+        const aVal = parseInt(a.volume30d) * parseInt(a.volume30d);
+        const bVal = parseInt(b.volume30d) * parseInt(b.volume30d);
+        return aVal < bVal ? 1 : -1;
+      })
+      .slice(0, 10);
+  });
 
   useEffect(() => {
-    arrangeCollections();
+    dispatch(getAllCollections());
   }, [dispatch]);
 
   const PrevArrow = (props) => {
