@@ -52,7 +52,17 @@
       "multiToken": true,
       "id": 1,
       "listable": true,
-      "metadata": {}
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "",
+        "banner": "",
+        "card": "",
+        "maxSupply": 1000,
+        "website": "",
+        "twitter": "",
+        "discord": ""
+      }
     },
     {
       "slug": "basic-nft",
@@ -61,7 +71,17 @@
       "address": "0xCfEEe4c7B10C52854e061607C347e0D79C6F73A1",
       "onChain": false,
       "listable": true,
-      "metadata": {}
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "",
+        "banner": "",
+        "card": "",
+        "maxSupply": 1000,
+        "website": "",
+        "twitter": "",
+        "discord": ""
+      }
     },
     {
       "slug": "cronos-warrior",
@@ -70,7 +90,17 @@
       "address": "0x6777a24aef6374265B4A900c9Db57673cFF426Ab",
       "onChain": false,
       "listable": true,
-      "metadata": {}
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "",
+        "banner": "",
+        "card": "",
+        "maxSupply": 1000,
+        "website": "",
+        "twitter": "",
+        "discord": ""
+      }
     },
     {
       "slug": "cronies",
@@ -79,7 +109,16 @@
       "address": "0xe9DCa9E03F31CBD538A19a89eA2cA3684AF2788f",
       "onChain": true,
       "listable": true,
-      "metadata": {}
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "",
+        "banner": "",
+        "card": "",
+        "maxSupply": 1000,
+        "website": "",
+        "twitter": "",
+        "discord": ""}
     },
     {
       "slug": "crypto-lovers",
@@ -88,7 +127,17 @@
       "address": "0xEf05151db4e0c96fff0921481300e2d53618Ee96",
       "onChain": false,
       "listable": true,
-      "metadata": {}
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "",
+        "banner": "",
+        "card": "",
+        "maxSupply": 1000,
+        "website": "",
+        "twitter": "",
+        "discord": ""
+      }
     },
     {
       "slug": "admiration",
@@ -102,7 +151,8 @@
         "verified": true,
         "avatar": "/img/collections/deplone/avatar.jpg",
         "banner": "/img/collections/deplone/page_banner.jpg",
-        "card": "/img/drops/deplone/drop.gif"
+        "card": "/img/drops/deplone/drop.gif",
+        "maxSupply": 2000
       }
     },
     {
@@ -117,7 +167,8 @@
         "verified": true,
         "avatar": "/img/collections/lazyhorse/avatar.png",
         "card": "/img/collections/lazyhorse/card.png",
-        "banner": "/img/collections/lazyhorse/banner.png"
+        "banner": "/img/collections/lazyhorse/banner.png",
+        "maxSupply": 2000
       }
     },
     {
@@ -132,7 +183,8 @@
         "verified": true,
         "avatar": "/img/collections/crougars/avatar.png",
         "card": "/img/collections/crougars/card.gif",
-        "banner": "/img/collections/crougars/banner.webp"
+        "banner": "/img/collections/crougars/banner.webp",
+        "maxSupply": 2000,
       }
     },
     {
@@ -162,6 +214,7 @@
       "metadata": {
         "description": "",
         "verified": true,
+        "maxSupply": 2000,
         "avatar": "/img/collections/lazyhorse/avatar.png",
         "card": "/img/collections/lazyhorse/card.png",
         "banner": "/img/collections/lazyhorse/banner.png"
@@ -177,6 +230,7 @@
       "metadata": {
         "description": "They are magical! Their strength lies in feeling and finding those in need.",
         "verified": true,
+        "maxSupply": 2000,
         "avatar": "/img/collections/barbara/spacecrystalunicorns/avatar.jpg",
         "card": "/img/collections/barbara/spacecrystalunicorns/card.jpg",
         "banner": "/img/collections/barbara/spacecrystalunicorns/banner.jpg"
@@ -267,6 +321,7 @@
         "avatar": "/img/collections/magbrew/avatar.jpg",
         "card": "/img/collections/magbrew/card.jpg",
         "banner": "/img/collections/magbrew/banner.webp",
+        "maxSupply": 2000,
         "website": "https://www.magbrewvikings.com/",
         "twitter": "https://twitter.com/MAGBrewVikings",
         "discord": "https://discord.gg/xPN84dsmuC",
@@ -283,6 +338,7 @@
       "metadata": {
         "description": "",
         "verified": true,
+        "maxSupply": 2000,
         "avatar": "/img/collections/crazyscientists/avatar.gif",
         "card": "/img/collections/crazyscientists/card.png",
         "banner": "/img/collections/crazyscientists/banner.png",
@@ -301,6 +357,7 @@
       "metadata": {
         "description": "",
         "verified": true,
+        "maxSupply": 2000,
         "avatar": "/img/collections/bobanftea/avatar.png",
         "card": "/img/collections/bobanftea/card.png",
         "banner": "/img/collections/bobanftea/banner.png",
@@ -319,6 +376,7 @@
       "metadata": {
         "description": "",
         "verified": true,
+        "maxSupply": 2000,
         "avatar": "/img/collections/recklessrobots/avatar.png",
         "card": "/img/collections/recklessrobots/card.png",
         "banner": "/img/collections/recklessrobots/banner.webp",
@@ -337,6 +395,7 @@
       "metadata": {
         "description": "",
         "verified": true,
+        "maxSupply": 2000,
         "avatar": "/img/collections/hypeddogs/avatar.png",
         "card": "/img/collections/hypeddogs/card.gif",
         "banner": "/img/collections/hypeddogs/banner.webp",
@@ -393,6 +452,7 @@
       "metadata": {
         "description": "",
         "verified": true,
+        "maxSupply": 2000,
         "avatar": "/img/collections/meta_cyborgs/avatar.png",
         "card": "/img/collections/meta_cyborgs/banner.webp",
         "banner": "/img/collections/meta_cyborgs/banner.webp",
@@ -490,7 +550,17 @@
       "address": "0x99a1E178d0AB41DbdA42EED5faaDFAA073c4AA14",
       "onChain": false,
       "listable": false,
-      "metadata": {}
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "",
+        "banner": "",
+        "card": "",
+        "maxSupply": 1000,
+        "website": "",
+        "twitter": "",
+        "discord": ""
+      }
     },
     {
       "name": "Lolita Friends",
@@ -704,8 +774,7 @@
         "discord": "https://discord.gg/x9bvzuSBeV",
         "medium": "https://medium.com/@mariescyborgs/cyborg-brotherhood-28173eccf03a"
       }
-    },
-    {
+    }, {
       "name": "Lady Ri",
       "slug": "lady-ri",
       "multiToken": false,
