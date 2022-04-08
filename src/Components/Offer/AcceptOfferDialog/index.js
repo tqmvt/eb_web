@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {
   Box,
   CardMedia,
@@ -19,6 +19,43 @@ import {
 import { ethers } from 'ethers';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import styled from 'styled-components';
+import Blockies from 'react-blockies';
+import { shortAddress } from 'src/utils';
+
+const DialogContainer = styled(Dialog)`
+  .MuiDialogContent-root {
+    padding: 36px 50px !important;
+    border-radius: 8px;
+
+    @media only screen and (max-width: ${({ theme }) => theme.breakpoints.md}) {
+      width: 100%;
+    }
+  }
+`;
+
+const DialogTitleContainer = styled(DialogTitle)`
+  font-size: 18px !important;
+  color: ${({ theme }) => theme.colors.textColor3};
+  padding: 0px 24px !important;
+  margin-bottom: 12px !important;
+  font-weight: bold !important;
+  text-align: left;
+`;
+
+const CardMediaContainer = styled(CardMedia)`
+  border-radius: 6px;
+`;
+
+const BuyerAddress = styled.div`
+  margin-top: 12px;
+
+  & .blockies {
+    border-radius: 100px;
+    margin-left: 12px;
+    margin-right: 8px;
+  }
+`;
 
 const AcceptDialogStepEnum = {
   WaitingForTransferApproval: 0,
@@ -29,37 +66,30 @@ const AcceptDialogStepEnum = {
 
 Object.freeze(AcceptDialogStepEnum);
 
-const AcceptOfferDialog = ({ isOpen, toggle, nftData, address, collectionMetadata }) => {
-  // const dispatch = useDispatch();
+const offerSteps = [
+  {
+    label: 'Approve Offer',
+    description: `Ebisu's Bay needs approval to transfer your NFT on your behalf.`,
+  },
+  {
+    label: 'Offer Price',
+    description: `Enter the offer price in CRO.`,
+  },
+  {
+    label: 'Confirm Price',
+    description: '',
+  },
+  {
+    label: 'Confirm acceptance offer',
+    description: 'Sign transaction to complete transfer.',
+  },
+];
+
+const AcceptOfferDialog = ({ isOpen, toggle, nftData, offerData, collectionMetadata }) => {
+  const dispatch = useDispatch();
 
   const [salePrice, setSalePrice] = useState(0);
   const [priceError, setPriceError] = useState('');
-
-  const onAcceptDialogPriceValueChange = (inputEvent) => {
-    setSalePrice(inputEvent.target.value);
-  };
-
-  const offerSteps = [
-    {
-      label: 'Approve Offer',
-      description: `Ebisu's Bay needs approval to transfer your NFT on your behalf.`,
-    },
-    {
-      label: 'Offer Price',
-      description: `Enter the offer price in CRO.`,
-    },
-    {
-      label: 'Confirm Price',
-      description: '',
-    },
-    {
-      label: 'Confirm acceptance offer',
-      description: 'Sign transaction to complete transfer.',
-    },
-  ];
-
-  const [acceptDialogActiveStep, setAcceptDialogActiveStep] = useState(AcceptDialogStepEnum.WaitingForTransferApproval);
-  const [nextEnabled, setNextEnabled] = useState(false);
 
   const [fee, setFee] = useState(0);
   const [royalty, setRoyalty] = useState(0);
@@ -67,23 +97,18 @@ const AcceptOfferDialog = ({ isOpen, toggle, nftData, address, collectionMetadat
   const [floorPrice, setFloorPrice] = useState(0);
   const [belowFloor, setBelowFloor] = useState(false);
 
+  // steps
+  const [acceptDialogActiveStep, setAcceptDialogActiveStep] = useState(AcceptDialogStepEnum.WaitingForTransferApproval);
+  const [nextEnabled, setNextEnabled] = useState(false);
+
+  // check for approval
   useEffect(() => {
-    const re = /^[0-9\b]+$/;
-    if (salePrice && salePrice.length > 0 && salePrice[0] !== '0' && re.test(salePrice)) {
-      setPriceError('');
-      setNextEnabled(true);
-      if (salePrice != null) {
-        if (salePrice <= floorPrice) {
-          setBelowFloor(true);
-        }
-      }
-    } else {
-      if (salePrice != '' && salePrice != null) {
-        setPriceError('Price must only contain full numbers!');
-      }
-      setNextEnabled(false);
-    }
-  }, [salePrice]);
+    setNextEnabled(true);
+  }, []);
+
+  const onAcceptDialogPriceValueChange = (inputEvent) => {
+    setSalePrice(inputEvent.target.value);
+  };
 
   const acceptDialogSetApprovalForAllStep = async () => {
     setAcceptDialogActiveStep(AcceptDialogStepEnum.EnteringPrice);
@@ -116,13 +141,18 @@ const AcceptOfferDialog = ({ isOpen, toggle, nftData, address, collectionMetadat
 
   return (
     <>
-      <Dialog onClose={toggle} open={isOpen}>
+      <DialogContainer onClose={toggle} open={isOpen}>
         <DialogContent>
-          <DialogTitle>Accept offer {nftData.name}</DialogTitle>
+          <DialogTitleContainer>Accept Offer - {nftData.name}</DialogTitleContainer>
           <Grid container spacing={{ sm: 4 }} columns={2}>
             <Grid item xs={2} md={1} key="1">
               <Container>
-                <CardMedia component="img" src={nftData.image} width="150" />
+                <CardMediaContainer component="img" src={nftData.image} width="150" />
+                <BuyerAddress>
+                  Buyer
+                  <Blockies seed={offerData.buyer} size={6} scale={5} className="blockies" />
+                  {offerData.buyer ? shortAddress(offerData.buyer) : '-'}
+                </BuyerAddress>
               </Container>
             </Grid>
             <Grid item xs={1} key="2">
@@ -273,7 +303,7 @@ const AcceptOfferDialog = ({ isOpen, toggle, nftData, address, collectionMetadat
             </Grid>
           </Grid>
         </DialogContent>
-      </Dialog>
+      </DialogContainer>
     </>
   );
 };

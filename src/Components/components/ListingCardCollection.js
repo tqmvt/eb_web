@@ -5,7 +5,6 @@ import { ethers } from 'ethers';
 import { croSkullRedPotionImageHack } from '../../hacks';
 import Button from './Button';
 import MakeOfferDialog from '../Offer/MakeOfferDialog';
-import AcceptOfferDialog from '../Offer/AcceptOfferDialog';
 
 const Watermarked = styled.div`
   position: relative;
@@ -45,15 +44,11 @@ const MakeOffer = styled.div`
 
 const ListingCardCollection = ({ listing, imgClass = 'marketplace', watermark, address, collectionMetadata }) => {
   const [openMakeOfferDialog, setOpenMakeOfferDialog] = useState(false);
-  const [openAcceptDialog, setOpenAcceptDialog] = useState(false);
+
   const [modalType, setModalType] = useState('Make');
   const handleMakeOffer = (type) => {
     setModalType(type);
     setOpenMakeOfferDialog(!openMakeOfferDialog);
-  };
-
-  const handleAcceptOffer = () => {
-    setOpenAcceptDialog(!openAcceptDialog);
   };
 
   const history = useHistory();
@@ -122,13 +117,6 @@ const ListingCardCollection = ({ listing, imgClass = 'marketplace', watermark, a
         nftData={listing}
         collectionMetadata={collectionMetadata}
         type={modalType}
-      />
-      <AcceptOfferDialog
-        isOpen={openAcceptDialog}
-        toggle={() => setOpenAcceptDialog(!openAcceptDialog)}
-        nftData={listing}
-        address={address}
-        collectionMetadata={collectionMetadata}
       />
     </>
   );

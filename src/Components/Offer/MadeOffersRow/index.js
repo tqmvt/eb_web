@@ -6,8 +6,9 @@ import moment from 'moment';
 
 import { shortAddress } from 'src/utils';
 import config from 'src/Assets/networks/rpc_config.json';
-import MakeOfferDialog from '../MakeOfferDialog';
 import { getNftDetails } from 'src/GlobalState/nftSlice';
+import MakeOfferDialog from '../MakeOfferDialog';
+import AcceptOfferDialog from '../AcceptOfferDialog';
 
 const knownContracts = config.known_contracts;
 
@@ -148,7 +149,7 @@ export default function TableRow({ data, type }) {
 
   return (
     <>
-      {!!offerType && (
+      {!!offerType && offerType !== OFFER_TYPE.accept && (
         <MakeOfferDialog
           isOpen={!!offerType}
           toggle={handleOffer}
@@ -156,6 +157,15 @@ export default function TableRow({ data, type }) {
           offerData={data}
           collectionMetadata={collectionData?.metadata}
           type={offerType}
+        />
+      )}
+      {offerType === OFFER_TYPE.accept && (
+        <AcceptOfferDialog
+          isOpen={!!offerType}
+          toggle={handleOffer}
+          nftData={nft}
+          offerData={data}
+          collectionMetadata={collectionData?.metadata}
         />
       )}
       <TableRowContainer>
