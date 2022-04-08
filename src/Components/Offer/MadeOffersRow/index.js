@@ -26,6 +26,10 @@ const TableRowContainer = styled.div`
       align-items: center;
       width: 13%;
     }
+
+    &:nth-child(7) {
+      width: 10%;
+    }
   }
 
   .nft-title {

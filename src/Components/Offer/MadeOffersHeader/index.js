@@ -17,6 +17,10 @@ const TableHeaderContainer = styled.div`
       align-items: center;
       width: 13%;
     }
+
+    &:nth-child(7) {
+      width: 10%;
+    }
   }
 
   @media only screen and (max-width: ${({ theme }) => theme.breakpoints.lg}) {
