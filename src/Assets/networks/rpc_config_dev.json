@@ -1312,7 +1312,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "Genesis Weird Apes is a collection of 2500 NFTs randomly generated from 125 Traits, stored on the Cronos chain. Once passed through the Weirdification process, a Genesis Weird Ape will turn into a V2 Genesis Weird Ape and can be staked to yield $8WAC per day, access to customization features and more! Each Genesis Weird Ape will receive an airdrop of a 3D Voxel Apes which will have the exact same traits as their 2D counterparts.",
+        "description": "Genesis Weird Apes is a collection of 2500 NFTs randomly generated from 125 Traits, stored on the Cronos chain. Once passed through the Weirdification process, a Genesis Weird Ape will be able to be staked to yield $8WAC per day, access to customization features and more! Each Genesis Weird Ape will receive an airdrop of a 3D Voxel Ape which will have the exact same traits as their 2D counterparts.",
         "verified": true,
         "avatar": "/img/collections/weirdapesclub/avatar.webp",
         "card": "/img/collections/weirdapesclub/card.webp",
