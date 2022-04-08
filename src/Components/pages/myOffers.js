@@ -82,7 +82,7 @@ const MyOffers = () => {
           </Tab>
         </Tabs>
         {tab === OFFERS_TAB.make && <MadeOffers offers={madeOffers} />}
-        {tab === OFFERS_TAB.receive && <ReceivedOffers offers={receivedOffers} />}
+        {tab === OFFERS_TAB.receive && <ReceivedOffers offers={madeOffers} />}
       </section>
 
       <Footer />
