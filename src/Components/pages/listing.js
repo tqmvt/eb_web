@@ -420,7 +420,7 @@ const Listing = () => {
                         </div>
                       )}
 
-                      {openMenu === 3 && <NFTTabOffers />}
+                      {openMenu === 3 && <NFTTabOffers nftAddress={listing.nftAddress} nftId={listing.nftId} />}
 
                       {/* button for checkout */}
                       {listing.state === 0 ? (

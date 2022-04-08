@@ -1,5 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Spinner } from 'react-bootstrap';
+
 import OffersRow from './OffersRow';
+import EmptyData from '../EmptyData';
+import { fetchOffersForSingleNFT } from 'src/GlobalState/offerSlice';
 
 const data = {
   address: '0x89dB...1C56',
@@ -7,15 +12,38 @@ const data = {
   offerPrice: '1500 CRO',
 };
 
-export default function NFTTabOffers() {
+export const ROW_TYPE = {
+  made: 'Made',
+  received: 'Received',
+  observer: 'Observer',
+};
+
+export default function NFTTabOffers({ nftAddress, nftId }) {
+  const nftOffersLoading = useSelector((state) => state.offer.offersForSingleNFTLoading);
+  const nftOffers = useSelector((state) => state.offer.offersForSingleNFT);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (nftAddress && nftId) {
+      dispatch(fetchOffersForSingleNFT(nftAddress, nftId));
+    }
+  }, []);
+
   return (
     <div>
-      {/* <OffersRow data={data} type="Received" />
-      <OffersRow data={data} type="Received" />
-      <OffersRow data={data} type="Made" />
-      <OffersRow data={data} type="Made" /> */}
-      <OffersRow data={data} type="Observer" />
-      <OffersRow data={data} type="Observer" />
+      {nftOffers.length > 0 ? (
+        nftOffers.map((offer, index) => <OffersRow key={index} data={offer} type={ROW_TYPE.observer} />)
+      ) : (
+        <EmptyData>
+          {nftOffersLoading ? (
+            <Spinner animation="border" role="status" size="sm">
+              <span className="visually-hidden">Loading...</span>
+            </Spinner>
+          ) : (
+            'No offers found'
+          )}
+        </EmptyData>
+      )}
     </div>
   );
 }

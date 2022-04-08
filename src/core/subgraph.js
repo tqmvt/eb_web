@@ -39,7 +39,7 @@ export const getInitial = () => {
 export const getMyOffers = async (myAddress) => {
   const myOffersQuery = `
   query($first: Int) {
-    offers(first: 10, where: {buyer: "${myAddress.toLowerCase()}"}) {
+    offers(first: 1000, where: {buyer: "${myAddress.toLowerCase()}"}) {
         id
         hash
         offerIndex
@@ -78,7 +78,7 @@ export const getMyOffers = async (myAddress) => {
 export const getReceivedOffers = async (myAddress) => {
   const myOffersQuery = `
   query($first: Int) {
-    offers(first: 10, where: {seller: "${myAddress.toLowerCase()}"}) {
+    offers(first: 1000, where: {seller: "${myAddress.toLowerCase()}"}) {
         id
         hash
         offerIndex
@@ -100,6 +100,46 @@ export const getReceivedOffers = async (myAddress) => {
     resolve(
       client.query({
         query: gql(myOffersQuery),
+        variables: {
+          first: 100,
+        },
+      })
+    );
+  });
+
+  const { offers } = response.data;
+
+  return {
+    data: offers,
+  };
+};
+
+// TODO: offers: update query with params
+export const getOffersForSingleNFT = async (nftAddress, nftId) => {
+  const nftOffersQuery = `
+  query($first: Int) {
+    offers(first: 1000, where: { nftAddress: "0xcfeee4c7b10c52854e061607c347e0d79c6f73a1", nftId: 2}) {
+      id
+      hash
+      offerIndex
+      nftAddress
+      nftId
+      buyer
+      seller
+      coinAddress
+      price
+      state
+      timeCreated
+      timeUpdated
+      timeEnded
+    }
+  }
+`;
+
+  const response = await new Promise((resolve) => {
+    resolve(
+      client.query({
+        query: gql(nftOffersQuery),
         variables: {
           first: 100,
         },

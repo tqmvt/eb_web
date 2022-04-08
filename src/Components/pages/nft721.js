@@ -260,7 +260,7 @@ const Nft721 = ({ address, id }) => {
                       </div>
                     )}
 
-                    {openMenu === 3 && <NFTTabOffers />}
+                    {openMenu === 3 && <NFTTabOffers nftAddress={address} nftId={id} />}
                   </div>
                 </div>
               </div>

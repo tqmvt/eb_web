@@ -46,6 +46,7 @@ const Tab = styled.div`
   }
 `;
 
+// TODO: offer: update received offers
 const MyOffers = () => {
   const walletAddress = useSelector((state) => state.user.address);
   const madeOffersLoading = useSelector((state) => state.offer.madeOffersLoading);

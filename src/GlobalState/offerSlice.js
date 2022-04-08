@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
-import { getMyOffers, getReceivedOffers } from '../core/subgraph';
-import { createSuccessfulTransactionToastContent, sliceIntoChunks } from '../utils';
+import { getMyOffers, getReceivedOffers, getOffersForSingleNFT } from '../core/subgraph';
+import { createSuccessfulTransactionToastContent } from '../utils';
 
 const offerSlice = createSlice({
   name: 'offer',
@@ -14,6 +14,9 @@ const offerSlice = createSlice({
 
     receivedOffersLoading: false,
     receivedOffers: [],
+
+    offersForSingleNFTLoading: false,
+    offersForSingleNFT: [],
   },
   reducers: {
     madeOffersLoading: (state) => {
@@ -34,6 +37,15 @@ const offerSlice = createSlice({
       state.error = false;
       state.receivedOffers = action.payload;
     },
+    offersForSingleNFTLoading: (state) => {
+      state.offersForSingleNFTLoading = true;
+      state.error = false;
+    },
+    offersForSingleNFTLoaded: (state, action) => {
+      state.offersForSingleNFTLoading = false;
+      state.error = false;
+      state.offersForSingleNFT = action.payload;
+    },
     // offer actions
     offerActionSuccess: (state) => {
       state.error = false;
@@ -49,6 +61,8 @@ export const {
   madeOffersLoaded,
   receivedOffersLoading,
   receivedOffersLoaded,
+  offersForSingleNFTLoading,
+  offersForSingleNFTLoaded,
   offerActionSuccess,
   offerActionFailed,
 } = offerSlice.actions;
@@ -67,6 +81,13 @@ export const fetchReceivedOffers = (address) => async (dispatch) => {
   const { data } = await getReceivedOffers(address);
 
   if (data) dispatch(receivedOffersLoaded(data));
+};
+
+export const fetchOffersForSingleNFT = (nftAddress, nftId) => async (dispatch) => {
+  dispatch(offersForSingleNFTLoading());
+  const { data } = await getOffersForSingleNFT(nftAddress, nftId);
+
+  if (data) dispatch(offersForSingleNFTLoaded(data));
 };
 
 export const updateOfferSuccess = (transactionHash) => async (dispatch) => {

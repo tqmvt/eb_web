@@ -2,9 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import Blockies from 'react-blockies';
 import { Dropdown } from 'react-bootstrap';
+import moment from 'moment';
 
 import Button from 'src/Components/components/Button';
-// import MakeOfferDialog from '../MakeOfferDialog';
+import { shortAddress } from 'src/utils';
 
 const TableRowContainer = styled.div`
   display: flex;
@@ -110,23 +111,24 @@ const ItemRow = styled.div`
 `;
 
 export default function OffersRow({ data, type }) {
-  // const [openMakeOfferDialog, setOpenMakeOfferDialog] = useState(false);
-  const handleAcceptOffer = () => {
-    // setOpenMakeOfferDialog(!openMakeOfferDialog);
+  const getOfferDate = (timestamp) => {
+    const offerDate = moment(new Date(timestamp * 1000)).format('DD/MM/YYYY');
+    return offerDate;
   };
+
   return (
     <>
       <TableRowContainer>
         <div className="table-row-item address">
-          <Blockies seed={data.address} size={6} scale={5} className="blockies" />
-          {data.address}
+          <Blockies seed={data.buyer} size={6} scale={5} className="blockies" />
+          {data.buyer ? shortAddress(data.buyer) : '-'}
         </div>
-        <div className="table-row-item">{data.offerDate}</div>
+        <div className="table-row-item">{getOfferDate(data.timeCreated)}</div>
         {type === 'Observer' && <div className="table-row-item">Offered</div>}
-        <div className="table-row-item">{data.offerPrice}</div>
+        <div className="table-row-item">{data.price} CRO</div>
         {type === 'Received' && (
           <div className="table-row-item">
-            <Button onClick={handleAcceptOffer}>Accept</Button>
+            <Button>Accept</Button>
           </div>
         )}
         {type === 'Made' && (
@@ -152,37 +154,33 @@ export default function OffersRow({ data, type }) {
       <TableRowContainerMobile>
         <ItemRow>
           <div>Address</div>
-          <div>{data.address}</div>
+          <div>{data.buyer ? shortAddress(data.buyer) : '-'}</div>
         </ItemRow>
         <ItemRow>
           <div>Offer Date</div>
-          <div>{data.offerDate}</div>
+          <div>{getOfferDate(data.timeCreated)}</div>
         </ItemRow>
         <ItemRow>
           <div>Offer Price</div>
-          <div>{data.offerPrice}</div>
+          <div>{data.price} CRO</div>
         </ItemRow>
         {type === 'Received' && (
           <ItemRow>
             <div className="table-row-button">
-              <Button onClick={handleAcceptOffer}>Accept</Button>
+              <Button>Accept</Button>
             </div>
             <div className="table-row-button">
-              <Button onClick={handleAcceptOffer} type="outlined">
-                Decline
-              </Button>
+              <Button type="outlined">Decline</Button>
             </div>
           </ItemRow>
         )}
         {type === 'Made' && (
           <ItemRow>
             <div className="table-row-button">
-              <Button onClick={handleAcceptOffer}>Update</Button>
+              <Button>Update</Button>
             </div>
             <div className="table-row-button">
-              <Button onClick={handleAcceptOffer} type="outlined">
-                Cancel
-              </Button>
+              <Button type="outlined">Cancel</Button>
             </div>
           </ItemRow>
         )}
