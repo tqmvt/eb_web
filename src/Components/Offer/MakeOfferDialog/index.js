@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { ethers } from 'ethers';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Card, Form, Spinner } from 'react-bootstrap';
 
 import Button from 'src/Components/components/Button';
 import Input from 'src/Components/components/common/Input';
@@ -14,12 +15,18 @@ import { humanize, shortAddress } from 'src/utils';
 import { OFFER_TYPE } from '../MadeOffersRow';
 import CloseIcon from 'src/Assets/images/close-icon-orange-grad.svg';
 import { updateOfferSuccess, updateOfferFailed } from 'src/GlobalState/offerSlice';
+import EmptyData from '../EmptyData';
 
 const DialogContainer = styled(Dialog)`
   .MuiDialogContent-root {
+    width: 700px;
     padding: 15px 42px 28px !important;
     border-radius: 8px;
     max-width: 734px;
+
+    @media only screen and (max-width: ${({ theme }) => theme.breakpoints.md}) {
+      width: 100%;
+    }
   }
 `;
 
@@ -50,6 +57,7 @@ const ImageContainer = styled.div`
 
   img {
     width: 100%;
+    border-radius: 6px;
   }
 
   @media only screen and (max-width: ${({ theme }) => theme.breakpoints.md}) {
@@ -81,6 +89,7 @@ const FlexRow = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 10px 0px;
+  margin-top: 8px;
 `;
 
 const Royalty = styled.div`
@@ -114,6 +123,9 @@ const CloseIconContainer = styled.div`
 `;
 
 export default function MakeOfferDialog({ isOpen, toggle, type = 'Make', nftData, offerData, collectionMetadata }) {
+  const isNftLoading = useSelector((state) => {
+    return state.nft.loading;
+  });
   const offerContract = useSelector((state) => {
     return state.user.offerContract;
   });
@@ -168,78 +180,86 @@ export default function MakeOfferDialog({ isOpen, toggle, type = 'Make', nftData
   return (
     <DialogContainer onClose={() => toggle(OFFER_TYPE.none)} open={isOpen} maxWidth="md">
       <DialogContent>
-        <DialogTitleContainer>{type} offer</DialogTitleContainer>
-        <DialogMainContent>
-          <ImageContainer>
-            <img src={croSkullRedPotionImageHack(nftData.address, nftData.image)} alt={nftData.name} />
-            {nftData && nftData.image && (
-              <div className="nft__item_action mt-2" style={{ cursor: 'pointer' }}>
-                <span onClick={() => window.open(croSkullRedPotionImageHack(nftData.address, fullImage()), '_blank')}>
-                  <span className="p-2">View Full Image</span>
-                  <FontAwesomeIcon icon={faExternalLinkAlt} />
-                </span>
-              </div>
-            )}
-          </ImageContainer>
-          <NftDetailContainer>
-            <NftTitle>{nftData.name}</NftTitle>
-            <NftDescription>{nftData.description}</NftDescription>
-            {collectionMetadata && (
-              <FlexRow className="row">
-                <div className="item_info">
-                  <div className="row" style={{ gap: '2rem 0' }}>
-                    <ProfilePreview
-                      type="Collection"
-                      title={nftData.address && shortAddress(nftData.address)}
-                      avatar={collectionMetadata?.avatar}
-                      address={nftData.address}
-                      verified={collectionMetadata?.verified}
-                      to={`/collection/${nftData.address}`}
-                    />
-
-                    {typeof nftData.rank !== 'undefined' && nftData.rank !== null && (
-                      <ProfilePreview
-                        type="Rarity Rank"
-                        title={nftData.rank}
-                        avatar={collectionMetadata?.rarity === 'rarity_sniper' ? '/img/rarity-sniper.png' : null}
-                        hover={
-                          collectionMetadata?.rarity === 'rarity_sniper'
-                            ? `Ranking provided by ${humanize(collectionMetadata.rarity)}`
-                            : null
-                        }
-                      />
-                    )}
-                  </div>
+        <DialogTitleContainer>{type} Offer</DialogTitleContainer>
+        {!isNftLoading ? (
+          <DialogMainContent>
+            <ImageContainer>
+              <img src={croSkullRedPotionImageHack(nftData.address, nftData.image)} alt={nftData.name} />
+              {nftData && nftData.image && (
+                <div className="nft__item_action mt-2" style={{ cursor: 'pointer' }}>
+                  <span onClick={() => window.open(croSkullRedPotionImageHack(nftData.address, fullImage()), '_blank')}>
+                    <span className="p-2">View Full Image</span>
+                    <FontAwesomeIcon icon={faExternalLinkAlt} />
+                  </span>
                 </div>
-              </FlexRow>
-            )}
-            <FlexRow>
-              <Royalty>Royalty</Royalty>
-              <Royalty>{nftData.royalty}</Royalty>
-            </FlexRow>
-            {type !== 'Cancel' && (
+              )}
+            </ImageContainer>
+            <NftDetailContainer>
+              <NftTitle>{nftData.name}</NftTitle>
+              <NftDescription>{nftData.description}</NftDescription>
+              {collectionMetadata && (
+                <FlexRow className="row">
+                  <div className="item_info">
+                    <div className="row" style={{ gap: '2rem 0' }}>
+                      <ProfilePreview
+                        type="Collection"
+                        title={nftData.address && shortAddress(nftData.address)}
+                        avatar={collectionMetadata?.avatar}
+                        address={nftData.address}
+                        verified={collectionMetadata?.verified}
+                        to={`/collection/${nftData.address}`}
+                      />
+
+                      {typeof nftData.rank !== 'undefined' && nftData.rank !== null && (
+                        <ProfilePreview
+                          type="Rarity Rank"
+                          title={nftData.rank}
+                          avatar={collectionMetadata?.rarity === 'rarity_sniper' ? '/img/rarity-sniper.png' : null}
+                          hover={
+                            collectionMetadata?.rarity === 'rarity_sniper'
+                              ? `Ranking provided by ${humanize(collectionMetadata.rarity)}`
+                              : null
+                          }
+                        />
+                      )}
+                    </div>
+                  </div>
+                </FlexRow>
+              )}
               <FlexRow>
-                <OfferPrice>Offer Price</OfferPrice>
-                <OfferPriceInput>
-                  <Input
-                    type="number"
-                    className="mx-2"
-                    onKeyDown={(e) => {
-                      if (e.code === 'Period' || e.code === 'Minus') {
-                        e.preventDefault();
-                      }
-                    }}
-                    onChange={onOfferValueChange}
-                  />
-                  CRO
-                </OfferPriceInput>
+                <Royalty>Royalty</Royalty>
+                <Royalty>{nftData?.royalty ?? '-'}</Royalty>
               </FlexRow>
-            )}
-            <div>
-              <Button onClick={() => handleOfferAction(type)}>{type} Offer</Button>
-            </div>
-          </NftDetailContainer>
-        </DialogMainContent>
+              {type !== 'Cancel' && (
+                <FlexRow>
+                  <OfferPrice>Offer Price</OfferPrice>
+                  <OfferPriceInput>
+                    <Input
+                      type="number"
+                      className="mx-2"
+                      onKeyDown={(e) => {
+                        if (e.code === 'Period' || e.code === 'Minus') {
+                          e.preventDefault();
+                        }
+                      }}
+                      onChange={onOfferValueChange}
+                    />
+                    CRO
+                  </OfferPriceInput>
+                </FlexRow>
+              )}
+              <div>
+                <Button onClick={() => handleOfferAction(type)}>{type} Offer</Button>
+              </div>
+            </NftDetailContainer>
+          </DialogMainContent>
+        ) : (
+          <EmptyData>
+            <Spinner animation="border" role="status" size="sm" className="ms-1">
+              <span className="visually-hidden">Loading...</span>
+            </Spinner>
+          </EmptyData>
+        )}
         <CloseIconContainer onClick={() => toggle(OFFER_TYPE.none)}>
           <img src={CloseIcon} alt="close" />
         </CloseIconContainer>

@@ -148,14 +148,16 @@ export default function TableRow({ data, type }) {
 
   return (
     <>
-      <MakeOfferDialog
-        isOpen={!!offerType}
-        toggle={handleOffer}
-        nftData={nft}
-        offerData={data}
-        collectionMetadata={collectionData?.metadata}
-        type={offerType}
-      />
+      {!!offerType && (
+        <MakeOfferDialog
+          isOpen={!!offerType}
+          toggle={handleOffer}
+          nftData={nft}
+          offerData={data}
+          collectionMetadata={collectionData?.metadata}
+          type={offerType}
+        />
+      )}
       <TableRowContainer>
         <div className="table-row-item">
           <a href={`/collection/${collectionData?.slug}`}>
