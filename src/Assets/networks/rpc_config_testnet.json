@@ -703,7 +703,7 @@
       "name": "CronosVerse",
       "slug": "cronosverse",
       "multiToken": false,
-      "address": "0xb8dE86fEF02D3b5225DC71b3Ddc8ec01c0711853",
+      "address": "0xAf7fC8B75516E1666b02Deb19581c71f8e688d5f",
       "onChain": false,
       "listable": false,
       "metadata": {
@@ -1615,7 +1615,7 @@
       "subtitle": "Buy your digital land plot, develop your property & enter The CronosVerse!",
       "description": "The CronosVerse aims to be the first metaverse social MMO on the Cronos Chain.\n\nLand owners will be able to build structures on their land for their NFT characters, friends, and community members to enjoy. Build using preloaded building materials with absolutely no coding required.\n\nTypes of Lands:\n\nPlains Tiles- Allows for building of rustic style structures (max amalgamation of 16 tiles)\n\nSuburban Tiles- Allows for suburban style structures (max amalgamation of 4 tiles)\n\nCommercial Tiles- Allows for retail, office, entertainment and other commercial structures (max amalgamation of 4 tiles)",
       "author": { "name": "CronosVerse", "link": "https://thecronosverse.com/" },
-      "address": "0xb8dE86fEF02D3b5225DC71b3Ddc8ec01c0711853",
+      "address": "0xAf7fC8B75516E1666b02Deb19581c71f8e688d5f",
       "maxMintPerTx": 1,
       "maxMintPerAddress": 1208,
       "totalSupply": 1208,
@@ -1624,6 +1624,10 @@
       "whitelistCost": ["1", "2", "3"],
       "foundersOnly": false,
       "start": 1647288000000,
+      "salePeriods": {
+        "presale": 1646424000000,
+        "public": 1646431200000
+      },
       "end": null,
       "referral": false,
       "is1155": false,
