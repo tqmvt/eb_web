@@ -1624,6 +1624,10 @@
       "whitelistCost": ["1", "2", "3"],
       "foundersOnly": false,
       "start": 1647288000000,
+      "salePeriods": {
+        "presale": 1646424000000,
+        "public": 1646431200000
+      },
       "end": null,
       "referral": false,
       "is1155": false,
