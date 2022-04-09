@@ -109,14 +109,18 @@ export const init = (sortOption, filterOption) => async (dispatch, getState) => 
   }
 };
 
-export const fetchListings = () => async (dispatch, getState) => {
+export const fetchListings = (isSales = false) => async (dispatch, getState) => {
   const state = getState();
 
   dispatch(listingsLoading());
   const { response, cancelled } = await sortAndFetchListings(
     state.marketplace.curPage + 1,
     state.marketplace.curSort,
-    state.marketplace.curFilter
+    state.marketplace.curFilter,
+    null,
+    null,
+    null,
+    isSales ? 1 : 0
   );
 
   if (!cancelled) {
@@ -125,19 +129,20 @@ export const fetchListings = () => async (dispatch, getState) => {
   }
 };
 
-export const filterListings = (filterOption, cacheName) => async (dispatch) => {
+
+export const filterListings = (filterOption, cacheName, isSales = false) => async (dispatch) => {
   dispatch(onFilter({ option: filterOption, cacheName }));
-  dispatch(fetchListings());
+  dispatch(fetchListings(isSales));
 };
 
-export const sortListings = (sortOption, cacheName) => async (dispatch) => {
+export const sortListings = (sortOption, cacheName, isSales = false) => async (dispatch) => {
   dispatch(onSort({ option: sortOption, cacheName }));
-  dispatch(fetchListings());
+  dispatch(fetchListings(isSales));
 };
 
-export const resetListings = () => async (dispatch) => {
+export const resetListings = (isSales = false) => async (dispatch) => {
   dispatch(clearSet());
-  dispatch(fetchListings());
+  dispatch(fetchListings(isSales));
 };
 
 export const getCollectionData = (address) => async (dispatch) => {

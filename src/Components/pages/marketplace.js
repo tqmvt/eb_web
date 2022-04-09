@@ -10,6 +10,7 @@ import { sortOptions } from '../components/constants/sort-options';
 import { SortOption } from '../Models/sort-option.model';
 import { marketPlaceCollectionFilterOptions } from '../components/constants/filter-options';
 import { FilterOption } from '../Models/filter-option.model';
+import SalesCollection from "../components/SalesCollection";
 
 const Marketplace = () => {
   const cacheName = 'marketplace';
@@ -24,7 +25,7 @@ const Marketplace = () => {
     return state.marketplace.marketData;
   });
 
-  // const [openMenu, setOpenMenu] = React.useState(0);
+  const [openMenu, setOpenMenu] = React.useState(0);
   const handleBtnClick = (index) => (element) => {
     var elements = document.querySelectorAll('.tab');
     for (var i = 0; i < elements.length; i++) {
@@ -32,12 +33,11 @@ const Marketplace = () => {
     }
     element.target.parentElement.classList.add('active');
 
-    // setOpenMenu(index);
+    setOpenMenu(index);
   };
 
   useEffect(() => {
     dispatch(getMarketData());
-    // eslint-disable-next-line
   }, []);
 
   const selectDefaultFilterValue = marketplace.cachedFilter[cacheName] ?? FilterOption.default();
@@ -103,23 +103,45 @@ const Marketplace = () => {
             </div>
           )}
         </div>
-        <div className="row">
-          <div className="col-lg-12">
-            <TopFilterBar
-              showFilter={true}
-              showSort={true}
-              sortOptions={[SortOption.default(), ...selectSortOptions]}
-              filterOptions={[FilterOption.default(), ...selectFilterOptions]}
-              defaultSortValue={selectDefaultSortValue}
-              defaultFilterValue={selectDefaultFilterValue}
-              filterPlaceHolder="Filter Collection..."
-              sortPlaceHolder="Sort Listings..."
-              onFilterChange={onFilterChange}
-              onSortChange={onSortChange}
-            />
+        <div className="de_tab">
+          <ul className="de_nav">
+            <li id="Mainbtn0" className="tab active">
+              <span onClick={handleBtnClick(0)}>Listings</span>
+            </li>
+            <li id="Mainbtn1" className="tab">
+              <span onClick={handleBtnClick(1)}>Past Sales</span>
+            </li>
+          </ul>
+
+          <div className="de_tab_content">
+            {openMenu === 0 && (
+              <div className="tab-1 onStep fadeIn">
+                <div className="row">
+                  <div className="col-lg-12">
+                    <TopFilterBar
+                      showFilter={true}
+                      showSort={true}
+                      sortOptions={[SortOption.default(), ...selectSortOptions]}
+                      filterOptions={[FilterOption.default(), ...selectFilterOptions]}
+                      defaultSortValue={selectDefaultSortValue}
+                      defaultFilterValue={selectDefaultFilterValue}
+                      filterPlaceHolder="Filter Collection..."
+                      sortPlaceHolder="Sort Listings..."
+                      onFilterChange={onFilterChange}
+                      onSortChange={onSortChange}
+                    />
+                  </div>
+                </div>
+                <ListingCollection cacheName="marketplace" />
+              </div>
+          )}
+          {openMenu === 1 && (
+            <div className="tab-2 onStep fadeIn">
+              <SalesCollection cacheName="marketplace" />
+            </div>
+          )}
           </div>
         </div>
-        <ListingCollection cacheName="marketplace" />
       </section>
 
       <Footer />
