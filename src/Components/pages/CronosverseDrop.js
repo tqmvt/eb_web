@@ -159,18 +159,18 @@ const CronosverseDrop = () => {
       if (currentDrop.address && (isUsingDefaultDropAbi(currentDrop.abi) || isUsingAbiFile(currentDrop.abi))) {
         let readContract = await new ethers.Contract(currentDrop.address, abi, readProvider);
         const infos = await readContract.getInfo();
-        console.log('info\n--------\n',
-          `maxMintPerTx: ${infos.maxMintPerTx}\n`,
-          `maxSupply: ${infos.maxSupply}\n`,
-          `totalSupply: ${infos.totalSupply}\n`,
-          `memberCost: ${infos.memberCost}\n`,
-          `regularCost: ${infos.regularCost}\n`,
-          `whitelistCost: ${infos.whitelistCost}\n`
-        );
+        // console.log('info\n--------\n',
+        //   `maxMintPerTx: ${infos.maxMintPerTx}\n`,
+        //   `maxSupply: ${infos.maxSupply}\n`,
+        //   `totalSupply: ${infos.totalSupply}\n`,
+        //   `memberCost: ${infos.memberCost}\n`,
+        //   `regularCost: ${infos.regularCost}\n`,
+        //   `whitelistCost: ${infos.whitelistCost}\n`
+        // );
         const canMint = user.address ? await readContract.canMint(user.address) : 0;
-        console.log('canMint: ', canMint.toString())
+        // console.log('canMint: ', canMint.toString())
         const isWhitelisted = user.address ? await readContract.isWhiteList(user.address) : false;
-        console.log('isWhitelisted: ', isWhitelisted);
+        // console.log('isWhitelisted: ', isWhitelisted);
         setWhiteListed(isWhitelisted);
         setMaxSupply(infos.maxSupply);
         setWhitelistCost([ethers.utils.formatEther(infos.whitelistCost[0]), 
