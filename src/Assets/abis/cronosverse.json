@@ -7,7 +7,7 @@
       "inputs": [
         {
           "internalType": "address",
-          "name": "_memberships",
+          "name": "_marketAddress",
           "type": "address"
         },
         {
@@ -275,6 +275,16 @@
               "type": "uint256[3]"
             },
             {
+              "internalType": "uint256[3]",
+              "name": "maxMintPerWallet",
+              "type": "uint256[3]"
+            },
+            {
+              "internalType": "uint256",
+              "name": "maxMintPresale",
+              "type": "uint256"
+            },
+            {
               "internalType": "uint256",
               "name": "maxSupply",
               "type": "uint256"
@@ -379,6 +389,32 @@
       "type": "function"
     },
     {
+      "inputs": [],
+      "name": "isOnPresale",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "isOnPublicSale",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
       "inputs": [
         {
           "internalType": "address",
@@ -399,6 +435,19 @@
     },
     {
       "inputs": [],
+      "name": "marketContract",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
       "name": "maxSupply",
       "outputs": [
         {
@@ -408,19 +457,6 @@
         }
       ],
       "stateMutability": "pure",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "memberships",
-      "outputs": [
-        {
-          "internalType": "contract ERC1155",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "view",
       "type": "function"
     },
     {
@@ -534,6 +570,32 @@
         }
       ],
       "name": "payments",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "preSaleTimeStamp",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "pubSaleTimeStamp",
       "outputs": [
         {
           "internalType": "uint256",
@@ -660,6 +722,19 @@
         }
       ],
       "name": "setCost",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_preSaleTimeStamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "setSaleTimeStamp",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"

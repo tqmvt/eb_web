@@ -465,6 +465,11 @@ const CronosverseDrop = () => {
               </div>
             )}
           </div>
+          {drop.priceDescription && (
+            <p className="my-2" style={{color: 'black'}}>
+              *{drop.priceDescription}
+            </p>
+          )}
           <div className="me-4 mt-4">
             <h6 className="mb-1">Presale Starts</h6>
             <h3>

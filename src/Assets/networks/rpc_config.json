@@ -4846,6 +4846,7 @@
         "presale": 1649613600000,
         "public": 1649617200000
       },
+      "priceDescription": "Presale is for whitelisted addresses only and limited to 4 tiles per address. Public sale is limited to 16 Plains, 4 Suburban, and 4 Commercial.",
       "end": null,
       "referral": false,
       "is1155": false,
