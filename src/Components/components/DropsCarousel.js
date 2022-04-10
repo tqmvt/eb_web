@@ -91,8 +91,9 @@ export default class Responsive extends Component {
   }
 
   arrangeCollections() {
-    const twelveHours = 3600000 * 12;
-    const twoDays = 3600000 * 24 * 2;
+    const timeToShowInHours = 3600000 * 24;
+    const maxShowTimeInDays = 3600000 * 24 * 2;
+    const defaultMaxCount = 5;
 
     const topLevelDrops = drops.filter((d) => !d.complete && d.featured);
     const topLevelKeys = topLevelDrops.map(d => d.slug);
@@ -103,7 +104,7 @@ export default class Responsive extends Component {
             d.published &&
             d.start &&
             d.start > Date.now() &&
-            d.start - Date.now() < twelveHours &&
+            d.start - Date.now() < timeToShowInHours &&
             !!d.imgPreview &&
             !topLevelKeys.includes(d.slug)
       )
@@ -120,14 +121,14 @@ export default class Responsive extends Component {
       )
       .sort((a, b) => (a.start < b.start ? 1 : -1));
 
-    if (liveDrops.length > 3) {
+    if (liveDrops.length > defaultMaxCount) {
       let c = 0;
       liveDrops = liveDrops
         .reverse()
         .filter((d) => {
-          if (liveDrops.length - c <= 3) return true;
+          if (liveDrops.length - c <= defaultMaxCount) return true;
 
-          if (Date.now() - d.start < twoDays || this.isFounderDrop(d)) {
+          if (Date.now() - d.start < maxShowTimeInDays || this.isFounderDrop(d)) {
             return true;
           }
 
