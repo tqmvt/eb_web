@@ -108,7 +108,7 @@ export default class Responsive extends Component {
             !!d.imgPreview &&
             !topLevelKeys.includes(d.slug)
       )
-      .sort((a, b) => (a.start < b.start ? 1 : -1));
+      .sort((a, b) => (a.start > b.start ? 1 : -1));
     let liveDrops = drops
       .filter(
           (d) =>

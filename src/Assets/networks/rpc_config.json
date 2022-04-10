@@ -3206,7 +3206,7 @@
       "multiToken": false,
       "address": "0x0aCDA31Cf1F301a7Eb8f988D47F708FbA058F8f5",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "",
         "verified": true,
@@ -4941,7 +4941,7 @@
       "title": "Cyborg Brotherhood",
       "subtitle": "For as long as my forefathers can remember my family has been part of the Brotherhood. We are faithful servants of the last noble cause, we have put our skill of arms at the service of justice, of our justice. In a world where good and evil only have differences if the forbiddens ones dare to speaks them, we secretly and faithfully maintained the balance.",
       "description": "Join the Cyborg Brotherhood and become an Assassin\n\n- 10% of the mint sale of the Cyborg Brotherhood divided among Assassins and all future MC projects\n- 10% on the first mint of all the projects we will help to launch through our incubator\n- Increased decision-making power on all MC decisions (real DAO)",
-      "author": { "name": "Marie's Cyborgs", "link": "https://www.mariescyborgs.io/" },
+      "author": { "name": "Marie's Cyborgs", "link": "https://www.cyborgbh.io" },
       "address": "0xd0062DEb460Eac0cB7cE77C312F8aa58378b6d8a",
       "maxMintPerTx": 25,
       "maxMintPerAddress": 100,
