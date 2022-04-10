@@ -159,9 +159,18 @@ const CronosverseDrop = () => {
       if (currentDrop.address && (isUsingDefaultDropAbi(currentDrop.abi) || isUsingAbiFile(currentDrop.abi))) {
         let readContract = await new ethers.Contract(currentDrop.address, abi, readProvider);
         const infos = await readContract.getInfo();
+        console.log('info\n--------\n',
+          `maxMintPerTx: ${infos.maxMintPerTx}\n`,
+          `maxSupply: ${infos.maxSupply}\n`,
+          `totalSupply: ${infos.totalSupply}\n`,
+          `memberCost: ${infos.memberCost}\n`,
+          `regularCost: ${infos.regularCost}\n`,
+          `whitelistCost: ${infos.whitelistCost}\n`
+        );
         const canMint = user.address ? await readContract.canMint(user.address) : 0;
+        console.log('canMint: ', canMint.toString())
         const isWhitelisted = user.address ? await readContract.isWhiteList(user.address) : false;
-        console.log('isWhitelisted: ', isWhitelisted)
+        console.log('isWhitelisted: ', isWhitelisted);
         setWhiteListed(isWhitelisted);
         setMaxSupply(infos.maxSupply);
         setWhitelistCost([ethers.utils.formatEther(infos.whitelistCost[0]), 
@@ -203,7 +212,6 @@ const CronosverseDrop = () => {
     const sTime = new Date(drop.start);
     const eTime = new Date(drop.end);
     const now = new Date();
-
     if (!drop.start || !drop.address || sTime > now) setStatus(statuses.NOT_STARTED);
     else if (parseInt(totalSupply.toString()) >= parseInt(maxSupply.toString()) && !isFounderDrop(drop.address))
       setStatus(statuses.SOLD_OUT);
@@ -218,7 +226,6 @@ const CronosverseDrop = () => {
   };
 
   const calculateCost = async (user, id) => {
-
     if (isUsingDefaultDropAbi(dropObject.abi) || isUsingAbiFile(dropObject.abi)) {
       let readContract = await new ethers.Contract(dropObject.address, abi, readProvider);
       return await readContract.mintCost(user.address, id);
@@ -458,6 +465,11 @@ const CronosverseDrop = () => {
               </div>
             )}
           </div>
+          {drop.priceDescription && (
+            <p className="my-2" style={{color: 'black'}}>
+              *{drop.priceDescription}
+            </p>
+          )}
           <div className="me-4 mt-4">
             <h6 className="mb-1">Presale Starts</h6>
             <h3>
