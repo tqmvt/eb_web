@@ -215,35 +215,25 @@ export const getStats =
   (address, slug, id = null, extraAddresses = null) =>
   async (dispatch) => {
     try {
-      dispatch(onCollectionStatsLoading());
-
-      // var response;
-      // if (id != null) {
-      //   response = await getCollectionMetadata(address, null, { type: 'tokenId', value: id });
-      // } else {
-      //   response = await getCollectionMetadata(address);
-      // }
-
-      // TODO: cc Robarelli
-      // const mergedAddresses = extraAddresses ? [address, ...extraAddresses] : address;
-      // var response;
-      // if (id != null) {
-      //   response = await getCollectionMetadata(mergedAddresses, null, {
-      //     type: 'tokenId',
-      //     value: id,
-      //   });
-      // } else {
-      //   response = await getCollectionMetadata(mergedAddresses);
-      // }
-
-      const response = await getCollectionSummary(slug);
-
+      const mergedAddresses = extraAddresses ? [address, ...extraAddresses] : address;
+      var response;
+      if (id != null) {
+        response = await getCollectionMetadata(
+          mergedAddresses,
+          null, {
+            type: "tokenId",
+            value: id
+          }
+        );
+      } else {
+        response = await getCollectionMetadata(mergedAddresses);
+      }
       const traits = await getCollectionTraits(address);
       const powertraits = await getCollectionPowertraits(address);
       dispatch(
         onCollectionStatsLoaded({
           stats: {
-            ...response.collections[0].activity,
+            ...combineStats(response.collections, address),
             ...{
               traits: traits,
               powertraits: powertraits,
@@ -264,7 +254,7 @@ export const getStats =
  * @returns {*}
  */
 const combineStats = (collectionStats, anchor) => {
-  const anchoredStats = collectionStats.find((c) => caseInsensitiveCompare(c.collection, anchor));
+  const anchoredStats = collectionStats.find(c => caseInsensitiveCompare(c.collection, anchor));
   const combined = collectionStats.reduce((a, b) => {
     return {
       numberActive: parseInt(a.numberActive) + parseInt(b.numberActive),
@@ -278,9 +268,9 @@ const combineStats = (collectionStats, anchor) => {
       sales30d: parseInt(a.sales30d) + parseInt(b.sales30d),
       totalRoyalties: parseInt(a.totalRoyalties) + parseInt(b.totalRoyalties),
       floorPrice: parseInt(a.floorPrice) < parseInt(b.floorPrice) ? parseInt(a.floorPrice) : parseInt(b.floorPrice),
-      averageSalePrice: (parseInt(a.averageSalePrice) + parseInt(b.averageSalePrice)) / 2,
-    };
-  });
+      averageSalePrice: (parseInt(a.averageSalePrice) + parseInt(b.averageSalePrice)) / 2
+    }
+  })
 
-  return { ...anchoredStats, ...combined };
-};
+  return {...anchoredStats, ...combined};
+}

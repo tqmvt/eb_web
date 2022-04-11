@@ -214,8 +214,12 @@ export async function getCollectionMetadata(contractAddress, sort, filter) {
   return await (await fetch(uri)).json();
 }
 
-export async function getCollectionSummary(slug) {
-  const query = { slug };
+export async function getCollectionSummary(address) {
+  address = Array.isArray(address)
+    ? address.map((c) => ethers.utils.getAddress(c.toLowerCase()))
+    : ethers.utils.getAddress(address.toLowerCase());
+
+  const query = { address };
   const queryString = new URLSearchParams(query);
   const uri = `${api.baseUrl}${api.collectionSummary}?${queryString}`;
   return await (await fetch(uri)).json();

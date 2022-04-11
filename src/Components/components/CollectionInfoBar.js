@@ -74,26 +74,24 @@ const ItemValue = styled.div`
 `;
 
 export default function CollectionInfoBar({ collectionStats, royalty }) {
-  const { active, avg_sale_price, complete, floor_price, volume } = collectionStats;
+  const { numberActive, averageSalePrice, numberOfSales, floorPrice, totalVolume } = collectionStats;
   return (
     <div>
       <CollectionInfoBarContainer>
         <InfoItem>
-          <ItemValue>{floor_price ? <>{siPrefixedNumber(Number(floor_price).toFixed(0))} CRO</> : <>-</>}</ItemValue>
+          <ItemValue>{floorPrice ? <>{siPrefixedNumber(Number(floorPrice).toFixed(0))} CRO</> : <>-</>}</ItemValue>
           <ItemTitle>Floor</ItemTitle>
         </InfoItem>
         <InfoItem>
-          <ItemValue>{volume ? <>{siPrefixedNumber(Number(volume).toFixed(0))} CRO</> : <>-</>}</ItemValue>
+          <ItemValue>{totalVolume ? <>{siPrefixedNumber(Number(totalVolume).toFixed(0))} CRO</> : <>-</>}</ItemValue>
           <ItemTitle>Volume</ItemTitle>
         </InfoItem>
         <InfoItem>
-          <ItemValue>{complete ? <>{siPrefixedNumber(complete)}</> : <>-</>}</ItemValue>
+          <ItemValue>{numberOfSales ? <>{siPrefixedNumber(numberOfSales)}</> : <>-</>}</ItemValue>
           <ItemTitle>Sales</ItemTitle>
         </InfoItem>
         <InfoItem>
-          <ItemValue>
-            {avg_sale_price ? <>{siPrefixedNumber(Number(avg_sale_price).toFixed(0))} CRO</> : <>-</>}
-          </ItemValue>
+          <ItemValue>{averageSalePrice ? <>{siPrefixedNumber(Number(averageSalePrice).toFixed(0))} CRO</> : <>-</>}</ItemValue>
           <ItemTitle>Avg. Sale</ItemTitle>
         </InfoItem>
         <InfoItem>
@@ -101,7 +99,7 @@ export default function CollectionInfoBar({ collectionStats, royalty }) {
           <ItemTitle>Royalty</ItemTitle>
         </InfoItem>
         <InfoItem>
-          <ItemValue>{active ? <>{siPrefixedNumber(active)}</> : <>-</>}</ItemValue>
+          <ItemValue>{numberActive ? <>{siPrefixedNumber(numberActive)}</> : <>-</>}</ItemValue>
           <ItemTitle>Active Listings</ItemTitle>
         </InfoItem>
       </CollectionInfoBarContainer>
