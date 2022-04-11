@@ -509,3 +509,8 @@ canvas {
         }
     }
 }
+
+/* Prevent full width li items */
+.activity-filter li {
+    width: auto;
+}
