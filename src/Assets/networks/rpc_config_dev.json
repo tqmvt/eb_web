@@ -1166,7 +1166,7 @@
       "metadata": {
         "description": "Crxillion Club is the original NFT collection of CRODEX. It is the first NFT collection offering DeFi use-cases in the Cronos Network.",
         "verified": true,
-        "avatar": "/img/collections/crxillion/avatar.png",
+        "avatar": "/img/collections/crxillion/avatar.jpeg",
         "card": "/img/collections/crxillion/card.png",
         "banner": "/img/collections/crxillion/banner.webp",
         "maxSupply": 2500,
@@ -4851,7 +4851,7 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false,
+      "complete": true,
       "multiPrice": true
     },
     {
