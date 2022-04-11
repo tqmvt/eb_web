@@ -4,14 +4,10 @@ import { createGlobalStyle } from 'styled-components';
 import { Link } from 'react-router-dom';
 import { ethers } from 'ethers';
 import Blockies from 'react-blockies';
-import { Form, Spinner, Button, ButtonGroup } from 'react-bootstrap';
+import { Form, Spinner } from 'react-bootstrap';
 import { siPrefixedNumber } from '../../utils';
-// import Select from 'react-select';
-
 import Footer from '../components/Footer';
 import { getAllCollections } from '../../GlobalState/collectionsSlice';
-// import { searchListings } from '../../GlobalState/collectionSlice';
-// import { SortOption } from '../Models/sort-option.model';
 import { debounce } from '../../utils';
 
 const GlobalStyles = createGlobalStyle`
@@ -29,31 +25,6 @@ const GlobalStyles = createGlobalStyle`
     background-blend-mode: multiply;
   }
 `;
-
-/* const customStyles = {
-  option: (base, state) => ({
-    ...base,
-    background: '#fff',
-    color: '#333',
-    borderRadius: state.isFocused ? '0' : 0,
-    '&:hover': {
-      background: '#eee',
-    },
-  }),
-  menu: (base) => ({
-    ...base,
-    borderRadius: 0,
-    marginTop: 0,
-  }),
-  menuList: (base) => ({
-    ...base,
-    padding: 0,
-  }),
-  control: (base, state) => ({
-    ...base,
-    padding: 2,
-  }),
-}; */
 
 const Collections = () => {
   const mobileListBreakpoint = 1000;
@@ -87,10 +58,14 @@ const Collections = () => {
     }
   }, [collections]);
 
-  const sortCollections = (key, type=null) => () => {
-    if (key == "")  {
-      if (type == "volume") key = "totalVolume"
-      if (type == "sales") key = "numberOfSales"
+  const sortCollections = (key) => () => {
+    console.log(collections);
+    if (['volume', 'sales'].includes(key)) {
+      if (timeframe) {
+        key = `${key}${timeframe}`
+      }
+      else if (key === 'volume') key = 'totalVolume';
+      else if (key === 'sales') key = 'numberOfSales';
     }
     let direction = 'asc';
     if (key === sort.key) {
@@ -112,42 +87,27 @@ const Collections = () => {
   //  collection helper pipes
 
   const collectionVolume = (collection) => {
-    if (timeframe == "") return Math.round(collection.totalVolume)
-    if (timeframe == "1d") return Math.round(collection.volume1d) 
-    if (timeframe == "7d") return Math.round(collection.volume7d) 
-    if (timeframe == "30d") return Math.round(collection.volume30d)
+    if (timeframe === "") return Math.round(collection.totalVolume)
+    if (timeframe === "1d") return Math.round(collection.volume1d)
+    if (timeframe === "7d") return Math.round(collection.volume7d)
+    if (timeframe === "30d") return Math.round(collection.volume30d)
   }
 
   const collectionSales = (collection) => {
-    if (timeframe == "") return Math.round(collection.numberOfSales);
-    if (timeframe == "1d") return Math.round(collection.sales1d);
-    if (timeframe == "7d") return Math.round(collection.sales7d);
-    if (timeframe == "30d") return Math.round(collection.sales30d);
+    if (timeframe === "") return Math.round(collection.numberOfSales);
+    if (timeframe === "1d") return Math.round(collection.sales1d);
+    if (timeframe === "7d") return Math.round(collection.sales7d);
+    if (timeframe === "30d") return Math.round(collection.sales30d);
   }
 
   const collectionAveragePrices = (collection) => {
-    if (timeframe == "") return ethers.utils.commify(Math.round(collection.averageSalePrice));
-    if (timeframe == "1d") {
-      if (collection.sales1d == 0) {
-        return `0 CRO`
-      }
-      return ethers.utils.commify(Math.round(collection.volume1d / collection.sales1d).toString())
-    }
-    if (timeframe == "7d") {
-      if (collection.sales7d == 0) {
-        return `0 CRO`
-      }
-      return ethers.utils.commify(Math.round(collection.volume7d / collection.sales7d).toString())
-    }
-    if (timeframe == "30d") {
-      if (collection.sales30d == 0) {
-          return `0 CRO`
-      }
-        return ethers.utils.commify(Math.round(collection.volume30d / collection.sales30d).toString())
-      }  
-    }
+    if (timeframe === "") return ethers.utils.commify(Math.round(collection.averageSalePrice));
+    if (timeframe === "1d") return collection.sales1d > 0 ? ethers.utils.commify(Math.round(collection.volume1d / collection.sales1d)) : 0;
+    if (timeframe === "7d") return collection.sales7d > 0 ? ethers.utils.commify(Math.round(collection.volume7d / collection.sales7d)) : 0;
+    if (timeframe === "30d") return collection.sales30d > 0 ? ethers.utils.commify(Math.round(collection.volume30d / collection.sales30d)) : 0;
+  }
 
-  const collectionFloorPriceValue = ({ floorPrice }) => ethers.utils.commify(Math.round(floorPrice)) + " CRO"
+  const collectionFloorPriceValue = ({ floorPrice }) => ethers.utils.commify(Math.round(floorPrice))
   const collectionNumberActiveValue = ({ numberActive }) => numberActive;
 
   return (
@@ -170,6 +130,14 @@ const Collections = () => {
           <div className="col-lg-4 col-md-6">
             <Form.Control type="text" placeholder="Search for Collection" onChange={handleSearch} />
           </div>
+          <div className="col-md-6 col-lg-8 text-end">
+            <ul className="activity-filter">
+              <li id="sale" className={timeframe === '1d' ? 'active' : ''} onClick={() => setTimeframe("1d")}>1d</li>
+              <li id="sale" className={timeframe === '7d' ? 'active' : ''} onClick={() => setTimeframe("7d")}>7d</li>
+              <li id="sale" className={timeframe === '30d' ? 'active' : ''} onClick={() => setTimeframe("30d")}>30d</li>
+              <li id="sale" className={timeframe === '' ? 'active' : ''} onClick={() => setTimeframe("")}>All Time</li>
+            </ul>
+          </div>
         </div>
         {isLoading && (
           <div className="row mt-4">
@@ -180,12 +148,6 @@ const Collections = () => {
             </div>
           </div>
         )}
-        <div class="btn-group" role="group" aria-label="Basic example">
-          <button type="button" class="btn-primary" onClick={() => setTimeframe("")}>All Time</button>
-          <button type="button" class="btn-primary" onClick={() => setTimeframe("1d")}>1d</button>
-          <button type="button" class="btn-primary" onClick={() => setTimeframe("7d")}>7d</button>
-          <button type="button" class="btn-primary" onClick={() => setTimeframe("30d")}>30d</button>
-        </div>
         <div className="row">
           <div className="col-lg-12">
             <table className="table de-table table-rank" data-mobile-responsive="true">
@@ -196,23 +158,26 @@ const Collections = () => {
                     Collection
                   </th>
                   {tableMobileView && (
-                    <th scope="col" style={{ cursor: 'pointer' }} onClick={sortCollections(timeframe, "volume")}>
-                      Volume {timeframe != "" && (
-                        "(" + timeframe + ")"
+                    <th scope="col" style={{ cursor: 'pointer' }} onClick={sortCollections("volume")}>
+                      Volume {' '}
+                      {timeframe !== "" && (
+                        <span className="badge bg-secondary">{timeframe}</span>
                       )}
                     </th>
                   )}
                   {tableMobileView && (
-                    <th scope="col" style={{ cursor: 'pointer' }} onClick={sortCollections(timeframe, "sales")}>
-                      Sales {timeframe != "" && (
-                        "(" + timeframe + ")"
+                    <th scope="col" style={{ cursor: 'pointer' }} onClick={sortCollections("sales")}>
+                      Sales {' '}
+                      {timeframe !== "" && (
+                        <span className="badge bg-secondary">{timeframe}</span>
                       )}
                     </th>
                   )}
                   {tableMobileView && (
                     <th scope="col" style={{ cursor: 'pointer' }}>
-                      Avg. Sale Price {timeframe != "" && (
-                        "(" + timeframe + ")"
+                      Avg. Sale Price {' '}
+                      {timeframe !== "" && (
+                        <span className="badge bg-secondary">{timeframe}</span>
                       )}
                     </th>
                   )}
@@ -257,27 +222,27 @@ const Collections = () => {
                                 <span>#</span>
                                 <span>{index + 1}</span>
                               </div>
-                              <div className="col-12 mobile-view-list-item" onClick={sortCollections(timeframe, "volume")}>
-                                <span>Volume {timeframe != "" && (
+                              <div className="col-12 mobile-view-list-item" onClick={sortCollections("volume")}>
+                                <span>Volume {timeframe !== "" && (
                                     "(" + timeframe + ")"
                                 )}</span>
                                 <span>{siPrefixedNumber(collectionVolume(collection))} CRO</span>
                               </div>
-                              <div className="col-12 mobile-view-list-item" onClick={sortCollections(timeframe, "sales")}>
-                              <span>Sales {timeframe != "" && (
+                              <div className="col-12 mobile-view-list-item" onClick={sortCollections("sales")}>
+                                <span>Sales {timeframe !== "" && (
                                     "(" + timeframe + ")"
                                 )}</span>
                                 <span>{siPrefixedNumber(collectionSales(collection))}</span>
                               </div>
                               <div className="col-12 mobile-view-list-item">
-                              <span>Avg. Sale Price {timeframe != "" && (
+                                <span>Avg. Sale Price {timeframe !== "" && (
                                     "(" + timeframe + ")"
                                 )}</span>
                                 <span>{collectionAveragePrices(collection)} CRO</span>
                               </div>
                               <div className="col-12 mobile-view-list-item" onClick={sortCollections('floorPrice')}>
                                 <span>Floor Price</span>
-                                <span>{collectionFloorPriceValue(collection)}</span>
+                                <span>{collectionFloorPriceValue(collection)} CRO</span>
                               </div>
                               <div className="col-12 mobile-view-list-item" onClick={sortCollections('numberActive')}>
                                 <span>Active</span>
@@ -286,10 +251,10 @@ const Collections = () => {
                             </div>
                           )}
                         </th>
-                        {tableMobileView && <td>{siPrefixedNumber(collectionVolume(collection))}</td>}
+                        {tableMobileView && <td>{siPrefixedNumber(collectionVolume(collection))} CRO</td>}
                         {tableMobileView && <td>{siPrefixedNumber(collectionSales(collection))}</td>}
                         {tableMobileView && <td>{collectionAveragePrices(collection)} CRO</td>}
-                        {tableMobileView && <td>{collectionFloorPriceValue(collection)}</td>}
+                        {tableMobileView && <td>{collectionFloorPriceValue(collection)} CRO</td>}
                         {tableMobileView && <td>{siPrefixedNumber(collectionNumberActiveValue(collection))}</td>}
                       </tr>
                     );
