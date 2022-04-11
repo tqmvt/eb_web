@@ -9,31 +9,44 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-export const getInitial = () => {
-  const vaultsQuery = `
+export const getAllOffers = async (addresses) => {
+  const allOffersQuery = `
   query($first: Int) {
-    vaults(
-      first: $first
-    ) {
-      id
-      name
-      symbol
-      vaultToken
+    offers(first: 1000) {
+        id
+        hash
+        offerIndex
+        nftAddress
+        nftId
+        buyer
+        seller
+        coinAddress
+        price
+        state
+        timeCreated
+        timeUpdated
+        timeEnded
     }
   }
 `;
 
-  client
-    .query({
-      query: gql(vaultsQuery),
-      variables: {
-        first: 10,
-      },
-    })
-    .then((data) => console.log('Subgraph data: ', data))
-    .catch((err) => {
-      console.log('Error fetching data: ', err);
-    });
+  const response = await new Promise((resolve) => {
+    resolve(
+      client.query({
+        query: gql(allOffersQuery),
+        variables: {
+          first: 1000,
+          where: { nftAddress: addresses },
+        },
+      })
+    );
+  });
+
+  const { offers } = response.data;
+
+  return {
+    data: offers,
+  };
 };
 
 export const getMyOffers = async (myAddress) => {
@@ -114,11 +127,10 @@ export const getReceivedOffers = async (myAddress) => {
   };
 };
 
-// TODO: offers: update query with params
 export const getOffersForSingleNFT = async (nftAddress, nftId) => {
   const nftOffersQuery = `
   query($first: Int) {
-    offers(first: 1000, where: { nftAddress: "0xcfeee4c7b10c52854e061607c347e0d79c6f73a1", nftId: 2}) {
+    offers(first: 1000, where: { nftAddress: "${nftAddress}", nftId: ${nftId}}) {
       id
       hash
       offerIndex

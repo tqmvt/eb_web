@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { BigNumber, Contract, ethers } from 'ethers';
 import { toast } from 'react-toastify';
 
-import { getMyOffers, getReceivedOffers, getOffersForSingleNFT } from '../core/subgraph';
+import { getAllOffers, getMyOffers, getReceivedOffers, getOffersForSingleNFT } from '../core/subgraph';
 import { createSuccessfulTransactionToastContent } from '../utils';
 import { ERC1155, ERC721, MetaPixelsAbi, SouthSideAntsReadAbi } from '../Contracts/Abis';
 import { isMetapixelsCollection, isSouthSideAntsCollection } from '../utils';
@@ -21,6 +21,9 @@ const offerSlice = createSlice({
 
     receivedOffersLoading: false,
     receivedOffers: [],
+
+    allOffersLoading: false,
+    allOffers: [],
 
     offersForSingleNFTLoading: false,
     offersForSingleNFT: [],
@@ -45,6 +48,15 @@ const offerSlice = createSlice({
       state.receivedOffersLoading = false;
       state.error = false;
       state.receivedOffers = action.payload;
+    },
+    allOffersLoading: (state) => {
+      state.allOffersLoading = true;
+      state.error = false;
+    },
+    allOffersLoaded: (state, action) => {
+      state.allOffersLoading = false;
+      state.error = false;
+      state.allOffers = action.payload;
     },
     offersForSingleNFTLoading: (state) => {
       state.offersForSingleNFTLoading = true;
@@ -74,6 +86,8 @@ export const {
   madeOffersLoaded,
   receivedOffersLoading,
   receivedOffersLoaded,
+  allOffersLoading,
+  allOffersLoaded,
   offersForSingleNFTLoading,
   offersForSingleNFTLoaded,
   offerActionSuccess,
@@ -82,6 +96,13 @@ export const {
 } = offerSlice.actions;
 
 export default offerSlice.reducer;
+
+export const fetchAllOffers = (addresses) => async (dispatch) => {
+  dispatch(allOffersLoading());
+  const { data } = await getAllOffers(addresses);
+
+  if (data) dispatch(allOffersLoaded(data));
+};
 
 export const fetchMadeOffers = (address) => async (dispatch) => {
   dispatch(madeOffersLoading());
