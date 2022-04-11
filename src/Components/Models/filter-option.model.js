@@ -13,6 +13,14 @@ export class FilterOption {
     return this.address;
   }
 
+  lowercasedAddress() {
+    if (Array.isArray(this.address)) {
+      return this.address.map((a) => a.toLowerCase());
+    }
+
+    return this.address;
+  }
+
   static fromJson({ address, name, id = null }) {
     const filterOption = new FilterOption();
 
@@ -40,13 +48,13 @@ export class FilterOption {
 
     if (this.address && this.id) {
       return {
-        collection: this.address.toLowerCase(),
+        collection: this.lowercasedAddress(),
         tokenId: this.id,
       };
     }
 
     return {
-      [this.type]: this.address.toLowerCase(),
+      [this.type]: this.lowercasedAddress(),
     };
   }
 }

@@ -26,6 +26,7 @@ import {
   shortAddress,
   timeSince,
   isCrognomidesCollection,
+  isBabyWeirdApesCollection,
 } from '../../utils';
 import config from '../../Assets/networks/rpc_config.json';
 import { croSkullRedPotionImageHack } from '../../hacks';
@@ -54,6 +55,7 @@ const Listing = () => {
 
   const [croCrowBreed, setCroCrowBreed] = useState(null);
   const [crognomideBreed, setCrognomideBreed] = useState(null);
+  const [babyWeirdApeBreed, setBabyWeirdApeBreed] = useState(null);
 
   useEffect(() => {
     dispatch(getListingDetails(id));
@@ -86,6 +88,8 @@ const Listing = () => {
       } catch (error) {
         console.log(error);
       }
+    } else {
+      setCroCrowBreed(null);
     }
   }, [listing]);
 
@@ -103,6 +107,24 @@ const Listing = () => {
       } catch (error) {
         console.log(error);
       }
+    } else {
+      setCrognomideBreed(null);
+    }
+  }, [listing]);
+
+  useEffect(async () => {
+    if (listing && isBabyWeirdApesCollection(listing.nftAddress)) {
+      const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
+      const abiFile = require(`../../Assets/abis/baby-weird-apes.json`);
+      const contract = new Contract(listing.nftAddress, abiFile.abi, readProvider);
+      try {
+        const apeInfo = await contract.apeInfo(listing.nftId);
+        setBabyWeirdApeBreed(apeInfo);
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      setBabyWeirdApeBreed(null);
     }
   }, [listing]);
 
@@ -296,6 +318,11 @@ const Listing = () => {
                       <li id="Mainbtn3" className="tab">
                         <span onClick={handleBtnClick(3)}>Offers</span>
                       </li>
+                      {babyWeirdApeBreed && (
+                        <li id="Mainbtn9" className="tab">
+                          <span onClick={handleBtnClick(9)}>Breed Info</span>
+                        </li>
+                      )}
                     </ul>
 
                     <div className="de_tab_content">
@@ -419,9 +446,52 @@ const Listing = () => {
                           )}
                         </div>
                       )}
-
                       {openMenu === 3 && <NFTTabOffers nftAddress={listing.nftAddress} nftId={listing.nftId} />}
-
+                      {openMenu === 9 && babyWeirdApeBreed && (
+                        <div className="tab-2 onStep fadeIn">
+                          <div className="d-block mb-3">
+                            <div className="row mt-5 gx-3 gy-2">
+                              {babyWeirdApeBreed.breedStatus ? (
+                                <div key={0} className="col-lg-4 col-md-6 col-sm-6">
+                                  <div className="nft_attr">
+                                    <h5>Birthdate</h5>
+                                    {babyWeirdApeBreed.birthdate.gt(0) ? (
+                                      <h4>
+                                        {new Date(babyWeirdApeBreed.birthdate.toNumber() * 1000).toLocaleDateString()}
+                                      </h4>
+                                    ) : (
+                                      <h4>Unknown</h4>
+                                    )}
+                                  </div>
+                                </div>
+                              ) : (
+                                <div key={0} className="col-lg-4 col-md-6 col-sm-6">
+                                  <div className="nft_attr">
+                                    <h5>Incubator ID</h5>
+                                    <h4>{listing.nftId}</h4>
+                                  </div>
+                                </div>
+                              )}
+                              <div key={1} className="col-lg-4 col-md-6 col-sm-6">
+                                <div className="nft_attr">
+                                  <h5>Mother ID</h5>
+                                  <h4>{babyWeirdApeBreed.mother.toNumber()}</h4>
+                                </div>
+                              </div>
+                              <div key={2} className="col-lg-4 col-md-6 col-sm-6">
+                                <div className="nft_attr">
+                                  <h5>Father ID</h5>
+                                  <h4>
+                                    <a href={`/collection/weird-apes-club-v2/${babyWeirdApeBreed.father.toNumber()}`}>
+                                      {babyWeirdApeBreed.father.toNumber()}
+                                    </a>
+                                  </h4>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      )}
                       {/* button for checkout */}
                       {listing.state === 0 ? (
                         <div className="d-flex flex-row mt-5">

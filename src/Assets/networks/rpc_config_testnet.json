@@ -10,11 +10,12 @@
   "membership_contract": "0x3F1590A5984C89e6d5831bFB76788F3517Cdf034",
   "market_contract": "0xb3cB12e7F9e442ef799a2B7e92f65ab8710d7b27",
   "stake_contract": "0x70A9989dd73B026B34462BE158963587dD9ca16f",
-  "auction_contract": "0xba707763609f18bc1439ACCfe342c1E35ba0fDCC",
+  "auction_contract": "0x12a277c1d2A7632F37f698ebCfc7E9FFa8B25f66",
   "cronie_contract": "0xe9DCa9E03F31CBD538A19a89eA2cA3684AF2788f",
   "elon_contract": "0x2fE1f2722fa215A68b92aECaD425259C0D645972",
   "ebisu_contract": "0x65A422AB9c95fc94208E010B8d4ab50F7E79af19",
   "offer_contract": "0x8Dd84fb5d7f8A504BA2398243D768C604f8Daf5E",
+  "slothy_rugsurance_contract": "0x99F3960E8219384BF0624D388cAD698d5A54AE6C",
   "known_tokens": {
     "loot": {
       "name": "LOOT",
@@ -52,7 +53,17 @@
       "multiToken": true,
       "id": 1,
       "listable": true,
-      "metadata": {}
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "",
+        "banner": "",
+        "card": "",
+        "maxSupply": 1000,
+        "website": "",
+        "twitter": "",
+        "discord": ""
+      }
     },
     {
       "slug": "basic-nft",
@@ -61,7 +72,17 @@
       "address": "0xCfEEe4c7B10C52854e061607C347e0D79C6F73A1",
       "onChain": false,
       "listable": true,
-      "metadata": {}
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "",
+        "banner": "",
+        "card": "",
+        "maxSupply": 1000,
+        "website": "",
+        "twitter": "",
+        "discord": ""
+      }
     },
     {
       "slug": "cronos-warrior",
@@ -70,7 +91,17 @@
       "address": "0x6777a24aef6374265B4A900c9Db57673cFF426Ab",
       "onChain": false,
       "listable": true,
-      "metadata": {}
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "",
+        "banner": "",
+        "card": "",
+        "maxSupply": 1000,
+        "website": "",
+        "twitter": "",
+        "discord": ""
+      }
     },
     {
       "slug": "cronies",
@@ -79,7 +110,17 @@
       "address": "0xe9DCa9E03F31CBD538A19a89eA2cA3684AF2788f",
       "onChain": true,
       "listable": true,
-      "metadata": {}
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "",
+        "banner": "",
+        "card": "",
+        "maxSupply": 1000,
+        "website": "",
+        "twitter": "",
+        "discord": ""
+      }
     },
     {
       "slug": "crypto-lovers",
@@ -88,7 +129,17 @@
       "address": "0xEf05151db4e0c96fff0921481300e2d53618Ee96",
       "onChain": false,
       "listable": true,
-      "metadata": {}
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "",
+        "banner": "",
+        "card": "",
+        "maxSupply": 1000,
+        "website": "",
+        "twitter": "",
+        "discord": ""
+      }
     },
     {
       "slug": "admiration",
@@ -102,7 +153,8 @@
         "verified": true,
         "avatar": "/img/collections/deplone/avatar.jpg",
         "banner": "/img/collections/deplone/page_banner.jpg",
-        "card": "/img/drops/deplone/drop.gif"
+        "card": "/img/drops/deplone/drop.gif",
+        "maxSupply": 2000
       }
     },
     {
@@ -117,7 +169,8 @@
         "verified": true,
         "avatar": "/img/collections/lazyhorse/avatar.png",
         "card": "/img/collections/lazyhorse/card.png",
-        "banner": "/img/collections/lazyhorse/banner.png"
+        "banner": "/img/collections/lazyhorse/banner.png",
+        "maxSupply": 2000
       }
     },
     {
@@ -132,7 +185,8 @@
         "verified": true,
         "avatar": "/img/collections/crougars/avatar.png",
         "card": "/img/collections/crougars/card.gif",
-        "banner": "/img/collections/crougars/banner.webp"
+        "banner": "/img/collections/crougars/banner.webp",
+        "maxSupply": 2000
       }
     },
     {
@@ -162,6 +216,7 @@
       "metadata": {
         "description": "",
         "verified": true,
+        "maxSupply": 2000,
         "avatar": "/img/collections/lazyhorse/avatar.png",
         "card": "/img/collections/lazyhorse/card.png",
         "banner": "/img/collections/lazyhorse/banner.png"
@@ -177,6 +232,7 @@
       "metadata": {
         "description": "They are magical! Their strength lies in feeling and finding those in need.",
         "verified": true,
+        "maxSupply": 2000,
         "avatar": "/img/collections/barbara/spacecrystalunicorns/avatar.jpg",
         "card": "/img/collections/barbara/spacecrystalunicorns/card.jpg",
         "banner": "/img/collections/barbara/spacecrystalunicorns/banner.jpg"
@@ -267,6 +323,7 @@
         "avatar": "/img/collections/magbrew/avatar.jpg",
         "card": "/img/collections/magbrew/card.jpg",
         "banner": "/img/collections/magbrew/banner.webp",
+        "maxSupply": 2000,
         "website": "https://www.magbrewvikings.com/",
         "twitter": "https://twitter.com/MAGBrewVikings",
         "discord": "https://discord.gg/xPN84dsmuC",
@@ -283,6 +340,7 @@
       "metadata": {
         "description": "",
         "verified": true,
+        "maxSupply": 2000,
         "avatar": "/img/collections/crazyscientists/avatar.gif",
         "card": "/img/collections/crazyscientists/card.png",
         "banner": "/img/collections/crazyscientists/banner.png",
@@ -301,6 +359,7 @@
       "metadata": {
         "description": "",
         "verified": true,
+        "maxSupply": 2000,
         "avatar": "/img/collections/bobanftea/avatar.png",
         "card": "/img/collections/bobanftea/card.png",
         "banner": "/img/collections/bobanftea/banner.png",
@@ -319,6 +378,7 @@
       "metadata": {
         "description": "",
         "verified": true,
+        "maxSupply": 2000,
         "avatar": "/img/collections/recklessrobots/avatar.png",
         "card": "/img/collections/recklessrobots/card.png",
         "banner": "/img/collections/recklessrobots/banner.webp",
@@ -337,6 +397,7 @@
       "metadata": {
         "description": "",
         "verified": true,
+        "maxSupply": 2000,
         "avatar": "/img/collections/hypeddogs/avatar.png",
         "card": "/img/collections/hypeddogs/card.gif",
         "banner": "/img/collections/hypeddogs/banner.webp",
@@ -393,6 +454,7 @@
       "metadata": {
         "description": "",
         "verified": true,
+        "maxSupply": 2000,
         "avatar": "/img/collections/meta_cyborgs/avatar.png",
         "card": "/img/collections/meta_cyborgs/banner.webp",
         "banner": "/img/collections/meta_cyborgs/banner.webp",
@@ -490,7 +552,17 @@
       "address": "0x99a1E178d0AB41DbdA42EED5faaDFAA073c4AA14",
       "onChain": false,
       "listable": false,
-      "metadata": {}
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "",
+        "banner": "",
+        "card": "",
+        "maxSupply": 1000,
+        "website": "",
+        "twitter": "",
+        "discord": ""
+      }
     },
     {
       "name": "Lolita Friends",
@@ -577,6 +649,7 @@
       "onChain": false,
       "listable": false,
       "metadata": {
+        "description": "",
         "verified": true,
         "avatar": "/img/collections/nobuddies/avatar.webp",
         "banner": "/img/collections/nobuddies/banner.webp",
@@ -591,10 +664,11 @@
       "name": "MarbleVerse",
       "slug": "marbleverse",
       "multiToken": false,
-      "address": "0x5276AEa297c415Be3D9E5AC257C6165C656d3747",
+      "address": "0x6262825f4f0B32918AF227DcdF9Eba7ff39EDb76",
       "onChain": false,
       "listable": true,
       "metadata": {
+        "description": "",
         "verified": true,
         "avatar": "/img/collections/marbleverse/avatar.webp",
         "banner": "/img/collections/marbleverse/banner.webp",
@@ -625,6 +699,103 @@
         "twitter": "https://twitter.com/LazyHorseRC",
         "discord": "https://discord.gg/lhrc",
         "medium": "https://medium.com/@lazyhorseraceclub"
+      }
+    },
+    {
+      "name": "CronosVerse",
+      "slug": "cronosverse",
+      "multiToken": false,
+      "address": "0x77436B454e9EAAeA307c84243F521F313fb89BD9",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/cronosverse/avatar.webp",
+        "card": "/img/collections/cronosverse/card.webp",
+        "banner": "/img/collections/cronosverse/banner.webp",
+        "maxSupply": 1208,
+        "website": "https://thecronosverse.com/",
+        "twitter": "https://twitter.com/thecronosverse",
+        "discord": "https://discord.gg/HfCHkvNy6K"
+      }
+    },
+    {
+      "name": "Cro Succubus",
+      "slug": "cro-succubus",
+      "multiToken": false,
+      "address": "0xF409eDc80a93E96F224d615Df92F5ab3Aa8aFCfE",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/succubus/avatar.gif",
+        "card": "/img/collections/succubus/card.png",
+        "banner": "/img/collections/succubus/banner.png",
+        "maxSupply": 2666,
+        "website": "https://www.hypednftclub.com/crosuccubus",
+        "twitter": "https://twitter.com/CroSuccubus",
+        "discord": "https://discord.gg/ruKabM5A4U"
+      }
+    },
+    {
+      "name": "Crobees",
+      "slug": "crobees",
+      "multiToken": false,
+      "address": "0xBde6bc3dd2265b23684435C4C87AA7DD85910739",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/crobees/avatar.webp",
+        "card": "/img/collections/crobees/card.webp",
+        "banner": "/img/collections/crobees/banner.webp",
+        "maxSupply": 2222,
+        "twitter": "https://twitter.com/The_Crobees",
+        "website": "https://www.crobees.com/",
+        "discord": "discord.gg/BdYExfEJ8v",
+        "medium": "https://medium.com/the-crobees"
+      }
+    },
+    {
+      "name": "Cyborg Brotherhood",
+      "slug": "cyborg-brotherhood",
+      "multiToken": false,
+      "address": "0x570455059613388F01A5275C40BdcD2Cb5390966",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/cyborgbrotherhood/avatar.webp",
+        "card": "/img/collections/cyborgbrotherhood/card.webp",
+        "banner": "/img/collections/cyborgbrotherhood/banner.webp",
+        "maxSupply": 3333,
+        "website": "https://www.cyborgbh.io/",
+        "twitter": "https://twitter.com/mariescyborgs",
+        "discord": "https://discord.gg/x9bvzuSBeV",
+        "medium": "https://medium.com/@mariescyborgs/cyborg-brotherhood-28173eccf03a"
+      }
+    },
+    {
+      "name": "Lady Ri",
+      "slug": "lady-ri",
+      "multiToken": false,
+      "address": "0x231729415031099336930158078859A19409D1c6",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/ladyri/avatar.jpg",
+        "card": "/img/collections/ladyri/card.jpg",
+        "banner": "/img/collections/ladyri/banner.jpg",
+        "maxSupply": 1111,
+        "website": "",
+        "twitter": "",
+        "discord": ""
       }
     }
   ],
@@ -1393,7 +1564,7 @@
       "subtitle": "Find your favorite marble and try to become the rolling champion of the MarbleVerse",
       "description": "MarbleVerse will be the 1st P2E NFT game on Cronos Network and welcomes all into an evolving universe where your marbles race to prove their worth and become more valuable racers. Mint your marbles and let it race for you; as it wins races, you will earn too.\n\nAnyone holding Marble NFTs will be able to join marble races and earn valuable rewards based on their marbles success.\n\nMarbleVerse brings a game where you can enjoy racing, winning, earning and owning beautiful pieces of art with the rest of the community.",
       "author": { "name": "MarbleVerse", "link": "https://www.marbleverse.io/" },
-      "address": "0x5276AEa297c415Be3D9E5AC257C6165C656d3747",
+      "address": "0x6262825f4f0B32918AF227DcdF9Eba7ff39EDb76",
       "maxMintPerTx": 10,
       "maxMintPerAddress": 1000,
       "totalSupply": 20000,
@@ -1401,7 +1572,7 @@
       "cost": "80",
       "memberCost": "80",
       "foundersOnly": false,
-      "start": null,
+      "start": 1647795651000,
       "end": null,
       "referral": false,
       "is1155": false,
@@ -1429,6 +1600,167 @@
       "whitelistCost": "4000",
       "foundersOnly": false,
       "start": 1648225243000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false
+    },
+    {
+      "id": 47,
+      "slug": "cronosverse",
+      "abi": "cronosverse.json",
+      "imgNft": "/img/drops/cronosverse/drop.webp",
+      "imgPreview": "/img/drops/cronosverse/drop.webp",
+      "imgAvatar": "/img/collections/cronosverse/avatar.webp",
+      "imgBanner": "/img/collections/cronosverse/banner.webp",
+      "title": "CronosVerse",
+      "subtitle": "Buy your digital land plot, develop your property & enter The CronosVerse!",
+      "description": "The CronosVerse aims to be the first metaverse social MMO on the Cronos Chain.\n\nLand owners will be able to build structures on their land for their NFT characters, friends, and community members to enjoy. Build using preloaded building materials with absolutely no coding required.\n\nTypes of Lands:\n\nPlains Tiles- Allows for building of rustic style structures (max amalgamation of 16 tiles)\n\nSuburban Tiles- Allows for suburban style structures (max amalgamation of 4 tiles)\n\nCommercial Tiles- Allows for retail, office, entertainment and other commercial structures (max amalgamation of 4 tiles)",
+      "author": { "name": "CronosVerse", "link": "https://thecronosverse.com/" },
+      "address": "0x77436B454e9EAAeA307c84243F521F313fb89BD9",
+      "maxMintPerTx": 1,
+      "maxMintPerAddress": 1208,
+      "totalSupply": 1208,
+      "cost": ["2", "3", "4"],
+      "memberCost": ["1", "2", "3"],
+      "whitelistCost": ["1", "2", "3"],
+      "foundersOnly": false,
+      "start": 1647288000000,
+      "salePeriods": {
+        "presale": 1646424000000,
+        "public": 1646431200000
+      },
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false,
+      "multiPrice": true
+    },
+    {
+      "id": 47,
+      "slug": "3d-slothty",
+      "imgNft": "/img/drops/slothty/drop.png",
+      "imgPreview": "/img/drops/slothty/drop.png",
+      "imgAvatar": "/img/collections/slothty/avatar.png",
+      "imgBanner": "/img/collections/slothty/banner.webp",
+      "title": "3DSlothty",
+      "subtitle": "Slothy Burn Mint",
+      "description": "Mint 3dSlothty to burn later",
+      "author": { "name": "Slothty", "link": "" },
+      "address": "0x7d09ff680b210770D6D9a1296b4A74bd5391b341",
+      "maxMintPerTx": 3,
+      "maxMintPerAddress": 50,
+      "totalSupply": 2100,
+      "cost": "3",
+      "memberCost": "2",
+      "whitelistCost": "1",
+      "foundersOnly": false,
+      "start": 1638225243000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false
+    },
+    {
+      "id": 48,
+      "slug": "3d-slothty",
+      "imgNft": "/img/drops/slothty/card.png",
+      "imgPreview": "/img/drops/slothty/card.png",
+      "title": "4DSlothty",
+      "subtitle": "",
+      "description": "",
+      "author": { "name": "Ebisu's Bay", "link": "https://app.ebisusbay.com" },
+      "address": "",
+      "maxMintPerTx": 0,
+      "maxMintPerAddress": 0,
+      "totalSupply": 0,
+      "cost": "250",
+      "whitelistCost": "200",
+      "foundersOnly": false,
+      "start": 1645240287000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false,
+      "featured": true,
+      "redirect": "/slothty-rugsurance"
+    },
+    {
+      "id": 49,
+      "slug": "cro-succubus",
+      "imgNft": "/img/drops/succubus/drop.gif",
+      "imgPreview": "/img/drops/succubus/drop.gif",
+      "imgAvatar": "/img/collections/succubus/avatar.gif",
+      "imgBanner": "/img/collections/succubus/banner.png",
+      "title": "Cro Succubus",
+      "subtitle": "A succubus is 2666 NFT collection, a demon in female form that will forever live on Cronos Smartchain. We are just starting to unleash Hell on cronos. \"Keep your mind awake, because your soul I might take.\"",
+      "description": "A succubus is 2666 NFT collection, a demon in female form that will forever live on Cronos Smartchain. We are just starting to unleash Hell on cronos. Come join us on this delicious dream and vision for the NFT world. \nEnjoy all membership perks of Hyped NFT Club, future staking utility and more!\n\"Keep your mind awake, because your soul I might take.\"",
+      "author": { "name": "Cro Succubus", "link": "https://www.hypednftclub.com/crosuccubus" },
+      "address": "0xF409eDc80a93E96F224d615Df92F5ab3Aa8aFCfE",
+      "maxMintPerTx": 5,
+      "maxMintPerAddress": 50,
+      "totalSupply": 2666,
+      "cost": "220",
+      "memberCost": "180",
+      "whitelistCost": "160",
+      "foundersOnly": false,
+      "start": 1647795651000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false
+    },
+    {
+      "id": 50,
+      "slug": "crobees",
+      "imgNft": "/img/drops/crobees/drop.webp",
+      "imgPreview": "/img/drops/crobees/drop.webp",
+      "imgAvatar": "/img/collections/crobees/avatar.webp",
+      "imgBanner": "/img/drops/crobees/banner.webp",
+      "title": "Crobees",
+      "subtitle": "Jump into the hive and discover the beautiful universe around the bees. With more than 110 attributes, all these unique NFTs was drawn with love and high design quality!",
+      "description": "The Crobees - A 2222 NFTs collection of bees with more than 110 attributes. The crobees is putting forward a project where the community is in the heart of it. With the mindset to build a hive in the cronos chain, to gather people from all background (DeFi, NFTs...) into a huge family. \n\nHolding a NFT gives you some premium access as the DAO/Staking/Queen's Lottery/BeeShop. The DAO gives you the power to choose the futur of the project, to take part in the decisions by vote (already live in Discord).\n\nThe staking of your Crobees NFTs generates our own token, which opens the doors of the BeeShop.With this token, you can buy WL/Airdrops/Merchandise/Charity Vouchers/Queen's Lottery Tickets/... .Visit our website or medium to check the entire Roadmap.\n\nJoin the Hive right now and let's build it!",
+      "author": { "name": "Crobees", "link": "http://crobees.com/" },
+      "address": "0xBde6bc3dd2265b23684435C4C87AA7DD85910739",
+      "maxMintPerTx": 10,
+      "maxMintPerAddress": 50,
+      "totalSupply": 2222,
+      "cost": "350",
+      "memberCost": "300",
+      "foundersOnly": false,
+      "start": 1647795651000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false
+    },
+    {
+      "id": 51,
+      "slug": "cyborg-brotherhood",
+      "imgNft": "/img/drops/cyborgbrotherhood/drop.webp",
+      "imgPreview": "/img/drops/cyborgbrotherhood/drop.webp",
+      "imgAvatar": "/img/collections/cyborgbrotherhood/avatar.webp",
+      "imgBanner": "/img/collections/cyborgbrotherhood/banner.webp",
+      "title": "Cyborg Brotherhood",
+      "subtitle": "For as long as my forefathers can remember my family has been part of the Brotherhood. We are faithful servants of the last noble cause, we have put our skill of arms at the service of justice, of our justice. In a world where good and evil only have differences if the forbiddens ones dare to speaks them, we secretly and faithfully maintained the balance.",
+      "description": "Join the Cyborg Brotherhood and become an Assassin\n\n- 10% of the mint sale of the Cyborg Brotherhood divided among Assassins and all future MC projects\n- 10% on the first mint of all the projects we will help to launch through our incubator\n- Increased decision-making power on all MC decisions (real DAO)",
+      "author": { "name": "Marie's Cyborgs", "link": "https://www.mariescyborgs.io/" },
+      "address": "0x570455059613388F01A5275C40BdcD2Cb5390966",
+      "maxMintPerTx": 25,
+      "maxMintPerAddress": 100,
+      "totalSupply": 3333,
+      "cost": "499",
+      "memberCost": "449",
+      "whitelistCost": "399",
+      "priceDescription": "WL price only valid for up to 3 per whitelisted address",
+      "foundersOnly": false,
+      "start": 1647795651000,
       "end": null,
       "referral": false,
       "is1155": false,

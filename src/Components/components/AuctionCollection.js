@@ -13,7 +13,7 @@ import { init, fetchListings } from '../../GlobalState/auctionsSlice';
 
 const AuctionCollection = ({ showLoadMore = true, collectionId = null, sellerId = null, cacheName = null }) => {
   const dispatch = useDispatch();
-  const listings = useSelector((state) => state.auctions.auctions);
+  const listings = useSelector((state) => state.auctions.auctions.filter((a) => typeof a.nft != 'undefined'));
   const isLoading = useSelector((state) => state.auctions.loading);
 
   // const canLoadMore = useSelector((state) => {

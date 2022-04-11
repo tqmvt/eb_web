@@ -331,6 +331,10 @@ export const isCrosmocraftsCollection = (address) => {
   return isCollection(address, 'crosmocrafts');
 };
 
+export const isBabyWeirdApesCollection = (address) => {
+  return isCollection(address, 'baby-weird-apes');
+};
+
 export const percentage = (partialValue, totalValue) => {
   if (!totalValue || totalValue === 0) return 0;
   return Math.floor((100 * partialValue) / totalValue);

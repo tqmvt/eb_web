@@ -76,7 +76,9 @@ const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) 
 
     const filterOption = FilterOption.default();
     filterOption.type = 'collection';
-    filterOption.address = collection.address;
+    filterOption.address = collection.mergedAddresses
+      ? [collection.address, ...collection.mergedAddresses]
+      : collection.address;
     filterOption.name = 'Specific collection';
     filterOption.slug = slug;
 
@@ -94,7 +96,7 @@ const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) 
 
   useEffect(() => {
     async function asyncFunc() {
-      dispatch(getStats(collection.address, slug));
+      dispatch(getStats(collection.address, slug, null, collection.mergedAddresses));
       try {
         let royalties = await readMarket.royalties(collection.address);
         setRoyalty(Math.round(royalties[1]) / 100);

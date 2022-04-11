@@ -91,8 +91,9 @@ export default class Responsive extends Component {
   }
 
   arrangeCollections() {
-    const twelveHours = 3600000 * 12;
-    const twoDays = 3600000 * 24 * 2;
+    const timeToShowInHours = 3600000 * 24;
+    const maxShowTimeInDays = 3600000 * 24 * 2;
+    const defaultMaxCount = 5;
 
     const topLevelDrops = drops.filter((d) => !d.complete && d.featured);
     const topLevelKeys = topLevelDrops.map((d) => d.slug);
@@ -104,11 +105,11 @@ export default class Responsive extends Component {
           d.published &&
           d.start &&
           d.start > Date.now() &&
-          d.start - Date.now() < twelveHours &&
+          d.start - Date.now() < timeToShowInHours &&
           !!d.imgPreview &&
           !topLevelKeys.includes(d.slug)
       )
-      .sort((a, b) => (a.start < b.start ? 1 : -1));
+      .sort((a, b) => (a.start > b.start ? 1 : -1));
     let liveDrops = drops
       .filter(
         (d) =>
@@ -121,14 +122,14 @@ export default class Responsive extends Component {
       )
       .sort((a, b) => (a.start < b.start ? 1 : -1));
 
-    if (liveDrops.length > 3) {
+    if (liveDrops.length > defaultMaxCount) {
       let c = 0;
       liveDrops = liveDrops
         .reverse()
         .filter((d) => {
-          if (liveDrops.length - c <= 3) return true;
+          if (liveDrops.length - c <= defaultMaxCount) return true;
 
-          if (Date.now() - d.start < twoDays || this.isFounderDrop(d)) {
+          if (Date.now() - d.start < maxShowTimeInDays || this.isFounderDrop(d)) {
             return true;
           }
 
@@ -261,19 +262,43 @@ export default class Responsive extends Component {
                         <div className="d-attr">
                           <div className="col">
                             <span className="d-title">Mint Price</span>
-                            <h3>{ethers.utils.commify(drop.cost)} CRO</h3>
+                            {Array.isArray(drop.cost) ? (
+                              <h3>
+                                {ethers.utils.commify(Math.min(...drop.cost.map((c) => parseInt(c))))} -{' '}
+                                {ethers.utils.commify(Math.max(...drop.cost.map((c) => parseInt(c))))} CRO
+                              </h3>
+                            ) : (
+                              <h3>{ethers.utils.commify(drop.cost)} CRO</h3>
+                            )}
                             {drop.erc20Cost && drop.erc20Unit && (
                               <h3>
                                 {ethers.utils.commify(drop.erc20Cost)} {drop.erc20Unit}
                               </h3>
                             )}
-                            {drop.memberCost && <h5>Members: {ethers.utils.commify(drop.memberCost)} CRO</h5>}
+                            {drop.memberCost &&
+                              (Array.isArray(drop.memberCost) ? (
+                                <h5>
+                                  Members: {ethers.utils.commify(Math.min(...drop.memberCost.map((c) => parseInt(c))))}{' '}
+                                  - {ethers.utils.commify(Math.max(...drop.memberCost.map((c) => parseInt(c))))} CRO
+                                </h5>
+                              ) : (
+                                <h5>Members: {ethers.utils.commify(drop.memberCost)} CRO</h5>
+                              ))}
                             {drop.erc20MemberCost && drop.erc20Unit && (
                               <h5>
                                 Members: {ethers.utils.commify(drop.erc20MemberCost)} {drop.erc20Unit}
                               </h5>
                             )}
-                            {drop.whitelistCost && <h5>Whitelist: {ethers.utils.commify(drop.whitelistCost)} CRO</h5>}
+                            {drop.whitelistCost &&
+                              (Array.isArray(drop.whitelistCost) ? (
+                                <h5>
+                                  Whitelist:{' '}
+                                  {ethers.utils.commify(Math.min(...drop.memberCost.map((c) => parseInt(c))))} -{' '}
+                                  {ethers.utils.commify(Math.max(...drop.memberCost.map((c) => parseInt(c))))} CRO
+                                </h5>
+                              ) : (
+                                <h5>Whitelist: {ethers.utils.commify(drop.whitelistCost)} CRO</h5>
+                              ))}
                             {drop.specialWhitelistCost && (
                               <h5>Special Whitelist: {ethers.utils.commify(drop.specialWhitelistCost)} CRO</h5>
                             )}

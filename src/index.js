@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './Assets/styles/animated.css';
 import '../node_modules/elegant-icons/style.css';
 import '../node_modules/et-line/style.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
@@ -9,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import './Assets/styles/style.scss';
 import './Assets/styles/style_grey.scss';
 import './Assets/styles/override.scss';
+import './Assets/styles/Everything.css';
 import App from './App';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';

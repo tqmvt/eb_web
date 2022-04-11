@@ -22,10 +22,11 @@ import MySales from '../Components/pages/mySales';
 import MyOffers from '../Components/pages/myOffers';
 import MyStaking from '../Components/pages/myStaking';
 import Collections from '../Components/pages/collections';
-import CharityBall from '../Components/pages/charityBall';
+import MetaverseAuctions from '../Components/pages/metaverseAuctions';
 import Rugsurance from '../Components/pages/rugsurance';
 import { ErrorPage } from '../Components/pages/ErrorPage';
 import CollectionDetail from 'src/Components/pages/collectionDetail';
+import ManageAuctions from '../Components/pages/manageAuctions';
 
 const SentryEnhancedRoute = Sentry.withSentryRouting(Route);
 
@@ -91,7 +92,7 @@ const Component = ({ walletAddress, authInitFinished }) => {
           />
           <SentryEnhancedRoute exact path="/drops/:slug" component={Drop} />
           <SentryEnhancedRoute exact path="/listing/:id" component={Listing} />
-          {/*<SentryEnhancedRoute exact path="/manage/auctions" component={ManageAuctions}/>*/}
+          <SentryEnhancedRoute exact path="/manage/auctions" component={ManageAuctions} />
           <SentryEnhancedRoute exact path="/auctions/:id" component={Auction} />
           <SentryEnhancedRoute exact path="/collections" component={Collections} />
           <SentryEnhancedRoute
@@ -99,12 +100,17 @@ const Component = ({ walletAddress, authInitFinished }) => {
             path="/collection/mad-treehouse"
             render={() => <Redirect to="/collection/mm-treehouse" />}
           />
+          <SentryEnhancedRoute
+            exact
+            path="/collection/weird-apes-club-v2"
+            render={() => <Redirect to="/collection/weird-apes-club" />}
+          />
           <SentryEnhancedRoute exact path="/collection/:slug" component={Collection} />
           <SentryEnhancedRoute exact path="/collection/:slug/:id" component={Nft} />
           {/* <SentryEnhancedRoute exact path="/collection-detail/:id" component={CollectionDetail} /> */}
           <SentryEnhancedRoute exact path="/seller/:address" component={Seller} />
-          <SentryEnhancedRoute exact path="/charity-ball" component={CharityBall} />
-          <SentryEnhancedRoute exact path="/slothty-rugsurance" component={Rugsurance} />
+          <SentryEnhancedRoute exact path="/metaverse-auctions" component={MetaverseAuctions} />
+          {/*<SentryEnhancedRoute exact path="/slothty-rugsurance" component={Rugsurance} />*/}
           <SentryEnhancedRoute path="*" render={() => <Redirect to="/" />} />
         </Switch>
       </Sentry.ErrorBoundary>

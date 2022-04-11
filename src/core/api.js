@@ -44,7 +44,7 @@ export default api;
 let abortController = null;
 
 export async function sortAndFetchListings(page, sort, filter, traits, powertraits, search, filterListed) {
-  let pagesize = 12;
+  let pagesize = 50;
 
   let query = {
     state: 0,
@@ -202,7 +202,11 @@ export async function getCollectionMetadata(contractAddress, sort, filter) {
     };
     query = { ...query, ...sortProps };
   }
-  if (contractAddress != null) query['collection'] = ethers.utils.getAddress(contractAddress.toLowerCase());
+  if (contractAddress != null) {
+    query['collection'] = Array.isArray(contractAddress)
+      ? contractAddress.map((c) => ethers.utils.getAddress(c.toLowerCase()))
+      : ethers.utils.getAddress(contractAddress.toLowerCase());
+  }
 
   const queryString = new URLSearchParams(query);
 
