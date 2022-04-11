@@ -59,7 +59,6 @@ const Collections = () => {
   }, [collections]);
 
   const sortCollections = (key) => () => {
-    console.log(collections);
     if (['volume', 'sales'].includes(key)) {
       if (timeframe) {
         key = `${key}${timeframe}`
