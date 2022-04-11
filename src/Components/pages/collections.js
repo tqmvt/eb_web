@@ -174,7 +174,7 @@ const Collections = () => {
                   )}
                   {tableMobileView && (
                     <th scope="col" style={{ cursor: 'pointer' }}>
-                      Avg. Sale Price {' '}
+                      Avg Price {' '}
                       {timeframe !== "" && (
                         <span className="badge bg-secondary">{timeframe}</span>
                       )}
@@ -199,8 +199,8 @@ const Collections = () => {
                     return (
                       <tr key={index}>
                         {tableMobileView && <td>{index + 1}</td>}
-                        <th scope="row" className="row gap-4 border-bottom-0">
-                          <div className="col-12">
+                        <th scope="row" className="row gap-4 border-bottom-0" style={{paddingLeft: 0}}>
+                          <div className="col-12" style={{paddingLeft:'75px'}}>
                             <div className="coll_list_pp" style={{ cursor: 'pointer' }}>
                               <Link to={`/collection/${collection.slug}`}>
                                 {collection.metadata?.avatar ? (
@@ -219,33 +219,39 @@ const Collections = () => {
                             <div className="col-12 row gap-1">
                               <div className="col-12 mobile-view-list-item">
                                 <span>#</span>
-                                <span>{index + 1}</span>
+                                <span className="text-end">{index + 1}</span>
                               </div>
                               <div className="col-12 mobile-view-list-item" onClick={sortCollections("volume")}>
-                                <span>Volume {timeframe !== "" && (
-                                    "(" + timeframe + ")"
-                                )}</span>
-                                <span>{siPrefixedNumber(collectionVolume(collection))} CRO</span>
+                                <span>Volume {' '}
+                                  {timeframe !== "" && (
+                                    <span className="badge bg-secondary">{timeframe}</span>
+                                  )}
+                                </span>
+                                <span className="text-end">{siPrefixedNumber(collectionVolume(collection))} CRO</span>
                               </div>
                               <div className="col-12 mobile-view-list-item" onClick={sortCollections("sales")}>
-                                <span>Sales {timeframe !== "" && (
-                                    "(" + timeframe + ")"
-                                )}</span>
-                                <span>{siPrefixedNumber(collectionSales(collection))}</span>
+                                <span>Sales {' '}
+                                  {timeframe !== "" && (
+                                    <span className="badge bg-secondary">{timeframe}</span>
+                                  )}
+                                </span>
+                                <span className="text-end">{siPrefixedNumber(collectionSales(collection))}</span>
                               </div>
                               <div className="col-12 mobile-view-list-item">
-                                <span>Avg. Sale Price {timeframe !== "" && (
-                                    "(" + timeframe + ")"
-                                )}</span>
-                                <span>{collectionAveragePrices(collection)} CRO</span>
+                                <span>Avg Price {' '}
+                                  {timeframe !== "" && (
+                                    <span className="badge bg-secondary">{timeframe}</span>
+                                  )}
+                                </span>
+                                <span className="text-end">{collectionAveragePrices(collection)} CRO</span>
                               </div>
                               <div className="col-12 mobile-view-list-item" onClick={sortCollections('floorPrice')}>
                                 <span>Floor Price</span>
-                                <span>{collectionFloorPriceValue(collection)} CRO</span>
+                                <span className="text-end">{collectionFloorPriceValue(collection)} CRO</span>
                               </div>
                               <div className="col-12 mobile-view-list-item" onClick={sortCollections('numberActive')}>
                                 <span>Active</span>
-                                <span>{siPrefixedNumber(collectionNumberActiveValue(collection))}</span>
+                                <span className="text-end">{siPrefixedNumber(collectionNumberActiveValue(collection))}</span>
                               </div>
                             </div>
                           )}
