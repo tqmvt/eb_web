@@ -43,7 +43,7 @@ const Collections = () => {
     return state.collections.sort;
   });
 
-  const [timeframe, setTimeframe] = useState("");
+  const [timeframe, setTimeframe] = useState(null);
 
   useEffect(() => {
     dispatch(getAllCollections());
@@ -86,21 +86,21 @@ const Collections = () => {
   //  collection helper pipes
 
   const collectionVolume = (collection) => {
-    if (timeframe === "") return Math.round(collection.totalVolume)
+    if (timeframe === null) return Math.round(collection.totalVolume)
     if (timeframe === "1d") return Math.round(collection.volume1d)
     if (timeframe === "7d") return Math.round(collection.volume7d)
     if (timeframe === "30d") return Math.round(collection.volume30d)
   }
 
   const collectionSales = (collection) => {
-    if (timeframe === "") return Math.round(collection.numberOfSales);
+    if (timeframe === null) return Math.round(collection.numberOfSales);
     if (timeframe === "1d") return Math.round(collection.sales1d);
     if (timeframe === "7d") return Math.round(collection.sales7d);
     if (timeframe === "30d") return Math.round(collection.sales30d);
   }
 
   const collectionAveragePrices = (collection) => {
-    if (timeframe === "") return ethers.utils.commify(Math.round(collection.averageSalePrice));
+    if (timeframe === null) return ethers.utils.commify(Math.round(collection.averageSalePrice));
     if (timeframe === "1d") return collection.sales1d > 0 ? ethers.utils.commify(Math.round(collection.volume1d / collection.sales1d)) : 0;
     if (timeframe === "7d") return collection.sales7d > 0 ? ethers.utils.commify(Math.round(collection.volume7d / collection.sales7d)) : 0;
     if (timeframe === "30d") return collection.sales30d > 0 ? ethers.utils.commify(Math.round(collection.volume30d / collection.sales30d)) : 0;
@@ -134,7 +134,7 @@ const Collections = () => {
               <li id="sale" className={timeframe === '1d' ? 'active' : ''} onClick={() => setTimeframe("1d")}>1d</li>
               <li id="sale" className={timeframe === '7d' ? 'active' : ''} onClick={() => setTimeframe("7d")}>7d</li>
               <li id="sale" className={timeframe === '30d' ? 'active' : ''} onClick={() => setTimeframe("30d")}>30d</li>
-              <li id="sale" className={timeframe === '' ? 'active' : ''} onClick={() => setTimeframe("")}>All Time</li>
+              <li id="sale" className={timeframe === null ? 'active' : ''} onClick={() => setTimeframe(null)}>All Time</li>
             </ul>
           </div>
         </div>
@@ -159,7 +159,7 @@ const Collections = () => {
                   {tableMobileView && (
                     <th scope="col" style={{ cursor: 'pointer' }} onClick={sortCollections("volume")}>
                       Volume {' '}
-                      {timeframe !== "" && (
+                      {timeframe !== null && (
                         <span className="badge bg-secondary">{timeframe}</span>
                       )}
                     </th>
@@ -167,7 +167,7 @@ const Collections = () => {
                   {tableMobileView && (
                     <th scope="col" style={{ cursor: 'pointer' }} onClick={sortCollections("sales")}>
                       Sales {' '}
-                      {timeframe !== "" && (
+                      {timeframe !== null && (
                         <span className="badge bg-secondary">{timeframe}</span>
                       )}
                     </th>
@@ -175,7 +175,7 @@ const Collections = () => {
                   {tableMobileView && (
                     <th scope="col" style={{ cursor: 'pointer' }}>
                       Avg Price {' '}
-                      {timeframe !== "" && (
+                      {timeframe !== null && (
                         <span className="badge bg-secondary">{timeframe}</span>
                       )}
                     </th>
@@ -223,7 +223,7 @@ const Collections = () => {
                               </div>
                               <div className="col-12 mobile-view-list-item" onClick={sortCollections("volume")}>
                                 <span>Volume {' '}
-                                  {timeframe !== "" && (
+                                  {timeframe !== null && (
                                     <span className="badge bg-secondary">{timeframe}</span>
                                   )}
                                 </span>
@@ -231,7 +231,7 @@ const Collections = () => {
                               </div>
                               <div className="col-12 mobile-view-list-item" onClick={sortCollections("sales")}>
                                 <span>Sales {' '}
-                                  {timeframe !== "" && (
+                                  {timeframe !== null && (
                                     <span className="badge bg-secondary">{timeframe}</span>
                                   )}
                                 </span>
@@ -239,7 +239,7 @@ const Collections = () => {
                               </div>
                               <div className="col-12 mobile-view-list-item">
                                 <span>Avg Price {' '}
-                                  {timeframe !== "" && (
+                                  {timeframe !== null && (
                                     <span className="badge bg-secondary">{timeframe}</span>
                                   )}
                                 </span>
