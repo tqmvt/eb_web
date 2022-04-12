@@ -27,7 +27,7 @@ const api = {
   auctions: '/auctions',
   unfilteredListings: '/unfilteredlistings',
   collectionSummary: '/collection/summary',
-  collectionDetails: '/collection/details',
+  collectionDetails: '/fullcollections',
 };
 
 export default api;

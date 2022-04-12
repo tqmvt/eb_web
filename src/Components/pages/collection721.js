@@ -80,7 +80,6 @@ const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) 
       ? [collection.address, ...collection.mergedAddresses]
       : collection.address;
     filterOption.name = 'Specific collection';
-    filterOption.slug = slug;
 
     dispatch(
       init(
