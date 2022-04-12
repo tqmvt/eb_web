@@ -100,13 +100,11 @@ const ListingCardCollection = ({ listing, imgClass = 'marketplace', watermark, a
                 <Button onClick={handleBuy}>Buy</Button>
               </div>
             )}
-            {!getIsNftListed() && (
-              <div className="w-45">
-                <Button type="outlined" onClick={() => handleMakeOffer('Make')}>
-                  Offer
-                </Button>
-              </div>
-            )}
+            <div className="w-45">
+              <Button type="outlined" onClick={() => handleMakeOffer('Make')}>
+                Offer
+              </Button>
+            </div>
           </MakeOffer>
         </div>
       </div>
