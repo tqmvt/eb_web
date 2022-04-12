@@ -191,7 +191,11 @@ export default function TableRow({ data, type }) {
         <div className="table-row-item">{price} CRO</div>
         <div className="table-row-item">
           {type === 'Made' && (
-            <Button type="legacy" onClick={() => handleOffer(OFFER_TYPE.update)}>
+            <Button
+              type="legacy"
+              onClick={() => handleOffer(OFFER_TYPE.update)}
+              disabled={getState(state) !== 'Active'}
+            >
               Update
             </Button>
           )}
@@ -203,7 +207,11 @@ export default function TableRow({ data, type }) {
         </div>
         <div className="table-row-item">
           {type === 'Made' && (
-            <Button type="legacy-outlined" onClick={() => handleOffer(OFFER_TYPE.cancel)}>
+            <Button
+              type="legacy-outlined"
+              onClick={() => handleOffer(OFFER_TYPE.cancel)}
+              disabled={getState(state) !== 'Active'}
+            >
               Cancel
             </Button>
           )}

@@ -53,7 +53,7 @@ const LegacyButton = styled.button`
   background: #218cff;
   border-radius: 6px;
   letter-spacing: normal;
-  outline: 0;
+  outline: 1px solid #218cff;
   font-weight: 800;
   text-decoration: none;
   padding: 8px 24px;
@@ -66,6 +66,40 @@ const LegacyButton = styled.button`
   &:hover {
     box-shadow: 2px 2px 20px 0px rgb(131 100 226 / 50%);
     transition: all 0.3s ease;
+  }
+
+  &:disabled {
+    outline: 1px solid #cccccc;
+  }
+`;
+
+const LegacyOutlinedButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: max-content;
+  color: #35669e !important;
+  border-radius: 6px;
+  letter-spacing: normal;
+  outline: 1px solid #ddd;
+  font-weight: 800;
+  text-decoration: none;
+  padding: 8px 24px;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 2px 2px 20px 0px rgb(131 100 226 / 0%);
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: 2px 2px 20px 0px rgb(131 100 226 / 50%);
+    transition: all 0.3s ease;
+  }
+
+  &:disabled {
+    cursor: unset;
+    background-color: #cccccc !important;
+    color: #ffffff !important;
   }
 `;
 
@@ -108,13 +142,13 @@ export default function Button({ type = 'default', isLoading = false, children, 
 
   if (type === 'legacy-outlined') {
     return (
-      <button
-        className="m-0 text-nowrap p-4 pt-2 pb-2 btn-main btn-outline inline white lead"
+      <LegacyOutlinedButton
+        className="m-0 text-nowrap p-4 pt-2 pb-2 btn-outline inline white"
         style={{ outline: '1px solid #DDD' }}
         {...props}
       >
         {children}
-      </button>
+      </LegacyOutlinedButton>
     );
   }
 
