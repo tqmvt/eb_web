@@ -15,10 +15,10 @@ function getMetaverseUrl() {
     return "https://metaverse.ebisusbay.biz/?assignRoom=true"
   }
   if (window.location.host === "testapp.ebisusbay.biz") {
-    return "https://metaverse.ebisusbay.biz/?assignRoom=true"
+    return "https://testmetaverse.ebisusbay.biz/?assignRoom=true"
   }
   if (window.location.host === "testapp2.ebisusbay.biz") {
-    return "https://metaverse.ebisusbay.biz?assignRoom=true"
+    return "https://testmetaverse.ebisusbay.biz?assignRoom=true"
   }
   return "https://metaverse.ebisusbay.com/?assignRoom=true"
 }
@@ -33,7 +33,7 @@ const MetaverseAuctions = () => {
         <div className="row">
           <div className="col-lg-12">
             <div className="text-center pt-5">
-              <h2>Metaverse Auction Gallery</h2>
+              <h2>Metaverse Auction for Ukraine</h2>
             </div>
           </div>
           <div className="col-lg-6 pt-3">
@@ -45,7 +45,7 @@ const MetaverseAuctions = () => {
             </div>
           </div>
           <div className="col-lg-6 text-center align-middle d-flex align-items-center">
-            <div className="heading mt-3">Gather, share and collaborate together, in a virtual, private and safe place</div>
+            <div className="heading mt-3">All proceeds from this auction will be donated to victims of the Ukranian conflict. Either place you bids below, or enter the metaverse and place your bids there.</div>
           </div>
         </div>
       </section>
@@ -53,7 +53,7 @@ const MetaverseAuctions = () => {
         <div className="row">
           <div className="col-lg-12">
             <div className="text-center">
-              <h2>Active Metaverse Auctions</h2>
+              <h2>2D Active Auctions</h2>
             </div>
           </div>
           <div className="col-lg-12 pt-3">

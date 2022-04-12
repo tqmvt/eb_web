@@ -231,6 +231,8 @@ export const getStats = (address, id = null, extraAddresses = null) => async (di
  */
 const combineStats = (collectionStats, anchor) => {
   const anchoredStats = collectionStats.find(c => caseInsensitiveCompare(c.collection, anchor));
+  if (collectionStats.length === 0) return anchoredStats;
+  
   const combined = collectionStats.reduce((a, b) => {
     return {
       numberActive: parseInt(a.numberActive) + parseInt(b.numberActive),
