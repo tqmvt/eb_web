@@ -109,7 +109,7 @@ const Marketplace = () => {
               <span onClick={handleBtnClick(0)}>Listings</span>
             </li>
             <li id="Mainbtn1" className="tab">
-              <span onClick={handleBtnClick(1)}>Past Sales</span>
+              <span onClick={handleBtnClick(1)}>Activity</span>
             </li>
           </ul>
 
