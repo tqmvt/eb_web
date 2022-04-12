@@ -40,7 +40,7 @@ const MetaverseAuctions = () => {
             <div className="card eb-nft__card h-100 shadow">
               <img className="card-img-top" src="/img/metaverse_gallery.png" />
               <div className="card-body d-flex flex-column align-middle">
-                <a className="btn-main lead mr15 mx-auto" href={metaverseUrl}>2D Active Auctions</a>
+                <a className="btn-main lead mr15 mx-auto" href={metaverseUrl}>Enter Metaverse</a>
               </div>
             </div>
           </div>
@@ -53,7 +53,7 @@ const MetaverseAuctions = () => {
         <div className="row">
           <div className="col-lg-12">
             <div className="text-center">
-              <h2>Active Metaverse Auctions</h2>
+              <h2>2D Active Auctions</h2>
             </div>
           </div>
           <div className="col-lg-12 pt-3">
