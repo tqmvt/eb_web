@@ -70,7 +70,7 @@ const ListingCardCollection = ({ listing, imgClass = 'marketplace', watermark, a
   return (
     <>
         <div className="card eb-nft__card h-100 shadow">
-          <Link className="linkPointer" to={`/collection/${listing.slug}/${listing.id}`}>
+          <Link className="linkPointer" to={`/collection/${listing.address}/${listing.id}`}>
             {watermark ? (
               <Watermarked watermark={watermark}>
                 <img
