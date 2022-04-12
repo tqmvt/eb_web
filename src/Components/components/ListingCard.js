@@ -31,7 +31,7 @@ const MakeBuy = styled.div`
 const ListingCard = ({ listing, imgClass = 'marketplace', watermark, address, collectionMetadata }) => {
   return (
     <>
-      <Link className="linkPointer" to={`/listing/${listing.listingId}`}>
+      <Link className="linkPointer" to={`/collection/${listing.nftAddress}/${listing.nftId}`}>
         <div className="card eb-nft__card h-100 shadow">
           {watermark ? (
             <Watermarked watermark={watermark}>
