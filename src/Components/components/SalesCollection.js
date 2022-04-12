@@ -40,7 +40,7 @@ const SalesCollection = ({ showLoadMore = true, collectionId = null, tokenId = n
     const defaultSort = new SortOption();
     defaultSort.key = 'saleTime';
     defaultSort.direction = 'desc';
-    defaultSort.label = 'By Sale Time';
+    defaultSort.label = 'Sale Time';
 
     return defaultSort;
   };
@@ -93,7 +93,12 @@ const SalesCollection = ({ showLoadMore = true, collectionId = null, tokenId = n
       return sortOptions;
     }
 
-    return sortOptions.filter((s) => s.key !== 'rank');
+    return sortOptions.filter((s) => s.key !== 'rank').map(o => {
+      if (o.key === 'listingId') {
+        return defaultSort();
+      }
+      return o;
+    });
   });
 
   const onFilterChange = useCallback((filterOption) => {
@@ -102,6 +107,9 @@ const SalesCollection = ({ showLoadMore = true, collectionId = null, tokenId = n
 
   const onSortChange = useCallback(
     (sortOption) => {
+      if (sortOption.key === null) {
+        sortOption = defaultSort();
+      }
       dispatch(sortListings(sortOption, cacheName, true));
     },
     [dispatch]
