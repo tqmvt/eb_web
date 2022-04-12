@@ -44,6 +44,31 @@ const OutlinedButton = styled.button`
   }
 `;
 
+const LegacyButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: max-content;
+  color: #fff !important;
+  background: #218cff;
+  border-radius: 6px;
+  letter-spacing: normal;
+  outline: 0;
+  font-weight: 800;
+  text-decoration: none;
+  padding: 8px 24px;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 2px 2px 20px 0px rgb(131 100 226 / 0%);
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: 2px 2px 20px 0px rgb(131 100 226 / 50%);
+    transition: all 0.3s ease;
+  }
+`;
+
 const SpinnerContainer = styled.div`
   margin-right: 6px;
 `;
@@ -65,6 +90,34 @@ export default function Button({ type = 'default', isLoading = false, children, 
       </>
     );
   }
+
+  if (type === 'legacy') {
+    return (
+      <LegacyButton {...props}>
+        {isLoading && (
+          <SpinnerContainer>
+            <Spinner animation="border" role="status" size="sm">
+              <span className="visually-hidden">Loading...</span>
+            </Spinner>
+          </SpinnerContainer>
+        )}
+        {children}
+      </LegacyButton>
+    );
+  }
+
+  if (type === 'legacy-outlined') {
+    return (
+      <button
+        className="m-0 text-nowrap p-4 pt-2 pb-2 btn-main btn-outline inline white lead"
+        style={{ outline: '1px solid #DDD' }}
+        {...props}
+      >
+        {children}
+      </button>
+    );
+  }
+
   return (
     <>
       <DefaultButton {...props}>

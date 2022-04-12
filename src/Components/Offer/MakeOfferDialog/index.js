@@ -13,7 +13,7 @@ import ProfilePreview from 'src/Components/components/ProfilePreview';
 import { croSkullRedPotionImageHack } from 'src/hacks';
 import { humanize, shortAddress } from 'src/utils';
 import { OFFER_TYPE } from '../MadeOffersRow';
-import CloseIcon from 'src/Assets/images/close-icon-orange-grad.svg';
+import CloseIcon from 'src/Assets/images/close-icon-blue.svg';
 import { updateOfferSuccess, updateOfferFailed } from 'src/GlobalState/offerSlice';
 import EmptyData from '../EmptyData';
 
@@ -221,7 +221,9 @@ export default function MakeOfferDialog({ isOpen, toggle, type = 'Make', nftData
                         <ProfilePreview
                           type="Rarity Rank"
                           title={nftData.rank}
-                          avatar={collectionMetadata?.rarity === 'rarity_sniper' ? '/img/logos/rarity-sniper.png' : null}
+                          avatar={
+                            collectionMetadata?.rarity === 'rarity_sniper' ? '/img/logos/rarity-sniper.png' : null
+                          }
                           hover={
                             collectionMetadata?.rarity === 'rarity_sniper'
                               ? `Ranking provided by ${humanize(collectionMetadata.rarity)}`
@@ -255,8 +257,13 @@ export default function MakeOfferDialog({ isOpen, toggle, type = 'Make', nftData
                   </OfferPriceInput>
                 </FlexRow>
               )}
-              <div>
-                <Button onClick={() => handleOfferAction(type)} isLoading={isOnAction} disabled={isOnAction}>
+              <div className="mt-3">
+                <Button
+                  type="legacy"
+                  onClick={() => handleOfferAction(type)}
+                  isLoading={isOnAction}
+                  disabled={isOnAction}
+                >
                   {type} Offer
                 </Button>
               </div>

@@ -27,7 +27,7 @@ import { OFFER_TYPE } from '../MadeOffersRow';
 import EmptyData from '../EmptyData';
 import { updateContractInstance, updateOfferSuccess, updateOfferFailed } from 'src/GlobalState/offerSlice';
 import { shortAddress } from 'src/utils';
-import CloseIcon from 'src/Assets/images/close-icon-orange-grad.svg';
+import CloseIcon from 'src/Assets/images/close-icon-blue.svg';
 
 const DialogContainer = styled(Dialog)`
   .MuiDialogContent-root {

@@ -190,17 +190,25 @@ export default function TableRow({ data, type }) {
         <div className="table-row-item">{seller ? shortAddress(seller) : '-'}</div>
         <div className="table-row-item">{price} CRO</div>
         <div className="table-row-item">
-          {type === 'Made' && <Button onClick={() => handleOffer(OFFER_TYPE.update)}>Update</Button>}
-          {type === 'Received' && <Button onClick={() => handleOffer(OFFER_TYPE.accept)}>Accept</Button>}
+          {type === 'Made' && (
+            <Button type="legacy" onClick={() => handleOffer(OFFER_TYPE.update)}>
+              Update
+            </Button>
+          )}
+          {type === 'Received' && (
+            <Button type="legacy" onClick={() => handleOffer(OFFER_TYPE.accept)}>
+              Accept
+            </Button>
+          )}
         </div>
         <div className="table-row-item">
           {type === 'Made' && (
-            <Button type="outlined" onClick={() => handleOffer(OFFER_TYPE.cancel)}>
+            <Button type="legacy-outlined" onClick={() => handleOffer(OFFER_TYPE.cancel)}>
               Cancel
             </Button>
           )}
           {type === 'Received' && (
-            <Button type="outlined" onClick={() => handleOffer(OFFER_TYPE.reject)}>
+            <Button type="legacy-outlined" onClick={() => handleOffer(OFFER_TYPE.reject)}>
               Reject
             </Button>
           )}
@@ -247,17 +255,25 @@ export default function TableRow({ data, type }) {
         </ItemRow>
         <ItemRow>
           <div className="table-row-button">
-            {type === 'Made' && <Button onClick={() => handleOffer(OFFER_TYPE.update)}>Update</Button>}
-            {type === 'Received' && <Button onClick={() => handleOffer(OFFER_TYPE.accept)}>Accept</Button>}
+            {type === 'Made' && (
+              <Button type="legacy" onClick={() => handleOffer(OFFER_TYPE.update)}>
+                Update
+              </Button>
+            )}
+            {type === 'Received' && (
+              <Button type="legacy" onClick={() => handleOffer(OFFER_TYPE.accept)}>
+                Accept
+              </Button>
+            )}
           </div>
           <div className="table-row-button">
             {type === 'Made' && (
-              <Button type="outlined" onClick={() => handleOffer(OFFER_TYPE.cancel)}>
+              <Button type="legacy-outlined" onClick={() => handleOffer(OFFER_TYPE.cancel)}>
                 Cancel
               </Button>
             )}
             {type === 'Received' && (
-              <Button type="outlined" onClick={() => handleOffer(OFFER_TYPE.reject)}>
+              <Button type="legacy-outlined" onClick={() => handleOffer(OFFER_TYPE.reject)}>
                 Reject
               </Button>
             )}
