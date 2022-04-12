@@ -4997,7 +4997,7 @@
       "cost": "145",
       "memberCost": "95",
       "foundersOnly": false,
-      "start": 1649620800000,
+      "start": null,
       "end": null,
       "referral": false,
       "is1155": false,
