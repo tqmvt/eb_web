@@ -1,4 +1,4 @@
-import React, {memo, useCallback, useEffect} from 'react';
+import React, {memo, useCallback, useEffect, useState} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import ListingCard from './ListingCard';
 import {init, fetchListings, filterListings, sortListings} from '../../GlobalState/marketplaceSlice';
@@ -18,14 +18,15 @@ import {marketPlaceCollectionFilterOptions} from "./constants/filter-options";
 import {sortOptions} from "./constants/sort-options";
 const knownContracts = config.known_contracts;
 
-const SalesCollection = ({ showLoadMore = true, collectionId = null, sellerId = null, cacheName = null }) => {
+const SalesCollection = ({ showLoadMore = true, collectionId = null, tokenId = null, sellerId = null, cacheName = null }) => {
   const dispatch = useDispatch();
-  const listings = useSelector((state) => {
-    return state.marketplace.listings
-      .slice()
-      .sort((a, b) => a.saleTime < b.saleTime ? 1 : -1)
-  });
 
+  const mobileListBreakpoint = 768;
+  const [tableMobileView, setTableMobileView] = useState(window.innerWidth > mobileListBreakpoint);
+
+  const listings = useSelector((state) => {
+    return state.marketplace.listings;
+  });
   const canLoadMore = useSelector((state) => {
     return state.marketplace.curPage === 0 || state.marketplace.curPage < state.marketplace.totalPages;
   });
@@ -35,17 +36,26 @@ const SalesCollection = ({ showLoadMore = true, collectionId = null, sellerId = 
     return state.marketplace;
   });
 
-  useEffect(() => {
-    if (collectionId) {
-      const sortOption = new SortOption();
-      sortOption.key = 'listingId';
-      sortOption.direction = 'desc';
-      sortOption.label = 'By Id';
+  const defaultSort = () => {
+    const defaultSort = new SortOption();
+    defaultSort.key = 'saleTime';
+    defaultSort.direction = 'desc';
+    defaultSort.label = 'By Sale Time';
 
+    return defaultSort;
+  };
+
+  useEffect(() => {
+    const sortOption = marketplace.cachedSort[cacheName] ?? defaultSort;
+
+    if (collectionId) {
       const filterOption = new FilterOption();
       filterOption.type = 'collection';
       filterOption.address = collectionId;
       filterOption.name = 'By Collection';
+      if (tokenId != null) {
+        filterOption.id = tokenId;
+      }
 
       dispatch(init(sortOption, filterOption));
       dispatch(fetchListings(true));
@@ -53,11 +63,6 @@ const SalesCollection = ({ showLoadMore = true, collectionId = null, sellerId = 
     }
 
     if (sellerId) {
-      const sortOption = new SortOption();
-      sortOption.key = 'listingId';
-      sortOption.direction = 'desc';
-      sortOption.label = 'By Id';
-
       const filterOption = new FilterOption();
       filterOption.type = 'seller';
       filterOption.address = sellerId;
@@ -69,7 +74,6 @@ const SalesCollection = ({ showLoadMore = true, collectionId = null, sellerId = 
     }
 
     const filterOption = marketplace.cachedFilter[cacheName] ?? FilterOption.default();
-    const sortOption = marketplace.cachedSort[cacheName] ?? SortOption.default();
 
     dispatch(init(sortOption, filterOption));
     dispatch(fetchListings(true));
@@ -82,7 +86,7 @@ const SalesCollection = ({ showLoadMore = true, collectionId = null, sellerId = 
   };
 
   const selectDefaultFilterValue = marketplace.cachedFilter[cacheName] ?? FilterOption.default();
-  const selectDefaultSortValue = marketplace.cachedSort[cacheName] ?? SortOption.default();
+  const selectDefaultSortValue = marketplace.cachedSort[cacheName] ?? defaultSort;
   const selectFilterOptions = marketPlaceCollectionFilterOptions;
   const selectSortOptions = useSelector((state) => {
     if (state.marketplace.hasRank) {
@@ -108,7 +112,7 @@ const SalesCollection = ({ showLoadMore = true, collectionId = null, sellerId = 
       <div className="row">
         <div className="col-lg-12">
           <TopFilterBar
-            showFilter={true}
+            showFilter={!collectionId}
             showSort={true}
             sortOptions={[SortOption.default(), ...selectSortOptions]}
             filterOptions={[FilterOption.default(), ...selectFilterOptions]}
@@ -147,56 +151,43 @@ const SalesCollection = ({ showLoadMore = true, collectionId = null, sellerId = 
           }
         }}
       >
-        <div className="row">
-          <div className="col-lg-12">
-            <Table responsive className="table de-table table-rank" data-mobile-responsive="true">
-              <thead>
-              <tr>
-                <th scope="col">Item</th>
-                <th scope="col">Rank</th>
-                <th scope="col">Price</th>
-                <th scope="col">From</th>
-                <th scope="col">To</th>
-                <th scope="col">Time</th>
-              </tr>
-              <tr />
-              </thead>
-              <tbody>
-              {listings &&
-              listings.map((listing, index) => (
-                <tr key={index}>
-                  <th scope="row" className="row gap-4 border-bottom-0">
-                    <div className="col-12">
-                      <div className="coll_list_pp" style={{ cursor: 'pointer' }}>
-                        <Link to={`/listing/${listing.listingId}`}>
-                          {listing.nft.image ? (
-                            <img className="lazy" src={listing.nft.image} alt={listing.nft.name} style={{maxHeight:'50px'}}/>
-                          ) : (
-                            <Blockies seed={listing.nftAddress.toLowerCase()} size={10} scale={5} />
-                          )}
-                        </Link>
-                      </div>
-                      <span>
-                      <Link to={`/listing/${listing.listingId}`}>{listing.nft.name ?? 'Unknown'}</Link>
-                    </span>
-                    </div>
-
-                  </th>
-                  <td>{listing.nft.rank ?? '-'}</td>
-                  <td>{ethers.utils.commify(Math.round(listing.price))} CRO</td>
-                  <td>
-                    <Link to={`/seller/${listing.seller}`}>{shortAddress(listing.seller)}</Link>
-                  </td>
-                  <td>
-                    <Link to={`/seller/${listing.purchaser}`}>{shortAddress(listing.purchaser)}</Link>
-                  </td>
-                  <td>{timeSince(listing.saleTime + '000')} ago</td>
-                </tr>
-              ))}
-              </tbody>
-            </Table>
-          </div>
-        </div>
+        <Table responsive className="table de-table table-rank sales-table align-middle" data-mobile-responsive="true">
+          <thead>
+          <tr>
+            <th scope="col" colSpan="2">Item</th>
+            <th scope="col">Rank</th>
+            <th scope="col">Price</th>
+            <th scope="col">From</th>
+            <th scope="col">To</th>
+            <th scope="col">Time</th>
+          </tr>
+          <tr />
+          </thead>
+          <tbody>
+          {listings &&
+          listings.map((listing, index) => (
+            <tr key={index}>
+              <td style={{minWidth:'50px'}}>
+                <Link to={`/listing/${listing.listingId}`}>
+                  <img className="lazy rounded" src={listing.nft.image} alt={listing.nft.name} style={{maxHeight:'75px'}}/>
+                </Link>
+              </td>
+              <th style={{minWidth:'115px'}}>
+                  <Link to={`/listing/${listing.listingId}`}>{listing.nft.name ?? 'Unknown'}</Link>
+              </th>
+              <td>{listing.nft.rank ?? '-'}</td>
+              <td style={{minWidth:'100px'}}>{ethers.utils.commify(Math.round(listing.price))} CRO</td>
+              <td>
+                <Link to={`/seller/${listing.seller}`}>{shortAddress(listing.seller)}</Link>
+              </td>
+              <td>
+                <Link to={`/seller/${listing.purchaser}`}>{shortAddress(listing.purchaser)}</Link>
+              </td>
+              <td className="px-2" style={{minWidth:'115px'}}>{timeSince(listing.saleTime + '000')} ago</td>
+            </tr>
+          ))}
+          </tbody>
+        </Table>
       </InfiniteScroll>
     </>
   );
