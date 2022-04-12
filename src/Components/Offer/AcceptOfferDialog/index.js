@@ -184,6 +184,7 @@ const AcceptOfferDialog = ({ isOpen, toggle, nftData, offerData, collectionMetad
       dispatch(updateOfferFailed(e));
       setNextEnabled(true);
     }
+    toggle(OFFER_TYPE.none);
   };
 
   const handleNext = () => {

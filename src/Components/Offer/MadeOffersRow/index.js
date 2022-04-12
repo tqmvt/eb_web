@@ -200,7 +200,11 @@ export default function TableRow({ data, type }) {
             </Button>
           )}
           {type === 'Received' && (
-            <Button type="legacy" onClick={() => handleOffer(OFFER_TYPE.accept)}>
+            <Button
+              type="legacy"
+              onClick={() => handleOffer(OFFER_TYPE.accept)}
+              disabled={getState(state) !== 'Active'}
+            >
               Accept
             </Button>
           )}
@@ -216,7 +220,11 @@ export default function TableRow({ data, type }) {
             </Button>
           )}
           {type === 'Received' && (
-            <Button type="legacy-outlined" onClick={() => handleOffer(OFFER_TYPE.reject)}>
+            <Button
+              type="legacy-outlined"
+              onClick={() => handleOffer(OFFER_TYPE.reject)}
+              disabled={getState(state) !== 'Active'}
+            >
               Reject
             </Button>
           )}
@@ -264,24 +272,40 @@ export default function TableRow({ data, type }) {
         <ItemRow>
           <div className="table-row-button">
             {type === 'Made' && (
-              <Button type="legacy" onClick={() => handleOffer(OFFER_TYPE.update)}>
+              <Button
+                type="legacy"
+                onClick={() => handleOffer(OFFER_TYPE.update)}
+                disabled={getState(state) !== 'Active'}
+              >
                 Update
               </Button>
             )}
             {type === 'Received' && (
-              <Button type="legacy" onClick={() => handleOffer(OFFER_TYPE.accept)}>
+              <Button
+                type="legacy"
+                onClick={() => handleOffer(OFFER_TYPE.accept)}
+                disabled={getState(state) !== 'Active'}
+              >
                 Accept
               </Button>
             )}
           </div>
           <div className="table-row-button">
             {type === 'Made' && (
-              <Button type="legacy-outlined" onClick={() => handleOffer(OFFER_TYPE.cancel)}>
+              <Button
+                type="legacy-outlined"
+                onClick={() => handleOffer(OFFER_TYPE.cancel)}
+                disabled={getState(state) !== 'Active'}
+              >
                 Cancel
               </Button>
             )}
             {type === 'Received' && (
-              <Button type="legacy-outlined" onClick={() => handleOffer(OFFER_TYPE.reject)}>
+              <Button
+                type="legacy-outlined"
+                onClick={() => handleOffer(OFFER_TYPE.reject)}
+                disabled={getState(state) !== 'Active'}
+              >
                 Reject
               </Button>
             )}

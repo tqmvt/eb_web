@@ -133,8 +133,17 @@ export default function MakeOfferDialog({ isOpen, toggle, type = 'Make', nftData
   const dispatch = useDispatch();
 
   const [offerPrice, setOfferPrice] = useState(0);
+  const [offerPriceError, setOfferPriceError] = useState(false);
   const onOfferValueChange = (inputEvent) => {
-    setOfferPrice(inputEvent.target.value);
+    const inputValue = inputEvent.target.value;
+    setOfferPrice(inputValue);
+    if (type === OFFER_TYPE.update && offerData?.price && Number(inputValue) > Number(offerData.price)) {
+      setOfferPriceError(false);
+    } else if (type === OFFER_TYPE.make && Number(inputValue) > 0) {
+      setOfferPriceError(false);
+    } else {
+      setOfferPriceError(true);
+    }
   };
 
   const [isOnAction, setIsOnAction] = useState(false);
@@ -149,6 +158,8 @@ export default function MakeOfferDialog({ isOpen, toggle, type = 'Make', nftData
       setIsOnAction(true);
       if (actionType === OFFER_TYPE.make) {
         if (!offerPrice || offerPrice < 0) {
+          setIsOnAction(false);
+          setOfferPriceError(true);
           return;
         }
         tx = await offerContract.makeOffer(nftData.address, nftData.id, {
@@ -156,8 +167,13 @@ export default function MakeOfferDialog({ isOpen, toggle, type = 'Make', nftData
         });
         receipt = await tx.wait();
       } else if (actionType === OFFER_TYPE.update) {
+        if (!offerPrice || offerPrice <= Number(offerData.price)) {
+          setIsOnAction(false);
+          setOfferPriceError(true);
+          return;
+        }
         tx = await offerContract.makeOffer(nftData.address, nftData.id, {
-          value: ethers.utils.parseEther(offerPrice),
+          value: ethers.utils.parseEther((offerPrice - offerData.price).toString()),
         });
         receipt = await tx.wait();
       } else if (actionType === OFFER_TYPE.cancel) {
@@ -245,7 +261,7 @@ export default function MakeOfferDialog({ isOpen, toggle, type = 'Make', nftData
                   <OfferPriceInput>
                     <Input
                       type="number"
-                      className="mx-2"
+                      className={`mx-2${offerPriceError ? ' is-error' : ''}`}
                       onKeyDown={(e) => {
                         if (e.code === 'Period' || e.code === 'Minus') {
                           e.preventDefault();
