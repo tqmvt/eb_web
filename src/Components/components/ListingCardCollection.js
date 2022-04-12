@@ -1,6 +1,6 @@
 import React, { memo, useState } from 'react';
 import styled from 'styled-components';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { ethers } from 'ethers';
 import { croSkullRedPotionImageHack } from '../../hacks';
 import Button from './Button';
@@ -69,26 +69,29 @@ const ListingCardCollection = ({ listing, imgClass = 'marketplace', watermark, a
 
   return (
     <>
-      {/* <Link className="linkPointer" to={`/listing/${listing.id}`}> */}
       <div className="card eb-nft__card h-100 shadow">
-        {watermark ? (
-          <Watermarked watermark={watermark}>
+        <Link className="linkPointer" to={`/collection/${listing.slug}/${listing.id}`}>
+          {watermark ? (
+            <Watermarked watermark={watermark}>
+              <img
+                src={croSkullRedPotionImageHack(listing.address, listing.image)}
+                className={`card-img-top ${imgClass}`}
+                alt={listing.name}
+              />
+            </Watermarked>
+          ) : (
             <img
               src={croSkullRedPotionImageHack(listing.address, listing.image)}
               className={`card-img-top ${imgClass}`}
               alt={listing.name}
             />
-          </Watermarked>
-        ) : (
-          <img
-            src={croSkullRedPotionImageHack(listing.address, listing.image)}
-            className={`card-img-top ${imgClass}`}
-            alt={listing.name}
-          />
-        )}
+          )}
+        </Link>
         {listing.rank && <div className="badge bg-rarity text-wrap mt-1 mx-1">Rank: #{listing.rank}</div>}
         <div className="card-body d-flex flex-column">
-          <h6 className="card-title mt-auto">{listing.name}</h6>
+          <Link className="linkPointer" to={`/collection/${listing.address}/${listing.id}`}>
+            <h6 className="card-title mt-auto">{listing.name}</h6>
+          </Link>
           {getIsNftListed() && (
             <MakeBuy>
               <div>{ethers.utils.commify(listing.market?.price)} CRO</div>
@@ -96,11 +99,13 @@ const ListingCardCollection = ({ listing, imgClass = 'marketplace', watermark, a
           )}
           <MakeOffer>
             {getIsNftListed() && (
-              <div className="w-45">
-                <Button onClick={handleBuy}>Buy</Button>
+              <div>
+                <Button type="legacy" onClick={handleBuy}>
+                  Buy
+                </Button>
               </div>
             )}
-            <div className="w-45">
+            <div>
               <Button type="legacy-outlined" onClick={() => handleMakeOffer('Make')}>
                 Offer
               </Button>
@@ -108,7 +113,6 @@ const ListingCardCollection = ({ listing, imgClass = 'marketplace', watermark, a
           </MakeOffer>
         </div>
       </div>
-      {/* </Link> */}
       <MakeOfferDialog
         isOpen={openMakeOfferDialog}
         toggle={() => setOpenMakeOfferDialog(!openMakeOfferDialog)}

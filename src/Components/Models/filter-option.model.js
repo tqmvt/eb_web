@@ -48,13 +48,13 @@ export class FilterOption {
 
     if (this.address && this.id) {
       return {
-        collection: this.lowercasedAddress(),
+        address: this.lowercasedAddress(),
         tokenId: this.id,
       };
     }
 
     return {
-      [this.type]: this.lowercasedAddress(),
+      address: this.lowercasedAddress(),
     };
   }
 }
