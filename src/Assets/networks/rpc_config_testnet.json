@@ -797,6 +797,27 @@
         "twitter": "",
         "discord": ""
       }
+    },
+    {
+      "name": "Kardia",
+      "slug": "kardia",
+      "multiToken": false,
+      "address": "0xC3EbA341b420A1Cbdb3f14e1c2c2e8D782649907",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/kardia/avatar.webp",
+        "card": "/img/collections/kardia/card.webp",
+        "banner": "/img/collections/kardia/banner.webp",
+        "maxSupply": 6010,
+        "website": "https://www.playkardia.com/",
+        "twitter": "https://twitter.com/playkardia",
+        "discord": "https://discord.gg/kardia",
+        "telegram": "https://t.me/kardianft",
+        "medium": "https://medium.com/@playkardia/"
+      }
     }
   ],
   "drops": [
@@ -1761,6 +1782,31 @@
       "priceDescription": "WL price only valid for up to 3 per whitelisted address",
       "foundersOnly": false,
       "start": 1647795651000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false
+    },
+    {
+      "id": 52,
+      "slug": "kardia",
+      "imgNft": "/img/drops/kardia/drop.webp",
+      "imgPreview": "/img/drops/kardia/drop.webp",
+      "imgAvatar": "/img/collections/kardia/avatar.webp",
+      "imgBanner": "/img/collections/kardia/banner.webp",
+      "title": "Kardia",
+      "subtitle": "Kardia is a unique multi-tier gaming NFT project on the KCC and CRO blockchain, starting with the founder's deck of 50,000 playable cards. Using our play-to-earn mechanics, you can play against other players, earn valuable resources, win NFTs, and compete for crypto-related prizes. A crypto-currency prize pool will be generated from secondary sale royalties and will be used to buy NFTs, other cryptocurrencies, and other prizes that can be won as a result of tournaments, special triggers, loot boxes, and more!",
+      "description": "The Founder's Deck (CRO) consists of 6010 playing cards, each of them uniquely serialized. Each card grants the owner a certain number of Golden Acorns (in-game currency) based on the rarity of the card. These Golden Acorns can be used for various means on PlayKardia, including opening Loot Boxes for cryptocurrency prizes, additional NFTs, and more!",
+      "author": { "name": "Kardia", "link": "https://www.playkardia.com/" },
+      "address": "0xC3EbA341b420A1Cbdb3f14e1c2c2e8D782649907",
+      "maxMintPerTx": 5,
+      "maxMintPerAddress": 100,
+      "totalSupply": 6010,
+      "cost": "145",
+      "memberCost": "95",
+      "foundersOnly": false,
+      "start": null,
       "end": null,
       "referral": false,
       "is1155": false,

@@ -43,11 +43,11 @@ export default api;
 //  just for sortAndFetchListings function
 let abortController = null;
 
-export async function sortAndFetchListings(page, sort, filter, traits, powertraits, search, filterListed) {
+export async function sortAndFetchListings(page, sort, filter, traits, powertraits, search, state, filterListed) {
   let pagesize = 50;
 
   let query = {
-    state: 0,
+    state: state ?? 0,
     page: page,
     pageSize: pagesize,
     sortBy: 'listingId',
