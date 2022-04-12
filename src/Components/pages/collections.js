@@ -58,7 +58,12 @@ const Collections = () => {
     }
   }, [collections]);
 
-  const sortCollections = (key) => () => {
+  const sortCollections = (key, override) => {
+    if (override) {
+      dispatch(getAllCollections(override.key, override.direction));
+      return;
+    }
+
     if (['volume', 'sales'].includes(key)) {
       if (timeframe) {
         key = `${key}${timeframe}`
@@ -72,6 +77,18 @@ const Collections = () => {
     }
     dispatch(getAllCollections(key, direction));
   };
+
+  const updateTimeframe = (val) => {
+    const prev = timeframe;
+    setTimeframe(val);
+    if (val !== prev) {
+      const sortKey = val ? `volume${val}` : 'totalVolume';
+      sortCollections(sortKey, {
+        key: sortKey,
+        direction: 'desc'
+      });
+    }
+  }
 
   const handleSearch = debounce((event) => {
     const { value } = event.target;
@@ -131,10 +148,10 @@ const Collections = () => {
           </div>
           <div className="col-md-6 col-lg-8 text-end">
             <ul className="activity-filter">
-              <li id="sale" className={timeframe === '1d' ? 'active' : ''} onClick={() => setTimeframe("1d")}>1d</li>
-              <li id="sale" className={timeframe === '7d' ? 'active' : ''} onClick={() => setTimeframe("7d")}>7d</li>
-              <li id="sale" className={timeframe === '30d' ? 'active' : ''} onClick={() => setTimeframe("30d")}>30d</li>
-              <li id="sale" className={timeframe === null ? 'active' : ''} onClick={() => setTimeframe(null)}>All Time</li>
+              <li id="sale" className={timeframe === '1d' ? 'active' : ''} onClick={() => updateTimeframe("1d")}>1d</li>
+              <li id="sale" className={timeframe === '7d' ? 'active' : ''} onClick={() => updateTimeframe("7d")}>7d</li>
+              <li id="sale" className={timeframe === '30d' ? 'active' : ''} onClick={() => updateTimeframe("30d")}>30d</li>
+              <li id="sale" className={timeframe === null ? 'active' : ''} onClick={() => updateTimeframe(null)}>All Time</li>
             </ul>
           </div>
         </div>
@@ -153,11 +170,11 @@ const Collections = () => {
               <thead>
                 <tr>
                   {tableMobileView && <th scope="col">#</th>}
-                  <th scope="col" style={{ cursor: 'pointer' }} onClick={sortCollections('name')}>
+                  <th scope="col" style={{ cursor: 'pointer' }} onClick={() => sortCollections('name')}>
                     Collection
                   </th>
                   {tableMobileView && (
-                    <th scope="col" style={{ cursor: 'pointer' }} onClick={sortCollections("volume")}>
+                    <th scope="col" style={{ cursor: 'pointer' }} onClick={() => sortCollections("volume")}>
                       Volume {' '}
                       {timeframe !== null && (
                         <span className="badge bg-secondary">{timeframe}</span>
@@ -165,7 +182,7 @@ const Collections = () => {
                     </th>
                   )}
                   {tableMobileView && (
-                    <th scope="col" style={{ cursor: 'pointer' }} onClick={sortCollections("sales")}>
+                    <th scope="col" style={{ cursor: 'pointer' }} onClick={() => sortCollections("sales")}>
                       Sales {' '}
                       {timeframe !== null && (
                         <span className="badge bg-secondary">{timeframe}</span>
@@ -181,12 +198,12 @@ const Collections = () => {
                     </th>
                   )}
                   {tableMobileView && (
-                    <th scope="col" style={{ cursor: 'pointer' }} onClick={sortCollections('floorPrice')}>
+                    <th scope="col" style={{ cursor: 'pointer' }} onClick={() => sortCollections('floorPrice')}>
                       Floor Price
                     </th>
                   )}
                   {tableMobileView && (
-                    <th scope="col" style={{ cursor: 'pointer' }} onClick={sortCollections('numberActive')}>
+                    <th scope="col" style={{ cursor: 'pointer' }} onClick={() => sortCollections('numberActive')}>
                       Active
                     </th>
                   )}
@@ -221,7 +238,7 @@ const Collections = () => {
                                 <span>#</span>
                                 <span className="text-end">{index + 1}</span>
                               </div>
-                              <div className="col-12 mobile-view-list-item" onClick={sortCollections("volume")}>
+                              <div className="col-12 mobile-view-list-item" onClick={() => sortCollections("volume")}>
                                 <span>Volume {' '}
                                   {timeframe !== null && (
                                     <span className="badge bg-secondary">{timeframe}</span>
@@ -229,7 +246,7 @@ const Collections = () => {
                                 </span>
                                 <span className="text-end">{siPrefixedNumber(collectionVolume(collection))} CRO</span>
                               </div>
-                              <div className="col-12 mobile-view-list-item" onClick={sortCollections("sales")}>
+                              <div className="col-12 mobile-view-list-item" onClick={() => sortCollections("sales")}>
                                 <span>Sales {' '}
                                   {timeframe !== null && (
                                     <span className="badge bg-secondary">{timeframe}</span>
@@ -245,11 +262,11 @@ const Collections = () => {
                                 </span>
                                 <span className="text-end">{collectionAveragePrices(collection)} CRO</span>
                               </div>
-                              <div className="col-12 mobile-view-list-item" onClick={sortCollections('floorPrice')}>
+                              <div className="col-12 mobile-view-list-item" onClick={() => sortCollections('floorPrice')}>
                                 <span>Floor Price</span>
                                 <span className="text-end">{collectionFloorPriceValue(collection)} CRO</span>
                               </div>
-                              <div className="col-12 mobile-view-list-item" onClick={sortCollections('numberActive')}>
+                              <div className="col-12 mobile-view-list-item" onClick={() => sortCollections('numberActive')}>
                                 <span>Active</span>
                                 <span className="text-end">{siPrefixedNumber(collectionNumberActiveValue(collection))}</span>
                               </div>
