@@ -12,3 +12,9 @@ export const dropState = {
   EXPIRED: 2,
   SOLD_OUT: 3,
 };
+
+export const listingState = {
+  ACTIVE: 0,
+  SOLD: 1,
+  CANCELLED: 2
+};

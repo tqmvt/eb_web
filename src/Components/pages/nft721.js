@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from 'react';
+import React, {memo, useEffect, useState} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, Link } from 'react-router-dom';
 import Blockies from 'react-blockies';
@@ -14,6 +14,8 @@ import { getNftDetails } from '../../GlobalState/nftSlice';
 import config from '../../Assets/networks/rpc_config.json';
 import { croSkullRedPotionImageHack } from '../../hacks';
 import NFTTabOffers from '../Offer/NFTTabOffers';
+import PriceActionBar from "../NftDetails/PriceActionBar";
+import MakeOfferDialog from "../Offer/MakeOfferDialog";
 
 const knownContracts = config.known_contracts;
 
@@ -21,10 +23,16 @@ const Nft721 = ({ address, id }) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
+
+  const [openMakeOfferDialog, setOpenMakeOfferDialog] = useState(false);
+
   const nft = useSelector((state) => state.nft.nft);
-  const listings = useSelector((state) =>
-    state.nft.history.filter((i) => i.state === 1).sort((a, b) => (a.saleTime < b.saleTime ? 1 : -1))
+  const listingHistory = useSelector((state) =>
+    state.nft.history
+      .filter(i => i.state === 1)
+      .sort((a, b) => (a.saleTime < b.saleTime) ? 1 : -1)
   );
+
   const powertraits = useSelector((state) => state.nft.nft?.powertraits);
   const collectionMetadata = useSelector((state) => {
     return knownContracts.find((c) => c.address.toLowerCase() === address.toLowerCase())?.metadata;
@@ -104,6 +112,13 @@ const Nft721 = ({ address, id }) => {
               <div className="item_info">
                 <h2>{nft.name}</h2>
                 <p>{nft.description}</p>
+                <PriceActionBar />
+                <div className="row">
+                  <button className="btn-main mx-auto" onClick={() => setOpenMakeOfferDialog(true)}>
+                    Make Offer
+                  </button>
+                </div>
+
                 <div className="row" style={{ gap: '2rem 0' }}>
                   <ProfilePreview
                     type="Collection"
@@ -228,9 +243,9 @@ const Nft721 = ({ address, id }) => {
                     )}
                     {openMenu === 2 && (
                       <div className="tab-3 onStep fadeIn">
-                        {listings && listings.length > 0 ? (
+                        {listingHistory && listingHistory.length > 0 ? (
                           <>
-                            {listings.map((listing, index) => (
+                            {listingHistory.map((listing, index) => (
                               <div className="p_list" key={index}>
                                 <Link to={`/seller/${listing.purchaser}`}>
                                   <div className="p_list_pp">
@@ -268,6 +283,13 @@ const Nft721 = ({ address, id }) => {
           </div>
         </div>
       </section>
+      <MakeOfferDialog
+        isOpen={openMakeOfferDialog}
+        toggle={() => setOpenMakeOfferDialog(!openMakeOfferDialog)}
+        nftData={nft}
+        collectionMetadata={collectionMetadata}
+        type={'Make'}
+      />
       <Footer />
     </div>
   );
