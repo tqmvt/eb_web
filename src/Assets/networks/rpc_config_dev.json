@@ -4972,7 +4972,7 @@
       "whitelistCost": "399",
       "priceDescription": "WL price only valid for up to 3 per whitelisted address",
       "foundersOnly": false,
-      "start": null,
+      "start": 1649620800000,
       "end": null,
       "referral": false,
       "is1155": false,
