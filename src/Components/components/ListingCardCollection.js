@@ -101,7 +101,7 @@ const ListingCardCollection = ({ listing, imgClass = 'marketplace', watermark, a
               </div>
             )}
             <div className="w-45">
-              <Button type="outlined" onClick={() => handleMakeOffer('Make')}>
+              <Button type="legacy-outlined" onClick={() => handleMakeOffer('Make')}>
                 Offer
               </Button>
             </div>

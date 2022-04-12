@@ -73,8 +73,44 @@ const ItemValue = styled.div`
   }
 `;
 
-export default function CollectionInfoBar({ collectionStats, royalty }) {
+export default function CollectionInfoBar({ collectionStats, royalty, type = 'legacy' }) {
   const { numberActive, averageSalePrice, numberOfSales, floorPrice, totalVolume } = collectionStats;
+
+  if (type === 'legacy') {
+    return (
+      <div className="d-item col-lg-8 col-sm-10 mb-4 mx-auto">
+        <a className="nft_attr">
+          <div className="row">
+            <div className="col-md-2 col-xs-4">
+              <h5>Floor</h5>
+              <h4>{floorPrice ? <>{siPrefixedNumber(Number(floorPrice).toFixed(0))} CRO</> : <>-</>}</h4>
+            </div>
+            <div className="col-md-2 col-xs-4">
+              <h5>Volume</h5>
+              <h4>{totalVolume ? <>{siPrefixedNumber(Number(totalVolume).toFixed(0))} CRO</> : <>-</>}</h4>
+            </div>
+            <div className="col-md-2 col-xs-4">
+              <h5>Sales</h5>
+              <h4>{numberOfSales ? <>{siPrefixedNumber(numberOfSales)}</> : <>-</>}</h4>
+            </div>
+            <div className="col-md-2 col-xs-4">
+              <h5>Avg. Sale</h5>
+              <h4>{averageSalePrice ? <>{siPrefixedNumber(Number(averageSalePrice).toFixed(0))} CRO</> : <>-</>}</h4>
+            </div>
+            <div className="col-md-2 col-xs-4">
+              <h5>Royalty</h5>
+              <h4>{royalty ? <>{royalty}%</> : <>-</>}</h4>
+            </div>
+            <div className="col-md-2 col-xs-4">
+              <h5>Active Listings</h5>
+              <h4>{numberActive ? <>{siPrefixedNumber(numberActive)}</> : <>-</>}</h4>
+            </div>
+          </div>
+        </a>
+      </div>
+    );
+  }
+
   return (
     <div>
       <CollectionInfoBarContainer>
@@ -91,7 +127,9 @@ export default function CollectionInfoBar({ collectionStats, royalty }) {
           <ItemTitle>Sales</ItemTitle>
         </InfoItem>
         <InfoItem>
-          <ItemValue>{averageSalePrice ? <>{siPrefixedNumber(Number(averageSalePrice).toFixed(0))} CRO</> : <>-</>}</ItemValue>
+          <ItemValue>
+            {averageSalePrice ? <>{siPrefixedNumber(Number(averageSalePrice).toFixed(0))} CRO</> : <>-</>}
+          </ItemValue>
           <ItemTitle>Avg. Sale</ItemTitle>
         </InfoItem>
         <InfoItem>

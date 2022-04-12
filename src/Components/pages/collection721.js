@@ -179,7 +179,7 @@ const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) 
                 </div>
               </div>
             )}
-            <div className="d-item col-lg-10 col-md-12 mb-4 mx-auto">
+            <div className="d-item col-md-12 mb-4 mx-auto">
               <CollectionInfoBar collectionStats={collectionStats} royalty={royalty} />
             </div>
             {collection.address.toLowerCase() == '0x7D5f8F9560103E1ad958A6Ca43d49F954055340a'.toLowerCase() && (

@@ -200,7 +200,7 @@ const Collection1155 = ({ address, tokenId = null, cacheName = 'collection', slu
                 </div>
               </div>
             )}
-            <div className="d-item col-lg-10 col-md-12 mb-4 mx-auto">
+            <div className="d-item col-md-12 mb-4 mx-auto">
               <CollectionInfoBar collectionStats={collectionStats} royalty={royalty} />
             </div>
             {isCrosmocraftsPartsCollection(address) && (
