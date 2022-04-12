@@ -2,6 +2,7 @@ import React, { memo } from 'react';
 import Select from 'react-select';
 import { SortOption } from '../Models/sort-option.model';
 import { FilterOption } from '../Models/filter-option.model';
+import Form from 'react-bootstrap/Form'
 
 const TopFilterBar = ({
   showFilter = true,
@@ -43,7 +44,7 @@ const TopFilterBar = ({
   };
 
   return (
-    <div className="items_filter">
+    <div className="items_filter" style={{marginTop:'10px'}}>
       {showFilter && (
         <div className="dropdownSelect one">
           <Select
