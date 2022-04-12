@@ -88,7 +88,7 @@ const ListingCardCollection = ({ listing, imgClass = 'marketplace', watermark, a
           )}
         </Link>
         {listing.rank && <div className="badge bg-rarity text-wrap mt-1 mx-1">Rank: #{listing.rank}</div>}
-        <div className="card-body d-flex flex-column">
+        <div className="card-body d-flex flex-column justify-content-between">
           <Link className="linkPointer" to={`/collection/${listing.address}/${listing.id}`}>
             <h6 className="card-title mt-auto">{listing.name}</h6>
           </Link>
@@ -98,12 +98,14 @@ const ListingCardCollection = ({ listing, imgClass = 'marketplace', watermark, a
             </MakeBuy>
           )}
           <MakeOffer>
-            {getIsNftListed() && (
+            {getIsNftListed() ? (
               <div>
                 <Button type="legacy" onClick={handleBuy}>
                   Buy
                 </Button>
               </div>
+            ) : (
+              <div></div>
             )}
             <div>
               <Button type="legacy-outlined" onClick={() => handleMakeOffer('Make')}>
