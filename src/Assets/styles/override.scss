@@ -514,3 +514,14 @@ canvas {
 .activity-filter li {
     width: auto;
 }
+
+.de-table.table-rank.sales-table {
+    tbody th {
+        position: relative;
+        padding-left: 0;
+    }
+
+    tbody td {
+        padding: 0 5px;
+    }
+}

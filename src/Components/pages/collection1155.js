@@ -23,6 +23,7 @@ import { FilterOption } from '../Models/filter-option.model';
 import config from '../../Assets/networks/rpc_config.json';
 import Market from '../../Contracts/Marketplace.json';
 import stakingPlatforms from '../../core/data/staking-platforms.json';
+import SalesCollection from "../components/SalesCollection";
 
 const knownContracts = config.known_contracts;
 
@@ -63,10 +64,16 @@ const Collection1155 = ({ address, tokenId=null, cacheName = 'collection' }) => 
     return contract ? contract.name : 'Collection';
   };
 
-  // const handleCopy = (code) => () => {
-  //   navigator.clipboard.writeText(code);
-  //   toast.success('Copied!');
-  // };
+  const [openMenu, setOpenMenu] = React.useState(0);
+  const handleBtnClick = (index) => (element) => {
+    var elements = document.querySelectorAll('.tab');
+    for (var i = 0; i < elements.length; i++) {
+      elements[i].classList.remove('active');
+    }
+    element.target.parentElement.classList.add('active');
+
+    setOpenMenu(index);
+  };
 
   const hasTraits = () => {
     return collectionStats?.traits != null;
@@ -275,18 +282,41 @@ const Collection1155 = ({ address, tokenId=null, cacheName = 'collection' }) => 
             )}
           </div>
         )}
-        <div className="row">
-          <CollectionFilterBar showFilter={false} cacheName={cacheName} />
-        </div>
-        <div className="row">
-          {(hasTraits() || hasPowertraits()) && (
-            <div className="col-md-3 mb-4">
-              {hasTraits() && <TraitsFilter address={address} />}
-              {hasPowertraits() && <PowertraitsFilter address={address} />}
-            </div>
-          )}
-          <div className={hasTraits() || hasPowertraits() ? 'col-md-9' : 'col-md-12'}>
-            <CollectionListingsGroup listings={listings} canLoadMore={canLoadMore} loadMore={loadMore} />
+
+        <div className="de_tab">
+          <ul className="de_nav">
+            <li id="Mainbtn0" className="tab active">
+              <span onClick={handleBtnClick(0)}>Items</span>
+            </li>
+            <li id="Mainbtn1" className="tab">
+              <span onClick={handleBtnClick(1)}>Activity</span>
+            </li>
+          </ul>
+
+          <div className="de_tab_content">
+            {openMenu === 0 && (
+              <div className="tab-1 onStep fadeIn">
+                <div className="row">
+                  <CollectionFilterBar showFilter={false} cacheName={cacheName} />
+                </div>
+                <div className="row">
+                  {(hasTraits() || hasPowertraits()) && (
+                    <div className="col-md-3 mb-4">
+                      {hasTraits() && <TraitsFilter address={address} />}
+                      {hasPowertraits() && <PowertraitsFilter address={address} />}
+                    </div>
+                  )}
+                  <div className={hasTraits() || hasPowertraits() ? 'col-md-9' : 'col-md-12'}>
+                    <CollectionListingsGroup listings={listings} canLoadMore={canLoadMore} loadMore={loadMore} />
+                  </div>
+                </div>
+              </div>
+            )}
+            {openMenu === 1 && (
+              <div className="tab-2 onStep fadeIn">
+                <SalesCollection cacheName="collection" collectionId={address} tokenId={tokenId} />
+              </div>
+            )}
           </div>
         </div>
       </section>
