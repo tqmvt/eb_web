@@ -7,7 +7,7 @@
   "explorer": "https://cronoscan.com/",
   "api_base": "https://api.ebisusbay.com/",
   "app_base": "https://app.ebisusbay.com/",
-  "subgraph_base": "https://testgraph.ebisusbay.biz:8000/subgraphs/name/ebisusbay/",
+  "subgraph_base": "https://graph.ebisusbay.com:8000/subgraphs/name/ebisusbay/",
   "membership_contract": "0x8d9232Ebc4f06B7b8005CCff0ca401675ceb25F5",
   "auction_contract": "0xd488b38d19d5708cbda224c041a24c3e3149bc93",
   "cronie_contract": "0xD961956B319A10CBdF89409C0aE7059788A4DaBb",

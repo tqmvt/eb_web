@@ -5,7 +5,7 @@ import config from '../Assets/networks/rpc_config.json';
 
 // const CURRENT_ENV = process.env.REACT_APP_ENV;
 // const APIURL = configData[CURRENT_ENV].subgraphUrl;
-const APIURL = `${config.subgraph_base}offers-testnet`;
+const APIURL = `${config.subgraph_base}${config.chain_id === '25' ? 'offers' : 'offers-testnet'}`;
 
 const client = new ApolloClient({
   uri: APIURL,
