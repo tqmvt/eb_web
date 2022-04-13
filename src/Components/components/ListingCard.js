@@ -1,8 +1,10 @@
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { ethers } from 'ethers';
 import { croSkullRedPotionImageHack } from '../../hacks';
+import Button from './Button';
+import MakeOfferDialog from '../Offer/MakeOfferDialog';
 
 const Watermarked = styled.div`
   position: relative;
@@ -28,11 +30,45 @@ const MakeBuy = styled.div`
   align-items: center;
 `;
 
+const MakeOffer = styled.div`
+  margin-top: 8px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  z-index: 2;
+
+  .w-45 {
+    width: 45%;
+  }
+`;
+
 const ListingCard = ({ listing, imgClass = 'marketplace', watermark, address, collectionMetadata }) => {
+  console.log(listing, collectionMetadata);
+  const [openMakeOfferDialog, setOpenMakeOfferDialog] = useState(false);
+
+  const [modalType, setModalType] = useState('Make');
+  const handleMakeOffer = (type) => {
+    setModalType(type);
+    setOpenMakeOfferDialog(!openMakeOfferDialog);
+  };
+
+  const convertListingData = (listingData) => {
+    const res = {
+      address: listingData.nftAddress,
+      id: listingData.nftId,
+      image: listingData.nft.image,
+      name: listingData.nft.name,
+      description: listingData.nft.description,
+      rank: listingData.rank,
+      royalty: listingData.royalty,
+    };
+    return res;
+  };
+
   return (
     <>
-      <Link className="linkPointer" to={`/collection/${listing.nftAddress}/${listing.nftId}`}>
-        <div className="card eb-nft__card h-100 shadow">
+      <div className="card eb-nft__card h-100 shadow">
+        <Link className="linkPointer" to={`/collection/${listing.nftAddress}/${listing.nftId}`}>
           {watermark ? (
             <Watermarked watermark={watermark}>
               <img
@@ -48,15 +84,32 @@ const ListingCard = ({ listing, imgClass = 'marketplace', watermark, address, co
               alt={listing.nft.name}
             />
           )}
-          {listing.nft.rank && <div className="badge bg-rarity text-wrap mt-1 mx-1">Rank: #{listing.nft.rank}</div>}
-          <div className="card-body d-flex flex-column">
+        </Link>
+        {listing.nft.rank && <div className="badge bg-rarity text-wrap mt-1 mx-1">Rank: #{listing.nft.rank}</div>}
+        <div className="card-body d-flex flex-column justify-content-between">
+          <Link className="linkPointer" to={`/collection/${listing.nftAddress}/${listing.nftId}`}>
             <h6 className="card-title mt-auto">{listing.nft.name}</h6>
-            <MakeBuy>
-              <div>{ethers.utils.commify(listing.price)} CRO</div>
-            </MakeBuy>
-          </div>
+          </Link>
+          <MakeBuy>
+            <div>{ethers.utils.commify(listing.price)} CRO</div>
+          </MakeBuy>
+          <MakeOffer>
+            <div>
+              <Button type="legacy-outlined" onClick={() => handleMakeOffer('Make')}>
+                Offer
+              </Button>
+            </div>
+          </MakeOffer>
         </div>
-      </Link>
+      </div>
+
+      <MakeOfferDialog
+        isOpen={openMakeOfferDialog}
+        toggle={() => setOpenMakeOfferDialog(!openMakeOfferDialog)}
+        nftData={convertListingData(listing)}
+        collectionMetadata={collectionMetadata}
+        type={modalType}
+      />
     </>
   );
 };
