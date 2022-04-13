@@ -55,7 +55,14 @@ export async function sortAndFetchListings(page, sort, filter, traits, powertrai
   };
 
   if (filter && filter instanceof FilterOption) {
-    query = { ...query, ...filter.toApi() };
+    let filterParams = filter.toApi();
+
+    // Make backwards compatible with new filter based on /fullcollections endpoint
+    if (Object.keys(filterParams).includes('address')) {
+      filterParams.collection = filterParams.address;
+      delete filterParams.address;
+    }
+    query = { ...query, ...filterParams };
   }
 
   if (sort && sort instanceof SortOption) {
@@ -97,7 +104,6 @@ export async function sortAndFetchListings(page, sort, filter, traits, powertrai
   }
 
   if (search) query['search'] = search;
-  if (filterListed) query['listed'] = filterListed;
 
   const queryString = new URLSearchParams(query);
 

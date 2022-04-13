@@ -4,7 +4,7 @@ import {
   getCollectionMetadata,
   getCollectionTraits,
   getCollectionPowertraits,
-  getCollectionSummary,
+  getCollectionSummary, sortAndFetchListings,
 } from '../core/api';
 import { caseInsensitiveCompare } from '../utils';
 
@@ -31,6 +31,7 @@ const collectionSlice = createSlice({
     cachedPowertraitsFilter: {},
     cachedFilter: {},
     cachedSort: {},
+    hasFullCollectionData: false,
   },
   reducers: {
     listingsLoading: (state, _) => {
@@ -40,7 +41,7 @@ const collectionSlice = createSlice({
     listingsReceived: (state, action) => {
       state.loading = false;
       state.error = false;
-      state.listings.push(...action.payload.nfts);
+      state.listings.push(...action.payload.hasFullCollectionData ? action.payload.nfts : action.payload.listings);
       state.query.page = action.payload.page;
       state.totalPages = action.payload.totalPages;
       state.hasRank = action.payload.hasRank;
@@ -172,10 +173,29 @@ export const fetchListings = () => async (dispatch, getState) => {
     state.collection.query.search,
     state.collection.query.filterListed
   );
+  console.log('collection', response);
+  if (response.status === 200 && response.nfts.length > 0) {
+    if (!cancelled) {
+      response.hasRank = response.nfts.length > 0 && typeof response.nfts[0].rank !== 'undefined';
+      dispatch(listingsReceived({...response, hasFullCollectionData: true}));
+    }
+  }
 
-  if (!cancelled) {
-    response.hasRank = response.nfts.length > 0 && typeof response.nfts[0].rank !== 'undefined';
-    dispatch(listingsReceived(response));
+  if (!response.nfts || response.nfts.length === 0) {
+    console.log('no results found. falling back to listings endpoint...');
+    const { response, cancelled } = await sortAndFetchListings(
+      state.collection.query.page + 1,
+      state.collection.query.sort,
+      state.collection.query.filter,
+      state.collection.query.traits,
+      state.collection.query.powertraits,
+      state.collection.query.search
+    );
+    console.log('listings', response);
+    if (!cancelled) {
+      response.hasRank = response.listings.length > 0 && typeof response.listings[0].rank !== 'undefined';
+      dispatch(listingsReceived({...response, hasFullCollectionData: false}));
+    }
   }
 };
 
