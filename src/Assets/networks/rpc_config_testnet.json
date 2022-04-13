@@ -815,6 +815,27 @@
         "telegram": "https://t.me/kardianft",
         "medium": "https://medium.com/@playkardia/"
       }
+    },
+    {
+      "name": "Monkey Of Anarkey",
+      "slug": "monkey-of-anarkey",
+      "multiToken": false,
+      "address": "0xF559EefCD14E0a65e20281b9F0aD4c7FabF9D855",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": false,
+        "avatar": "/img/collections/monkey-anarkey/avatar.webp",
+        "card": "/img/collections/monkey-anarkey/card.webp",
+        "banner": "/img/collections/monkey-anarkey/banner.webp",
+        "maxSupply": 6010,
+        "website": "https://www.monkeyoa.io/",
+        "twitter": "https://twitter.com/MonkeyOfAnarkey",
+        "discord": "https://discord.gg/wxYhYkVhNN",
+        "telegram": "https://t.me/monkeyoa",
+        "medium": "https://medium.com/@monkeyoa"
+      }
     }
   ],
   "drops": [
@@ -1802,6 +1823,31 @@
       "totalSupply": 6010,
       "cost": "145",
       "memberCost": "95",
+      "foundersOnly": false,
+      "start": null,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false
+    },
+    {
+      "slug": "monkey-of-anarkey",
+      "imgNft": "/img/drops/monkey-anarkey/drop.webp",
+      "imgPreview": "/img/drops/monkey-anarkey/drop.webp",
+      "imgAvatar": "/img/collections/monkey-anarkey/avatar.webp",
+      "imgBanner": "/img/collections/monkey-anarkey/banner.webp",
+      "title": "Monkey Of Anarkey",
+      "subtitle": "The MoA universe will give you access to a unique collection of 1999 NFTs monkeys, darker and more badass than ever. \nEach NFT is unique and composed of different attributes that make it belong to one of the 4 sections, each with its own perks. \n So don't waste any more time, come and join us if you want to be part of the MoA fam!",
+      "description": "\"We accepted to be separated from our families and to be put in cages, to be treated as less than nothing.... Then everything changed on May 28, 2016 and the world will now never be the same.\" \nMonkey Of Anarkey is a gang of biker monkeys determined to get revenge after centuries of abuse. The MoA universe will give you access to a unique collection of 1999 NFTs monkeys, darker and more badass than ever. \n The MoA NFT collection is divided into 4 sections:\n\nCREW MONKEYS\nSICARIO MONKEYS\nTREASURER MONKEYS\nPRESIDENT MONKEYS\n\nEach NFT is unique and composed of different attributes that make it belong to one of the 4 sections, each with its own perks. \nSharing 3% of the total turnover of the first sale, decisions on how to use Ebisu's Bay royalties, NFT staking and many other things. This is what awaits you if you decide to join the MoA fam!",
+      "author": { "name": "MoA", "link": "https://www.monkeyoa.io/" },
+      "address": "0xF559EefCD14E0a65e20281b9F0aD4c7FabF9D855",
+      "maxMintPerTx": 25,
+      "maxMintPerAddress": 100,
+      "totalSupply": 1999,
+      "cost": "390",
+      "memberCost": "340",
+      "whitelistCost": "290",
       "foundersOnly": false,
       "start": null,
       "end": null,
