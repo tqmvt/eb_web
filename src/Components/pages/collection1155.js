@@ -96,7 +96,6 @@ const Collection1155 = ({ address, tokenId = null, cacheName = 'collection', slu
       filterOption.id = tokenId;
     }
     filterOption.name = 'Specific collection';
-    filterOption.slug = slug;
 
     dispatch(
       init(

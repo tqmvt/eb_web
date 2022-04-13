@@ -23,6 +23,7 @@ import config from '../../Assets/networks/rpc_config.json';
 import Market from '../../Contracts/Marketplace.json';
 import stakingPlatforms from '../../core/data/staking-platforms.json';
 import SalesCollection from '../components/SalesCollection';
+import CollectionNftsGroup from "../components/CollectionNftsGroup";
 
 const knownContracts = config.known_contracts;
 
@@ -263,7 +264,7 @@ const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) 
                     )
                   )}
                   <div className={hasTraits() || hasPowertraits() ? 'col-md-9' : 'col-md-12'}>
-                    <CollectionListingsGroup
+                    <CollectionNftsGroup
                       listings={listings}
                       royalty={royalty}
                       canLoadMore={canLoadMore}

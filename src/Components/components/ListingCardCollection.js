@@ -50,86 +50,52 @@ const ListingCardCollection = ({
   address,
   collectionMetadata,
 }) => {
-  const [openMakeOfferDialog, setOpenMakeOfferDialog] = useState(false);
-
-  const [modalType, setModalType] = useState('Make');
-  const handleMakeOffer = (type) => {
-    setModalType(type);
-    setOpenMakeOfferDialog(!openMakeOfferDialog);
-  };
-
   const history = useHistory();
   const handleBuy = () => {
-    if (listing.market?.id) {
-      history.push(`/listing/${listing.market?.id}`);
+    if (listing.listingId) {
+      history.push(`/listing/${listing.listingId}`);
     } else {
-      history.push(`/collection/${listing.address}/${listing.id}`);
+      history.push(`/collection/${listing.nftAddress}/${listing.nftId}`);
     }
-  };
-
-  const getIsNftListed = () => {
-    if (listing.market?.price) {
-      return true;
-    }
-    return false;
   };
 
   return (
     <>
       <div className="card eb-nft__card h-100 shadow">
-        <Link className="linkPointer" to={`/collection/${listing.address}/${listing.id}`}>
+        <Link className="linkPointer" to={`/collection/${listing.nftAddress}/${listing.nftId}`}>
           {watermark ? (
             <Watermarked watermark={watermark}>
               <img
-                src={croSkullRedPotionImageHack(listing.address, listing.image)}
+                src={croSkullRedPotionImageHack(listing.nftAddress, listing.nft.image)}
                 className={`card-img-top ${imgClass}`}
-                alt={listing.name}
+                alt={listing.nft.name}
               />
             </Watermarked>
           ) : (
             <img
-              src={croSkullRedPotionImageHack(listing.address, listing.image)}
+              src={croSkullRedPotionImageHack(listing.nftAddress, listing.nft.image)}
               className={`card-img-top ${imgClass}`}
-              alt={listing.name}
+              alt={listing.nft.name}
             />
           )}
         </Link>
         {listing.rank && <div className="badge bg-rarity text-wrap mt-1 mx-1">Rank: #{listing.rank}</div>}
         <div className="card-body d-flex flex-column justify-content-between">
-          <Link className="linkPointer" to={`/collection/${listing.address}/${listing.id}`}>
-            <h6 className="card-title mt-auto">{listing.name}</h6>
+          <Link className="linkPointer" to={`/collection/${listing.nftAddress}/${listing.nftId}`}>
+            <h6 className="card-title mt-auto">{listing.nft.name}</h6>
           </Link>
-          {getIsNftListed() && (
-            <MakeBuy>
-              <div>{ethers.utils.commify(listing.market?.price)} CRO</div>
-            </MakeBuy>
-          )}
+          <MakeBuy>
+            <div>{ethers.utils.commify(listing.price)} CRO</div>
+          </MakeBuy>
           <MakeOffer>
-            {getIsNftListed() ? (
-              <div>
-                <Button type="legacy" onClick={handleBuy}>
-                  Buy
-                </Button>
-              </div>
-            ) : (
-              <div></div>
-            )}
             <div>
-              <Button type="legacy-outlined" onClick={() => handleMakeOffer('Make')}>
-                Offer
+              <Button type="legacy" onClick={handleBuy}>
+                Buy
               </Button>
             </div>
           </MakeOffer>
         </div>
       </div>
-      <MakeOfferDialog
-        isOpen={openMakeOfferDialog}
-        toggle={() => setOpenMakeOfferDialog(!openMakeOfferDialog)}
-        nftData={listing}
-        royalty={royalty}
-        collectionMetadata={collectionMetadata}
-        type={modalType}
-      />
     </>
   );
 };
