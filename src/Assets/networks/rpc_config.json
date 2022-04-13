@@ -7,6 +7,7 @@
   "explorer": "https://cronoscan.com/",
   "api_base": "https://api.ebisusbay.com/",
   "app_base": "https://app.ebisusbay.com/",
+  "subgraph_base": "https://testgraph.ebisusbay.biz:8000/subgraphs/name/ebisusbay/",
   "membership_contract": "0x8d9232Ebc4f06B7b8005CCff0ca401675ceb25F5",
   "auction_contract": "0xd488b38d19d5708cbda224c041a24c3e3149bc93",
   "cronie_contract": "0xD961956B319A10CBdF89409C0aE7059788A4DaBb",
@@ -1951,7 +1952,7 @@
         "twitter": "https://twitter.com/CrayonApe",
         "website": "https://crayon-ape.com/",
         "discord": "https://discord.gg/JDXQp85yNh",
-        "medium" : "https://medium.com/@crayonapeac"
+        "medium": "https://medium.com/@crayonapeac"
       }
     },
     {
@@ -2133,12 +2134,12 @@
       }
     },
     {
-      "name" : "Pixel City",
-      "slug" : "pixel-city",
-      "multiToken" : false,
-      "address" : "0xAECD843fC3677a2d3Fc142b9C165977D57fE4C40",
-      "onChain" : false,
-      "listable" : false,
+      "name": "Pixel City",
+      "slug": "pixel-city",
+      "multiToken": false,
+      "address": "0xAECD843fC3677a2d3Fc142b9C165977D57fE4C40",
+      "onChain": false,
+      "listable": false,
       "metadata": {
         "description": "",
         "verified": true,
@@ -2598,7 +2599,7 @@
         "website": "https://cronosbotsociety.com/",
         "twitter": "https://twitter.com/CronosBots",
         "discord": "discord.gg/cronosbotsociety",
-        "medium" : "https://medium.com/@Cronos-Bot-Society"
+        "medium": "https://medium.com/@Cronos-Bot-Society"
       }
     },
     {
@@ -2763,7 +2764,7 @@
       "name": "MetaPixelSkins",
       "slug": "metapixelskins",
       "multiToken": true,
-      "split" : false,
+      "split": false,
       "address": "0x79757e3B152050fAe36f4429f5cA417170cf2359",
       "onChain": false,
       "listable": true,
@@ -3179,7 +3180,7 @@
         "twitter": "https://twitter.com/CrayonApe",
         "website": "https://crayon-ape.com/",
         "discord": "https://discord.gg/JDXQp85yNh",
-        "medium" : "https://medium.com/@crayonapeac"
+        "medium": "https://medium.com/@crayonapeac"
       }
     },
     {
@@ -3256,7 +3257,7 @@
         "website": "https://dgpals.io/",
         "twitter": "https://twitter.com/officialdgpals",
         "discord": "https://discord.gg/dgpals",
-        "medium" : "https://medium.com/officialdgpals"
+        "medium": "https://medium.com/officialdgpals"
       }
     },
     {
@@ -3276,7 +3277,7 @@
         "website": "https://wlpass.com/",
         "twitter": "https://twitter.com/wl_pass",
         "discord": "https://discord.gg/Bzu7Ym65NA",
-        "medium" : "https://medium.com/@wlaccess/wl-access-pass-overview-f6b2e96a7400"
+        "medium": "https://medium.com/@wlaccess/wl-access-pass-overview-f6b2e96a7400"
       }
     },
     {

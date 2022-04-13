@@ -7,6 +7,7 @@
   "explorer": "https://cronos.org/explorer/testnet3/",
   "api_base": "https://testapi.ebisusbay.biz/",
   "app_base": "https://testapp.ebisusbay.biz/",
+  "subgraph_base": "https://testgraph.ebisusbay.biz:8000/subgraphs/name/ebisusbay/",
   "membership_contract": "0x3F1590A5984C89e6d5831bFB76788F3517Cdf034",
   "market_contract": "0xb3cB12e7F9e442ef799a2B7e92f65ab8710d7b27",
   "stake_contract": "0x70A9989dd73B026B34462BE158963587dD9ca16f",

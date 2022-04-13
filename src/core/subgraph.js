@@ -1,8 +1,11 @@
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
-import { configData } from 'src/Config';
+import config from '../Assets/networks/rpc_config.json';
 
-const CURRENT_ENV = process.env.REACT_APP_ENV;
-const APIURL = configData[CURRENT_ENV].subgraphUrl;
+// import { configData } from 'src/Config';
+
+// const CURRENT_ENV = process.env.REACT_APP_ENV;
+// const APIURL = configData[CURRENT_ENV].subgraphUrl;
+const APIURL = `${config.subgraph_base}offers-testnet`;
 
 const client = new ApolloClient({
   uri: APIURL,
