@@ -1,4 +1,4 @@
-import React, {memo, useEffect, useState} from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, Link } from 'react-router-dom';
 import Blockies from 'react-blockies';
@@ -14,8 +14,8 @@ import { getNftDetails } from '../../GlobalState/nftSlice';
 import config from '../../Assets/networks/rpc_config.json';
 import { croSkullRedPotionImageHack } from '../../hacks';
 import NFTTabOffers from '../Offer/NFTTabOffers';
-import PriceActionBar from "../NftDetails/PriceActionBar";
-import MakeOfferDialog from "../Offer/MakeOfferDialog";
+import PriceActionBar from '../NftDetails/PriceActionBar';
+import MakeOfferDialog from '../Offer/MakeOfferDialog';
 
 const knownContracts = config.known_contracts;
 
@@ -23,14 +23,11 @@ const Nft721 = ({ address, id }) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-
   const [openMakeOfferDialog, setOpenMakeOfferDialog] = useState(false);
 
   const nft = useSelector((state) => state.nft.nft);
   const listingHistory = useSelector((state) =>
-    state.nft.history
-      .filter(i => i.state === 1)
-      .sort((a, b) => (a.saleTime < b.saleTime) ? 1 : -1)
+    state.nft.history.filter((i) => i.state === 1).sort((a, b) => (a.saleTime < b.saleTime ? 1 : -1))
   );
 
   const powertraits = useSelector((state) => state.nft.nft?.powertraits);
@@ -114,7 +111,7 @@ const Nft721 = ({ address, id }) => {
                 <p>{nft.description}</p>
                 <PriceActionBar />
                 <div className="row">
-                  <button className="btn-main mx-auto" onClick={() => setOpenMakeOfferDialog(true)}>
+                  <button className="btn-main mx-auto mb-5" onClick={() => setOpenMakeOfferDialog(true)}>
                     Make Offer
                   </button>
                 </div>
