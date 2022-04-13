@@ -33,16 +33,14 @@ export default function NFTTabOffers({ nftAddress, nftId }) {
     <div>
       {nftOffers.length > 0 ? (
         nftOffers.map((offer, index) => <OffersRow key={index} data={offer} type={ROW_TYPE.observer} />)
-      ) : (
+      ) : nftOffersLoading ? (
         <EmptyData>
-          {nftOffersLoading ? (
-            <Spinner animation="border" role="status" size="sm">
-              <span className="visually-hidden">Loading...</span>
-            </Spinner>
-          ) : (
-            'No offers found'
-          )}
+          <Spinner animation="border" role="status" size="sm">
+            <span className="visually-hidden">Loading...</span>
+          </Spinner>
         </EmptyData>
+      ) : (
+        <span>No offers found for this item</span>
       )}
     </div>
   );
