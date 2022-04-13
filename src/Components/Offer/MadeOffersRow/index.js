@@ -117,15 +117,11 @@ export default function TableRow({ data, type }) {
 
   const collectionData = knownContracts.find((c) => c.address.toLowerCase() === nftAddress.toLowerCase());
   const getCollectionName = () => {
-    const { name } = collectionData;
-    return name;
+    return collectionData ? collectionData?.name : '';
   };
 
   const getCollectionAvatar = () => {
-    const {
-      metadata: { avatar },
-    } = collectionData;
-    return avatar;
+    return collectionData ? collectionData?.metadata?.avatar : '';
   };
 
   const getState = (offerState) => {
