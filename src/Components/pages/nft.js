@@ -14,9 +14,10 @@ const Nft = () => {
   const [type, setType] = useState('721');
   const [collection, setCollection] = useState(null);
   const [redirect, setRedirect] = useState(false);
+  const [initialized, setInitialized] = useState(false);
 
   useEffect(() => {
-    setRedirect(false);
+    setRedirect(null);
     let col = knownContracts.find((c) => c.slug === slug);
     if (col) {
       setCollection(col);
@@ -26,23 +27,30 @@ const Nft = () => {
       col = findCollectionByAddress(slug, id);
       if (col) {
         setCollection(col);
-        setRedirect(true);
+        setRedirect(col.slug);
       }
     }
+    setInitialized(true);
   }, [slug, id]);
 
   return (
     <>
-      {collection && (
+      {initialized && (
         <>
           {redirect ? (
-            <Redirect to={`/collection/${collection.slug}/${id}`} />
+            <Redirect to={`/collection/${redirect}/${id}`} />
           ) : (
             <>
-              {type === '1155' ? (
-                <Nft1155 address={collection.address} id={id} />
+              {collection ? (
+                <>
+                  {type === '1155' ? (
+                    <Nft1155 address={collection.address} id={id} />
+                  ) : (
+                    <Nft721 address={collection.address} id={id} />
+                  )}
+                </>
               ) : (
-                <Nft721 address={collection.address} id={id} />
+                <Redirect to="/" />
               )}
             </>
           )}

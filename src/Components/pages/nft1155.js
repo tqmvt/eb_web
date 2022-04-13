@@ -18,8 +18,8 @@ import {
   timeSince,
 } from '../../utils';
 import { getNftDetails } from '../../GlobalState/nftSlice';
-import config from '../../Assets/networks/rpc_config.json';
 import { croSkullRedPotionImageHack } from '../../hacks';
+import PriceActionBar from "../NftDetails/PriceActionBar";
 
 const Nft1155 = ({ address, id }) => {
   const dispatch = useDispatch();
@@ -111,6 +111,7 @@ const Nft1155 = ({ address, id }) => {
               <div className="item_info">
                 <h2>{nft.name}</h2>
                 <p>{nft.description}</p>
+                <PriceActionBar />
                 <div className="row" style={{ gap: '2rem 0' }}>
                   <ProfilePreview
                     type="Collection"
