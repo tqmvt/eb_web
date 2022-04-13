@@ -42,7 +42,14 @@ const MakeOffer = styled.div`
   }
 `;
 
-const ListingCardCollection = ({ listing, imgClass = 'marketplace', watermark, address, collectionMetadata }) => {
+const ListingCardCollection = ({
+  royalty,
+  listing,
+  imgClass = 'marketplace',
+  watermark,
+  address,
+  collectionMetadata,
+}) => {
   const [openMakeOfferDialog, setOpenMakeOfferDialog] = useState(false);
 
   const [modalType, setModalType] = useState('Make');
@@ -119,6 +126,7 @@ const ListingCardCollection = ({ listing, imgClass = 'marketplace', watermark, a
         isOpen={openMakeOfferDialog}
         toggle={() => setOpenMakeOfferDialog(!openMakeOfferDialog)}
         nftData={listing}
+        royalty={royalty}
         collectionMetadata={collectionMetadata}
         type={modalType}
       />

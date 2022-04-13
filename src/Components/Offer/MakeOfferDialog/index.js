@@ -122,7 +122,15 @@ const CloseIconContainer = styled.div`
   }
 `;
 
-export default function MakeOfferDialog({ isOpen, toggle, type = 'Make', nftData, offerData, collectionMetadata }) {
+export default function MakeOfferDialog({
+  isOpen,
+  toggle,
+  type = 'Make',
+  nftData,
+  offerData,
+  collectionMetadata,
+  royalty,
+}) {
   const isNftLoading = useSelector((state) => {
     return state.nft.loading;
   });
@@ -253,7 +261,7 @@ export default function MakeOfferDialog({ isOpen, toggle, type = 'Make', nftData
               )}
               <FlexRow>
                 <Royalty>Royalty</Royalty>
-                <Royalty>{nftData?.royalty ?? '-'}</Royalty>
+                <Royalty>{royalty ? `${royalty}%` : '-'}</Royalty>
               </FlexRow>
               {(type === OFFER_TYPE.make || type === OFFER_TYPE.update) && (
                 <FlexRow>

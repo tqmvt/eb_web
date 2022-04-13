@@ -43,7 +43,6 @@ const MakeOffer = styled.div`
 `;
 
 const ListingCard = ({ listing, imgClass = 'marketplace', watermark, address, collectionMetadata }) => {
-  console.log(listing, collectionMetadata);
   const [openMakeOfferDialog, setOpenMakeOfferDialog] = useState(false);
 
   const [modalType, setModalType] = useState('Make');
