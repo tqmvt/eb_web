@@ -175,7 +175,12 @@ export const fetchOffersForSingleNFT = (nftAddress, nftId) => async (dispatch) =
   if (data) dispatch(offersForSingleNFTLoaded(data));
 };
 
-export const updateOfferSuccess = (transactionHash) => async (dispatch) => {
+export const updateOfferSuccess = (transactionHash, walletAddress) => async (dispatch) => {
+  if (walletAddress) {
+    dispatch(fetchMadeOffers(walletAddress));
+    dispatch(fetchMyNFTs(walletAddress));
+  }
+
   dispatch(offerActionSuccess());
   toast.success(createSuccessfulTransactionToastContent(transactionHash));
 };

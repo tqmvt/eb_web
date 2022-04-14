@@ -197,7 +197,7 @@ const AcceptOfferDialog = ({ isOpen, toggle, nftData, offerData, collectionMetad
     try {
       const tx = await offerContract.acceptOffer(offerData.hash, offerData.offerIndex);
       const receipt = await tx.wait();
-      dispatch(updateOfferSuccess(receipt.transactionHash));
+      dispatch(updateOfferSuccess(receipt.transactionHash, walletAddress));
       setNextEnabled(false);
     } catch (e) {
       dispatch(updateOfferFailed(e));

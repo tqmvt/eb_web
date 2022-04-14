@@ -138,6 +138,7 @@ export default function MakeOfferDialog({
   const offerContract = useSelector((state) => {
     return state.user.offerContract;
   });
+  const walletAddress = useSelector((state) => state.user.address);
 
   const dispatch = useDispatch();
   const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
@@ -206,7 +207,7 @@ export default function MakeOfferDialog({
         tx = await offerContract.rejectOffer(offerData?.hash, offerData?.offerIndex);
         receipt = await tx.wait();
       }
-      dispatch(updateOfferSuccess(receipt.transactionHash));
+      dispatch(updateOfferSuccess(receipt.transactionHash, walletAddress));
     } catch (e) {
       dispatch(updateOfferFailed(e));
     }
