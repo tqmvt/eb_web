@@ -1,7 +1,7 @@
 import React, { memo, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import { ethers } from 'ethers';
 import MetaMaskOnboarding from '@metamask/onboarding';
 
@@ -38,7 +38,7 @@ const MakeBuy = styled.div`
 const MakeOffer = styled.div`
   margin-top: 8px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   z-index: 2;
 
@@ -124,6 +124,11 @@ const ListingCard = ({ listing, imgClass = 'marketplace', watermark, address, co
             <div>{ethers.utils.commify(listing.price)} CRO</div>
           </MakeBuy>
           <MakeOffer>
+            <Link className="linkPointer" to={`/collection/${listing.nftAddress}/${listing.nftId}`}>
+              <Button type="legacy">
+                Buy
+              </Button>
+            </Link>
             <div>
               <Button type="legacy-outlined" onClick={() => handleMakeOffer('Make')}>
                 Offer
