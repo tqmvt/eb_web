@@ -836,6 +836,26 @@
         "telegram": "https://t.me/monkeyoa",
         "medium": "https://medium.com/@monkeyoa"
       }
+    },
+    {
+      "name": "Barn Cats",
+      "slug": "barn-cats",
+      "multiToken": false,
+      "address": "0x000732Ddc0f7208b2400944d4a7296bc001aE866",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/lazyhorse/barncats/avatar.webp",
+        "card": "/img/collections/lazyhorse/card.png",
+        "banner": "/img/collections/lazyhorse/banner.png",
+        "maxSupply": 10000,
+        "website": "https://www.lazyhorseraceclub.com",
+        "twitter": "https://twitter.com/LazyHorseRC",
+        "discord": "https://discord.gg/lhrc",
+        "medium": "https://medium.com/@lazyhorseraceclub"
+      }
     }
   ],
   "drops": [
