@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { BigNumber, Contract, ethers } from 'ethers';
 import { toast } from 'react-toastify';
 
+import { getQuickWallet } from '../core/api';
 import { getAllOffers, getMyOffers, getReceivedOffers, getOffersForSingleNFT } from '../core/subgraph';
 import { createSuccessfulTransactionToastContent } from '../utils';
 import { ERC1155, ERC721, MetaPixelsAbi, SouthSideAntsReadAbi } from '../Contracts/Abis';
@@ -29,6 +30,9 @@ const offerSlice = createSlice({
     offersForSingleNFT: [],
 
     contract: null,
+
+    myNFTs: [],
+    myNFTsLoading: false,
   },
   reducers: {
     madeOffersLoading: (state) => {
@@ -78,6 +82,16 @@ const offerSlice = createSlice({
     updateContractInstanceSuccess: (state, action) => {
       state.contract = action.payload;
     },
+    // get my nfts
+    myNFTsLoading: (state) => {
+      state.myNFTsLoading = true;
+      state.error = false;
+    },
+    myNFTsLoaded: (state, action) => {
+      state.myNFTsLoading = false;
+      state.error = false;
+      state.myNFTs = action.payload;
+    },
   },
 });
 
@@ -86,6 +100,8 @@ export const {
   madeOffersLoaded,
   receivedOffersLoading,
   receivedOffersLoaded,
+  myNFTsLoading,
+  myNFTsLoaded,
   allOffersLoading,
   allOffersLoaded,
   offersForSingleNFTLoading,
@@ -109,6 +125,13 @@ export const fetchMadeOffers = (address) => async (dispatch) => {
   const { data } = await getMyOffers(address);
 
   if (data) dispatch(madeOffersLoaded(data));
+};
+
+export const fetchMyNFTs = (address) => async (dispatch) => {
+  dispatch(myNFTsLoading());
+  const { data } = await getQuickWallet(address);
+
+  if (data) dispatch(myNFTsLoaded(data));
 };
 
 export const fetchReceivedOffers = (address) => async (dispatch) => {

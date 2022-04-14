@@ -3,8 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { fetchMadeOffers, fetchAllOffers } from '../../GlobalState/offerSlice';
-import { fetchNfts } from 'src/GlobalState/User';
+import { fetchMadeOffers, fetchAllOffers, fetchMyNFTs } from '../../GlobalState/offerSlice';
+// import { fetchNfts } from 'src/GlobalState/User';
 import Footer from '../components/Footer';
 import MadeOffers from '../Offer/MadeOffers';
 import ReceivedOffers from '../Offer/ReceivedOffers';
@@ -58,8 +58,10 @@ const MyOffers = () => {
   const [receivedOffers, setReceivedOffers] = useState([]);
   const allOffersLoading = useSelector((state) => state.offer.allOffersLoading);
   const allOffers = useSelector((state) => state.offer.allOffers);
-  const myNFTsLoading = useSelector((state) => state.user.fetchingNfts);
-  const myNFTs = useSelector((state) => state.user.nfts);
+  // const myNFTsLoading = useSelector((state) => state.user.fetchingNfts);
+  // const myNFTs = useSelector((state) => state.user.nfts);
+  const myNFTsLoading = useSelector((state) => state.offer.myNFTsLoading);
+  const myNFTs = useSelector((state) => state.offer.myNFTs);
 
   const [tab, setTab] = useState(OFFERS_TAB.make);
   const dispatch = useDispatch();
@@ -68,13 +70,14 @@ const MyOffers = () => {
     dispatch(fetchMadeOffers(walletAddress));
     // dispatch(fetchReceivedOffers(walletAddress));
     if (!myNFTsLoading) {
-      dispatch(fetchNfts());
+      // dispatch(fetchNfts());
+      dispatch(fetchMyNFTs(walletAddress));
     }
   }, []);
 
   useEffect(() => {
     if (myNFTs && !myNFTsLoading) {
-      const collectionAddresses = myNFTs.map((nftData) => nftData.address.toLowerCase());
+      const collectionAddresses = myNFTs.map((nftData) => nftData.nftAddress.toLowerCase());
 
       dispatch(fetchAllOffers(collectionAddresses));
     }
@@ -83,7 +86,9 @@ const MyOffers = () => {
   useEffect(() => {
     if (myNFTs && !myNFTsLoading && allOffers) {
       const receivedOffersFilter = allOffers.filter((offer) => {
-        const nft = myNFTs.find((c) => c.address.toLowerCase() === offer.nftAddress && c.id.toString() === offer.nftId);
+        const nft = myNFTs.find(
+          (c) => c.nftAddress.toLowerCase() === offer.nftAddress && c.edition.toString() === offer.nftId
+        );
         if (nft) {
           return true;
         }
