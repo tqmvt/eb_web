@@ -15,7 +15,7 @@ import {
   Stepper,
   Typography,
 } from '@mui/material';
-import { ethers } from 'ethers';
+import { Contract, ethers } from 'ethers';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
@@ -28,6 +28,8 @@ import EmptyData from '../EmptyData';
 import { updateContractInstance, updateOfferSuccess, updateOfferFailed } from 'src/GlobalState/offerSlice';
 import { shortAddress } from 'src/utils';
 import CloseIcon from 'src/Assets/images/close-icon-blue.svg';
+import config from 'src/Assets/networks/rpc_config.json';
+import Market from 'src/Contracts/Marketplace.json';
 
 const DialogContainer = styled(Dialog)`
   .MuiDialogContent-root {
@@ -105,11 +107,28 @@ const AcceptOfferDialog = ({ isOpen, toggle, nftData, offerData, collectionMetad
   const offerContract = useSelector((state) => state.user.offerContract);
   const walletAddress = useSelector((state) => state.user.address);
 
+  const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
+  const readMarket = new Contract(config.market_contract, Market.abi, readProvider);
+
   const [fee, setFee] = useState(0);
   const [royalty, setRoyalty] = useState(0);
 
   const [floorPrice, setFloorPrice] = useState(0);
   const [belowFloor, setBelowFloor] = useState(false);
+
+  // get royalty
+  useEffect(() => {
+    async function asyncFunc() {
+      const fees = await readMarket.fee(walletAddress);
+      const royalties = await readMarket.royalties(nftData.address);
+      setFee((fees / 10000) * 100);
+      setRoyalty(Math.round(royalties[1]) / 100);
+    }
+    if (nftData) {
+      asyncFunc();
+    }
+    // eslint-disable-next-line
+  }, [nftData]);
 
   // steps
   const [acceptDialogActiveStep, setAcceptDialogActiveStep] = useState(AcceptDialogStepEnum.WaitingForTransferApproval);
