@@ -42,14 +42,7 @@ const MakeOffer = styled.div`
   }
 `;
 
-const ListingCardCollection = ({
-  royalty,
-  listing,
-  imgClass = 'marketplace',
-  watermark,
-  address,
-  collectionMetadata,
-}) => {
+const ListingCardCollection = ({ listing, imgClass = 'marketplace', watermark, address, collectionMetadata }) => {
   const history = useHistory();
   const handleBuy = () => {
     if (listing.listingId) {

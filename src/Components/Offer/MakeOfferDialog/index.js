@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Dialog, DialogContent, DialogTitle } from '@mui/material';
 import styled from 'styled-components';
-import { ethers } from 'ethers';
+import { Contract, ethers } from 'ethers';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Spinner } from 'react-bootstrap';
@@ -16,6 +16,8 @@ import { OFFER_TYPE } from '../MadeOffersRow';
 import CloseIcon from 'src/Assets/images/close-icon-blue.svg';
 import { updateOfferSuccess, updateOfferFailed } from 'src/GlobalState/offerSlice';
 import EmptyData from '../EmptyData';
+import config from 'src/Assets/networks/rpc_config.json';
+import Market from 'src/Contracts/Marketplace.json';
 
 const DialogContainer = styled(Dialog)`
   .MuiDialogContent-root {
@@ -122,15 +124,7 @@ const CloseIconContainer = styled.div`
   }
 `;
 
-export default function MakeOfferDialog({
-  isOpen,
-  toggle,
-  type = 'Make',
-  nftData,
-  offerData,
-  collectionMetadata,
-  royalty,
-}) {
+export default function MakeOfferDialog({ isOpen, toggle, type = 'Make', nftData, offerData, collectionMetadata }) {
   const isNftLoading = useSelector((state) => {
     return state.nft.loading;
   });
@@ -139,6 +133,8 @@ export default function MakeOfferDialog({
   });
 
   const dispatch = useDispatch();
+  const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
+  const readMarket = new Contract(config.market_contract, Market.abi, readProvider);
 
   const [offerPrice, setOfferPrice] = useState(0);
   const [offerPriceError, setOfferPriceError] = useState(false);
@@ -155,6 +151,18 @@ export default function MakeOfferDialog({
   };
 
   const [isOnAction, setIsOnAction] = useState(false);
+
+  const [royalty, setRoyalty] = useState(null);
+  useEffect(() => {
+    async function asyncFunc() {
+      let royalties = await readMarket.royalties(nftData.address);
+      setRoyalty(Math.round(royalties[1]) / 100);
+    }
+    if (nftData) {
+      asyncFunc();
+    }
+    // eslint-disable-next-line
+  }, [nftData]);
 
   if (!nftData) {
     return <></>;
@@ -206,6 +214,12 @@ export default function MakeOfferDialog({
     }
 
     return nftData.image;
+  };
+
+  const getRoyalty = async () => {
+    let royalties = await readMarket.royalties(nftData.address);
+    console.log(royalties);
+    return royalties ? `${Math.round(royalties[1]) / 100}%` : '-';
   };
 
   return (

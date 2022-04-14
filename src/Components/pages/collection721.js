@@ -7,7 +7,7 @@ import { faCheck, faCircle } from '@fortawesome/free-solid-svg-icons';
 // import Skeleton from 'react-loading-skeleton';
 // import 'react-loading-skeleton/dist/skeleton.css';
 
-import CollectionListingsGroup from '../components/CollectionListingsGroup';
+// import CollectionListingsGroup from '../components/CollectionListingsGroup';
 import CollectionFilterBar from '../components/CollectionFilterBar';
 import LayeredIcon from '../components/LayeredIcon';
 import Footer from '../components/Footer';
@@ -23,7 +23,7 @@ import config from '../../Assets/networks/rpc_config.json';
 import Market from '../../Contracts/Marketplace.json';
 import stakingPlatforms from '../../core/data/staking-platforms.json';
 import SalesCollection from '../components/SalesCollection';
-import CollectionNftsGroup from "../components/CollectionNftsGroup";
+import CollectionNftsGroup from '../components/CollectionNftsGroup';
 
 const knownContracts = config.known_contracts;
 
