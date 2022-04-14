@@ -1,10 +1,12 @@
-import React, { memo, useState } from 'react';
+import React, { memo, useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { ethers } from 'ethers';
 import { croSkullRedPotionImageHack } from '../../hacks';
 import Button from './Button';
 import MakeOfferDialog from '../Offer/MakeOfferDialog';
+import { getFilteredOffers } from 'src/core/subgraph';
 
 const Watermarked = styled.div`
   position: relative;
@@ -43,11 +45,24 @@ const MakeOffer = styled.div`
 `;
 
 const ListingCard = ({ listing, imgClass = 'marketplace', watermark, address, collectionMetadata }) => {
+  const walletAddress = useSelector((state) => state.user.address);
   const [openMakeOfferDialog, setOpenMakeOfferDialog] = useState(false);
-
   const [modalType, setModalType] = useState('Make');
+
+  useEffect(() => {
+    async function func() {
+      const filteredOffers = await getFilteredOffers(listing.nftAddress, listing.nftId, walletAddress);
+      if (filteredOffers && filteredOffers.data.length > 0) {
+        setModalType('Update');
+      }
+    }
+    if (walletAddress && listing.nftAddress && listing.nftId) {
+      func();
+    }
+  }, []);
+
   const handleMakeOffer = (type) => {
-    setModalType(type);
+    // setModalType(type);
     setOpenMakeOfferDialog(!openMakeOfferDialog);
   };
 
