@@ -263,7 +263,6 @@ const AccountMenu = function () {
                 <li>
                   <span onClick={() => navigateTo(`/nfts`)}>
                     <span>
-                      {' '}
                       <FontAwesomeIcon icon={faImage} />{' '}
                     </span>
                     <span>My NFTs</span>
@@ -278,7 +277,6 @@ const AccountMenu = function () {
                       </span>
                     ) : (
                       <span>
-                        {' '}
                         <FontAwesomeIcon icon={faEnvelopeOpenText} />{' '}
                       </span>
                     )}
@@ -288,7 +286,6 @@ const AccountMenu = function () {
                 <li>
                   <span onClick={() => navigateTo(`/sales`)}>
                     <span>
-                      {' '}
                       <FontAwesomeIcon icon={faShoppingBasket} />{' '}
                     </span>
                     <span>My Sales</span>
@@ -297,18 +294,16 @@ const AccountMenu = function () {
                 <li className="my-offers-menu-item">
                   <span onClick={() => navigateTo(`/offers`)}>
                     <span>
-                      {' '}
                       <img src={HandHoldingCroIcon} alt="handholding-cro" width="14" height="14" />{' '}
                     </span>
                     <span>My Offers</span>
                   </span>
-                  <div className="notification-badge"></div>
+                  {/* <div className="notification-badge"></div> */}
                 </li>
                 {(user.vipCount > 0 || user.stakeCount > 0) && (
                   <li>
                     <span onClick={() => navigateTo(`/staking`)}>
                       <span>
-                        {' '}
                         <FontAwesomeIcon icon={faShoppingBag} />{' '}
                       </span>
                       <span>My Staking</span>
@@ -318,7 +313,6 @@ const AccountMenu = function () {
                 <li>
                   <span onClick={clearCookies}>
                     <span>
-                      {' '}
                       <FontAwesomeIcon icon={faBolt} />{' '}
                     </span>
                     <span>Clear Cookies</span>
@@ -330,7 +324,6 @@ const AccountMenu = function () {
                 <li>
                   <span onClick={logout}>
                     <span>
-                      {' '}
                       <FontAwesomeIcon icon={faSignOutAlt} />{' '}
                     </span>
                     <span>Disconnect Wallet</span>
