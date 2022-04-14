@@ -102,7 +102,7 @@ export const OFFER_TYPE = {
 };
 
 export default function TableRow({ data, type }) {
-  const { state, timeCreated, seller, price, nftAddress, nftId } = data;
+  const { state, timeCreated, seller, buyer, price, nftAddress, nftId } = data;
 
   let nft = useSelector((state) => state.nft.nft);
   nft = { ...nft, address: nftAddress };
@@ -183,7 +183,9 @@ export default function TableRow({ data, type }) {
         </div>
         <div className="table-row-item">{getState(state)}</div>
         <div className="table-row-item">{getOfferDate(timeCreated)}</div>
-        <div className="table-row-item">{seller ? shortAddress(seller) : '-'}</div>
+        <div className="table-row-item">
+          {type === 'Received' ? (buyer ? shortAddress(buyer) : '-') : seller ? shortAddress(seller) : '-'}
+        </div>
         <div className="table-row-item">{price} CRO</div>
         <div className="table-row-item">
           {type === 'Made' && (
@@ -258,8 +260,8 @@ export default function TableRow({ data, type }) {
           <div>{getOfferDate(timeCreated)}</div>
         </ItemRow>
         <ItemRow>
-          <div>Owner</div>
-          <div>{seller ? shortAddress(seller) : '-'}</div>
+          <div>{type === 'Received' ? 'Buyer' : 'Owner'}</div>
+          <div>{type === 'Received' ? (buyer ? shortAddress(buyer) : '-') : seller ? shortAddress(seller) : '-'}</div>
         </ItemRow>
         <ItemRow>
           <div>Offer Price</div>

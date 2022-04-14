@@ -8,7 +8,7 @@ import TableRow from '../MadeOffersRow';
 export default function ReceivedOffers({ offers, isLoading }) {
   return (
     <div>
-      <TableHeader />
+      <TableHeader type="Received" />
       {offers.length > 0 ? (
         offers.map((offer, index) => <TableRow key={index} data={offer} type="Received" />)
       ) : (
