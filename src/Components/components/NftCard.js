@@ -1,13 +1,16 @@
 import React, { memo, useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { Link, useHistory } from 'react-router-dom';
 import { ethers } from 'ethers';
-import { croSkullRedPotionImageHack } from '../../hacks';
+import MetaMaskOnboarding from '@metamask/onboarding';
+
+import { croSkullRedPotionImageHack } from 'src/hacks';
 import Button from './Button';
 import MakeOfferDialog from '../Offer/MakeOfferDialog';
 // import { fetchFilteredOffers } from 'src/GlobalState/offerSlice';
 import { getFilteredOffers } from 'src/core/subgraph';
+import { connectAccount, chainConnect } from 'src/GlobalState/User';
 
 const Watermarked = styled.div`
   position: relative;
@@ -47,8 +50,9 @@ const MakeOffer = styled.div`
 
 const NftCard = ({ royalty, listing, imgClass = 'marketplace', watermark, address, collectionMetadata }) => {
   const history = useHistory();
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const walletAddress = useSelector((state) => state.user.address);
+  const user = useSelector((state) => state.user);
   const [openMakeOfferDialog, setOpenMakeOfferDialog] = useState(false);
   const [modalType, setModalType] = useState('Make');
 
@@ -67,7 +71,18 @@ const NftCard = ({ royalty, listing, imgClass = 'marketplace', watermark, addres
 
   const handleMakeOffer = () => {
     // setModalType(type);
-    setOpenMakeOfferDialog(!openMakeOfferDialog);
+    if (user.address) {
+      setOpenMakeOfferDialog(!openMakeOfferDialog);
+    } else {
+      if (user.needsOnboard) {
+        const onboarding = new MetaMaskOnboarding();
+        onboarding.startOnboarding();
+      } else if (!user.address) {
+        dispatch(connectAccount());
+      } else if (!user.correctChain) {
+        dispatch(chainConnect());
+      }
+    }
   };
 
   const handleBuy = () => {

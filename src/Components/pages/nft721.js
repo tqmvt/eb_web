@@ -6,6 +6,7 @@ import { ethers } from 'ethers';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Helmet } from 'react-helmet';
+import MetaMaskOnboarding from '@metamask/onboarding';
 
 import ProfilePreview from '../components/ProfilePreview';
 import Footer from '../components/Footer';
@@ -16,12 +17,15 @@ import { croSkullRedPotionImageHack } from '../../hacks';
 import NFTTabOffers from '../Offer/NFTTabOffers';
 import PriceActionBar from '../NftDetails/PriceActionBar';
 import MakeOfferDialog from '../Offer/MakeOfferDialog';
+import { connectAccount, chainConnect } from 'src/GlobalState/User';
 
 const knownContracts = config.known_contracts;
 
 const Nft721 = ({ address, id }) => {
   const dispatch = useDispatch();
   const history = useHistory();
+
+  const user = useSelector((state) => state.user);
 
   const [openMakeOfferDialog, setOpenMakeOfferDialog] = useState(false);
 
@@ -64,7 +68,21 @@ const Nft721 = ({ address, id }) => {
     element.target.parentElement.classList.add('active');
 
     setOpenMenu(index);
-    console.log(openMenu, index);
+  };
+
+  const handleMakeOffer = () => {
+    if (user.address) {
+      setOpenMakeOfferDialog(!openMakeOfferDialog);
+    } else {
+      if (user.needsOnboard) {
+        const onboarding = new MetaMaskOnboarding();
+        onboarding.startOnboarding();
+      } else if (!user.address) {
+        dispatch(connectAccount());
+      } else if (!user.correctChain) {
+        dispatch(chainConnect());
+      }
+    }
   };
 
   return (
@@ -111,7 +129,7 @@ const Nft721 = ({ address, id }) => {
                 <p>{nft.description}</p>
                 <PriceActionBar />
                 <div className="row">
-                  <button className="btn-main mx-auto mb-5" onClick={() => setOpenMakeOfferDialog(true)}>
+                  <button className="btn-main mx-auto mb-5" onClick={() => handleMakeOffer()}>
                     Make Offer
                   </button>
                 </div>

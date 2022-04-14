@@ -1,12 +1,15 @@
 import React, { memo, useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { ethers } from 'ethers';
-import { croSkullRedPotionImageHack } from '../../hacks';
+import MetaMaskOnboarding from '@metamask/onboarding';
+
+import { croSkullRedPotionImageHack } from 'src/hacks';
 import Button from './Button';
 import MakeOfferDialog from '../Offer/MakeOfferDialog';
 import { getFilteredOffers } from 'src/core/subgraph';
+import { connectAccount, chainConnect } from 'src/GlobalState/User';
 
 const Watermarked = styled.div`
   position: relative;
@@ -48,6 +51,8 @@ const ListingCard = ({ listing, imgClass = 'marketplace', watermark, address, co
   const walletAddress = useSelector((state) => state.user.address);
   const [openMakeOfferDialog, setOpenMakeOfferDialog] = useState(false);
   const [modalType, setModalType] = useState('Make');
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
 
   useEffect(() => {
     async function func() {
@@ -63,7 +68,18 @@ const ListingCard = ({ listing, imgClass = 'marketplace', watermark, address, co
 
   const handleMakeOffer = (type) => {
     // setModalType(type);
-    setOpenMakeOfferDialog(!openMakeOfferDialog);
+    if (user.address) {
+      setOpenMakeOfferDialog(!openMakeOfferDialog);
+    } else {
+      if (user.needsOnboard) {
+        const onboarding = new MetaMaskOnboarding();
+        onboarding.startOnboarding();
+      } else if (!user.address) {
+        dispatch(connectAccount());
+      } else if (!user.correctChain) {
+        dispatch(chainConnect());
+      }
+    }
   };
 
   const convertListingData = (listingData) => {
