@@ -130,6 +130,45 @@ export const getReceivedOffers = async (myAddress) => {
   };
 };
 
+export const getFilteredOffers = async (nftAddress, nftId, walletAddress) => {
+  const myOffersQuery = `
+  query($first: Int) {
+    offers(first: 1000, where: {nftAddress: "${nftAddress.toLowerCase()}", buyer: "${walletAddress.toLowerCase()}", nftId: "${nftId}"}) {
+        id
+        hash
+        offerIndex
+        nftAddress
+        nftId
+        buyer
+        seller
+        coinAddress
+        price
+        state
+        timeCreated
+        timeUpdated
+        timeEnded
+    }
+  }
+`;
+
+  const response = await new Promise((resolve) => {
+    resolve(
+      client.query({
+        query: gql(myOffersQuery),
+        variables: {
+          first: 100,
+        },
+      })
+    );
+  });
+
+  const { offers } = response.data;
+
+  return {
+    data: offers,
+  };
+};
+
 export const getOffersForSingleNFT = async (nftAddress, nftId) => {
   const nftOffersQuery = `
   query($first: Int) {

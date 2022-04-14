@@ -124,7 +124,14 @@ const CloseIconContainer = styled.div`
   }
 `;
 
-export default function MakeOfferDialog({ isOpen, toggle, type = 'Make', nftData, offerData, collectionMetadata }) {
+export default function MakeOfferDialog({
+  isOpen,
+  toggle,
+  type = OFFER_TYPE.make,
+  nftData,
+  offerData,
+  collectionMetadata,
+}) {
   const isNftLoading = useSelector((state) => {
     return state.nft.loading;
   });

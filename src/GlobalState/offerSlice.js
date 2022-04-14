@@ -3,7 +3,13 @@ import { BigNumber, Contract, ethers } from 'ethers';
 import { toast } from 'react-toastify';
 
 import { getQuickWallet } from '../core/api';
-import { getAllOffers, getMyOffers, getReceivedOffers, getOffersForSingleNFT } from '../core/subgraph';
+import {
+  getAllOffers,
+  getMyOffers,
+  getReceivedOffers,
+  getFilteredOffers,
+  getOffersForSingleNFT,
+} from '../core/subgraph';
 import { createSuccessfulTransactionToastContent } from '../utils';
 import { ERC1155, ERC721, MetaPixelsAbi, SouthSideAntsReadAbi } from '../Contracts/Abis';
 import { isMetapixelsCollection, isSouthSideAntsCollection } from '../utils';
@@ -33,6 +39,9 @@ const offerSlice = createSlice({
 
     myNFTs: [],
     myNFTsLoading: false,
+
+    filteredOffers: [],
+    filteredOffersLoading: false,
   },
   reducers: {
     madeOffersLoading: (state) => {
@@ -92,6 +101,15 @@ const offerSlice = createSlice({
       state.error = false;
       state.myNFTs = action.payload;
     },
+    filteredOffersLoading: (state) => {
+      state.filteredOffersLoading = true;
+      state.error = false;
+    },
+    filteredOffersLoaded: (state, action) => {
+      state.filteredOffersLoading = false;
+      state.error = false;
+      state.filteredOffers = action.payload;
+    },
   },
 });
 
@@ -100,6 +118,8 @@ export const {
   madeOffersLoaded,
   receivedOffersLoading,
   receivedOffersLoaded,
+  filteredOffersLoading,
+  filteredOffersLoaded,
   myNFTsLoading,
   myNFTsLoaded,
   allOffersLoading,
@@ -139,6 +159,13 @@ export const fetchReceivedOffers = (address) => async (dispatch) => {
   const { data } = await getReceivedOffers(address);
 
   if (data) dispatch(receivedOffersLoaded(data));
+};
+
+export const fetchFilteredOffers = (nftAddress, nftId, walletAddress) => async (dispatch) => {
+  dispatch(filteredOffersLoading());
+  const { data } = await getFilteredOffers(nftAddress, nftId, walletAddress);
+
+  if (data) dispatch(filteredOffersLoaded(data));
 };
 
 export const fetchOffersForSingleNFT = (nftAddress, nftId) => async (dispatch) => {

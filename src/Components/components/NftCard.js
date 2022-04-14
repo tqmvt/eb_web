@@ -1,10 +1,13 @@
-import React, { memo, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { Link, useHistory } from 'react-router-dom';
 import { ethers } from 'ethers';
 import { croSkullRedPotionImageHack } from '../../hacks';
 import Button from './Button';
 import MakeOfferDialog from '../Offer/MakeOfferDialog';
+// import { fetchFilteredOffers } from 'src/GlobalState/offerSlice';
+import { getFilteredOffers } from 'src/core/subgraph';
 
 const Watermarked = styled.div`
   position: relative;
@@ -42,23 +45,31 @@ const MakeOffer = styled.div`
   }
 `;
 
-const NftCard = ({
-   royalty,
-   listing,
-   imgClass = 'marketplace',
-   watermark,
-   address,
-   collectionMetadata,
- }) => {
+const NftCard = ({ royalty, listing, imgClass = 'marketplace', watermark, address, collectionMetadata }) => {
+  const history = useHistory();
+  // const dispatch = useDispatch();
+  const walletAddress = useSelector((state) => state.user.address);
   const [openMakeOfferDialog, setOpenMakeOfferDialog] = useState(false);
-
   const [modalType, setModalType] = useState('Make');
-  const handleMakeOffer = (type) => {
-    setModalType(type);
+
+  useEffect(() => {
+    async function func() {
+      const filteredOffers = await getFilteredOffers(listing.address, listing.id, walletAddress);
+
+      if (filteredOffers && filteredOffers.data.length > 0) {
+        setModalType('Update');
+      }
+    }
+    if (walletAddress) {
+      func();
+    }
+  }, []);
+
+  const handleMakeOffer = () => {
+    // setModalType(type);
     setOpenMakeOfferDialog(!openMakeOfferDialog);
   };
 
-  const history = useHistory();
   const handleBuy = () => {
     if (listing.market?.id) {
       history.push(`/listing/${listing.market?.id}`);
@@ -115,7 +126,7 @@ const NftCard = ({
               <div></div>
             )}
             <div>
-              <Button type="legacy-outlined" onClick={() => handleMakeOffer('Make')}>
+              <Button type="legacy-outlined" onClick={() => handleMakeOffer()}>
                 Offer
               </Button>
             </div>
