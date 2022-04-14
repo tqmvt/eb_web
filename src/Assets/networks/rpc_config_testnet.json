@@ -868,12 +868,12 @@
     },
     {
       "id": 6,
-      "slug": "lazyhorse",
+      "slug": "lazy-horse",
       "imgNft": "/img/drops/lazyhorse/drop.webp",
       "imgPreview": "/img/drops/lazyhorse/drop.webp",
       "imgAvatar": "/img/collections/lazyhorse/avatar.png",
       "imgBanner": "/img/collections/lazyhorse/banner.png",
-      "title": "lazyhorse",
+      "title": "Lazy Horse",
       "subtitle": "",
       "description": "The Lazy Horse Race Club connects the metaverse and real thoroughbred horse racing in a fun and unique club. Each Lazy Horse NFT grants access to the metaverse clubhouse and Lazy Horse Racing Game (drops end of January!), it also connects you to our real racing team. The Club owns, maintains and races horses with profits being shared by the community. All of the club's efforts are most importantly focused on providing a long and sustainable post-racing life for all horses. A large portion of all project proceeds will directly fund equine rescue and retirement, ensuring great lives for these beautiful animals.",
       "author": { "name": "LazyHorse", "link": "https://www.lazyhorseraceclub.com/" },
@@ -892,7 +892,8 @@
       "start": 1639591200000,
       "end": null,
       "referral": false,
-      "is1155": false
+      "is1155": false,
+      "published": true
     },
     {
       "id": 7,
@@ -991,8 +992,8 @@
       "imgBanner": "/img/collections/lazyhorse/banner.png",
       "title": "The Lazy Horse Member NFT (PONY)",
       "subtitle": "",
-      "description": "DESCRIPTION NEEDED",
-      "author": { "name": "Cronos Goats", "link": "https://www.lazyhorseraceclub.com/" },
+      "description": "It's Ponies!",
+      "author": { "name": "Lazy Horse", "link": "https://www.lazyhorseraceclub.com/" },
       "address": "0xEd8d78449402f44C8e9B0a38de785D0CaD73F76e",
       "maxMintPerTx": 20,
       "totalSupply": 2000,
@@ -1008,7 +1009,8 @@
       "start": 1642536000000,
       "end": null,
       "referral": false,
-      "is1155": false
+      "is1155": false,
+      "published": true
     },
     {
       "id": 12,
