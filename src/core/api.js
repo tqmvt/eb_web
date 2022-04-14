@@ -28,6 +28,7 @@ const api = {
   unfilteredListings: '/unfilteredlistings',
   collectionSummary: '/collection/summary',
   collectionDetails: '/fullcollections',
+  wallets: '/wallets',
 };
 
 export default api;
@@ -1161,4 +1162,15 @@ export async function getAuction(auctionId) {
     console.log(error);
     Sentry.captureException(error);
   }
+}
+
+export async function getQuickWallet(walletAddress) {
+  const queryString = new URLSearchParams({
+    wallet: walletAddress
+  });
+
+  const url = new URL(api.wallets, `${api.baseUrl}`);
+  const uri = `${url}?${queryString}`;
+
+  return await (await fetch(uri)).json();
 }
