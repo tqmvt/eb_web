@@ -634,7 +634,7 @@ export const chainConnect = (type) => async (dispatch) => {
   } else {
     const web3Provider = new WalletConnectProvider({
       rpc: {
-        25: 'https://rpc.ebisusbay.com',
+        25: 'https://evm.cronos.org',
       },
       chainId: 25,
     });
