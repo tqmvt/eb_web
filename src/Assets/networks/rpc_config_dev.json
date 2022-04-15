@@ -1,7 +1,7 @@
 {
   "name": "Cronos Mainnet Beta",
   "chain_id": "25",
-  "write_rpc": "https://rpc.ebisusbay.com/",
+  "write_rpc": "https://evm.cronos.org/",
   "read_rpc": "https://rpc.ebisusbay.com/",
   "symbol": "CRO",
   "explorer": "https://cronoscan.com/",
