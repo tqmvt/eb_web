@@ -1,0 +1,96 @@
+import React, { memo, useState } from 'react';
+import styled from 'styled-components';
+import { Link, useHistory } from 'react-router-dom';
+import { ethers } from 'ethers';
+import { croSkullRedPotionImageHack } from '../../hacks';
+import Button from './Button';
+import MakeOfferDialog from '../Offer/MakeOfferDialog';
+
+const Watermarked = styled.div`
+  position: relative;
+  &:after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-image: url(${(props) => props.watermark});
+    background-size: 60px 60px;
+    background-position: 0px 0px;
+    background-repeat: no-repeat;
+    opacity: 0.3;
+  }
+`;
+
+const MakeBuy = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const MakeOffer = styled.div`
+  margin-top: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2;
+
+  .w-45 {
+    width: 45%;
+  }
+`;
+
+const ListingCardCollection = ({ listing, imgClass = 'marketplace', watermark, address, collectionMetadata }) => {
+  const history = useHistory();
+  const handleBuy = () => {
+    if (listing.listingId) {
+      history.push(`/listing/${listing.listingId}`);
+    } else {
+      history.push(`/collection/${listing.nftAddress}/${listing.nftId}`);
+    }
+  };
+
+  return (
+    <>
+      <div className="card eb-nft__card h-100 shadow">
+        <Link className="linkPointer" to={`/collection/${listing.nftAddress}/${listing.nftId}`}>
+          {watermark ? (
+            <Watermarked watermark={watermark}>
+              <img
+                src={croSkullRedPotionImageHack(listing.nftAddress, listing.nft.image)}
+                className={`card-img-top ${imgClass}`}
+                alt={listing.nft.name}
+              />
+            </Watermarked>
+          ) : (
+            <img
+              src={croSkullRedPotionImageHack(listing.nftAddress, listing.nft.image)}
+              className={`card-img-top ${imgClass}`}
+              alt={listing.nft.name}
+            />
+          )}
+        </Link>
+        {listing.rank && <div className="badge bg-rarity text-wrap mt-1 mx-1">Rank: #{listing.rank}</div>}
+        <div className="card-body d-flex flex-column justify-content-between">
+          <Link className="linkPointer" to={`/collection/${listing.nftAddress}/${listing.nftId}`}>
+            <h6 className="card-title mt-auto">{listing.nft.name}</h6>
+          </Link>
+          <MakeBuy>
+            <div>{ethers.utils.commify(listing.price)} CRO</div>
+          </MakeBuy>
+          <MakeOffer>
+            <div>
+              <Button type="legacy" onClick={handleBuy}>
+                Buy
+              </Button>
+            </div>
+          </MakeOffer>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default memo(ListingCardCollection);

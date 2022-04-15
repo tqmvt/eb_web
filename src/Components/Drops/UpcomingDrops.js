@@ -25,10 +25,10 @@ const UpcomingDrops = () => {
 
     const dropsWithDate = dropCollections
       .filter((d) => d.collection && d.drop.start)
-      .sort((a, b) => a.drop.start > b.drop.start ? 1 : -1);
+      .sort((a, b) => (a.drop.start > b.drop.start ? 1 : -1));
     const dropsWithoutDate = dropCollections
       .filter((d) => d.collection && !d.drop.start)
-      .sort((a, b) => a.drop.name > b.drop.name ? 1 : -1);
+      .sort((a, b) => (a.drop.name > b.drop.name ? 1 : -1));
 
     setUpcomingDrops([...dropsWithDate, ...dropsWithoutDate]);
   }

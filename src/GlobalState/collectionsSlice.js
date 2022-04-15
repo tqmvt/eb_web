@@ -39,8 +39,8 @@ export const getAllCollections =
       const response = await getCollectionMetadata();
       response.collections.forEach(function (collection, index) {
         let contract;
-        if (collection.collection.indexOf("-") != -1) {
-          let parts = collection.collection.split("-")
+        if (collection.collection.indexOf('-') != -1) {
+          let parts = collection.collection.split('-');
           contract = knownContracts.find((c) => caseInsensitiveCompare(c.address, parts[0]) && c.id == parts[1]);
           if (contract && !contract.split) return;
         } else {
@@ -98,11 +98,10 @@ function isNumeric(str) {
 }
 
 function mergeStats(contract, response, index) {
-  const merged = response
-    .collections
-    .filter(c => {
+  const merged = response.collections
+    .filter((c) => {
       const addresses = [contract.address, ...contract.mergedAddresses];
-      return addresses.includes(c.collection)
+      return addresses.includes(c.collection);
     })
     .reduce((a, b) => {
       return {
@@ -117,8 +116,8 @@ function mergeStats(contract, response, index) {
         sales30d: parseInt(a.sales30d) + parseInt(b.sales30d),
         totalRoyalties: parseInt(a.totalRoyalties) + parseInt(b.totalRoyalties),
         floorPrice: parseInt(a.floorPrice) < parseInt(b.floorPrice) ? parseInt(a.floorPrice) : parseInt(b.floorPrice),
-        averageSalePrice: (parseInt(a.averageSalePrice) + parseInt(b.averageSalePrice)) / 2
-      }
+        averageSalePrice: (parseInt(a.averageSalePrice) + parseInt(b.averageSalePrice)) / 2,
+      };
     });
-  response.collections[index] = {...response.collections[index], ...merged};
+  response.collections[index] = { ...response.collections[index], ...merged };
 }

@@ -6,15 +6,16 @@ import Cronies from '../Contracts/CronosToken.json';
 import StakeABI from '../Contracts/Stake.json';
 import Market from '../Contracts/Marketplace.json';
 import Auction from '../Contracts/Auction.json';
+import Offer from '../Contracts/Offer.json';
 import Web3Modal from 'web3modal';
 
 import detectEthereumProvider from '@metamask/detect-provider';
 import { DeFiWeb3Connector } from 'deficonnect';
 import WalletConnectProvider from '@walletconnect/web3-provider';
 import * as DefiWalletConnectProvider from '@deficonnect/web3-provider';
-import {getNftRankings, getNftSalesForAddress, getNftsForAddress, getUnfilteredListingsForAddress} from '../core/api';
+import { getNftRankings, getNftSalesForAddress, getNftsForAddress, getUnfilteredListingsForAddress } from '../core/api';
 import { toast } from 'react-toastify';
-import {createSuccessfulTransactionToastContent, sliceIntoChunks} from '../utils';
+import { createSuccessfulTransactionToastContent, sliceIntoChunks } from '../utils';
 import { FilterOption } from '../Components/Models/filter-option.model';
 import { nanoid } from 'nanoid';
 import { appAuthInitFinished } from './InitSlice';
@@ -44,6 +45,7 @@ const userSlice = createSlice({
     marketContract: null,
     stateContract: null,
     auctionContract: null,
+    offerContract: null,
     // ebisuContract : null,
 
     correctChain: false,
@@ -95,6 +97,7 @@ const userSlice = createSlice({
       state.marketContract = action.payload.marketContract;
       state.marketBalance = action.payload.marketBalance;
       state.auctionContract = action.payload.auctionContract;
+      state.offerContract = action.payload.offerContract;
       // state.ebisuContract = action.payload.ebisuContract;
       state.gettingContractData = false;
     },
@@ -322,7 +325,7 @@ export const updateListed =
   };
 
 export const connectAccount =
-  (firstRun=false, type = "") =>
+  (firstRun = false, type = '') =>
   async (dispatch) => {
     const providerOptions = {
       injected: {
@@ -359,21 +362,21 @@ export const connectAccount =
       },
     };
 
-    if (type !== "defi") {
+    if (type !== 'defi') {
       providerOptions.walletconnect = {
         package: WalletConnectProvider, // required
         options: {
-            chainId: 25,
-            rpc: {
-                25: "https://gateway.nebkas.ro",
-            },
-            network: 'cronos',
-            metadata: {
-                icons: ["https://ebisusbay.com/vector%20-%20face.svg"],
-                description: "Cronos NFT Marketplace"
-                }
-            }
-          }
+          chainId: 25,
+          rpc: {
+            25: 'https://gateway.nebkas.ro',
+          },
+          network: 'cronos',
+          metadata: {
+            icons: ['https://ebisusbay.com/vector%20-%20face.svg'],
+            description: 'Cronos NFT Marketplace',
+          },
+        },
+      };
     }
 
     const web3ModalWillShowUp = !localStorage.getItem('WEB3_CONNECT_CACHED_PROVIDER');
@@ -474,6 +477,7 @@ export const connectAccount =
       let ownedVip = 0;
       let market;
       let auction;
+      let offer;
       let sales;
       let stakeCount = 0;
       // let ebisu;
@@ -490,6 +494,7 @@ export const connectAccount =
         stakeCount = await sc.amountStaked(address);
         market = new Contract(config.market_contract, Market.abi, signer);
         auction = new Contract(config.auction_contract, Auction.abi, signer);
+        offer = new Contract(config.offer_contract, Offer.abi, signer);
         sales = ethers.utils.formatEther(await market.payments(address));
 
         try {
@@ -517,6 +522,7 @@ export const connectAccount =
           stakeCount: stakeCount ? stakeCount.toNumber() : stakeCount,
           marketContract: market,
           auctionContract: auction,
+          offerContract: offer,
           marketBalance: sales,
         })
       );
@@ -673,7 +679,7 @@ const addRanksToNfts = async (dispatch, getState) => {
     }
     cSortedNfts[currentStateNfts[i].address].push({
       key: i,
-      nft: currentStateNfts[i]
+      nft: currentStateNfts[i],
     });
   }
 
@@ -683,17 +689,20 @@ const addRanksToNfts = async (dispatch, getState) => {
     for (let i in chunks) {
       let cStateNfts = getState().user.nfts.slice();
       try {
-        const rankedNfts = await getNftRankings(chunks[i][0].nft.address, chunks[i].map(a => a.nft.id));
+        const rankedNfts = await getNftRankings(
+          chunks[i][0].nft.address,
+          chunks[i].map((a) => a.nft.id)
+        );
         for (let j in rankedNfts) {
           const nft = rankedNfts[j];
-          const key = chunks[i].find(a => ethers.BigNumber.from(a.nft.id).eq(nft.id))?.key;
-          if (!key){
+          const key = chunks[i].find((a) => ethers.BigNumber.from(a.nft.id).eq(nft.id))?.key;
+          if (!key) {
             continue;
           }
           if (nft.rank) {
-            cStateNfts[key] = Object.assign({rank: nft.rank}, cStateNfts[key]);
+            cStateNfts[key] = Object.assign({ rank: nft.rank }, cStateNfts[key]);
           } else {
-            cStateNfts[key] = Object.assign({rank: 'N/A'}, cStateNfts[key]);
+            cStateNfts[key] = Object.assign({ rank: 'N/A' }, cStateNfts[key]);
           }
         }
         dispatch(onNftsReplace(cStateNfts));
@@ -702,7 +711,7 @@ const addRanksToNfts = async (dispatch, getState) => {
       }
     }
   }
-}
+};
 
 export const fetchSales = (walletAddress) => async (dispatch, getState) => {
   const state = getState();

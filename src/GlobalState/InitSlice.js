@@ -49,7 +49,7 @@ export const appInitializer = () => async (dispatch) => {
     localStorage.getItem('WEB3_CONNECT_CACHED_PROVIDER') ||
     window.ethereum ||
     localStorage.getItem('DeFiLink_session_storage_extension') ||
-    window.navigator.userAgent.includes("Crypto.com DeFiWallet");
+    window.navigator.userAgent.includes('Crypto.com DeFiWallet');
 
   if (!isConnectSupported) {
     dispatch(appAuthInitFinished());

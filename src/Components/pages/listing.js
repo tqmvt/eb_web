@@ -6,7 +6,7 @@ import MetaMaskOnboarding from '@metamask/onboarding';
 import { Spinner } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import Blockies from 'react-blockies';
-import {faCrow, faExternalLinkAlt, faHeart} from '@fortawesome/free-solid-svg-icons';
+import { faCrow, faExternalLinkAlt, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as Sentry from '@sentry/react';
 import { Helmet } from 'react-helmet';
@@ -20,15 +20,17 @@ import {
   findCollectionByAddress,
   createSuccessfulTransactionToastContent,
   humanize,
-  isCroCrowCollection, isCrosmocraftsPartsDrop,
+  isCroCrowCollection,
+  isCrosmocraftsPartsDrop,
   relativePrecision,
   shortAddress,
-  timeSince, isCrognomidesCollection, isBabyWeirdApesCollection,
+  timeSince,
+  isCrognomidesCollection,
+  isBabyWeirdApesCollection,
 } from '../../utils';
 import config from '../../Assets/networks/rpc_config.json';
 import { croSkullRedPotionImageHack } from '../../hacks';
-
-const knownContracts = config.known_contracts;
+import NFTTabOffers from '../Offer/NFTTabOffers';
 
 const Listing = () => {
   const { id } = useParams();
@@ -95,9 +97,9 @@ const Listing = () => {
     if (listing && isCrognomidesCollection(listing.nftAddress) && crognomideBreed === null) {
       const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
       const contract = new Contract(
-          '0xE57742748f98ab8e08b565160D3A9A32BFEF7352',
-          ['function crognomidUsed(uint256) public view returns (bool)'],
-          readProvider
+        '0xE57742748f98ab8e08b565160D3A9A32BFEF7352',
+        ['function crognomidUsed(uint256) public view returns (bool)'],
+        readProvider
       );
       try {
         const used = await contract.crognomidUsed(listing.nftId);
@@ -114,11 +116,7 @@ const Listing = () => {
     if (listing && isBabyWeirdApesCollection(listing.nftAddress)) {
       const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
       const abiFile = require(`../../Assets/abis/baby-weird-apes.json`);
-      const contract = new Contract(
-        listing.nftAddress,
-        abiFile.abi,
-        readProvider
-      );
+      const contract = new Contract(listing.nftAddress, abiFile.abi, readProvider);
       try {
         const apeInfo = await contract.apeInfo(listing.nftId);
         setBabyWeirdApeBreed(apeInfo);
@@ -267,16 +265,16 @@ const Listing = () => {
                     </div>
                   )}
                   {isCrognomidesCollection(listing.nftAddress) && crognomideBreed && (
-                      <div className="d-flex flex-row align-items-center mb-4">
-                        <LayeredIcon
-                            icon={faHeart}
-                            bgColor={'#fff'}
-                            color={'#dc143c'}
-                            inverse={false}
-                            title="This Crognomide has been bred for a Croby!"
-                        />
-                        <span className="fw-bold">This Crognomide has been bred for a Croby</span>
-                      </div>
+                    <div className="d-flex flex-row align-items-center mb-4">
+                      <LayeredIcon
+                        icon={faHeart}
+                        bgColor={'#fff'}
+                        color={'#dc143c'}
+                        inverse={false}
+                        title="This Crognomide has been bred for a Croby!"
+                      />
+                      <span className="fw-bold">This Crognomide has been bred for a Croby</span>
+                    </div>
                   )}
                   <div className="row" style={{ gap: '2rem 0' }}>
                     <ProfilePreview type="Seller" address={listing.seller} to={`/seller/${listing.seller}`} />
@@ -317,6 +315,9 @@ const Listing = () => {
                       <li id="Mainbtn2" className="tab">
                         <span onClick={handleBtnClick(2)}>History</span>
                       </li>
+                      <li id="Mainbtn3" className="tab">
+                        <span onClick={handleBtnClick(3)}>Offers</span>
+                      </li>
                       {babyWeirdApeBreed && (
                         <li id="Mainbtn9" className="tab">
                           <span onClick={handleBtnClick(9)}>Breed Info</span>
@@ -327,19 +328,46 @@ const Listing = () => {
                     <div className="de_tab_content">
                       {openMenu === 0 && (
                         <div className="tab-1 onStep fadeIn">
-                          {(listing.nft.attributes && Array.isArray(listing.nft.attributes) && listing.nft.attributes.length > 0) ||
-                          (listing.nft.properties && Array.isArray(listing.nft.properties) && listing.nft.properties.length > 0) ? (
+                          {(listing.nft.attributes &&
+                            Array.isArray(listing.nft.attributes) &&
+                            listing.nft.attributes.length > 0) ||
+                          (listing.nft.properties &&
+                            Array.isArray(listing.nft.properties) &&
+                            listing.nft.properties.length > 0) ? (
                             <>
                               <div className="d-block mb-3">
                                 <div className="row mt-5 gx-3 gy-2">
-                                  {listing.nft.attributes && Array.isArray(listing.nft.attributes) && listing.nft.attributes
-                                    .filter((data) => data.value !== 'None')
-                                    .map((data, i) => {
+                                  {listing.nft.attributes &&
+                                    Array.isArray(listing.nft.attributes) &&
+                                    listing.nft.attributes
+                                      .filter((data) => data.value !== 'None')
+                                      .map((data, i) => {
+                                        return (
+                                          <div key={i} className="col-lg-4 col-md-6 col-sm-6">
+                                            <div className="nft_attr">
+                                              <h5>{humanize(data.trait_type)}</h5>
+                                              <h4>{humanize(data.value)}</h4>
+                                              {data.occurrence ? (
+                                                <span>{relativePrecision(data.occurrence)}% have this trait</span>
+                                              ) : (
+                                                data.percent && <span>{data.percent}% have this trait</span>
+                                              )}
+                                            </div>
+                                          </div>
+                                        );
+                                      })}
+                                  {listing.nft.properties &&
+                                    Array.isArray(listing.nft.properties) &&
+                                    listing.nft.properties.map((data, i) => {
                                       return (
                                         <div key={i} className="col-lg-4 col-md-6 col-sm-6">
                                           <div className="nft_attr">
                                             <h5>{humanize(data.trait_type)}</h5>
-                                            <h4>{humanize(data.value)}</h4>
+                                            <h4>
+                                              {humanize(
+                                                isCrosmocraftsPartsDrop(collection.address) ? data.Value : data.value
+                                              )}
+                                            </h4>
                                             {data.occurrence ? (
                                               <span>{relativePrecision(data.occurrence)}% have this trait</span>
                                             ) : (
@@ -347,23 +375,6 @@ const Listing = () => {
                                             )}
                                           </div>
                                         </div>
-                                      );
-                                    })}
-                                  {listing.nft.properties &&
-                                    Array.isArray(listing.nft.properties) &&
-                                    listing.nft.properties.map((data, i) => {
-                                      return (
-                                          <div key={i} className="col-lg-4 col-md-6 col-sm-6">
-                                            <div className="nft_attr">
-                                              <h5>{humanize(data.trait_type)}</h5>
-                                              <h4>{humanize(isCrosmocraftsPartsDrop(collection.address) ? data.Value : data.value)}</h4>
-                                              {data.occurrence ? (
-                                                  <span>{relativePrecision(data.occurrence)}% have this trait</span>
-                                              ) : (
-                                                  data.percent && <span>{data.percent}% have this trait</span>
-                                              )}
-                                            </div>
-                                          </div>
                                       );
                                     })}
                                 </div>
@@ -435,6 +446,7 @@ const Listing = () => {
                           )}
                         </div>
                       )}
+                      {openMenu === 3 && <NFTTabOffers nftAddress={listing.nftAddress} nftId={listing.nftId} />}
                       {openMenu === 9 && babyWeirdApeBreed && (
                         <div className="tab-2 onStep fadeIn">
                           <div className="d-block mb-3">
@@ -444,8 +456,10 @@ const Listing = () => {
                                   <div className="nft_attr">
                                     <h5>Birthdate</h5>
                                     {babyWeirdApeBreed.birthdate.gt(0) ? (
-                                      <h4>{new Date(babyWeirdApeBreed.birthdate.toNumber() * 1000).toLocaleDateString()}</h4>
-                                    ): (
+                                      <h4>
+                                        {new Date(babyWeirdApeBreed.birthdate.toNumber() * 1000).toLocaleDateString()}
+                                      </h4>
+                                    ) : (
                                       <h4>Unknown</h4>
                                     )}
                                   </div>
@@ -467,7 +481,11 @@ const Listing = () => {
                               <div key={2} className="col-lg-4 col-md-6 col-sm-6">
                                 <div className="nft_attr">
                                   <h5>Father ID</h5>
-                                  <h4><a href={`/collection/weird-apes-club-v2/${babyWeirdApeBreed.father.toNumber()}`}>{babyWeirdApeBreed.father.toNumber()}</a></h4>
+                                  <h4>
+                                    <a href={`/collection/weird-apes-club-v2/${babyWeirdApeBreed.father.toNumber()}`}>
+                                      {babyWeirdApeBreed.father.toNumber()}
+                                    </a>
+                                  </h4>
                                 </div>
                               </div>
                             </div>

@@ -16,13 +16,15 @@ import { Helmet } from 'react-helmet';
 import Footer from '../components/Footer';
 import config from '../../Assets/networks/rpc_config.json';
 import { connectAccount } from '../../GlobalState/User';
-import {fetchMemberInfo, fetchVipInfo} from '../../GlobalState/Memberships';
+import { fetchMemberInfo, fetchVipInfo } from '../../GlobalState/Memberships';
 import { fetchCronieInfo } from '../../GlobalState/Cronies';
 import {
-  createSuccessfulTransactionToastContent, isCmbDrop,
+  createSuccessfulTransactionToastContent,
+  isCmbDrop,
   isCreaturesDrop,
   isCrognomesDrop,
-  isFounderDrop, isFounderVipDrop,
+  isFounderDrop,
+  isFounderVipDrop,
   isMagBrewVikingsDrop,
   newlineText,
   percentage,
@@ -160,12 +162,13 @@ const MultiDrop = () => {
       const infoTuple = await readContract.getInfo();
       const infos = infoTuple[0];
       if (process.env.NODE_ENV === 'development') {
-        console.log('retrieved info',
-            infoTuple,
-            infoTuple[1].aquaSupplyRemaining.toString(),
-            infoTuple[1].ignisSupplyRemaining.toString(),
-            infoTuple[1].terraSupplyRemaining.toString(),
-        )
+        console.log(
+          'retrieved info',
+          infoTuple,
+          infoTuple[1].aquaSupplyRemaining.toString(),
+          infoTuple[1].ignisSupplyRemaining.toString(),
+          infoTuple[1].terraSupplyRemaining.toString()
+        );
       }
 
       let canMint;
@@ -174,7 +177,7 @@ const MultiDrop = () => {
       } else {
         canMint = user.address ? await readContract.canMint(user.address) : 0;
       }
-      
+
       setMaxMintPerAddress(infos.maxMintPerAddress);
       setMaxMintPerTx(infos.maxMintPerTx);
       setMaxSupply(infos.maxSupply);
@@ -212,8 +215,7 @@ const MultiDrop = () => {
 
     if (!drop.start || !drop.address || sTime > now) setStatus(statuses.NOT_STARTED);
     else if (drop.complete) setStatus(statuses.EXPIRED);
-    else if (parseInt(totalSupply.toString()) >= parseInt(maxSupply.toString()))
-      setStatus(statuses.SOLD_OUT);
+    else if (parseInt(totalSupply.toString()) >= parseInt(maxSupply.toString())) setStatus(statuses.SOLD_OUT);
     else if (!drop.end || eTime > now) setStatus(statuses.LIVE);
     else if (drop.end && eTime < now) setStatus(statuses.EXPIRED);
     else setStatus(statuses.NOT_STARTED);
@@ -270,7 +272,7 @@ const MultiDrop = () => {
         if (process.env.NODE_ENV === 'development') {
           console.log('Minting...', faction, quantity, finalCost.toString());
         }
-        
+
         const response = await contract.mint(quantity, ethers.utils.formatBytes32String(faction), extra);
         const receipt = await response.wait();
         toast.success(createSuccessfulTransactionToastContent(receipt.transactionHash));
@@ -301,7 +303,6 @@ const MultiDrop = () => {
         }
 
         await retrieveDropInfo();
-
       } catch (error) {
         Sentry.captureException(error);
         if (error.data) {
@@ -450,28 +451,28 @@ const MultiDrop = () => {
               <div className="mt-3">{newlineText(drop.description)}</div>
 
               {drop.disclaimer && (
-                  <p className="fw-bold text-center my-4" style={{color: 'black'}}>
-                    {drop.disclaimer}
-                  </p>
+                <p className="fw-bold text-center my-4" style={{ color: 'black' }}>
+                  {drop.disclaimer}
+                </p>
               )}
-              
+
               <div className="d-flex flex-row justify-content-center">
+                <div className="me-4">
+                  <h6 className="mb-1">Mint Price</h6>
+                  <h5>{regularCost} CRO</h5>
+                </div>
+                {memberCost && (
                   <div className="me-4">
-                    <h6 className="mb-1">Mint Price</h6>
-                    <h5>{regularCost} CRO</h5>
+                    <h6 className="mb-1">Founding Member Price</h6>
+                    <h5>{memberCost} CRO</h5>
                   </div>
-                  {memberCost && (
-                      <div className="me-4">
-                        <h6 className="mb-1">Founding Member Price</h6>
-                        <h5>{memberCost} CRO</h5>
-                      </div>
-                  )}
-                  {whitelistCost > 0 && (
-                      <div className="me-4">
-                        <h6 className="mb-1">Whitelist Price</h6>
-                        <h5>{whitelistCost} CRO</h5>
-                      </div>
-                  )}
+                )}
+                {whitelistCost > 0 && (
+                  <div className="me-4">
+                    <h6 className="mb-1">Whitelist Price</h6>
+                    <h5>{whitelistCost} CRO</h5>
+                  </div>
+                )}
               </div>
 
               {/*<div className="mt-4">*/}
@@ -491,7 +492,6 @@ const MultiDrop = () => {
               {/*</div>*/}
             </div>
           </div>
-
         </section>
 
         <section className="container no-top" id="drop_detail">
@@ -501,9 +501,9 @@ const MultiDrop = () => {
                 title={'Aqua Clan'}
                 img={'/img/drops/cronosmb/gorilla/aqua.png'}
                 currentSupply={
-                  factionCurrentSupply.aquaSupplyRemaining ?
-                      1700 - factionCurrentSupply.aquaSupplyRemaining.toNumber() :
-                      0
+                  factionCurrentSupply.aquaSupplyRemaining
+                    ? 1700 - factionCurrentSupply.aquaSupplyRemaining.toNumber()
+                    : 0
                 }
                 maxSupply={1700}
                 canMintQuantity={canMintQuantity[0] ?? 0}
@@ -516,9 +516,9 @@ const MultiDrop = () => {
                 title={'Ignis Gang'}
                 img={'/img/drops/cronosmb/gorilla/fire.png'}
                 currentSupply={
-                  factionCurrentSupply.ignisSupplyRemaining ?
-                      1700 - factionCurrentSupply.ignisSupplyRemaining.toNumber() :
-                      0
+                  factionCurrentSupply.ignisSupplyRemaining
+                    ? 1700 - factionCurrentSupply.ignisSupplyRemaining.toNumber()
+                    : 0
                 }
                 maxSupply={1700}
                 canMintQuantity={canMintQuantity[1] ?? 0}
@@ -531,9 +531,9 @@ const MultiDrop = () => {
                 title={'Terra Crew'}
                 img={'/img/drops/cronosmb/gorilla/desert.png'}
                 currentSupply={
-                  factionCurrentSupply.terraSupplyRemaining ?
-                      1700 - factionCurrentSupply.terraSupplyRemaining.toNumber() :
-                      0
+                  factionCurrentSupply.terraSupplyRemaining
+                    ? 1700 - factionCurrentSupply.terraSupplyRemaining.toNumber()
+                    : 0
                 }
                 maxSupply={1700}
                 canMintQuantity={canMintQuantity[2] ?? 0}
@@ -550,14 +550,14 @@ const MultiDrop = () => {
 };
 export default MultiDrop;
 
-const MultiDropCard = ({title, img, canMintQuantity, mintNow, currentSupply, maxSupply, dropStatus}) => {
+const MultiDropCard = ({ title, img, canMintQuantity, mintNow, currentSupply, maxSupply, dropStatus }) => {
   const user = useSelector((state) => {
     return state.user;
   });
 
   const [minting, setMinting] = useState(false);
   const [numToMint, setNumToMint] = useState(1);
-  const [status, setStatus] =  useState(statuses.NOT_STARTED);
+  const [status, setStatus] = useState(statuses.NOT_STARTED);
 
   useEffect(() => {
     calculateStatus(currentSupply, maxSupply);
@@ -576,81 +576,84 @@ const MultiDropCard = ({title, img, canMintQuantity, mintNow, currentSupply, max
     setMinting(true);
     await mintNow(numToMint);
     setMinting(false);
-  }
+  };
 
   return (
-      <div className="card eb-nft__card h-100 shadow">
-        <img
-            src={img}
-            className={`card-img-top`}
-            alt={title}
-        />
-        <div className="card-body d-flex flex-column">
-          <h2 className="text-center">{title}</h2>
+    <div className="card eb-nft__card h-100 shadow">
+      <img src={img} className={`card-img-top`} alt={title} />
+      <div className="card-body d-flex flex-column">
+        <h2 className="text-center">{title}</h2>
 
-          {status === statuses.LIVE && (
-            <>
-              {user.address ? (
-                  <>
-                    <div>
-                      <Form.Label>Quantity</Form.Label>
-                      <Form.Range
-                          value={numToMint}
-                          min="1"
-                          max={canMintQuantity}
-                          onChange={(e) => setNumToMint(e.target.value)}
-                      />
-                    </div>
-                    <div className="text-center">
-                      <button className="btn-main lead mb-5" style={{display:'inline'}} onClick={beginMint} disabled={minting}>
-                        {minting ? (
-                            <>
-                              Minting...
-                              <Spinner animation="border" role="status" size="sm" className="ms-1">
-                                <span className="visually-hidden">Loading...</span>
-                              </Spinner>
-                            </>
-                        ) : (
-                            <>Mint {numToMint}</>
-                        )}
-                      </button>
-                    </div>
-                  </>
-              ) : (
-                  <>
-                    <div className="text-center">
-                      <button className="btn-main lead mb-5" style={{display:'inline'}} onClick={beginMint} disabled={minting}>
-                        Connect
-                      </button>
-                    </div>
-                  </>
-              )}
-            </>
-          )}
-          {status === statuses.SOLD_OUT && <p className="mt-4 text-center">MINT HAS SOLD OUT</p>}
-          {status === statuses.EXPIRED && <p className="mt-4 text-center">MINT HAS ENDED</p>}
-
-          {currentSupply !== undefined && maxSupply !== undefined && (
-            <>
-              {status === statuses.LIVE ? (
+        {status === statuses.LIVE && (
+          <>
+            {user.address ? (
+              <>
                 <div>
-                  <div className="fs-6 fw-bold mb-1 text-end">
-                    {percentage(currentSupply, maxSupply)}% minted (
-                    {ethers.utils.commify(currentSupply)} / {ethers.utils.commify(maxSupply)})
-                  </div>
-                  <ProgressBar
-                      now={percentage(currentSupply, maxSupply)}
-                      style={{height: '4px'}}
+                  <Form.Label>Quantity</Form.Label>
+                  <Form.Range
+                    value={numToMint}
+                    min="1"
+                    max={canMintQuantity}
+                    onChange={(e) => setNumToMint(e.target.value)}
                   />
                 </div>
-              ) : (
-                <div className="mt-auto">
-                  <div className="fs-6 fw-bold mb-1 text-end">Supply: {maxSupply}</div>
+                <div className="text-center">
+                  <button
+                    className="btn-main lead mb-5"
+                    style={{ display: 'inline' }}
+                    onClick={beginMint}
+                    disabled={minting}
+                  >
+                    {minting ? (
+                      <>
+                        Minting...
+                        <Spinner animation="border" role="status" size="sm" className="ms-1">
+                          <span className="visually-hidden">Loading...</span>
+                        </Spinner>
+                      </>
+                    ) : (
+                      <>Mint {numToMint}</>
+                    )}
+                  </button>
                 </div>
-              )}
-            </>
-          )}
-        </div>
+              </>
+            ) : (
+              <>
+                <div className="text-center">
+                  <button
+                    className="btn-main lead mb-5"
+                    style={{ display: 'inline' }}
+                    onClick={beginMint}
+                    disabled={minting}
+                  >
+                    Connect
+                  </button>
+                </div>
+              </>
+            )}
+          </>
+        )}
+        {status === statuses.SOLD_OUT && <p className="mt-4 text-center">MINT HAS SOLD OUT</p>}
+        {status === statuses.EXPIRED && <p className="mt-4 text-center">MINT HAS ENDED</p>}
+
+        {currentSupply !== undefined && maxSupply !== undefined && (
+          <>
+            {status === statuses.LIVE ? (
+              <div>
+                <div className="fs-6 fw-bold mb-1 text-end">
+                  {percentage(currentSupply, maxSupply)}% minted ({ethers.utils.commify(currentSupply)} /{' '}
+                  {ethers.utils.commify(maxSupply)})
+                </div>
+                <ProgressBar now={percentage(currentSupply, maxSupply)} style={{ height: '4px' }} />
+              </div>
+            ) : (
+              <div className="mt-auto">
+                <div className="fs-6 fw-bold mb-1 text-end">Supply: {maxSupply}</div>
+              </div>
+            )}
+          </>
+        )}
       </div>
+    </div>
   );
-}
+};

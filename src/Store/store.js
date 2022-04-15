@@ -14,6 +14,7 @@ import nftReducer from '../GlobalState/nftSlice';
 import collectionsReducer from '../GlobalState/collectionsSlice';
 import collectionReducer from '../GlobalState/collectionSlice';
 import { appInitializeStateReducer } from '../GlobalState/InitSlice';
+import offerReducer from 'src/GlobalState/offerSlice';
 import { user } from '../GlobalState/User';
 
 const rootReducer = combineReducers({
@@ -27,7 +28,8 @@ const rootReducer = combineReducers({
   user: user,
   appInitialize: appInitializeStateReducer,
   collections: collectionsReducer,
-  collection: collectionReducer
+  collection: collectionReducer,
+  offer: offerReducer,
 });
 
 const reduxDevToolsComposeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

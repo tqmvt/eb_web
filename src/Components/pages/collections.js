@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom';
 import { ethers } from 'ethers';
 import Blockies from 'react-blockies';
 import { Form, Spinner } from 'react-bootstrap';
-import { siPrefixedNumber } from '../../utils';
+
 import Footer from '../components/Footer';
 import { getAllCollections } from '../../GlobalState/collectionsSlice';
-import { debounce } from '../../utils';
+import {debounce, siPrefixedNumber} from '../../utils';
 
 const GlobalStyles = createGlobalStyle`
   .mobile-view-list-item {
@@ -100,7 +100,7 @@ const Collections = () => {
     setSearchTerms(value);
   }, 300);
 
-  //  collection helper pipes
+  // collection helper pipes
 
   const collectionVolume = (collection) => {
     if (timeframe === null) return Math.round(collection.totalVolume)

@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@apollo/client": "^3.5.10",
     "@bugsnag/js": "^7.14.0",
     "@bugsnag/plugin-react": "^7.14.0",
     "@deficonnect/web3-provider": "^1.6.13",
@@ -43,6 +44,7 @@
     "react-dom": "^17.0.2",
     "react-helmet": "^6.1.0",
     "react-infinite-scroll-component": "^6.1.0",
+    "react-loading-skeleton": "^3.0.3",
     "react-papaparse": "^4.0.2",
     "react-player": "^2.9.0",
     "react-redux": "^7.2.5",

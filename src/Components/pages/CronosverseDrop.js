@@ -15,21 +15,17 @@ import { Helmet } from 'react-helmet';
 import Footer from '../components/Footer';
 import config from '../../Assets/networks/rpc_config.json';
 import { connectAccount } from '../../GlobalState/User';
-import borderboard from '../../Assets/cronosverse/border_board.png'
-import tile1 from '../../Assets/cronosverse/Plain-tile.png'
-import tile2 from '../../Assets/cronosverse/Suburban-tile.png'
-import tile3 from '../../Assets/cronosverse/Commercial-tile.png'
-import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
-import {
-  createSuccessfulTransactionToastContent,
-  isFounderDrop,
-  newlineText,
-} from '../../utils';
+import borderboard from '../../Assets/cronosverse/border_board.png';
+import tile1 from '../../Assets/cronosverse/Plain-tile.png';
+import tile2 from '../../Assets/cronosverse/Suburban-tile.png';
+import tile3 from '../../Assets/cronosverse/Commercial-tile.png';
+import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
+import { createSuccessfulTransactionToastContent, isFounderDrop, newlineText } from '../../utils';
 import { dropState as statuses } from '../../core/api/enums';
 import { EbisuDropAbi } from '../../Contracts/Abis';
 
-const tiles = [tile1, tile2, tile3]
-const tileType = ['Plain', 'Suburban', 'Commercial']
+const tiles = [tile1, tile2, tile3];
+const tileType = ['Plain', 'Suburban', 'Commercial'];
 
 export const drops = config.drops;
 
@@ -173,19 +169,25 @@ const CronosverseDrop = () => {
         // console.log('isWhitelisted: ', isWhitelisted);
         setWhiteListed(isWhitelisted);
         setMaxSupply(infos.maxSupply);
-        setWhitelistCost([ethers.utils.formatEther(infos.whitelistCost[0]), 
-                      ethers.utils.formatEther(infos.whitelistCost[1]), 
-                      ethers.utils.formatEther(infos.whitelistCost[2])]);
-        setMemberCost([ethers.utils.formatEther(infos.memberCost[0]), 
-                      ethers.utils.formatEther(infos.memberCost[1]), 
-                      ethers.utils.formatEther(infos.memberCost[2])]);
-        setRegularCost([ethers.utils.formatEther(infos.regularCost[0]),
-                        ethers.utils.formatEther(infos.regularCost[1]),
-                        ethers.utils.formatEther(infos.regularCost[2])]);
+        setWhitelistCost([
+          ethers.utils.formatEther(infos.whitelistCost[0]),
+          ethers.utils.formatEther(infos.whitelistCost[1]),
+          ethers.utils.formatEther(infos.whitelistCost[2]),
+        ]);
+        setMemberCost([
+          ethers.utils.formatEther(infos.memberCost[0]),
+          ethers.utils.formatEther(infos.memberCost[1]),
+          ethers.utils.formatEther(infos.memberCost[2]),
+        ]);
+        setRegularCost([
+          ethers.utils.formatEther(infos.regularCost[0]),
+          ethers.utils.formatEther(infos.regularCost[1]),
+          ethers.utils.formatEther(infos.regularCost[2]),
+        ]);
         setTotalSupply(infos.totalSupply);
         calculateStatus(currentDrop, infos.totalSupply, infos.maxSupply);
-        const mintedIds = await readContract.getMintedIds()
-        setMintedIds(mintedIds.map(id => id.toString()))
+        const mintedIds = await readContract.getMintedIds();
+        setMintedIds(mintedIds.map((id) => id.toString()));
       } else {
         let readContract = await new ethers.Contract(currentDrop.address, abi, readProvider);
         const currentSupply = await readContract.totalSupply();
@@ -254,9 +256,9 @@ const CronosverseDrop = () => {
         if (cost == -1) cost = ethers.utils.parseEther(price);
         let extra = {
           value: cost,
-          gasPrice: ethers.utils.parseUnits('5000', 'gwei')
+          gasPrice: ethers.utils.parseUnits('5000', 'gwei'),
         };
-        console.log('cost: ', cost, id)
+        console.log('cost: ', cost, id);
 
         var response;
         response = await contract.mint(id, extra);
@@ -302,7 +304,7 @@ const CronosverseDrop = () => {
           toast.error('Unknown Error');
         }
       } finally {
-          setMinting(false);
+        setMinting(false);
       }
     } else {
       dispatch(connectAccount());
@@ -329,31 +331,29 @@ const CronosverseDrop = () => {
           <div className="container">
             <div className="row align-items-center">
               <div className={`col-lg-6 ${drop.mediaPosition === 'left' ? 'order-1' : 'order-2'}`}>
-                <Reveal className="onStep" keyframes={fadeInUp} delay={600} duration={900} triggerOnce >
+                <Reveal className="onStep" keyframes={fadeInUp} delay={600} duration={900} triggerOnce>
                   <>
                     {drop.video && (
-                        <ReactPlayer
-                            controls
-                            url={drop.video}
-                            config={{
-                              file: {
-                                attributes: {
-                                  onContextMenu: (e) => e.preventDefault(),
-                                  controlsList: 'nodownload',
-                                },
-                              },
-                            }}
-                            muted={true}
-                            playing={true}
-                            loop={true}
-                            width="75%"
-                            height="75%"
-                        />
+                      <ReactPlayer
+                        controls
+                        url={drop.video}
+                        config={{
+                          file: {
+                            attributes: {
+                              onContextMenu: (e) => e.preventDefault(),
+                              controlsList: 'nodownload',
+                            },
+                          },
+                        }}
+                        muted={true}
+                        playing={true}
+                        loop={true}
+                        width="75%"
+                        height="75%"
+                      />
                     )}
 
-                    {drop.embed &&
-                      <div dangerouslySetInnerHTML={{__html: drop.embed}} />
-                    }
+                    {drop.embed && <div dangerouslySetInnerHTML={{ __html: drop.embed }} />}
                   </>
                 </Reveal>
               </div>
@@ -466,7 +466,7 @@ const CronosverseDrop = () => {
             )}
           </div>
           {drop.priceDescription && (
-            <p className="my-2" style={{color: 'black'}}>
+            <p className="my-2" style={{ color: 'black' }}>
               *{drop.priceDescription}
             </p>
           )}
@@ -497,7 +497,7 @@ const CronosverseDrop = () => {
                   mintNow={mintNow}
                   minting={minting}
                   mintedIds={mintedIds}
-                  prices={whitelisted ? whitelistCost : (user.isMember?memberCost:regularCost)}
+                  prices={whitelisted ? whitelistCost : user.isMember ? memberCost : regularCost}
                 />
               </div>
             </>
@@ -510,85 +510,85 @@ const CronosverseDrop = () => {
 };
 export default CronosverseDrop;
 
-const CronosverseMintBoard = ({mintNow, minting, mintedIds, prices}) => {
+const CronosverseMintBoard = ({ mintNow, minting, mintedIds, prices }) => {
   const ref0 = useRef();
   const ref2 = useRef();
   const [tileInfo, setTileInfo] = useState({});
-  const [modalFlag, setModalFlag] = useState('none')
+  const [modalFlag, setModalFlag] = useState('none');
   const [canvasDown, setCanvasDown] = useState(false);
   const [zoomState, setZoomState] = useState({
     offsetX: 0,
     offsetY: 0,
-    scale: 1
+    scale: 1,
   });
-  const [isMintingFlag, setIsMintingFlag] = useState(false)
+  const [isMintingFlag, setIsMintingFlag] = useState(false);
 
-  const [tempWidth, setTempWidth] = useState(1)
-  const [tempHeight, setTempHeight] = useState(1)
+  const [tempWidth, setTempWidth] = useState(1);
+  const [tempHeight, setTempHeight] = useState(1);
   // const previousX = useRef()
   // const previousY = useRef()
 
-  const [subDistance, setSubDistance] = useState(0)
-  let sub = 0
+  const [subDistance, setSubDistance] = useState(0);
+  let sub = 0;
   const getTileType = (xPos, yPos) => {
     if (yPos >= 9 && xPos >= 19 && yPos <= 17 && xPos <= 34) {
-      return 4
-    } else if ( yPos >= 7 && xPos >= 17 && yPos <= 19 && xPos <= 36 ){
-      return 3
-    } else if ( yPos >= 4 && xPos >= 12 && yPos <= 22 && xPos <= 41 ) {
-      return 2
-    } else if (yPos === 0 || xPos === 0 || yPos === 27 || xPos === 53) {   
-      return 0
+      return 4;
+    } else if (yPos >= 7 && xPos >= 17 && yPos <= 19 && xPos <= 36) {
+      return 3;
+    } else if (yPos >= 4 && xPos >= 12 && yPos <= 22 && xPos <= 41) {
+      return 2;
+    } else if (yPos === 0 || xPos === 0 || yPos === 27 || xPos === 53) {
+      return 0;
     } else {
-      return 1
+      return 1;
     }
-  }
+  };
 
   const getTokenId = (j, i) => {
-    let id
-    let temp = 52 * (i - 1) + j
+    let id;
+    let temp = 52 * (i - 1) + j;
     if (i <= 8 || (i === 9 && j <= 18)) {
-      id = temp
-      return id
+      id = temp;
+      return id;
     }
-    if ((i >= 9 && i <= 16 && j >= 35)) {
-      id = temp - (i - 8) * 16
-      return id
+    if (i >= 9 && i <= 16 && j >= 35) {
+      id = temp - (i - 8) * 16;
+      return id;
     }
     if (i >= 10 && i <= 17 && j <= 18) {
-      id = temp - (i - 9) * 16
-      return id
+      id = temp - (i - 9) * 16;
+      return id;
     }
-    if ((i >= 18 && i < 27) || (i >= 17 && j >= 35) ) {
-      id = temp - 16 * 9
-      return id
+    if ((i >= 18 && i < 27) || (i >= 17 && j >= 35)) {
+      id = temp - 16 * 9;
+      return id;
     }
-  }
+  };
 
   const getPosFromTokenId = (tokenId) => {
     if (tokenId >= 1 && tokenId <= 434) {
-      return [(tokenId-1)%52+1, Math.floor((tokenId-1)/52)+1]
+      return [((tokenId - 1) % 52) + 1, Math.floor((tokenId - 1) / 52) + 1];
     }
-    if (tokenId >=435 && tokenId <= 722) {
-      const tId = Math.floor((tokenId-435)/36)*16+16+tokenId
-      return [(tId-1)%52+1, Math.floor((tId-1)/52)+1]
+    if (tokenId >= 435 && tokenId <= 722) {
+      const tId = Math.floor((tokenId - 435) / 36) * 16 + 16 + tokenId;
+      return [((tId - 1) % 52) + 1, Math.floor((tId - 1) / 52) + 1];
     }
     if (tokenId >= 723 && tokenId <= 1208) {
-      const tId = tokenId + 144
-      return [(tId-1)%52+1, Math.floor((tId-1)/52)+1]
+      const tId = tokenId + 144;
+      return [((tId - 1) % 52) + 1, Math.floor((tId - 1) / 52) + 1];
     }
-    return [0,0]
-  }
+    return [0, 0];
+  };
 
   const isMinted = (tokenId) => {
-    return mintedIds?.some(id => tokenId == id)
-  }
+    return mintedIds?.some((id) => tokenId == id);
+  };
 
   const changeCanvasState = (ReactZoomPanPinchRef, event) => {
     setZoomState({
       offsetX: ReactZoomPanPinchRef.state.positionX,
       offsetY: ReactZoomPanPinchRef.state.positionY,
-      scale: ReactZoomPanPinchRef.state.scale
+      scale: ReactZoomPanPinchRef.state.scale,
     });
   };
 
@@ -596,156 +596,157 @@ const CronosverseMintBoard = ({mintNow, minting, mintedIds, prices}) => {
     var rect = e.target.getBoundingClientRect();
     return {
       x: e.clientX - rect.left,
-      y: e.clientY - rect.top
+      y: e.clientY - rect.top,
     };
-  }
+  };
 
   const handleClick = (e) => {
     if (isMintingFlag) {
-      return
+      return;
     }
     console.log('click: ');
     if (subDistance > 0) {
       console.log('too right: ', sub);
-
     }
     const mPos = getMousePos(e);
-    let scale = zoomState.scale
+    let scale = zoomState.scale;
     const tileWidth = ref2.current.width / 54;
     const tileHeight = ref2.current.height / 28;
-    const xPos = Math.floor(mPos.x / (tileWidth * scale))
-    const yPos = Math.floor(mPos.y / (tileHeight * scale))
-    const type = getTileType(xPos, yPos)
-    console.log(type, xPos, yPos, tileInfo)
-    let ctx = ref2.current.getContext("2d");
-    ctx.clearRect(tileWidth * tileInfo.xPos - 1, tileHeight * tileInfo.yPos - 1, tileWidth + 1, tileHeight + 2)
+    const xPos = Math.floor(mPos.x / (tileWidth * scale));
+    const yPos = Math.floor(mPos.y / (tileHeight * scale));
+    const type = getTileType(xPos, yPos);
+    console.log(type, xPos, yPos, tileInfo);
+    let ctx = ref2.current.getContext('2d');
+    ctx.clearRect(tileWidth * tileInfo.xPos - 1, tileHeight * tileInfo.yPos - 1, tileWidth + 1, tileHeight + 2);
     if (type == 0 || type == 4) {
-      setModalFlag('none')
-      
+      setModalFlag('none');
+
       return;
     }
-    const tokenId = getTokenId(xPos, yPos)
+    const tokenId = getTokenId(xPos, yPos);
     if (isMinted(tokenId)) {
-      console.log('minted')
-      setModalFlag('none')
+      console.log('minted');
+      setModalFlag('none');
       return;
     }
 
     setTileInfo({
-      tile: tiles[type-1],
+      tile: tiles[type - 1],
       tokenId: tokenId,
       type: type,
       xPos: xPos,
       yPos: yPos,
-      price: prices?.[type-1],
-      globalX: mPos.x + zoomState.offsetX - (subDistance>0 ? 240 - subDistance : 0),
-      globalY: mPos.y + zoomState.offsetY
-    })
-    
-    ctx.fillStyle = 'rgba(250, 10, 10, 0.5)'
-    console.log('tileWidth: ', tileWidth, tileWidth*xPos)
-    ctx.fillRect(tileWidth*xPos, tileHeight*yPos+1, tileWidth-1, tileHeight-1)
-    setModalFlag('flex')
-    setSubDistance(0)
+      price: prices?.[type - 1],
+      globalX: mPos.x + zoomState.offsetX - (subDistance > 0 ? 240 - subDistance : 0),
+      globalY: mPos.y + zoomState.offsetY,
+    });
+
+    ctx.fillStyle = 'rgba(250, 10, 10, 0.5)';
+    console.log('tileWidth: ', tileWidth, tileWidth * xPos);
+    ctx.fillRect(tileWidth * xPos, tileHeight * yPos + 1, tileWidth - 1, tileHeight - 1);
+    setModalFlag('flex');
+    setSubDistance(0);
   };
 
-
   useEffect(() => {
-    ref0.current.height = ref0.current.clientWidth * 2703 / 4532;
-    let canvas_width = ref0.current.clientWidth * 3.65 / 6;
-    let canvas_height = canvas_width * 620 / 1189;
+    ref0.current.height = (ref0.current.clientWidth * 2703) / 4532;
+    let canvas_width = (ref0.current.clientWidth * 3.65) / 6;
+    let canvas_height = (canvas_width * 620) / 1189;
     ref2.current.width = canvas_width;
     ref2.current.height = canvas_height;
 
-    setTempWidth(ref2.current.width)
-    setTempHeight(ref2.current.height)
-  }, [])
-  
+    setTempWidth(ref2.current.width);
+    setTempHeight(ref2.current.height);
+  }, []);
+
   useEffect(() => {
     const tileWidth = ref2.current.width / 54;
     const tileHeight = ref2.current.height / 28;
-    
+
     let ctx = ref2.current.getContext('2d');
-    ctx.clearRect(0, 0, ref2.current.width, ref2.current.height)
-    ctx.fillStyle = 'rgba(50, 50, 50, 0.5)'
+    ctx.clearRect(0, 0, ref2.current.width, ref2.current.height);
+    ctx.fillStyle = 'rgba(50, 50, 50, 0.5)';
     if (mintedIds?.length == 0) {
       return;
     } else {
       for (let i = 0; i < mintedIds.length; i++) {
-        const [xPos, yPos] = getPosFromTokenId(parseInt(mintedIds[i]))
-        ctx.fillRect(xPos*tileWidth, yPos*tileHeight, tileWidth, tileHeight);
+        const [xPos, yPos] = getPosFromTokenId(parseInt(mintedIds[i]));
+        ctx.fillRect(xPos * tileWidth, yPos * tileHeight, tileWidth, tileHeight);
       }
     }
-  }, [mintedIds])
+  }, [mintedIds]);
 
   useEffect(() => {
     if (minting == false) {
       // let ctx2 = ref2.current.getContext('2d');
       // ctx2.clearRect(0, 0, ref2.current.width, ref2.current.height);
-      setTileInfo({...tileInfo, xPos: null,yPos: null,})
-      setModalFlag('none')
+      setTileInfo({ ...tileInfo, xPos: null, yPos: null });
+      setModalFlag('none');
     }
-  }, [minting])
-
+  }, [minting]);
 
   return (
     <div>
-      <div className='bitpixel_back'
+      <div
+        className="bitpixel_back"
         ref={ref0}
         onMouseDown={(e) => {
-          if ((window.innerWidth - e.clientX) < 240) {
-            sub = window.innerWidth - e.clientX
-            setSubDistance(sub)
+          if (window.innerWidth - e.clientX < 240) {
+            sub = window.innerWidth - e.clientX;
+            setSubDistance(sub);
           }
           if (minting === true || isMintingFlag === true) {
-            return
+            return;
           } else if (canvasDown === true) {
-            setCanvasDown(false)
+            setCanvasDown(false);
           }
         }}
       >
-            
-        <div className='canvas'>
+        <div className="canvas">
           <TransformWrapper
-            onZoom={changeCanvasState} 
-            onPinching={changeCanvasState} 
-            onPinchingStop={changeCanvasState} 
+            onZoom={changeCanvasState}
+            onPinching={changeCanvasState}
+            onPinchingStop={changeCanvasState}
             onPanningStop={changeCanvasState}
             onPanning={() => setModalFlag('none')}
           >
             <TransformComponent>
-              <img src={borderboard} alt='boardboard' style={{ width: `${tempWidth}px`, height: `${tempHeight}px` }} />
-              <canvas className='canvasFront' ref={ref2} onClick={handleClick} ></canvas>
+              <img src={borderboard} alt="boardboard" style={{ width: `${tempWidth}px`, height: `${tempHeight}px` }} />
+              <canvas className="canvasFront" ref={ref2} onClick={handleClick}></canvas>
             </TransformComponent>
 
-            <div 
-              className='tip_modal' 
-              style={{ display: modalFlag, left: `${tileInfo.globalX+15}px`, top: `${tileInfo.globalY+15}px`}}
+            <div
+              className="tip_modal"
+              style={{ display: modalFlag, left: `${tileInfo.globalX + 15}px`, top: `${tileInfo.globalY + 15}px` }}
             >
-              <div className='modal_content'>
-                <div className='cross' onClick={() => {
-                  if (!isMintingFlag) {
-                    setModalFlag('none')
-                  }
-                }}>
-                  &times; 
+              <div className="modal_content">
+                <div
+                  className="cross"
+                  onClick={() => {
+                    if (!isMintingFlag) {
+                      setModalFlag('none');
+                    }
+                  }}
+                >
+                  &times;
                 </div>
-                <img className='tile_img' src={tileInfo.tile} alt="tile" />
-                <div className='tile_items'>
-                  <div>TokenId:   {tileInfo.tokenId}</div>
-                  <div>Type:      {tileType[tileInfo.type-1]}</div>
-                  <div>Location:  {tileInfo.xPos < 27 ? tileInfo.xPos - 27 : tileInfo.xPos - 26}, 
-                                  {tileInfo.yPos < 14 ? 14 - tileInfo.yPos : 13 - tileInfo.yPos } 
+                <img className="tile_img" src={tileInfo.tile} alt="tile" />
+                <div className="tile_items">
+                  <div>TokenId: {tileInfo.tokenId}</div>
+                  <div>Type: {tileType[tileInfo.type - 1]}</div>
+                  <div>
+                    Location: {tileInfo.xPos < 27 ? tileInfo.xPos - 27 : tileInfo.xPos - 26},
+                    {tileInfo.yPos < 14 ? 14 - tileInfo.yPos : 13 - tileInfo.yPos}
                   </div>
-                  <div>Price:     {tileInfo.price} CRO</div>
-                  <button 
-                    className="btn-main lead" 
-                    onClick={async ()=>{
-                      setIsMintingFlag(true)
-                      await mintNow(tileInfo.tokenId, tileInfo.price)
-                      
-                      setIsMintingFlag(false)
-                    }} 
+                  <div>Price: {tileInfo.price} CRO</div>
+                  <button
+                    className="btn-main lead"
+                    onClick={async () => {
+                      setIsMintingFlag(true);
+                      await mintNow(tileInfo.tokenId, tileInfo.price);
+
+                      setIsMintingFlag(false);
+                    }}
                     disabled={minting}
                   >
                     {minting ? (
@@ -766,5 +767,5 @@ const CronosverseMintBoard = ({mintNow, minting, mintedIds, prices}) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};

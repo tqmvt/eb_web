@@ -9,25 +9,21 @@ import CollectionListingsGroup from '../components/CollectionListingsGroup';
 import CollectionFilterBar from '../components/CollectionFilterBar';
 import LayeredIcon from '../components/LayeredIcon';
 import { init, fetchListings, getStats } from '../../GlobalState/collectionSlice';
-import {
-  caseInsensitiveCompare,
-  isCrosmocraftsPartsCollection,
-  isFounderCollection,
-  siPrefixedNumber
-} from '../../utils';
+import { caseInsensitiveCompare, isCrosmocraftsPartsCollection } from '../../utils';
 import TraitsFilter from '../Collection/TraitsFilter';
 import PowertraitsFilter from '../Collection/PowertraitsFilter';
 import SocialsBar from '../Collection/SocialsBar';
-import { SortOption } from '../Models/sort-option.model';
+import { CollectionSortOption } from '../Models/collection-sort-option.model';
 import { FilterOption } from '../Models/filter-option.model';
 import config from '../../Assets/networks/rpc_config.json';
 import Market from '../../Contracts/Marketplace.json';
+import CollectionInfoBar from '../components/CollectionInfoBar';
 import stakingPlatforms from '../../core/data/staking-platforms.json';
 import SalesCollection from "../components/SalesCollection";
 
 const knownContracts = config.known_contracts;
 
-const Collection1155 = ({ address, tokenId=null, cacheName = 'collection' }) => {
+const Collection1155 = ({ address, tokenId = null, cacheName = 'collection', slug }) => {
   const dispatch = useDispatch();
 
   const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
@@ -52,6 +48,7 @@ const Collection1155 = ({ address, tokenId=null, cacheName = 'collection' }) => 
   const collectionMetadata = useSelector((state) => {
     return knownContracts.find((c) => c.address.toLowerCase() === address.toLowerCase())?.metadata;
   });
+  const isUsingListingsFallback = useSelector((state) => state.collection.isUsingListingsFallback);
 
   const collectionName = () => {
     let contract;
@@ -88,8 +85,8 @@ const Collection1155 = ({ address, tokenId=null, cacheName = 'collection' }) => 
   };
 
   useEffect(() => {
-    const sortOption = SortOption.default();
-    sortOption.key = 'listingId';
+    const sortOption = CollectionSortOption.default();
+    sortOption.key = 'id';
     sortOption.direction = 'desc';
     sortOption.label = 'By Id';
 
@@ -202,7 +199,7 @@ const Collection1155 = ({ address, tokenId=null, cacheName = 'collection' }) => 
           <div className="row">
             {hasRank && collectionMetadata?.rarity === 'rarity_sniper' && (
               <div className="row">
-                <div className="col-lg-8 col-sm-10 mx-auto text-center text-sm-end fst-italic" style={{ fontSize: '0.8em' }}>
+                <div className="col-lg-8 col-sm-10 mx-auto text-center mb-3" style={{ fontSize: '0.8em' }}>
                   Rarity scores and ranks provided by{' '}
                   <a href="https://raritysniper.com/" target="_blank" rel="noreferrer">
                     <span className="color">Rarity Sniper</span>
@@ -210,60 +207,13 @@ const Collection1155 = ({ address, tokenId=null, cacheName = 'collection' }) => 
                 </div>
               </div>
             )}
-            <div className="d-item col-lg-8 col-sm-10 mb-4 mx-auto">
-              <div className="nft_attr">
-                <div className="row">
-                  <div className="col-md-2 col-xs-4">
-                    <h5>Floor</h5>
-                    {collectionStats.floorPrice ? (
-                      <h4>{siPrefixedNumber(Number(collectionStats.floorPrice).toFixed(0))} CRO</h4>
-                    ) : (
-                      <h4>-</h4>
-                    )}
-                  </div>
-                  <div className="col-md-2 col-xs-4">
-                    <h5>Volume</h5>
-                    {collectionStats.totalVolume ? (
-                      <h4>{siPrefixedNumber(Number(collectionStats.totalVolume).toFixed(0))} CRO</h4>
-                    ) : (
-                      <h4>-</h4>
-                    )}
-                  </div>
-                  <div className="col-md-2 col-xs-4">
-                    <h5>Sales</h5>
-                    {collectionStats.numberOfSales ? (
-                      <h4>{siPrefixedNumber(collectionStats.numberOfSales)}</h4>
-                    ) : (
-                      <h4>-</h4>
-                    )}
-                  </div>
-                  <div className="col-md-2 col-xs-4">
-                    <h5>Avg. Sale</h5>
-                    {collectionStats.averageSalePrice ? (
-                      <h4>{siPrefixedNumber(Number(collectionStats.averageSalePrice).toFixed(0))} CRO</h4>
-                    ) : (
-                      <h4>-</h4>
-                    )}
-                  </div>
-                  <div className="col-md-2 col-xs-4">
-                    <h5>Royalty</h5>
-                    {royalty ? <h4>{royalty}%</h4> : <h4>-</h4>}
-                  </div>
-                  <div className="col-md-2 col-xs-4">
-                    <h5>Active Listings</h5>
-                    {collectionStats.numberActive ? (
-                      <h4>{siPrefixedNumber(collectionStats.numberActive)}</h4>
-                    ) : (
-                      <h4>-</h4>
-                    )}
-                  </div>
-                </div>
-              </div>
+            <div className="d-item col-md-12 mb-4 mx-auto">
+              <CollectionInfoBar collectionStats={collectionStats} royalty={royalty} />
             </div>
             {isCrosmocraftsPartsCollection(address) && (
               <div className="row">
                 <div className="mx-auto text-center fw-bold" style={{ fontSize: '0.8em' }}>
-                  Collect Crosmocraft parts to {' '}
+                  Collect Crosmocraft parts to{' '}
                   <a href="/build-ship">
                     <span className="color">build your Crosmocraft!</span>
                   </a>
@@ -273,7 +223,7 @@ const Collection1155 = ({ address, tokenId=null, cacheName = 'collection' }) => 
             {collectionMetadata?.staking && (
               <div className="row">
                 <div className="mx-auto text-center fw-bold" style={{ fontSize: '0.8em' }}>
-                  NFTs from this collection can be staked at {' '}
+                  NFTs from this collection can be staked at{' '}
                   <a href={stakingPlatforms[collectionMetadata.staking].url} target="_blank" rel="noreferrer">
                     <span className="color">{stakingPlatforms[collectionMetadata.staking].name}</span>
                   </a>
@@ -307,7 +257,9 @@ const Collection1155 = ({ address, tokenId=null, cacheName = 'collection' }) => 
                     </div>
                   )}
                   <div className={hasTraits() || hasPowertraits() ? 'col-md-9' : 'col-md-12'}>
-                    <CollectionListingsGroup listings={listings} canLoadMore={canLoadMore} loadMore={loadMore} />
+                    {isUsingListingsFallback && (
+                      <CollectionListingsGroup listings={listings} canLoadMore={canLoadMore} loadMore={loadMore} />
+                    )}
                   </div>
                 </div>
               </div>

@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useState } from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Slider from 'react-slick';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
@@ -8,7 +8,7 @@ import 'slick-carousel/slick/slick-theme.css';
 
 import { settings } from './constants';
 import CustomSlide from './CustomSlide';
-import {getAllCollections} from "../../GlobalState/collectionsSlice";
+import { getAllCollections } from '../../GlobalState/collectionsSlice';
 
 const HotCollections = () => {
   const dispatch = useDispatch();

@@ -1,9 +1,17 @@
 import React, { memo } from 'react';
-import ListingCard from './ListingCard';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Spinner } from 'react-bootstrap';
 
-const CollectionListingsGroup = ({ showLoadMore = true, listings = [], canLoadMore = false, loadMore }) => {
+import ListingCardCollection from './ListingCardCollection';
+
+const CollectionListingsGroup = ({
+  showLoadMore = true,
+  listings = [],
+  canLoadMore = false,
+  loadMore,
+  address,
+  collectionMetadata,
+}) => {
   if (showLoadMore) {
     return (
       <InfiniteScroll
@@ -36,7 +44,12 @@ const CollectionListingsGroup = ({ showLoadMore = true, listings = [], canLoadMo
           {listings &&
             listings.map((listing, index) => (
               <div key={index} className="d-item col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12 mb-4 px-2">
-                <ListingCard listing={listing} imgClass="collection" />
+                <ListingCardCollection
+                  listing={listing}
+                  imgClass="collection"
+                  address={address}
+                  collectionMetadata={collectionMetadata}
+                />
               </div>
             ))}
         </div>
@@ -49,7 +62,12 @@ const CollectionListingsGroup = ({ showLoadMore = true, listings = [], canLoadMo
           {listings &&
             listings.map((listing, index) => (
               <div key={index} className="d-item col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12 mb-4 px-2">
-                <ListingCard listing={listing} imgClass="collection" />
+                <ListingCardCollection
+                  listing={listing}
+                  imgClass="collection"
+                  address={address}
+                  collectionMetadata={collectionMetadata}
+                />
               </div>
             ))}
         </div>

@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
+import styled, { createGlobalStyle } from 'styled-components';
+import Blockies from 'react-blockies';
+import { ethers } from 'ethers';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck, faChevronLeft, faChevronRight, faCircle } from '@fortawesome/free-solid-svg-icons';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+
 import Clock from './Clock';
-import styled, { createGlobalStyle } from 'styled-components';
-import config from '../../Assets/networks/rpc_config.json';
-import { humanize } from '../../utils';
-import Blockies from 'react-blockies';
 import LayeredIcon from './LayeredIcon';
-import { faCheck, faChevronLeft, faChevronRight, faCircle } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { ethers } from 'ethers';
+import config from '../../Assets/networks/rpc_config.json';
 import { dropState } from '../../core/api/enums';
 export const drops = config.drops;
 
@@ -96,28 +96,29 @@ export default class Responsive extends Component {
     const defaultMaxCount = 5;
 
     const topLevelDrops = drops.filter((d) => !d.complete && d.featured);
-    const topLevelKeys = topLevelDrops.map(d => d.slug);
+    const topLevelKeys = topLevelDrops.map((d) => d.slug);
 
     const upcomingDrops = drops
       .filter(
-        (d) => !d.complete &&
-            d.published &&
-            d.start &&
-            d.start > Date.now() &&
-            d.start - Date.now() < timeToShowInHours &&
-            !!d.imgPreview &&
-            !topLevelKeys.includes(d.slug)
+        (d) =>
+          !d.complete &&
+          d.published &&
+          d.start &&
+          d.start > Date.now() &&
+          d.start - Date.now() < timeToShowInHours &&
+          !!d.imgPreview &&
+          !topLevelKeys.includes(d.slug)
       )
       .sort((a, b) => (a.start > b.start ? 1 : -1));
     let liveDrops = drops
       .filter(
-          (d) =>
-              !d.complete &&
-              d.published &&
-              d.start &&
-              d.start < Date.now() &&
-              !!d.imgPreview &&
-              !topLevelKeys.includes(d.slug)
+        (d) =>
+          !d.complete &&
+          d.published &&
+          d.start &&
+          d.start < Date.now() &&
+          !!d.imgPreview &&
+          !topLevelKeys.includes(d.slug)
       )
       .sort((a, b) => (a.start < b.start ? 1 : -1));
 
@@ -261,30 +262,43 @@ export default class Responsive extends Component {
                         <div className="d-attr">
                           <div className="col">
                             <span className="d-title">Mint Price</span>
-                            {Array.isArray(drop.cost) ?
-                              (<h3>{ethers.utils.commify(Math.min(...drop.cost.map(c => parseInt(c))))} - {ethers.utils.commify(Math.max(...drop.cost.map(c => parseInt(c))))} CRO</h3>):
-                              (<h3>{ethers.utils.commify(drop.cost)} CRO</h3>)
-                            }
+                            {Array.isArray(drop.cost) ? (
+                              <h3>
+                                {ethers.utils.commify(Math.min(...drop.cost.map((c) => parseInt(c))))} -{' '}
+                                {ethers.utils.commify(Math.max(...drop.cost.map((c) => parseInt(c))))} CRO
+                              </h3>
+                            ) : (
+                              <h3>{ethers.utils.commify(drop.cost)} CRO</h3>
+                            )}
                             {drop.erc20Cost && drop.erc20Unit && (
                               <h3>
                                 {ethers.utils.commify(drop.erc20Cost)} {drop.erc20Unit}
                               </h3>
                             )}
-                            {drop.memberCost && (
-                              Array.isArray(drop.memberCost) ?
-                                (<h5>Members: {ethers.utils.commify(Math.min(...drop.memberCost.map(c => parseInt(c))))} - {ethers.utils.commify(Math.max(...drop.memberCost.map(c => parseInt(c))))} CRO</h5>):
-                                (<h5>Members: {ethers.utils.commify(drop.memberCost)} CRO</h5>))
-                            }
+                            {drop.memberCost &&
+                              (Array.isArray(drop.memberCost) ? (
+                                <h5>
+                                  Members: {ethers.utils.commify(Math.min(...drop.memberCost.map((c) => parseInt(c))))}{' '}
+                                  - {ethers.utils.commify(Math.max(...drop.memberCost.map((c) => parseInt(c))))} CRO
+                                </h5>
+                              ) : (
+                                <h5>Members: {ethers.utils.commify(drop.memberCost)} CRO</h5>
+                              ))}
                             {drop.erc20MemberCost && drop.erc20Unit && (
                               <h5>
                                 Members: {ethers.utils.commify(drop.erc20MemberCost)} {drop.erc20Unit}
                               </h5>
                             )}
                             {drop.whitelistCost &&
-                              (Array.isArray(drop.whitelistCost) ?
-                                (<h5>Whitelist: {ethers.utils.commify(Math.min(...drop.memberCost.map(c => parseInt(c))))} - {ethers.utils.commify(Math.max(...drop.memberCost.map(c => parseInt(c))))} CRO</h5>):
-                                (<h5>Whitelist: {ethers.utils.commify(drop.whitelistCost)} CRO</h5>))
-                            }
+                              (Array.isArray(drop.whitelistCost) ? (
+                                <h5>
+                                  Whitelist:{' '}
+                                  {ethers.utils.commify(Math.min(...drop.memberCost.map((c) => parseInt(c))))} -{' '}
+                                  {ethers.utils.commify(Math.max(...drop.memberCost.map((c) => parseInt(c))))} CRO
+                                </h5>
+                              ) : (
+                                <h5>Whitelist: {ethers.utils.commify(drop.whitelistCost)} CRO</h5>
+                              ))}
                             {drop.specialWhitelistCost && (
                               <h5>Special Whitelist: {ethers.utils.commify(drop.specialWhitelistCost)} CRO</h5>
                             )}

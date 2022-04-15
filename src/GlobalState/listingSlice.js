@@ -36,7 +36,7 @@ export const getListingDetails = (listingId) => async (dispatch) => {
   let listing = await getListing(listingId);
   const nft = await getNft(listing.nftAddress, listing.nftId);
   if (nft) {
-    listing = {...listing, ...{nft: nft.nft}};
+    listing = { ...listing, ...{ nft: nft.nft } };
   }
   const history = nft?.listings ?? [];
   const powertraits = nft.nft?.powertraits ?? [];

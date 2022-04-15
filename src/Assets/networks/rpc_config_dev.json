@@ -7,6 +7,7 @@
   "explorer": "https://cronoscan.com/",
   "api_base": "https://api.ebisusbay.biz/",
   "app_base": "https://app.ebisusbay.biz/",
+  "subgraph_base": "https://graph.ebisusbay.com:8000/subgraphs/name/ebisusbay/",
   "membership_contract": "0x8d9232Ebc4f06B7b8005CCff0ca401675ceb25F5",
   "auction_contract": "0xd488b38d19d5708cbda224c041a24c3e3149bc93",
   "cronie_contract": "0xD961956B319A10CBdF89409C0aE7059788A4DaBb",
@@ -15,6 +16,7 @@
   "elon_contract": "0x3Bf0a68a03fE82A5D21445f3a2306bB012dd50D9",
   "ebisu_contract": "0xd036b2223bcc2A96164B023022D6b78CD71A1a12",
   "slothy_rugsurance_contract": "0xE9A540CBb2247f9bD86e98d1121aBDD084Ca0e89",
+  "offer_contract": "0x016b347aeb70cc45e3bbaf324feb3c7c464e18b0",
   "known_tokens": {
     "loot": {
       "name": "LOOT",
@@ -1950,7 +1952,7 @@
         "twitter": "https://twitter.com/CrayonApe",
         "website": "https://crayon-ape.com/",
         "discord": "https://discord.gg/JDXQp85yNh",
-        "medium" : "https://medium.com/@crayonapeac"
+        "medium": "https://medium.com/@crayonapeac"
       }
     },
     {
@@ -2132,12 +2134,12 @@
       }
     },
     {
-      "name" : "Pixel City",
-      "slug" : "pixel-city",
-      "multiToken" : false,
-      "address" : "0xAECD843fC3677a2d3Fc142b9C165977D57fE4C40",
-      "onChain" : false,
-      "listable" : false,
+      "name": "Pixel City",
+      "slug": "pixel-city",
+      "multiToken": false,
+      "address": "0xAECD843fC3677a2d3Fc142b9C165977D57fE4C40",
+      "onChain": false,
+      "listable": false,
       "metadata": {
         "description": "",
         "verified": true,
@@ -2597,7 +2599,7 @@
         "website": "https://cronosbotsociety.com/",
         "twitter": "https://twitter.com/CronosBots",
         "discord": "discord.gg/cronosbotsociety",
-        "medium" : "https://medium.com/@Cronos-Bot-Society"
+        "medium": "https://medium.com/@Cronos-Bot-Society"
       }
     },
     {
@@ -2762,7 +2764,7 @@
       "name": "MetaPixelSkins",
       "slug": "metapixelskins",
       "multiToken": true,
-      "split" : false,
+      "split": false,
       "address": "0x79757e3B152050fAe36f4429f5cA417170cf2359",
       "onChain": false,
       "listable": true,
@@ -3178,7 +3180,7 @@
         "twitter": "https://twitter.com/CrayonApe",
         "website": "https://crayon-ape.com/",
         "discord": "https://discord.gg/JDXQp85yNh",
-        "medium" : "https://medium.com/@crayonapeac"
+        "medium": "https://medium.com/@crayonapeac"
       }
     },
     {
@@ -3255,7 +3257,7 @@
         "website": "https://dgpals.io/",
         "twitter": "https://twitter.com/officialdgpals",
         "discord": "https://discord.gg/dgpals",
-        "medium" : "https://medium.com/officialdgpals"
+        "medium": "https://medium.com/officialdgpals"
       }
     },
     {
@@ -3275,7 +3277,7 @@
         "website": "https://wlpass.com/",
         "twitter": "https://twitter.com/wl_pass",
         "discord": "https://discord.gg/Bzu7Ym65NA",
-        "medium" : "https://medium.com/@wlaccess/wl-access-pass-overview-f6b2e96a7400"
+        "medium": "https://medium.com/@wlaccess/wl-access-pass-overview-f6b2e96a7400"
       }
     },
     {

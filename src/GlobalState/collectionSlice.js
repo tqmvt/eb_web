@@ -1,11 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
-  sortAndFetchListings,
+  sortAndFetchCollectionDetails,
   getCollectionMetadata,
   getCollectionTraits,
   getCollectionPowertraits,
+  getCollectionSummary, sortAndFetchListings,
 } from '../core/api';
-import {caseInsensitiveCompare} from "../utils";
+import { caseInsensitiveCompare } from '../utils';
+import config from '../Assets/networks/rpc_config.json';
 
 const collectionSlice = createSlice({
   name: 'collection',
@@ -20,14 +22,18 @@ const collectionSlice = createSlice({
       search: null,
       traits: {},
       powertraits: {},
+      filterListed: '',
     },
     totalPages: 0,
+    totalCount: 0,
+    statsLoading: false,
     stats: null,
     hasRank: false,
     cachedTraitsFilter: {},
     cachedPowertraitsFilter: {},
     cachedFilter: {},
     cachedSort: {},
+    isUsingListingsFallback: false,
   },
   reducers: {
     listingsLoading: (state, _) => {
@@ -37,10 +43,12 @@ const collectionSlice = createSlice({
     listingsReceived: (state, action) => {
       state.loading = false;
       state.error = false;
-      state.listings.push(...action.payload.listings);
+      state.listings.push(...action.payload.isUsingListingsFallback ? action.payload.listings : action.payload.nfts);
       state.query.page = action.payload.page;
       state.totalPages = action.payload.totalPages;
+      state.totalCount = action.payload.totalCount;
       state.hasRank = action.payload.hasRank;
+      state.isUsingListingsFallback = action.payload.isUsingListingsFallback;
     },
     clearSet: (state, action) => {
       const hardClear = action.payload || false;
@@ -89,6 +97,12 @@ const collectionSlice = createSlice({
       state.query.page = 0;
       state.query.search = action.payload;
     },
+    onListedFilter: (state, action) => {
+      state.listings = [];
+      state.totalPages = 0;
+      state.query.page = 0;
+      state.query.filterListed = action.payload;
+    },
     onTraitFilter: (state, action) => {
       const { address, traits, powertraits } = action.payload;
 
@@ -111,6 +125,11 @@ const collectionSlice = createSlice({
     },
     onCollectionStatsLoaded: (state, action) => {
       state.stats = action.payload.stats;
+      state.statsLoading = false;
+    },
+    onCollectionStatsLoading: (state, _) => {
+      state.statsLoading = true;
+      state.error = false;
     },
   },
 });
@@ -121,8 +140,10 @@ export const {
   onFilter,
   onSort,
   onSearch,
+  onListedFilter,
   onTraitFilter,
   clearSet,
+  onCollectionStatsLoading,
   onCollectionStatsLoaded,
 } = collectionSlice.actions;
 
@@ -145,20 +166,47 @@ export const init = (filterOption, sortOption, traitFilterOption, address) => as
 
 export const fetchListings = () => async (dispatch, getState) => {
   const state = getState();
-
   dispatch(listingsLoading());
-  const { response, cancelled } = await sortAndFetchListings(
-    state.collection.query.page + 1,
-    state.collection.query.sort,
-    state.collection.query.filter,
-    state.collection.query.traits,
-    state.collection.query.powertraits,
-    state.collection.query.search
-  );
+  console.log('fetching...', state.collection);
 
-  if (!cancelled) {
-    response.hasRank = response.listings.length > 0 && typeof response.listings[0].nft.rank !== 'undefined';
-    dispatch(listingsReceived(response));
+  const address = state.collection.query.filter.address;
+  const knownContract = config.known_contracts.find(c => caseInsensitiveCompare(c.address, address));
+  const fallbackContracts = [
+    'red-skull-potions'
+  ];
+
+  if (fallbackContracts.includes(knownContract.slug) || knownContract.multiToken) {
+    console.log('Falling back to listings endpoint...');
+    const { response, cancelled } = await sortAndFetchListings(
+      state.collection.query.page + 1,
+      state.collection.query.sort,
+      state.collection.query.filter,
+      state.collection.query.traits,
+      state.collection.query.powertraits,
+      state.collection.query.search
+    );
+    console.log('listings', response);
+    if (!cancelled) {
+      response.hasRank = response.listings.length > 0 && typeof response.listings[0].rank !== 'undefined';
+      dispatch(listingsReceived({...response, isUsingListingsFallback: true}));
+    }
+  } else {
+    const { response, cancelled } = await sortAndFetchCollectionDetails(
+      state.collection.query.page + 1,
+      state.collection.query.sort,
+      state.collection.query.filter,
+      state.collection.query.traits,
+      state.collection.query.powertraits,
+      state.collection.query.search,
+      state.collection.query.filterListed
+    );
+    console.log('collection', response);
+    if (response.status === 200 && response.nfts.length > 0) {
+      if (!cancelled) {
+        response.hasRank = response.nfts.length > 0 && typeof response.nfts[0].rank !== 'undefined';
+        dispatch(listingsReceived({...response, isUsingListingsFallback: false}));
+      }
+    }
   }
 };
 
@@ -177,6 +225,11 @@ export const searchListings = (value) => async (dispatch) => {
   dispatch(fetchListings());
 };
 
+export const filterListingsByListed = (options) => async (dispatch) => {
+  dispatch(onListedFilter(options));
+  dispatch(fetchListings());
+};
+
 export const filterListingsByTrait =
   ({ traits, powertraits, address }) =>
   async (dispatch) => {
@@ -189,38 +242,40 @@ export const resetListings = () => async (dispatch) => {
   dispatch(fetchListings());
 };
 
-export const getStats = (address, id = null, extraAddresses = null) => async (dispatch) => {
-  try {
-    const mergedAddresses = extraAddresses ? [address, ...extraAddresses] : address;
-    var response;
-    if (id != null) {
-      response = await getCollectionMetadata(
-        mergedAddresses,
-        null, {
-          type: "tokenId",
-          value: id
-        }
-      );
-    } else {
-      response = await getCollectionMetadata(mergedAddresses);
-    }
-    const traits = await getCollectionTraits(address);
-    const powertraits = await getCollectionPowertraits(address);
-    dispatch(
-      onCollectionStatsLoaded({
-        stats: {
-          ...combineStats(response.collections, address),
-          ...{
-            traits: traits,
-            powertraits: powertraits,
+export const getStats =
+  (address, slug, id = null, extraAddresses = null) =>
+  async (dispatch) => {
+    try {
+      const mergedAddresses = extraAddresses ? [address, ...extraAddresses] : address;
+      var response;
+      if (id != null) {
+        response = await getCollectionMetadata(
+          mergedAddresses,
+          null, {
+            type: "tokenId",
+            value: id
+          }
+        );
+      } else {
+        response = await getCollectionMetadata(mergedAddresses);
+      }
+      const traits = await getCollectionTraits(address);
+      const powertraits = await getCollectionPowertraits(address);
+      dispatch(
+        onCollectionStatsLoaded({
+          stats: {
+            ...combineStats(response.collections, address),
+            ...{
+              traits: traits,
+              powertraits: powertraits,
+            },
           },
-        },
-      })
-    );
-  } catch (error) {
-    console.log(error);
-  }
-};
+        })
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
 /**
  * Combine stats if a collection tracks multiple contracts

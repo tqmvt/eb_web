@@ -89,7 +89,7 @@ const MyNftCard = ({
             Cancel
           </span>
         )}
-        {(canUpdate && !isStaked) && (
+        {canUpdate && !isStaked && (
           <span className="mx-1" onClick={onUpdateButtonPressed} style={{ cursor: 'pointer' }}>
             Update
           </span>
