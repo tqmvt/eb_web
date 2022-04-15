@@ -8,6 +8,7 @@ import { sortOptions } from './constants/collection-sort-options';
 import { CollectionSortOption } from '../Models/collection-sort-option.model';
 import { listingFilterOptions } from './constants/filter-options';
 import { sortListings, resetListings, searchListings, filterListingsByListed } from '../../GlobalState/collectionSlice';
+import {ethers} from "ethers";
 
 const CollectionFilterBarContainer = styled.div`
   margin: 0 0 22px;
@@ -123,7 +124,7 @@ const CollectionFilterBar = ({ cacheName = null }) => {
         />
       </div>
       <div className="col-xl-3 px-2 mt-2 col-md-6 col-sm-12 d-sm-flex d-lg-none d-xl-flex">
-        Total results ({collection?.listings?.length || 0} / {collection?.stats?.active || 0})
+        Total results ({ethers.utils.commify(collection?.totalCount || 0)})
       </div>
       <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12 px-2 mt-2">
         <div className="items_filter" style={{ marginBottom: 0, marginTop: 0 }}>

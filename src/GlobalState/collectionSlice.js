@@ -24,6 +24,7 @@ const collectionSlice = createSlice({
       filterListed: '',
     },
     totalPages: 0,
+    totalCount: 0,
     statsLoading: false,
     stats: null,
     hasRank: false,
@@ -44,6 +45,7 @@ const collectionSlice = createSlice({
       state.listings.push(...action.payload.hasFullCollectionData ? action.payload.nfts : action.payload.listings);
       state.query.page = action.payload.page;
       state.totalPages = action.payload.totalPages;
+      state.totalCount = action.payload.totalCount;
       state.hasRank = action.payload.hasRank;
     },
     clearSet: (state, action) => {
