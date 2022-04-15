@@ -14,8 +14,8 @@
   {
     "name": "Cronos",
     "chain_id": "25",
-    "write_rpc": "https://evm.cronos.org/",
-    "read_rpc": "https://gateway.nebkas.ro/",
+    "write_rpc": "https://rpc.ebisusbay.com/",
+    "read_rpc": "https://rpc.ebisusbay.com/",
     "symbol": "CRO",
     "explorer": "https://cronoscan.com/",
     "api_base": "https://api.ebisusbay.com/",
@@ -228,8 +228,8 @@
   {
     "name": "Cronos Testnet",
     "chain_id": "338",
-    "write_rpc": "https://evm-t3.cronos.org/",
-    "read_rpc": "https://evm-t3.cronos.org/",
+    "write_rpc": "https://rpc.ebisusbay.biz/",
+    "read_rpc": "https://rpc.ebisusbay.biz/",
     "symbol": "tCRO",
     "explorer": "https://cronos.org/explorer/testnet3/",
     "api_base": "http://localhost:5000/",

@@ -347,7 +347,7 @@ export const connectAccount =
         connector: async (ProviderPackage, options) => {
           const connector = new DeFiWeb3Connector({
             supportedChainIds: [25],
-            rpc: { 25: 'https://gateway.nebkas.ro' },
+            rpc: { 25: 'https://rpc.ebisusbay.com' },
             pollingInterval: 15000,
             metadata: {
               icons: ['https://ebisusbay.com/vector%20-%20face.svg'],
@@ -368,7 +368,7 @@ export const connectAccount =
         options: {
           chainId: 25,
           rpc: {
-            25: 'https://gateway.nebkas.ro',
+            25: 'https://rpc.ebisusbay.com',
           },
           network: 'cronos',
           metadata: {
@@ -634,7 +634,7 @@ export const chainConnect = (type) => async (dispatch) => {
   } else {
     const web3Provider = new WalletConnectProvider({
       rpc: {
-        25: 'https://evm.cronos.org',
+        25: 'https://rpc.ebisusbay.com',
       },
       chainId: 25,
     });
