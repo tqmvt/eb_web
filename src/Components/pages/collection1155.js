@@ -48,6 +48,7 @@ const Collection1155 = ({ address, tokenId = null, cacheName = 'collection', slu
   const collectionMetadata = useSelector((state) => {
     return knownContracts.find((c) => c.address.toLowerCase() === address.toLowerCase())?.metadata;
   });
+  const isUsingListingsFallback = useSelector((state) => state.collection.isUsingListingsFallback);
 
   const collectionName = () => {
     let contract;
@@ -256,7 +257,9 @@ const Collection1155 = ({ address, tokenId = null, cacheName = 'collection', slu
                     </div>
                   )}
                   <div className={hasTraits() || hasPowertraits() ? 'col-md-9' : 'col-md-12'}>
-                    <CollectionListingsGroup listings={listings} canLoadMore={canLoadMore} loadMore={loadMore} />
+                    {isUsingListingsFallback && (
+                      <CollectionListingsGroup listings={listings} canLoadMore={canLoadMore} loadMore={loadMore} />
+                    )}
                   </div>
                 </div>
               </div>

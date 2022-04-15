@@ -33,7 +33,7 @@ const collectionSlice = createSlice({
     cachedPowertraitsFilter: {},
     cachedFilter: {},
     cachedSort: {},
-    hasFullCollectionData: false,
+    isUsingListingsFallback: false,
   },
   reducers: {
     listingsLoading: (state, _) => {
@@ -43,11 +43,12 @@ const collectionSlice = createSlice({
     listingsReceived: (state, action) => {
       state.loading = false;
       state.error = false;
-      state.listings.push(...action.payload.hasFullCollectionData ? action.payload.nfts : action.payload.listings);
+      state.listings.push(...action.payload.isUsingListingsFallback ? action.payload.listings : action.payload.nfts);
       state.query.page = action.payload.page;
       state.totalPages = action.payload.totalPages;
       state.totalCount = action.payload.totalCount;
       state.hasRank = action.payload.hasRank;
+      state.isUsingListingsFallback = action.payload.isUsingListingsFallback;
     },
     clearSet: (state, action) => {
       const hardClear = action.payload || false;
@@ -169,13 +170,13 @@ export const fetchListings = () => async (dispatch, getState) => {
   console.log('fetching...', state.collection);
 
   const address = state.collection.query.filter.address;
-  const knownContract = config.known_contracts.find(c => caseInsensitiveCompare(c => c.address, address));
+  const knownContract = config.known_contracts.find(c => caseInsensitiveCompare(c.address, address));
   const fallbackContracts = [
     'red-skull-potions'
   ];
 
   if (fallbackContracts.includes(knownContract.slug) || knownContract.multiToken) {
-    console.log('no results found. falling back to listings endpoint...');
+    console.log('Falling back to listings endpoint...');
     const { response, cancelled } = await sortAndFetchListings(
       state.collection.query.page + 1,
       state.collection.query.sort,
@@ -187,7 +188,7 @@ export const fetchListings = () => async (dispatch, getState) => {
     console.log('listings', response);
     if (!cancelled) {
       response.hasRank = response.listings.length > 0 && typeof response.listings[0].rank !== 'undefined';
-      dispatch(listingsReceived({...response, hasFullCollectionData: false}));
+      dispatch(listingsReceived({...response, isUsingListingsFallback: true}));
     }
   } else {
     const { response, cancelled } = await sortAndFetchCollectionDetails(
@@ -203,7 +204,7 @@ export const fetchListings = () => async (dispatch, getState) => {
     if (response.status === 200 && response.nfts.length > 0) {
       if (!cancelled) {
         response.hasRank = response.nfts.length > 0 && typeof response.nfts[0].rank !== 'undefined';
-        dispatch(listingsReceived({...response, hasFullCollectionData: true}));
+        dispatch(listingsReceived({...response, isUsingListingsFallback: false}));
       }
     }
   }

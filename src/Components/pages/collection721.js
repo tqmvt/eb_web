@@ -24,6 +24,7 @@ import Market from '../../Contracts/Marketplace.json';
 import stakingPlatforms from '../../core/data/staking-platforms.json';
 import SalesCollection from '../components/SalesCollection';
 import CollectionNftsGroup from '../components/CollectionNftsGroup';
+import CollectionListingsGroup from "../components/CollectionListingsGroup";
 
 const knownContracts = config.known_contracts;
 
@@ -39,6 +40,7 @@ const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) 
   const collectionCachedSort = useSelector((state) => state.collection.cachedSort);
   const collectionStatsLoading = useSelector((state) => state.collection.statsLoading);
   const collectionStats = useSelector((state) => state.collection.stats);
+  const collectionLoading = useSelector((state) => state.collection.loading);
 
   const listings = useSelector((state) => state.collection.listings);
   const hasRank = useSelector((state) => state.collection.hasRank);
@@ -52,6 +54,7 @@ const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) 
   const collectionMetadata = useSelector((state) => {
     return knownContracts.find((c) => c.address.toLowerCase() === collection.address.toLowerCase())?.metadata;
   });
+  const isUsingListingsFallback = useSelector((state) => state.collection.isUsingListingsFallback);
 
   // const handleCopy = (code) => () => {
   //   navigator.clipboard.writeText(code);
@@ -264,14 +267,23 @@ const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) 
                     )
                   )}
                   <div className={hasTraits() || hasPowertraits() ? 'col-md-9' : 'col-md-12'}>
-                    <CollectionNftsGroup
-                      listings={listings}
-                      royalty={royalty}
-                      canLoadMore={canLoadMore}
-                      loadMore={loadMore}
-                      address={address}
-                      collectionMetadata={collectionMetadata}
-                    />
+
+                    {isUsingListingsFallback ? (
+                      <CollectionListingsGroup
+                        listings={listings}
+                        canLoadMore={canLoadMore}
+                        loadMore={loadMore}
+                      />
+                    ) : (
+                      <CollectionNftsGroup
+                        listings={listings}
+                        royalty={royalty}
+                        canLoadMore={canLoadMore}
+                        loadMore={loadMore}
+                        address={address}
+                        collectionMetadata={collectionMetadata}
+                      />
+                    )}
                   </div>
                 </div>
               </div>
