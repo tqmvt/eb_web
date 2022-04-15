@@ -7,6 +7,7 @@ import {
   getCollectionSummary, sortAndFetchListings,
 } from '../core/api';
 import { caseInsensitiveCompare } from '../utils';
+import config from '../Assets/networks/rpc_config.json';
 
 const collectionSlice = createSlice({
   name: 'collection',
@@ -164,26 +165,16 @@ export const init = (filterOption, sortOption, traitFilterOption, address) => as
 
 export const fetchListings = () => async (dispatch, getState) => {
   const state = getState();
-
   dispatch(listingsLoading());
-  const { response, cancelled } = await sortAndFetchCollectionDetails(
-    state.collection.query.page + 1,
-    state.collection.query.sort,
-    state.collection.query.filter,
-    state.collection.query.traits,
-    state.collection.query.powertraits,
-    state.collection.query.search,
-    state.collection.query.filterListed
-  );
-  console.log('collection', response);
-  if (response.status === 200 && response.nfts.length > 0) {
-    if (!cancelled) {
-      response.hasRank = response.nfts.length > 0 && typeof response.nfts[0].rank !== 'undefined';
-      dispatch(listingsReceived({...response, hasFullCollectionData: true}));
-    }
-  }
+  console.log('fetching...', state.collection);
 
-  if (!response.nfts || response.nfts.length === 0) {
+  const address = state.collection.query.filter.address;
+  const knownContract = config.known_contracts.find(c => caseInsensitiveCompare(c => c.address, address));
+  const fallbackContracts = [
+    'red-skull-potions'
+  ];
+
+  if (fallbackContracts.includes(knownContract.slug) || knownContract.multiToken) {
     console.log('no results found. falling back to listings endpoint...');
     const { response, cancelled } = await sortAndFetchListings(
       state.collection.query.page + 1,
@@ -197,6 +188,23 @@ export const fetchListings = () => async (dispatch, getState) => {
     if (!cancelled) {
       response.hasRank = response.listings.length > 0 && typeof response.listings[0].rank !== 'undefined';
       dispatch(listingsReceived({...response, hasFullCollectionData: false}));
+    }
+  } else {
+    const { response, cancelled } = await sortAndFetchCollectionDetails(
+      state.collection.query.page + 1,
+      state.collection.query.sort,
+      state.collection.query.filter,
+      state.collection.query.traits,
+      state.collection.query.powertraits,
+      state.collection.query.search,
+      state.collection.query.filterListed
+    );
+    console.log('collection', response);
+    if (response.status === 200 && response.nfts.length > 0) {
+      if (!cancelled) {
+        response.hasRank = response.nfts.length > 0 && typeof response.nfts[0].rank !== 'undefined';
+        dispatch(listingsReceived({...response, hasFullCollectionData: true}));
+      }
     }
   }
 };

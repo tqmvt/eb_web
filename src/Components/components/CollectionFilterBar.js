@@ -51,8 +51,8 @@ const CollectionFilterBar = ({ cacheName = null }) => {
   );
 
   const handleSearch = debounce((event) => {
-    // const { value } = event.target;
-    // dispatch(searchListings(value));
+    const { value } = event.target;
+    dispatch(searchListings(value));
   }, 300);
 
   // const handleClear = useCallback(() => {
