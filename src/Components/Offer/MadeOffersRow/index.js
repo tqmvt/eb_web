@@ -4,7 +4,7 @@ import Button from 'src/Components/components/Button';
 import styled from 'styled-components';
 import moment from 'moment';
 
-import { shortAddress } from 'src/utils';
+import {caseInsensitiveCompare, shortAddress} from 'src/utils';
 import config from 'src/Assets/networks/rpc_config.json';
 import { getNftDetails } from 'src/GlobalState/nftSlice';
 import MakeOfferDialog from '../MakeOfferDialog';
@@ -104,8 +104,9 @@ export const OFFER_TYPE = {
 export default function TableRow({ data, type }) {
   const { state, timeCreated, seller, buyer, price, nftAddress, nftId } = data;
 
-  let nft = useSelector((state) => state.nft.nft);
-  nft = { ...nft, address: nftAddress };
+  let nft = useSelector((state) => {
+    return { ...state.nft.nft, address: nftAddress }
+  });
 
   const dispatch = useDispatch();
 
@@ -115,7 +116,12 @@ export default function TableRow({ data, type }) {
     setOfferType(type);
   };
 
-  const collectionData = knownContracts.find((c) => c.address.toLowerCase() === nftAddress.toLowerCase());
+  const collectionData = knownContracts.find((c) => {
+    const matchedAddress = caseInsensitiveCompare(c.address, nftAddress);
+    const matchedToken = !c.multiToken || parseInt(nftId) === c.id;
+    return matchedAddress && matchedToken;
+  });
+
   const getCollectionName = () => {
     return collectionData ? collectionData?.name : '';
   };
