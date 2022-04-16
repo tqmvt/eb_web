@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from 'react';
+import React, {memo, useEffect, useState} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, Link } from 'react-router-dom';
 import Blockies from 'react-blockies';
@@ -21,6 +21,9 @@ import { getNftDetails } from '../../GlobalState/nftSlice';
 import { croSkullRedPotionImageHack } from '../../hacks';
 import PriceActionBar from "../NftDetails/PriceActionBar";
 import {Spinner} from "react-bootstrap";
+import MetaMaskOnboarding from "@metamask/onboarding";
+import {chainConnect, connectAccount} from "../../GlobalState/User";
+import MakeOfferDialog from "../Offer/MakeOfferDialog";
 
 const Nft1155 = ({ address, id }) => {
   const dispatch = useDispatch();
@@ -41,6 +44,7 @@ const Nft1155 = ({ address, id }) => {
     return findCollectionByAddress(address, id)?.slug;
   });
   const isLoading = useSelector((state) => state.nft.loading);
+  const user = useSelector((state) => state.user);
 
   useEffect(() => {
     dispatch(getNftDetails(address, id));
@@ -69,6 +73,22 @@ const Nft1155 = ({ address, id }) => {
 
     setOpenMenu(index);
     console.log(openMenu, index);
+  };
+
+  const [openMakeOfferDialog, setOpenMakeOfferDialog] = useState(false);
+  const handleMakeOffer = () => {
+    if (user.address) {
+      setOpenMakeOfferDialog(!openMakeOfferDialog);
+    } else {
+      if (user.needsOnboard) {
+        const onboarding = new MetaMaskOnboarding();
+        onboarding.startOnboarding();
+      } else if (!user.address) {
+        dispatch(connectAccount());
+      } else if (!user.correctChain) {
+        dispatch(chainConnect());
+      }
+    }
   };
 
   return (
@@ -125,6 +145,11 @@ const Nft1155 = ({ address, id }) => {
                   <h2>{nft.name}</h2>
                   <p>{nft.description}</p>
                   <PriceActionBar />
+                  <div className="row">
+                    <button className="btn-main mx-auto mb-5" onClick={() => handleMakeOffer()}>
+                      Make Offer
+                    </button>
+                  </div>
                   <div className="row" style={{ gap: '2rem 0' }}>
                     <ProfilePreview
                       type="Collection"
@@ -285,6 +310,13 @@ const Nft1155 = ({ address, id }) => {
           </div>
         </section>
       )}
+      <MakeOfferDialog
+        isOpen={openMakeOfferDialog}
+        toggle={() => setOpenMakeOfferDialog(!openMakeOfferDialog)}
+        nftData={nft}
+        collectionMetadata={collectionMetadata}
+        type={'Make'}
+      />
       <Footer />
     </div>
   );
