@@ -8,6 +8,9 @@ import { fetchMadeOffers, fetchAllOffers, fetchMyNFTs } from '../../GlobalState/
 import Footer from '../components/Footer';
 import MadeOffers from '../Offer/MadeOffers';
 import ReceivedOffers from '../Offer/ReceivedOffers';
+import {getAllCollections, knownContracts} from "../../GlobalState/collectionsSlice";
+import {caseInsensitiveCompare} from "../../utils";
+import config from '../../Assets/networks/rpc_config.json';
 
 const OFFERS_TAB = {
   make: 'Made Offers',
@@ -62,6 +65,7 @@ const MyOffers = () => {
   // const myNFTs = useSelector((state) => state.user.nfts);
   const myNFTsLoading = useSelector((state) => state.offer.myNFTsLoading);
   const myNFTs = useSelector((state) => state.offer.myNFTs);
+  const collectionsStats = useSelector((state) => state.collections.collections);
 
   const [tab, setTab] = useState(OFFERS_TAB.make);
   const dispatch = useDispatch();
@@ -72,6 +76,9 @@ const MyOffers = () => {
     if (!myNFTsLoading) {
       // dispatch(fetchNfts());
       dispatch(fetchMyNFTs(walletAddress));
+    }
+    if (!collectionsStats || collectionsStats.length === 0) {
+      dispatch(getAllCollections());
     }
   }, []);
 
@@ -84,12 +91,16 @@ const MyOffers = () => {
   }, [myNFTs, myNFTsLoading]);
 
   useEffect(() => {
-    if (myNFTs && !myNFTsLoading && allOffers) {
+    if (myNFTs && !myNFTsLoading && allOffers && collectionsStats.length > 0) {
       const receivedOffersFilter = allOffers.filter((offer) => {
         const nft = myNFTs.find(
           (c) => c.nftAddress.toLowerCase() === offer.nftAddress && c.edition.toString() === offer.nftId
         );
-        if (nft) {
+
+        const floorPrice = findCollectionFloor(offer.nftAddress, offer.nftId);
+        const offerPrice = parseInt(offer.price);
+        const isAboveOfferThreshold = floorPrice ? (offerPrice >= (floorPrice / 2)) : true;
+        if (nft && isAboveOfferThreshold) {
           return true;
         }
         return false;
@@ -98,6 +109,23 @@ const MyOffers = () => {
     }
   }, [myNFTs, allOffers]);
 
+  const findCollectionFloor = (address, nftId) => {
+    const knownContract = knownContracts.find((c) => {
+      const matchedAddress = caseInsensitiveCompare(c.address, address);
+      const matchedToken = !c.multiToken || parseInt(nftId) === c.id;
+      return matchedAddress && matchedToken;
+    });
+    const collectionStats = collectionsStats.find(o => {
+      if (knownContract.multiToken && o.collection.indexOf('-') !== -1) {
+        let parts = o.collection.split('-');
+        return caseInsensitiveCompare(knownContract.address, parts[0]) && knownContract.id === parseInt(parts[1]);
+      } else {
+        return caseInsensitiveCompare(knownContract.address, o.collection);
+      }
+    });
+
+    return collectionStats ? collectionStats.floorPrice : null;
+  }
   const Content = () => (
     <>
       <section className="jumbotron breadcumb no-bg tint">
