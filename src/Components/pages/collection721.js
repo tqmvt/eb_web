@@ -85,9 +85,9 @@ const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) 
 
   useEffect(() => {
     const sortOption = CollectionSortOption.default();
-    sortOption.key = 'id';
-    sortOption.direction = 'desc';
-    sortOption.label = 'By Id';
+    sortOption.key = 'price';
+    sortOption.direction = 'asc';
+    sortOption.label = 'By Price';
 
     const filterOption = FilterOption.default();
     filterOption.type = 'collection';
