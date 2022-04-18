@@ -1813,9 +1813,9 @@
       "listable": false,
       "metadata": {
         "verified": true,
-        "avatar": "/img/collections/panelsproject/avatar.jpg",
-        "banner": "/img/collections/panelsproject/banner.jpg",
-        "card": "/img/collections/panelsproject/card.jpg",
+        "avatar": "/img/collections/panelsproject/avatar.webp",
+        "banner": "/img/collections/panelsproject/banner.webp",
+        "card": "/img/collections/panelsproject/card.webp",
         "maxSupply": 5555,
         "website": "https://www.panelsproject.com/",
         "twitter": "https://twitter.com/PanelsProject",
@@ -3538,6 +3538,26 @@
         "twitter": "https://twitter.com/croclubs",
         "discord": "http://discord.gg/RWZSJwnG7Y",
         "medium": "https://medium.com/@croclubsio"
+      }
+    },
+    {
+      "name": "Panels Project - Primate Cronos",
+      "slug": "panels-project-primate-cronos",
+      "multiToken": false,
+      "address": "0x2a7c049688D7c04b128B4AE6dEC0560a4FEdF235",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": false,
+        "avatar": "/img/collections/panelsproject/primate/avatar.webp",
+        "banner": "/img/collections/panelsproject/primate/banner.webp",
+        "card": "/img/collections/panelsproject/primate/card.webp",
+        "maxSupply": 96,
+        "website": "https://www.panelsproject.com/",
+        "twitter": "https://twitter.com/PanelsProject",
+        "discord": "https://discord.gg/cWdCce8XAx",
+        "medium": "https://medium.com/panels-project"
       }
     }
   ],

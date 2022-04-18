@@ -815,6 +815,26 @@
         "telegram": "https://t.me/kardianft",
         "medium": "https://medium.com/@playkardia/"
       }
+    },
+    {
+      "name": "Panels Project - Primate Cronos",
+      "slug": "panels-project-primate-cronos",
+      "multiToken": false,
+      "address": "0xA53b72d9733aBEaCF97e0557f2767B189404a066",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": false,
+        "avatar": "/img/collections/panelsproject/primate/avatar.webp",
+        "banner": "/img/collections/panelsproject/primate/banner.webp",
+        "card": "/img/collections/panelsproject/primate/card.webp",
+        "maxSupply": 96,
+        "website": "https://www.panelsproject.com/",
+        "twitter": "https://twitter.com/PanelsProject",
+        "discord": "https://discord.gg/cWdCce8XAx",
+        "medium": "https://medium.com/panels-project"
+      }
     }
   ],
   "drops": [
