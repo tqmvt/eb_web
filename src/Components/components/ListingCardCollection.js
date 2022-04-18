@@ -5,6 +5,9 @@ import { ethers } from 'ethers';
 import { croSkullRedPotionImageHack } from '../../hacks';
 import Button from './Button';
 import MakeOfferDialog from '../Offer/MakeOfferDialog';
+import MetaMaskOnboarding from "@metamask/onboarding";
+import {chainConnect, connectAccount} from "../../GlobalState/User";
+import {useDispatch, useSelector} from "react-redux";
 
 const Watermarked = styled.div`
   position: relative;
@@ -44,12 +47,46 @@ const MakeOffer = styled.div`
 
 const ListingCardCollection = ({ listing, imgClass = 'marketplace', watermark, address, collectionMetadata }) => {
   const history = useHistory();
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+  const [openMakeOfferDialog, setOpenMakeOfferDialog] = useState(false);
+  const [modalType, setModalType] = useState('Make');
+
   const handleBuy = () => {
     if (listing.listingId) {
       history.push(`/listing/${listing.listingId}`);
     } else {
       history.push(`/collection/${listing.nftAddress}/${listing.nftId}`);
     }
+  };
+
+  const handleMakeOffer = () => {
+    // setModalType(type);
+    if (user.address) {
+      setOpenMakeOfferDialog(!openMakeOfferDialog);
+    } else {
+      if (user.needsOnboard) {
+        const onboarding = new MetaMaskOnboarding();
+        onboarding.startOnboarding();
+      } else if (!user.address) {
+        dispatch(connectAccount());
+      } else if (!user.correctChain) {
+        dispatch(chainConnect());
+      }
+    }
+  };
+
+  const convertListingData = (listingData) => {
+    const res = {
+      address: listingData.nftAddress,
+      id: listingData.nftId,
+      image: listingData.nft.image,
+      name: listingData.nft.name,
+      description: listingData.nft.description,
+      rank: listingData.rank,
+      royalty: listingData.royalty,
+    };
+    return res;
   };
 
   return (
@@ -81,14 +118,27 @@ const ListingCardCollection = ({ listing, imgClass = 'marketplace', watermark, a
             <div>{ethers.utils.commify(listing.price)} CRO</div>
           </MakeBuy>
           <MakeOffer>
+            <Link className="linkPointer" to={`/collection/${listing.nftAddress}/${listing.nftId}`}>
+              <Button type="legacy">Buy</Button>
+            </Link>
             <div>
-              <Button type="legacy" onClick={handleBuy}>
-                Buy
+              <Button type="legacy-outlined" onClick={() => handleMakeOffer('Make')}>
+                Offer
               </Button>
             </div>
           </MakeOffer>
         </div>
       </div>
+
+      {openMakeOfferDialog && (
+        <MakeOfferDialog
+          isOpen={openMakeOfferDialog}
+          toggle={() => setOpenMakeOfferDialog(!openMakeOfferDialog)}
+          nftData={convertListingData(listing)}
+          collectionMetadata={collectionMetadata}
+          type={modalType}
+        />
+      )}
     </>
   );
 };
