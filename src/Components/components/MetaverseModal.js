@@ -67,7 +67,7 @@ function addIFrameEventListener() {
   eventFunction(
     messageEvent,
     function(e) {
-      if (e.data.startsWith("{") && e.data.endsWith("}")) {
+      if (e.data.startsWith && e.data.startsWith("{") && e.data.endsWith("}")) {
         const message = JSON.parse(e.data)
         if (message.operation === "bid") {
           store.dispatch(showBidDialog({auctionId: message.auctionId}))
