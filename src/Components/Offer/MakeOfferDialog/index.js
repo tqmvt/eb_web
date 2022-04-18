@@ -139,6 +139,7 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
   const readMarket = new Contract(config.market_contract, Market.abi, readProvider);
 
   const [offerType, setOfferType] = useState(type);
+  const [offerDataNew, setOfferDataNew] = useState(offerData);
   const [isGettingOfferType, setIsGettingOfferType] = useState(false);
 
   const [offerPrice, setOfferPrice] = useState(0);
@@ -146,7 +147,7 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
   const onOfferValueChange = (inputEvent) => {
     const inputValue = inputEvent.target.value;
     setOfferPrice(inputValue);
-    if (offerType === OFFER_TYPE.update && offerData?.price && Number(inputValue) > Number(offerData.price)) {
+    if (offerType === OFFER_TYPE.update && offerDataNew?.price && Number(inputValue) > Number(offerDataNew.price)) {
       setOfferPriceError(false);
     } else if (offerType === OFFER_TYPE.make && Number(inputValue) > 0) {
       setOfferPriceError(false);
@@ -174,6 +175,7 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
       setIsGettingOfferType(true);
       const filteredOffers = await getFilteredOffers(nftData.address, nftData.id, walletAddress);
       if (filteredOffers && filteredOffers.data.length > 0) {
+        setOfferDataNew(filteredOffers.data[0]);
         setOfferType(OFFER_TYPE.update);
       } else {
         setOfferType(OFFER_TYPE.make);
@@ -204,20 +206,20 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
         });
         receipt = await tx.wait();
       } else if (actionType === OFFER_TYPE.update) {
-        if (!offerPrice || offerPrice <= Number(offerData.price)) {
+        if (!offerPrice || offerPrice <= Number(offerDataNew.price)) {
           setIsOnAction(false);
           setOfferPriceError(true);
           return;
         }
         tx = await offerContract.makeOffer(nftData.address, nftData.id, {
-          value: ethers.utils.parseEther((offerPrice - offerData.price).toString()),
+          value: ethers.utils.parseEther((offerPrice - offerDataNew.price).toString()),
         });
         receipt = await tx.wait();
       } else if (actionType === OFFER_TYPE.cancel) {
-        tx = await offerContract.cancelOffer(offerData?.hash, offerData?.offerIndex);
+        tx = await offerContract.cancelOffer(offerDataNew?.hash, offerDataNew?.offerIndex);
         receipt = await tx.wait();
       } else if (actionType === OFFER_TYPE.reject) {
-        tx = await offerContract.rejectOffer(offerData?.hash, offerData?.offerIndex);
+        tx = await offerContract.rejectOffer(offerDataNew?.hash, offerDataNew?.offerIndex);
         receipt = await tx.wait();
       }
       dispatch(updateOfferSuccess(receipt.transactionHash, walletAddress));
