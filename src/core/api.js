@@ -10,7 +10,7 @@ import { dataURItoBlob } from '../Store/utils';
 import { SortOption } from '../Components/Models/sort-option.model';
 import { CollectionSortOption } from '../Components/Models/collection-sort-option.model';
 import { FilterOption } from '../Components/Models/filter-option.model';
-import { isMetapixelsCollection, isSouthSideAntsCollection } from '../utils';
+import {caseInsensitiveCompare, isMetapixelsCollection, isSouthSideAntsCollection} from '../utils';
 
 const gatewayTools = new IPFSGatewayTools();
 const gateway = 'https://mygateway.mypinata.cloud';
@@ -1055,7 +1055,7 @@ export async function getNftFromFile(collectionId, nftId) {
         canSell: canSell,
       };
     } else {
-      const isMultiToken = knownContracts.findIndex((x) => x.address === collectionId && x.multiToken) > -1;
+      const isMultiToken = knownContracts.findIndex((x) => caseInsensitiveCompare(x.address, collectionId) && x.multiToken) > -1;
 
       let uri;
       var contract;
