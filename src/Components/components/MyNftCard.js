@@ -6,6 +6,7 @@ import { faLink } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import config from '../../Assets/networks/rpc_config.json';
 import { croSkullRedPotionImageHack } from '../../hacks';
+import ReactPlayer from "react-player";
 
 const MyNftCard = ({
   nft,
@@ -42,13 +43,34 @@ const MyNftCard = ({
 
   return (
     <div className="card eb-nft__card h-100 shadow">
-      <img
-        onClick={() => navigateTo(nftUrl())}
-        src={croSkullRedPotionImageHack(nft.address, nft.image)}
-        className="card-img-top marketplace"
-        style={{ cursor: 'pointer' }}
-        alt={nft.name}
-      />
+      {nft.video ? (
+        <ReactPlayer
+          controls={true}
+          url={nft.video}
+          config={{
+            file: {
+              attributes: {
+                onContextMenu: (e) => e.preventDefault(),
+                controlsList: 'nodownload',
+              },
+            },
+          }}
+          muted={true}
+          playing={true}
+          loop={true}
+          light={nft.image}
+          width="100%"
+          height="100%"
+        />
+      ) : (
+        <img
+          onClick={() => navigateTo(nftUrl())}
+          src={croSkullRedPotionImageHack(nft.address, nft.image)}
+          className="card-img-top marketplace"
+          style={{ cursor: 'pointer' }}
+          alt={nft.name}
+        />
+      )}
       {nft.rank && typeof nft.rank === 'number' && (
         <div className="badge bg-rarity text-wrap mt-1 mx-1">Rank: #{nft.rank}</div>
       )}
