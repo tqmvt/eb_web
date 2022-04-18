@@ -143,6 +143,7 @@ export const fetchAllOffers = (addresses) => async (dispatch) => {
   const { data } = await getAllOffers(addresses);
 
   if (data) dispatch(allOffersLoaded(data));
+  else dispatch(allOffersLoaded([]));
 };
 
 export const fetchMadeOffers = (address) => async (dispatch) => {
@@ -157,6 +158,7 @@ export const fetchMyNFTs = (address) => async (dispatch) => {
   const { data } = await getQuickWallet(address);
 
   if (data) dispatch(myNFTsLoaded(data));
+  else dispatch(myNFTsLoaded([]));
 };
 
 export const fetchReceivedOffers = (address) => async (dispatch) => {
