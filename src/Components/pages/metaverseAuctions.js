@@ -3,29 +3,10 @@ import React from 'react';
 import Footer from '../components/Footer';
 import AuctionCollection from '../components/AuctionCollection';
 import config from '../../Assets/networks/rpc_config.json';
-import {FilterOption} from "../Models/filter-option.model";
-
+import MetaverseModal from "../components/MetaverseModal";
 export const drops = config.drops;
 
-function getMetaverseUrl() {
-  if (window.location.host === "localhost:3000") {
-    return "https://localhost:8080/?assignRoom=true"
-  }
-  if (window.location.host === "app.ebisusbay.biz") {
-    return "https://metaverse.ebisusbay.biz/?assignRoom=true"
-  }
-  if (window.location.host === "testapp.ebisusbay.biz") {
-    return "https://testmetaverse.ebisusbay.biz/?assignRoom=true"
-  }
-  if (window.location.host === "testapp2.ebisusbay.biz") {
-    return "https://testmetaverse.ebisusbay.biz?assignRoom=true"
-  }
-  return "https://metaverse.ebisusbay.com/?assignRoom=true"
-}
-
 const MetaverseAuctions = () => {
-
-  const metaverseUrl = getMetaverseUrl()
 
   return (
     <div>
@@ -40,7 +21,7 @@ const MetaverseAuctions = () => {
             <div className="card eb-nft__card h-100 shadow">
               <img className="card-img-top" src="/img/metaverse_gallery.png" />
               <div className="card-body d-flex flex-column align-middle">
-                <a className="btn-main lead mr15 mx-auto" href={metaverseUrl}>Enter Metaverse</a>
+                <MetaverseModal />
               </div>
             </div>
           </div>
@@ -61,7 +42,6 @@ const MetaverseAuctions = () => {
           </div>
         </div>
       </section>
-
       <Footer />
     </div>
   );
