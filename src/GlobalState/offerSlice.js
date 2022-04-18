@@ -143,6 +143,7 @@ export const fetchAllOffers = (addresses) => async (dispatch) => {
   const { data } = await getAllOffers(addresses);
 
   if (data) dispatch(allOffersLoaded(data));
+  else dispatch(allOffersLoaded([]));
 };
 
 export const fetchMadeOffers = (address) => async (dispatch) => {
@@ -150,6 +151,7 @@ export const fetchMadeOffers = (address) => async (dispatch) => {
   const { data } = await getMyOffers(address);
 
   if (data) dispatch(madeOffersLoaded(data));
+  else dispatch(madeOffersLoaded([]));
 };
 
 export const fetchMyNFTs = (address) => async (dispatch) => {
@@ -157,6 +159,7 @@ export const fetchMyNFTs = (address) => async (dispatch) => {
   const { data } = await getQuickWallet(address);
 
   if (data) dispatch(myNFTsLoaded(data));
+  else dispatch(myNFTsLoaded([]));
 };
 
 export const fetchReceivedOffers = (address) => async (dispatch) => {
@@ -164,6 +167,7 @@ export const fetchReceivedOffers = (address) => async (dispatch) => {
   const { data } = await getReceivedOffers(address);
 
   if (data) dispatch(receivedOffersLoaded(data));
+  else dispatch(receivedOffersLoaded([]));
 };
 
 export const fetchFilteredOffers = (nftAddress, nftId, walletAddress) => async (dispatch) => {
@@ -171,6 +175,7 @@ export const fetchFilteredOffers = (nftAddress, nftId, walletAddress) => async (
   const { data } = await getFilteredOffers(nftAddress, nftId, walletAddress);
 
   if (data) dispatch(filteredOffersLoaded(data));
+  else dispatch(filteredOffersLoaded([]));
 };
 
 export const fetchOffersForSingleNFT = (nftAddress, nftId) => async (dispatch) => {
@@ -178,6 +183,7 @@ export const fetchOffersForSingleNFT = (nftAddress, nftId) => async (dispatch) =
   const { data } = await getOffersForSingleNFT(nftAddress, nftId);
 
   if (data) dispatch(offersForSingleNFTLoaded(data));
+  else dispatch(offersForSingleNFTLoaded([]));
 };
 
 export const updateOfferSuccess = (transactionHash, walletAddress) => async (dispatch) => {
