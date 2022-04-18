@@ -1,4 +1,4 @@
-import React, {memo, useEffect, useState} from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, Link } from 'react-router-dom';
 import Blockies from 'react-blockies';
@@ -19,11 +19,11 @@ import {
 } from '../../utils';
 import { getNftDetails } from '../../GlobalState/nftSlice';
 import { croSkullRedPotionImageHack } from '../../hacks';
-import PriceActionBar from "../NftDetails/PriceActionBar";
-import {Spinner} from "react-bootstrap";
-import MetaMaskOnboarding from "@metamask/onboarding";
-import {chainConnect, connectAccount} from "../../GlobalState/User";
-import MakeOfferDialog from "../Offer/MakeOfferDialog";
+import PriceActionBar from '../NftDetails/PriceActionBar';
+import { Spinner } from 'react-bootstrap';
+import MetaMaskOnboarding from '@metamask/onboarding';
+import { chainConnect, connectAccount } from '../../GlobalState/User';
+import MakeOfferDialog from '../Offer/MakeOfferDialog';
 import ReactPlayer from "react-player";
 
 const Nft1155 = ({ address, id }) => {
@@ -247,7 +247,9 @@ const Nft1155 = ({ address, id }) => {
                                       <div key={i} className="col-lg-4 col-md-6 col-sm-6">
                                         <div className="nft_attr">
                                           <h5>{humanize(data.trait_type)}</h5>
-                                          <h4>{humanize(isCrosmocraftsPartsDrop(address) ? data.Value : data.value)}</h4>
+                                          <h4>
+                                            {humanize(isCrosmocraftsPartsDrop(address) ? data.Value : data.value)}
+                                          </h4>
                                           {data.occurrence ? (
                                             <span>{Math.round(data.occurrence * 100)}% have this trait</span>
                                           ) : (
@@ -333,13 +335,15 @@ const Nft1155 = ({ address, id }) => {
           </div>
         </section>
       )}
-      <MakeOfferDialog
-        isOpen={openMakeOfferDialog}
-        toggle={() => setOpenMakeOfferDialog(!openMakeOfferDialog)}
-        nftData={nft}
-        collectionMetadata={collectionMetadata}
-        type={'Make'}
-      />
+      {openMakeOfferDialog && (
+        <MakeOfferDialog
+          isOpen={openMakeOfferDialog}
+          toggle={() => setOpenMakeOfferDialog(!openMakeOfferDialog)}
+          nftData={nft}
+          collectionMetadata={collectionMetadata}
+          type={'Make'}
+        />
+      )}
       <Footer />
     </div>
   );
