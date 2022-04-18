@@ -68,11 +68,11 @@ const NftCard = ({ royalty, listing, imgClass = 'marketplace', watermark, addres
   };
 
   const handleBuy = () => {
-    if (listing.market?.id) {
-      history.push(`/listing/${listing.market?.id}`);
-    } else {
+    // if (listing.market?.id) {
+    //   history.push(`/listing/${listing.market?.id}`);
+    // } else {
       history.push(`/collection/${listing.address}/${listing.id}`);
-    }
+    // }
   };
 
   const getIsNftListed = () => {
