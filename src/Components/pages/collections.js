@@ -190,16 +190,16 @@ const Collections = () => {
                     </th>
                   )}
                   {tableMobileView && (
+                    <th scope="col" style={{ cursor: 'pointer' }} onClick={() => sortCollections('floorPrice')}>
+                      Floor Price
+                    </th>
+                  )}
+                  {tableMobileView && (
                     <th scope="col" style={{ cursor: 'pointer' }}>
                       Avg Price {' '}
                       {timeframe !== null && (
                         <span className="badge bg-secondary">{timeframe}</span>
                       )}
-                    </th>
-                  )}
-                  {tableMobileView && (
-                    <th scope="col" style={{ cursor: 'pointer' }} onClick={() => sortCollections('floorPrice')}>
-                      Floor Price
                     </th>
                   )}
                   {tableMobileView && (
@@ -254,6 +254,10 @@ const Collections = () => {
                                 </span>
                                 <span className="text-end">{siPrefixedNumber(collectionSales(collection))}</span>
                               </div>
+                              <div className="col-12 mobile-view-list-item" onClick={() => sortCollections('floorPrice')}>
+                                <span>Floor Price</span>
+                                <span className="text-end">{collectionFloorPriceValue(collection)} CRO</span>
+                              </div>
                               <div className="col-12 mobile-view-list-item">
                                 <span>Avg Price {' '}
                                   {timeframe !== null && (
@@ -261,10 +265,6 @@ const Collections = () => {
                                   )}
                                 </span>
                                 <span className="text-end">{collectionAveragePrices(collection)} CRO</span>
-                              </div>
-                              <div className="col-12 mobile-view-list-item" onClick={() => sortCollections('floorPrice')}>
-                                <span>Floor Price</span>
-                                <span className="text-end">{collectionFloorPriceValue(collection)} CRO</span>
                               </div>
                               <div className="col-12 mobile-view-list-item" onClick={() => sortCollections('numberActive')}>
                                 <span>Active</span>
