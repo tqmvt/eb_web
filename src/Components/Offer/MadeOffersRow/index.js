@@ -3,8 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import Button from 'src/Components/components/Button';
 import styled from 'styled-components';
 import moment from 'moment';
+import Blockies from 'react-blockies';
 
-import {caseInsensitiveCompare, shortAddress} from 'src/utils';
+import { caseInsensitiveCompare, shortAddress } from 'src/utils';
 import config from 'src/Assets/networks/rpc_config.json';
 import { getNftDetails } from 'src/GlobalState/nftSlice';
 import MakeOfferDialog from '../MakeOfferDialog';
@@ -30,6 +31,11 @@ const TableRowContainer = styled.div`
 
     &:nth-child(7) {
       width: 10%;
+    }
+
+    .blockies {
+      border-radius: 100px;
+      margin-right: 4px;
     }
   }
 
@@ -105,7 +111,7 @@ export default function TableRow({ data, type }) {
   const { state, timeCreated, seller, buyer, price, nftAddress, nftId } = data;
 
   let nft = useSelector((state) => {
-    return { ...state.nft.nft, address: nftAddress }
+    return { ...state.nft.nft, address: nftAddress };
   });
 
   const dispatch = useDispatch();
@@ -173,14 +179,18 @@ export default function TableRow({ data, type }) {
       <TableRowContainer>
         <div className="table-row-item">
           <a href={`/collection/${collectionData?.slug}`}>
-            <img
-              className="lazy"
-              src={getCollectionAvatar()}
-              alt={getCollectionName()}
-              width="50"
-              height="50"
-              style={{ marginRight: '10px', borderRadius: '100px' }}
-            />
+            {getCollectionAvatar() ? (
+              <img
+                className="lazy"
+                src={getCollectionAvatar()}
+                alt={getCollectionName()}
+                width="50"
+                height="50"
+                style={{ marginRight: '10px', borderRadius: '100px' }}
+              />
+            ) : (
+              <Blockies seed={nftAddress.toLowerCase()} size={10} scale={5} className="blockies" />
+            )}
           </a>
           <div className="collection-name">{getCollectionName()}</div>
         </div>
