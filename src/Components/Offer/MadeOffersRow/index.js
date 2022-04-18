@@ -10,6 +10,7 @@ import config from 'src/Assets/networks/rpc_config.json';
 import { getNftDetails } from 'src/GlobalState/nftSlice';
 import MakeOfferDialog from '../MakeOfferDialog';
 import AcceptOfferDialog from '../AcceptOfferDialog';
+import {Link} from "react-router-dom";
 
 const knownContracts = config.known_contracts;
 
@@ -31,11 +32,6 @@ const TableRowContainer = styled.div`
 
     &:nth-child(7) {
       width: 10%;
-    }
-
-    .blockies {
-      border-radius: 100px;
-      margin-right: 4px;
     }
   }
 
@@ -178,20 +174,24 @@ export default function TableRow({ data, type }) {
       )}
       <TableRowContainer>
         <div className="table-row-item">
-          <a href={`/collection/${collectionData?.slug}`}>
-            {getCollectionAvatar() ? (
-              <img
-                className="lazy"
-                src={getCollectionAvatar()}
-                alt={getCollectionName()}
-                width="50"
-                height="50"
-                style={{ marginRight: '10px', borderRadius: '100px' }}
-              />
-            ) : (
-              <Blockies seed={nftAddress.toLowerCase()} size={10} scale={5} className="blockies" />
-            )}
-          </a>
+          <div className="coll_list_pp" style={{ cursor: 'pointer' }}>
+            <Link to={`/collection/${collectionData?.slug}`}>
+              {getCollectionAvatar() ? (
+                <img
+                  className="lazy"
+                  src={getCollectionAvatar()}
+                  alt={getCollectionName()}
+                  width="50"
+                  height="50"
+                  style={{ marginRight: '10px', borderRadius: '100px' }}
+                />
+              ) : (
+                <span style={{ marginRight: '10px', borderRadius: '100px' }}>
+                  <Blockies seed={nftAddress} size={10} scale={5} />
+                </span>
+              )}
+            </Link>
+          </div>
           <div className="collection-name">{getCollectionName()}</div>
         </div>
         <div className="table-row-item nft-title">
