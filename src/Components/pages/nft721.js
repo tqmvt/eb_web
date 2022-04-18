@@ -20,6 +20,7 @@ import MakeOfferDialog from '../Offer/MakeOfferDialog';
 import { connectAccount, chainConnect } from 'src/GlobalState/User';
 import {Spinner} from "react-bootstrap";
 
+import ReactPlayer from "react-player";
 const knownContracts = config.known_contracts;
 
 const Nft721 = ({ address, id }) => {
@@ -117,11 +118,33 @@ const Nft721 = ({ address, id }) => {
                 nft.useIframe ? (
                   <iframe width="100%" height="636" src={nft.iframeSource} />
                 ) : (
-                  <img
-                    src={croSkullRedPotionImageHack(address, nft.image)}
-                    className="img-fluid img-rounded mb-sm-30"
-                    alt={nft.name}
-                  />
+                  <>
+                    {nft.video ? (
+                      <ReactPlayer
+                        controls={true}
+                        url={nft.video}
+                        config={{
+                          file: {
+                            attributes: {
+                              onContextMenu: (e) => e.preventDefault(),
+                              controlsList: 'nodownload',
+                            },
+                          },
+                        }}
+                        muted={true}
+                        playing={true}
+                        loop={true}
+                        width="100%"
+                        height="auto"
+                      />
+                    ) : (
+                      <img
+                        src={croSkullRedPotionImageHack(address, nft.image)}
+                        className="img-fluid img-rounded mb-sm-30"
+                        alt={nft.name}
+                      />
+                    )}
+                  </>
                 )
               ) : (
                 <></>

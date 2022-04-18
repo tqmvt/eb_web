@@ -24,6 +24,7 @@ import {Spinner} from "react-bootstrap";
 import MetaMaskOnboarding from "@metamask/onboarding";
 import {chainConnect, connectAccount} from "../../GlobalState/User";
 import MakeOfferDialog from "../Offer/MakeOfferDialog";
+import ReactPlayer from "react-player";
 
 const Nft1155 = ({ address, id }) => {
   const dispatch = useDispatch();
@@ -121,11 +122,33 @@ const Nft1155 = ({ address, id }) => {
                 nft.useIframe ? (
                   <iframe width="100%" height="636" src={nft.iframeSource} />
                 ) : (
-                  <img
-                    src={croSkullRedPotionImageHack(address, nft.image)}
-                    className="img-fluid img-rounded mb-sm-30"
-                    alt={nft.name}
-                  />
+                  <>
+                    {nft.video ? (
+                      <ReactPlayer
+                        controls={true}
+                        url={nft.video}
+                        config={{
+                          file: {
+                            attributes: {
+                              onContextMenu: (e) => e.preventDefault(),
+                              controlsList: 'nodownload',
+                            },
+                          },
+                        }}
+                        muted={true}
+                        playing={true}
+                        loop={true}
+                        width="100%"
+                        height="auto"
+                      />
+                    ) : (
+                      <img
+                        src={croSkullRedPotionImageHack(address, nft.image)}
+                        className="img-fluid img-rounded mb-sm-30"
+                        alt={nft.name}
+                      />
+                    )}
+                  </>
                 )
               ) : (
                 <></>

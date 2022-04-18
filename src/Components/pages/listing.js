@@ -31,6 +31,7 @@ import {
 import config from '../../Assets/networks/rpc_config.json';
 import { croSkullRedPotionImageHack } from '../../hacks';
 import NFTTabOffers from '../Offer/NFTTabOffers';
+import ReactPlayer from "react-player";
 
 const Listing = () => {
   const { id } = useParams();
@@ -226,11 +227,33 @@ const Listing = () => {
                 listing.useIframe ? (
                   <iframe width="100%" height="636" src={listing.iframeSource} />
                 ) : (
-                  <img
-                    src={croSkullRedPotionImageHack(listing.nftAddress, listing.nft.image)}
-                    className="img-fluid img-rounded mb-sm-30"
-                    alt={listing.nft.name}
-                  />
+                  <>
+                    {listing.nft.video ? (
+                      <ReactPlayer
+                        controls={true}
+                        url={listing.nft.video}
+                        config={{
+                          file: {
+                            attributes: {
+                              onContextMenu: (e) => e.preventDefault(),
+                              controlsList: 'nodownload',
+                            },
+                          },
+                        }}
+                        muted={true}
+                        playing={true}
+                        loop={true}
+                        width="100%"
+                        height="auto"
+                      />
+                    ) : (
+                      <img
+                        src={croSkullRedPotionImageHack(listing.nftAddress, listing.nft.image)}
+                        className="img-fluid img-rounded mb-sm-30"
+                        alt={listing.nft.name}
+                      />
+                    )}
+                  </>
                 )
               ) : (
                 <></>
