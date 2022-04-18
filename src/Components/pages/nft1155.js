@@ -318,7 +318,6 @@ const Nft1155 = ({ address, id }) => {
           toggle={() => setOpenMakeOfferDialog(!openMakeOfferDialog)}
           nftData={nft}
           collectionMetadata={collectionMetadata}
-          type={'Make'}
         />
       )}
       <Footer />
