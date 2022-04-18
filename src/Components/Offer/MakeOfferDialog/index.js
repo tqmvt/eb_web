@@ -100,6 +100,11 @@ const Royalty = styled.div`
   color: ${({ theme }) => theme.colors.textColor3};
 `;
 
+const Disclaimer = styled.div`
+  font-size: 14px;
+  color: ${({ theme }) => theme.colors.textColor3};
+`;
+
 const OfferPrice = styled.div`
   font-size: 14px;
   color: ${({ theme }) => theme.colors.textColor3};
@@ -295,22 +300,39 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
                 <Royalty>{royalty ? `${royalty}%` : '-'}</Royalty>
               </FlexRow>
               {(offerType === OFFER_TYPE.make || offerType === OFFER_TYPE.update) && (
-                <FlexRow>
-                  <OfferPrice>Offer Price</OfferPrice>
-                  <OfferPriceInput>
-                    <Input
-                      type="number"
-                      className={`mx-2${offerPriceError ? ' is-error' : ''}`}
-                      onKeyDown={(e) => {
-                        if (e.code === 'Period' || e.code === 'Minus') {
-                          e.preventDefault();
-                        }
-                      }}
-                      onChange={onOfferValueChange}
-                    />
-                    CRO
-                  </OfferPriceInput>
-                </FlexRow>
+                <>
+                  <FlexRow>
+                    <OfferPrice>
+                      {offerType === OFFER_TYPE.update ? (
+                        <>New Offer Price</>
+                      ) : (
+                        <>Offer Price</>
+                      )}
+                    </OfferPrice>
+                    <OfferPriceInput>
+                      <Input
+                        type="number"
+                        className={`mx-2${offerPriceError ? ' is-error' : ''}`}
+                        onKeyDown={(e) => {
+                          if (e.code === 'Period' || e.code === 'Minus') {
+                            e.preventDefault();
+                          }
+                        }}
+                        onChange={onOfferValueChange}
+                      />
+                      CRO
+                    </OfferPriceInput>
+                  </FlexRow>
+                  {offerType === OFFER_TYPE.update && offerDataNew && (
+                    <FlexRow>
+                      {offerPrice > parseInt(offerDataNew.price) && (
+                        <Disclaimer>
+                          Offer will be increased by {offerPrice > parseInt(offerDataNew.price) ? offerPrice - parseInt(offerDataNew.price) : 0} CRO
+                        </Disclaimer>
+                      )}
+                    </FlexRow>
+                  )}
+                </>
               )}
               <div className="mt-3">
                 <Button
