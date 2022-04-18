@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { BigNumber, Contract, ethers } from 'ethers';
+import { Contract } from 'ethers';
 import { toast } from 'react-toastify';
 
 import { getQuickWallet } from '../core/api';
@@ -22,24 +22,29 @@ const offerSlice = createSlice({
   initialState: {
     error: false,
 
-    // offers list
+    // made offers list
     madeOffersLoading: false,
     madeOffers: [],
 
+    // todo: remove
     receivedOffersLoading: false,
     receivedOffers: [],
 
+    // all offers for received offers
     allOffersLoading: false,
     allOffers: [],
 
+    // offers list for an nft
     offersForSingleNFTLoading: false,
     offersForSingleNFT: [],
 
     contract: null,
 
+    // my nfts for received offers
     myNFTs: [],
     myNFTsLoading: false,
 
+    // filtered offers
     filteredOffers: [],
     filteredOffersLoading: false,
   },

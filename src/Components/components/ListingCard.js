@@ -1,7 +1,7 @@
 import React, { memo, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ethers } from 'ethers';
 import MetaMaskOnboarding from '@metamask/onboarding';
 
@@ -125,9 +125,7 @@ const ListingCard = ({ listing, imgClass = 'marketplace', watermark, address, co
           </MakeBuy>
           <MakeOffer>
             <Link className="linkPointer" to={`/collection/${listing.nftAddress}/${listing.nftId}`}>
-              <Button type="legacy">
-                Buy
-              </Button>
+              <Button type="legacy">Buy</Button>
             </Link>
             <div>
               <Button type="legacy-outlined" onClick={() => handleMakeOffer('Make')}>
@@ -138,13 +136,15 @@ const ListingCard = ({ listing, imgClass = 'marketplace', watermark, address, co
         </div>
       </div>
 
-      <MakeOfferDialog
-        isOpen={openMakeOfferDialog}
-        toggle={() => setOpenMakeOfferDialog(!openMakeOfferDialog)}
-        nftData={convertListingData(listing)}
-        collectionMetadata={collectionMetadata}
-        type={modalType}
-      />
+      {openMakeOfferDialog && (
+        <MakeOfferDialog
+          isOpen={openMakeOfferDialog}
+          toggle={() => setOpenMakeOfferDialog(!openMakeOfferDialog)}
+          nftData={convertListingData(listing)}
+          collectionMetadata={collectionMetadata}
+          type={modalType}
+        />
+      )}
     </>
   );
 };

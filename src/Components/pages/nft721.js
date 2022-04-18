@@ -18,7 +18,7 @@ import NFTTabOffers from '../Offer/NFTTabOffers';
 import PriceActionBar from '../NftDetails/PriceActionBar';
 import MakeOfferDialog from '../Offer/MakeOfferDialog';
 import { connectAccount, chainConnect } from 'src/GlobalState/User';
-import {Spinner} from "react-bootstrap";
+import { Spinner } from 'react-bootstrap';
 
 const knownContracts = config.known_contracts;
 
@@ -312,13 +312,15 @@ const Nft721 = ({ address, id }) => {
           </div>
         </section>
       )}
-      <MakeOfferDialog
-        isOpen={openMakeOfferDialog}
-        toggle={() => setOpenMakeOfferDialog(!openMakeOfferDialog)}
-        nftData={nft}
-        collectionMetadata={collectionMetadata}
-        type={'Make'}
-      />
+      {openMakeOfferDialog && (
+        <MakeOfferDialog
+          isOpen={openMakeOfferDialog}
+          toggle={() => setOpenMakeOfferDialog(!openMakeOfferDialog)}
+          nftData={nft}
+          collectionMetadata={collectionMetadata}
+          type={'Make'}
+        />
+      )}
       <Footer />
     </div>
   );

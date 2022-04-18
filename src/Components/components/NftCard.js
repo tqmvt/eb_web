@@ -148,14 +148,16 @@ const NftCard = ({ royalty, listing, imgClass = 'marketplace', watermark, addres
           </MakeOffer>
         </div>
       </div>
-      <MakeOfferDialog
-        isOpen={openMakeOfferDialog}
-        toggle={() => setOpenMakeOfferDialog(!openMakeOfferDialog)}
-        nftData={listing}
-        royalty={royalty}
-        collectionMetadata={collectionMetadata}
-        type={modalType}
-      />
+      {openMakeOfferDialog && (
+        <MakeOfferDialog
+          isOpen={openMakeOfferDialog}
+          toggle={() => setOpenMakeOfferDialog(!openMakeOfferDialog)}
+          nftData={listing}
+          royalty={royalty}
+          collectionMetadata={collectionMetadata}
+          type={modalType}
+        />
+      )}
     </>
   );
 };
