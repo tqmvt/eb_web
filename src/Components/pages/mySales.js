@@ -2,9 +2,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-import Footer from '../components/Footer';
-// import TopFilterBar from '../components/TopFilterBar';
 import MySoldNftCollection from '../components/MySoldNftCollection';
+import Footer from '../components/Footer';
 
 const MySales = () => {
   const walletAddress = useSelector((state) => state.user.address);

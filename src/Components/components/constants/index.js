@@ -42,7 +42,7 @@ export const settings = {
       breakpoint: 480,
       settings: {
         slidesToShow: 1,
-        slidesToScroll: 1
+        slidesToScroll: 1,
       },
     },
   ],

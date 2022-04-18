@@ -1,4 +1,4 @@
-import React, {memo, useEffect, useState} from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import Blockies from 'react-blockies';
 import { useDispatch, useSelector } from 'react-redux';
 import useOnclickOutside from 'react-cool-onclickoutside';
@@ -11,7 +11,8 @@ import {
   faShoppingBasket,
   faSignOutAlt,
   faExclamationCircle,
-  faShoppingBag, faReceipt
+  faShoppingBag,
+  faReceipt,
 } from '@fortawesome/free-solid-svg-icons';
 import { toast } from 'react-toastify';
 import MetaMaskOnboarding from '@metamask/onboarding';
@@ -26,6 +27,8 @@ import {
   AccountMenuActions,
 } from '../../GlobalState/User';
 import rpcConfig from '../../Assets/networks/rpc_config.json';
+
+import HandHoldingCroIcon from 'src/Assets/images/hand-holding-cro.svg';
 
 const AccountMenu = function () {
   const dispatch = useDispatch();
@@ -119,16 +122,16 @@ const AccountMenu = function () {
       localStorage.getItem('DeFiLink_session_storage_extension')
     ) {
       if (!user.provider) {
-        if (window.navigator.userAgent.includes("Crypto.com DeFiWallet")) {
-          dispatch(connectAccount(false, "defi"));
+        if (window.navigator.userAgent.includes('Crypto.com DeFiWallet')) {
+          dispatch(connectAccount(false, 'defi'));
         } else {
           dispatch(connectAccount());
         }
       }
     }
     if (!user.provider) {
-      if (window.navigator.userAgent.includes("Crypto.com DeFiWallet")) {
-        dispatch(connectAccount(false, "defi"));
+      if (window.navigator.userAgent.includes('Crypto.com DeFiWallet')) {
+        dispatch(connectAccount(false, 'defi'));
       }
     }
 
@@ -260,7 +263,6 @@ const AccountMenu = function () {
                 <li>
                   <span onClick={() => navigateTo(`/nfts`)}>
                     <span>
-                      {' '}
                       <FontAwesomeIcon icon={faImage} />{' '}
                     </span>
                     <span>My NFTs</span>
@@ -275,7 +277,6 @@ const AccountMenu = function () {
                       </span>
                     ) : (
                       <span>
-                        {' '}
                         <FontAwesomeIcon icon={faEnvelopeOpenText} />{' '}
                       </span>
                     )}
@@ -285,17 +286,24 @@ const AccountMenu = function () {
                 <li>
                   <span onClick={() => navigateTo(`/sales`)}>
                     <span>
-                      {' '}
                       <FontAwesomeIcon icon={faShoppingBasket} />{' '}
                     </span>
                     <span>My Sales</span>
                   </span>
                 </li>
+                <li className="my-offers-menu-item">
+                  <span onClick={() => navigateTo(`/offers`)}>
+                    <span>
+                      <img src={HandHoldingCroIcon} alt="handholding-cro" width="14" height="14" />{' '}
+                    </span>
+                    <span>My Offers</span>
+                  </span>
+                  {/* <div className="notification-badge"></div> */}
+                </li>
                 {(user.vipCount > 0 || user.stakeCount > 0) && (
                   <li>
                     <span onClick={() => navigateTo(`/staking`)}>
                       <span>
-                        {' '}
                         <FontAwesomeIcon icon={faShoppingBag} />{' '}
                       </span>
                       <span>My Staking</span>
@@ -305,7 +313,6 @@ const AccountMenu = function () {
                 <li>
                   <span onClick={clearCookies}>
                     <span>
-                      {' '}
                       <FontAwesomeIcon icon={faBolt} />{' '}
                     </span>
                     <span>Clear Cookies</span>
@@ -317,7 +324,6 @@ const AccountMenu = function () {
                 <li>
                   <span onClick={logout}>
                     <span>
-                      {' '}
                       <FontAwesomeIcon icon={faSignOutAlt} />{' '}
                     </span>
                     <span>Disconnect Wallet</span>

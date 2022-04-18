@@ -46,7 +46,6 @@ const ManageAuctions = () => {
 
   return (
     <div>
-
       <section
         className="jumbotron breadcumb no-bg"
         style={{ backgroundImage: `url(${'/img/background/subheader-blue.webp'})` }}

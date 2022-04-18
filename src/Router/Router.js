@@ -2,6 +2,9 @@ import React, { memo } from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import * as Sentry from '@sentry/react';
 import { connect } from 'react-redux';
+import { Spinner } from 'react-bootstrap';
+
+import history from '../history';
 import Home from '../Components/pages/home';
 import Marketplace from '../Components/pages/marketplace';
 import Collection from '../Components/pages/collection';
@@ -16,14 +19,15 @@ import Drop from '../Components/pages/drop';
 import DropBuildShip from '../Components/pages/dropBuildShip';
 import MyListings from '../Components/pages/myListings';
 import MySales from '../Components/pages/mySales';
+import MyOffers from '../Components/pages/myOffers';
 import MyStaking from '../Components/pages/myStaking';
 import Collections from '../Components/pages/collections';
 import MetaverseAuctions from '../Components/pages/metaverseAuctions';
 import Rugsurance from '../Components/pages/rugsurance';
-import history from '../history';
 import { ErrorPage } from '../Components/pages/ErrorPage';
-import { Spinner } from 'react-bootstrap';
-import ManageAuctions from "../Components/pages/manageAuctions";
+import CollectionDetail from 'src/Components/pages/collectionDetail';
+import ManageAuctions from '../Components/pages/manageAuctions';
+
 const SentryEnhancedRoute = Sentry.withSentryRouting(Route);
 
 const mapStateToProps = (state) => ({
@@ -75,21 +79,35 @@ const Component = ({ walletAddress, authInitFinished }) => {
           {/*<Route exact path="/roadmap" component={Roadmap} />*/}
           <PrivateRoute exact path="/nfts" component={MyNfts} />
           <PrivateRoute exact path="/sales" component={MySales} />
+          <PrivateRoute exact path="/offers" component={MyOffers} />
           <PrivateRoute exact path="/staking" component={MyStaking} />
           <PrivateRoute exact path="/wallet/listings" component={MyListings} />
           <SentryEnhancedRoute exact path="/build-ship" component={DropBuildShip} />
 
           <SentryEnhancedRoute exact path="/drops" component={Drops} />
-          <SentryEnhancedRoute exact path="/drops/founding-member"  render={() => <Redirect to="/collection/founding-member" />} />
+          <SentryEnhancedRoute
+            exact
+            path="/drops/founding-member"
+            render={() => <Redirect to="/collection/founding-member" />}
+          />
           <SentryEnhancedRoute exact path="/drops/:slug" component={Drop} />
           <SentryEnhancedRoute exact path="/listing/:id" component={Listing} />
-          <SentryEnhancedRoute exact path="/manage/auctions" component={ManageAuctions}/>
+          <SentryEnhancedRoute exact path="/manage/auctions" component={ManageAuctions} />
           <SentryEnhancedRoute exact path="/auctions/:id" component={Auction} />
           <SentryEnhancedRoute exact path="/collections" component={Collections} />
-          <SentryEnhancedRoute exact path="/collection/mad-treehouse"  render={() => <Redirect to="/collection/mm-treehouse" />} />
-          <SentryEnhancedRoute exact path="/collection/weird-apes-club-v2"  render={() => <Redirect to="/collection/weird-apes-club" />} />
+          <SentryEnhancedRoute
+            exact
+            path="/collection/mad-treehouse"
+            render={() => <Redirect to="/collection/mm-treehouse" />}
+          />
+          <SentryEnhancedRoute
+            exact
+            path="/collection/weird-apes-club-v2"
+            render={() => <Redirect to="/collection/weird-apes-club" />}
+          />
           <SentryEnhancedRoute exact path="/collection/:slug" component={Collection} />
           <SentryEnhancedRoute exact path="/collection/:slug/:id" component={Nft} />
+          {/* <SentryEnhancedRoute exact path="/collection-detail/:id" component={CollectionDetail} /> */}
           <SentryEnhancedRoute exact path="/seller/:address" component={Seller} />
           <SentryEnhancedRoute exact path="/metaverse-auctions" component={MetaverseAuctions} />
           {/*<SentryEnhancedRoute exact path="/slothty-rugsurance" component={Rugsurance} />*/}

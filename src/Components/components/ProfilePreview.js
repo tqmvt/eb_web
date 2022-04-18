@@ -1,14 +1,11 @@
 import React, { memo } from 'react';
-import styled, { createGlobalStyle } from 'styled-components';
-import { getShortIdForView } from '../../utils';
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-
 import Blockies from 'react-blockies';
-import LayeredIcon from './LayeredIcon';
 import { faCheck, faCircle } from '@fortawesome/free-solid-svg-icons';
 
-const GlobalStyles = createGlobalStyle`
-`;
+import LayeredIcon from './LayeredIcon';
+import { getShortIdForView } from '../../utils';
 
 const VerifiedIcon = styled.span`
   font-size: 8px;

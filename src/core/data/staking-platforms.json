@@ -1,5 +1,5 @@
 {
-  "crodex":  {
+  "crodex": {
     "name": "Crodex",
     "url": "https://swap.crodex.app/#/rewards/nft"
   },
@@ -9,6 +9,6 @@
   },
   "cyborgswap": {
     "name": "CyborgSwap",
-    "url":"https://cyborgswap.io/nft-staking"
+    "url": "https://cyborgswap.io/nft-staking"
   }
 }

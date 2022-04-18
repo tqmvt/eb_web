@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom';
 import { ethers } from 'ethers';
 import Blockies from 'react-blockies';
 import { Form, Spinner } from 'react-bootstrap';
-import { siPrefixedNumber } from '../../utils';
+
 import Footer from '../components/Footer';
 import { getAllCollections } from '../../GlobalState/collectionsSlice';
-import { debounce } from '../../utils';
+import {debounce, siPrefixedNumber} from '../../utils';
 
 const GlobalStyles = createGlobalStyle`
   .mobile-view-list-item {
@@ -100,7 +100,7 @@ const Collections = () => {
     setSearchTerms(value);
   }, 300);
 
-  //  collection helper pipes
+  // collection helper pipes
 
   const collectionVolume = (collection) => {
     if (timeframe === null) return Math.round(collection.totalVolume)
@@ -190,16 +190,16 @@ const Collections = () => {
                     </th>
                   )}
                   {tableMobileView && (
+                    <th scope="col" style={{ cursor: 'pointer' }} onClick={() => sortCollections('floorPrice')}>
+                      Floor Price
+                    </th>
+                  )}
+                  {tableMobileView && (
                     <th scope="col" style={{ cursor: 'pointer' }}>
                       Avg Price {' '}
                       {timeframe !== null && (
                         <span className="badge bg-secondary">{timeframe}</span>
                       )}
-                    </th>
-                  )}
-                  {tableMobileView && (
-                    <th scope="col" style={{ cursor: 'pointer' }} onClick={() => sortCollections('floorPrice')}>
-                      Floor Price
                     </th>
                   )}
                   {tableMobileView && (
@@ -254,6 +254,10 @@ const Collections = () => {
                                 </span>
                                 <span className="text-end">{siPrefixedNumber(collectionSales(collection))}</span>
                               </div>
+                              <div className="col-12 mobile-view-list-item" onClick={() => sortCollections('floorPrice')}>
+                                <span>Floor Price</span>
+                                <span className="text-end">{collectionFloorPriceValue(collection)} CRO</span>
+                              </div>
                               <div className="col-12 mobile-view-list-item">
                                 <span>Avg Price {' '}
                                   {timeframe !== null && (
@@ -261,10 +265,6 @@ const Collections = () => {
                                   )}
                                 </span>
                                 <span className="text-end">{collectionAveragePrices(collection)} CRO</span>
-                              </div>
-                              <div className="col-12 mobile-view-list-item" onClick={() => sortCollections('floorPrice')}>
-                                <span>Floor Price</span>
-                                <span className="text-end">{collectionFloorPriceValue(collection)} CRO</span>
                               </div>
                               <div className="col-12 mobile-view-list-item" onClick={() => sortCollections('numberActive')}>
                                 <span>Active</span>

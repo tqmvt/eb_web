@@ -10,10 +10,12 @@ import marketplaceReducer from '../GlobalState/marketplaceSlice';
 import auctionsReducer from '../GlobalState/auctionsSlice';
 import listingReducer from '../GlobalState/listingSlice';
 import auctionReducer from '../GlobalState/auctionSlice';
+import metaverseReducer from '../GlobalState/metaverseSlice';
 import nftReducer from '../GlobalState/nftSlice';
 import collectionsReducer from '../GlobalState/collectionsSlice';
 import collectionReducer from '../GlobalState/collectionSlice';
 import { appInitializeStateReducer } from '../GlobalState/InitSlice';
+import offerReducer from 'src/GlobalState/offerSlice';
 import { user } from '../GlobalState/User';
 
 const rootReducer = combineReducers({
@@ -27,7 +29,9 @@ const rootReducer = combineReducers({
   user: user,
   appInitialize: appInitializeStateReducer,
   collections: collectionsReducer,
-  collection: collectionReducer
+  collection: collectionReducer,
+  offer: offerReducer,
+  metaverse: metaverseReducer,
 });
 
 const reduxDevToolsComposeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

@@ -2,11 +2,12 @@
   "name": "Cronos Testnet",
   "chain_id": "338",
   "write_rpc": "https://evm-t3.cronos.org/",
-  "read_rpc": "https://evm-t3.cronos.org/",
+  "read_rpc": "https://rpc.ebisusbay.biz/",
   "symbol": "tCRO",
   "explorer": "https://cronos.org/explorer/testnet3/",
   "api_base": "https://testapi.ebisusbay.biz/",
   "app_base": "https://testapp.ebisusbay.biz/",
+  "subgraph_base": "https://testgraph.ebisusbay.biz:8000/subgraphs/name/ebisusbay/",
   "membership_contract": "0x3F1590A5984C89e6d5831bFB76788F3517Cdf034",
   "market_contract": "0xb3cB12e7F9e442ef799a2B7e92f65ab8710d7b27",
   "stake_contract": "0x70A9989dd73B026B34462BE158963587dD9ca16f",
@@ -14,6 +15,7 @@
   "cronie_contract": "0xe9DCa9E03F31CBD538A19a89eA2cA3684AF2788f",
   "elon_contract": "0x2fE1f2722fa215A68b92aECaD425259C0D645972",
   "ebisu_contract": "0x65A422AB9c95fc94208E010B8d4ab50F7E79af19",
+  "offer_contract": "0x8Dd84fb5d7f8A504BA2398243D768C604f8Daf5E",
   "slothy_rugsurance_contract": "0x99F3960E8219384BF0624D388cAD698d5A54AE6C",
   "known_tokens": {
     "loot": {
@@ -118,7 +120,8 @@
         "maxSupply": 1000,
         "website": "",
         "twitter": "",
-        "discord": ""}
+        "discord": ""
+      }
     },
     {
       "slug": "crypto-lovers",
@@ -776,7 +779,8 @@
         "discord": "https://discord.gg/x9bvzuSBeV",
         "medium": "https://medium.com/@mariescyborgs/cyborg-brotherhood-28173eccf03a"
       }
-    }, {
+    },
+    {
       "name": "Lady Ri",
       "slug": "lady-ri",
       "multiToken": false,
@@ -814,6 +818,47 @@
         "discord": "https://discord.gg/kardia",
         "telegram": "https://t.me/kardianft",
         "medium": "https://medium.com/@playkardia/"
+      }
+    },
+    {
+      "name": "Monkey Of Anarkey",
+      "slug": "monkey-of-anarkey",
+      "multiToken": false,
+      "address": "0xF559EefCD14E0a65e20281b9F0aD4c7FabF9D855",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": false,
+        "avatar": "/img/collections/monkey-anarkey/avatar.webp",
+        "card": "/img/collections/monkey-anarkey/card.webp",
+        "banner": "/img/collections/monkey-anarkey/banner.webp",
+        "maxSupply": 6010,
+        "website": "https://www.monkeyoa.io/",
+        "twitter": "https://twitter.com/MonkeyOfAnarkey",
+        "discord": "https://discord.gg/wxYhYkVhNN",
+        "telegram": "https://t.me/monkeyoa",
+        "medium": "https://medium.com/@monkeyoa"
+      }
+    },
+    {
+      "name": "Barn Cats",
+      "slug": "barn-cats",
+      "multiToken": false,
+      "address": "0x000732Ddc0f7208b2400944d4a7296bc001aE866",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/lazyhorse/barncats/avatar.webp",
+        "card": "/img/collections/lazyhorse/card.png",
+        "banner": "/img/collections/lazyhorse/banner.png",
+        "maxSupply": 10000,
+        "website": "https://www.lazyhorseraceclub.com",
+        "twitter": "https://twitter.com/LazyHorseRC",
+        "discord": "https://discord.gg/lhrc",
+        "medium": "https://medium.com/@lazyhorseraceclub"
       }
     },
     {
@@ -867,12 +912,12 @@
     },
     {
       "id": 6,
-      "slug": "lazyhorse",
+      "slug": "lazy-horse",
       "imgNft": "/img/drops/lazyhorse/drop.webp",
       "imgPreview": "/img/drops/lazyhorse/drop.webp",
       "imgAvatar": "/img/collections/lazyhorse/avatar.png",
       "imgBanner": "/img/collections/lazyhorse/banner.png",
-      "title": "lazyhorse",
+      "title": "Lazy Horse",
       "subtitle": "",
       "description": "The Lazy Horse Race Club connects the metaverse and real thoroughbred horse racing in a fun and unique club. Each Lazy Horse NFT grants access to the metaverse clubhouse and Lazy Horse Racing Game (drops end of January!), it also connects you to our real racing team. The Club owns, maintains and races horses with profits being shared by the community. All of the club's efforts are most importantly focused on providing a long and sustainable post-racing life for all horses. A large portion of all project proceeds will directly fund equine rescue and retirement, ensuring great lives for these beautiful animals.",
       "author": { "name": "LazyHorse", "link": "https://www.lazyhorseraceclub.com/" },
@@ -891,7 +936,8 @@
       "start": 1639591200000,
       "end": null,
       "referral": false,
-      "is1155": false
+      "is1155": false,
+      "published": true
     },
     {
       "id": 7,
@@ -990,8 +1036,8 @@
       "imgBanner": "/img/collections/lazyhorse/banner.png",
       "title": "The Lazy Horse Member NFT (PONY)",
       "subtitle": "",
-      "description": "DESCRIPTION NEEDED",
-      "author": { "name": "Cronos Goats", "link": "https://www.lazyhorseraceclub.com/" },
+      "description": "It's Ponies!",
+      "author": { "name": "Lazy Horse", "link": "https://www.lazyhorseraceclub.com/" },
       "address": "0xEd8d78449402f44C8e9B0a38de785D0CaD73F76e",
       "maxMintPerTx": 20,
       "totalSupply": 2000,
@@ -1007,7 +1053,8 @@
       "start": 1642536000000,
       "end": null,
       "referral": false,
-      "is1155": false
+      "is1155": false,
+      "published": true
     },
     {
       "id": 12,
@@ -1822,6 +1869,31 @@
       "totalSupply": 6010,
       "cost": "145",
       "memberCost": "95",
+      "foundersOnly": false,
+      "start": null,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false
+    },
+    {
+      "slug": "monkey-of-anarkey",
+      "imgNft": "/img/drops/monkey-anarkey/drop.webp",
+      "imgPreview": "/img/drops/monkey-anarkey/drop.webp",
+      "imgAvatar": "/img/collections/monkey-anarkey/avatar.webp",
+      "imgBanner": "/img/collections/monkey-anarkey/banner.webp",
+      "title": "Monkey Of Anarkey",
+      "subtitle": "The MoA universe will give you access to a unique collection of 1999 NFTs monkeys, darker and more badass than ever. \nEach NFT is unique and composed of different attributes that make it belong to one of the 4 sections, each with its own perks. \n So don't waste any more time, come and join us if you want to be part of the MoA fam!",
+      "description": "\"We accepted to be separated from our families and to be put in cages, to be treated as less than nothing.... Then everything changed on May 28, 2016 and the world will now never be the same.\" \nMonkey Of Anarkey is a gang of biker monkeys determined to get revenge after centuries of abuse. The MoA universe will give you access to a unique collection of 1999 NFTs monkeys, darker and more badass than ever. \n The MoA NFT collection is divided into 4 sections:\n\nCREW MONKEYS\nSICARIO MONKEYS\nTREASURER MONKEYS\nPRESIDENT MONKEYS\n\nEach NFT is unique and composed of different attributes that make it belong to one of the 4 sections, each with its own perks. \nSharing 3% of the total turnover of the first sale, decisions on how to use Ebisu's Bay royalties, NFT staking and many other things. This is what awaits you if you decide to join the MoA fam!",
+      "author": { "name": "MoA", "link": "https://www.monkeyoa.io/" },
+      "address": "0xF559EefCD14E0a65e20281b9F0aD4c7FabF9D855",
+      "maxMintPerTx": 25,
+      "maxMintPerAddress": 100,
+      "totalSupply": 1999,
+      "cost": "390",
+      "memberCost": "340",
+      "whitelistCost": "290",
       "foundersOnly": false,
       "start": null,
       "end": null,

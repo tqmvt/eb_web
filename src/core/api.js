@@ -1,15 +1,16 @@
 import { BigNumber, Contract, ethers } from 'ethers';
 import * as Sentry from '@sentry/react';
+import moment from 'moment';
+
 import config from '../Assets/networks/rpc_config.json';
 // import Market from '../Contracts/Marketplace.json';
-import {ERC1155, ERC721, MetaPixelsAbi, SouthSideAntsReadAbi} from '../Contracts/Abis';
+import { ERC1155, ERC721, MetaPixelsAbi, SouthSideAntsReadAbi } from '../Contracts/Abis';
 import IPFSGatewayTools from '@pinata/ipfs-gateway-tools/dist/browser';
 import { dataURItoBlob } from '../Store/utils';
-import moment from 'moment';
 import { SortOption } from '../Components/Models/sort-option.model';
-
+import { CollectionSortOption } from '../Components/Models/collection-sort-option.model';
 import { FilterOption } from '../Components/Models/filter-option.model';
-import {isMetapixelsCollection, isSouthSideAntsCollection} from "../utils";
+import {caseInsensitiveCompare, isMetapixelsCollection, isSouthSideAntsCollection} from '../utils';
 
 const gatewayTools = new IPFSGatewayTools();
 const gateway = 'https://mygateway.mypinata.cloud';
@@ -25,6 +26,9 @@ const api = {
   nft: '/nft',
   auctions: '/auctions',
   unfilteredListings: '/unfilteredlistings',
+  collectionSummary: '/collection/summary',
+  collectionDetails: '/fullcollections',
+  wallets: '/wallets',
 };
 
 export default api;
@@ -40,7 +44,7 @@ export default api;
 //  just for sortAndFetchListings function
 let abortController = null;
 
-export async function sortAndFetchListings(page, sort, filter, traits, powertraits, search, state) {
+export async function sortAndFetchListings(page, sort, filter, traits, powertraits, search, state, filterListed) {
   let pagesize = 50;
 
   let query = {
@@ -52,7 +56,14 @@ export async function sortAndFetchListings(page, sort, filter, traits, powertrai
   };
 
   if (filter && filter instanceof FilterOption) {
-    query = { ...query, ...filter.toApi() };
+    let filterParams = filter.toApi();
+
+    // Make backwards compatible with new filter based on /fullcollections endpoint
+    if (Object.keys(filterParams).includes('address')) {
+      filterParams.collection = filterParams.address;
+      delete filterParams.address;
+    }
+    query = { ...query, ...filterParams };
   }
 
   if (sort && sort instanceof SortOption) {
@@ -147,11 +158,11 @@ export async function getListing(listingId) {
 
     const isMetaPixels = isMetapixelsCollection(rawListing['nftAddress']);
     if (isMetaPixels) {
-      const contract =  new Contract(rawListing['nftAddress'], MetaPixelsAbi, readProvider);
+      const contract = new Contract(rawListing['nftAddress'], MetaPixelsAbi, readProvider);
       const data = await contract.lands(rawListing['nftId']);
-      const plotSize = `${(data.xmax - data.xmin + 1)}x${(data.ymax - data.ymin + 1)}`;
-      const plotCoords = `(${data.xmin}, ${data.ymin})`
-      rawListing['nft'].description = `Metaverse Pixel plot at ${plotCoords} with a ${plotSize} size`
+      const plotSize = `${data.xmax - data.xmin + 1}x${data.ymax - data.ymin + 1}`;
+      const plotCoords = `(${data.xmin}, ${data.ymin})`;
+      rawListing['nft'].description = `Metaverse Pixel plot at ${plotCoords} with a ${plotSize} size`;
     }
 
     const listing = {
@@ -170,7 +181,7 @@ export async function getListing(listingId) {
       royalty: rawListing['royalty'],
       nft: rawListing['nft'],
       useIframe: isMetaPixels,
-      iframeSource: isMetaPixels ? `https://www.metaversepixels.app/grid?id=${rawListing['nftId']}&zoom=3` : null
+      iframeSource: isMetaPixels ? `https://www.metaversepixels.app/grid?id=${rawListing['nftId']}&zoom=3` : null,
     };
     return listing;
   } catch (error) {
@@ -199,15 +210,124 @@ export async function getCollectionMetadata(contractAddress, sort, filter) {
     query = { ...query, ...sortProps };
   }
   if (contractAddress != null) {
-    query['collection'] = Array.isArray(contractAddress) ?
-      contractAddress.map(c => ethers.utils.getAddress(c.toLowerCase())) :
-      ethers.utils.getAddress(contractAddress.toLowerCase());
+    query['collection'] = Array.isArray(contractAddress)
+      ? contractAddress.map((c) => ethers.utils.getAddress(c.toLowerCase()))
+      : ethers.utils.getAddress(contractAddress.toLowerCase());
   }
 
   const queryString = new URLSearchParams(query);
 
   const uri = `${api.baseUrl}${api.collections}?${queryString}`;
   return await (await fetch(uri)).json();
+}
+
+export async function getCollectionSummary(address) {
+  address = Array.isArray(address)
+    ? address.map((c) => ethers.utils.getAddress(c.toLowerCase()))
+    : ethers.utils.getAddress(address.toLowerCase());
+
+  const query = { address };
+  const queryString = new URLSearchParams(query);
+  const uri = `${api.baseUrl}${api.collectionSummary}?${queryString}`;
+  return await (await fetch(uri)).json();
+}
+
+export async function sortAndFetchCollectionDetails(page, sort, filter, traits, powertraits, search, filterListed) {
+  let pagesize = 12;
+
+  let query = {
+    page: page,
+    pageSize: pagesize,
+    sortBy: 'id',
+    direction: 'desc',
+  };
+
+  if (filter && filter instanceof FilterOption) {
+    query = { ...query, ...filter.toApi() };
+  }
+
+  if (sort && sort instanceof CollectionSortOption) {
+    query = { ...query, ...sort.toApi() };
+  }
+
+  if (traits && Object.keys(traits).length > 0) {
+    //  traits      = { traitCategoryName1: {traitName2: true }, traitCategoryName3: {traitName4: false}}
+    //  traitFilter = { traitCategoryName1: ['traitName2']}
+    const traitFilter = Object.keys(traits)
+      .map((traitCategoryName) => {
+        const traitCategory = traits[traitCategoryName];
+
+        const traitCategoryKeys = Object.keys(traitCategory);
+
+        const truthyFilters = traitCategoryKeys.filter((traitCategoryKey) => traitCategory[traitCategoryKey]);
+
+        return truthyFilters.length === 0 ? {} : { [traitCategoryName]: truthyFilters };
+      })
+      .reduce((prev, curr) => ({ ...prev, ...curr }), {});
+
+    query['traits'] = JSON.stringify(traitFilter);
+  }
+
+  if (powertraits && Object.keys(powertraits).length > 0) {
+    const traitFilter = Object.keys(powertraits)
+      .map((traitCategoryName) => {
+        const traitCategory = powertraits[traitCategoryName];
+
+        const traitCategoryKeys = Object.keys(traitCategory);
+
+        const truthyFilters = traitCategoryKeys.filter((traitCategoryKey) => traitCategory[traitCategoryKey]);
+
+        return truthyFilters.length === 0 ? {} : { [traitCategoryName]: truthyFilters };
+      })
+      .reduce((prev, curr) => ({ ...prev, ...curr }), {});
+
+    query['powertraits'] = JSON.stringify(traitFilter);
+  }
+
+  if (search) query['search'] = search;
+  if (filterListed) query['listed'] = filterListed;
+
+  const queryString = new URLSearchParams(query);
+
+  const url = new URL(api.collectionDetails, `${api.baseUrl}`);
+  const uri = `${url}?${queryString}`;
+
+  //  Debugging
+  const date = new Date();
+  //  Debugging
+  const time = `${date.getSeconds()}-${date.getMilliseconds()}`;
+  //  Debugging
+  const log = (message) => {
+    if (process.env.NODE_ENV === 'development') {
+      console.log(`${time} ${message}`);
+    }
+  };
+
+  try {
+    log(`Ongoing call: ${!!abortController}`);
+
+    if (abortController) {
+      abortController.abort();
+      log(`Cancelled previous call.`);
+    }
+
+    abortController = new AbortController();
+    const { signal } = abortController;
+
+    const response = await fetch(uri, { signal });
+
+    abortController = null;
+    log(`Went through.`);
+
+    return { cancelled: false, response: await response.json() };
+  } catch (error) {
+    if (error && error.name === 'AbortError') {
+      log(`Cancelled.`);
+      return { cancelled: true, response: [] };
+    }
+    abortController = null;
+    throw new TypeError(error);
+  }
 }
 
 export async function getCollectionTraits(contractAddress) {
@@ -242,19 +362,19 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
   const signer = walletProvider.getSigner();
 
   let listings = [];
-  let chunkParams = {complete: false, pageSize: 100, curPage: 1}
+  let chunkParams = { complete: false, pageSize: 100, curPage: 1 };
   while (!chunkParams.complete) {
     const queryString = new URLSearchParams({
       state: 0,
       page: chunkParams.curPage,
       pageSize: chunkParams.pageSize,
-      seller: walletAddress
+      seller: walletAddress,
     });
     const url = new URL(api.listings, `${api.baseUrl}`);
     const listingsReponse = await (await fetch(`${url}?${queryString}`)).json();
     listings = [...listings, ...listingsReponse.listings];
     chunkParams.complete = listingsReponse.listings.length < chunkParams.pageSize;
-    chunkParams.curPage++
+    chunkParams.curPage++;
   }
 
   //  Helper function
@@ -344,7 +464,7 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
               listingId,
               price,
               canSell: canSell,
-              canTransfer: canTransfer
+              canTransfer: canTransfer,
             };
 
             onNftLoaded([nft]);
@@ -391,7 +511,6 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
               };
               onNftLoaded([nft]);
             } */
-
           } else {
             const writeContract = (() => {
               if (isMetaPixels) {
@@ -484,7 +603,7 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
                   listingId,
                   price,
                   canSell: canSell,
-                  canTransfer: canTransfer
+                  canTransfer: canTransfer,
                 };
                 onNftLoaded([nft]);
                 continue;
@@ -511,7 +630,7 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
                   listingId,
                   price,
                   canSell: canSell,
-                  canTransfer: canTransfer
+                  canTransfer: canTransfer,
                 };
                 onNftLoaded([nft]);
               } else {
@@ -548,7 +667,7 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
                     listingId,
                     price,
                     canSell: canSell,
-                    canTransfer: canTransfer
+                    canTransfer: canTransfer,
                   };
                 } else {
                   json = await (await fetch(checkedUri)).json();
@@ -572,7 +691,8 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
                   image = json.image;
                 }
                 let isStaked;
-                if (address == "0x0b289dEa4DCb07b8932436C2BA78bA09Fbd34C44") { 
+
+                if (address == '0x0b289dEa4DCb07b8932436C2BA78bA09Fbd34C44') {
                   if (await readContract.stakedApes(id)) {
                     canTransfer = false;
                     canSell = false;
@@ -595,7 +715,7 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
                   price,
                   canTransfer: canTransfer,
                   canSell: canSell,
-                  isStaked: isStaked
+                  isStaked: isStaked,
                 };
                 onNftLoaded([nft]);
               }
@@ -759,7 +879,6 @@ export async function getUnfilteredListingsForAddress(walletAddress, walletProvi
           return new Contract(address, ERC721, signer);
         })();
 
-
         const writeContract = (() => {
           if (is1155) {
             return new Contract(address, ERC1155, signer);
@@ -866,11 +985,11 @@ export async function getNft(collectionId, nftId, useFallback = true) {
 
     const isMetaPixels = isMetapixelsCollection(collectionId);
     if (isMetaPixels) {
-      const contract =  new Contract(collectionId, MetaPixelsAbi, readProvider);
+      const contract = new Contract(collectionId, MetaPixelsAbi, readProvider);
       const data = await contract.lands(nftId);
-      const plotSize = `${(data.xmax - data.xmin + 1)}x${(data.ymax - data.ymin + 1)}`;
-      const plotCoords = `(${data.xmin}, ${data.ymin})`
-      result.nft.description = `Metaverse Pixel plot at ${plotCoords} with a ${plotSize} size`
+      const plotSize = `${data.xmax - data.xmin + 1}x${data.ymax - data.ymin + 1}`;
+      const plotCoords = `(${data.xmin}, ${data.ymin})`;
+      result.nft.description = `Metaverse Pixel plot at ${plotCoords} with a ${plotSize} size`;
     }
 
     return result;
@@ -912,7 +1031,7 @@ export async function getNftFromFile(collectionId, nftId) {
         description: desc,
         properties: properties,
         canTransfer: canTransfer,
-        canSell: canSell
+        canSell: canSell,
       };
     } else if (isMetaPixels) {
       const contract = new Contract(collectionId, MetaPixelsAbi, readProvider);
@@ -933,10 +1052,10 @@ export async function getNftFromFile(collectionId, nftId) {
         useIframe: true,
         iframeSource: `https://www.metaversepixels.app/grid?id=${numberId}&zoom=3`,
         canTransfer: canTransfer,
-        canSell: canSell
+        canSell: canSell,
       };
     } else {
-      const isMultiToken = knownContracts.findIndex((x) => x.address === collectionId && x.multiToken) > -1;
+      const isMultiToken = knownContracts.findIndex((x) => caseInsensitiveCompare(x.address, collectionId) && x.multiToken) > -1;
 
       let uri;
       var contract;
@@ -973,7 +1092,7 @@ export async function getNftFromFile(collectionId, nftId) {
         image = json.image;
       }
       let isStaked;
-      if (collectionId == "0x0b289dEa4DCb07b8932436C2BA78bA09Fbd34C44") { 
+      if (collectionId == '0x0b289dEa4DCb07b8932436C2BA78bA09Fbd34C44') {
         if (await contract.stakedApes(nftId)) {
           canTransfer = false;
           canSell = false;
@@ -988,7 +1107,7 @@ export async function getNftFromFile(collectionId, nftId) {
         properties: properties ? properties : [],
         canTransfer: canTransfer,
         canSell: canSell,
-        isStaked: isStaked
+        isStaked: isStaked,
       };
     }
 
@@ -1004,7 +1123,7 @@ export async function getNftRankings(contractAddress, nftIds) {
 
   let query = {
     collection: contractAddress,
-    tokenId: commaIds
+    tokenId: commaIds,
   };
 
   const queryString = new URLSearchParams(query);
@@ -1013,17 +1132,19 @@ export async function getNftRankings(contractAddress, nftIds) {
   let json = await response.json();
 
   if (json.data) {
-    return json.data.map(o => {
+    return json.data.map((o) => {
       return {
         id: o.nft?.nftId ?? 0,
-        rank: o.nft?.rank ?? 0
-      }
-    })
+        rank: o.nft?.rank ?? 0,
+      };
+    });
   } else if (json.nft) {
-    return [{
-      id: json.nft.nftId,
-      rank: json.nft.rank
-    }];
+    return [
+      {
+        id: json.nft.nftId,
+        rank: json.nft.rank,
+      },
+    ];
   } else {
     return [];
   }
@@ -1044,4 +1165,15 @@ export async function getAuction(auctionId) {
     console.log(error);
     Sentry.captureException(error);
   }
+}
+
+export async function getQuickWallet(walletAddress) {
+  const queryString = new URLSearchParams({
+    wallet: walletAddress
+  });
+
+  const url = new URL(api.wallets, `${api.baseUrl}`);
+  const uri = `${url}?${queryString}`;
+
+  return await (await fetch(uri)).json();
 }

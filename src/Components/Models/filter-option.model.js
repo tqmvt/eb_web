@@ -3,6 +3,7 @@ export class FilterOption {
   address = null;
   name = 'All';
   id = null;
+  slug = '';
 
   get getOptionLabel() {
     return this.name;
@@ -14,7 +15,7 @@ export class FilterOption {
 
   lowercasedAddress() {
     if (Array.isArray(this.address)) {
-      return this.address.map(a => a.toLowerCase());
+      return this.address.map((a) => a.toLowerCase());
     }
 
     return this.address;
@@ -39,14 +40,21 @@ export class FilterOption {
       return {};
     }
 
+    if (this.slug) {
+      return {
+        slug: this.slug,
+      };
+    }
+
     if (this.address && this.id) {
       return {
-        collection: this.lowercasedAddress(),
+        address: this.lowercasedAddress(),
         tokenId: this.id,
       };
     }
+
     return {
-      [this.type]: this.lowercasedAddress(),
+      address: this.lowercasedAddress(),
     };
   }
 }

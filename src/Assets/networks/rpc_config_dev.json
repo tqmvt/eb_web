@@ -2,11 +2,12 @@
   "name": "Cronos Mainnet Beta",
   "chain_id": "25",
   "write_rpc": "https://evm.cronos.org/",
-  "read_rpc": "https://gateway.nebkas.ro/",
+  "read_rpc": "https://rpc.ebisusbay.com/",
   "symbol": "CRO",
   "explorer": "https://cronoscan.com/",
   "api_base": "https://api.ebisusbay.biz/",
   "app_base": "https://app.ebisusbay.biz/",
+  "subgraph_base": "https://graph.ebisusbay.com:8000/subgraphs/name/ebisusbay/",
   "membership_contract": "0x8d9232Ebc4f06B7b8005CCff0ca401675ceb25F5",
   "auction_contract": "0xd488b38d19d5708cbda224c041a24c3e3149bc93",
   "cronie_contract": "0xD961956B319A10CBdF89409C0aE7059788A4DaBb",
@@ -15,6 +16,7 @@
   "elon_contract": "0x3Bf0a68a03fE82A5D21445f3a2306bB012dd50D9",
   "ebisu_contract": "0xd036b2223bcc2A96164B023022D6b78CD71A1a12",
   "slothy_rugsurance_contract": "0xE9A540CBb2247f9bD86e98d1121aBDD084Ca0e89",
+  "offer_contract": "0x016b347aeb70cc45e3bbaf324feb3c7c464e18b0",
   "known_tokens": {
     "loot": {
       "name": "LOOT",

@@ -1,27 +1,31 @@
 import React, { memo, useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setStakeCount, setVIPCount } from '../../GlobalState/User';
-import {Form, Spinner} from 'react-bootstrap';
+import { Form, Spinner } from 'react-bootstrap';
 import { toast } from 'react-toastify';
-import {createSuccessfulTransactionToastContent, round} from '../../utils';
-import {Contract, ethers} from "ethers";
-import {RewardsPoolAbi} from "../../Contracts/Abis";
-import config from "../../Assets/networks/rpc_config.json";
-import {commify} from "ethers/lib.esm/utils";
-import Countdown from "react-countdown";
+import { createSuccessfulTransactionToastContent, round } from '../../utils';
+import { Contract, ethers } from 'ethers';
+import { RewardsPoolAbi } from '../../Contracts/Abis';
+import config from '../../Assets/networks/rpc_config.json';
+import { commify } from 'ethers/lib.esm/utils';
+import Countdown from 'react-countdown';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faBatteryEmpty,
-  faBatteryFull, faBatteryHalf,
-  faBatteryQuarter, faBatteryThreeQuarters,
-  faBolt, faChargingStation, faExclamationTriangle,
+  faBatteryFull,
+  faBatteryHalf,
+  faBatteryQuarter,
+  faBatteryThreeQuarters,
+  faBolt,
+  faChargingStation,
+  faExclamationTriangle,
   faExternalLinkAlt,
-  faTrophy
-} from "@fortawesome/free-solid-svg-icons";
+  faTrophy,
+} from '@fortawesome/free-solid-svg-icons';
 
 const txExtras = {
   gasPrice: ethers.utils.parseUnits('5000', 'gwei'),
-}
+};
 
 const MyStaking = () => {
   const dispatch = useDispatch();
@@ -35,7 +39,7 @@ const MyStaking = () => {
   const [isApproving, setIsApproving] = useState(false);
   const [isInitializing, setIsInitializing] = useState(true);
   const [currentPoolId, setCurrentPoolId] = useState(null);
-   
+
   // Allow exception to be thrown for other functions to catch it
   const setApprovalForAll = async () => {
     const isApproved = await user.membershipContract.isApprovedForAll(user.stakeContract.address, user.address);
@@ -61,12 +65,12 @@ const MyStaking = () => {
     } finally {
       setIsApproving(false);
     }
-  }
+  };
 
   const stake = async () => {
     if (!user.stakeContract || amount === 0) return;
     if (amount > vipCount) {
-      toast.error("You do not have enough available VIPs");
+      toast.error('You do not have enough available VIPs');
       return;
     }
     try {
@@ -77,15 +81,15 @@ const MyStaking = () => {
       dispatch(setStakeCount(stakeCount + amount));
       dispatch(setVIPCount(vipCount - amount));
       toast.success(createSuccessfulTransactionToastContent(receipt.transactionHash));
-    } catch(err) {
+    } catch (err) {
       toast.error(err.message);
     } finally {
       setIsStaking(false);
     }
-  }
+  };
 
   const unStake = async () => {
-    if (!user.stakeContract || amount <=0) return;
+    if (!user.stakeContract || amount <= 0) return;
     if (amount > stakeCount) {
       toast.error('You do not have enough available VIPs');
       return;
@@ -97,19 +101,19 @@ const MyStaking = () => {
       dispatch(setStakeCount(stakeCount - amount));
       dispatch(setVIPCount(vipCount + amount));
       toast.success(createSuccessfulTransactionToastContent(receipt.transactionHash));
-    } catch(err) {
+    } catch (err) {
       toast.error(err.message);
     } finally {
       setIsUnstaking(false);
     }
-  }
+  };
 
   const onAmountChange = (e) => {
     const value = parseInt(e.target.value);
     if (value > 0) {
       setAmount(parseInt(e.target.value));
     }
-  }
+  };
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(async () => {
@@ -131,10 +135,14 @@ const MyStaking = () => {
 
   const PromptToPurchase = () => {
     return (
-      <p className="text-center" style={{color: 'black'}}>
-        You do not have any VIP Founding Member NFTs. Pick some up in the <a href="/collection/vip-founding-member" className="fw-bold">secondary marketplace</a>.
+      <p className="text-center" style={{ color: 'black' }}>
+        You do not have any VIP Founding Member NFTs. Pick some up in the{' '}
+        <a href="/collection/vip-founding-member" className="fw-bold">
+          secondary marketplace
+        </a>
+        .
       </p>
-    )
+    );
   };
 
   const DynamicBattery = () => {
@@ -153,12 +161,25 @@ const MyStaking = () => {
       <section className="container no-top">
         <div className="row mt-md-5 pt-md-4">
           <div className="col-md-4 text-center">
-            <img src="/img/drops/vip/drop.webp" className="img-fluid img-rounded mb-sm-30" alt="VIP Founding Member Staking"/>
+            <img
+              src="/img/drops/vip/drop.webp"
+              className="img-fluid img-rounded mb-sm-30"
+              alt="VIP Founding Member Staking"
+            />
           </div>
           <div className="col-md-8">
             <div className="item_info">
               <h2>VIP Founding Member Staking</h2>
-              <div className="my-2">Earn rewards generated through platform sales. <a href="https://blog.ebisusbay.com/founding-member-vip-staking-6f7405a68eed" className="fw-bold" target="_blank">Learn More <FontAwesomeIcon icon={faExternalLinkAlt} /></a></div>
+              <div className="my-2">
+                Earn rewards generated through platform sales.{' '}
+                <a
+                  href="https://blog.ebisusbay.com/founding-member-vip-staking-6f7405a68eed"
+                  className="fw-bold"
+                  target="_blank"
+                >
+                  Learn More <FontAwesomeIcon icon={faExternalLinkAlt} />
+                </a>
+              </div>
               {isApproved && (
                 <div className="item_info_counts">
                   <div>
@@ -171,123 +192,135 @@ const MyStaking = () => {
               )}
 
               <div className="alert alert-warning d-flex align-items-center" role="alert">
-                <FontAwesomeIcon size="md" icon={faExclamationTriangle} className="me-3"/>
-                <div>Harvestable rewards must be harvested before the next epoch, otherwise they will be forefited back to the rewards pool!</div>
+                <FontAwesomeIcon size="md" icon={faExclamationTriangle} className="me-3" />
+                <div>
+                  Harvestable rewards must be harvested before the next epoch, otherwise they will be forefited back to
+                  the rewards pool!
+                </div>
               </div>
 
               <div className="spacer-20"></div>
 
               {!isInitializing && isApproved && (
                 <>
-                  {(stakeCount + vipCount) > 0 ? (
-                      <>
-                        <div className="row g-3">
-                          <RewardsCard />
-                          <div>
-                            <div className="card eb-nft__card h-100 shadow px-4">
-                              <div className="card-body d-flex flex-column">
-                                <h5>Stake</h5>
+                  {stakeCount + vipCount > 0 ? (
+                    <>
+                      <div className="row g-3">
+                        <RewardsCard />
+                        <div>
+                          <div className="card eb-nft__card h-100 shadow px-4">
+                            <div className="card-body d-flex flex-column">
+                              <h5>Stake</h5>
 
-                                {currentPoolId && (
-                                    <p>Stake additional VIPs to accumulate rewards during the next epoch {currentPoolId ? `(${parseInt(currentPoolId) + 1})` : ''}.</p>
-                                )}
-                                <p><strong>VIPs staked for the next epoch</strong>: {stakeCount}</p>
+                              {currentPoolId && (
+                                <p>
+                                  Stake additional VIPs to accumulate rewards during the next epoch{' '}
+                                  {currentPoolId ? `(${parseInt(currentPoolId) + 1})` : ''}.
+                                </p>
+                              )}
+                              <p>
+                                <strong>VIPs staked for the next epoch</strong>: {stakeCount}
+                              </p>
 
-                                <div className="row row-cols-1 g-3">
-                                  <div>
-                                    <Form.Label>Quantity</Form.Label>
-                                    <Form.Control
-                                        type="number"
-                                        placeholder="Input the amount"
-                                        onChange={onAmountChange}
-                                        value={amount}
-                                        style={{width:'80px', marginBottom: 0, appearance:'none', margin: 0}}
-                                    />
-                                  </div>
+                              <div className="row row-cols-1 g-3">
+                                <div>
+                                  <Form.Label>Quantity</Form.Label>
+                                  <Form.Control
+                                    type="number"
+                                    placeholder="Input the amount"
+                                    onChange={onAmountChange}
+                                    value={amount}
+                                    style={{ width: '80px', marginBottom: 0, appearance: 'none', margin: 0 }}
+                                  />
+                                </div>
 
-                                  <div className="btn-group mt-4 flex-wrap">
-                                    <button className="btn-main lead mx-1 mb-2" onClick={stake} disabled={amount ===0 || vipCount === 0}>
-                                      {isStaking ? (
-                                          <>
-                                            Staking...
-                                            <Spinner animation="border" role="status" size="sm" className="ms-1">
-                                              <span className="visually-hidden">Loading...</span>
-                                            </Spinner>
-                                          </>
-                                      ) : (
-                                          <>Stake</>
-                                      )}
-                                    </button>
-                                    <button className="btn-main lead mx-1 mb-2" onClick={unStake} disabled={amount === 0 || stakeCount === 0}>
-                                      {isUnstaking ? (
-                                          <>
-                                            UnStaking...
-                                            <Spinner animation="border" role="status" size="sm" className="ms-1">
-                                              <span className="visually-hidden">Loading...</span>
-                                            </Spinner>
-                                          </>
-                                      ) : (
-                                          <>UnStake</>
-                                      )}
-                                    </button>
-                                  </div>
+                                <div className="btn-group mt-4 flex-wrap">
+                                  <button
+                                    className="btn-main lead mx-1 mb-2"
+                                    onClick={stake}
+                                    disabled={amount === 0 || vipCount === 0}
+                                  >
+                                    {isStaking ? (
+                                      <>
+                                        Staking...
+                                        <Spinner animation="border" role="status" size="sm" className="ms-1">
+                                          <span className="visually-hidden">Loading...</span>
+                                        </Spinner>
+                                      </>
+                                    ) : (
+                                      <>Stake</>
+                                    )}
+                                  </button>
+                                  <button
+                                    className="btn-main lead mx-1 mb-2"
+                                    onClick={unStake}
+                                    disabled={amount === 0 || stakeCount === 0}
+                                  >
+                                    {isUnstaking ? (
+                                      <>
+                                        UnStaking...
+                                        <Spinner animation="border" role="status" size="sm" className="ms-1">
+                                          <span className="visually-hidden">Loading...</span>
+                                        </Spinner>
+                                      </>
+                                    ) : (
+                                      <>UnStake</>
+                                    )}
+                                  </button>
                                 </div>
                               </div>
                             </div>
                           </div>
                         </div>
-                      </>
-                  ):(
-                      <PromptToPurchase />
+                      </div>
+                    </>
+                  ) : (
+                    <PromptToPurchase />
                   )}
                 </>
               )}
               {!isInitializing && !isApproved && (
-
-                  <div className="card eb-nft__card h-100 shadow px-4">
-                    <div className="card-body d-flex flex-row justify-content-center">
-                      <span className="my-auto">
-                        <button className="btn-main lead me-2" onClick={approve}>
-                          {isApproving ? (
-                              <>
-                                Approving...
-                                <Spinner animation="border" role="status" size="sm" className="ms-1">
-                                  <span className="visually-hidden">Loading...</span>
-                                </Spinner>
-                              </>
-                          ) : (
-                              <>Approve</>
-                          )}
-                        </button>
-                      </span>
-                      <span className="my-auto text-center">Please approve the staking contract to continue</span>
-                    </div>
+                <div className="card eb-nft__card h-100 shadow px-4">
+                  <div className="card-body d-flex flex-row justify-content-center">
+                    <span className="my-auto">
+                      <button className="btn-main lead me-2" onClick={approve}>
+                        {isApproving ? (
+                          <>
+                            Approving...
+                            <Spinner animation="border" role="status" size="sm" className="ms-1">
+                              <span className="visually-hidden">Loading...</span>
+                            </Spinner>
+                          </>
+                        ) : (
+                          <>Approve</>
+                        )}
+                      </button>
+                    </span>
+                    <span className="my-auto text-center">Please approve the staking contract to continue</span>
                   </div>
+                </div>
               )}
 
               {isInitializing && (
-                  <div className="text-center">
-                    <Spinner animation="border" role="status" className="ms-1">
-                      <span className="visually-hidden">Loading...</span>
-                    </Spinner>
-                  </div>
+                <div className="text-center">
+                  <Spinner animation="border" role="status" className="ms-1">
+                    <span className="visually-hidden">Loading...</span>
+                  </Spinner>
+                </div>
               )}
             </div>
           </div>
         </div>
       </section>
-
-    </>  
+    </>
   );
 };
 
 export default memo(MyStaking);
 
-
 const StakeCard = ({}) => {
   const [isLoading, setIsLoading] = useState(false);
-
-}
+};
 
 const RewardsCard = ({}) => {
   const user = useSelector((state) => state.user);
@@ -310,7 +343,7 @@ const RewardsCard = ({}) => {
   const [cmpUserRewards, setCmpUserRewards] = useState(0);
   const [cmpHasHarvested, setCmpHasHarvested] = useState(false);
 
-  const getCompletedPoolInfo = async() => {
+  const getCompletedPoolInfo = async () => {
     if (!user.stakeContract) return;
 
     setCmpIsLoading(true);
@@ -329,13 +362,13 @@ const RewardsCard = ({}) => {
         setCmpUserRewards(ethers.utils.formatEther(balance));
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     } finally {
       setCmpIsLoading(false);
     }
-  }
+  };
 
-  const getCurrentPoolInfo = async() => {
+  const getCurrentPoolInfo = async () => {
     if (!user.stakeContract) return;
     setCupIsLoading(true);
     try {
@@ -359,11 +392,11 @@ const RewardsCard = ({}) => {
       setCupPeriodEnd(end.toNumber() * 1000);
       setIsAwaitingRollover(end.toNumber() * 1000 < Date.now());
     } catch (error) {
-      console.log(error)
+      console.log(error);
     } finally {
       setCupIsLoading(false);
     }
-  }
+  };
 
   const harvest = async () => {
     if (!user.stakeContract) return;
@@ -378,7 +411,7 @@ const RewardsCard = ({}) => {
           const released = await rewardsContract.released(user.address);
 
           if (released > 0) {
-            toast.error("Already released");
+            toast.error('Already released');
           } else {
             const share = await rewardsContract.shares(user.address);
 
@@ -389,140 +422,154 @@ const RewardsCard = ({}) => {
                 getCurrentPoolInfo();
                 getCompletedPoolInfo();
                 toast.success(createSuccessfulTransactionToastContent(receipt.transactionHash));
-              } catch(err) {
+              } catch (err) {
                 toast.error(err.message);
               }
             } else {
-              toast.error("No shares");
+              toast.error('No shares');
             }
           }
-        } catch(err) {
-          console.log({err})
-          toast.error("No harvest available");
+        } catch (err) {
+          console.log({ err });
+          toast.error('No harvest available');
         }
       }
-    } catch(err) {
+    } catch (err) {
       toast.error(err.message);
     } finally {
       setIsHarvesting(false);
     }
-  }
+  };
 
   useEffect(() => {
     getCurrentPoolInfo();
     getCompletedPoolInfo();
-  }, [])
+  }, []);
 
-  const EpochCountdown = ({timestamp}) => {
-    return (
-        <Countdown date={timestamp} />
-    )
+  const EpochCountdown = ({ timestamp }) => {
+    return <Countdown date={timestamp} />;
   };
 
   return (
-      <div className="row row-cols-1 row-cols-xl-2 gx-2 gy-3 gy-xl-0">
-            <>
-              <div className="col">
-                <div className="card eb-nft__card h-100 shadow px-4">
-                  <div className="card-body d-flex flex-column">
-                    <h5>Rewards</h5>
-                    {!inInitMode && (
-                      <div className="item_info_counts">
-                        <div>
-                          <FontAwesomeIcon icon={faTrophy} /> VIPs Rewarded: {cmpUserShares}
-                        </div>
-                      </div>
-                    )}
-                    {cmpIsLoading ? (
-                      <Spinner animation="border" role="status" size="sm" className="ms-1">
-                        <span className="visually-hidden">Loading...</span>
-                      </Spinner>
-                    ):(
-                      <>
-                        {inInitMode ? (
-                            <p className="text-center my-auto">Rewards will start once the first epoch is complete</p>
-                        ) : (
-                            <>
-                              {isAwaitingRollover ? (
-                                  <p className="text-center my-auto">Calculating rewards. Please wait...</p>
-                              ) : (
-                                  <>
-                                    {cupId > 1 ? (
-                                        <p className="text-center my-xl-auto">You have <strong>{cmpHasHarvested ? 0 : commify(round(cmpUserRewards, 3))} CRO</strong> available for harvest from epoch {cupId - 1}.</p>
-                                    ) : (
-                                        <p className="text-center my-auto">Rewards will be harvestable once the first epoch is completed.</p>
-                                    )}
-                                    <button className="btn-main lead mx-1 mb-1 mt-auto" onClick={harvest} disabled={cmpHasHarvested || !(cmpUserShares > 0)} style={{width:'auto'}}>
-                                      {isHarvesting ? (
-                                          <>
-                                            Harvesting...
-                                            <Spinner animation="border" role="status" size="sm" className="ms-1">
-                                              <span className="visually-hidden">Loading...</span>
-                                            </Spinner>
-                                          </>
-                                      ) : (
-                                          <>
-                                            {cmpHasHarvested ? (
-                                                <>Harvest in <EpochCountdown timestamp={cupPeriodEnd} /></>
-                                            ) : (
-                                                <>Harvest</>
-                                            )}
-                                          </>
-                                      )}
-                                    </button>
-                                  </>
-                              )}
-                            </>
-                        )}
-                      </>
-                    )}
+    <div className="row row-cols-1 row-cols-xl-2 gx-2 gy-3 gy-xl-0">
+      <>
+        <div className="col">
+          <div className="card eb-nft__card h-100 shadow px-4">
+            <div className="card-body d-flex flex-column">
+              <h5>Rewards</h5>
+              {!inInitMode && (
+                <div className="item_info_counts">
+                  <div>
+                    <FontAwesomeIcon icon={faTrophy} /> VIPs Rewarded: {cmpUserShares}
                   </div>
                 </div>
-              </div>
-
-              <div className="col">
-                <div className="card eb-nft__card h-100 shadow px-4">
-                  <div className="card-body d-flex flex-column">
-                    <h5>Current Pool</h5>
-                    {!inInitMode && (
-                        <div className="item_info_counts">
-                          <div>
-                            <FontAwesomeIcon icon={faChargingStation} /> VIPs Eligible: {cupUserShares}
-                          </div>
-                        </div>
-                    )}
-                    {cupIsLoading ? (
-                      <Spinner animation="border" role="status" size="sm" className="ms-1">
-                        <span className="visually-hidden">Loading...</span>
-                      </Spinner>
-                    ):(
+              )}
+              {cmpIsLoading ? (
+                <Spinner animation="border" role="status" size="sm" className="ms-1">
+                  <span className="visually-hidden">Loading...</span>
+                </Spinner>
+              ) : (
+                <>
+                  {inInitMode ? (
+                    <p className="text-center my-auto">Rewards will start once the first epoch is complete</p>
+                  ) : (
+                    <>
+                      {isAwaitingRollover ? (
+                        <p className="text-center my-auto">Calculating rewards. Please wait...</p>
+                      ) : (
                         <>
-                          {inInitMode ? (
-                              <p className="text-center my-auto">Waiting for the first epoch to begin</p>
+                          {cupId > 1 ? (
+                            <p className="text-center my-xl-auto">
+                              You have <strong>{cmpHasHarvested ? 0 : commify(round(cmpUserRewards, 3))} CRO</strong>{' '}
+                              available for harvest from epoch {cupId - 1}.
+                            </p>
                           ) : (
+                            <p className="text-center my-auto">
+                              Rewards will be harvestable once the first epoch is completed.
+                            </p>
+                          )}
+                          <button
+                            className="btn-main lead mx-1 mb-1 mt-auto"
+                            onClick={harvest}
+                            disabled={cmpHasHarvested || !(cmpUserShares > 0)}
+                            style={{ width: 'auto' }}
+                          >
+                            {isHarvesting ? (
                               <>
-                                {isAwaitingRollover ? (
-                                    <p className="text-center my-auto">Epoch {cupId} has ended. The next epoch will start soon.</p>
+                                Harvesting...
+                                <Spinner animation="border" role="status" size="sm" className="ms-1">
+                                  <span className="visually-hidden">Loading...</span>
+                                </Spinner>
+                              </>
+                            ) : (
+                              <>
+                                {cmpHasHarvested ? (
+                                  <>
+                                    Harvest in <EpochCountdown timestamp={cupPeriodEnd} />
+                                  </>
                                 ) : (
-                                    <>
-                                      <p><strong>Current Epoch</strong>: {cupId}</p>
-                                      <p><strong>Pool Balance</strong>: {round(cupPoolRewards, 3)} CRO</p>
-                                      <p><strong>My Balance</strong>: {round(cupUserRewards, 3)} CRO</p>
-                                      <div className="eb-de_countdown text-center">
-                                        Ends In: <EpochCountdown timestamp={cupPeriodEnd} />
-                                      </div>
-                                    </>
+                                  <>Harvest</>
                                 )}
                               </>
-                          )}
-
+                            )}
+                          </button>
                         </>
-                    )}
+                      )}
+                    </>
+                  )}
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+
+        <div className="col">
+          <div className="card eb-nft__card h-100 shadow px-4">
+            <div className="card-body d-flex flex-column">
+              <h5>Current Pool</h5>
+              {!inInitMode && (
+                <div className="item_info_counts">
+                  <div>
+                    <FontAwesomeIcon icon={faChargingStation} /> VIPs Eligible: {cupUserShares}
                   </div>
                 </div>
-              </div>
-            </>
-
-      </div>
-  )
-}
+              )}
+              {cupIsLoading ? (
+                <Spinner animation="border" role="status" size="sm" className="ms-1">
+                  <span className="visually-hidden">Loading...</span>
+                </Spinner>
+              ) : (
+                <>
+                  {inInitMode ? (
+                    <p className="text-center my-auto">Waiting for the first epoch to begin</p>
+                  ) : (
+                    <>
+                      {isAwaitingRollover ? (
+                        <p className="text-center my-auto">Epoch {cupId} has ended. The next epoch will start soon.</p>
+                      ) : (
+                        <>
+                          <p>
+                            <strong>Current Epoch</strong>: {cupId}
+                          </p>
+                          <p>
+                            <strong>Pool Balance</strong>: {round(cupPoolRewards, 3)} CRO
+                          </p>
+                          <p>
+                            <strong>My Balance</strong>: {round(cupUserRewards, 3)} CRO
+                          </p>
+                          <div className="eb-de_countdown text-center">
+                            Ends In: <EpochCountdown timestamp={cupPeriodEnd} />
+                          </div>
+                        </>
+                      )}
+                    </>
+                  )}
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+      </>
+    </div>
+  );
+};
