@@ -18,6 +18,7 @@ import { updateOfferSuccess, updateOfferFailed } from 'src/GlobalState/offerSlic
 import EmptyData from '../EmptyData';
 import config from 'src/Assets/networks/rpc_config.json';
 import Market from 'src/Contracts/Marketplace.json';
+import { getFilteredOffers } from 'src/core/subgraph';
 
 const DialogContainer = styled(Dialog)`
   .MuiDialogContent-root {
@@ -124,14 +125,7 @@ const CloseIconContainer = styled.div`
   }
 `;
 
-export default function MakeOfferDialog({
-  isOpen,
-  toggle,
-  type = OFFER_TYPE.make,
-  nftData,
-  offerData,
-  collectionMetadata,
-}) {
+export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerData, collectionMetadata }) {
   const isNftLoading = useSelector((state) => {
     return state.nft.loading;
   });
@@ -144,14 +138,17 @@ export default function MakeOfferDialog({
   const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
   const readMarket = new Contract(config.market_contract, Market.abi, readProvider);
 
+  const [offerType, setOfferType] = useState(type);
+  const [isGettingOfferType, setIsGettingOfferType] = useState(false);
+
   const [offerPrice, setOfferPrice] = useState(0);
   const [offerPriceError, setOfferPriceError] = useState(false);
   const onOfferValueChange = (inputEvent) => {
     const inputValue = inputEvent.target.value;
     setOfferPrice(inputValue);
-    if (type === OFFER_TYPE.update && offerData?.price && Number(inputValue) > Number(offerData.price)) {
+    if (offerType === OFFER_TYPE.update && offerData?.price && Number(inputValue) > Number(offerData.price)) {
       setOfferPriceError(false);
-    } else if (type === OFFER_TYPE.make && Number(inputValue) > 0) {
+    } else if (offerType === OFFER_TYPE.make && Number(inputValue) > 0) {
       setOfferPriceError(false);
     } else {
       setOfferPriceError(true);
@@ -171,6 +168,22 @@ export default function MakeOfferDialog({
     }
     // eslint-disable-next-line
   }, [nftData]);
+
+  useEffect(() => {
+    async function func() {
+      setIsGettingOfferType(true);
+      const filteredOffers = await getFilteredOffers(nftData.address, nftData.id, walletAddress);
+      if (filteredOffers && filteredOffers.data.length > 0) {
+        setOfferType(OFFER_TYPE.update);
+      } else {
+        setOfferType(OFFER_TYPE.make);
+      }
+      setIsGettingOfferType(false);
+    }
+    if (!type && walletAddress && nftData.address && nftData.id) {
+      func();
+    }
+  }, []);
 
   if (!nftData) {
     return <></>;
@@ -224,17 +237,11 @@ export default function MakeOfferDialog({
     return nftData.image;
   };
 
-  const getRoyalty = async () => {
-    let royalties = await readMarket.royalties(nftData.address);
-    console.log(royalties);
-    return royalties ? `${Math.round(royalties[1]) / 100}%` : '-';
-  };
-
   return (
     <DialogContainer onClose={() => toggle(OFFER_TYPE.none)} open={isOpen} maxWidth="md">
       <DialogContent>
-        <DialogTitleContainer>{type} Offer</DialogTitleContainer>
-        {!isNftLoading ? (
+        {!isGettingOfferType && <DialogTitleContainer>{offerType} Offer</DialogTitleContainer>}
+        {!isNftLoading && !isGettingOfferType ? (
           <DialogMainContent>
             <ImageContainer>
               <img src={croSkullRedPotionImageHack(nftData.address, nftData.image)} alt={nftData.name} />
@@ -285,7 +292,7 @@ export default function MakeOfferDialog({
                 <Royalty>Royalty</Royalty>
                 <Royalty>{royalty ? `${royalty}%` : '-'}</Royalty>
               </FlexRow>
-              {(type === OFFER_TYPE.make || type === OFFER_TYPE.update) && (
+              {(offerType === OFFER_TYPE.make || offerType === OFFER_TYPE.update) && (
                 <FlexRow>
                   <OfferPrice>Offer Price</OfferPrice>
                   <OfferPriceInput>
@@ -306,11 +313,11 @@ export default function MakeOfferDialog({
               <div className="mt-3">
                 <Button
                   type="legacy"
-                  onClick={() => handleOfferAction(type)}
+                  onClick={() => handleOfferAction(offerType)}
                   isLoading={isOnAction}
                   disabled={isOnAction}
                 >
-                  {type} Offer
+                  {offerType} Offer
                 </Button>
               </div>
             </NftDetailContainer>

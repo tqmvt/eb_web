@@ -8,8 +8,6 @@ import MetaMaskOnboarding from '@metamask/onboarding';
 import { croSkullRedPotionImageHack } from 'src/hacks';
 import Button from './Button';
 import MakeOfferDialog from '../Offer/MakeOfferDialog';
-// import { fetchFilteredOffers } from 'src/GlobalState/offerSlice';
-import { getFilteredOffers } from 'src/core/subgraph';
 import { connectAccount, chainConnect } from 'src/GlobalState/User';
 
 const Watermarked = styled.div`
@@ -51,26 +49,10 @@ const MakeOffer = styled.div`
 const NftCard = ({ royalty, listing, imgClass = 'marketplace', watermark, address, collectionMetadata }) => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const walletAddress = useSelector((state) => state.user.address);
   const user = useSelector((state) => state.user);
   const [openMakeOfferDialog, setOpenMakeOfferDialog] = useState(false);
-  const [modalType, setModalType] = useState('Make');
-
-  useEffect(() => {
-    async function func() {
-      const filteredOffers = await getFilteredOffers(listing.address, listing.id, walletAddress);
-
-      if (filteredOffers && filteredOffers.data.length > 0) {
-        setModalType('Update');
-      }
-    }
-    if (walletAddress) {
-      func();
-    }
-  }, []);
 
   const handleMakeOffer = () => {
-    // setModalType(type);
     if (user.address) {
       setOpenMakeOfferDialog(!openMakeOfferDialog);
     } else {
@@ -155,7 +137,6 @@ const NftCard = ({ royalty, listing, imgClass = 'marketplace', watermark, addres
           nftData={listing}
           royalty={royalty}
           collectionMetadata={collectionMetadata}
-          type={modalType}
         />
       )}
     </>
