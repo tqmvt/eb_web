@@ -3505,7 +3505,7 @@
       "multiToken": false,
       "address": "0x903B9a9d58742d0699fbd5b0AC7C9C4000B7ce43",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "",
         "verified": true,
@@ -5081,7 +5081,7 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false
+      "complete": true
     },
     {
       "id": 59,
