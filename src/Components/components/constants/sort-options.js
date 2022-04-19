@@ -9,22 +9,22 @@ const sort = [
   {
     key: 'price',
     direction: 'desc',
-    label: 'Price (Highest)',
+    label: 'Price (High to Low)',
   },
   {
     key: 'price',
     direction: 'asc',
-    label: 'Price (Lowest)',
+    label: 'Price (Low to High)',
   },
   {
     key: 'rank',
     direction: 'asc',
-    label: 'Rank (Highest)',
+    label: 'Rank (High to Low)',
   },
   {
     key: 'rank',
     direction: 'desc',
-    label: 'Rank (Lowest)',
+    label: 'Rank (Low to High)',
   },
 ];
 
