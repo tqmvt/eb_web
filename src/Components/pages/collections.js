@@ -275,8 +275,8 @@ const Collections = () => {
                         </th>
                         {tableMobileView && <td>{siPrefixedNumber(collectionVolume(collection))} CRO</td>}
                         {tableMobileView && <td>{siPrefixedNumber(collectionSales(collection))}</td>}
-                        {tableMobileView && <td>{collectionAveragePrices(collection)} CRO</td>}
                         {tableMobileView && <td>{collectionFloorPriceValue(collection)} CRO</td>}
+                        {tableMobileView && <td>{collectionAveragePrices(collection)} CRO</td>}
                         {tableMobileView && <td>{siPrefixedNumber(collectionNumberActiveValue(collection))}</td>}
                       </tr>
                     );
