@@ -880,6 +880,26 @@
         "discord": "https://discord.gg/cWdCce8XAx",
         "medium": "https://medium.com/panels-project"
       }
+    },
+    {
+      "name": "CroClubs",
+      "slug": "croclubs",
+      "multiToken": false,
+      "address": "0x32a6c387fD0D84ABD8407eA438D76B3917aF511e",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/croclubs/avatar.png",
+        "card": "/img/collections/croclubs/card.png",
+        "banner": "/img/collections/croclubs/banner.png",
+        "maxSupply": 1500,
+        "website": "https://www.croclubs.io/",
+        "twitter": "https://twitter.com/croclubs",
+        "discord": "http://discord.gg/RWZSJwnG7Y",
+        "medium": "https://medium.com/@croclubsio"
+      }
     }
   ],
   "drops": [
@@ -1896,6 +1916,31 @@
       "whitelistCost": "290",
       "foundersOnly": false,
       "start": null,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false
+    },
+    {
+      "id": 59,
+      "slug": "croclubs",
+      "imgNft": "/img/drops/croclubs/drop.gif",
+      "imgPreview": "/img/drops/croclubs/drop.gif",
+      "imgAvatar": "/img/collections/croclubs/avatar.png",
+      "imgBanner": "/img/collections/croclubs/banner.png",
+      "title": "CroClubs",
+      "subtitle": "Go gear up CroClubbers! There is an epic journey ahead of you. Meet the vicious creatures of the night, have your characters from the Werewolf Club and be a part of the story!",
+      "description": "The CroClubs Werewolf Club is the very first collection in the CroClubs ecosystem. A limited collection of 1500 pieces, each NFT of the Werewolf Club is generated from 350+ hand-drawn traits.\n\nCroClubs will be a wide ecosystem that consists of at least 4 NFT collections to be the main characters of the play to earn turn-based combat game, a lore that tells the story of our world and a financial ecosystem that will be backed first by CRO and later by the main utility token.\n\nBeing a holder of a CroClubs Werewolf NFT will grant access to a huge staking pool and the game which will feature in-game rewards. By becoming a CroClubs holder, you may get real-life prizes such as exclusive CDC and Cronos NFTs, VR Headsets, airdrops, merchandises and custom avatars.\n\nBecome a CroClubber and join the adventure!",
+      "author": { "name": "CroClubs", "link": "https://www.croclubs.io/" },
+      "address": "0x32a6c387fD0D84ABD8407eA438D76B3917aF511e",
+      "maxMintPerTx": 10,
+      "maxMintPerAddress": 100,
+      "totalSupply": 1500,
+      "cost": "3",
+      "memberCost": "2",
+      "foundersOnly": false,
+      "start": 1647795651000,
       "end": null,
       "referral": false,
       "is1155": false,

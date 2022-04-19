@@ -126,6 +126,27 @@ pipelines:
       - step:
           <<: *deploy
           deployment: Testnet2
+    deploy-to-next:
+      - step: *test
+      - step:
+          name: Build
+          image: node:16
+          deployment: NextBuildStep
+          runs-on:
+            - 'self.hosted'
+            - 'linux'
+            - 'web'
+          size: 1x
+          script:
+            - *update
+            - *version
+            # Build frontend
+            - *build
+          artifacts:
+            - build/**
+      - step:
+          <<: *deploy
+          deployment: Next
   branches:
     dev:
       - step: *test
