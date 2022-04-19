@@ -126,7 +126,7 @@ const Collection1155 = ({ address, tokenId = null, cacheName = 'collection', slu
   useEffect(() => {
     async function asyncFunc() {
       if (tokenId != null) {
-        dispatch(getStats(address, tokenId));
+        dispatch(getStats(address, slug, tokenId));
       } else {
         dispatch(getStats(address));
       }
