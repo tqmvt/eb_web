@@ -192,7 +192,7 @@ canvas {
 
 /* Put dropdowns behind wallet connect popup */
 .items_filter .dropdownSelect {
-    z-index: 2 !important;
+    z-index: auto !important;
 }
 
 /* Fix equal height issue in traits grid */
