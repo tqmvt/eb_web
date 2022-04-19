@@ -167,16 +167,15 @@ export const init = (filterOption, sortOption, traitFilterOption, address) => as
 export const fetchListings = () => async (dispatch, getState) => {
   const state = getState();
   dispatch(listingsLoading());
-  console.log('fetching...', state.collection);
 
   const address = state.collection.query.filter.address;
-  const knownContract = config.known_contracts.find(c => caseInsensitiveCompare(c.address, address));
+  const weirdApes = Array.isArray(address);
+  const knownContract = weirdApes ? null : config.known_contracts.find(c => caseInsensitiveCompare(c.address, address));
   const fallbackContracts = [
     'red-skull-potions'
   ];
 
-  if (fallbackContracts.includes(knownContract.slug) || knownContract.multiToken) {
-    console.log('Falling back to listings endpoint...');
+  if (!!knownContract && (fallbackContracts.includes(knownContract.slug) || knownContract.multiToken)) {
     const { response, cancelled } = await sortAndFetchListings(
       state.collection.query.page + 1,
       state.collection.query.sort,
@@ -185,7 +184,7 @@ export const fetchListings = () => async (dispatch, getState) => {
       state.collection.query.powertraits,
       state.collection.query.search
     );
-    console.log('listings', response);
+
     if (!cancelled) {
       response.hasRank = response.listings.length > 0 && typeof response.listings[0].rank !== 'undefined';
       dispatch(listingsReceived({...response, isUsingListingsFallback: true}));
@@ -200,7 +199,7 @@ export const fetchListings = () => async (dispatch, getState) => {
       state.collection.query.search,
       state.collection.query.filterListed
     );
-    console.log('collection', response);
+
     if (response.status === 200 && response.nfts.length > 0) {
       if (!cancelled) {
         response.hasRank = response.nfts.length > 0 && typeof response.nfts[0].rank !== 'undefined';
