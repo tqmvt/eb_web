@@ -2,15 +2,22 @@ import React, { memo, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, Link } from 'react-router-dom';
 import Blockies from 'react-blockies';
-import { ethers } from 'ethers';
-import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+import {Contract, ethers} from 'ethers';
+import {faCrow, faExternalLinkAlt, faHeart} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Helmet } from 'react-helmet';
 import MetaMaskOnboarding from '@metamask/onboarding';
 
 import ProfilePreview from '../components/ProfilePreview';
 import Footer from '../components/Footer';
-import { humanize, relativePrecision, shortAddress, timeSince } from '../../utils';
+import {
+  humanize, isBabyWeirdApesCollection,
+  isCroCrowCollection,
+  isCrognomidesCollection,
+  relativePrecision,
+  shortAddress,
+  timeSince
+} from '../../utils';
 import { getNftDetails } from '../../GlobalState/nftSlice';
 import config from '../../Assets/networks/rpc_config.json';
 import { croSkullRedPotionImageHack } from '../../hacks';
@@ -21,6 +28,7 @@ import { connectAccount, chainConnect } from 'src/GlobalState/User';
 import { Spinner } from 'react-bootstrap';
 
 import ReactPlayer from "react-player";
+import LayeredIcon from "../components/LayeredIcon";
 const knownContracts = config.known_contracts;
 
 const Nft721 = ({ address, id }) => {
@@ -45,9 +53,83 @@ const Nft721 = ({ address, id }) => {
   });
   const isLoading = useSelector((state) => state.nft.loading);
 
+  // Custom breeding considerations
+  const [croCrowBreed, setCroCrowBreed] = useState(null);
+  const [crognomideBreed, setCrognomideBreed] = useState(null);
+  const [babyWeirdApeBreed, setBabyWeirdApeBreed] = useState(null);
+
   useEffect(() => {
     dispatch(getNftDetails(address, id));
   }, [dispatch, id]);
+
+  useEffect(async () => {
+    if (isCroCrowCollection(address) && croCrowBreed === null) {
+      const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
+      const contract = new Contract(
+        '0x0f1439a290e86a38157831fe27a3dcd302904055',
+        [
+          'function availableCrows(address _owner) public view returns (uint256[] memory, bool[] memory)',
+          'function isCrowUsed(uint256 tokenId) public view returns (bool)',
+          'function ownerOf(uint256 tokenId) public view returns (address)',
+        ],
+        readProvider
+      );
+      try {
+        if (parseInt(id) < 3500) {
+          const used = await contract.isCrowUsed(id);
+          setCroCrowBreed(used);
+        } else {
+          const ownerAddress = await contract.ownerOf(id);
+          const crows = await contract.availableCrows(ownerAddress);
+          for (const [i, o] of crows[0].entries()) {
+            if (o.toNumber() === id) {
+              setCroCrowBreed(crows[1][i]);
+              return;
+            }
+          }
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      setCroCrowBreed(null);
+    }
+  }, [address]);
+
+  useEffect(async () => {
+    if (isCrognomidesCollection(address) && crognomideBreed === null) {
+      const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
+      const contract = new Contract(
+        '0xE57742748f98ab8e08b565160D3A9A32BFEF7352',
+        ['function crognomidUsed(uint256) public view returns (bool)'],
+        readProvider
+      );
+      try {
+        const used = await contract.crognomidUsed(id);
+        setCrognomideBreed(used);
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      setCrognomideBreed(null);
+    }
+  }, [address]);
+
+  useEffect(async () => {
+    if (isBabyWeirdApesCollection(address)) {
+      const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
+      const abiFile = require(`../../Assets/abis/baby-weird-apes.json`);
+      const contract = new Contract(address, abiFile.abi, readProvider);
+      try {
+        const apeInfo = await contract.apeInfo(id);
+        setBabyWeirdApeBreed(apeInfo);
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      setBabyWeirdApeBreed(null);
+    }
+  }, [address]);
 
   const viewSeller = (seller) => () => {
     history.push(`/seller/${seller}`);
@@ -163,6 +245,30 @@ const Nft721 = ({ address, id }) => {
                 <div className="item_info">
                   <h2>{nft.name}</h2>
                   <p>{nft.description}</p>
+                  {isCroCrowCollection(address) && croCrowBreed && (
+                    <div className="d-flex flex-row align-items-center mb-4">
+                      <LayeredIcon
+                        icon={faCrow}
+                        bgColor={'#ed7a11'}
+                        color={'#000'}
+                        inverse={false}
+                        title="This crow has been bred to create a CrowPunk!"
+                      />
+                      <span className="fw-bold">This CRO Crow has been bred for a CrowPunk</span>
+                    </div>
+                  )}
+                  {isCrognomidesCollection(address) && crognomideBreed && (
+                    <div className="d-flex flex-row align-items-center mb-4">
+                      <LayeredIcon
+                        icon={faHeart}
+                        bgColor={'#fff'}
+                        color={'#dc143c'}
+                        inverse={false}
+                        title="This Crognomide has been bred for a Croby!"
+                      />
+                      <span className="fw-bold">This Crognomide has been bred for a Croby</span>
+                    </div>
+                  )}
                   <PriceActionBar />
                   <div className="row">
                     <button className="btn-main mx-auto mb-5" onClick={() => handleMakeOffer()}>
@@ -212,6 +318,11 @@ const Nft721 = ({ address, id }) => {
                       <li id="Mainbtn3" className="tab">
                         <span onClick={handleBtnClick(3)}>Offers</span>
                       </li>
+                      {babyWeirdApeBreed && (
+                        <li id="Mainbtn9" className="tab">
+                          <span onClick={handleBtnClick(9)}>Breed Info</span>
+                        </li>
+                      )}
                     </ul>
 
                     <div className="de_tab_content">
@@ -327,6 +438,52 @@ const Nft721 = ({ address, id }) => {
                       )}
 
                       {openMenu === 3 && <NFTTabOffers nftAddress={address} nftId={id} />}
+
+                      {openMenu === 9 && babyWeirdApeBreed && (
+                        <div className="tab-2 onStep fadeIn">
+                          <div className="d-block mb-3">
+                            <div className="row mt-5 gx-3 gy-2">
+                              {babyWeirdApeBreed.breedStatus ? (
+                                <div key={0} className="col-lg-4 col-md-6 col-sm-6">
+                                  <div className="nft_attr">
+                                    <h5>Birthdate</h5>
+                                    {babyWeirdApeBreed.birthdate.gt(0) ? (
+                                      <h4>
+                                        {new Date(babyWeirdApeBreed.birthdate.toNumber() * 1000).toLocaleDateString()}
+                                      </h4>
+                                    ) : (
+                                      <h4>Unknown</h4>
+                                    )}
+                                  </div>
+                                </div>
+                              ) : (
+                                <div key={0} className="col-lg-4 col-md-6 col-sm-6">
+                                  <div className="nft_attr">
+                                    <h5>Incubator ID</h5>
+                                    <h4>{id}</h4>
+                                  </div>
+                                </div>
+                              )}
+                              <div key={1} className="col-lg-4 col-md-6 col-sm-6">
+                                <div className="nft_attr">
+                                  <h5>Mother ID</h5>
+                                  <h4>{babyWeirdApeBreed.mother.toNumber()}</h4>
+                                </div>
+                              </div>
+                              <div key={2} className="col-lg-4 col-md-6 col-sm-6">
+                                <div className="nft_attr">
+                                  <h5>Father ID</h5>
+                                  <h4>
+                                    <a href={`/collection/weird-apes-club-v2/${babyWeirdApeBreed.father.toNumber()}`}>
+                                      {babyWeirdApeBreed.father.toNumber()}
+                                    </a>
+                                  </h4>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
