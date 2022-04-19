@@ -29,6 +29,7 @@ import { Spinner } from 'react-bootstrap';
 
 import ReactPlayer from "react-player";
 import LayeredIcon from "../components/LayeredIcon";
+import {ERC721} from "../../Contracts/Abis";
 const knownContracts = config.known_contracts;
 
 const Nft721 = ({ address, id }) => {
@@ -40,6 +41,7 @@ const Nft721 = ({ address, id }) => {
   const [openMakeOfferDialog, setOpenMakeOfferDialog] = useState(false);
 
   const nft = useSelector((state) => state.nft.nft);
+  const currentListing = useSelector((state) => state.nft.currentListing);
   const listingHistory = useSelector((state) =>
     state.nft.history.filter((i) => i.state === 1).sort((a, b) => (a.saleTime < b.saleTime ? 1 : -1))
   );
@@ -65,24 +67,24 @@ const Nft721 = ({ address, id }) => {
   useEffect(async () => {
     if (isCroCrowCollection(address) && croCrowBreed === null) {
       const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
-      const contract = new Contract(
+      const crowpunkContract = new Contract(
         '0x0f1439a290e86a38157831fe27a3dcd302904055',
         [
           'function availableCrows(address _owner) public view returns (uint256[] memory, bool[] memory)',
-          'function isCrowUsed(uint256 tokenId) public view returns (bool)',
-          'function ownerOf(uint256 tokenId) public view returns (address)',
+          'function isCrowUsed(uint256 tokenId) public view returns (bool)'
         ],
         readProvider
       );
+      const croCrowContract = new Contract('0xE4ab77ED89528d90E6bcf0E1Ac99C58Da24e79d5', ERC721, readProvider);
       try {
         if (parseInt(id) < 3500) {
-          const used = await contract.isCrowUsed(id);
+          const used = await crowpunkContract.isCrowUsed(id);
           setCroCrowBreed(used);
         } else {
-          const ownerAddress = await contract.ownerOf(id);
-          const crows = await contract.availableCrows(ownerAddress);
+          const ownerAddress = await croCrowContract.ownerOf(id);
+          const crows = await crowpunkContract.availableCrows(ownerAddress);
           for (const [i, o] of crows[0].entries()) {
-            if (o.toNumber() === id) {
+            if (o.toNumber() === parseInt(id)) {
               setCroCrowBreed(crows[1][i]);
               return;
             }
@@ -277,6 +279,10 @@ const Nft721 = ({ address, id }) => {
                   </div>
 
                   <div className="row" style={{ gap: '2rem 0' }}>
+                    {currentListing && (
+                      <ProfilePreview type="Seller" address={currentListing.seller} to={`/seller/${currentListing.seller}`} />
+                    )}
+
                     <ProfilePreview
                       type="Collection"
                       title={collectionName ?? 'View Collection'}

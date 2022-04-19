@@ -11,6 +11,7 @@ import { getNftDetails } from 'src/GlobalState/nftSlice';
 import MakeOfferDialog from '../MakeOfferDialog';
 import AcceptOfferDialog from '../AcceptOfferDialog';
 import {Link} from "react-router-dom";
+import {commify} from "ethers/lib.esm/utils";
 
 const knownContracts = config.known_contracts;
 
@@ -202,7 +203,7 @@ export default function TableRow({ data, type }) {
         <div className="table-row-item">
           {type === 'Received' ? (buyer ? shortAddress(buyer) : '-') : seller ? shortAddress(seller) : '-'}
         </div>
-        <div className="table-row-item">{price} CRO</div>
+        <div className="table-row-item">{commify(price)} CRO</div>
         <div className="table-row-item">
           {type === 'Made' && (
             <Button

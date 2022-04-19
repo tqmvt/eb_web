@@ -25,14 +25,20 @@ import MetaMaskOnboarding from '@metamask/onboarding';
 import { chainConnect, connectAccount } from '../../GlobalState/User';
 import MakeOfferDialog from '../Offer/MakeOfferDialog';
 import ReactPlayer from "react-player";
+import NFTTabOffers from "../Offer/NFTTabOffers";
+import NFTTabListings from "../NftDetails/NFTTabListings";
+import {listingState} from "../../core/api/enums";
 
 const Nft1155 = ({ address, id }) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
   const nft = useSelector((state) => state.nft.nft);
-  const listings = useSelector((state) =>
-    state.nft.history.filter((i) => i.state === 1).sort((a, b) => (a.saleTime < b.saleTime ? 1 : -1))
+  const soldListings = useSelector((state) =>
+    state.nft.history.filter((i) => i.state === listingState.SOLD).sort((a, b) => (a.saleTime < b.saleTime ? 1 : -1))
+  );
+  const activeListings = useSelector((state) =>
+    state.nft.history.filter((i) => i.state === listingState.ACTIVE).sort((a, b) => (a.price < b.price ? 1 : -1))
   );
   const powertraits = useSelector((state) => state.nft.nft?.powertraits);
   const collectionMetadata = useSelector((state) => {
@@ -212,6 +218,9 @@ const Nft1155 = ({ address, id }) => {
                       <li id="Mainbtn2" className="tab">
                         <span onClick={handleBtnClick(2)}>History</span>
                       </li>
+                      <li id="Mainbtn3" className="tab">
+                        <span onClick={handleBtnClick(3)}>Listings</span>
+                      </li>
                     </ul>
 
                     <div className="de_tab_content">
@@ -296,9 +305,9 @@ const Nft1155 = ({ address, id }) => {
                       )}
                       {openMenu === 2 && (
                         <div className="tab-3 onStep fadeIn">
-                          {listings && listings.length > 0 ? (
+                          {soldListings && soldListings.length > 0 ? (
                             <>
-                              {listings.map((listing, index) => (
+                              {soldListings.map((listing, index) => (
                                 <div className="p_list" key={index}>
                                   <Link to={`/seller/${listing.purchaser}`}>
                                     <div className="p_list_pp">
@@ -325,6 +334,11 @@ const Nft1155 = ({ address, id }) => {
                               <span>No history found for this item</span>
                             </>
                           )}
+                        </div>
+                      )}
+                      {openMenu === 3 && (
+                        <div className="tab-3 onStep fadeIn">
+                          <NFTTabListings listings={activeListings} />
                         </div>
                       )}
                     </div>
