@@ -40,6 +40,7 @@ const Nft721 = ({ address, id }) => {
   const [openMakeOfferDialog, setOpenMakeOfferDialog] = useState(false);
 
   const nft = useSelector((state) => state.nft.nft);
+  const currentListing = useSelector((state) => state.nft.currentListing);
   const listingHistory = useSelector((state) =>
     state.nft.history.filter((i) => i.state === 1).sort((a, b) => (a.saleTime < b.saleTime ? 1 : -1))
   );
@@ -277,6 +278,10 @@ const Nft721 = ({ address, id }) => {
                   </div>
 
                   <div className="row" style={{ gap: '2rem 0' }}>
+                    {currentListing && (
+                      <ProfilePreview type="Seller" address={currentListing.seller} to={`/seller/${currentListing.seller}`} />
+                    )}
+
                     <ProfilePreview
                       type="Collection"
                       title={collectionName ?? 'View Collection'}
