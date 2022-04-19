@@ -11,6 +11,7 @@ import ReceivedOffers from '../Offer/ReceivedOffers';
 import {getAllCollections, knownContracts} from "../../GlobalState/collectionsSlice";
 import {caseInsensitiveCompare} from "../../utils";
 import config from '../../Assets/networks/rpc_config.json';
+import {offerState} from "../../core/api/enums";
 
 const OFFERS_TAB = {
   make: 'Made Offers',
@@ -97,10 +98,13 @@ const MyOffers = () => {
           (c) => c.nftAddress.toLowerCase() === offer.nftAddress && c.edition.toString() === offer.nftId
         );
 
-        const floorPrice = findCollectionFloor(offer.nftAddress, offer.nftId);
+        const knownContract = findKnownContract(offer.nftAddress, offer.nftId);
+        const floorPrice = findCollectionFloor(knownContract);
         const offerPrice = parseInt(offer.price);
         const isAboveOfferThreshold = floorPrice ? (offerPrice >= (floorPrice / 2)) : true;
-        if (nft && isAboveOfferThreshold) {
+        const canShowCompletedOffers = !knownContract.multiToken || parseInt(offer.state) === offerState.ACTIVE;
+
+        if (nft && isAboveOfferThreshold && canShowCompletedOffers) {
           return true;
         }
         return false;
@@ -109,12 +113,15 @@ const MyOffers = () => {
     }
   }, [myNFTs, allOffers]);
 
-  const findCollectionFloor = (address, nftId) => {
-    const knownContract = knownContracts.find((c) => {
+  const findKnownContract = (address, nftId) => {
+    return knownContracts.find((c) => {
       const matchedAddress = caseInsensitiveCompare(c.address, address);
       const matchedToken = !c.multiToken || parseInt(nftId) === c.id;
       return matchedAddress && matchedToken;
     });
+  };
+
+  const findCollectionFloor = (knownContract) => {
     const collectionStats = collectionsStats.find(o => {
       if (knownContract.multiToken && o.collection.indexOf('-') !== -1) {
         let parts = o.collection.split('-');

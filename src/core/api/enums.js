@@ -18,3 +18,10 @@ export const listingState = {
   SOLD: 1,
   CANCELLED: 2
 };
+
+export const offerState = {
+  ACTIVE: 0,
+  ACCEPTED: 1,
+  REJECTED: 2,
+  CANCELLED: 3
+};
