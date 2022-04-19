@@ -11,7 +11,7 @@ import Button from 'src/Components/components/Button';
 import Input from 'src/Components/components/common/Input';
 import ProfilePreview from 'src/Components/components/ProfilePreview';
 import { croSkullRedPotionImageHack } from 'src/hacks';
-import { humanize, shortAddress } from 'src/utils';
+import {caseInsensitiveCompare, humanize, shortAddress} from 'src/utils';
 import { OFFER_TYPE } from '../MadeOffersRow';
 import CloseIcon from 'src/Assets/images/close-icon-blue.svg';
 import { updateOfferSuccess, updateOfferFailed } from 'src/GlobalState/offerSlice';
@@ -19,6 +19,10 @@ import EmptyData from '../EmptyData';
 import config from 'src/Assets/networks/rpc_config.json';
 import Market from 'src/Contracts/Marketplace.json';
 import { getFilteredOffers } from 'src/core/subgraph';
+import {getAllCollections} from "../../../GlobalState/collectionsSlice";
+import {offerState} from "../../../core/api/enums";
+import {commify} from "ethers/lib/utils";
+const knownContracts = config.known_contracts;
 
 const DialogContainer = styled(Dialog)`
   .MuiDialogContent-root {
@@ -100,7 +104,17 @@ const Royalty = styled.div`
   color: ${({ theme }) => theme.colors.textColor3};
 `;
 
+const FloorPrice = styled.div`
+  font-size: 14px;
+  color: ${({ theme }) => theme.colors.textColor3};
+`;
+
 const Disclaimer = styled.div`
+  font-size: 14px;
+  color: ${({ theme }) => theme.colors.textColor3};
+`;
+
+const PriceErrorDescription = styled.div`
   font-size: 14px;
   color: ${({ theme }) => theme.colors.textColor3};
 `;
@@ -138,6 +152,7 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
     return state.user.offerContract;
   });
   const walletAddress = useSelector((state) => state.user.address);
+  const collectionsStats = useSelector((state) => state.collections.collections);
 
   const dispatch = useDispatch();
   const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
@@ -149,19 +164,31 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
 
   const [offerPrice, setOfferPrice] = useState(0);
   const [offerPriceError, setOfferPriceError] = useState(false);
+  const [offerPriceErrorDescription, setOfferPriceErrorDescription] = useState(null);
   const onOfferValueChange = (inputEvent) => {
     const inputValue = inputEvent.target.value;
     setOfferPrice(inputValue);
-    if (offerType === OFFER_TYPE.update && offerDataNew?.price && Number(inputValue) > Number(offerDataNew.price)) {
-      setOfferPriceError(false);
+    const isAboveOfferThreshold = floorPrice ? (parseInt(inputValue) >= (floorPrice / 2)) : true;
+
+    if (!isAboveOfferThreshold) {
+      setError(true);
+    } else if (offerType === OFFER_TYPE.update && offerDataNew?.price && Number(inputValue) > Number(offerDataNew.price)) {
+      setError(false);
     } else if (offerType === OFFER_TYPE.make && Number(inputValue) > 0) {
-      setOfferPriceError(false);
+      setError(false);
     } else {
-      setOfferPriceError(true);
+      setError(true);
     }
   };
 
+  const setError = (isError, description = null) => {
+    setOfferPriceError(isError);
+    if (isError) setOfferPriceErrorDescription(description);
+    else setOfferPriceErrorDescription(null)
+  };
+
   const [isOnAction, setIsOnAction] = useState(false);
+  const [floorPrice, setFloorPrice] = useState(null);
 
   const [royalty, setRoyalty] = useState(null);
   useEffect(() => {
@@ -176,11 +203,29 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
   }, [nftData]);
 
   useEffect(() => {
+    async function asyncFunc() {
+      const knownContract = findKnownContract(nftData.address, nftData.id);
+      const floorPrice = findCollectionFloor(knownContract);
+      setFloorPrice(floorPrice);
+    }
+
+    if (collectionsStats && collectionsStats.length > 0) {
+      if (nftData) {
+        asyncFunc();
+      }
+    } else {
+      dispatch(getAllCollections());
+    }
+    // eslint-disable-next-line
+  }, [nftData, collectionsStats]);
+
+  useEffect(() => {
     async function func() {
       setIsGettingOfferType(true);
       const filteredOffers = await getFilteredOffers(nftData.address, nftData.id, walletAddress);
-      if (filteredOffers && filteredOffers.data.length > 0) {
-        setOfferDataNew(filteredOffers.data[0]);
+      const data = filteredOffers ? filteredOffers.data.filter(o => o.state === offerState.ACTIVE) : [];
+      if (data && data.length > 0) {
+        setOfferDataNew(data);
         setOfferType(OFFER_TYPE.update);
       } else {
         setOfferType(OFFER_TYPE.make);
@@ -200,10 +245,11 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
     try {
       let tx, receipt;
       setIsOnAction(true);
+      const isAboveOfferThreshold = floorPrice ? (parseInt(offerPrice) >= (floorPrice / 2)) : true;
       if (actionType === OFFER_TYPE.make) {
-        if (!offerPrice || offerPrice < 0) {
+        if (!offerPrice || offerPrice < 0 || !isAboveOfferThreshold) {
           setIsOnAction(false);
-          setOfferPriceError(true);
+          setError(true, 'Offer must be at least 50% of floor value');
           return;
         }
         tx = await offerContract.makeOffer(nftData.address, nftData.id, {
@@ -211,9 +257,9 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
         });
         receipt = await tx.wait();
       } else if (actionType === OFFER_TYPE.update) {
-        if (!offerPrice || offerPrice <= Number(offerDataNew.price)) {
+        if (!offerPrice || offerPrice <= Number(offerDataNew.price) || !isAboveOfferThreshold) {
           setIsOnAction(false);
-          setOfferPriceError(true);
+          setError(true, 'Offer price must be greater than your previous offer');
           return;
         }
         tx = await offerContract.makeOffer(nftData.address, nftData.id, {
@@ -243,6 +289,26 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
 
     return nftData.image;
   };
+
+  const findKnownContract = (address, nftId) => {
+    return knownContracts.find((c) => {
+      const matchedAddress = caseInsensitiveCompare(c.address, address);
+      const matchedToken = !c.multiToken || parseInt(nftId) === c.id;
+      return matchedAddress && matchedToken;
+    });
+  };
+
+  const findCollectionFloor = (knownContract) => {
+    const collectionStats = collectionsStats.find(o => {
+      if (knownContract.multiToken && o.collection.indexOf('-') !== -1) {
+        let parts = o.collection.split('-');
+        return caseInsensitiveCompare(knownContract.address, parts[0]) && knownContract.id === parseInt(parts[1]);
+      } else {
+        return caseInsensitiveCompare(knownContract.address, o.collection);
+      }
+    });
+    return collectionStats ? collectionStats.floorPrice : null;
+  }
 
   return (
     <DialogContainer onClose={() => toggle(OFFER_TYPE.none)} open={isOpen} maxWidth="md">
@@ -299,6 +365,10 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
                 <Royalty>Royalty</Royalty>
                 <Royalty>{royalty ? `${royalty}%` : '-'}</Royalty>
               </FlexRow>
+              <FlexRow>
+                <FloorPrice>Floor Price</FloorPrice>
+                <FloorPrice>{floorPrice ? `${commify(floorPrice)} CRO` : '-'}</FloorPrice>
+              </FlexRow>
               {(offerType === OFFER_TYPE.make || offerType === OFFER_TYPE.update) && (
                 <>
                   <FlexRow>
@@ -330,6 +400,11 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
                           Offer will be increased by {offerPrice > parseInt(offerDataNew.price) ? offerPrice - parseInt(offerDataNew.price) : 0} CRO
                         </Disclaimer>
                       )}
+                    </FlexRow>
+                  )}
+                  {offerPriceErrorDescription && (
+                    <FlexRow>
+                      <PriceErrorDescription>{offerPriceErrorDescription}</PriceErrorDescription>
                     </FlexRow>
                   )}
                 </>

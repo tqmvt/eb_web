@@ -175,7 +175,7 @@ export const fetchListings = () => async (dispatch, getState) => {
     'red-skull-potions'
   ];
 
-  if (!!knownContract && (fallbackContracts.includes(knownContract.slug) || knownContract.multiToken)) {
+  if (weirdApes || (fallbackContracts.includes(knownContract.slug) || knownContract.multiToken)) {
     const { response, cancelled } = await sortAndFetchListings(
       state.collection.query.page + 1,
       state.collection.query.sort,
