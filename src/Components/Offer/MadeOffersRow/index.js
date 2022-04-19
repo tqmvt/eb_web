@@ -314,7 +314,8 @@ export default function TableRow({ data, type }) {
                 Cancel
               </Button>
             )}
-            {type === 'Received' && (
+
+            {type === 'Received' && !collectionData.multiToken && (
               <Button
                 type="legacy-outlined"
                 onClick={() => handleOffer(OFFER_TYPE.reject)}
