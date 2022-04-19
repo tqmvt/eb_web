@@ -12,10 +12,10 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-export const getAllOffers = async (addresses) => {
+export const getAllOffers = async (addresses, stateFilter) => {
   const allOffersQuery = `
   query($first: Int) {
-    offers(first: 1000) {
+    offers(first: 1000, where: {nftAddress_in: ${JSON.stringify(addresses)}, state: ${stateFilter}}) {
         id
         hash
         offerIndex
@@ -39,7 +39,6 @@ export const getAllOffers = async (addresses) => {
         query: gql(allOffersQuery),
         variables: {
           first: 1000,
-          where: { nftAddress: addresses },
         },
       })
     );
@@ -52,10 +51,10 @@ export const getAllOffers = async (addresses) => {
   };
 };
 
-export const getMyOffers = async (myAddress) => {
+export const getMyOffers = async (myAddress, stateFilter) => {
   const myOffersQuery = `
   query($first: Int) {
-    offers(first: 1000, where: {buyer: "${myAddress.toLowerCase()}"}) {
+    offers(first: 1000, where: {buyer: "${myAddress.toLowerCase()}", state: ${stateFilter}}) {
         id
         hash
         offerIndex

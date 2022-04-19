@@ -138,21 +138,25 @@ export const {
 
 export default offerSlice.reducer;
 
-export const fetchAllOffers = (addresses) => async (dispatch) => {
-  dispatch(allOffersLoading());
-  const { data } = await getAllOffers(addresses);
+export const fetchAllOffers =
+  (addresses, stateFilter = '0') =>
+  async (dispatch) => {
+    dispatch(allOffersLoading());
+    const { data } = await getAllOffers(addresses, stateFilter);
 
-  if (data) dispatch(allOffersLoaded(data));
-  else dispatch(allOffersLoaded([]));
-};
+    if (data) dispatch(allOffersLoaded(data));
+    else dispatch(allOffersLoaded([]));
+  };
 
-export const fetchMadeOffers = (address) => async (dispatch) => {
-  dispatch(madeOffersLoading());
-  const { data } = await getMyOffers(address);
+export const fetchMadeOffers =
+  (address, stateFilter = '0') =>
+  async (dispatch) => {
+    dispatch(madeOffersLoading());
+    const { data } = await getMyOffers(address, stateFilter);
 
-  if (data) dispatch(madeOffersLoaded(data));
-  else dispatch(madeOffersLoaded([]));
-};
+    if (data) dispatch(madeOffersLoaded(data));
+    else dispatch(madeOffersLoaded([]));
+  };
 
 export const fetchMyNFTs = (address) => async (dispatch) => {
   dispatch(myNFTsLoading());

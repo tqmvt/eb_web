@@ -10,13 +10,9 @@ import MadeOffers from '../Offer/MadeOffers';
 import ReceivedOffers from '../Offer/ReceivedOffers';
 import { getAllCollections, knownContracts } from '../../GlobalState/collectionsSlice';
 import { caseInsensitiveCompare } from '../../utils';
-import config from '../../Assets/networks/rpc_config.json';
+// import config from '../../Assets/networks/rpc_config.json';
 import { offerState } from '../../core/api/enums';
-
-const OFFERS_TAB = {
-  make: 'Made Offers',
-  receive: 'Received Offers',
-};
+import MyOffersFilter from '../Offer/MyOffersFilter';
 
 const Tabs = styled.div`
   display: flex;
@@ -51,19 +47,21 @@ const Tab = styled.div`
   }
 `;
 
+const OFFERS_TAB = {
+  make: 'Made Offers',
+  receive: 'Received Offers',
+};
+
 const MyOffers = () => {
   const walletAddress = useSelector((state) => state.user.address);
 
   const madeOffersLoading = useSelector((state) => state.offer.madeOffersLoading);
   const madeOffers = useSelector((state) => state.offer.madeOffers);
-  // const receivedOffersLoading = useSelector((state) => state.offer.receivedOffersLoading);
-  // const receivedOffers = useSelector((state) => state.offer.receivedOffers);
 
   const [receivedOffers, setReceivedOffers] = useState([]);
   const allOffersLoading = useSelector((state) => state.offer.allOffersLoading);
   const allOffers = useSelector((state) => state.offer.allOffers);
-  // const myNFTsLoading = useSelector((state) => state.user.fetchingNfts);
-  // const myNFTs = useSelector((state) => state.user.nfts);
+
   const myNFTsLoading = useSelector((state) => state.offer.myNFTsLoading);
   const myNFTs = useSelector((state) => state.offer.myNFTs);
   const collectionsStats = useSelector((state) => state.collections.collections);
@@ -73,9 +71,7 @@ const MyOffers = () => {
 
   useEffect(() => {
     dispatch(fetchMadeOffers(walletAddress));
-    // dispatch(fetchReceivedOffers(walletAddress));
     if (!myNFTsLoading) {
-      // dispatch(fetchNfts());
       dispatch(fetchMyNFTs(walletAddress));
     }
     if (!collectionsStats || collectionsStats.length === 0) {
@@ -133,6 +129,18 @@ const MyOffers = () => {
 
     return collectionStats ? collectionStats.floorPrice : null;
   };
+
+  const [filterChecked, setFilterChecked] = useState('0');
+  const handleOfferFilter = (filter) => {
+    setFilterChecked(filter);
+    dispatch(fetchMadeOffers(walletAddress, filter));
+    if (myNFTs && !myNFTsLoading) {
+      const collectionAddresses = myNFTs.map((nftData) => nftData.nftAddress.toLowerCase());
+
+      dispatch(fetchAllOffers(collectionAddresses, filter));
+    }
+  };
+
   const Content = () => (
     <>
       <section className="jumbotron breadcumb no-bg tint">
@@ -156,9 +164,16 @@ const MyOffers = () => {
             {OFFERS_TAB.receive}
           </Tab>
         </Tabs>
-        {tab === OFFERS_TAB.make && <MadeOffers offers={madeOffers} isLoading={madeOffersLoading} />}
+        <MyOffersFilter checked={filterChecked} onFilter={handleOfferFilter} />
+        {tab === OFFERS_TAB.make && (
+          <>
+            <MadeOffers offers={madeOffers} isLoading={madeOffersLoading} />
+          </>
+        )}
         {tab === OFFERS_TAB.receive && (
-          <ReceivedOffers offers={receivedOffers} isLoading={allOffersLoading || myNFTsLoading} />
+          <>
+            <ReceivedOffers offers={receivedOffers} isLoading={allOffersLoading || myNFTsLoading} />
+          </>
         )}
       </section>
 
