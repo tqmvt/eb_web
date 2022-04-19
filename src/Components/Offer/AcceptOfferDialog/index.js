@@ -178,7 +178,7 @@ const AcceptOfferDialog = ({ isOpen, toggle, nftData, offerData, collectionMetad
       const tx = await contractInstance.setApprovalForAll(offerContract.address, true);
       await tx.wait();
 
-      setNextEnabled(false);
+      setNextEnabled(true);
       setAcceptDialogActiveStep(AcceptDialogStepEnum.EnteringPrice);
     } catch (error) {
       if (error.data) {

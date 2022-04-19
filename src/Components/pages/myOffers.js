@@ -8,10 +8,10 @@ import { fetchMadeOffers, fetchAllOffers, fetchMyNFTs } from '../../GlobalState/
 import Footer from '../components/Footer';
 import MadeOffers from '../Offer/MadeOffers';
 import ReceivedOffers from '../Offer/ReceivedOffers';
-import {getAllCollections, knownContracts} from "../../GlobalState/collectionsSlice";
-import {caseInsensitiveCompare} from "../../utils";
+import { getAllCollections, knownContracts } from '../../GlobalState/collectionsSlice';
+import { caseInsensitiveCompare } from '../../utils';
 import config from '../../Assets/networks/rpc_config.json';
-import {offerState} from "../../core/api/enums";
+import { offerState } from '../../core/api/enums';
 
 const OFFERS_TAB = {
   make: 'Made Offers',
@@ -95,13 +95,13 @@ const MyOffers = () => {
     if (myNFTs && !myNFTsLoading && allOffers && collectionsStats.length > 0) {
       const receivedOffersFilter = allOffers.filter((offer) => {
         const nft = myNFTs.find(
-          (c) => c.nftAddress.toLowerCase() === offer.nftAddress && c.edition.toString() === offer.nftId
+          (c) => c.nftAddress.toLowerCase() === offer.nftAddress && c.edition?.toString() === offer.nftId
         );
 
         const knownContract = findKnownContract(offer.nftAddress, offer.nftId);
         const floorPrice = findCollectionFloor(knownContract);
         const offerPrice = parseInt(offer.price);
-        const isAboveOfferThreshold = floorPrice ? (offerPrice >= (floorPrice / 2)) : true;
+        const isAboveOfferThreshold = floorPrice ? offerPrice >= floorPrice / 2 : true;
         const canShowCompletedOffers = !knownContract.multiToken || parseInt(offer.state) === offerState.ACTIVE;
 
         if (nft && isAboveOfferThreshold && canShowCompletedOffers) {
@@ -122,7 +122,7 @@ const MyOffers = () => {
   };
 
   const findCollectionFloor = (knownContract) => {
-    const collectionStats = collectionsStats.find(o => {
+    const collectionStats = collectionsStats.find((o) => {
       if (knownContract.multiToken && o.collection.indexOf('-') !== -1) {
         let parts = o.collection.split('-');
         return caseInsensitiveCompare(knownContract.address, parts[0]) && knownContract.id === parseInt(parts[1]);
@@ -132,7 +132,7 @@ const MyOffers = () => {
     });
 
     return collectionStats ? collectionStats.floorPrice : null;
-  }
+  };
   const Content = () => (
     <>
       <section className="jumbotron breadcumb no-bg tint">
