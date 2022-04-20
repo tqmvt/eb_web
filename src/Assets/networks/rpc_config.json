@@ -1874,8 +1874,8 @@
       "metadata": {
         "description": "Hyped Dogs is a collection of 3000 uniquely generated NFTs stored on the Cronos Chain. Each Hyped Dog NFT is generated with over 120 + attributes with different rarities.",
         "verified": true,
-        "avatar": "/img/collections/hypeddogs/avatar.png",
-        "card": "/img/collections/hypeddogs/card.png",
+        "avatar": "/img/collections/hypeddogs/avatar.webp",
+        "card": "/img/collections/hypeddogs/card.webp",
         "banner": "/img/collections/hypeddogs/banner.webp",
         "maxSupply": 3000,
         "website": "https://www.hypednftclub.com/hypeddog",
@@ -3602,18 +3602,18 @@
       }
     },
     {
-      "name": "Hyped Dogs: Custom",
-      "slug": "hyped-dogs-custom",
+      "name": "Hyped Dogs: Custom Gen",
+      "slug": "hyped-dogs-custom-gen",
       "multiToken": false,
       "address": "0x25E865279004c03516D1c23601983F1074AaFA30",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Hyped Dogs: Custom Gen is here! Customs are hand made by the artist for loyal members of Hyped Dogs GEN1 collection. This is our revolution.",
         "verified": true,
-        "avatar": "/img/collections/hypeddogs/avatar.png",
-        "card": "/img/collections/hypeddogs/card.png",
-        "banner": "/img/collections/hypeddogs/banner.webp",
+        "avatar": "/img/collections/hypeddogs/custom/avatar.webp",
+        "card": "/img/collections/hypeddogs/custom/card.webp",
+        "banner": "/img/collections/hypeddogs/custom/banner.webp",
         "website": "https://www.hypednftclub.com/hypeddog",
         "twitter": "https://twitter.com/HypedDogs",
         "discord": "https://discord.gg/z6MtMavKMp"
