@@ -3561,6 +3561,25 @@
         "discord": "https://discord.gg/cWdCce8XAx",
         "medium": "https://medium.com/panels-project"
       }
+    },
+    {
+      "name": "Cryptoback Gorillas",
+      "slug": "cryptoback-gorillas",
+      "multiToken": false,
+      "address": "0x4075d14576304A63c617028b3c2949Ff6D0fDaEB",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": false,
+        "avatar": "/img/collections/cryptobackgorillas/avatar.webp",
+        "banner": "/img/collections/cryptobackgorillas/banner.webp",
+        "card": "/img/collections/cryptobackgorillas/card.webp",
+        "maxSupply": 10000,
+        "website": "https://cryptobackgorillas.com/",
+        "twitter": "https://twitter.com/cryptobacks",
+        "discord": "https://discord.gg/v4A7m6cngN"
+      }
     }
   ],
   "drops": [
