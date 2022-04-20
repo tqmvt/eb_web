@@ -3561,6 +3561,45 @@
         "discord": "https://discord.gg/cWdCce8XAx",
         "medium": "https://medium.com/panels-project"
       }
+    },
+    {
+      "name": "Cryptoback Gorillas",
+      "slug": "cryptoback-gorillas",
+      "multiToken": false,
+      "address": "0x4075d14576304A63c617028b3c2949Ff6D0fDaEB",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": false,
+        "avatar": "/img/collections/cryptobackgorillas/avatar.webp",
+        "banner": "/img/collections/cryptobackgorillas/banner.webp",
+        "card": "/img/collections/cryptobackgorillas/card.webp",
+        "maxSupply": 10000,
+        "website": "https://cryptobackgorillas.com/",
+        "twitter": "https://twitter.com/cryptobacks",
+        "discord": "https://discord.gg/v4A7m6cngN"
+      }
+    },
+    {
+      "name": "Zoo NFT",
+      "slug": "zoo-nft",
+      "multiToken": false,
+      "address": "0xFe5CB04443D953B8888bAea08A407C38522c3b21",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": false,
+        "avatar": "/img/collections/zoo-nft/avatar.webp",
+        "banner": "/img/collections/zoo-nft/banner.webp",
+        "card": "/img/collections/zoo-nft/card.webp",
+        "maxSupply": 2000,
+        "website": "https://linkjar.co/Zoo_NFT",
+        "twitter": "https://twitter.com/Zoo_nfts",
+        "discord": "https://discord.gg/4xeWh5kHHB",
+        "instagram": "https://www.instagram.com/zoo_nfts"
+      }
     }
   ],
   "drops": [
