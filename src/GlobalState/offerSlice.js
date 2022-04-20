@@ -86,7 +86,9 @@ const offerSlice = createSlice({
       state.offersForSingleNFT = action.payload;
     },
     // offer actions
-    offerActionSuccess: (state) => {
+    offerActionSuccess: (state, action) => {
+      state.madeOffers = action.payload.madeOffers;
+      state.allOffers = action.payload.allOffers;
       state.error = false;
     },
     offerActionFailed: (state, action) => {
@@ -190,13 +192,29 @@ export const fetchOffersForSingleNFT = (nftAddress, nftId) => async (dispatch) =
   else dispatch(offersForSingleNFTLoaded([]));
 };
 
-export const updateOfferSuccess = (transactionHash, walletAddress) => async (dispatch) => {
-  if (walletAddress) {
-    dispatch(fetchMadeOffers(walletAddress));
-    dispatch(fetchMyNFTs(walletAddress));
+export const updateOfferSuccess = (transactionHash, updatedOffer) => async (dispatch, getState) => {
+  const state = getState();
+
+  let madeOffers = [...state.offer.madeOffers];
+  let allOffers = [...state.offer.allOffers];
+
+  const madeOfferIndex = madeOffers.findIndex(
+    (offer) => offer.nftAddress === updatedOffer.nftAddress && offer.nftId === updatedOffer.nftId
+  );
+
+  const allOfferIndex = allOffers.findIndex(
+    (offer) => offer.nftAddress === updatedOffer.nftAddress && offer.nftId === updatedOffer.nftId
+  );
+
+  if (madeOfferIndex !== -1) {
+    madeOffers[madeOfferIndex] = updatedOffer;
   }
 
-  dispatch(offerActionSuccess());
+  if (allOfferIndex !== -1) {
+    allOffers[allOfferIndex] = updatedOffer;
+  }
+
+  dispatch(offerActionSuccess({ madeOffers, allOffers }));
   toast.success(createSuccessfulTransactionToastContent(transactionHash));
 };
 

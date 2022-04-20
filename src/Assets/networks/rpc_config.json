@@ -1732,7 +1732,7 @@
       "multiToken": false,
       "address": "0x0125Ce96f9A4324dD514D20bD8324c696619F9fe",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "",
         "verified": true,
@@ -2182,7 +2182,7 @@
       "multiToken": false,
       "address": "0xc843f18d5605654391e7eDBEa250f6838C3e8936",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "",
         "verified": true,
@@ -4265,7 +4265,7 @@
       "is1155": false,
       "priceDescription": "1M LOOT required to be eligible for the Whitelist Price",
       "published": true,
-      "complete": false
+      "complete": true
     },
     {
       "id": 24,
@@ -4504,7 +4504,7 @@
       "is1155": false,
       "disclaimer": "Presale is limited to whitelisted addresses only. Please check the Cronos Primate Business discord for more information.",
       "published": true,
-      "complete": false,
+      "complete": true,
       "multiMint": true
     },
     {

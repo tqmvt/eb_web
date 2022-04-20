@@ -11,7 +11,7 @@ import Button from 'src/Components/components/Button';
 import Input from 'src/Components/components/common/Input';
 import ProfilePreview from 'src/Components/components/ProfilePreview';
 import { croSkullRedPotionImageHack } from 'src/hacks';
-import {caseInsensitiveCompare, humanize, shortAddress} from 'src/utils';
+import { caseInsensitiveCompare, humanize, shortAddress } from 'src/utils';
 import { OFFER_TYPE } from '../MadeOffersRow';
 import CloseIcon from 'src/Assets/images/close-icon-blue.svg';
 import { updateOfferSuccess, updateOfferFailed } from 'src/GlobalState/offerSlice';
@@ -19,9 +19,9 @@ import EmptyData from '../EmptyData';
 import config from 'src/Assets/networks/rpc_config.json';
 import Market from 'src/Contracts/Marketplace.json';
 import { getFilteredOffers } from 'src/core/subgraph';
-import {getAllCollections} from "../../../GlobalState/collectionsSlice";
-import {offerState} from "../../../core/api/enums";
-import {commify} from "ethers/lib/utils";
+import { getAllCollections } from '../../../GlobalState/collectionsSlice';
+import { offerState } from '../../../core/api/enums';
+import { commify } from 'ethers/lib/utils';
 const knownContracts = config.known_contracts;
 
 const DialogContainer = styled(Dialog)`
@@ -168,11 +168,15 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
   const onOfferValueChange = (inputEvent) => {
     const inputValue = inputEvent.target.value;
     setOfferPrice(inputValue);
-    const isAboveOfferThreshold = floorPrice ? (parseInt(inputValue) >= (floorPrice / 2)) : true;
+    const isAboveOfferThreshold = floorPrice ? parseInt(inputValue) >= floorPrice / 2 : true;
 
     if (!isAboveOfferThreshold) {
       setError(true);
-    } else if (offerType === OFFER_TYPE.update && offerDataNew?.price && Number(inputValue) > Number(offerDataNew.price)) {
+    } else if (
+      offerType === OFFER_TYPE.update &&
+      offerDataNew?.price &&
+      Number(inputValue) > Number(offerDataNew.price)
+    ) {
       setError(false);
     } else if (offerType === OFFER_TYPE.make && Number(inputValue) > 0) {
       setError(false);
@@ -184,7 +188,7 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
   const setError = (isError, description = null) => {
     setOfferPriceError(isError);
     if (isError) setOfferPriceErrorDescription(description);
-    else setOfferPriceErrorDescription(null)
+    else setOfferPriceErrorDescription(null);
   };
 
   const [isOnAction, setIsOnAction] = useState(false);
@@ -223,7 +227,7 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
     async function func() {
       setIsGettingOfferType(true);
       const filteredOffers = await getFilteredOffers(nftData.address, nftData.id, walletAddress);
-      const data = filteredOffers ? filteredOffers.data.filter(o => o.state === offerState.ACTIVE) : [];
+      const data = filteredOffers ? filteredOffers.data.filter((o) => o.state === offerState.ACTIVE) : [];
       if (data && data.length > 0) {
         setOfferDataNew(data);
         setOfferType(OFFER_TYPE.update);
@@ -241,11 +245,23 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
     return <></>;
   }
 
+  const getUpdatedOffer = (offerDataNew1, actionType1, offerPrice1) => {
+    if (actionType1 === OFFER_TYPE.update) {
+      return { ...offerDataNew1, price: offerPrice1.toString() };
+    } else if (actionType1 === OFFER_TYPE.accept) {
+      return { ...offerDataNew1, state: '1' };
+    } else if (actionType1 === OFFER_TYPE.reject) {
+      return { ...offerDataNew1, state: '2' };
+    } else if (actionType1 === OFFER_TYPE.cancel) {
+      return { ...offerDataNew1, state: '3' };
+    }
+  };
+
   const handleOfferAction = async (actionType) => {
     try {
       let tx, receipt;
       setIsOnAction(true);
-      const isAboveOfferThreshold = floorPrice ? (parseInt(offerPrice) >= (floorPrice / 2)) : true;
+      const isAboveOfferThreshold = floorPrice ? parseInt(offerPrice) >= floorPrice / 2 : true;
       if (actionType === OFFER_TYPE.make) {
         if (!offerPrice || offerPrice < 0 || !isAboveOfferThreshold) {
           setIsOnAction(false);
@@ -273,7 +289,8 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
         tx = await offerContract.rejectOffer(offerDataNew?.hash, offerDataNew?.offerIndex);
         receipt = await tx.wait();
       }
-      dispatch(updateOfferSuccess(receipt.transactionHash, walletAddress));
+
+      dispatch(updateOfferSuccess(receipt.transactionHash, getUpdatedOffer(offerDataNew, actionType, offerPrice)));
     } catch (e) {
       dispatch(updateOfferFailed(e));
     }
@@ -299,7 +316,7 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
   };
 
   const findCollectionFloor = (knownContract) => {
-    const collectionStats = collectionsStats.find(o => {
+    const collectionStats = collectionsStats.find((o) => {
       if (knownContract.multiToken && o.collection.indexOf('-') !== -1) {
         let parts = o.collection.split('-');
         return caseInsensitiveCompare(knownContract.address, parts[0]) && knownContract.id === parseInt(parts[1]);
@@ -308,7 +325,7 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
       }
     });
     return collectionStats ? collectionStats.floorPrice : null;
-  }
+  };
 
   return (
     <DialogContainer onClose={() => toggle(OFFER_TYPE.none)} open={isOpen} maxWidth="md">
@@ -372,13 +389,7 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
               {(offerType === OFFER_TYPE.make || offerType === OFFER_TYPE.update) && (
                 <>
                   <FlexRow>
-                    <OfferPrice>
-                      {offerType === OFFER_TYPE.update ? (
-                        <>New Offer Price</>
-                      ) : (
-                        <>Offer Price</>
-                      )}
-                    </OfferPrice>
+                    <OfferPrice>{offerType === OFFER_TYPE.update ? <>New Offer Price</> : <>Offer Price</>}</OfferPrice>
                     <OfferPriceInput>
                       <Input
                         type="number"
@@ -397,7 +408,9 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
                     <FlexRow>
                       {offerPrice > parseInt(offerDataNew.price) && (
                         <Disclaimer>
-                          Offer will be increased by {offerPrice > parseInt(offerDataNew.price) ? offerPrice - parseInt(offerDataNew.price) : 0} CRO
+                          Offer will be increased by{' '}
+                          {offerPrice > parseInt(offerDataNew.price) ? offerPrice - parseInt(offerDataNew.price) : 0}{' '}
+                          CRO
                         </Disclaimer>
                       )}
                     </FlexRow>

@@ -50,13 +50,13 @@ const Collection = () => {
                   {type === '1155' ? (
                     <>
                       {collection.split ? (
-                        <Collection1155 address={collection.address} tokenId={collection.id} slug={slug} />
+                        <Collection1155 address={collection.address} tokenId={collection.id} slug={slug} cacheName={slug} />
                       ) : (
-                        <Collection1155 address={collection.address} slug={slug} />
+                        <Collection1155 address={collection.address} slug={slug} cacheName={slug} />
                       )}
                     </>
                   ) : (
-                    <Collection721 collection={collection} slug={slug} />
+                    <Collection721 collection={collection} slug={slug} cacheName={slug} />
                   )}
                 </>
               ) : (
