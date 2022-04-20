@@ -2182,7 +2182,7 @@
       "multiToken": false,
       "address": "0xc843f18d5605654391e7eDBEa250f6838C3e8936",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "",
         "verified": true,
@@ -4504,7 +4504,7 @@
       "is1155": false,
       "disclaimer": "Presale is limited to whitelisted addresses only. Please check the Cronos Primate Business discord for more information.",
       "published": true,
-      "complete": false,
+      "complete": true,
       "multiMint": true
     },
     {
