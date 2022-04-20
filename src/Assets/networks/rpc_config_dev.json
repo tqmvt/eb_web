@@ -790,9 +790,9 @@
       "metadata": {
         "description": "Ebisu has many origins, all of which have lead to his current status as one of the Seven Lucky Gods. May his blessing be upon you as a guiding light in your journeys on the Cronos Chain.",
         "verified": true,
-        "avatar": "/img/collections/barbara/ebisu/avatar.jpg",
-        "banner": "/img/collections/barbara/ebisu/banner.jpg",
-        "card": "/img/collections/barbara/ebisu/card.jpg",
+        "avatar": "/img/collections/barbara/ebisu/avatar.webp",
+        "banner": "/img/collections/barbara/ebisu/banner.webp",
+        "card": "/img/collections/barbara/ebisu/card.webp",
         "maxSupply": 173,
         "website": "https://crypto.com/nft/profile/vredekop?tab=created",
         "twitter": "https://twitter.com/BarbaraRedekop",
@@ -3618,6 +3618,23 @@
         "twitter": "https://twitter.com/HypedDogs",
         "discord": "https://discord.gg/z6MtMavKMp"
       }
+    },
+    {
+      "name": "Barbara Customs",
+      "slug": "barabra-customs",
+      "multiToken": false,
+      "address": "0x7a321568dc6dF06acEc39C09eFEf97fAd17eEF35",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "verified": true,
+        "avatar": "/img/collections/barbara/ebisu/avatar.webp",
+        "banner": "/img/collections/barbara/ebisu/banner.webp",
+        "card": "/img/collections/barbara/ebisu/card.webp",
+        "website": "https://crypto.com/nft/profile/vredekop?tab=created",
+        "twitter": "https://twitter.com/BarbaraRedekop",
+        "discord": "https://discord.gg/XrhWf2SppB"
+      }
     }
   ],
   "drops": [
@@ -3676,7 +3693,7 @@
       "slug": "ebisu-by-barbara",
       "imgNft": "/img/drops/ebisu/Ebisu.gif",
       "imgPreview": "/img/drops/ebisu/ebisu_card.gif",
-      "imgAvatar": "/img/collections/barbara/ebisu/avatar.jpg",
+      "imgAvatar": "/img/collections/barbara/ebisu/avatar.webp",
       "title": "Ebisu by Barbara",
       "subtitle": "May his blessing be upon you as a guiding light in your journeys on the Cronos chain.",
       "description": "Ebisu has many origins, all of which have lead to his current status as one of the Seven Lucky Gods. Eternally grateful for the generosity and luck that had saved his life Ebisu is spreading joy and luck to all he encounters. May his blessing be upon you as a guiding light in your journeys on the Cronos Chain.",
