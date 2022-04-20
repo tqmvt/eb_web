@@ -66,7 +66,7 @@ export async function sortAndFetchListings(page, sort, filter, traits, powertrai
     query = { ...query, ...filterParams };
   }
 
-  if (sort && sort instanceof SortOption) {
+  if (sort && (sort instanceof SortOption || sort instanceof CollectionSortOption)) {
     query = { ...query, ...sort.toApi() };
   }
 
