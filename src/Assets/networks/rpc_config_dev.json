@@ -3600,6 +3600,24 @@
         "discord": "https://discord.gg/4xeWh5kHHB",
         "instagram": "https://www.instagram.com/zoo_nfts"
       }
+    },
+    {
+      "name": "Hyped Dogs: Custom",
+      "slug": "hyped-dogs-custom",
+      "multiToken": false,
+      "address": "0x25E865279004c03516D1c23601983F1074AaFA30",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/hypeddogs/avatar.png",
+        "card": "/img/collections/hypeddogs/card.png",
+        "banner": "/img/collections/hypeddogs/banner.webp",
+        "website": "https://www.hypednftclub.com/hypeddog",
+        "twitter": "https://twitter.com/HypedDogs",
+        "discord": "https://discord.gg/z6MtMavKMp"
+      }
     }
   ],
   "drops": [
