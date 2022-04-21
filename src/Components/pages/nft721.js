@@ -188,7 +188,7 @@ const Nft721 = ({ address, id }) => {
         setOfferType(OFFER_TYPE.make);
       }
     }
-    if (!offerType && user.address && nft.nftAddress && nft.nftId) {
+    if (!offerType && user.address && nft && nft.nftAddress && nft.nftId) {
       console.log('asdf');
       func();
     }
