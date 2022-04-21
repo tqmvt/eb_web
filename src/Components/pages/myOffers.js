@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import styled from 'styled-components';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { Spinner } from 'react-bootstrap';
 
 import Footer from '../components/Footer';
 import MadeOffers from '../Offer/MadeOffers';
 import ReceivedOffers from '../Offer/ReceivedOffers';
 import MyOffersFilter from '../Offer/MyOffersFilter';
-import { fetchMadeOffers, fetchAllOffers, fetchMyNFTs } from '../../GlobalState/offerSlice';
+import { initOffers, fetchMadeOffers, fetchAllOffers, fetchMyNFTs } from '../../GlobalState/offerSlice';
 import { getAllCollections, knownContracts } from '../../GlobalState/collectionsSlice';
 import { caseInsensitiveCompare } from '../../utils';
 import { offerState } from '../../core/api/enums';
@@ -53,6 +55,7 @@ const OFFERS_TAB = {
 const MyOffers = () => {
   const walletAddress = useSelector((state) => state.user.address);
 
+  const lastId = useSelector((state) => state.offer.lastId);
   const madeOffersLoading = useSelector((state) => state.offer.madeOffersLoading);
   const madeOffers = useSelector((state) => state.offer.madeOffers);
 
@@ -131,11 +134,24 @@ const MyOffers = () => {
   const [filterChecked, setFilterChecked] = useState('0');
   const handleOfferFilter = (filter) => {
     setFilterChecked(filter);
+    dispatch(initOffers());
     dispatch(fetchMadeOffers(walletAddress, filter));
     if (myNFTs && !myNFTsLoading) {
       const collectionAddresses = myNFTs.map((nftData) => nftData.nftAddress.toLowerCase());
 
       dispatch(fetchAllOffers(collectionAddresses, filter));
+    }
+  };
+
+  const loadMoreMade = () => {
+    dispatch(fetchMadeOffers(walletAddress, filterChecked));
+  };
+
+  const loadMoreReceived = () => {
+    if (myNFTs && !myNFTsLoading) {
+      const collectionAddresses = myNFTs.map((nftData) => nftData.nftAddress.toLowerCase());
+
+      dispatch(fetchAllOffers(collectionAddresses, filterChecked));
     }
   };
 
@@ -164,14 +180,42 @@ const MyOffers = () => {
         </Tabs>
         <MyOffersFilter checked={filterChecked} onFilter={handleOfferFilter} />
         {tab === OFFERS_TAB.make && (
-          <>
+          <InfiniteScroll
+            dataLength={madeOffers.length}
+            next={loadMoreMade}
+            hasMore={!!lastId}
+            style={{ overflow: 'hidden' }}
+            loader={
+              <div className="row">
+                <div className="col-lg-12 text-center">
+                  <Spinner animation="border" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                  </Spinner>
+                </div>
+              </div>
+            }
+          >
             <MadeOffers offers={madeOffers} isLoading={madeOffersLoading} />
-          </>
+          </InfiniteScroll>
         )}
         {tab === OFFERS_TAB.receive && (
-          <>
+          <InfiniteScroll
+            dataLength={receivedOffers.length}
+            next={loadMoreReceived}
+            hasMore={!!lastId}
+            style={{ overflow: 'hidden' }}
+            loader={
+              <div className="row">
+                <div className="col-lg-12 text-center">
+                  <Spinner animation="border" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                  </Spinner>
+                </div>
+              </div>
+            }
+          >
             <ReceivedOffers offers={receivedOffers} isLoading={allOffersLoading || myNFTsLoading} />
-          </>
+          </InfiniteScroll>
         )}
       </section>
 

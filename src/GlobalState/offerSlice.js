@@ -21,14 +21,11 @@ const offerSlice = createSlice({
   name: 'offer',
   initialState: {
     error: false,
+    lastId: '',
 
     // made offers list
     madeOffersLoading: false,
     madeOffers: [],
-
-    // todo: remove
-    receivedOffersLoading: false,
-    receivedOffers: [],
 
     // all offers for received offers
     allOffersLoading: false,
@@ -49,6 +46,11 @@ const offerSlice = createSlice({
     filteredOffersLoading: false,
   },
   reducers: {
+    initOffers: (state) => {
+      state.lastId = '';
+      state.madeOffers = [];
+      state.allOffers = [];
+    },
     madeOffersLoading: (state) => {
       state.madeOffersLoading = true;
       state.error = false;
@@ -56,16 +58,8 @@ const offerSlice = createSlice({
     madeOffersLoaded: (state, action) => {
       state.madeOffersLoading = false;
       state.error = false;
-      state.madeOffers = action.payload;
-    },
-    receivedOffersLoading: (state) => {
-      state.receivedOffersLoading = true;
-      state.error = false;
-    },
-    receivedOffersLoaded: (state, action) => {
-      state.receivedOffersLoading = false;
-      state.error = false;
-      state.receivedOffers = action.payload;
+      state.madeOffers = action.payload.madeOffers;
+      state.lastId = action.payload.lastId;
     },
     allOffersLoading: (state) => {
       state.allOffersLoading = true;
@@ -74,7 +68,8 @@ const offerSlice = createSlice({
     allOffersLoaded: (state, action) => {
       state.allOffersLoading = false;
       state.error = false;
-      state.allOffers = action.payload;
+      state.allOffers = action.payload.allOffers;
+      state.lastId = action.payload.lastId;
     },
     offersForSingleNFTLoading: (state) => {
       state.offersForSingleNFTLoading = true;
@@ -121,10 +116,9 @@ const offerSlice = createSlice({
 });
 
 export const {
+  initOffers,
   madeOffersLoading,
   madeOffersLoaded,
-  receivedOffersLoading,
-  receivedOffersLoaded,
   filteredOffersLoading,
   filteredOffersLoaded,
   myNFTsLoading,
@@ -142,22 +136,42 @@ export default offerSlice.reducer;
 
 export const fetchAllOffers =
   (addresses, stateFilter = '0') =>
-  async (dispatch) => {
+  async (dispatch, getState) => {
+    if (!addresses.length) return;
     dispatch(allOffersLoading());
-    const { data } = await getAllOffers(addresses, stateFilter);
+    const state = getState().offer;
+    const { data } = await getAllOffers(addresses, stateFilter, state.lastId);
+    console.log(data);
 
-    if (data) dispatch(allOffersLoaded(data));
-    else dispatch(allOffersLoaded([]));
+    if (data) {
+      if (data.length) {
+        let allOffers = [...state.allOffers];
+        allOffers = allOffers.concat(data);
+        const lastId = allOffers.slice(-1)[0]['id'];
+        dispatch(allOffersLoaded({ allOffers, lastId }));
+      } else {
+        dispatch(allOffersLoaded({ allOffers: state.allOffers, lastId: null }));
+      }
+    } else dispatch(allOffersLoaded([]));
   };
 
 export const fetchMadeOffers =
   (address, stateFilter = '0') =>
-  async (dispatch) => {
+  async (dispatch, getState) => {
     dispatch(madeOffersLoading());
-    const { data } = await getMyOffers(address, stateFilter);
+    const state = getState().offer;
+    const { data } = await getMyOffers(address, stateFilter, state.lastId);
 
-    if (data) dispatch(madeOffersLoaded(data));
-    else dispatch(madeOffersLoaded([]));
+    if (data) {
+      if (data.length) {
+        let madeOffers = [...state.madeOffers];
+        madeOffers = madeOffers.concat(data);
+        const lastId = madeOffers.slice(-1)[0]['id'];
+        dispatch(madeOffersLoaded({ madeOffers, lastId }));
+      } else {
+        dispatch(madeOffersLoaded({ madeOffers: state.madeOffers, lastId: null }));
+      }
+    } else dispatch(madeOffersLoaded([]));
   };
 
 export const fetchMyNFTs = (address) => async (dispatch) => {
@@ -166,14 +180,6 @@ export const fetchMyNFTs = (address) => async (dispatch) => {
 
   if (data) dispatch(myNFTsLoaded(data));
   else dispatch(myNFTsLoaded([]));
-};
-
-export const fetchReceivedOffers = (address) => async (dispatch) => {
-  dispatch(receivedOffersLoading());
-  const { data } = await getReceivedOffers(address);
-
-  if (data) dispatch(receivedOffersLoaded(data));
-  else dispatch(receivedOffersLoaded([]));
 };
 
 export const fetchFilteredOffers = (nftAddress, nftId, walletAddress) => async (dispatch) => {

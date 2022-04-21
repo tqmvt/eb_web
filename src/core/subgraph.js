@@ -1,21 +1,19 @@
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 import config from '../Assets/networks/rpc_config.json';
 
-// import { configData } from 'src/Config';
-
-// const CURRENT_ENV = process.env.REACT_APP_ENV;
-// const APIURL = configData[CURRENT_ENV].subgraphUrl;
 const APIURL = `${config.subgraph_base}${config.chain_id === '25' ? 'offers' : 'offers-testnet'}`;
+
+const FIRST = 100;
 
 const client = new ApolloClient({
   uri: APIURL,
   cache: new InMemoryCache(),
 });
 
-export const getAllOffers = async (addresses, stateFilter) => {
+export const getAllOffers = async (addresses, stateFilter, lastId) => {
   const allOffersQuery = `
-  query($first: Int) {
-    offers(first: 1000, where: {nftAddress_in: ${JSON.stringify(addresses)}, state: ${stateFilter}}) {
+  query($first: Int, $addresses: [String], $state: String, $lastId: String) {
+    offers(first: $first, where: {nftAddress_in: $addresses, state: $state, id_gt: $lastId}) {
         id
         hash
         offerIndex
@@ -38,7 +36,10 @@ export const getAllOffers = async (addresses, stateFilter) => {
       client.query({
         query: gql(allOffersQuery),
         variables: {
-          first: 1000,
+          first: FIRST,
+          addresses,
+          state: stateFilter,
+          lastId,
         },
       })
     );
@@ -51,10 +52,10 @@ export const getAllOffers = async (addresses, stateFilter) => {
   };
 };
 
-export const getMyOffers = async (myAddress, stateFilter) => {
+export const getMyOffers = async (myAddress, stateFilter, lastId) => {
   const myOffersQuery = `
-  query($first: Int) {
-    offers(first: 1000, where: {buyer: "${myAddress.toLowerCase()}", state: ${stateFilter}}) {
+  query($first: Int, $buyer: String, $state: String, $lastId: String) {
+    offers(first: $first, where: {buyer: $buyer, state: $state, id_gt: $lastId}) {
         id
         hash
         offerIndex
@@ -77,46 +78,10 @@ export const getMyOffers = async (myAddress, stateFilter) => {
       client.query({
         query: gql(myOffersQuery),
         variables: {
-          first: 100,
-        },
-      })
-    );
-  });
-
-  const { offers } = response.data;
-
-  return {
-    data: offers,
-  };
-};
-
-export const getReceivedOffers = async (myAddress) => {
-  const myOffersQuery = `
-  query($first: Int) {
-    offers(first: 1000, where: {seller: "${myAddress.toLowerCase()}"}) {
-        id
-        hash
-        offerIndex
-        nftAddress
-        nftId
-        buyer
-        seller
-        coinAddress
-        price
-        state
-        timeCreated
-        timeUpdated
-        timeEnded
-    }
-  }
-`;
-
-  const response = await new Promise((resolve) => {
-    resolve(
-      client.query({
-        query: gql(myOffersQuery),
-        variables: {
-          first: 100,
+          first: FIRST,
+          buyer: myAddress.toLowerCase(),
+          state: stateFilter,
+          lastId,
         },
       })
     );
