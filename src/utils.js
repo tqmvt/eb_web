@@ -234,7 +234,7 @@ export function createSuccessfulTransactionToastContent(transactionHash) {
         style={{ paddingLeft: '1rem' }}
         onClick={() => openWithCronosExplorer(transactionHash)}
       >
-        ${getShortIdForView(transactionHash)}
+        See details
       </span>
     </span>
   );
