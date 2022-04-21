@@ -3,16 +3,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { fetchMadeOffers, fetchAllOffers, fetchMyNFTs } from '../../GlobalState/offerSlice';
-// import { fetchNfts } from 'src/GlobalState/User';
 import Footer from '../components/Footer';
 import MadeOffers from '../Offer/MadeOffers';
 import ReceivedOffers from '../Offer/ReceivedOffers';
+import MyOffersFilter from '../Offer/MyOffersFilter';
+import { fetchMadeOffers, fetchAllOffers, fetchMyNFTs } from '../../GlobalState/offerSlice';
 import { getAllCollections, knownContracts } from '../../GlobalState/collectionsSlice';
 import { caseInsensitiveCompare } from '../../utils';
-// import config from '../../Assets/networks/rpc_config.json';
 import { offerState } from '../../core/api/enums';
-import MyOffersFilter from '../Offer/MyOffersFilter';
 
 const Tabs = styled.div`
   display: flex;
