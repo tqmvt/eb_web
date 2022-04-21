@@ -11,8 +11,8 @@ import {
   getOffersForSingleNFT,
 } from '../core/subgraph';
 import { createSuccessfulTransactionToastContent } from '../utils';
-import { ERC1155, ERC721, MetaPixelsAbi, SouthSideAntsReadAbi } from '../Contracts/Abis';
-import { isMetapixelsCollection, isSouthSideAntsCollection } from '../utils';
+import { ERC1155, ERC721, MetaPixelsAbi } from '../Contracts/Abis';
+import { isMetapixelsCollection } from '../utils';
 import config from '../Assets/networks/rpc_config.json';
 
 const knownContracts = config.known_contracts;
