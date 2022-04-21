@@ -60,7 +60,7 @@ const Footer = () => {
             </a>
 
             <span className="col-12 pt-3 copy text-center" style={{ opacity: '0.6' }}>
-              Copyright &copy; 2021 EbisusBay.com. All rights reserved
+              Copyright &copy; 2022 EbisusBay.com. All rights reserved
             </span>
           </div>
         </div>
