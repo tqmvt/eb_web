@@ -296,18 +296,18 @@
       }
     },
     {
-      "name": "CronosChimp",
+      "name": "Cronos Chimp Club",
       "slug": "cronos-chimp-club",
       "multiToken": false,
       "address": "0x562f021423d75a1636db5be1c4d99bc005ccebfe",
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Cronos Chimp Club is a collection of 10,000 uniquely generated Chimps on the Cronos Chain with various traits that celebrate the different aspects of the Cronos ecosystem.",
         "verified": true,
-        "avatar": "/img/collections/chimps/avatar.png",
-        "banner": "/img/collections/chimps/banner.png",
-        "card": "/img/collections/chimps/card.png",
+        "avatar": "/img/collections/chimps/avatar.webp",
+        "banner": "/img/collections/chimps/banner.webp",
+        "card": "/img/collections/chimps/card.webp",
         "rarity": "rarity_sniper",
         "maxSupply": 10000,
         "website": "https://cronoschimp.club/",
