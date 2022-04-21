@@ -3528,7 +3528,7 @@
       "multiToken": false,
       "address": "0x443Cc7e5E88d5d7D424D4C80cC40618a6BCd23c3",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "",
         "verified": true,
@@ -5182,7 +5182,7 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false
+      "complete": true
     }
   ],
   "auctions": [

@@ -6,6 +6,7 @@ import { Spinner } from 'react-bootstrap';
 
 import AuctionCard from './AuctionCard';
 import { init, fetchListings } from '../../GlobalState/auctionsSlice';
+import {auctionState} from "../../core/api/enums";
 // import ListingCard from './ListingCard';
 // import Clock from './Clock';
 // import auction from '../pages/auction';
@@ -13,7 +14,7 @@ import { init, fetchListings } from '../../GlobalState/auctionsSlice';
 
 const AuctionCollection = ({ showLoadMore = true, collectionId = null, sellerId = null, cacheName = null }) => {
   const dispatch = useDispatch();
-  const listings = useSelector((state) => state.auctions.auctions.filter((a) => typeof a.nft != 'undefined'));
+  const listings = useSelector((state) => state.auctions.auctions.filter((a) => typeof a.nft != 'undefined' && [auctionState.ACTIVE, auctionState.NOT_STARTED].includes(a.state)));
   const isLoading = useSelector((state) => state.auctions.loading);
 
   // const canLoadMore = useSelector((state) => {
