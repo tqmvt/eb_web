@@ -2,8 +2,8 @@ import React, { memo, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, Link } from 'react-router-dom';
 import Blockies from 'react-blockies';
-import {Contract, ethers} from 'ethers';
-import {faCrow, faExternalLinkAlt, faHeart} from '@fortawesome/free-solid-svg-icons';
+import { Contract, ethers } from 'ethers';
+import { faCrow, faExternalLinkAlt, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Helmet } from 'react-helmet';
 import MetaMaskOnboarding from '@metamask/onboarding';
@@ -11,12 +11,13 @@ import MetaMaskOnboarding from '@metamask/onboarding';
 import ProfilePreview from '../components/ProfilePreview';
 import Footer from '../components/Footer';
 import {
-  humanize, isBabyWeirdApesCollection,
+  humanize,
+  isBabyWeirdApesCollection,
   isCroCrowCollection,
   isCrognomidesCollection,
   relativePrecision,
   shortAddress,
-  timeSince
+  timeSince,
 } from '../../utils';
 import { getNftDetails } from '../../GlobalState/nftSlice';
 import config from '../../Assets/networks/rpc_config.json';
@@ -27,9 +28,13 @@ import MakeOfferDialog from '../Offer/MakeOfferDialog';
 import { connectAccount, chainConnect } from 'src/GlobalState/User';
 import { Spinner } from 'react-bootstrap';
 
-import ReactPlayer from "react-player";
-import LayeredIcon from "../components/LayeredIcon";
-import {ERC721} from "../../Contracts/Abis";
+import ReactPlayer from 'react-player';
+import LayeredIcon from '../components/LayeredIcon';
+import { ERC721 } from '../../Contracts/Abis';
+import { getFilteredOffers } from 'src/core/subgraph';
+import { OFFER_TYPE } from '../Offer/MadeOffersRow';
+import { offerState } from '../../core/api/enums';
+
 const knownContracts = config.known_contracts;
 
 const Nft721 = ({ address, id }) => {
@@ -39,6 +44,7 @@ const Nft721 = ({ address, id }) => {
   const user = useSelector((state) => state.user);
 
   const [openMakeOfferDialog, setOpenMakeOfferDialog] = useState(false);
+  const [offerType, setOfferType] = useState(OFFER_TYPE.none);
 
   const nft = useSelector((state) => state.nft.nft);
   const currentListing = useSelector((state) => state.nft.currentListing);
@@ -71,7 +77,7 @@ const Nft721 = ({ address, id }) => {
         '0x0f1439a290e86a38157831fe27a3dcd302904055',
         [
           'function availableCrows(address _owner) public view returns (uint256[] memory, bool[] memory)',
-          'function isCrowUsed(uint256 tokenId) public view returns (bool)'
+          'function isCrowUsed(uint256 tokenId) public view returns (bool)',
         ],
         readProvider
       );
@@ -171,6 +177,22 @@ const Nft721 = ({ address, id }) => {
       }
     }
   };
+
+  useEffect(() => {
+    async function func() {
+      const filteredOffers = await getFilteredOffers(nft.nftAddress, nft.nftId.toString(), user.address);
+      const data = filteredOffers ? filteredOffers.data.filter((o) => o.state === offerState.ACTIVE.toString()) : [];
+      if (data && data.length > 0) {
+        setOfferType(OFFER_TYPE.update);
+      } else {
+        setOfferType(OFFER_TYPE.make);
+      }
+    }
+    if (!offerType && user.address && nft.nftAddress && nft.nftId) {
+      console.log('asdf');
+      func();
+    }
+  }, [nft, user]);
 
   return (
     <div>
@@ -274,13 +296,17 @@ const Nft721 = ({ address, id }) => {
                   <PriceActionBar />
                   <div className="row">
                     <button className="btn-main mx-auto mb-5" onClick={() => handleMakeOffer()}>
-                      Make Offer
+                      {offerType === OFFER_TYPE.update ? 'Update' : 'Make'} Offer
                     </button>
                   </div>
 
                   <div className="row" style={{ gap: '2rem 0' }}>
                     {currentListing && (
-                      <ProfilePreview type="Seller" address={currentListing.seller} to={`/seller/${currentListing.seller}`} />
+                      <ProfilePreview
+                        type="Seller"
+                        address={currentListing.seller}
+                        to={`/seller/${currentListing.seller}`}
+                      />
                     )}
 
                     <ProfilePreview
@@ -504,6 +530,7 @@ const Nft721 = ({ address, id }) => {
           toggle={() => setOpenMakeOfferDialog(!openMakeOfferDialog)}
           nftData={nft}
           collectionMetadata={collectionMetadata}
+          type={offerType}
         />
       )}
       <Footer />

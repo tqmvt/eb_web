@@ -1,8 +1,20 @@
 import React from 'react';
+import styled from 'styled-components';
+
+const FilterContainer = styled.div`
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    margin-top: 16px;
+  }
+
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+    margin-top: 16px;
+    flex-wrap: wrap;
+  }
+`;
 
 export default function MyOffersFilter({ checked, onFilter }) {
   return (
-    <div className="d-flex mb-3">
+    <FilterContainer className="d-flex mb-3">
       <div className="d-flex align-items-center">
         <input
           type="radio"
@@ -55,6 +67,6 @@ export default function MyOffersFilter({ checked, onFilter }) {
           Cancelled
         </label>
       </div>
-    </div>
+    </FilterContainer>
   );
 }
