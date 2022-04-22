@@ -38,7 +38,7 @@ const Nft1155 = ({ address, id }) => {
     state.nft.history.filter((i) => i.state === listingState.SOLD).sort((a, b) => (a.saleTime < b.saleTime ? 1 : -1))
   );
   const activeListings = useSelector((state) =>
-    state.nft.history.filter((i) => i.state === listingState.ACTIVE).sort((a, b) => (a.price < b.price ? 1 : -1))
+    state.nft.history.filter((i) => i.state === listingState.ACTIVE).sort((a, b) => (a.price > b.price ? 1 : -1))
   );
   const powertraits = useSelector((state) => state.nft.nft?.powertraits);
   const collectionMetadata = useSelector((state) => {
@@ -199,6 +199,12 @@ const Nft1155 = ({ address, id }) => {
                             ? `Ranking provided by ${humanize(collectionMetadata.rarity)}`
                             : null
                         }
+                        to={
+                          collectionMetadata.rarity === 'rarity_sniper'
+                            ? `https://raritysniper.com/${collectionMetadata.raritySniperSlug}/${id}`
+                            : null
+                        }
+                        pop={true}
                       />
                     )}
                   </div>

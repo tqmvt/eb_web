@@ -28,6 +28,7 @@ const ProfilePreview = ({
   avatar = '',
   verified = false,
   hover = '',
+  pop = false
 }) => {
   const AvatarElement = (
     <>
@@ -55,11 +56,23 @@ const ProfilePreview = ({
     </>
   );
 
+  const Hyperlink = ({url}) => {
+    if (url) {
+      if (url.startsWith('http')) {
+        return <a href={url} target={pop ? '_blank' : '_self'}> {AvatarElement} </a>
+      } else {
+        return <Link to={url}> {AvatarElement} </Link>
+      }
+    } else {
+      return <div> {AvatarElement} </div>
+    }
+  };
+
   return (
     <div className="col">
       <h6>{type}</h6>
       <div className="item_author">
-        {to !== '' ? <Link to={to}> {AvatarElement} </Link> : <div> {AvatarElement} </div>}
+        <Hyperlink url={to} />
       </div>
     </div>
   );

@@ -278,7 +278,7 @@ const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) 
                           canLoadMore={canLoadMore}
                           loadMore={loadMore}
                           address={address}
-                          collectionMetadata={collectionMetadata}
+                          collectionMetadata={collection.metadata}
                         />
                       )
                     ) : (
