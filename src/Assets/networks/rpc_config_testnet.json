@@ -1983,12 +1983,12 @@
       "cost": "350",
       "memberCost": "250",
       "foundersOnly": false,
-      "start": 1647453600000,
+      "start": 1647795651000,
       "end": null,
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": true
+      "complete": false
     }
   ],
   "auctions": [
