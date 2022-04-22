@@ -366,16 +366,17 @@
       "listable": true,
       "metadata": {
         "verified": true,
-        "avatar": "/img/collections/crocrow/avatar.png",
-        "banner": "/img/collections/crocrow/banner.png",
-        "card": "/img/collections/crocrow/card.png",
+        "avatar": "/img/collections/crocrow/avatar.webp",
+        "banner": "/img/collections/crocrow/banner.webp",
+        "card": "/img/collections/crocrow/card.webp",
         "rarity": "rarity_sniper",
         "raritySniperSlug": "cro-crow",
         "maxSupply": 7777,
         "website": "https://crocrow.com",
         "twitter": "https://twitter.com/cronoscrocrow",
         "discord": "https://discord.gg/8GMWgWB5u8",
-        "telegram": "https://t.me/crocrownft"
+        "telegram": "https://t.me/crocrownft",
+        "medium": "https://medium.com/@cronoscrocrow"
       }
     },
     {
@@ -3644,7 +3645,7 @@
     },
     {
       "name": "LittleGhosts",
-      "slug": "little-ghosts",
+      "slug": "littleghosts",
       "multiToken": false,
       "address": "0x5337b9e543cb80ffafeb08bf3d564fa11e28202b",
       "onChain": false,
@@ -3665,7 +3666,7 @@
     },
     {
       "name": "EctoSkeletons",
-      "slug": "ecto-skeletons",
+      "slug": "ectoskeletons",
       "multiToken": false,
       "address": "0x0346f9ff29c875b215c3c483d6d1f6f3d9f9fc59",
       "onChain": false,
@@ -3682,6 +3683,53 @@
         "discord": "https://discord.gg/7qgcvD2uZ4",
         "telegram": "https://t.me/LittleGhostsNFT",
         "medium": "https://medium.com/@littleghosts"
+      }
+    },
+    {
+      "name": "CRO CROW Airdrops",
+      "slug": "cro-crow-airdrops",
+      "multiToken": true,
+      "address": "0xd33CFeF82377fef83703B9D84151a477B08Ab3b8",
+      "onChain": false,
+      "listable": true,
+      "tokens": [
+        {"id": 1},
+        {"id": 2},
+        {"id": 3},
+        {"id": 4}
+      ],
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/crocrow/airdrops/avatar.webp",
+        "banner": "/img/collections/crocrow/airdrops/banner.webp",
+        "card": "/img/collections/crocrow/airdrops/card.webp",
+        "maxSupply": 7777,
+        "website": "https://crocrow.com",
+        "twitter": "https://twitter.com/cronoscrocrow",
+        "discord": "https://discord.gg/8a8Xm4wwR9",
+        "telegram": "https://t.me/crocrownft",
+        "medium": "https://medium.com/@cronoscrocrow"
+      }
+    },
+    {
+      "name": "B.A.D. - Spaceships",
+      "slug": "bad-spaceships",
+      "multiToken": false,
+      "address": "0xbe5F02b6fD5C1e714f0bdd28B6a119827D8b6c61",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/babyaliendivision/spaceships/avatar.webp",
+        "banner": "/img/collections/babyaliendivision/spaceships/banner.webp",
+        "card": "/img/collections/babyaliendivision/spaceships/card.webp",
+        "maxSupply": 1300,
+        "website": "https://badaliens.io/",
+        "twitter": "https://twitter.com/BAD_Cronos",
+        "discord": "https://discord.gg/qKBy2azf69",
+        "medium": "https://medium.com/@babyaliendivision"
       }
     }
   ],
