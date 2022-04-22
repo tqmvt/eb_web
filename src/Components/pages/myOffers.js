@@ -155,6 +155,8 @@ const MyOffers = () => {
     }
   };
 
+  console.log(lastId);
+
   const Content = () => (
     <>
       <section className="jumbotron breadcumb no-bg tint">
@@ -186,13 +188,17 @@ const MyOffers = () => {
             hasMore={!!lastId}
             style={{ overflow: 'hidden' }}
             loader={
-              <div className="row">
-                <div className="col-lg-12 text-center">
-                  <Spinner animation="border" role="status">
-                    <span className="visually-hidden">Loading...</span>
-                  </Spinner>
+              madeOffersLoading ? (
+                <div className="row">
+                  <div className="col-lg-12 text-center">
+                    <Spinner animation="border" role="status">
+                      <span className="visually-hidden">Loading...</span>
+                    </Spinner>
+                  </div>
                 </div>
-              </div>
+              ) : (
+                <></>
+              )
             }
           >
             <MadeOffers offers={madeOffers} isLoading={madeOffersLoading} />
@@ -205,13 +211,17 @@ const MyOffers = () => {
             hasMore={!!lastId}
             style={{ overflow: 'hidden' }}
             loader={
-              <div className="row">
-                <div className="col-lg-12 text-center">
-                  <Spinner animation="border" role="status">
-                    <span className="visually-hidden">Loading...</span>
-                  </Spinner>
+              myNFTsLoading ? (
+                <div className="row">
+                  <div className="col-lg-12 text-center">
+                    <Spinner animation="border" role="status">
+                      <span className="visually-hidden">Loading...</span>
+                    </Spinner>
+                  </div>
                 </div>
-              </div>
+              ) : (
+                <></>
+              )
             }
           >
             <ReceivedOffers offers={receivedOffers} isLoading={allOffersLoading || myNFTsLoading} />

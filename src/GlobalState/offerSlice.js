@@ -3,13 +3,7 @@ import { Contract } from 'ethers';
 import { toast } from 'react-toastify';
 
 import { getQuickWallet } from '../core/api';
-import {
-  getAllOffers,
-  getMyOffers,
-  getReceivedOffers,
-  getFilteredOffers,
-  getOffersForSingleNFT,
-} from '../core/subgraph';
+import { getAllOffers, getMyOffers, getFilteredOffers, getOffersForSingleNFT } from '../core/subgraph';
 import { createSuccessfulTransactionToastContent } from '../utils';
 import { ERC1155, ERC721, MetaPixelsAbi } from '../Contracts/Abis';
 import { isMetapixelsCollection } from '../utils';
@@ -141,7 +135,6 @@ export const fetchAllOffers =
     dispatch(allOffersLoading());
     const state = getState().offer;
     const { data } = await getAllOffers(addresses, stateFilter, state.lastId);
-    console.log(data);
 
     if (data) {
       if (data.length) {
