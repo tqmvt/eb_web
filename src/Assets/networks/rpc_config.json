@@ -3554,7 +3554,7 @@
       "multiToken": false,
       "address": "0x2a7c049688D7c04b128B4AE6dEC0560a4FEdF235",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "",
         "verified": false,
@@ -3640,6 +3640,48 @@
         "website": "https://crypto.com/nft/profile/vredekop?tab=created",
         "twitter": "https://twitter.com/BarbaraRedekop",
         "discord": "https://discord.gg/XrhWf2SppB"
+      }
+    },
+    {
+      "name": "LittleGhosts",
+      "slug": "little-ghosts",
+      "multiToken": false,
+      "address": "0x5337b9e543cb80ffafeb08bf3d564fa11e28202b",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": false,
+        "avatar": "/img/collections/littleghosts/avatar.webp",
+        "banner": "/img/collections/littleghosts/banner.webp",
+        "card": "/img/collections/littleghosts/card.webp",
+        "maxSupply": 10000,
+        "website": "https://littleghosts.com/",
+        "twitter": "https://twitter.com/LittleGhostsNFT",
+        "discord": "https://discord.gg/7qgcvD2uZ4",
+        "telegram": "https://t.me/LittleGhostsNFT",
+        "medium": "https://medium.com/@littleghosts"
+      }
+    },
+    {
+      "name": "EctoSkeletons",
+      "slug": "ecto-skeletons",
+      "multiToken": false,
+      "address": "0x0346f9ff29c875b215c3c483d6d1f6f3d9f9fc59",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": false,
+        "avatar": "/img/collections/littleghosts/avatar.webp",
+        "banner": "/img/collections/littleghosts/banner.webp",
+        "card": "/img/collections/littleghosts/ectoskeletons/card.webp",
+        "maxSupply": 2500,
+        "website": "https://littleghosts.com/",
+        "twitter": "https://twitter.com/LittleGhostsNFT",
+        "discord": "https://discord.gg/7qgcvD2uZ4",
+        "telegram": "https://t.me/LittleGhostsNFT",
+        "medium": "https://medium.com/@littleghosts"
       }
     }
   ],
