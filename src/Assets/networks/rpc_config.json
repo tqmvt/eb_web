@@ -3731,6 +3731,26 @@
         "discord": "https://discord.gg/qKBy2azf69",
         "medium": "https://medium.com/@babyaliendivision"
       }
+    },
+    {
+      "name": "CroPunks Club",
+      "slug": "cro-punks-club",
+      "multiToken": false,
+      "address": "0xBd75b085A99Dd29E04C3A35B090A4eD8102447CA",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": false,
+        "avatar": "/img/collections/cro-punks-club/avatar.webp",
+        "banner": "/img/collections/cro-punks-club/banner.webp",
+        "card": "/img/collections/cro-punks-club/card.webp",
+        "maxSupply": 1024,
+        "website": "https://cropunks.club/",
+        "twitter": "https://twitter.com/CROPUNKSclub",
+        "discord": "https://discord.gg/GwwDwbDB74",
+        "telegram": "https://t.me/+dmq-Fa2wvWAyMTY0"
+      }
     }
   ],
   "drops": [
