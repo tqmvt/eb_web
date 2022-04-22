@@ -167,7 +167,7 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
   const [offerPriceError, setOfferPriceError] = useState(false);
   const [offerPriceErrorDescription, setOfferPriceErrorDescription] = useState(null);
   const onOfferValueChange = (inputEvent) => {
-    const inputValue = inputEvent.target.value;
+    const inputValue = Math.floor(inputEvent.target.value);
     setOfferPrice(inputValue);
     const isAboveOfferThreshold = floorPrice ? parseInt(inputValue) >= floorPrice / 2 : true;
 
@@ -408,6 +408,7 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
                             e.preventDefault();
                           }
                         }}
+                        value={offerPrice}
                         onChange={onOfferValueChange}
                       />
                       CRO
