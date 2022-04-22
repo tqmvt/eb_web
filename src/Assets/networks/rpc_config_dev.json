@@ -3751,6 +3751,65 @@
         "discord": "https://discord.gg/GwwDwbDB74",
         "telegram": "https://t.me/+dmq-Fa2wvWAyMTY0"
       }
+    },
+    {
+      "name": "CroMorphs",
+      "slug": "cro-morphs",
+      "multiToken": false,
+      "address": "0x2a9F7C5784e64c69D98F8bfe24ac3f3165F228a6",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": false,
+        "avatar": "/img/collections/cro-morphs/avatar.webp",
+        "banner": "/img/collections/cro-morphs/banner.webp",
+        "card": "/img/collections/cro-morphs/card.webp",
+        "maxSupply": 2500,
+        "website": "https://www.cromorphs.com/",
+        "twitter": "https://twitter.com/CroMorphs",
+        "discord": "https://http://discord.gg/8N2g6YYJxz"
+      }
+    },
+    {
+      "name": "Bullish Beavers",
+      "slug": "bullish-beavers",
+      "multiToken": false,
+      "address": "0xD238FF8919B659d301d751259bFe2d635992aC53",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": false,
+        "avatar": "/img/collections/bullish-beavers/avatar.webp",
+        "banner": "/img/collections/bullish-beavers/banner.webp",
+        "card": "/img/collections/bullish-beavers/card.webp",
+        "maxSupply": 1500,
+        "website": "https://www.bullishbeavers.ca/",
+        "twitter": "https://twitter.com/BullishBeavers",
+        "discord": "https://discord.gg/ypuvDvmkH6"
+      }
+    },
+    {
+      "name": "Street Brawlerz Gen 0",
+      "slug": "street-brawlerz",
+      "multiToken": false,
+      "address": "0x1AE0695cBC1B820A34Bf6E661C3472C0b3ab34D0",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": false,
+        "avatar": "/img/collections/street-brawlerz/avatar.webp",
+        "banner": "/img/collections/street-brawlerz/banner.webp",
+        "card": "/img/collections/street-brawlerz/card.webp",
+        "maxSupply": 3333,
+        "website": "https://streetbrawlerz.io/",
+        "twitter": "https://twitter.com/StreetBrawlerz",
+        "discord": "https://discord.gg/m7TcCtzhCm",
+        "medium": "https://streetbrawlerz.medium.com/",
+        "telegram": "https://t.me/StreetBrawlerzNFT"
+      }
     }
   ],
   "drops": [
