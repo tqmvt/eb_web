@@ -3641,6 +3641,24 @@
         "twitter": "https://twitter.com/BarbaraRedekop",
         "discord": "https://discord.gg/XrhWf2SppB"
       }
+    },
+    {
+      "name": "Employee of the Month",
+      "slug": "employee-month",
+      "multiToken": false,
+      "address": "",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "verified": true,
+        "avatar": "/img/collections/eotm/avatar.gif",
+        "banner": "/img/collections/eotm/banner.jpg",
+        "card": "/img/collections/eotm/card.jpg",
+        "website": "http://instagram.com/deplone-",
+        "twitter": "http://twitter.com/deplone3",
+        "discord": "https://discord.gg/MYE5hnC9mq",
+        "medium": "https://medium.com/@deplone3"
+      }
     }
   ],
   "drops": [
@@ -5181,6 +5199,31 @@
       "maxMintPerAddress": 100,
       "totalSupply": 1500,
       "cost": "295",
+      "memberCost": "250",
+      "foundersOnly": false,
+      "start": 1650571200000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": true
+    },
+    {
+      "id": 60,
+      "slug": "employee-month",
+      "imgNft": "/img/drops/eotm/drop.jpg",
+      "imgPreview": "/img/drops/eotm/drop.jpg",
+      "imgAvatar": "/img/collections/eotm/avatar.gif",
+      "imgBanner": "/img/collections/eotm/banner.jpg",
+      "title": "Employee of the Month",
+      "subtitle": "Employee of the Month is a collection that reflects on the topic of the hard, day to day corporate work in a humoristic manner.",
+      "description": "Employee of the Month is a collection that reflects on the topic of the hard, day to day corporate work. The employees are portrayed by the artist, as plain, green smileys, which is a symbol of how the society formed them to be more or less the same. It highlights (sometimes in a funny way) daily struggles, challenges and disappointments of the everyday office life .",
+      "author": { "name": "EotM", "link": "http://instagram.com/deplone_" },
+      "address": "",
+      "maxMintPerTx": 3,
+      "maxMintPerAddress": 100,
+      "totalSupply": 62,
+      "cost": "350",
       "memberCost": "250",
       "foundersOnly": false,
       "start": 1650571200000,
