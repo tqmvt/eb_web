@@ -28,6 +28,7 @@ const ProfilePreview = ({
   avatar = '',
   verified = false,
   hover = '',
+  pop = false
 }) => {
   const AvatarElement = (
     <>
@@ -58,7 +59,7 @@ const ProfilePreview = ({
   const Hyperlink = ({url}) => {
     if (url) {
       if (url.startsWith('http')) {
-        return <a href={url}> {AvatarElement} </a>
+        return <a href={url} target={pop ? '_blank' : '_self'}> {AvatarElement} </a>
       } else {
         return <Link to={url}> {AvatarElement} </Link>
       }

@@ -201,9 +201,10 @@ const Nft1155 = ({ address, id }) => {
                         }
                         to={
                           collectionMetadata.rarity === 'rarity_sniper'
-                            ? `https://raritysniper.com/${collectionMetadata.raritySniperSlug}`
+                            ? `https://raritysniper.com/${collectionMetadata.raritySniperSlug}/${id}`
                             : null
                         }
+                        pop={true}
                       />
                     )}
                   </div>
