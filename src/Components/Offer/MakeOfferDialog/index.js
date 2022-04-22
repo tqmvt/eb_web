@@ -22,6 +22,7 @@ import { getFilteredOffers } from 'src/core/subgraph';
 import { getAllCollections } from '../../../GlobalState/collectionsSlice';
 import { offerState } from '../../../core/api/enums';
 import { commify } from 'ethers/lib/utils';
+import { findCollectionByAddress } from 'src/utils';
 const knownContracts = config.known_contracts;
 
 const DialogContainer = styled(Dialog)`
@@ -144,7 +145,7 @@ const CloseIconContainer = styled.div`
   }
 `;
 
-export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerData, collectionMetadata }) {
+export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerData }) {
   const isNftLoading = useSelector((state) => {
     return state.nft.loading;
   });
@@ -245,6 +246,8 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
     return <></>;
   }
 
+  const collectionMetadata = findCollectionByAddress(nftData.address)?.metadata;
+
   const getUpdatedOffer = (offerDataNew1, actionType1, offerPrice1) => {
     if (actionType1 === OFFER_TYPE.update) {
       return { ...offerDataNew1, price: offerPrice1.toString() };
@@ -331,6 +334,12 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
     <DialogContainer onClose={() => toggle(OFFER_TYPE.none)} open={isOpen} maxWidth="md">
       <DialogContent>
         {!isGettingOfferType && <DialogTitleContainer>{offerType} Offer</DialogTitleContainer>}
+        {findKnownContract(nftData.address, nftData.id)?.multiToken && (
+          <div className="mb-5">
+            If you are trying to make multiple offers on the same ERC1155 token, this is not possible currently. It will
+            instead update your current offer for this token.
+          </div>
+        )}
         {!isNftLoading && !isGettingOfferType ? (
           <DialogMainContent>
             <ImageContainer>
