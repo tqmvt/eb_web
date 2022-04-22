@@ -366,16 +366,17 @@
       "listable": true,
       "metadata": {
         "verified": true,
-        "avatar": "/img/collections/crocrow/avatar.png",
-        "banner": "/img/collections/crocrow/banner.png",
-        "card": "/img/collections/crocrow/card.png",
+        "avatar": "/img/collections/crocrow/avatar.webp",
+        "banner": "/img/collections/crocrow/banner.webp",
+        "card": "/img/collections/crocrow/card.webp",
         "rarity": "rarity_sniper",
         "raritySniperSlug": "cro-crow",
         "maxSupply": 7777,
         "website": "https://crocrow.com",
         "twitter": "https://twitter.com/cronoscrocrow",
         "discord": "https://discord.gg/8GMWgWB5u8",
-        "telegram": "https://t.me/crocrownft"
+        "telegram": "https://t.me/crocrownft",
+        "medium": "https://medium.com/@cronoscrocrow"
       }
     },
     {
@@ -3682,6 +3683,33 @@
         "discord": "https://discord.gg/7qgcvD2uZ4",
         "telegram": "https://t.me/LittleGhostsNFT",
         "medium": "https://medium.com/@littleghosts"
+      }
+    },
+    {
+      "name": "CRO CROW Airdrops",
+      "slug": "cro-crow-airdrops",
+      "multiToken": true,
+      "address": "0xd33CFeF82377fef83703B9D84151a477B08Ab3b8",
+      "onChain": false,
+      "listable": true,
+      "tokens": [
+        {"id": 1},
+        {"id": 2},
+        {"id": 3},
+        {"id": 4}
+      ],
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/crocrow/airdrops/avatar.webp",
+        "banner": "/img/collections/crocrow/airdrops/banner.webp",
+        "card": "/img/collections/crocrow/airdrops/card.webp",
+        "maxSupply": 7777,
+        "website": "https://crocrow.com",
+        "twitter": "https://twitter.com/cronoscrocrow",
+        "discord": "https://discord.gg/8a8Xm4wwR9",
+        "telegram": "https://t.me/crocrownft",
+        "medium": "https://medium.com/@cronoscrocrow"
       }
     }
   ],
