@@ -13,7 +13,13 @@ import detectEthereumProvider from '@metamask/detect-provider';
 import { DeFiWeb3Connector } from 'deficonnect';
 import WalletConnectProvider from '@walletconnect/web3-provider';
 import * as DefiWalletConnectProvider from '@deficonnect/web3-provider';
-import { getNftRankings, getNftSalesForAddress, getNftsForAddress, getUnfilteredListingsForAddress } from '../core/api';
+import {
+  getNftRankings,
+  getNftSalesForAddress,
+  getNftsForAddress,
+  getNftsForAddress2,
+  getUnfilteredListingsForAddress
+} from '../core/api';
 import { toast } from 'react-toastify';
 import { createSuccessfulTransactionToastContent, sliceIntoChunks } from '../utils';
 import { FilterOption } from '../Components/Models/filter-option.model';
@@ -649,11 +655,8 @@ export const fetchNfts = () => async (dispatch, getState) => {
 
   if (!nftsInitialized) {
     dispatch(fetchingNfts());
-    const response = await getNftsForAddress(walletAddress, walletProvider, (nfts) => {
-      dispatch(onNftsAdded(nfts));
-    });
-    dispatch(setIsMember(response.isMember));
-    await addRanksToNfts(dispatch, getState);
+    const response = await getNftsForAddress2(walletAddress, walletProvider);
+    dispatch(onNftsAdded(response));
     dispatch(nftsFetched());
     return;
   }
