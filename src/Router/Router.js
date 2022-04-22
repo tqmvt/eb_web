@@ -23,9 +23,7 @@ import MyOffers from '../Components/pages/myOffers';
 import MyStaking from '../Components/pages/myStaking';
 import Collections from '../Components/pages/collections';
 import MetaverseAuctions from '../Components/pages/metaverseAuctions';
-import Rugsurance from '../Components/pages/rugsurance';
 import { ErrorPage } from '../Components/pages/ErrorPage';
-import CollectionDetail from 'src/Components/pages/collectionDetail';
 import ManageAuctions from '../Components/pages/manageAuctions';
 
 const SentryEnhancedRoute = Sentry.withSentryRouting(Route);

@@ -552,17 +552,17 @@ export const initProvider = () => async (dispatch) => {
     console.log('not metamask detected');
   } else {
     const provider = new ethers.providers.Web3Provider(ethereum);
-    const signer = provider.getSigner();
-    const cid = await ethereum.request({
-      method: 'net_version',
-    });
+    // const signer = provider.getSigner();
+    // const cid = await ethereum.request({
+    //   method: 'net_version',
+    // });
 
-    const correctChain = cid === config.chain_id;
+    // const correctChain = cid === config.chain_id;
 
-    let mc;
-    if (signer && correctChain) {
-      mc = new Contract(config.membership_contract, Membership.abi, signer);
-    }
+    // let mc;
+    // if (signer && correctChain) {
+    //   mc = new Contract(config.membership_contract, Membership.abi, signer);
+    // }
     // const obj = {
     //   provider: provider,
     //   needsOnboard: false,
@@ -591,7 +591,6 @@ export const initProvider = () => async (dispatch) => {
 };
 
 export const chainConnect = (type) => async (dispatch) => {
-  console.log(window.ethereum);
   if (window.ethereum) {
     const cid = ethers.utils.hexValue(BigNumber.from(config.chain_id));
     try {
@@ -632,7 +631,7 @@ export const chainConnect = (type) => async (dispatch) => {
       console.log(error);
     }
   } else {
-    const web3Provider = new WalletConnectProvider({
+    new WalletConnectProvider({
       rpc: {
         25: 'https://evm.cronos.org',
       },

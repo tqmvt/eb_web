@@ -3,19 +3,17 @@ import * as Sentry from '@sentry/react';
 import moment from 'moment';
 
 import config from '../Assets/networks/rpc_config.json';
-// import Market from '../Contracts/Marketplace.json';
 import { ERC1155, ERC721, MetaPixelsAbi, SouthSideAntsReadAbi } from '../Contracts/Abis';
 import IPFSGatewayTools from '@pinata/ipfs-gateway-tools/dist/browser';
 import { dataURItoBlob } from '../Store/utils';
 import { SortOption } from '../Components/Models/sort-option.model';
 import { CollectionSortOption } from '../Components/Models/collection-sort-option.model';
 import { FilterOption } from '../Components/Models/filter-option.model';
-import {caseInsensitiveCompare, isMetapixelsCollection, isSouthSideAntsCollection} from '../utils';
+import { caseInsensitiveCompare, isMetapixelsCollection, isSouthSideAntsCollection } from '../utils';
 
 const gatewayTools = new IPFSGatewayTools();
 const gateway = 'https://mygateway.mypinata.cloud';
 const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
-// const readMarket = new Contract(config.market_contract, Market.abi, readProvider);
 const knownContracts = config.known_contracts;
 
 const api = {
@@ -32,14 +30,6 @@ const api = {
 };
 
 export default api;
-
-// export const ebisusApi = createApi({
-//     reducerPath: 'ebisusApi',
-//     baseQuery: fetchBaseQuery({  baseUrl: 'https://api.ebisusbay.com' }),
-//     endpoints: (builder) => ({
-//         fetchListings: builder.query
-//     })
-// });
 
 //  just for sortAndFetchListings function
 let abortController = null;
@@ -1055,7 +1045,8 @@ export async function getNftFromFile(collectionId, nftId) {
         canSell: canSell,
       };
     } else {
-      const isMultiToken = knownContracts.findIndex((x) => caseInsensitiveCompare(x.address, collectionId) && x.multiToken) > -1;
+      const isMultiToken =
+        knownContracts.findIndex((x) => caseInsensitiveCompare(x.address, collectionId) && x.multiToken) > -1;
 
       let uri;
       var contract;
@@ -1169,7 +1160,7 @@ export async function getAuction(auctionId) {
 
 export async function getQuickWallet(walletAddress) {
   const queryString = new URLSearchParams({
-    wallet: walletAddress
+    wallet: walletAddress,
   });
 
   const url = new URL(api.wallets, `${api.baseUrl}`);
