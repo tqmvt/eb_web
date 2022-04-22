@@ -3770,6 +3770,25 @@
         "twitter": "https://twitter.com/CroMorphs",
         "discord": "https://http://discord.gg/8N2g6YYJxz"
       }
+    },
+    {
+      "name": "Bullish Beavers",
+      "slug": "bullish-beavers",
+      "multiToken": false,
+      "address": "0xD238FF8919B659d301d751259bFe2d635992aC53",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": false,
+        "avatar": "/img/collections/bullish-beavers/avatar.webp",
+        "banner": "/img/collections/bullish-beavers/banner.webp",
+        "card": "/img/collections/bullish-beavers/card.webp",
+        "maxSupply": 1500,
+        "website": "https://www.bullishbeavers.ca/",
+        "twitter": "https://twitter.com/BullishBeavers",
+        "discord": "https://discord.gg/ypuvDvmkH6"
+      }
     }
   ],
   "drops": [
