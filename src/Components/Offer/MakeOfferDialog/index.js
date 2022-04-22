@@ -175,7 +175,7 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
     } else if (
       offerType === OFFER_TYPE.update &&
       offerDataNew?.price &&
-      Number(inputValue) > Number(offerDataNew.price)
+      Number(inputValue) > Number(offerDataNew?.price)
     ) {
       setError(false);
     } else if (offerType === OFFER_TYPE.make && Number(inputValue) > 0) {
