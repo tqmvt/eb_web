@@ -1203,7 +1203,11 @@ export async function getNftsForAddress2(walletAddress, walletProvider) {
   const writeContracts = [];
   return await Promise.all(results
     .filter(o => {
-      return knownContracts.find(c => caseInsensitiveCompare(c.address, o.nftAddress));
+      return knownContracts.find(c => {
+        const matchedAddress = caseInsensitiveCompare(c.address, o.nftAddress);
+        const matchedToken = !c.multiToken || parseInt(c.id) === parseInt(o.nftId);
+        return matchedAddress && matchedToken;
+      });
     })
     .map(async (nft) => {
       const knownContract = knownContracts.find(c => {
@@ -1211,7 +1215,10 @@ export async function getNftsForAddress2(walletAddress, walletProvider) {
         const matchedToken = !c.multiToken || parseInt(c.id) === parseInt(nft.nftId);
         return matchedAddress && matchedToken;
       });
-
+      if (!knownContract) {
+        console.log('peekaboo', nft);
+        return;
+      }
       let key = knownContract.address;
       if (knownContract.multiToken) {
         key = `${key}${knownContract.id}`;
