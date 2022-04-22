@@ -1199,7 +1199,6 @@ export async function getNftsForAddress2(walletAddress, walletProvider) {
     });
   };
 
-  const readContracts = [];
   const writeContracts = [];
   return await Promise.all(results
     .filter(o => {
@@ -1226,27 +1225,6 @@ export async function getNftsForAddress2(walletAddress, walletProvider) {
       const writeContract = writeContracts[key] ?? new Contract(knownContract.address, knownContract.multiToken ? ERC1155 : ERC721, signer);
       writeContracts[key] = writeContract;
 
-      if (knownContract.multiToken) {
-        nft.name = knownContract.name;
-        nft.description = knownContract.description;
-
-        const readContract = readContracts[key] ?? new Contract(knownContract.address, knownContract.multiToken ? ERC1155 : ERC721, readProvider);
-        readContracts[key] = readContract;
-
-        let uri = await readContract.uri(knownContract.id);
-        if (gatewayTools.containsCID(uri)) {
-          try {
-            uri = gatewayTools.convertToDesiredGateway(uri, gateway);
-          } catch (error) {
-            //console.log(error);
-          }
-        }
-        const json = await (await fetch(uri)).json();
-        nft.image = gatewayTools.containsCID(json.image)
-          ? gatewayTools.convertToDesiredGateway(json.image, gateway)
-          : json.image;
-      }
-
       const listed = !!getListing(knownContract.address, knownContract.id);
       const listingId = listed ? getListing(knownContract.address, knownContract.id).listingId : null;
       const price = listed ? getListing(knownContract.address, knownContract.id).price : null;
@@ -1257,6 +1235,7 @@ export async function getNftsForAddress2(walletAddress, walletProvider) {
         description: nft.description,
         properties: nft.properties && nft.properties.length > 0 ? nft.properties : nft.attributes,
         image: nft.image_aws ?? nft.image,
+        count: nft.balance,
         address: knownContract.address,
         contract: writeContract,
         multiToken: knownContract.multiToken,
