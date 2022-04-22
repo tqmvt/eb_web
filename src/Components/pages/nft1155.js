@@ -27,7 +27,9 @@ import MakeOfferDialog from '../Offer/MakeOfferDialog';
 import ReactPlayer from "react-player";
 import NFTTabOffers from "../Offer/NFTTabOffers";
 import NFTTabListings from "../NftDetails/NFTTabListings";
-import {listingState} from "../../core/api/enums";
+import {listingState, offerState} from "../../core/api/enums";
+import {getFilteredOffers} from "../../core/subgraph";
+import {OFFER_TYPE} from "../Offer/MadeOffersRow";
 
 const Nft1155 = ({ address, id }) => {
   const dispatch = useDispatch();
@@ -79,10 +81,12 @@ const Nft1155 = ({ address, id }) => {
     element.target.parentElement.classList.add('active');
 
     setOpenMenu(index);
-    console.log(openMenu, index);
   };
 
   const [openMakeOfferDialog, setOpenMakeOfferDialog] = useState(false);
+  const [offerType, setOfferType] = useState(OFFER_TYPE.none);
+  const [offerData, setOfferData] = useState();
+
   const handleMakeOffer = () => {
     if (user.address) {
       setOpenMakeOfferDialog(!openMakeOfferDialog);
@@ -97,6 +101,22 @@ const Nft1155 = ({ address, id }) => {
       }
     }
   };
+
+  useEffect(() => {
+    async function func() {
+      const filteredOffers = await getFilteredOffers(nft.address, nft.id.toString(), user.address);
+      const data = filteredOffers ? filteredOffers.data.filter((o) => o.state === offerState.ACTIVE.toString()) : [];
+      if (data && data.length > 0) {
+        setOfferType(OFFER_TYPE.update);
+        setOfferData(data[0]);
+      } else {
+        setOfferType(OFFER_TYPE.make);
+      }
+    }
+    if (!offerType && user.address && nft && nft.address && nft.id) {
+      func();
+    }
+  }, [nft, user]);
 
   return (
     <div>
@@ -176,7 +196,7 @@ const Nft1155 = ({ address, id }) => {
                   <PriceActionBar />
                   <div className="row">
                     <button className="btn-main mx-auto mb-5" onClick={() => handleMakeOffer()}>
-                      Make Offer
+                      {offerType === OFFER_TYPE.update ? 'Update' : 'Make'} Offer
                     </button>
                   </div>
                   <div className="row" style={{ gap: '2rem 0' }}>
@@ -201,9 +221,10 @@ const Nft1155 = ({ address, id }) => {
                         }
                         to={
                           collectionMetadata.rarity === 'rarity_sniper'
-                            ? `https://raritysniper.com/${collectionMetadata.raritySniperSlug}`
+                            ? `https://raritysniper.com/${collectionMetadata.raritySniperSlug}/${id}`
                             : null
                         }
+                        pop={true}
                       />
                     )}
                   </div>
@@ -358,8 +379,10 @@ const Nft1155 = ({ address, id }) => {
         <MakeOfferDialog
           isOpen={openMakeOfferDialog}
           toggle={() => setOpenMakeOfferDialog(!openMakeOfferDialog)}
+          offerData={offerData}
           nftData={nft}
           collectionMetadata={collectionMetadata}
+          type={offerType}
         />
       )}
       <Footer />

@@ -13,7 +13,6 @@ import { toast } from 'react-toastify';
 import MetaMaskOnboarding from '@metamask/onboarding';
 import { chainConnect, connectAccount } from '../../GlobalState/User';
 import { ERC721 } from '../../Contracts/Abis';
-// import 'animate.css';
 import '../../Assets/styles/fire.css';
 
 const knownContracts = config.known_contracts;
@@ -197,26 +196,29 @@ const Rugsurance = () => {
     }
   };
 
-  useEffect(async () => {
-    setIsInitializing(true);
-    setInitialSearchComplete(false);
-    if (!user.connectingWallet) {
-      if (user.membershipContract && user.provider) {
-        try {
-          const slothtyAddress = knownContracts.find((c) => c.slug === '3d-slothty').address;
-          const slothtyContract = new Contract(slothtyAddress, ERC721, user.provider.getSigner());
-          const isApproved = await slothtyContract.isApprovedForAll(user.address, rugContractAddress);
-          setIsApproved(isApproved);
-        } catch (e) {
-          console.log(e);
-        } finally {
+  useEffect(() => {
+    async function asyncFunc() {
+      if (!user.connectingWallet) {
+        if (user.membershipContract && user.provider) {
+          try {
+            const slothtyAddress = knownContracts.find((c) => c.slug === '3d-slothty').address;
+            const slothtyContract = new Contract(slothtyAddress, ERC721, user.provider.getSigner());
+            const isApproved = await slothtyContract.isApprovedForAll(user.address, rugContractAddress);
+            setIsApproved(isApproved);
+          } catch (e) {
+            console.log(e);
+          } finally {
+            setIsInitializing(false);
+          }
+        } else {
           setIsInitializing(false);
         }
-      } else {
-        setIsInitializing(false);
       }
     }
-  }, [user.connectingWallet, user.address]);
+    setIsInitializing(true);
+    setInitialSearchComplete(false);
+    asyncFunc();
+  }, [user]);
 
   return (
     <div>
@@ -391,6 +393,7 @@ const Rugsurance = () => {
               style={{ animationDuration: '10s', zIndex: '4' }}
               width="60%"
               src={selectedNfts[0]?.image}
+              alt="slothty nft"
             />
             <Fire />
           </div>
@@ -442,10 +445,14 @@ const ActionButton = ({
     }
   };
 
-  useEffect(async () => {
-    if (doWorkNow) {
-      await doWork();
+  useEffect(() => {
+    async function asyncFunc() {
+      if (doWorkNow) {
+        await doWork();
+      }
     }
+    asyncFunc();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [doWorkNow]);
 
   return (

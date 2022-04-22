@@ -45,6 +45,7 @@ const Nft721 = ({ address, id }) => {
 
   const [openMakeOfferDialog, setOpenMakeOfferDialog] = useState(false);
   const [offerType, setOfferType] = useState(OFFER_TYPE.none);
+  const [offerData, setOfferData] = useState();
 
   const nft = useSelector((state) => state.nft.nft);
   const currentListing = useSelector((state) => state.nft.currentListing);
@@ -184,12 +185,12 @@ const Nft721 = ({ address, id }) => {
       const data = filteredOffers ? filteredOffers.data.filter((o) => o.state === offerState.ACTIVE.toString()) : [];
       if (data && data.length > 0) {
         setOfferType(OFFER_TYPE.update);
+        setOfferData(data[0]);
       } else {
         setOfferType(OFFER_TYPE.make);
       }
     }
     if (!offerType && user.address && nft && nft.nftAddress && nft.nftId) {
-      console.log('asdf');
       func();
     }
   }, [nft, user]);
@@ -330,9 +331,10 @@ const Nft721 = ({ address, id }) => {
                         }
                         to={
                           collectionMetadata.rarity === 'rarity_sniper'
-                            ? `https://raritysniper.com/${collectionMetadata.raritySniperSlug}`
+                            ? `https://raritysniper.com/${collectionMetadata.raritySniperSlug}/${id}`
                             : null
                         }
+                        pop={true}
                       />
                     )}
                   </div>
@@ -533,6 +535,7 @@ const Nft721 = ({ address, id }) => {
         <MakeOfferDialog
           isOpen={openMakeOfferDialog}
           toggle={() => setOpenMakeOfferDialog(!openMakeOfferDialog)}
+          offerData={offerData}
           nftData={nft}
           collectionMetadata={collectionMetadata}
           type={offerType}

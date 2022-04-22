@@ -319,6 +319,12 @@ const Listing = () => {
                             ? `Ranking provided by ${humanize(collection.metadata.rarity)}`
                             : null
                         }
+                        to={
+                          collection.metadata.rarity === 'rarity_sniper'
+                            ? `https://raritysniper.com/${collection.metadata.raritySniperSlug}/${listing.nft.id}`
+                            : null
+                        }
+                        pop={true}
                       />
                     )}
                   </div>

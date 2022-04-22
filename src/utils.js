@@ -229,13 +229,13 @@ export function createSuccessfulTransactionToastContent(transactionHash) {
   return (
     <span>
       Success!
-      <a
+      <span
         className="link-primary"
         style={{ paddingLeft: '1rem' }}
         onClick={() => openWithCronosExplorer(transactionHash)}
       >
-        ${getShortIdForView(transactionHash)}
-      </a>
+        See details
+      </span>
     </span>
   );
 }

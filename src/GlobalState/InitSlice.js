@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { connectAccount, onLogout } from './User';
+import { connectAccount } from './User';
 
 const appInitializeState = createSlice({
   name: 'appInitialize',

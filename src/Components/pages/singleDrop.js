@@ -109,6 +109,7 @@ const SingleDrop = () => {
       firebase_screen: 'drop',
       drop_id: slug,
     });
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
@@ -117,6 +118,7 @@ const SingleDrop = () => {
       dispatch(fetchVipInfo());
     }
     dispatch(fetchCronieInfo());
+    // eslint-disable-next-line
   }, []);
 
   const user = useSelector((state) => {
@@ -135,8 +137,12 @@ const SingleDrop = () => {
     return state.cronies;
   });
 
-  useEffect(async () => {
-    await retrieveDropInfo();
+  useEffect(() => {
+    async function fetchData() {
+      await retrieveDropInfo();
+    }
+    fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, membership, cronies]);
 
   const retrieveDropInfo = async () => {
