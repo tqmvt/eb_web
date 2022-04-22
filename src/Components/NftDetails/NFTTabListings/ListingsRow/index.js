@@ -11,7 +11,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {Spinner} from "react-bootstrap";
 import {getNftDetails} from "../../../../GlobalState/nftSlice";
 
-export default function ListingsRow({ listing, index }) {
+export default function ListingsRow({ listing }) {
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -63,7 +63,7 @@ export default function ListingsRow({ listing, index }) {
   };
 
   return (
-    <div className="p_list" key={index}>
+    <div className="p_list">
       <div className="row">
         <div className="col-8">
           <Link to={`/seller/${listing.seller}`}>

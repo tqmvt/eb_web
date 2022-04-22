@@ -8,7 +8,7 @@ export default function NFTTabListings({ listings }) {
       {listings && listings.length > 0 ? (
         <>
           {listings.map((listing, index) => (
-            <ListingsRow listing={listing} index={index} />
+            <ListingsRow listing={listing} key={index} />
           ))}
         </>
       ) : (
