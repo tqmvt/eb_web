@@ -4,6 +4,7 @@ import { Contract, ethers } from 'ethers';
 import Blockies from 'react-blockies';
 import { Helmet } from 'react-helmet';
 import { faCheck, faCircle } from '@fortawesome/free-solid-svg-icons';
+import { Spinner } from 'react-bootstrap';
 // import Skeleton from 'react-loading-skeleton';
 // import 'react-loading-skeleton/dist/skeleton.css';
 
@@ -24,7 +25,7 @@ import Market from '../../Contracts/Marketplace.json';
 import stakingPlatforms from '../../core/data/staking-platforms.json';
 import SalesCollection from '../components/SalesCollection';
 import CollectionNftsGroup from '../components/CollectionNftsGroup';
-import CollectionListingsGroup from "../components/CollectionListingsGroup";
+import CollectionListingsGroup from '../components/CollectionListingsGroup';
 
 const knownContracts = config.known_contracts;
 
@@ -267,22 +268,29 @@ const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) 
                     )
                   )}
                   <div className={hasTraits() || hasPowertraits() ? 'col-md-9' : 'col-md-12'}>
-
-                    {isUsingListingsFallback ? (
-                      <CollectionListingsGroup
-                        listings={listings}
-                        canLoadMore={canLoadMore}
-                        loadMore={loadMore}
-                      />
+                    {!collectionLoading ? (
+                      isUsingListingsFallback ? (
+                        <CollectionListingsGroup listings={listings} canLoadMore={canLoadMore} loadMore={loadMore} />
+                      ) : (
+                        <CollectionNftsGroup
+                          listings={listings}
+                          royalty={royalty}
+                          canLoadMore={canLoadMore}
+                          loadMore={loadMore}
+                          address={address}
+                          collectionMetadata={collectionMetadata}
+                        />
+                      )
                     ) : (
-                      <CollectionNftsGroup
-                        listings={listings}
-                        royalty={royalty}
-                        canLoadMore={canLoadMore}
-                        loadMore={loadMore}
-                        address={address}
-                        collectionMetadata={collectionMetadata}
-                      />
+                      <>
+                        <div className="row">
+                          <div className="col-lg-12 text-center mt-5">
+                            <Spinner animation="border" role="status">
+                              <span className="visually-hidden">Loading...</span>
+                            </Spinner>
+                          </div>
+                        </div>
+                      </>
                     )}
                   </div>
                 </div>
