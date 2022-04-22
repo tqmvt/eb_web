@@ -3645,7 +3645,7 @@
     },
     {
       "name": "LittleGhosts",
-      "slug": "little-ghosts",
+      "slug": "littleghosts",
       "multiToken": false,
       "address": "0x5337b9e543cb80ffafeb08bf3d564fa11e28202b",
       "onChain": false,
@@ -3666,7 +3666,7 @@
     },
     {
       "name": "EctoSkeletons",
-      "slug": "ecto-skeletons",
+      "slug": "ectoskeletons",
       "multiToken": false,
       "address": "0x0346f9ff29c875b215c3c483d6d1f6f3d9f9fc59",
       "onChain": false,
