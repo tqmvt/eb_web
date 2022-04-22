@@ -3751,6 +3751,25 @@
         "discord": "https://discord.gg/GwwDwbDB74",
         "telegram": "https://t.me/+dmq-Fa2wvWAyMTY0"
       }
+    },
+    {
+      "name": "CroMorphs",
+      "slug": "cro-morphs",
+      "multiToken": false,
+      "address": "0x2a9F7C5784e64c69D98F8bfe24ac3f3165F228a6",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": false,
+        "avatar": "/img/collections/cro-morphs/avatar.webp",
+        "banner": "/img/collections/cro-morphs/banner.webp",
+        "card": "/img/collections/cro-morphs/card.webp",
+        "maxSupply": 2500,
+        "website": "https://www.cromorphs.com/",
+        "twitter": "https://twitter.com/CroMorphs",
+        "discord": "https://http://discord.gg/8N2g6YYJxz"
+      }
     }
   ],
   "drops": [
