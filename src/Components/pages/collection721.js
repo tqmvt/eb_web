@@ -268,6 +268,15 @@ const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) 
                     )
                   )}
                   <div className={hasTraits() || hasPowertraits() ? 'col-md-9' : 'col-md-12'}>
+                    {collectionLoading && (
+                      <div className="row mt-5">
+                        <div className="col-lg-12 text-center">
+                          <Spinner animation="border" role="status">
+                            <span className="visually-hidden">Loading...</span>
+                          </Spinner>
+                        </div>
+                      </div>
+                    )}
                     {isUsingListingsFallback ? (
                       <CollectionListingsGroup listings={listings} canLoadMore={canLoadMore} loadMore={loadMore} />
                     ) : (
