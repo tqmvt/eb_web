@@ -1212,7 +1212,7 @@ export async function getNftsForAddress2(walletAddress, walletProvider) {
         return matchedAddress && matchedToken;
       });
 
-      let key = knownContract.slug;
+      let key = knownContract.address;
       if (knownContract.multiToken) {
         key = `${key}${knownContract.id}`;
       }
