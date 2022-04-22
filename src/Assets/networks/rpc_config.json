@@ -3711,6 +3711,26 @@
         "telegram": "https://t.me/crocrownft",
         "medium": "https://medium.com/@cronoscrocrow"
       }
+    },
+    {
+      "name": "B.A.D. - Spaceships",
+      "slug": "bad-spaceships",
+      "multiToken": false,
+      "address": "0xbe5F02b6fD5C1e714f0bdd28B6a119827D8b6c61",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/babyaliendivision/spaceships/avatar.webp",
+        "banner": "/img/collections/babyaliendivision/spaceships/banner.webp",
+        "card": "/img/collections/babyaliendivision/spaceships/card.webp",
+        "maxSupply": 1300,
+        "website": "https://badaliens.io/",
+        "twitter": "https://twitter.com/BAD_Cronos",
+        "discord": "https://discord.gg/qKBy2azf69",
+        "medium": "https://medium.com/@babyaliendivision"
+      }
     }
   ],
   "drops": [
