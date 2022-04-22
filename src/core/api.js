@@ -1199,25 +1199,28 @@ export async function getNftsForAddress2(walletAddress, walletProvider) {
     });
   };
 
+  const getKnownContract = (nft) => {
+    return knownContracts.find(c => {
+      const matchedAddress = caseInsensitiveCompare(c.address, nft.nftAddress);
+      const matchedToken = !c.multiToken || parseInt(c.id) === parseInt(nft.nftId);
+      return matchedAddress && matchedToken;
+    });
+  };
+
+console.log(results);
   const writeContracts = [];
   return await Promise.all(results
-    .filter(o => {
-      return knownContracts.find(c => {
-        const matchedAddress = caseInsensitiveCompare(c.address, o.nftAddress);
-        const matchedToken = !c.multiToken || parseInt(c.id) === parseInt(o.nftId);
-        return matchedAddress && matchedToken;
-      });
+    .filter(nft => {
+      const matchedContract = getKnownContract(nft);
+      if (!matchedContract) return false;
+
+      const hasBalance = !matchedContract.multiToken || parseInt(nft.balance) > 0;
+
+      return matchedContract && hasBalance;
     })
     .map(async (nft) => {
-      const knownContract = knownContracts.find(c => {
-        const matchedAddress = caseInsensitiveCompare(c.address, nft.nftAddress);
-        const matchedToken = !c.multiToken || parseInt(c.id) === parseInt(nft.nftId);
-        return matchedAddress && matchedToken;
-      });
-      if (!knownContract) {
-        console.log('peekaboo', nft);
-        return;
-      }
+      const knownContract = getKnownContract(nft);
+
       let key = knownContract.address;
       if (knownContract.multiToken) {
         key = `${key}${knownContract.id}`;
