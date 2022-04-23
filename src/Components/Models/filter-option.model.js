@@ -49,7 +49,7 @@ export class FilterOption {
     if (this.address && this.id) {
       return {
         address: this.lowercasedAddress(),
-        tokenId: this.id,
+        token: this.id,
       };
     }
 
