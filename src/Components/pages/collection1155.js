@@ -66,14 +66,6 @@ const Collection1155 = ({ collection, tokenId = null, cacheName = 'collection', 
     setOpenMenu(index);
   };
 
-  const hasTraits = () => {
-    return collectionStats?.traits != null;
-  };
-
-  const hasPowertraits = () => {
-    return collectionStats?.powertraits != null;
-  };
-
   const loadMore = () => {
     dispatch(fetchListings());
   };
