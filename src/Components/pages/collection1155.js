@@ -192,11 +192,11 @@ const Collection1155 = ({ collection, tokenId = null, cacheName = 'collection', 
                 </div>
               </div>
             )}
-            <div className="d-item col-md-12 mb-4 mx-auto">
+            <div className="d-item col-md-12 mx-auto">
               <CollectionInfoBar collectionStats={collectionStats} royalty={royalty} />
             </div>
             {isCrosmocraftsPartsCollection(collection.address) && (
-              <div className="row">
+              <div className="row mb-2">
                 <div className="mx-auto text-center fw-bold" style={{ fontSize: '0.8em' }}>
                   Collect Crosmocraft parts to{' '}
                   <a href="/build-ship">
@@ -219,7 +219,7 @@ const Collection1155 = ({ collection, tokenId = null, cacheName = 'collection', 
         )}
 
         <div className="de_tab">
-          <ul className="de_nav">
+          <ul className="de_nav mb-4">
             <li id="Mainbtn0" className="tab active">
               <span onClick={handleBtnClick(0)}>Items</span>
             </li>
@@ -231,9 +231,6 @@ const Collection1155 = ({ collection, tokenId = null, cacheName = 'collection', 
           <div className="de_tab_content">
             {openMenu === 0 && (
               <div className="tab-1 onStep fadeIn">
-                <div className="row">
-                  <CollectionFilterBar showFilter={false} cacheName={cacheName} />
-                </div>
                 <div className="row">
                   <div className='col-md-12'>
                     {isUsingListingsFallback ? (
