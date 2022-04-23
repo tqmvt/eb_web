@@ -235,13 +235,7 @@ const Collection1155 = ({ collection, tokenId = null, cacheName = 'collection', 
                   <CollectionFilterBar showFilter={false} cacheName={cacheName} />
                 </div>
                 <div className="row">
-                  {(hasTraits() || hasPowertraits()) && (
-                    <div className="col-md-3 mb-4">
-                      {hasTraits() && <TraitsFilter address={collection.address} />}
-                      {hasPowertraits() && <PowertraitsFilter address={collection.address} />}
-                    </div>
-                  )}
-                  <div className={hasTraits() || hasPowertraits() ? 'col-md-9' : 'col-md-12'}>
+                  <div className='col-md-12'>
                     {isUsingListingsFallback ? (
                       <CollectionListingsGroup listings={listings} canLoadMore={canLoadMore} loadMore={loadMore} />
                     ) : (
