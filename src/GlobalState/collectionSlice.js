@@ -186,7 +186,7 @@ export const fetchListings = () => async (dispatch, getState) => {
     );
 
     if (!cancelled) {
-      response.hasRank = response.listings.length > 0 && typeof response.listings[0].rank !== 'undefined';
+      response.hasRank = (response.listings.length > 0 && (typeof response.listings[0].rank !== 'undefined' || !!response.listings[0].nft.rank));
       dispatch(listingsReceived({...response, isUsingListingsFallback: true}));
     }
   } else {

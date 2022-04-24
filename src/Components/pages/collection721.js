@@ -73,11 +73,11 @@ const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) 
   };
 
   const hasTraits = () => {
-    return collectionStats?.traits != null;
+    return collectionStats?.traits != null && Object.entries(collectionStats?.traits).length > 0;
   };
 
   const hasPowertraits = () => {
-    return collectionStats?.powertraits != null;
+    return collectionStats?.powertraits != null && Object.entries(collectionStats?.powertraits).length > 0;;
   };
 
   const loadMore = () => {
