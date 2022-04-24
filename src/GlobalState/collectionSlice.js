@@ -172,7 +172,8 @@ export const fetchListings = () => async (dispatch, getState) => {
   const weirdApes = Array.isArray(address);
   const knownContract = weirdApes ? null : config.known_contracts.find(c => caseInsensitiveCompare(c.address, address));
   const fallbackContracts = [
-    'red-skull-potions'
+    'red-skull-potions',
+    'cronos-fc'
   ];
 
   if (weirdApes || (fallbackContracts.includes(knownContract.slug))) {
