@@ -73,11 +73,11 @@ const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) 
   };
 
   const hasTraits = () => {
-    return collectionStats?.traits != null;
+    return collectionStats?.traits != null && Object.entries(collectionStats?.traits).length > 0;
   };
 
   const hasPowertraits = () => {
-    return collectionStats?.powertraits != null;
+    return collectionStats?.powertraits != null && Object.entries(collectionStats?.powertraits).length > 0;;
   };
 
   const loadMore = () => {
@@ -268,29 +268,17 @@ const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) 
                     )
                   )}
                   <div className={hasTraits() || hasPowertraits() ? 'col-md-9' : 'col-md-12'}>
-                    {!collectionLoading ? (
-                      isUsingListingsFallback ? (
-                        <CollectionListingsGroup listings={listings} canLoadMore={canLoadMore} loadMore={loadMore} />
-                      ) : (
-                        <CollectionNftsGroup
-                          listings={listings}
-                          royalty={royalty}
-                          canLoadMore={canLoadMore}
-                          loadMore={loadMore}
-                          address={address}
-                          collectionMetadata={collection.metadata}
-                        />
-                      )
+                    {isUsingListingsFallback ? (
+                      <CollectionListingsGroup listings={listings} canLoadMore={canLoadMore} loadMore={loadMore} />
                     ) : (
-                      <>
-                        <div className="row">
-                          <div className="col-lg-12 text-center mt-5">
-                            <Spinner animation="border" role="status">
-                              <span className="visually-hidden">Loading...</span>
-                            </Spinner>
-                          </div>
-                        </div>
-                      </>
+                      <CollectionNftsGroup
+                        listings={listings}
+                        royalty={royalty}
+                        canLoadMore={canLoadMore}
+                        loadMore={loadMore}
+                        address={address}
+                        collectionMetadata={collection.metadata}
+                      />
                     )}
                   </div>
                 </div>

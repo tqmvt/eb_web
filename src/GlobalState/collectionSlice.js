@@ -172,10 +172,11 @@ export const fetchListings = () => async (dispatch, getState) => {
   const weirdApes = Array.isArray(address);
   const knownContract = weirdApes ? null : config.known_contracts.find(c => caseInsensitiveCompare(c.address, address));
   const fallbackContracts = [
-    'red-skull-potions'
+    'red-skull-potions',
+    'cronos-fc'
   ];
 
-  if (weirdApes || (fallbackContracts.includes(knownContract.slug) || knownContract.multiToken)) {
+  if (weirdApes || (fallbackContracts.includes(knownContract.slug))) {
     const { response, cancelled } = await sortAndFetchListings(
       state.collection.query.page + 1,
       state.collection.query.sort,
@@ -186,7 +187,7 @@ export const fetchListings = () => async (dispatch, getState) => {
     );
 
     if (!cancelled) {
-      response.hasRank = response.listings.length > 0 && typeof response.listings[0].rank !== 'undefined';
+      response.hasRank = (response.listings.length > 0 && (typeof response.listings[0].rank !== 'undefined' || !!response.listings[0].nft.rank));
       dispatch(listingsReceived({...response, isUsingListingsFallback: true}));
     }
   } else {
