@@ -1218,9 +1218,9 @@ console.log(results);
       const writeContract = writeContracts[key] ?? new Contract(knownContract.address, knownContract.multiToken ? ERC1155 : ERC721, signer);
       writeContracts[key] = writeContract;
 
-      const listed = !!getListing(knownContract.address, knownContract.id);
-      const listingId = listed ? getListing(knownContract.address, knownContract.id).listingId : null;
-      const price = listed ? getListing(knownContract.address, knownContract.id).price : null;
+      const listed = !!getListing(knownContract.address, nft.nftId);
+      const listingId = listed ? getListing(knownContract.address, nft.nftId).listingId : null;
+      const price = listed ? getListing(knownContract.address, nft.nftId).price : null;
 
       let image;
       if (nft.image_aws || nft.image) {
