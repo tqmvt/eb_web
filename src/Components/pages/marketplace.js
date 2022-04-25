@@ -10,7 +10,7 @@ import { sortOptions } from '../components/constants/sort-options';
 import { SortOption } from '../Models/sort-option.model';
 import { marketPlaceCollectionFilterOptions } from '../components/constants/filter-options';
 import { FilterOption } from '../Models/filter-option.model';
-import SalesCollection from "../components/SalesCollection";
+import SalesCollection from '../components/SalesCollection';
 
 const Marketplace = () => {
   const cacheName = 'marketplace';
@@ -134,12 +134,12 @@ const Marketplace = () => {
                 </div>
                 <ListingCollection cacheName="marketplace" />
               </div>
-          )}
-          {openMenu === 1 && (
-            <div className="tab-2 onStep fadeIn">
-              <SalesCollection cacheName="marketplace" />
-            </div>
-          )}
+            )}
+            {openMenu === 1 && (
+              <div className="tab-2 onStep fadeIn">
+                <SalesCollection cacheName="marketplace" />
+              </div>
+            )}
           </div>
         </div>
       </section>

@@ -1,36 +1,34 @@
 import React, { useState } from 'react';
 import { Modal } from 'react-bootstrap';
-import MetaverseBidModal from "./MetaverseBidModal";
-import { showBidDialog} from "../../GlobalState/metaverseSlice";
-import store from "../../Store/store";
-
+import MetaverseBidModal from './MetaverseBidModal';
+import { showBidDialog } from '../../GlobalState/metaverseSlice';
+import store from '../../Store/store';
 
 function getMetaverseUrl() {
-  if (window.location.host === "localhost:3000") {
-    return "https://localhost:8080/hub.html?hub_id=QWSxfEv&embed_token=null"
+  if (window.location.host === 'localhost:3000') {
+    return 'https://localhost:8080/hub.html?hub_id=QWSxfEv&embed_token=null';
   }
-  if (window.location.host === "app.ebisusbay.biz") {
-    return "https://metaverse.ebisusbay.biz/?assignRoom=true"
+  if (window.location.host === 'app.ebisusbay.biz') {
+    return 'https://metaverse.ebisusbay.biz/?assignRoom=true';
   }
-  if (window.location.host === "testapp.ebisusbay.biz") {
-    return "https://testmetaverse.ebisusbay.biz/?assignRoom=true"
+  if (window.location.host === 'testapp.ebisusbay.biz') {
+    return 'https://testmetaverse.ebisusbay.biz/?assignRoom=true';
   }
-  if (window.location.host === "testapp2.ebisusbay.biz") {
-    return "https://testmetaverse.ebisusbay.biz?assignRoom=true"
+  if (window.location.host === 'testapp2.ebisusbay.biz') {
+    return 'https://testmetaverse.ebisusbay.biz?assignRoom=true';
   }
-  return "https://metaverse.ebisusbay.com/?assignRoom=true"
+  return 'https://metaverse.ebisusbay.com/?assignRoom=true';
 }
 
-
 const MetaverseModal = (props) => {
-  const  { id } = props;
+  const { id } = props;
 
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const metaverseUrl = getMetaverseUrl()
+  const metaverseUrl = getMetaverseUrl();
 
   return (
     <>
@@ -56,21 +54,20 @@ const MetaverseModal = (props) => {
   );
 };
 
-
 function addIFrameEventListener() {
   // Here "addEventListener" is for standards-compliant web browsers and "attachEvent" is for IE Browsers.
-  const eventMethod = window.addEventListener ? "addEventListener" : "attachEvent";
+  const eventMethod = window.addEventListener ? 'addEventListener' : 'attachEvent';
   const eventFunction = window[eventMethod];
-  const messageEvent = eventMethod === "attachEvent" ? "onmessage" : "message";
+  const messageEvent = eventMethod === 'attachEvent' ? 'onmessage' : 'message';
 
   // Listen to message from child IFrame window
   eventFunction(
     messageEvent,
-    function(e) {
-      if (e.data.startsWith && e.data.startsWith("{") && e.data.endsWith("}")) {
-        const message = JSON.parse(e.data)
-        if (message.operation === "bid") {
-          store.dispatch(showBidDialog({auctionId: message.auctionId}))
+    function (e) {
+      if (e.data.startsWith && e.data.startsWith('{') && e.data.endsWith('}')) {
+        const message = JSON.parse(e.data);
+        if (message.operation === 'bid') {
+          store.dispatch(showBidDialog({ auctionId: message.auctionId }));
         }
       }
     },

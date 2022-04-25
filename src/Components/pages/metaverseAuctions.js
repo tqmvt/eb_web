@@ -3,11 +3,10 @@ import React from 'react';
 import Footer from '../components/Footer';
 import AuctionCollection from '../components/AuctionCollection';
 import config from '../../Assets/networks/rpc_config.json';
-import MetaverseModal from "../components/MetaverseModal";
+import MetaverseModal from '../components/MetaverseModal';
 export const drops = config.drops;
 
 const MetaverseAuctions = () => {
-
   return (
     <div>
       <section className="container no-bottom">

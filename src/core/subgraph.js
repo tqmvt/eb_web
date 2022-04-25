@@ -13,7 +13,7 @@ const client = new ApolloClient({
 export const getAllOffers = async (addresses, stateFilter, lastId) => {
   const allOffersQuery = `
   query($first: Int, $addresses: [String], $state: String, $lastId: String) {
-    offers(first: $first, where: {nftAddress_in: $addresses, state: $state${lastId ? ', id_gt: $lastId' : ''}}) {
+    offers(first: $first, where: {nftAddress_in: $addresses, state: $state, id_gt: $lastId}) {
         id
         hash
         offerIndex
@@ -39,7 +39,7 @@ export const getAllOffers = async (addresses, stateFilter, lastId) => {
           first: FIRST,
           addresses,
           state: stateFilter,
-          lastId,
+          lastId: lastId || '',
         },
       })
     );
@@ -81,7 +81,7 @@ export const getMyOffers = async (myAddress, stateFilter, lastId) => {
           first: FIRST,
           buyer: myAddress.toLowerCase(),
           state: stateFilter,
-          lastId,
+          lastId: lastId || '',
         },
       })
     );

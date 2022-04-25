@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { getCollectionMetadata } from '../core/api';
 import config from '../Assets/networks/rpc_config.json';
-import { caseInsensitiveCompare, isFounderCollection } from '../utils';
+import { caseInsensitiveCompare } from '../utils';
 export const knownContracts = config.known_contracts;
 
 const collectionsSlice = createSlice({
@@ -39,9 +39,9 @@ export const getAllCollections =
       const response = await getCollectionMetadata();
       response.collections.forEach(function (collection, index) {
         let contract;
-        if (collection.collection.indexOf('-') != -1) {
+        if (collection.collection.indexOf('-') !== -1) {
           let parts = collection.collection.split('-');
-          contract = knownContracts.find((c) => caseInsensitiveCompare(c.address, parts[0]) && c.id == parts[1]);
+          contract = knownContracts.find((c) => caseInsensitiveCompare(c.address, parts[0]) && c.id === parts[1]);
           if (contract && !contract.split) return;
         } else {
           contract = knownContracts.find((c) => caseInsensitiveCompare(c.address, collection.collection));
