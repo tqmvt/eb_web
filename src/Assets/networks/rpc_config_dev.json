@@ -3810,6 +3810,23 @@
         "medium": "https://streetbrawlerz.medium.com/",
         "telegram": "https://t.me/StreetBrawlerzNFT"
       }
+    },
+    {
+      "name": "Like Humans",
+      "slug": "like-humans",
+      "multiToken": false,
+      "address": "",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": false,
+        "avatar": "/img/collections/likehumans/avatar.jpg",
+        "banner": "/img/collections/likehumans/banner.jpg",
+        "card": "/img/collections/likehumans/card.jpg",
+        "maxSupply": 60,
+        "website": "https://twitter.com/AtuchinArt"
+      }
     }
   ],
   "drops": [
@@ -5358,6 +5375,31 @@
       "is1155": false,
       "published": true,
       "complete": true
+    },
+    {
+      "id": 60,
+      "slug": "like-humans",
+      "imgNft": "/img/drops/likehumans/drop.jpg",
+      "imgPreview": "/img/drops/likehumans/drop.jpg",
+      "imgAvatar": "/img/collections/likehumans/avatar.jpg",
+      "imgBanner": "/img/collections/likehumans/banner.jpg",
+      "title": "Like Humans",
+      "subtitle": "The \"Like Humans\" series shows a kaleidoscope of emotions so well understood by all of us.",
+      "description": "There is hope and faith and joy with childish eyes. Each work has its own color scheme, its own dramaturgy. The series is built in such a way that the works together look whole, and at the same time each of them is self-sufficient.",
+      "author": { "name": "Like Humans", "link": "https://twitter.com/AtuchinArt" },
+      "address": "",
+      "maxMintPerTx": 1,
+      "maxMintPerAddress": 50,
+      "totalSupply": 50,
+      "cost": "200",
+      "memberCost": "150",
+      "foundersOnly": false,
+      "start": 1651176000000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false
     }
   ],
   "auctions": [
