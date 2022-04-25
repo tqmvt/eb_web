@@ -15,7 +15,7 @@ import ProfilePreview from '../components/ProfilePreview';
 const knownContracts = config.known_contracts;
 
 const AuctionComponent = (props) => {
-  const  { id } = props;
+  const { id } = props;
   const dispatch = useDispatch();
 
   const listing = useSelector((state) => state.auction.auction);

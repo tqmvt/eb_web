@@ -6,7 +6,7 @@ import { faLink } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import config from '../../Assets/networks/rpc_config.json';
 import { croSkullRedPotionImageHack } from '../../hacks';
-import ReactPlayer from "react-player";
+import ReactPlayer from 'react-player';
 
 const MyNftCard = ({
   nft,

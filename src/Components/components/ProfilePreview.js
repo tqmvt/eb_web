@@ -28,7 +28,7 @@ const ProfilePreview = ({
   avatar = '',
   verified = false,
   hover = '',
-  pop = false
+  pop = false,
 }) => {
   const AvatarElement = (
     <>
@@ -56,15 +56,20 @@ const ProfilePreview = ({
     </>
   );
 
-  const Hyperlink = ({url}) => {
+  const Hyperlink = ({ url }) => {
     if (url) {
       if (url.startsWith('http')) {
-        return <a href={url} target={pop ? '_blank' : '_self'}> {AvatarElement} </a>
+        return (
+          <a href={url} target={pop ? '_blank' : '_self'}>
+            {' '}
+            {AvatarElement}{' '}
+          </a>
+        );
       } else {
-        return <Link to={url}> {AvatarElement} </Link>
+        return <Link to={url}> {AvatarElement} </Link>;
       }
     } else {
-      return <div> {AvatarElement} </div>
+      return <div> {AvatarElement} </div>;
     }
   };
 

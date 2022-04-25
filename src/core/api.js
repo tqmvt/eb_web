@@ -376,13 +376,13 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
     });
   };
 
-  const getERC1155Listings = (address, id) => {
-    return listings.filter((listing) => {
-      const sameId = ethers.BigNumber.from(listing['nftId']).eq(id);
-      const sameAddress = listing['nftAddress'].toLowerCase() === address.toLowerCase();
-      return sameId && sameAddress && listing.state === 0;
-    });
-  };
+  // const getERC1155Listings = (address, id) => {
+  //   return listings.filter((listing) => {
+  //     const sameId = ethers.BigNumber.from(listing['nftId']).eq(id);
+  //     const sameAddress = listing['nftAddress'].toLowerCase() === address.toLowerCase();
+  //     return sameId && sameAddress && listing.state === 0;
+  //   });
+  // };
 
   let response = {
     nfts: [],
@@ -408,7 +408,7 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
             const listed = !!getListing(address, knownContract.id);
             const listingId = listed ? getListing(address, knownContract.id).listingId : null;
             const price = listed ? getListing(address, knownContract.id).price : null;
-            let erc1155Listings = getERC1155Listings(address, knownContract.id);
+            // let erc1155Listings = getERC1155Listings(address, knownContract.id);
 
             const readContract = new Contract(knownContract.address, ERC1155, readProvider);
             const writeContract = new Contract(knownContract.address, ERC1155, signer);
@@ -685,7 +685,7 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
                 }
                 let isStaked;
 
-                if (address == '0x0b289dEa4DCb07b8932436C2BA78bA09Fbd34C44') {
+                if (address === '0x0b289dEa4DCb07b8932436C2BA78bA09Fbd34C44') {
                   if (await readContract.stakedApes(id)) {
                     canTransfer = false;
                     canSell = false;
@@ -735,7 +735,7 @@ export async function getUnfilteredListingsForAddress(walletAddress, walletProvi
     direction: 'asc',
   };
 
-  const signer = walletProvider.getSigner();
+  // const signer = walletProvider.getSigner();
 
   try {
     const signer = walletProvider.getSigner();
@@ -1086,7 +1086,7 @@ export async function getNftFromFile(collectionId, nftId) {
         image = json.image;
       }
       let isStaked;
-      if (collectionId == '0x0b289dEa4DCb07b8932436C2BA78bA09Fbd34C44') {
+      if (collectionId === '0x0b289dEa4DCb07b8932436C2BA78bA09Fbd34C44') {
         if (await contract.stakedApes(nftId)) {
           canTransfer = false;
           canSell = false;

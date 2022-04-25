@@ -42,6 +42,7 @@ const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) 
   const collectionStatsLoading = useSelector((state) => state.collection.statsLoading);
   const collectionStats = useSelector((state) => state.collection.stats);
   const collectionLoading = useSelector((state) => state.collection.loading);
+  const [isFirstLoaded, setIsFirstLoaded] = useState(0);
 
   const listings = useSelector((state) => state.collection.listings);
   const hasRank = useSelector((state) => state.collection.hasRank);
@@ -77,7 +78,7 @@ const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) 
   };
 
   const hasPowertraits = () => {
-    return collectionStats?.powertraits != null && Object.entries(collectionStats?.powertraits).length > 0;;
+    return collectionStats?.powertraits != null && Object.entries(collectionStats?.powertraits).length > 0;
   };
 
   const loadMore = () => {
@@ -123,6 +124,15 @@ const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) 
     asyncFunc();
     // eslint-disable-next-line
   }, [dispatch, collection]);
+
+  useEffect(() => {
+    if (collectionLoading && isFirstLoaded === 0) {
+      setIsFirstLoaded(1);
+    }
+    if (!collectionLoading && isFirstLoaded === 1) {
+      setIsFirstLoaded(2);
+    }
+  }, [collectionLoading, isFirstLoaded]);
 
   return (
     <div>
@@ -197,7 +207,7 @@ const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) 
             <div className="d-item col-md-12 mb-4 mx-auto">
               <CollectionInfoBar collectionStats={collectionStats} royalty={royalty} />
             </div>
-            {collection.address.toLowerCase() == '0x7D5f8F9560103E1ad958A6Ca43d49F954055340a'.toLowerCase() && (
+            {collection.address.toLowerCase() === '0x7D5f8F9560103E1ad958A6Ca43d49F954055340a'.toLowerCase() && (
               <div className="row m-3">
                 <div className="mx-auto text-center fw-bold" style={{ fontSize: '1.2em' }}>
                   {'  '} Please visit{' '}
@@ -279,6 +289,15 @@ const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) 
                         address={address}
                         collectionMetadata={collection.metadata}
                       />
+                    )}
+                    {isFirstLoaded !== 2 && collectionLoading && (
+                      <div className="row mt-5">
+                        <div className="col-lg-12 text-center">
+                          <Spinner animation="border" role="status">
+                            <span className="visually-hidden">Loading...</span>
+                          </Spinner>
+                        </div>
+                      </div>
                     )}
                   </div>
                 </div>

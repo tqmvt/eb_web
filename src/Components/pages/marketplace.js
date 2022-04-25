@@ -10,7 +10,7 @@ import { sortOptions } from '../components/constants/sort-options';
 import { SortOption } from '../Models/sort-option.model';
 import { marketPlaceCollectionFilterOptions } from '../components/constants/filter-options';
 import { FilterOption } from '../Models/filter-option.model';
-import SalesCollection from "../components/SalesCollection";
+import SalesCollection from '../components/SalesCollection';
 
 const Marketplace = () => {
   const cacheName = 'marketplace';
@@ -38,6 +38,7 @@ const Marketplace = () => {
 
   useEffect(() => {
     dispatch(getMarketData());
+    // eslint-disable-next-line
   }, []);
 
   const selectDefaultFilterValue = marketplace.cachedFilter[cacheName] ?? FilterOption.default();
@@ -84,7 +85,7 @@ const Marketplace = () => {
         <div className="row">
           {marketData && (
             <div className="d-item col-lg-6 col-sm-10 mb-4 mx-auto">
-              <a className="nft_attr">
+              <div className="nft_attr">
                 <div className="row">
                   <div className="col-4">
                     <h5>Volume</h5>
@@ -99,7 +100,7 @@ const Marketplace = () => {
                     <h4>{siPrefixedNumber(marketData.totalActive)}</h4>
                   </div>
                 </div>
-              </a>
+              </div>
             </div>
           )}
         </div>
@@ -134,12 +135,12 @@ const Marketplace = () => {
                 </div>
                 <ListingCollection cacheName="marketplace" />
               </div>
-          )}
-          {openMenu === 1 && (
-            <div className="tab-2 onStep fadeIn">
-              <SalesCollection cacheName="marketplace" />
-            </div>
-          )}
+            )}
+            {openMenu === 1 && (
+              <div className="tab-2 onStep fadeIn">
+                <SalesCollection cacheName="marketplace" />
+              </div>
+            )}
           </div>
         </div>
       </section>

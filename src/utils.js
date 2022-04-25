@@ -146,6 +146,8 @@ export function classList(classes) {
  * @returns {string}
  */
 export function humanize(str) {
+  if (!str) return '';
+
   let i,
     frags = str
       .toString()
@@ -370,7 +372,7 @@ export const findCollectionByAddress = (address, tokenId) => {
     const matchesAddress = caseInsensitiveCompare(c.address, address);
     if (!tokenId) return matchesAddress;
 
-    const matchesTokenIf1155 = !c.multiToken || (tokenId && c.id == tokenId);
+    const matchesTokenIf1155 = !c.multiToken || (tokenId && c.id === tokenId);
     return matchesAddress && matchesTokenIf1155;
   });
 };
