@@ -13,7 +13,13 @@ import detectEthereumProvider from '@metamask/detect-provider';
 import { DeFiWeb3Connector } from 'deficonnect';
 import WalletConnectProvider from '@walletconnect/web3-provider';
 import * as DefiWalletConnectProvider from '@deficonnect/web3-provider';
-import { getNftRankings, getNftSalesForAddress, getNftsForAddress, getUnfilteredListingsForAddress } from '../core/api';
+import {
+  getNftRankings,
+  getNftSalesForAddress,
+  getNftsForAddress,
+  getNftsForAddress2,
+  getUnfilteredListingsForAddress
+} from '../core/api';
 import { toast } from 'react-toastify';
 import { createSuccessfulTransactionToastContent, sliceIntoChunks } from '../utils';
 import { FilterOption } from '../Components/Models/filter-option.model';
@@ -131,9 +137,12 @@ const userSlice = createSlice({
     onNftsReplace(state, action) {
       state.nfts = action.payload;
     },
-    nftsFetched(state) {
+    nftsFetched(state, action) {
       state.fetchingNfts = false;
       state.nftsInitialized = true;
+      if (action.payload) {
+        state.nfts = action.payload;
+      }
     },
     setMyNftPageTransferDialog(state, action) {
       state.myNftPageTransferDialog = action.payload;
@@ -645,28 +654,46 @@ export const fetchNfts = () => async (dispatch, getState) => {
 
   const walletAddress = state.user.address;
   const walletProvider = state.user.provider;
-  const nftsInitialized = state.user.nftsInitialized;
 
+  dispatch(fetchingNfts());
+  const response = await getNftsForAddress2(walletAddress, walletProvider);
+  dispatch(nftsFetched(response));
+};
+
+export const fetchChainNfts = (abortSignal) => async (dispatch, getState) => {
+  const state = getState();
+
+  const walletAddress = state.user.address;
+  const walletProvider = state.user.provider;
+  const nftsInitialized = state.user.nftsInitialized;
   if (!nftsInitialized) {
     dispatch(fetchingNfts());
     const response = await getNftsForAddress(walletAddress, walletProvider, (nfts) => {
       dispatch(onNftsAdded(nfts));
-    });
+    }, abortSignal);
+    if (abortSignal.aborted) return;
     dispatch(setIsMember(response.isMember));
     await addRanksToNfts(dispatch, getState);
     dispatch(nftsFetched());
     return;
   }
 
-  const loadedNfts = [];
-  const response = await getNftsForAddress(walletAddress, walletProvider, (nfts) => {
-    loadedNfts.push(...nfts);
-  });
   dispatch(fetchingNfts());
-  dispatch(onNftsReplace(loadedNfts));
-  await addRanksToNfts(dispatch, getState);
-  dispatch(setIsMember(response.isMember));
-  dispatch(nftsFetched());
+  const loadedNfts = [];
+  try {
+    const response = await getNftsForAddress(walletAddress, walletProvider, (nfts) => {
+      loadedNfts.push(...nfts);
+    }, abortSignal);
+    if (abortSignal.aborted) return;
+    dispatch(onNftsReplace(loadedNfts));
+    await addRanksToNfts(dispatch, getState);
+    dispatch(setIsMember(response.isMember));
+    dispatch(nftsFetched());
+  } catch (err) {
+    if (err.name === 'AbortError') {
+      console.log('aborting previous request');
+    }
+  }
 };
 
 const addRanksToNfts = async (dispatch, getState) => {
