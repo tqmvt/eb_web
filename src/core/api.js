@@ -1223,32 +1223,36 @@ console.log(results);
       const price = listed ? getListing(knownContract.address, nft.nftId).price : null;
 
       let image;
-      if (nft.image_aws || nft.image) {
-        image = nft.image_aws ?? nft.image;
-      } else if (nft.token_uri) {
-        if (typeof(nft.token_uri) === 'string'){
-          const uri = nft.token_uri;
-          const checkedUri = (() => {
-            try {
-              if (gatewayTools.containsCID(uri) && !uri.startsWith('ar')) {
-                return gatewayTools.convertToDesiredGateway(uri, gateway);
+      try {
+        if (nft.image_aws || nft.image) {
+          image = nft.image_aws ?? nft.image;
+        } else if (nft.token_uri) {
+          if (typeof(nft.token_uri) === 'string'){
+            const uri = nft.token_uri;
+            const checkedUri = (() => {
+              try {
+                if (gatewayTools.containsCID(uri) && !uri.startsWith('ar')) {
+                  return gatewayTools.convertToDesiredGateway(uri, gateway);
+                }
+
+                if (uri.startsWith('ar')) {
+                  return `https://arweave.net/${uri.substring(5)}`;
+                }
+
+                return uri;
+              } catch (e) {
+                return uri;
               }
+            })();
 
-              if (uri.startsWith('ar')) {
-                return `https://arweave.net/${uri.substring(5)}`;
-              }
-
-              return uri;
-            } catch (e) {
-              return uri;
-            }
-          })();
-
-          const json = await (await fetch(checkedUri)).json();
-          image = convertIpfsResource(json.token_uri)
-        } else if (typeof(nft.token_uri) === 'object'){
-          image = nft.token_uri.image;
+            const json = await (await fetch(checkedUri)).json();
+            image = convertIpfsResource(json.token_uri)
+          } else if (typeof(nft.token_uri) === 'object'){
+            image = nft.token_uri.image;
+          }
         }
+      } catch (e) {
+        console.log(e, nft);
       }
 
       return {
