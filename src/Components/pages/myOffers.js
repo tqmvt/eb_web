@@ -78,6 +78,7 @@ const MyOffers = () => {
     if (!collectionsStats || collectionsStats.length === 0) {
       dispatch(getAllCollections());
     }
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
@@ -86,7 +87,7 @@ const MyOffers = () => {
 
       dispatch(fetchAllOffers(collectionAddresses));
     }
-  }, [myNFTs, myNFTsLoading]);
+  }, [dispatch, myNFTs, myNFTsLoading]);
 
   useEffect(() => {
     if (myNFTs && !myNFTsLoading && allOffers && collectionsStats.length > 0) {
@@ -108,7 +109,8 @@ const MyOffers = () => {
       });
       setReceivedOffers(receivedOffersFilter);
     }
-  }, [myNFTs, allOffers]);
+    // eslint-disable-next-line
+  }, [myNFTs, allOffers, collectionsStats]);
 
   const findKnownContract = (address, nftId) => {
     return knownContracts.find((c) => {

@@ -85,7 +85,7 @@ const SingleDrop = () => {
   const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
   const dispatch = useDispatch();
 
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
   const [minting, setMinting] = useState(false);
   const [mintingERC20, setMintingERC20] = useState(false);
   const [referral, setReferral] = useState('');
@@ -94,7 +94,7 @@ const SingleDrop = () => {
   const [numToMint, setNumToMint] = useState(1);
 
   const [abi, setAbi] = useState(null);
-  const [maxMintPerAddress, setMaxMintPerAddress] = useState(0);
+  // const [maxMintPerAddress, setMaxMintPerAddress] = useState(0);
   const [maxMintPerTx, setMaxMintPerTx] = useState(0);
   const [maxSupply, setMaxSupply] = useState(0);
   const [memberCost, setMemberCost] = useState(0);
@@ -225,7 +225,7 @@ const SingleDrop = () => {
           let readContract = await new ethers.Contract(currentDrop.address, abi, readProvider);
           const infos = await readContract.getInfo();
           const canMint = user.address ? await readContract.canMint(user.address) : 0;
-          setMaxMintPerAddress(infos.maxMintPerAddress);
+          // setMaxMintPerAddress(infos.maxMintPerAddress);
           setMaxMintPerTx(infos.maxMintPerTx);
           setMaxSupply(infos.maxSupply);
           setMemberCost(ethers.utils.formatEther(infos.memberCost));
@@ -245,12 +245,12 @@ const SingleDrop = () => {
       console.log(error);
       Sentry.captureException(error);
     }
-    setLoading(false);
+    // setLoading(false);
     setDropObject(currentDrop);
   };
 
   const setDropInfo = (drop, supply) => {
-    setMaxMintPerAddress(drop.maxMintPerAddress ?? 100);
+    // setMaxMintPerAddress(drop.maxMintPerAddress ?? 100);
     setMaxMintPerTx(drop.maxMintPerTx);
     setMaxSupply(drop.totalSupply);
     setMemberCost(drop.memberCost);

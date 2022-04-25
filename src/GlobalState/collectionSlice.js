@@ -4,7 +4,7 @@ import {
   getCollectionMetadata,
   getCollectionTraits,
   getCollectionPowertraits,
-  getCollectionSummary, sortAndFetchListings,
+  sortAndFetchListings,
 } from '../core/api';
 import { caseInsensitiveCompare } from '../utils';
 import config from '../Assets/networks/rpc_config.json';
@@ -43,7 +43,7 @@ const collectionSlice = createSlice({
     listingsReceived: (state, action) => {
       state.loading = false;
       state.error = false;
-      state.listings.push(...action.payload.isUsingListingsFallback ? action.payload.listings : action.payload.nfts);
+      state.listings.push(...(action.payload.isUsingListingsFallback ? action.payload.listings : action.payload.nfts));
       state.query.page = action.payload.page;
       state.totalPages = action.payload.totalPages;
       state.totalCount = action.payload.totalCount;
@@ -170,13 +170,12 @@ export const fetchListings = () => async (dispatch, getState) => {
 
   const address = state.collection.query.filter.address;
   const weirdApes = Array.isArray(address);
-  const knownContract = weirdApes ? null : config.known_contracts.find(c => caseInsensitiveCompare(c.address, address));
-  const fallbackContracts = [
-    'red-skull-potions',
-    'cronos-fc'
-  ];
+  const knownContract = weirdApes
+    ? null
+    : config.known_contracts.find((c) => caseInsensitiveCompare(c.address, address));
+  const fallbackContracts = ['red-skull-potions', 'cronos-fc'];
 
-  if (weirdApes || (fallbackContracts.includes(knownContract.slug))) {
+  if (weirdApes || fallbackContracts.includes(knownContract.slug)) {
     const { response, cancelled } = await sortAndFetchListings(
       state.collection.query.page + 1,
       state.collection.query.sort,
@@ -187,8 +186,10 @@ export const fetchListings = () => async (dispatch, getState) => {
     );
 
     if (!cancelled) {
-      response.hasRank = (response.listings.length > 0 && (typeof response.listings[0].rank !== 'undefined' || !!response.listings[0].nft.rank));
-      dispatch(listingsReceived({...response, isUsingListingsFallback: true}));
+      response.hasRank =
+        response.listings.length > 0 &&
+        (typeof response.listings[0].rank !== 'undefined' || !!response.listings[0].nft.rank);
+      dispatch(listingsReceived({ ...response, isUsingListingsFallback: true }));
     }
   } else {
     const { response, cancelled } = await sortAndFetchCollectionDetails(
@@ -204,7 +205,7 @@ export const fetchListings = () => async (dispatch, getState) => {
     if (response.status === 200 && response.nfts.length > 0) {
       if (!cancelled) {
         response.hasRank = response.nfts.length > 0 && typeof response.nfts[0].rank !== 'undefined';
-        dispatch(listingsReceived({...response, isUsingListingsFallback: false}));
+        dispatch(listingsReceived({ ...response, isUsingListingsFallback: false }));
       }
     }
   }
@@ -249,13 +250,10 @@ export const getStats =
       const mergedAddresses = extraAddresses ? [address, ...extraAddresses] : address;
       var response;
       if (id != null) {
-        response = await getCollectionMetadata(
-          mergedAddresses,
-          null, {
-            type: "tokenId",
-            value: id
-          }
-        );
+        response = await getCollectionMetadata(mergedAddresses, null, {
+          type: 'tokenId',
+          value: id,
+        });
       } else {
         response = await getCollectionMetadata(mergedAddresses);
       }
@@ -285,9 +283,9 @@ export const getStats =
  * @returns {*}
  */
 const combineStats = (collectionStats, anchor) => {
-  const anchoredStats = collectionStats.find(c => caseInsensitiveCompare(c.collection, anchor));
+  const anchoredStats = collectionStats.find((c) => caseInsensitiveCompare(c.collection, anchor));
   if (collectionStats.length === 0) return anchoredStats;
-  
+
   const combined = collectionStats.reduce((a, b) => {
     return {
       numberActive: parseInt(a.numberActive) + parseInt(b.numberActive),
@@ -301,9 +299,9 @@ const combineStats = (collectionStats, anchor) => {
       sales30d: parseInt(a.sales30d) + parseInt(b.sales30d),
       totalRoyalties: parseInt(a.totalRoyalties) + parseInt(b.totalRoyalties),
       floorPrice: parseInt(a.floorPrice) < parseInt(b.floorPrice) ? parseInt(a.floorPrice) : parseInt(b.floorPrice),
-      averageSalePrice: (parseInt(a.averageSalePrice) + parseInt(b.averageSalePrice)) / 2
-    }
-  })
+      averageSalePrice: (parseInt(a.averageSalePrice) + parseInt(b.averageSalePrice)) / 2,
+    };
+  });
 
-  return {...anchoredStats, ...combined};
-}
+  return { ...anchoredStats, ...combined };
+};

@@ -1,8 +1,7 @@
 import React from 'react';
-import ListingsRow from "./ListingsRow";
+import ListingsRow from './ListingsRow';
 
 export default function NFTTabListings({ listings }) {
-
   return (
     <div>
       {listings && listings.length > 0 ? (

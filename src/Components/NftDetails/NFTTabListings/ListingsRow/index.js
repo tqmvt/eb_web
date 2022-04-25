@@ -1,15 +1,15 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Blockies from 'react-blockies';
-import {createSuccessfulTransactionToastContent, shortAddress, timeSince} from 'src/utils';
-import {Link, useHistory} from "react-router-dom";
-import {ethers} from "ethers";
-import {listingUpdated} from "../../../../GlobalState/listingSlice";
-import {toast} from "react-toastify";
-import MetaMaskOnboarding from "@metamask/onboarding";
-import {chainConnect, connectAccount} from "../../../../GlobalState/User";
-import {useDispatch, useSelector} from "react-redux";
-import {Spinner} from "react-bootstrap";
-import {getNftDetails} from "../../../../GlobalState/nftSlice";
+import { createSuccessfulTransactionToastContent, shortAddress, timeSince } from 'src/utils';
+import { Link, useHistory } from 'react-router-dom';
+import { ethers } from 'ethers';
+import { listingUpdated } from '../../../../GlobalState/listingSlice';
+import { toast } from 'react-toastify';
+import MetaMaskOnboarding from '@metamask/onboarding';
+import { chainConnect, connectAccount } from '../../../../GlobalState/User';
+import { useDispatch, useSelector } from 'react-redux';
+import { Spinner } from 'react-bootstrap';
+import { getNftDetails } from '../../../../GlobalState/nftSlice';
 
 export default function ListingsRow({ listing }) {
   const dispatch = useDispatch();
@@ -23,40 +23,42 @@ export default function ListingsRow({ listing }) {
     setExecutingBuy(true);
     await runFunction(async (writeContract) => {
       let price = ethers.utils.parseUnits(amount.toString());
-      return (await writeContract.makePurchase(listing.listingId, {
-        'value' : price
-      })).wait();
-    })
+      return (
+        await writeContract.makePurchase(listing.listingId, {
+          value: price,
+        })
+      ).wait();
+    });
     setExecutingBuy(false);
-  }
+  };
 
-  const runFunction = async(fn) => {
-    if(user.address){
-      try{
-        const receipt = await fn(user.marketContract)
+  const runFunction = async (fn) => {
+    if (user.address) {
+      try {
+        const receipt = await fn(user.marketContract);
         dispatch(getNftDetails(listing.nftAddress, listing.nftId));
         toast.success(createSuccessfulTransactionToastContent(receipt.transactionHash));
-      }catch(error){
-        if(error.data){
+      } catch (error) {
+        if (error.data) {
           toast.error(error.data.message);
-        } else if(error.message){
+        } else if (error.message) {
           toast.error(error.message);
         } else {
           console.log(error);
-          toast.error("Unknown Error");
+          toast.error('Unknown Error');
         }
       }
-    } else{
-      if(user.needsOnboard){
+    } else {
+      if (user.needsOnboard) {
         const onboarding = new MetaMaskOnboarding();
         onboarding.startOnboarding();
-      } else if(!user.address){
+      } else if (!user.address) {
         dispatch(connectAccount());
-      } else if(!user.correctChain){
+      } else if (!user.correctChain) {
         dispatch(chainConnect());
       }
     }
-  }
+  };
 
   const viewSeller = (seller) => () => {
     history.push(`/seller/${seller}`);
@@ -67,7 +69,7 @@ export default function ListingsRow({ listing }) {
       <div className="row">
         <div className="col-8">
           <Link to={`/seller/${listing.seller}`}>
-            <div className="p_list_pp" style={{zIndex:1}}>
+            <div className="p_list_pp" style={{ zIndex: 1 }}>
               <span>
                 <span onClick={viewSeller(listing.seller)}>
                   <Blockies seed={listing.seller} size={10} scale={5} />
@@ -86,18 +88,16 @@ export default function ListingsRow({ listing }) {
         </div>
         <div className="col-4">
           <button className="btn-main" onClick={executeBuy(listing.price)} disabled={executingBuy}>
-            {executingBuy ?
+            {executingBuy ? (
               <>
                 Buy Now...
                 <Spinner animation="border" role="status" size="sm" className="ms-1">
                   <span className="visually-hidden">Loading...</span>
                 </Spinner>
               </>
-              :
-              <>
-                Buy Now
-              </>
-            }
+            ) : (
+              <>Buy Now</>
+            )}
           </button>
         </div>
       </div>

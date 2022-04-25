@@ -5,9 +5,9 @@ import { ethers } from 'ethers';
 import { croSkullRedPotionImageHack } from '../../hacks';
 import Button from './Button';
 import MakeOfferDialog from '../Offer/MakeOfferDialog';
-import MetaMaskOnboarding from "@metamask/onboarding";
-import {chainConnect, connectAccount} from "../../GlobalState/User";
-import {useDispatch, useSelector} from "react-redux";
+import MetaMaskOnboarding from '@metamask/onboarding';
+import { chainConnect, connectAccount } from '../../GlobalState/User';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Watermarked = styled.div`
   position: relative;

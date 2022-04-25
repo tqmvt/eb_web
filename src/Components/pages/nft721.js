@@ -69,75 +69,91 @@ const Nft721 = ({ address, id }) => {
 
   useEffect(() => {
     dispatch(getNftDetails(address, id));
-  }, [dispatch, id]);
+  }, [dispatch, address, id]);
 
-  useEffect(async () => {
-    if (isCroCrowCollection(address) && croCrowBreed === null) {
-      const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
-      const crowpunkContract = new Contract(
-        '0x0f1439a290e86a38157831fe27a3dcd302904055',
-        [
-          'function availableCrows(address _owner) public view returns (uint256[] memory, bool[] memory)',
-          'function isCrowUsed(uint256 tokenId) public view returns (bool)',
-        ],
-        readProvider
-      );
-      const croCrowContract = new Contract('0xE4ab77ED89528d90E6bcf0E1Ac99C58Da24e79d5', ERC721, readProvider);
-      try {
-        if (parseInt(id) < 3500) {
-          const used = await crowpunkContract.isCrowUsed(id);
-          setCroCrowBreed(used);
-        } else {
-          const ownerAddress = await croCrowContract.ownerOf(id);
-          const crows = await crowpunkContract.availableCrows(ownerAddress);
-          for (const [i, o] of crows[0].entries()) {
-            if (o.toNumber() === parseInt(id)) {
-              setCroCrowBreed(crows[1][i]);
-              return;
+  useEffect(() => {
+    async function asyncFunc() {
+      if (isCroCrowCollection(address) && croCrowBreed === null) {
+        const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
+        const crowpunkContract = new Contract(
+          '0x0f1439a290e86a38157831fe27a3dcd302904055',
+          [
+            'function availableCrows(address _owner) public view returns (uint256[] memory, bool[] memory)',
+            'function isCrowUsed(uint256 tokenId) public view returns (bool)',
+          ],
+          readProvider
+        );
+        const croCrowContract = new Contract('0xE4ab77ED89528d90E6bcf0E1Ac99C58Da24e79d5', ERC721, readProvider);
+        try {
+          if (parseInt(id) < 3500) {
+            const used = await crowpunkContract.isCrowUsed(id);
+            setCroCrowBreed(used);
+          } else {
+            const ownerAddress = await croCrowContract.ownerOf(id);
+            const crows = await crowpunkContract.availableCrows(ownerAddress);
+            for (const [i, o] of crows[0].entries()) {
+              if (o.toNumber() === parseInt(id)) {
+                setCroCrowBreed(crows[1][i]);
+                return;
+              }
             }
           }
+        } catch (error) {
+          console.log(error);
         }
-      } catch (error) {
-        console.log(error);
+      } else {
+        setCroCrowBreed(null);
       }
-    } else {
-      setCroCrowBreed(null);
     }
+
+    asyncFunc();
+
+    // eslint-disable-next-line
   }, [address]);
 
-  useEffect(async () => {
-    if (isCrognomidesCollection(address) && crognomideBreed === null) {
-      const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
-      const contract = new Contract(
-        '0xE57742748f98ab8e08b565160D3A9A32BFEF7352',
-        ['function crognomidUsed(uint256) public view returns (bool)'],
-        readProvider
-      );
-      try {
-        const used = await contract.crognomidUsed(id);
-        setCrognomideBreed(used);
-      } catch (error) {
-        console.log(error);
+  useEffect(() => {
+    async function getCrognomid() {
+      if (isCrognomidesCollection(address) && crognomideBreed === null) {
+        const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
+        const contract = new Contract(
+          '0xE57742748f98ab8e08b565160D3A9A32BFEF7352',
+          ['function crognomidUsed(uint256) public view returns (bool)'],
+          readProvider
+        );
+        try {
+          const used = await contract.crognomidUsed(id);
+          setCrognomideBreed(used);
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        setCrognomideBreed(null);
       }
-    } else {
-      setCrognomideBreed(null);
     }
+    getCrognomid();
+
+    // eslint-disable-next-line
   }, [address]);
 
-  useEffect(async () => {
-    if (isBabyWeirdApesCollection(address)) {
-      const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
-      const abiFile = require(`../../Assets/abis/baby-weird-apes.json`);
-      const contract = new Contract(address, abiFile.abi, readProvider);
-      try {
-        const apeInfo = await contract.apeInfo(id);
-        setBabyWeirdApeBreed(apeInfo);
-      } catch (error) {
-        console.log(error);
+  useEffect(() => {
+    async function getApeInfo() {
+      if (isBabyWeirdApesCollection(address)) {
+        const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
+        const abiFile = require(`../../Assets/abis/baby-weird-apes.json`);
+        const contract = new Contract(address, abiFile.abi, readProvider);
+        try {
+          const apeInfo = await contract.apeInfo(id);
+          setBabyWeirdApeBreed(apeInfo);
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        setBabyWeirdApeBreed(null);
       }
-    } else {
-      setBabyWeirdApeBreed(null);
     }
+    getApeInfo();
+
+    // eslint-disable-next-line
   }, [address]);
 
   const viewSeller = (seller) => () => {
@@ -193,6 +209,8 @@ const Nft721 = ({ address, id }) => {
     if (!offerType && user.address && nft && nft.nftAddress && nft.nftId) {
       func();
     }
+
+    // eslint-disable-next-line
   }, [nft, user]);
 
   return (
@@ -223,7 +241,7 @@ const Nft721 = ({ address, id }) => {
             <div className="col-md-6 text-center">
               {nft ? (
                 nft.useIframe ? (
-                  <iframe width="100%" height="636" src={nft.iframeSource} />
+                  <iframe width="100%" height="636" src={nft.iframeSource} title="nft" />
                 ) : (
                   <>
                     {nft.video ? (
@@ -378,7 +396,7 @@ const Nft721 = ({ address, id }) => {
                                     .map((data, i) => {
                                       return (
                                         <div key={i} className="col-lg-4 col-md-6 col-sm-6">
-                                          <a className="nft_attr">
+                                          <div className="nft_attr">
                                             <h5>{humanize(data.trait_type)}</h5>
                                             <h4>{humanize(data.value)}</h4>
                                             {data.occurrence ? (
@@ -386,7 +404,7 @@ const Nft721 = ({ address, id }) => {
                                             ) : (
                                               data.percent && <span>{data.percent}% have this trait</span>
                                             )}
-                                          </a>
+                                          </div>
                                         </div>
                                       );
                                     })}

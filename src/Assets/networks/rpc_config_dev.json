@@ -3394,7 +3394,7 @@
       "name": "Cro Succubus",
       "slug": "cro-succubus",
       "multiToken": false,
-      "address": "",
+      "address": "0x899e75ec5e229fc80683e6fe4271600da4aadeb0",
       "onChain": false,
       "listable": false,
       "metadata": {
@@ -3644,6 +3644,26 @@
       }
     },
     {
+      "name": "Employee of the Month",
+      "slug": "employee-of-the-month",
+      "multiToken": false,
+      "address": "",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "Employee of the Month is a collection that reflects on the topic of the hard, day to day corporate work. The employees are portrayed by the artist, as plain, green smileys, which is a symbol of how the society formed them to be more or less the same. It highlights (sometimes in a funny way) daily struggles, challenges and disappointments of the everyday office life.",
+        "verified": true,
+        "avatar": "/img/collections/eotm/avatar.webp",
+        "banner": "/img/collections/eotm/banner.webp",
+        "card": "/img/collections/eotm/card.webp",
+        "maxSupply": 62,
+        "website": "http://instagram.com/deplone-",
+        "twitter": "http://twitter.com/deplone3",
+        "discord": "https://discord.gg/MYE5hnC9mq",
+        "medium": "https://medium.com/@deplone3"
+      }
+    },
+    {
       "name": "LittleGhosts",
       "slug": "littleghosts",
       "multiToken": false,
@@ -3692,12 +3712,7 @@
       "address": "0xd33CFeF82377fef83703B9D84151a477B08Ab3b8",
       "onChain": false,
       "listable": true,
-      "tokens": [
-        {"id": 1},
-        {"id": 2},
-        {"id": 3},
-        {"id": 4}
-      ],
+      "tokens": [{ "id": 1 }, { "id": 2 }, { "id": 3 }, { "id": 4 }],
       "metadata": {
         "description": "",
         "verified": true,
@@ -4548,7 +4563,7 @@
       "slug": "hyped-dogs",
       "imgNft": "/img/drops/hypeddogs/drop.gif",
       "imgPreview": "/img/drops/hypeddogs/drop.gif",
-      "imgAvatar": "/img/collections/hypeddogs/avatar.png",
+      "imgAvatar": "/img/collections/hypeddogs/avatar.webp",
       "imgBanner": "/img/drops/hypeddogs/banner.webp",
       "title": "The HD: Hyped Dogs",
       "subtitle": "Hyped Dogs GEN1 is a collection of 3000 uniquely generated NFTs stored on the Cronos Chain. Each Hyped Dog NFT is generated with over 120 + attributes with different rarities.",
@@ -5055,8 +5070,8 @@
       "maxMintPerAddress": 1000,
       "totalSupply": 20000,
       "priceDescription": "Mint prices increases by 10 CRO for every 2000 nfts minted",
-      "cost": "80",
-      "memberCost": "80",
+      "cost": "130",
+      "memberCost": "130",
       "foundersOnly": false,
       "start": 1650135600000,
       "end": null,
@@ -5216,7 +5231,7 @@
       "subtitle": "A succubus is 2666 NFT collection, a demon in female form that will forever live on Cronos Smartchain. We are just starting to unleash Hell on cronos. \"Keep your mind awake, because your soul I might take.\"",
       "description": "A succubus is 2666 NFT collection, a demon in female form that will forever live on Cronos Smartchain. We are just starting to unleash Hell on cronos. Come join us on this delicious dream and vision for the NFT world. \nEnjoy all membership perks of Hyped NFT Club, future staking utility and more!\n\"Keep your mind awake, because your soul I might take.\"",
       "author": { "name": "Cro Succubus", "link": "https://www.hypednftclub.com/crosuccubus" },
-      "address": "",
+      "address": "0x899e75ec5e229fc80683e6fe4271600da4aadeb0",
       "maxMintPerTx": 5,
       "maxMintPerAddress": 50,
       "totalSupply": 2666,
@@ -5368,7 +5383,10 @@
       "title": "Bullish Beavers",
       "subtitle": "",
       "description": "",
-      "author": { "name": "Bullish Beavers", "link": "https://twitter.com/BullishBeavers?s=20&t=C-uxwCFPmawQCIfr1IY8Qg"},
+      "author": {
+        "name": "Bullish Beavers",
+        "link": "https://twitter.com/BullishBeavers?s=20&t=C-uxwCFPmawQCIfr1IY8Qg"
+      },
       "address": "",
       "maxMintPerTx": 0,
       "maxMintPerAddress": 0,
@@ -5384,6 +5402,31 @@
       "complete": false,
       "featured": false,
       "redirect": "https://lootpad.io/collection/bullishbeavers"
+    },
+    {
+      "id": 61,
+      "slug": "employee-of-the-month",
+      "imgNft": "/img/drops/eotm/drop.webp",
+      "imgPreview": "/img/drops/eotm/drop.webp",
+      "imgAvatar": "/img/collections/eotm/avatar.webp",
+      "imgBanner": "/img/collections/eotm/banner.webp",
+      "title": "Employee of the Month",
+      "subtitle": "Employee of the Month is a collection that reflects on the topic of the hard, day to day corporate work in a humoristic manner.",
+      "description": "Employee of the Month is a collection that reflects on the topic of the hard, day to day corporate work. The employees are portrayed by the artist, as plain, green smileys, which is a symbol of how the society formed them to be more or less the same. It highlights (sometimes in a funny way) daily struggles, challenges and disappointments of the everyday office life.",
+      "author": { "name": "Deplone", "link": "http://instagram.com/deplone" },
+      "address": "",
+      "maxMintPerTx": 3,
+      "maxMintPerAddress": 100,
+      "totalSupply": 62,
+      "cost": "350",
+      "memberCost": "250",
+      "foundersOnly": false,
+      "start": null,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false
     }
   ],
   "auctions": [

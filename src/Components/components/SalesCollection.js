@@ -1,24 +1,30 @@
-import React, {memo, useCallback, useEffect, useState} from 'react';
+import React, { memo, useCallback, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import ListingCard from './ListingCard';
-import {init, fetchListings, filterListings, sortListings} from '../../GlobalState/marketplaceSlice';
+import { init, fetchListings, filterListings, sortListings } from '../../GlobalState/marketplaceSlice';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import {Spinner, Table} from 'react-bootstrap';
+import { Spinner, Table } from 'react-bootstrap';
 import { SortOption } from '../Models/sort-option.model';
 
 import { FilterOption } from '../Models/filter-option.model';
 import HiddenCard from './HiddenCard';
-import {isMetapixelsCollection, shortAddress, timeSince} from "../../utils";
-import {Link} from "react-router-dom";
-import Blockies from "react-blockies";
-import {ethers} from "ethers";
+import { isMetapixelsCollection, shortAddress, timeSince } from '../../utils';
+import { Link } from 'react-router-dom';
+import Blockies from 'react-blockies';
+import { ethers } from 'ethers';
 import config from '../../Assets/networks/rpc_config.json';
-import TopFilterBar from "./TopFilterBar";
-import {marketPlaceCollectionFilterOptions} from "./constants/filter-options";
-import {sortOptions} from "./constants/sort-options";
+import TopFilterBar from './TopFilterBar';
+import { marketPlaceCollectionFilterOptions } from './constants/filter-options';
+import { sortOptions } from './constants/sort-options';
 const knownContracts = config.known_contracts;
 
-const SalesCollection = ({ showLoadMore = true, collectionId = null, tokenId = null, sellerId = null, cacheName = null }) => {
+const SalesCollection = ({
+  showLoadMore = true,
+  collectionId = null,
+  tokenId = null,
+  sellerId = null,
+  cacheName = null,
+}) => {
   const dispatch = useDispatch();
 
   const mobileListBreakpoint = 768;
@@ -93,17 +99,22 @@ const SalesCollection = ({ showLoadMore = true, collectionId = null, tokenId = n
       return sortOptions;
     }
 
-    return sortOptions.filter((s) => s.key !== 'rank').map(o => {
-      if (o.key === 'listingId') {
-        return defaultSort();
-      }
-      return o;
-    });
+    return sortOptions
+      .filter((s) => s.key !== 'rank')
+      .map((o) => {
+        if (o.key === 'listingId') {
+          return defaultSort();
+        }
+        return o;
+      });
   });
 
-  const onFilterChange = useCallback((filterOption) => {
-    dispatch(filterListings(filterOption, cacheName, true));
-  }, [dispatch]);
+  const onFilterChange = useCallback(
+    (filterOption) => {
+      dispatch(filterListings(filterOption, cacheName, true));
+    },
+    [dispatch]
+  );
 
   const onSortChange = useCallback(
     (sortOption) => {
@@ -161,45 +172,53 @@ const SalesCollection = ({ showLoadMore = true, collectionId = null, tokenId = n
       >
         <Table responsive className="table de-table table-rank sales-table align-middle" data-mobile-responsive="true">
           <thead>
-          <tr>
-            <th scope="col" colSpan="2">Item</th>
-            <th scope="col">Rank</th>
-            <th scope="col">Price</th>
-            <th scope="col">From</th>
-            <th scope="col">To</th>
-            <th scope="col">Time</th>
-          </tr>
-          <tr />
+            <tr>
+              <th scope="col" colSpan="2">
+                Item
+              </th>
+              <th scope="col">Rank</th>
+              <th scope="col">Price</th>
+              <th scope="col">From</th>
+              <th scope="col">To</th>
+              <th scope="col">Time</th>
+            </tr>
+            <tr />
           </thead>
           <tbody>
-          {listings &&
-          listings.map((listing, index) => (
-            <tr key={index}>
-              <td style={{minWidth:'50px'}}>
-                <Link to={`/listing/${listing.listingId}`}>
-                  <img className="lazy rounded" src={listing.nft.image} alt={listing.nft.name} style={{maxHeight:'75px'}}/>
-                </Link>
-              </td>
-              <th style={{minWidth:'115px'}}>
-                  <Link to={`/listing/${listing.listingId}`}>{listing.nft.name ?? 'Unknown'}</Link>
-              </th>
-              <td>{listing.nft.rank ?? '-'}</td>
-              <td style={{minWidth:'100px'}}>{ethers.utils.commify(Math.round(listing.price))} CRO</td>
-              <td>
-                <Link to={`/seller/${listing.seller}`}>{shortAddress(listing.seller)}</Link>
-              </td>
-              <td>
-                <Link to={`/seller/${listing.purchaser}`}>{shortAddress(listing.purchaser)}</Link>
-              </td>
-              <td className="px-2" style={{minWidth:'115px'}}>{timeSince(listing.saleTime + '000')} ago</td>
-            </tr>
-          ))}
+            {listings &&
+              listings.map((listing, index) => (
+                <tr key={index}>
+                  <td style={{ minWidth: '50px' }}>
+                    <Link to={`/listing/${listing.listingId}`}>
+                      <img
+                        className="lazy rounded"
+                        src={listing.nft.image}
+                        alt={listing.nft.name}
+                        style={{ maxHeight: '75px' }}
+                      />
+                    </Link>
+                  </td>
+                  <th style={{ minWidth: '115px' }}>
+                    <Link to={`/listing/${listing.listingId}`}>{listing.nft.name ?? 'Unknown'}</Link>
+                  </th>
+                  <td>{listing.nft.rank ?? '-'}</td>
+                  <td style={{ minWidth: '100px' }}>{ethers.utils.commify(Math.round(listing.price))} CRO</td>
+                  <td>
+                    <Link to={`/seller/${listing.seller}`}>{shortAddress(listing.seller)}</Link>
+                  </td>
+                  <td>
+                    <Link to={`/seller/${listing.purchaser}`}>{shortAddress(listing.purchaser)}</Link>
+                  </td>
+                  <td className="px-2" style={{ minWidth: '115px' }}>
+                    {timeSince(listing.saleTime + '000')} ago
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </Table>
       </InfiniteScroll>
     </>
   );
-
 };
 
 export default memo(SalesCollection);

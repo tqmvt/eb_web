@@ -24,12 +24,12 @@ import { Spinner } from 'react-bootstrap';
 import MetaMaskOnboarding from '@metamask/onboarding';
 import { chainConnect, connectAccount } from '../../GlobalState/User';
 import MakeOfferDialog from '../Offer/MakeOfferDialog';
-import ReactPlayer from "react-player";
-import NFTTabOffers from "../Offer/NFTTabOffers";
-import NFTTabListings from "../NftDetails/NFTTabListings";
-import {listingState, offerState} from "../../core/api/enums";
-import {getFilteredOffers} from "../../core/subgraph";
-import {OFFER_TYPE} from "../Offer/MadeOffersRow";
+import ReactPlayer from 'react-player';
+// import NFTTabOffers from '../Offer/NFTTabOffers';
+import NFTTabListings from '../NftDetails/NFTTabListings';
+import { listingState, offerState } from '../../core/api/enums';
+import { getFilteredOffers } from '../../core/subgraph';
+import { OFFER_TYPE } from '../Offer/MadeOffersRow';
 
 const Nft1155 = ({ address, id }) => {
   const dispatch = useDispatch();
@@ -40,7 +40,8 @@ const Nft1155 = ({ address, id }) => {
     state.nft.history.filter((i) => i.state === listingState.SOLD).sort((a, b) => (a.saleTime < b.saleTime ? 1 : -1))
   );
   const activeListings = useSelector((state) =>
-    state.nft.history.filter((i) => i.state === listingState.ACTIVE).sort((a, b) => a.price - b.price));
+    state.nft.history.filter((i) => i.state === listingState.ACTIVE).sort((a, b) => a.price - b.price)
+  );
 
   const powertraits = useSelector((state) => state.nft.nft?.powertraits);
   const collectionMetadata = useSelector((state) => {
@@ -57,7 +58,7 @@ const Nft1155 = ({ address, id }) => {
 
   useEffect(() => {
     dispatch(getNftDetails(address, id));
-  }, [dispatch, id]);
+  }, [dispatch, address, id]);
 
   const viewSeller = (seller) => () => {
     history.push(`/seller/${seller}`);
@@ -116,6 +117,8 @@ const Nft1155 = ({ address, id }) => {
     if (!offerType && user.address && nft && nft.address && nft.id) {
       func();
     }
+
+    // eslint-disable-next-line
   }, [nft, user]);
 
   return (
@@ -146,7 +149,7 @@ const Nft1155 = ({ address, id }) => {
             <div className="col-md-6 text-center">
               {nft ? (
                 nft.useIframe ? (
-                  <iframe width="100%" height="636" src={nft.iframeSource} />
+                  <iframe width="100%" height="636" src={nft.iframeSource} title="nft" />
                 ) : (
                   <>
                     {nft.video ? (
@@ -263,7 +266,7 @@ const Nft1155 = ({ address, id }) => {
                                     .map((data, i) => {
                                       return (
                                         <div key={i} className="col-lg-4 col-md-6 col-sm-6">
-                                          <a className="nft_attr">
+                                          <div className="nft_attr">
                                             <h5>{humanize(data.trait_type)}</h5>
                                             <h4>{humanize(data.value)}</h4>
                                             {data.occurrence ? (
@@ -271,7 +274,7 @@ const Nft1155 = ({ address, id }) => {
                                             ) : (
                                               data.percent && <span>{data.percent}% have this trait</span>
                                             )}
-                                          </a>
+                                          </div>
                                         </div>
                                       );
                                     })}
