@@ -344,7 +344,7 @@ export async function getCollectionPowertraits(contractAddress) {
   return null;
 }
 
-export async function getNftsForAddress(walletAddress, walletProvider, onNftLoaded) {
+export async function getNftsForAddress(walletAddress, walletProvider, onNftLoaded, abortSignal) {
   if (!walletAddress || !walletProvider) {
     return;
   }
@@ -394,6 +394,9 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
       .filter((c) => !!c.address)
       .map(async (knownContract) => {
         try {
+          if (abortSignal.aborted) {
+            return Promise.reject(new DOMException("Aborted", "AbortError"));
+          }
           const address = knownContract.address;
           const listable = knownContract.listable;
           const isMetaPixels = isMetapixelsCollection(address);
@@ -1167,4 +1170,89 @@ export async function getQuickWallet(walletAddress) {
   const uri = `${url}?${queryString}`;
 
   return await (await fetch(uri)).json();
+}
+
+export async function getNftsForAddress2(walletAddress, walletProvider) {
+  const quickWallet = await getQuickWallet(walletAddress);
+  const results = quickWallet.data;
+  const signer = walletProvider.getSigner();
+
+  let listings = [];
+  let chunkParams = { complete: false, pageSize: 100, curPage: 1 };
+  while (!chunkParams.complete) {
+    const queryString = new URLSearchParams({
+      state: 0,
+      page: chunkParams.curPage,
+      pageSize: chunkParams.pageSize,
+      seller: walletAddress,
+    });
+    const url = new URL(api.listings, `${api.baseUrl}`);
+    const listingsReponse = await (await fetch(`${url}?${queryString}`)).json();
+    listings = [...listings, ...listingsReponse.listings];
+    chunkParams.complete = listingsReponse.listings.length < chunkParams.pageSize;
+    chunkParams.curPage++;
+  }
+
+  //  Helper function
+  const getListing = (address, id) => {
+    return listings.find((listing) => {
+      const sameId = parseInt(listing.nftId) === parseInt(id);
+      const sameAddress = caseInsensitiveCompare(listing.nftAddress, address);
+      return sameId && sameAddress;
+    });
+  };
+
+  const getKnownContract = (nft) => {
+    return knownContracts.find(c => {
+      const matchedAddress = caseInsensitiveCompare(c.address, nft.nftAddress);
+      const matchedToken = !c.multiToken || parseInt(c.id) === parseInt(nft.nftId);
+      return matchedAddress && matchedToken;
+    });
+  };
+
+console.log(results);
+  const writeContracts = [];
+  return await Promise.all(results
+    .filter(nft => {
+      const matchedContract = getKnownContract(nft);
+      if (!matchedContract) return false;
+
+      const hasBalance = !matchedContract.multiToken || parseInt(nft.balance) > 0;
+
+      return matchedContract && hasBalance;
+    })
+    .map(async (nft) => {
+      const knownContract = getKnownContract(nft);
+
+      let key = knownContract.address;
+      if (knownContract.multiToken) {
+        key = `${key}${knownContract.id}`;
+      }
+      const writeContract = writeContracts[key] ?? new Contract(knownContract.address, knownContract.multiToken ? ERC1155 : ERC721, signer);
+      writeContracts[key] = writeContract;
+
+      const listed = !!getListing(knownContract.address, knownContract.id);
+      const listingId = listed ? getListing(knownContract.address, knownContract.id).listingId : null;
+      const price = listed ? getListing(knownContract.address, knownContract.id).price : null;
+
+      return {
+        id: nft.nftId,
+        name: nft.name,
+        description: nft.description,
+        properties: nft.properties && nft.properties.length > 0 ? nft.properties : nft.attributes,
+        image: nft.image_aws ?? nft.image,
+        count: nft.balance,
+        address: knownContract.address,
+        contract: writeContract,
+        multiToken: knownContract.multiToken,
+        rank: nft.rank,
+        listable: knownContract.listable,
+        listed,
+        listingId,
+        price,
+        canSell: true,
+        canTransfer: true,
+      }
+    })
+  );
 }
