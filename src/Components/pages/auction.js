@@ -12,15 +12,13 @@ import { caseInsensitiveCompare, humanize, newlineText, shortAddress, timeSince 
 import config from '../../Assets/networks/rpc_config.json';
 import BuyerActionBar from '../Auctions/BuyerActionBar';
 import ProfilePreview from '../components/ProfilePreview';
-import AuctionComponent from "../components/AuctionComponent";
+import AuctionComponent from '../components/AuctionComponent';
 const knownContracts = config.known_contracts;
 
 const Auction = () => {
   const { id } = useParams();
 
-  return (
-    <AuctionComponent id={id} />
-  );
+  return <AuctionComponent id={id} />;
 };
 
 export default memo(Auction);

@@ -109,41 +109,48 @@ export const init = (sortOption, filterOption) => async (dispatch, getState) => 
   }
 };
 
-export const fetchListings = (isSales = false) => async (dispatch, getState) => {
-  const state = getState();
+export const fetchListings =
+  (isSales = false) =>
+  async (dispatch, getState) => {
+    const state = getState();
 
-  dispatch(listingsLoading());
-  const { response, cancelled } = await sortAndFetchListings(
-    state.marketplace.curPage + 1,
-    state.marketplace.curSort,
-    state.marketplace.curFilter,
-    null,
-    null,
-    null,
-    isSales ? 1 : 0
-  );
+    dispatch(listingsLoading());
+    const { response, cancelled } = await sortAndFetchListings(
+      state.marketplace.curPage + 1,
+      state.marketplace.curSort,
+      state.marketplace.curFilter,
+      null,
+      null,
+      null,
+      isSales ? 1 : 0
+    );
 
-  if (!cancelled) {
-    response.hasRank = response.listings.length > 0 && typeof response.listings[0].nft.rank !== 'undefined';
-    dispatch(listingsReceived(response));
-  }
-};
+    if (!cancelled) {
+      response.hasRank = response.listings.length > 0 && typeof response.listings[0].nft.rank !== 'undefined';
+      dispatch(listingsReceived(response));
+    }
+  };
 
+export const filterListings =
+  (filterOption, cacheName, isSales = false) =>
+  async (dispatch) => {
+    dispatch(onFilter({ option: filterOption, cacheName }));
+    dispatch(fetchListings(isSales));
+  };
 
-export const filterListings = (filterOption, cacheName, isSales = false) => async (dispatch) => {
-  dispatch(onFilter({ option: filterOption, cacheName }));
-  dispatch(fetchListings(isSales));
-};
+export const sortListings =
+  (sortOption, cacheName, isSales = false) =>
+  async (dispatch) => {
+    dispatch(onSort({ option: sortOption, cacheName }));
+    dispatch(fetchListings(isSales));
+  };
 
-export const sortListings = (sortOption, cacheName, isSales = false) => async (dispatch) => {
-  dispatch(onSort({ option: sortOption, cacheName }));
-  dispatch(fetchListings(isSales));
-};
-
-export const resetListings = (isSales = false) => async (dispatch) => {
-  dispatch(clearSet());
-  dispatch(fetchListings(isSales));
-};
+export const resetListings =
+  (isSales = false) =>
+  async (dispatch) => {
+    dispatch(clearSet());
+    dispatch(fetchListings(isSales));
+  };
 
 export const getCollectionData = (address) => async (dispatch) => {
   try {

@@ -1,18 +1,17 @@
 import React from 'react';
 import { Modal } from 'react-bootstrap';
-import AuctionComponent from "./AuctionComponent";
-import {useDispatch, useSelector} from "react-redux";
-import {hideBidDialog} from "../../GlobalState/metaverseSlice";
+import AuctionComponent from './AuctionComponent';
+import { useDispatch, useSelector } from 'react-redux';
+import { hideBidDialog } from '../../GlobalState/metaverseSlice';
 
 const MetaverseBidModal = () => {
-
   const bidDialogVisible = useSelector((state) => state.metaverse.bidDialogVisible);
   const auctionId = useSelector((state) => state.metaverse.auctionId);
   const dispatch = useDispatch();
 
   const handleClose = () => {
     dispatch(hideBidDialog());
-  }
+  };
 
   return (
     <>
@@ -31,7 +30,6 @@ const MetaverseBidModal = () => {
       </Modal>
     </>
   );
-
 };
 
 export default MetaverseBidModal;

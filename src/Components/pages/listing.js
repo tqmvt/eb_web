@@ -31,7 +31,7 @@ import {
 import config from '../../Assets/networks/rpc_config.json';
 import { croSkullRedPotionImageHack } from '../../hacks';
 import NFTTabOffers from '../Offer/NFTTabOffers';
-import ReactPlayer from "react-player";
+import ReactPlayer from 'react-player';
 
 const Listing = () => {
   const { id } = useParams();

@@ -3,17 +3,17 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { Spinner } from 'react-bootstrap';
 
 import ListingCardCollection from './ListingCardCollection';
-import NftCard from "./NftCard";
+import NftCard from './NftCard';
 
 const CollectionNftsGroup = ({
-   showLoadMore = true,
-   listings = [],
-   royalty,
-   canLoadMore = false,
-   loadMore,
-   address,
-   collectionMetadata,
- }) => {
+  showLoadMore = true,
+  listings = [],
+  royalty,
+  canLoadMore = false,
+  loadMore,
+  address,
+  collectionMetadata,
+}) => {
   if (showLoadMore) {
     return (
       <InfiniteScroll
@@ -44,17 +44,17 @@ const CollectionNftsGroup = ({
       >
         <div className="card-group">
           {listings &&
-          listings.map((listing, index) => (
-            <div key={index} className="d-item col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12 mb-4 px-2">
-              <NftCard
-                royalty={royalty}
-                listing={listing}
-                imgClass="collection"
-                address={address}
-                collectionMetadata={collectionMetadata}
-              />
-            </div>
-          ))}
+            listings.map((listing, index) => (
+              <div key={index} className="d-item col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12 mb-4 px-2">
+                <NftCard
+                  royalty={royalty}
+                  listing={listing}
+                  imgClass="collection"
+                  address={address}
+                  collectionMetadata={collectionMetadata}
+                />
+              </div>
+            ))}
         </div>
       </InfiniteScroll>
     );
@@ -63,17 +63,17 @@ const CollectionNftsGroup = ({
       <div className="row">
         <div className="card-group">
           {listings &&
-          listings.map((listing, index) => (
-            <div key={index} className="d-item col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12 mb-4 px-2">
-              <NftCard
-                royalty={royalty}
-                listing={listing}
-                imgClass="collection"
-                address={address}
-                collectionMetadata={collectionMetadata}
-              />
-            </div>
-          ))}
+            listings.map((listing, index) => (
+              <div key={index} className="d-item col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12 mb-4 px-2">
+                <NftCard
+                  royalty={royalty}
+                  listing={listing}
+                  imgClass="collection"
+                  address={address}
+                  collectionMetadata={collectionMetadata}
+                />
+              </div>
+            ))}
         </div>
         {showLoadMore && canLoadMore && (
           <div className="col-lg-12">

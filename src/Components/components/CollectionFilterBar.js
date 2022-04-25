@@ -8,7 +8,7 @@ import { sortOptions } from './constants/collection-sort-options';
 import { CollectionSortOption } from '../Models/collection-sort-option.model';
 import { listingFilterOptions } from './constants/filter-options';
 import { sortListings, resetListings, searchListings, filterListingsByListed } from '../../GlobalState/collectionSlice';
-import {ethers} from "ethers";
+import { ethers } from 'ethers';
 
 const CollectionFilterBarContainer = styled.div`
   margin: 0 0 22px;

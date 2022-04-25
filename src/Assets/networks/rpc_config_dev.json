@@ -3692,12 +3692,7 @@
       "address": "0xd33CFeF82377fef83703B9D84151a477B08Ab3b8",
       "onChain": false,
       "listable": true,
-      "tokens": [
-        {"id": 1},
-        {"id": 2},
-        {"id": 3},
-        {"id": 4}
-      ],
+      "tokens": [{ "id": 1 }, { "id": 2 }, { "id": 3 }, { "id": 4 }],
       "metadata": {
         "description": "",
         "verified": true,
@@ -5368,7 +5363,10 @@
       "title": "Bullish Beavers",
       "subtitle": "",
       "description": "",
-      "author": { "name": "Bullish Beavers", "link": "https://twitter.com/BullishBeavers?s=20&t=C-uxwCFPmawQCIfr1IY8Qg"},
+      "author": {
+        "name": "Bullish Beavers",
+        "link": "https://twitter.com/BullishBeavers?s=20&t=C-uxwCFPmawQCIfr1IY8Qg"
+      },
       "address": "",
       "maxMintPerTx": 0,
       "maxMintPerAddress": 0,

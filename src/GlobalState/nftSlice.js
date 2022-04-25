@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { getNft } from '../core/api';
-import {listingState} from "../core/api/enums";
+import { listingState } from '../core/api/enums';
 
 const nftSlice = createSlice({
   name: 'nft',
@@ -10,7 +10,7 @@ const nftSlice = createSlice({
     nft: null,
     history: [],
     powertraits: [],
-    currentListing: null
+    currentListing: null,
   },
   reducers: {
     nftLoading: (state) => {
@@ -36,12 +36,9 @@ export const getNftDetails = (collectionAddress, nftId) => async (dispatch, getS
   dispatch(nftLoading());
   let response = await getNft(collectionAddress, nftId);
   const currentListing = response.listings
-    .sort((a, b) => parseInt(a.price) > parseInt(b.price) ? 1 : -1)
-    .find(l => l.state === listingState.ACTIVE);
-  response.nft = { ...response.nft,
-    address: collectionAddress,
-    id: nftId
-  };
+    .sort((a, b) => (parseInt(a.price) > parseInt(b.price) ? 1 : -1))
+    .find((l) => l.state === listingState.ACTIVE);
+  response.nft = { ...response.nft, address: collectionAddress, id: nftId };
   response.currentListing = currentListing;
 
   dispatch(nftReceived(response));
