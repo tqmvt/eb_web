@@ -1,6 +1,5 @@
 import React, { memo, useEffect, useState } from 'react';
-import { createGlobalStyle } from 'styled-components';
-import { caseInsensitiveCompare, findCollectionByAddress } from '../../utils';
+import { findCollectionByAddress } from '../../utils';
 import { useParams, Redirect } from 'react-router-dom';
 
 import config from '../../Assets/networks/rpc_config.json';
