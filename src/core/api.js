@@ -344,7 +344,7 @@ export async function getCollectionPowertraits(contractAddress) {
   return null;
 }
 
-export async function getNftsForAddress(walletAddress, walletProvider, onNftLoaded) {
+export async function getNftsForAddress(walletAddress, walletProvider, onNftLoaded, abortSignal) {
   if (!walletAddress || !walletProvider) {
     return;
   }
@@ -394,6 +394,9 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
       .filter((c) => !!c.address)
       .map(async (knownContract) => {
         try {
+          if (abortSignal.aborted) {
+            return Promise.reject(new DOMException("Aborted", "AbortError"));
+          }
           const address = knownContract.address;
           const listable = knownContract.listable;
           const isMetaPixels = isMetapixelsCollection(address);
