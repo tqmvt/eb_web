@@ -20,10 +20,11 @@ import Market from '../../Contracts/Marketplace.json';
 import CollectionInfoBar from '../components/CollectionInfoBar';
 import stakingPlatforms from '../../core/data/staking-platforms.json';
 import SalesCollection from "../components/SalesCollection";
+import CollectionNftsGroup from "../components/CollectionNftsGroup";
 
 const knownContracts = config.known_contracts;
 
-const Collection1155 = ({ address, tokenId = null, cacheName = 'collection', slug }) => {
+const Collection1155 = ({ collection, tokenId = null, cacheName = 'collection', slug }) => {
   const dispatch = useDispatch();
 
   const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
@@ -46,19 +47,12 @@ const Collection1155 = ({ address, tokenId = null, cacheName = 'collection', slu
   });
 
   const collectionMetadata = useSelector((state) => {
-    return knownContracts.find((c) => c.address.toLowerCase() === address.toLowerCase())?.metadata;
+    return collection.metadata;
   });
   const isUsingListingsFallback = useSelector((state) => state.collection.isUsingListingsFallback);
 
   const collectionName = () => {
-    let contract;
-    if (tokenId != null) {
-      contract = knownContracts.find((c) => caseInsensitiveCompare(c.address, address) && c.id === tokenId);
-    } else {
-      contract = knownContracts.find((c) => caseInsensitiveCompare(c.address, address));
-    }
-
-    return contract ? contract.name : 'Collection';
+    return collection.name;
   };
 
   const [openMenu, setOpenMenu] = React.useState(0);
@@ -70,14 +64,6 @@ const Collection1155 = ({ address, tokenId = null, cacheName = 'collection', slu
     element.target.parentElement.classList.add('active');
 
     setOpenMenu(index);
-  };
-
-  const hasTraits = () => {
-    return collectionStats?.traits != null;
-  };
-
-  const hasPowertraits = () => {
-    return collectionStats?.powertraits != null;
   };
 
   const loadMore = () => {
@@ -92,7 +78,7 @@ const Collection1155 = ({ address, tokenId = null, cacheName = 'collection', slu
 
     const filterOption = FilterOption.default();
     filterOption.type = 'collection';
-    filterOption.address = address;
+    filterOption.address = collection.address;
     if (tokenId != null) {
       filterOption.id = tokenId;
     }
@@ -102,36 +88,27 @@ const Collection1155 = ({ address, tokenId = null, cacheName = 'collection', slu
       init(
         filterOption,
         collectionCachedSort[cacheName] ?? sortOption,
-        collectionCachedTraitsFilter[address] ?? {},
-        address
+        collectionCachedTraitsFilter[collection.address] ?? {},
+        collection.address
       )
     );
     dispatch(fetchListings());
     // eslint-disable-next-line
-  }, [dispatch, address]);
+  }, [dispatch, collection]);
 
   useEffect(() => {
-    let extraData;
-    if (tokenId != null) {
-      extraData = knownContracts.find((c) => caseInsensitiveCompare(c.address, address) && c.id === tokenId);
-    } else {
-      extraData = knownContracts.find((c) => caseInsensitiveCompare(c.address, address));
-    }
-
-    if (extraData) {
-      setMetadata(extraData.metadata);
-    }
-  }, [address]);
+    setMetadata(collection.metadata);
+  }, [collection]);
 
   useEffect(() => {
     async function asyncFunc() {
       if (tokenId != null) {
-        dispatch(getStats(address, slug, tokenId));
+        dispatch(getStats(collection.address, slug, tokenId));
       } else {
-        dispatch(getStats(address));
+        dispatch(getStats(collection.address));
       }
       try {
-        let royalties = await readMarket.royalties(address);
+        let royalties = await readMarket.royalties(collection.address);
         setRoyalty(Math.round(royalties[1]) / 100);
       } catch (error) {
         console.log('error retrieving royalties for collection', error);
@@ -140,7 +117,7 @@ const Collection1155 = ({ address, tokenId = null, cacheName = 'collection', slu
     }
     asyncFunc();
     // eslint-disable-next-line
-  }, [dispatch, address]);
+  }, [dispatch, collection]);
 
   return (
     <div>
@@ -149,7 +126,7 @@ const Collection1155 = ({ address, tokenId = null, cacheName = 'collection', slu
         <meta name="description" content={`${collectionName()} for Ebisu's Bay Marketplace`} />
         <meta name="title" content={`${collectionName()} | Ebisu's Bay Marketplace`} />
         <meta property="og:title" content={`${collectionName()} | Ebisu's Bay Marketplace`} />
-        <meta property="og:url" content={`https://app.ebisusbay.com/collection/${address}`} />
+        <meta property="og:url" content={`https://app.ebisusbay.com/collection/${collection.address}`} />
         <meta property="og:image" content={`https://app.ebisusbay.com${collectionMetadata?.avatar || '/'}`} />
         <meta name="twitter:title" content={`${collectionName()} | Ebisu's Bay Marketplace`} />
         <meta name="twitter:image" content={`https://app.ebisusbay.com${collectionMetadata?.avatar || '/'}`} />
@@ -174,7 +151,7 @@ const Collection1155 = ({ address, tokenId = null, cacheName = 'collection', slu
                   {metadata?.avatar ? (
                     <img src={metadata.avatar} alt={collectionName()} />
                   ) : (
-                    <Blockies seed={address.toLowerCase()} size={15} scale={10} />
+                    <Blockies seed={collection.address.toLowerCase()} size={15} scale={10} />
                   )}
                   {metadata?.verified && (
                     <LayeredIcon icon={faCheck} bgIcon={faCircle} shrink={8} stackClass="eb-avatar_badge" />
@@ -185,7 +162,7 @@ const Collection1155 = ({ address, tokenId = null, cacheName = 'collection', slu
                   <h4>
                     {collectionName()}
                     <div className="clearfix" />
-                    <SocialsBar collection={knownContracts.find((c) => caseInsensitiveCompare(c.address, address))} />
+                    <SocialsBar collection={collection} />
                   </h4>
                 </div>
               </div>
@@ -207,11 +184,11 @@ const Collection1155 = ({ address, tokenId = null, cacheName = 'collection', slu
                 </div>
               </div>
             )}
-            <div className="d-item col-md-12 mb-4 mx-auto">
+            <div className="d-item col-md-12 mx-auto">
               <CollectionInfoBar collectionStats={collectionStats} royalty={royalty} />
             </div>
-            {isCrosmocraftsPartsCollection(address) && (
-              <div className="row">
+            {isCrosmocraftsPartsCollection(collection.address) && (
+              <div className="row mb-2">
                 <div className="mx-auto text-center fw-bold" style={{ fontSize: '0.8em' }}>
                   Collect Crosmocraft parts to{' '}
                   <a href="/build-ship">
@@ -234,7 +211,7 @@ const Collection1155 = ({ address, tokenId = null, cacheName = 'collection', slu
         )}
 
         <div className="de_tab">
-          <ul className="de_nav">
+          <ul className="de_nav mb-4">
             <li id="Mainbtn0" className="tab active">
               <span onClick={handleBtnClick(0)}>Items</span>
             </li>
@@ -247,18 +224,18 @@ const Collection1155 = ({ address, tokenId = null, cacheName = 'collection', slu
             {openMenu === 0 && (
               <div className="tab-1 onStep fadeIn">
                 <div className="row">
-                  <CollectionFilterBar showFilter={false} cacheName={cacheName} />
-                </div>
-                <div className="row">
-                  {(hasTraits() || hasPowertraits()) && (
-                    <div className="col-md-3 mb-4">
-                      {hasTraits() && <TraitsFilter address={address} />}
-                      {hasPowertraits() && <PowertraitsFilter address={address} />}
-                    </div>
-                  )}
-                  <div className={hasTraits() || hasPowertraits() ? 'col-md-9' : 'col-md-12'}>
-                    {isUsingListingsFallback && (
+                  <div className='col-md-12'>
+                    {isUsingListingsFallback ? (
                       <CollectionListingsGroup listings={listings} canLoadMore={canLoadMore} loadMore={loadMore} />
+                    ) : (
+                      <CollectionNftsGroup
+                        listings={listings}
+                        royalty={royalty}
+                        canLoadMore={canLoadMore}
+                        loadMore={loadMore}
+                        address={collection.address}
+                        collectionMetadata={collection.metadata}
+                      />
                     )}
                   </div>
                 </div>
@@ -266,7 +243,7 @@ const Collection1155 = ({ address, tokenId = null, cacheName = 'collection', slu
             )}
             {openMenu === 1 && (
               <div className="tab-2 onStep fadeIn">
-                <SalesCollection cacheName="collection" collectionId={address} tokenId={tokenId} />
+                <SalesCollection cacheName="collection" collectionId={collection.address} tokenId={tokenId} />
               </div>
             )}
           </div>

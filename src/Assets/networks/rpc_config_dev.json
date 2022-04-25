@@ -990,7 +990,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "CroSkull is a collection of 6.666 uniquely generated NFTs stored on the Cronos Chain. Each CroSkull NFT is based on 6+ attributes with different rarities. A CroSkull is not simply a PFP but is also the key to the insane Dr. Jikoâ€™s laboratory experiments.",
+        "description": "CroSkull is a collection of 6.666 uniquely generated NFTs stored on the Cronos Chain. Each CroSkull NFT is based on 6+ attributes with different rarities. A CroSkull is not simply a PFP but is also the key to the insane Dr. Jiko's laboratory experiments.",
         "verified": true,
         "avatar": "/img/collections/croskull/avatar.jpg",
         "banner": "/img/collections/croskull/banner.webp",
@@ -1457,9 +1457,9 @@
       "metadata": {
         "description": "",
         "verified": true,
-        "avatar": "/img/collections/chimps/avatar.png",
-        "banner": "/img/collections/chimps/banner.png",
-        "card": "/img/collections/chimps/card.png"
+        "avatar": "/img/collections/chimps/avatar.webp",
+        "banner": "/img/collections/chimps/banner.webp",
+        "card": "/img/collections/chimps/card.webp"
       }
     },
     {
@@ -1779,7 +1779,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "CROmeleonâ€™s are a unique and limited collection of 2,222 NFTs that deliver utility and a bold sense of personality.",
+        "description": "CROmeleons are a unique and limited collection of 2,222 NFTs that deliver utility and a bold sense of personality.",
         "verified": true,
         "avatar": "/img/collections/cromeleons/avatar.png",
         "card": "/img/collections/cromeleons/card.png",
@@ -3299,7 +3299,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "WL Access Pass gives the holders the access to an extremely exclusive community on the Cronos Chain.\n\nBy owning our OG Pass, you will be elegible to win WL Spots for our Partnerâ€™s Projects, Stake your Pass to earn WL$PASS Coins that you will be able to exchange for Guaranteed WL Spots and always be on the cutting edge in term of Researching the next Cronos Blue Chip Project.\n\nOnly 200 OG Pass will EVER be available!",
+        "description": "WL Access Pass gives the holders the access to an extremely exclusive community on the Cronos Chain.\n\nBy owning our OG Pass, you will be elegible to win WL Spots for our Partner's Projects, Stake your Pass to earn WL$PASS Coins that you will be able to exchange for Guaranteed WL Spots and always be on the cutting edge in term of Researching the next Cronos Blue Chip Project.\n\nOnly 200 OG Pass will EVER be available!",
         "verified": false,
         "avatar": "/img/collections/wlogaccesspass/avatar.gif",
         "card": "/img/collections/wlogaccesspass/card.png",
@@ -3669,7 +3669,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Welcome to LittleGhosts Official NFT Collection on Ebisu's Bay! These Ghosts are a collection of skins for your character in our play-to-earn MMO game.\n\nThe better the rank, the better the perks in the game and rare custom Ghosts have special abilities in the game. Grab a ghost and get ready to step into the LittleGhosts world!\n\nThere are 10,000 ghosts that exist and they are spread out on many blockchains thanks to our NFT bridge.",
         "verified": false,
         "avatar": "/img/collections/littleghosts/avatar.webp",
         "banner": "/img/collections/littleghosts/banner.webp",
@@ -3690,7 +3690,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Welcome to LittleGhosts Official EctoSkeleton NFT Collection on Ebisu's Bay! These EctoSkeletons are a collection of companions to your LittleGhosts in our play-to-earn MMO game.\n\nThese EctoSkeletons provide buffs for you Ghosts as you slash your way through dungeons and PvP. There are only 2500 skeletons meaning there is only 1 skeleton for every 4 Ghosts so be sure to grab one to make dungeon delving a little bit easier!",
         "verified": false,
         "avatar": "/img/collections/littleghosts/avatar.webp",
         "banner": "/img/collections/littleghosts/banner.webp",
@@ -3748,6 +3748,85 @@
         "twitter": "https://twitter.com/BAD_Cronos",
         "discord": "https://discord.gg/qKBy2azf69",
         "medium": "https://medium.com/@babyaliendivision"
+      }
+    },
+    {
+      "name": "CroPunks Club",
+      "slug": "cro-punks-club",
+      "multiToken": false,
+      "address": "0xBd75b085A99Dd29E04C3A35B090A4eD8102447CA",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": false,
+        "avatar": "/img/collections/cro-punks-club/avatar.webp",
+        "banner": "/img/collections/cro-punks-club/banner.webp",
+        "card": "/img/collections/cro-punks-club/card.webp",
+        "maxSupply": 1024,
+        "website": "https://cropunks.club/",
+        "twitter": "https://twitter.com/CROPUNKSclub",
+        "discord": "https://discord.gg/GwwDwbDB74",
+        "telegram": "https://t.me/+dmq-Fa2wvWAyMTY0"
+      }
+    },
+    {
+      "name": "CroMorphs",
+      "slug": "cro-morphs",
+      "multiToken": false,
+      "address": "0x2a9F7C5784e64c69D98F8bfe24ac3f3165F228a6",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": false,
+        "avatar": "/img/collections/cro-morphs/avatar.webp",
+        "banner": "/img/collections/cro-morphs/banner.webp",
+        "card": "/img/collections/cro-morphs/card.webp",
+        "maxSupply": 2500,
+        "website": "https://www.cromorphs.com/",
+        "twitter": "https://twitter.com/CroMorphs",
+        "discord": "https://http://discord.gg/8N2g6YYJxz"
+      }
+    },
+    {
+      "name": "Bullish Beavers",
+      "slug": "bullish-beavers",
+      "multiToken": false,
+      "address": "0xD238FF8919B659d301d751259bFe2d635992aC53",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": false,
+        "avatar": "/img/collections/bullish-beavers/avatar.webp",
+        "banner": "/img/collections/bullish-beavers/banner.webp",
+        "card": "/img/collections/bullish-beavers/card.webp",
+        "maxSupply": 1500,
+        "website": "https://www.bullishbeavers.ca/",
+        "twitter": "https://twitter.com/BullishBeavers",
+        "discord": "https://discord.gg/ypuvDvmkH6"
+      }
+    },
+    {
+      "name": "Street Brawlerz Gen 0",
+      "slug": "street-brawlerz",
+      "multiToken": false,
+      "address": "0x1AE0695cBC1B820A34Bf6E661C3472C0b3ab34D0",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": false,
+        "avatar": "/img/collections/street-brawlerz/avatar.webp",
+        "banner": "/img/collections/street-brawlerz/banner.webp",
+        "card": "/img/collections/street-brawlerz/card.webp",
+        "maxSupply": 3333,
+        "website": "https://streetbrawlerz.io/",
+        "twitter": "https://twitter.com/StreetBrawlerz",
+        "discord": "https://discord.gg/m7TcCtzhCm",
+        "medium": "https://streetbrawlerz.medium.com/",
+        "telegram": "https://t.me/StreetBrawlerzNFT"
       }
     }
   ],
@@ -4593,7 +4672,7 @@
       "imgBanner": "/img/collections/crognomides/banner.webp",
       "title": "Crognomides - Route to your wallet",
       "subtitle": "2000 secretive Crognomides on their way to their lovely Crognomes. Mint a route to your wallet to make sure the Crognomide finds her way to yours so she can be re-united with her husband. ",
-      "description": "Have you ever wondered where all those shiny crypto cards actually come from? Those glistening ruby, shiny indigo & luminescent jade crystals that are needed for those ooooh so sweet cashbacks are harvested deep inside the hidden cryptomines. \n\nThe location of these mines are a well-kept secret by the Crognomes... While theyâ€™re no tattletales, the Crognomes might share the secret location of these Cryptomines with you, if you provide them safe refuge in your cryptowallet. \n\nCrognomes have been known to sneak in their wives, the Crognomides, when theyâ€™re feeling lonely. If you mint a route to your wallet, you can expect these Crognomides to show up in your wallet as well! \n\nWhen you leave them alone for a long enough time, you will find your family of 2 has grown ever larger.\n\nThe Crognomides are currently only available to the HOLDERS of Crognomes #1,409 - #2,000 for a price of 50 CRO. Snapshot to determine holders will be taken 24hrs before launch (exact time TBA).",
+      "description": "Have you ever wondered where all those shiny crypto cards actually come from? Those glistening ruby, shiny indigo & luminescent jade crystals that are needed for those ooooh so sweet cashbacks are harvested deep inside the hidden cryptomines. \n\nThe location of these mines are a well-kept secret by the Crognomes... While they're no tattletales, the Crognomes might share the secret location of these Cryptomines with you, if you provide them safe refuge in your cryptowallet. \n\nCrognomes have been known to sneak in their wives, the Crognomides, when they're feeling lonely. If you mint a route to your wallet, you can expect these Crognomides to show up in your wallet as well! \n\nWhen you leave them alone for a long enough time, you will find your family of 2 has grown ever larger.\n\nThe Crognomides are currently only available to the HOLDERS of Crognomes #1,409 - #2,000 for a price of 50 CRO. Snapshot to determine holders will be taken 24hrs before launch (exact time TBA).",
       "author": { "name": "Crognomes", "link": "https://www.crognomes.com/" },
       "address": "0x9AE196176b528680B75C7aea2FBd72456FDFAE17",
       "maxMintPerTx": 10,
@@ -4780,8 +4859,8 @@
       "imgAvatar": "/img/collections/goldpartner/avatar.gif",
       "imgBanner": "/img/collections/goldpartner/banner.png",
       "title": "Gold Partner",
-      "subtitle": "Gold Partner Collection - The Hall of Fame is a collection of 300- 3D animated NFT's with unique features and utilities. Every NFT is a VIP founding members pass on our project. Holders of these NFT's will enjoy 30% share of the primary profits earned from all upcoming collections, marketplace and other benefits from time to time. These NFT's offer a profit-sharing partnership opportunity to the buyers and holders to earn passive income by staking these NFTâ€™s.",
-      "description": "Gold Partner Collection - The Hall of Fame is designed to offer direct profit-sharing partnership for all holders of these NFTâ€™s.\nLong term goal of this project is to create a decentralized marketplace for trading real-world collectibles (not just pictures). This will allow P2P trading of real-world collectables on the blockchain.\nUnique Utilities:\nâ€¢    30% of primary profits are shared directly among the holders of this collection.\nâ€¢    Exclusive giveaways for the gold partners.\nâ€¢    Exclusive access to DAO- This will give all holders the power to cast their vote towards proposals put forward by the team, along with community proposals for roadmap ideas and utility.\nâ€¢    Chance to be a Platinum partner and enjoy a bigger chunk of profits.\nâ€¢    Come explore the joy of owning a share in NFT project and become a founding member!",
+      "subtitle": "Gold Partner Collection - The Hall of Fame is a collection of 300- 3D animated NFT's with unique features and utilities. Every NFT is a VIP founding members pass on our project. Holders of these NFT's will enjoy 30% share of the primary profits earned from all upcoming collections, marketplace and other benefits from time to time. These NFT's offer a profit-sharing partnership opportunity to the buyers and holders to earn passive income by staking these NFTs.",
+      "description": "Gold Partner Collection - The Hall of Fame is designed to offer direct profit-sharing partnership for all holders of these NFTs.\nLong term goal of this project is to create a decentralized marketplace for trading real-world collectibles (not just pictures). This will allow P2P trading of real-world collectables on the blockchain.\nUnique Utilities:\nâ€¢    30% of primary profits are shared directly among the holders of this collection.\nâ€¢    Exclusive giveaways for the gold partners.\nâ€¢    Exclusive access to DAO- This will give all holders the power to cast their vote towards proposals put forward by the team, along with community proposals for roadmap ideas and utility.\nâ€¢    Chance to be a Platinum partner and enjoy a bigger chunk of profits.\nâ€¢    Come explore the joy of owning a share in NFT project and become a founding member!",
       "author": { "name": "Sports NFTs", "link": "https://thesportsnft.io/" },
       "address": "0xF4C80B77AA1F73E09348693a81d744Fcd1263A2D",
       "maxMintPerTx": 5,
@@ -4833,7 +4912,7 @@
       "imgBanner": "/img/drops/fighters/banner.png",
       "title": "Cronos Fighters",
       "subtitle": "We fall. We break. We fail. BUT THEN. We rise. We heal. We Overcome. We all have a fighter in us - Mint yours today. \nFighters are FINALLY Here!",
-      "description": "Cronos Fighters is a generative collection of 1000 Female and Male Champions. A fighter's purpose is to inspire and motivate, no matter the situation. This is the first piece of the Fighters game and metaverse. Each V1 fighter will give itâ€™s owner many perks, such as, token airdrops, game upgrades, voting rights and more! Our goal is to add value to our holders while creating the greatest world the Cronos chain has ever seen! Fighters Are Here!",
+      "description": "Cronos Fighters is a generative collection of 1000 Female and Male Champions. A fighter's purpose is to inspire and motivate, no matter the situation. This is the first piece of the Fighters game and metaverse. Each V1 fighter will give its owner many perks, such as, token airdrops, game upgrades, voting rights and more! Our goal is to add value to our holders while creating the greatest world the Cronos chain has ever seen! Fighters Are Here!",
       "author": { "name": "Cronos Fighters", "link": "http://fightersnft.io/" },
       "address": "0x0e8f883124c1c234d64Ec566adC5966f1832d207",
       "maxMintPerTx": 10,
@@ -4962,7 +5041,7 @@
       "imgBanner": "/img/collections/nobuddies/banner.webp",
       "title": "NoBuddies NFT Gen 2",
       "subtitle": "NoBuddies NFT Gen 2 is a collection of 2250 uniquely generated NFTs on the Cronos Chain with over 100 attributes.",
-      "description": "NoBuddies is all about community growth and giveaways! And trust meâ€¦ We love hosting giveaways! Just ask our OGs! To start things off with a bang we will be giving away 50K CRO in prizes after we mint out! And thatâ€™s only the beginning! So what are you waiting for?! Come join our community and find out for yourself why you should be a NoBuddie.",
+      "description": "NoBuddies is a project created with one thing in mind, and that was to give back. We plan on giving back 45,000 CRO to holders through the mint. 200 CRO will be raffled every 10 mints. At  the end end of the mint we will raffle remaining 5,000 CRO split between 5 winners. Total 50,000 CRO given back to holders. Staking is already live on Crodex, so mint and immediately stake your NoBuddies. We have also made the 1st mobile game to feature Cronos NFTs on Apple and Android and plan to create a full collection of free mobile games.",
       "author": { "name": "NoBuddies", "link": "https://nobuddiesnft.com/" },
       "address": "0x1fE73D4Cc73ea313056E41fe82E58d59D29c6592",
       "maxMintPerTx": 10,
@@ -5163,7 +5242,7 @@
       "memberCost": "180",
       "whitelistCost": "160",
       "foundersOnly": false,
-      "start": null,
+      "start": 1650916800000,
       "end": null,
       "referral": false,
       "is1155": false,
@@ -5300,6 +5379,32 @@
     },
     {
       "id": 60,
+      "slug": "bullish-beavers",
+      "imgNft": "",
+      "imgPreview": "",
+      "imgAvatar": "/img/collections/bullish-beavers/avatar.webp",
+      "title": "Bullish Beavers",
+      "subtitle": "",
+      "description": "",
+      "author": { "name": "Bullish Beavers", "link": "https://twitter.com/BullishBeavers?s=20&t=C-uxwCFPmawQCIfr1IY8Qg"},
+      "address": "",
+      "maxMintPerTx": 0,
+      "maxMintPerAddress": 0,
+      "totalSupply": 0,
+      "cost": "",
+      "whitelistCost": "",
+      "foundersOnly": false,
+      "start": 1645240287000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false,
+      "featured": false,
+      "redirect": "https://lootpad.io/collection/bullishbeavers"
+    },
+    {
+      "id": 61,
       "slug": "employee-month",
       "imgNft": "/img/drops/eotm/drop.jpg",
       "imgPreview": "/img/drops/eotm/drop.jpg",
