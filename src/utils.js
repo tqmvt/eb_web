@@ -146,6 +146,8 @@ export function classList(classes) {
  * @returns {string}
  */
 export function humanize(str) {
+  if (!str) return '';
+
   let i,
     frags = str
       .toString()

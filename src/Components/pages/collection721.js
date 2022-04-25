@@ -207,7 +207,7 @@ const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) 
             <div className="d-item col-md-12 mb-4 mx-auto">
               <CollectionInfoBar collectionStats={collectionStats} royalty={royalty} />
             </div>
-            {collection.address.toLowerCase() == '0x7D5f8F9560103E1ad958A6Ca43d49F954055340a'.toLowerCase() && (
+            {collection.address.toLowerCase() === '0x7D5f8F9560103E1ad958A6Ca43d49F954055340a'.toLowerCase() && (
               <div className="row m-3">
                 <div className="mx-auto text-center fw-bold" style={{ fontSize: '1.2em' }}>
                   {'  '} Please visit{' '}

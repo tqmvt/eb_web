@@ -38,6 +38,7 @@ const Marketplace = () => {
 
   useEffect(() => {
     dispatch(getMarketData());
+    // eslint-disable-next-line
   }, []);
 
   const selectDefaultFilterValue = marketplace.cachedFilter[cacheName] ?? FilterOption.default();
@@ -84,7 +85,7 @@ const Marketplace = () => {
         <div className="row">
           {marketData && (
             <div className="d-item col-lg-6 col-sm-10 mb-4 mx-auto">
-              <a className="nft_attr">
+              <div className="nft_attr">
                 <div className="row">
                   <div className="col-4">
                     <h5>Volume</h5>
@@ -99,7 +100,7 @@ const Marketplace = () => {
                     <h4>{siPrefixedNumber(marketData.totalActive)}</h4>
                   </div>
                 </div>
-              </a>
+              </div>
             </div>
           )}
         </div>

@@ -26,7 +26,7 @@ const MyNfts = ({ walletAddress, isLoading }) => {
     logEvent(getAnalytics(), 'screen_view', {
       firebase_screen: 'my_nfts',
     });
-    // disable-eslint-next-line
+    // eslint-disable-next-line
   }, []);
 
   if (!walletAddress) {
