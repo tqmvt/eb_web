@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { ethers } from 'ethers';
-import { toast } from 'react-toastify';
+import React from 'react';
+// import { useSelector } from 'react-redux';
+// import { ethers } from 'ethers';
+// import { toast } from 'react-toastify';
 
-import { createSuccessfulTransactionToastContent } from '../../utils';
+// import { createSuccessfulTransactionToastContent } from '../../utils';
 import CreateAuction from '../Auctions/CreateAuction';
 import ManageAuctionList from '../Auctions/ManageAuctionList';
-import config from '../../Assets/networks/rpc_config.json';
-import AuctionContract from '../../Contracts/Auction.json';
+// import config from '../../Assets/networks/rpc_config.json';
+// import AuctionContract from '../../Contracts/Auction.json';
 
 const ManageAuctions = () => {
-  const user = useSelector((state) => state.user);
+  // const user = useSelector((state) => state.user);
 
-  const [nftAddress, setNftAddress] = useState('');
-  const [nftId, setNftId] = useState('');
-  const [startingBid, setStartingBid] = useState('');
+  // const [nftAddress, setNftAddress] = useState('');
+  // const [nftId, setNftId] = useState('');
+  // const [startingBid, setStartingBid] = useState('');
   const [openMenu, setOpenMenu] = React.useState(0);
 
   const handleBtnClick = (index) => (element) => {
@@ -27,22 +27,22 @@ const ManageAuctions = () => {
     setOpenMenu(index);
   };
 
-  async function onCreatePressed() {
-    let bid = ethers.utils.parseUnits(startingBid);
-    let writeContract = await new ethers.Contract(
-      config.auction_contract,
-      AuctionContract.abi,
-      user.provider.getSigner()
-    );
-    console.log('preparing contract...', nftAddress, nftId, bid);
-    try {
-      const tx = await writeContract.createAuction(nftAddress, nftId, bid);
-      const receipt = await tx.wait();
-      toast.success(createSuccessfulTransactionToastContent(receipt.transactionHash));
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  // async function onCreatePressed() {
+  //   let bid = ethers.utils.parseUnits(startingBid);
+  //   let writeContract = await new ethers.Contract(
+  //     config.auction_contract,
+  //     AuctionContract.abi,
+  //     user.provider.getSigner()
+  //   );
+  //   console.log('preparing contract...', nftAddress, nftId, bid);
+  //   try {
+  //     const tx = await writeContract.createAuction(nftAddress, nftId, bid);
+  //     const receipt = await tx.wait();
+  //     toast.success(createSuccessfulTransactionToastContent(receipt.transactionHash));
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
 
   return (
     <div>
