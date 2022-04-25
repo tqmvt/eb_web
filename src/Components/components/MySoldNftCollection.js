@@ -73,7 +73,7 @@ const MySoldNftCollection = ({ walletAddress = null }) => {
                   ...{
                     nft: {
                       missing: true,
-                      name: `${contract.name} #${nft.nftId}`,
+                      name: `${contract?.name ?? nft.nftAddress} #${nft.nftId}`,
                     },
                   },
                 };

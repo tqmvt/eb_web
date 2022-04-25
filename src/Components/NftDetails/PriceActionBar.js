@@ -68,7 +68,7 @@ const PriceActionBar = () => {
   return (
     <div className="row">
       {listing && (
-        <Card className="mb-4 border-1 shadow" style={{color: '#141619', borderColor: '#cdcfcf'}}>
+        <Card id={`lid-${listing.listingId}`} className="mb-4 border-1 shadow" style={{color: '#141619', borderColor: '#cdcfcf'}}>
           <Card.Body>
             <div className="d-flex flex-row justify-content-between">
               <div className={`my-auto fw-bold`} style={{color:'#000'}}>

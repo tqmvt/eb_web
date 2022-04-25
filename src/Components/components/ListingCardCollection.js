@@ -109,7 +109,7 @@ const ListingCardCollection = ({ listing, imgClass = 'marketplace', watermark, a
             />
           )}
         </Link>
-        {listing.rank && <div className="badge bg-rarity text-wrap mt-1 mx-1">Rank: #{listing.rank}</div>}
+        {listing.nft.rank && <div className="badge bg-rarity text-wrap mt-1 mx-1">Rank: #{listing.nft.rank}</div>}
         <div className="card-body d-flex flex-column justify-content-between">
           <Link className="linkPointer" to={`/collection/${listing.nftAddress}/${listing.nftId}`}>
             <h6 className="card-title mt-auto">{listing.nft.name}</h6>
