@@ -372,7 +372,7 @@ export const findCollectionByAddress = (address, tokenId) => {
     const matchesAddress = caseInsensitiveCompare(c.address, address);
     if (!tokenId) return matchesAddress;
 
-    const matchesTokenIf1155 = !c.multiToken || (tokenId && c.id === tokenId);
+    const matchesTokenIf1155 = !c.multiToken || (tokenId && parseInt(c.id) === parseInt(tokenId));
     return matchesAddress && matchesTokenIf1155;
   });
 };
