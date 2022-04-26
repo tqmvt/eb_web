@@ -9,7 +9,8 @@ import { dataURItoBlob } from '../Store/utils';
 import { SortOption } from '../Components/Models/sort-option.model';
 import { CollectionSortOption } from '../Components/Models/collection-sort-option.model';
 import { FilterOption } from '../Components/Models/filter-option.model';
-import {caseInsensitiveCompare, convertIpfsResource, isMetapixelsCollection, isSouthSideAntsCollection} from '../utils';
+import {caseInsensitiveCompare, convertIpfsResource, isMetapixelsCollection, isSouthSideAntsCollection, isWeirdApesCollection} from '../utils';
+import {getWeirdApesStakingStatus} from "./api/chain";
 
 const gatewayTools = new IPFSGatewayTools();
 const gateway = 'https://mygateway.mypinata.cloud';
@@ -1255,6 +1256,18 @@ console.log(results);
         console.log(e, nft);
       }
 
+      let isStaked = false;
+      let canTransfer = true;
+      let canSell = true;
+      if (isWeirdApesCollection(nft.nftAddress)) {
+        const staked = await getWeirdApesStakingStatus(nft.nftAddress, nft.nftId);
+        if (staked) {
+          canTransfer = false;
+          canSell = false;
+          isStaked = true;
+        }
+      }
+      
       return {
         id: nft.nftId,
         name: nft.name,
@@ -1270,8 +1283,9 @@ console.log(results);
         listed,
         listingId,
         price,
-        canSell: true,
-        canTransfer: true,
+        canSell: canSell,
+        canTransfer: canTransfer,
+        isStaked: isStaked,
       }
     })
   );
