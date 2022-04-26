@@ -3879,6 +3879,25 @@
         "twitter": "https://twitter.com/mepyDoo",
         "discord": "https://discord.gg/qCVUfNSzsb"
       }
+    },
+    {
+      "name": "Psycho Golden Lady",
+      "slug": "psycho-golden-lady",
+      "multiToken": false,
+      "address": "",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/psycho-golden-lady/avatar.webp",
+        "card": "/img/collections/psycho-golden-lady/card.webp",
+        "banner": "/img/collections/psycho-golden-lady/banner.webp",
+        "maxSupply": 3000,
+        "website": "http://www.artgroupink.com/",
+        "twitter": "https://twitter.com/Ugonzo_Art",
+        "discord": "https://discord.gg/wj72JCGdF4"
+      }
     }
   ],
   "drops": [
@@ -5526,6 +5545,31 @@
       "memberCost": "333",
       "foundersOnly": false,
       "start": 1651451400000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false
+    },
+    {
+      "id": 64,
+      "slug": "psycho-golden-lady",
+      "imgNft": "/img/drops/psycho-golden-lady/drop.webp",
+      "imgPreview": "/img/drops/psycho-golden-lady/drop.webp",
+      "imgAvatar": "/img/collections/psycho-golden-lady/avatar.webp",
+      "imgBanner": "/img/collections/psycho-golden-lady/banner.webp",
+      "title": "Psycho Golden Lady",
+      "subtitle": "Famed Artist Ugonzo, the creator of PsychoKitty, teamed up with world famous Artist Patrick Guyton, the infamous Gold and Silver Leaf painter and creator of Gilded Modernism® went on a journey to New York to view a very famous Painting. The two artists wanted to collaborate and create something special by an artist that touched them both personally and created the desire in both to pick up a Paint Brush.",
+      "description": "Ugonzo (@Ugonzo_art) and Patrick Guyon (@patrickguyton_) toiled for weeks to create this stunning masterpiece and tribute to their favorite Artist, and bring this concept painting to the 21st Century, in both classical and the new modern NFT style. How close to the original can you get in rarity?\n\nAll will be revealed on May 1st 2022 at 6pm Live in Las Vegas on Instagram from the DeRubeis Fine Art of Metal Gallery in the Planet Hollywood resort, Miracle Mile shops.",
+      "author": { "name": "Psycho Golden Lady", "link": "http://www.artgroupink.com/" },
+      "address": "",
+      "maxMintPerTx": 10,
+      "maxMintPerAddress": 100,
+      "totalSupply": 3000,
+      "cost": "499",
+      "memberCost": "459",
+      "foundersOnly": false,
+      "start": 1651454100000,
       "end": null,
       "referral": false,
       "is1155": false,
