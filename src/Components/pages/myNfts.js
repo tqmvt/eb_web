@@ -50,7 +50,7 @@ const MyNfts = ({ walletAddress, isLoading }) => {
           </>
         ) :(
           <>
-            <p className="text-center text-md-end">Don't see your NFT? Try a full search <span className="color fw-bold" role="button" onClick={() => onClickChainSearch(true)}>here</span></p>
+            <p className="text-center text-md-end">NFTs not showing correctly? Try a full search <span className="color fw-bold" role="button" onClick={() => onClickChainSearch(true)}>here</span></p>
             <NftCardList useChain={showChainSearch} />
           </>
         )}

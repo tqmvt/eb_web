@@ -3825,6 +3825,24 @@
         "medium": "https://streetbrawlerz.medium.com/",
         "telegram": "https://t.me/StreetBrawlerzNFT"
       }
+    },
+    {
+      "name": "Microbots",
+      "slug": "microbots",
+      "multiToken": false,
+      "address": "0x3c46f9B9fFD5b3E63f5703BEE0A27e59c7A6941e",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/crobots/avatar.gif",
+        "card": "/img/collections/crobots/card.jpg",
+        "banner": "/img/collections/crobots/banner.webp",
+        "website": "https://TheCrobots.com",
+        "twitter": "https://twitter.com/thecrobots",
+        "discord": "https://discord.gg/crobots"
+      }
     }
   ],
   "drops": [
