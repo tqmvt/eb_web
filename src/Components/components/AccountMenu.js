@@ -267,29 +267,6 @@ const AccountMenu = function () {
                     <span>My NFTs</span>
                   </span>
                 </li>
-                <li>
-                  <span onClick={() => navigateTo(`/wallet/listings`)}>
-                    {walletAddress && correctChain && myUnfilteredListings.some((x) => !x.valid && x.listed) ? (
-                      <span>
-                        {' '}
-                        <FontAwesomeIcon color="var(--bs-danger)" icon={faExclamationCircle} size={'2x'} />{' '}
-                      </span>
-                    ) : (
-                      <span>
-                        <FontAwesomeIcon icon={faEnvelopeOpenText} />{' '}
-                      </span>
-                    )}
-                    <span>My Listings </span>
-                  </span>
-                </li>
-                <li>
-                  <span onClick={() => navigateTo(`/sales`)}>
-                    <span>
-                      <FontAwesomeIcon icon={faShoppingBasket} />{' '}
-                    </span>
-                    <span>My Sales</span>
-                  </span>
-                </li>
                 <li className="my-offers-menu-item">
                   <span onClick={() => navigateTo(`/offers`)}>
                     <span>
