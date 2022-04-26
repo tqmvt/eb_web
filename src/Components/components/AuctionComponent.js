@@ -1,6 +1,6 @@
 import React, { memo, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams, Link, Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { ethers } from 'ethers';
 import { Spinner } from 'react-bootstrap';
 import Blockies from 'react-blockies';

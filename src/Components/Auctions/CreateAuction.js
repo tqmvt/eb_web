@@ -1,17 +1,11 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import { createGlobalStyle } from 'styled-components';
 import { ethers } from 'ethers';
-import config from '../../Assets/networks/rpc_config.json';
-import AuctionContract from '../../Contracts/Auction.json';
 import { toast } from 'react-toastify';
 import { createSuccessfulTransactionToastContent } from '../../utils';
 import { ERC721 } from '../../Contracts/Abis';
 import { Spinner } from 'react-bootstrap';
-
-const GlobalStyles = createGlobalStyle`
-`;
 
 const CreateAuction = () => {
   const user = useSelector((state) => state.user);

@@ -12,7 +12,6 @@ import {
   faSignOutAlt,
   faExclamationCircle,
   faShoppingBag,
-  faReceipt,
 } from '@fortawesome/free-solid-svg-icons';
 import { toast } from 'react-toastify';
 import MetaMaskOnboarding from '@metamask/onboarding';
@@ -95,9 +94,9 @@ const AccountMenu = function () {
     dispatch(AccountMenuActions.withdrawBalance());
   };
 
-  const registerCode = async () => {
-    dispatch(AccountMenuActions.registerCode());
-  };
+  // const registerCode = async () => {
+  //   dispatch(AccountMenuActions.registerCode());
+  // };
 
   const clearCookies = async () => {
     dispatch(onLogout());

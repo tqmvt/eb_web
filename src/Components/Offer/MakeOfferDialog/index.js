@@ -240,6 +240,7 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
     if (!type && walletAddress && nftData.address && nftData.id) {
       func();
     }
+    // eslint-disable-next-line
   }, []);
 
   if (!nftData) {

@@ -113,9 +113,6 @@ const AcceptOfferDialog = ({ isOpen, toggle, nftData, offerData, collectionMetad
   const [fee, setFee] = useState(0);
   const [royalty, setRoyalty] = useState(0);
 
-  const [floorPrice, setFloorPrice] = useState(0);
-  const [belowFloor, setBelowFloor] = useState(false);
-
   // get royalty
   useEffect(() => {
     async function asyncFunc() {
@@ -139,6 +136,7 @@ const AcceptOfferDialog = ({ isOpen, toggle, nftData, offerData, collectionMetad
     if (nftData && nftData.address) {
       dispatch(updateContractInstance(walletProvider, nftData.address));
     }
+    // eslint-disable-next-line
   }, []);
 
   // check for approval
@@ -146,6 +144,7 @@ const AcceptOfferDialog = ({ isOpen, toggle, nftData, offerData, collectionMetad
     if (contractInstance && offerContract) {
       checkApproval();
     }
+    // eslint-disable-next-line
   }, [contractInstance, offerContract]);
 
   const checkApproval = async () => {
