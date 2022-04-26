@@ -5477,7 +5477,7 @@
       "address": "",
       "maxMintPerTx": 1,
       "maxMintPerAddress": 50,
-      "totalSupply": 50,
+      "totalSupply": 60,
       "cost": "200",
       "memberCost": "150",
       "foundersOnly": false,

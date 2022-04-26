@@ -2023,7 +2023,7 @@
       "address": "0x781aF58CA8caEE76042Aa50d76059339E8A4AB26",
       "maxMintPerTx": 3,
       "maxMintPerAddress": 100,
-      "totalSupply": 62,
+      "totalSupply": 60,
       "cost": "350",
       "memberCost": "250",
       "foundersOnly": false,
