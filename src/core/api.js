@@ -360,21 +360,7 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
 
   const signer = walletProvider.getSigner();
 
-  let listings = [];
-  let chunkParams = { complete: false, pageSize: 100, curPage: 1 };
-  while (!chunkParams.complete) {
-    const queryString = new URLSearchParams({
-      state: 0,
-      page: chunkParams.curPage,
-      pageSize: chunkParams.pageSize,
-      seller: walletAddress,
-    });
-    const url = new URL(api.listings, `${api.baseUrl}`);
-    const listingsReponse = await (await fetch(`${url}?${queryString}`)).json();
-    listings = [...listings, ...listingsReponse.listings];
-    chunkParams.complete = listingsReponse.listings.length < chunkParams.pageSize;
-    chunkParams.curPage++;
-  }
+  let listings = await getAllListingsForUser(walletAddress);
 
   //  Helper function
   const getListing = (address, id) => {
@@ -384,14 +370,6 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
       return sameId && sameAddress;
     });
   };
-
-  // const getERC1155Listings = (address, id) => {
-  //   return listings.filter((listing) => {
-  //     const sameId = ethers.BigNumber.from(listing['nftId']).eq(id);
-  //     const sameAddress = listing['nftAddress'].toLowerCase() === address.toLowerCase();
-  //     return sameId && sameAddress && listing.state === 0;
-  //   });
-  // };
 
   let response = {
     nfts: [],
@@ -1169,14 +1147,17 @@ export async function getQuickWallet(walletAddress) {
   const url = new URL(api.wallets, `${api.baseUrl}`);
   const uri = `${url}?${queryString}`;
 
-  return await (await fetch(uri)).json();
+  const json = await (await fetch(uri)).json();
+
+  // @todo: remove once api has this version in prod
+  if (!Array.isArray(json.data)) {
+    json.data = [...json.data.erc1155, ...json.data.erc721];
+  }
+
+  return json;
 }
 
-export async function getNftsForAddress2(walletAddress, walletProvider) {
-  const quickWallet = await getQuickWallet(walletAddress);
-  const results = quickWallet.data;
-  const signer = walletProvider.getSigner();
-
+async function getAllListingsForUser(walletAddress) {
   let listings = [];
   let chunkParams = { complete: false, pageSize: 100, curPage: 1 };
   while (!chunkParams.complete) {
@@ -1192,6 +1173,16 @@ export async function getNftsForAddress2(walletAddress, walletProvider) {
     chunkParams.complete = listingsReponse.listings.length < chunkParams.pageSize;
     chunkParams.curPage++;
   }
+
+  return listings;
+}
+
+export async function getNftsForAddress2(walletAddress, walletProvider) {
+  const quickWallet = await getQuickWallet(walletAddress);
+  const results = quickWallet.data;
+  const signer = walletProvider.getSigner();
+
+  let listings = await getAllListingsForUser(walletAddress);
 
   //  Helper function
   const getListing = (address, id) => {
@@ -1210,7 +1201,6 @@ export async function getNftsForAddress2(walletAddress, walletProvider) {
     });
   };
 
-console.log(results);
   const writeContracts = [];
   return await Promise.all(results
     .filter(nft => {
