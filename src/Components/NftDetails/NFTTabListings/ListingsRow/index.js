@@ -3,7 +3,7 @@ import Blockies from 'react-blockies';
 import { createSuccessfulTransactionToastContent, shortAddress, timeSince } from 'src/utils';
 import { Link, useHistory } from 'react-router-dom';
 import { ethers } from 'ethers';
-import { listingUpdated } from '../../../../GlobalState/listingSlice';
+// import { listingUpdated } from '../../../../GlobalState/listingSlice';
 import { toast } from 'react-toastify';
 import MetaMaskOnboarding from '@metamask/onboarding';
 import { chainConnect, connectAccount } from '../../../../GlobalState/User';
