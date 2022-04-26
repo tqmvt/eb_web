@@ -337,6 +337,10 @@ export const isCrosmocraftsCollection = (address) => {
   return isCollection(address, 'crosmocrafts');
 };
 
+export const isWeirdApesCollection = (address) => {
+  return isCollection(address, 'weird-apes-club');
+};
+
 export const isBabyWeirdApesCollection = (address) => {
   return isCollection(address, 'baby-weird-apes');
 };

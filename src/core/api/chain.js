@@ -108,3 +108,8 @@ const getImageFromMetadata = async (json) => {
 
   return image;
 };
+
+export const getWeirdApesStakingStatus = async (collectionAddress, nftId) => {
+  const readContract = new Contract(collectionAddress, ERC721, readProvider);
+  return await readContract.stakedApes(nftId);
+}
