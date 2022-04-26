@@ -1,7 +1,11 @@
 import moment from 'moment';
 import config from './Assets/networks/rpc_config.json';
+import IPFSGatewayTools from '@pinata/ipfs-gateway-tools/dist/browser';
+
 export const drops = config.drops;
 export const collections = config.known_contracts;
+const gatewayTools = new IPFSGatewayTools();
+const gateway = 'https://mygateway.mypinata.cloud';
 
 export function debounce(func, wait, immediate) {
   var timeout;
@@ -146,6 +150,8 @@ export function classList(classes) {
  * @returns {string}
  */
 export function humanize(str) {
+  if (!str) return '';
+
   let i,
     frags = str
       .toString()
@@ -370,7 +376,7 @@ export const findCollectionByAddress = (address, tokenId) => {
     const matchesAddress = caseInsensitiveCompare(c.address, address);
     if (!tokenId) return matchesAddress;
 
-    const matchesTokenIf1155 = !c.multiToken || (tokenId && c.id === tokenId);
+    const matchesTokenIf1155 = !c.multiToken || (tokenId && parseInt(c.id) === parseInt(tokenId));
     return matchesAddress && matchesTokenIf1155;
   });
 };
@@ -380,3 +386,28 @@ export const round = (num, decimals) => {
   const pow = Math.pow(10, decimals);
   return Math.round(num * pow) / pow;
 };
+
+export const convertIpfsResource = (resource, tooltip) => {
+  if (!resource) return;
+
+  let linkedResource;
+  if (resource.startsWith('ipfs')) {
+    linkedResource = `${gateway}/ipfs/${resource.substring(7)}`;
+  } else if (gatewayTools.containsCID(resource) && !resource.startsWith('ar')) {
+    try {
+      linkedResource = gatewayTools.convertToDesiredGateway(resource, gateway);
+    } catch (error) {
+      linkedResource = resource;
+    }
+  } else if (resource.startsWith('ar')) {
+    if (typeof tooltip !== 'undefined') {
+      linkedResource = `https://arweave.net/${tooltip.substring(5)}`;
+    } else {
+      linkedResource = `https://arweave.net/${resource.substring(5)}`;
+    }
+  } else {
+    linkedResource = resource;
+  }
+
+  return linkedResource;
+}
