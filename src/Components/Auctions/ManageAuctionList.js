@@ -1,31 +1,34 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+// import { useDispatch, useSelector } from 'react-redux';
 
 import { ethers } from 'ethers';
-import config from '../../Assets/networks/rpc_config.json';
-import AuctionContract from '../../Contracts/Auction.json';
-import { toast } from 'react-toastify';
-import { createSuccessfulTransactionToastContent } from '../../utils';
+// import config from '../../Assets/networks/rpc_config.json';
+// import AuctionContract from '../../Contracts/Auction.json';
+// import { toast } from 'react-toastify';
+// import { createSuccessfulTransactionToastContent } from '../../utils';
 import { sortAndFetchAuctions } from '../../core/api';
 import Clock from '../components/Clock';
-import MetaMaskOnboarding from '@metamask/onboarding';
-import { chainConnect, connectAccount } from '../../GlobalState/User';
+// import MetaMaskOnboarding from '@metamask/onboarding';
+// import { chainConnect, connectAccount } from '../../GlobalState/User';
 import { Link } from 'react-router-dom';
 import { auctionState } from '../../core/api/enums';
 
 const ManageAuctionList = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  const user = useSelector((state) => state.user);
+  // const user = useSelector((state) => state.user);
   const [auctions, setAuctions] = useState([]);
 
-  useEffect(async () => {
-    const response = await sortAndFetchAuctions();
-    if (response.auctions === undefined) response.auctions = [];
-    setAuctions(response.auctions.filter((a) => [auctionState.NOT_STARTED, auctionState.ACTIVE].includes(a.state)));
+  useEffect(() => {
+    async function fetchData() {
+      const response = await sortAndFetchAuctions();
+      if (response.auctions === undefined) response.auctions = [];
+      setAuctions(response.auctions.filter((a) => [auctionState.NOT_STARTED, auctionState.ACTIVE].includes(a.state)));
+    }
+    fetchData();
   }, []);
 
-  const handleStartClick = (auction) => async () => {
+  /* const handleStartClick = (auction) => async () => {
     if (user.address) {
       let writeContract = await new ethers.Contract(
         config.auction_contract,
@@ -49,7 +52,7 @@ const ManageAuctionList = () => {
         dispatch(chainConnect());
       }
     }
-  };
+  };*/
 
   const mapStateToHumanReadable = (listing) => {
     switch (listing.state) {
@@ -66,7 +69,7 @@ const ManageAuctionList = () => {
     }
   };
 
-  const handleCancelClick = (auction) => async () => {
+  /* const handleCancelClick = (auction) => async () => {
     if (user.address) {
       let writeContract = await new ethers.Contract(
         config.auction_contract,
@@ -91,7 +94,7 @@ const ManageAuctionList = () => {
         dispatch(chainConnect());
       }
     }
-  };
+  };*/
 
   return (
     <div>

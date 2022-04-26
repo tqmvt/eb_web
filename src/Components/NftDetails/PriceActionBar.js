@@ -4,12 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ethers } from 'ethers';
 import { toast } from 'react-toastify';
 import { createSuccessfulTransactionToastContent } from '../../utils';
-import { Card, Form, Spinner } from 'react-bootstrap';
+import { Card, Spinner } from 'react-bootstrap';
 import MetaMaskOnboarding from '@metamask/onboarding';
 import { chainConnect, connectAccount } from '../../GlobalState/User';
 import { listingUpdated } from '../../GlobalState/listingSlice';
 import { listingState } from '../../core/api/enums';
-import MakeOfferDialog from '../Offer/MakeOfferDialog';
 
 const PriceActionBar = () => {
   const dispatch = useDispatch();
@@ -17,7 +16,7 @@ const PriceActionBar = () => {
   const user = useSelector((state) => state.user);
   const listing = useSelector((state) => state.nft.currentListing);
   const [executingBuy, setExecutingBuy] = useState(false);
-  const [buyError, setBuyError] = useState('');
+  // const [buyError, setBuyError] = useState('');
 
   const executeBuy = (amount) => async () => {
     setExecutingBuy(true);
@@ -85,11 +84,7 @@ const PriceActionBar = () => {
               </div>
               <span className="my-auto">
                 {listing.state === listingState.ACTIVE && (
-                  <button
-                    className="btn-main"
-                    onClick={executeBuy(listing.price)}
-                    disabled={!!buyError || executingBuy}
-                  >
+                  <button className="btn-main" onClick={executeBuy(listing.price)} disabled={executingBuy}>
                     {executingBuy ? (
                       <>
                         Buy Now...
