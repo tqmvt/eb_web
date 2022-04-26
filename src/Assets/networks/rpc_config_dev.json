@@ -3836,9 +3836,9 @@
       "metadata": {
         "description": "",
         "verified": true,
-        "avatar": "/img/collections/crobots/avatar.gif",
-        "card": "/img/collections/crobots/card.jpg",
-        "banner": "/img/collections/crobots/banner.webp",
+        "avatar": "/img/collections/microbots/avatar.webp",
+        "card": "/img/collections/microbots/card.webp",
+        "banner": "/img/collections/microbots/banner.webp",
         "website": "https://TheCrobots.com",
         "twitter": "https://twitter.com/thecrobots",
         "discord": "https://discord.gg/crobots"
