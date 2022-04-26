@@ -69,6 +69,10 @@ const MyNftCard = ({
           className="card-img-top marketplace"
           style={{ cursor: 'pointer' }}
           alt={nft.name}
+          onError={({ currentTarget }) => {
+            currentTarget.onerror = null;
+            currentTarget.src="/img/nft-placeholder.webp";
+          }}
         />
       )}
       {nft.rank && typeof nft.rank === 'number' && (

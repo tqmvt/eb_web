@@ -1253,6 +1253,7 @@ console.log(results);
           }
         }
       } catch (e) {
+        image ="/img/nft-placeholder.webp";
         console.log(e, nft);
       }
 
