@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ethers, constants } from 'ethers';
+import { ethers } from 'ethers';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import Countdown from 'react-countdown';
@@ -18,17 +18,7 @@ import config from '../../Assets/networks/rpc_config.json';
 import { connectAccount } from '../../GlobalState/User';
 import { fetchMemberInfo, fetchVipInfo } from '../../GlobalState/Memberships';
 import { fetchCronieInfo } from '../../GlobalState/Cronies';
-import {
-  createSuccessfulTransactionToastContent,
-  isCmbDrop,
-  isCreaturesDrop,
-  isCrognomesDrop,
-  isFounderDrop,
-  isFounderVipDrop,
-  isMagBrewVikingsDrop,
-  newlineText,
-  percentage,
-} from '../../utils';
+import { createSuccessfulTransactionToastContent, isCmbDrop, newlineText, percentage } from '../../utils';
 import { dropState as statuses } from '../../core/api/enums';
 import { EbisuDropAbi } from '../../Contracts/Abis';
 
@@ -73,22 +63,22 @@ const MultiDrop = () => {
   const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
   const dispatch = useDispatch();
 
-  const [loading, setLoading] = useState(true);
-  const [minting, setMinting] = useState(false);
-  const [referral, setReferral] = useState('');
+  // const [loading, setLoading] = useState(true);
+  // const [minting, setMinting] = useState(false);
+  // const [referral, setReferral] = useState('');
   const [dropObject, setDropObject] = useState(null);
   const [status, setStatus] = useState(statuses.UNSET);
-  const [numToMint, setNumToMint] = useState(1);
+  // const [numToMint, setNumToMint] = useState(1);
 
   const [abi, setAbi] = useState(null);
-  const [maxMintPerAddress, setMaxMintPerAddress] = useState(0);
-  const [maxMintPerTx, setMaxMintPerTx] = useState(0);
-  const [maxSupply, setMaxSupply] = useState(0);
+  // const [maxMintPerAddress, setMaxMintPerAddress] = useState(0);
+  // const [maxMintPerTx, setMaxMintPerTx] = useState(0);
+  // const [maxSupply, setMaxSupply] = useState(0);
   const [memberCost, setMemberCost] = useState(0);
   const [regularCost, setRegularCost] = useState(0);
   const [whitelistCost, setWhitelistCost] = useState(0);
-  const [specialWhitelistCost, setSpecialWhitelistCost] = useState(0);
-  const [totalSupply, setTotalSupply] = useState(0);
+  // const [specialWhitelistCost, setSpecialWhitelistCost] = useState(0);
+  // const [totalSupply, setTotalSupply] = useState(0);
   const [canMintQuantity, setCanMintQuantity] = useState(0);
   const [factionCurrentSupply, setFactionCurrentSupply] = useState([]);
 
@@ -97,6 +87,7 @@ const MultiDrop = () => {
       firebase_screen: 'drop',
       drop_id: slug,
     });
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
@@ -105,6 +96,7 @@ const MultiDrop = () => {
       dispatch(fetchVipInfo());
     }
     dispatch(fetchCronieInfo());
+    // eslint-disable-next-line
   }, []);
 
   const user = useSelector((state) => {
@@ -123,8 +115,12 @@ const MultiDrop = () => {
     return state.cronies;
   });
 
-  useEffect(async () => {
-    await retrieveDropInfo();
+  useEffect(() => {
+    async function retrieveInfo() {
+      await retrieveDropInfo();
+    }
+    retrieveInfo();
+    // eslint-disable-next-line
   }, [user, membership, cronies]);
 
   const retrieveDropInfo = async () => {
@@ -178,12 +174,12 @@ const MultiDrop = () => {
         canMint = user.address ? await readContract.canMint(user.address) : 0;
       }
 
-      setMaxMintPerAddress(infos.maxMintPerAddress);
-      setMaxMintPerTx(infos.maxMintPerTx);
-      setMaxSupply(infos.maxSupply);
+      // setMaxMintPerAddress(infos.maxMintPerAddress);
+      // setMaxMintPerTx(infos.maxMintPerTx);
+      // setMaxSupply(infos.maxSupply);
       setMemberCost(ethers.utils.formatEther(infos.memberCost));
       setRegularCost(ethers.utils.formatEther(infos.regularCost));
-      setTotalSupply(infos.totalSupply);
+      // setTotalSupply(infos.totalSupply);
       setWhitelistCost(ethers.utils.formatEther(infos.whitelistCost));
       setCanMintQuantity(canMint);
       setFactionCurrentSupply(infoTuple[1]);
@@ -192,19 +188,19 @@ const MultiDrop = () => {
       console.log(error);
       Sentry.captureException(error);
     }
-    setLoading(false);
+    // setLoading(false);
     setDropObject(currentDrop);
   };
 
   const setDropInfo = (drop, supply) => {
-    setMaxMintPerAddress(drop.maxMintPerAddress ?? 100);
-    setMaxMintPerTx(drop.maxMintPerTx);
-    setMaxSupply(drop.totalSupply);
+    // setMaxMintPerAddress(drop.maxMintPerAddress ?? 100);
+    // setMaxMintPerTx(drop.maxMintPerTx);
+    // setMaxSupply(drop.totalSupply);
     setMemberCost(drop.memberCost);
     setRegularCost(drop.cost);
-    setTotalSupply(supply);
+    // setTotalSupply(supply);
     setWhitelistCost(drop.whitelistCost);
-    setSpecialWhitelistCost(drop.specialWhitelistCost);
+    // setSpecialWhitelistCost(drop.specialWhitelistCost);
     setCanMintQuantity(drop.maxMintPerTx);
   };
 
@@ -259,7 +255,7 @@ const MultiDrop = () => {
         return;
       }
 
-      setMinting(true);
+      // setMinting(true);
       const contract = dropObject.writeContract;
       try {
         const cost = await calculateCost(user);
@@ -316,20 +312,20 @@ const MultiDrop = () => {
           toast.error('Unknown Error');
         }
       } finally {
-        setMinting(false);
+        // setMinting(false);
       }
     } else {
       dispatch(connectAccount());
     }
   };
 
-  const convertTime = (time) => {
-    let date = new Date(time);
-    const fullDateString = date.toLocaleString('default', { timeZone: 'UTC' });
-    const month = date.toLocaleString('default', { month: 'long', timeZone: 'UTC' });
-    let dateString = `${fullDateString.split(', ')[1]} ${date.getUTCDate()} ${month} ${date.getUTCFullYear()} UTC`;
-    return dateString;
-  };
+  // const convertTime = (time) => {
+  //   let date = new Date(time);
+  //   const fullDateString = date.toLocaleString('default', { timeZone: 'UTC' });
+  //   const month = date.toLocaleString('default', { month: 'long', timeZone: 'UTC' });
+  //   let dateString = `${fullDateString.split(', ')[1]} ${date.getUTCDate()} ${month} ${date.getUTCFullYear()} UTC`;
+  //   return dateString;
+  // };
 
   return (
     <div>
@@ -561,6 +557,7 @@ const MultiDropCard = ({ title, img, canMintQuantity, mintNow, currentSupply, ma
 
   useEffect(() => {
     calculateStatus(currentSupply, maxSupply);
+    // eslint-disable-next-line
   }, [currentSupply, canMintQuantity, dropStatus]);
 
   const calculateStatus = (currentSupply, maxSupply) => {

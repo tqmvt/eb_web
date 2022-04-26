@@ -1,6 +1,6 @@
 import React, { memo, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams, Link, Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { ethers } from 'ethers';
 import { Spinner } from 'react-bootstrap';
 import Blockies from 'react-blockies';
@@ -15,7 +15,7 @@ import ProfilePreview from '../components/ProfilePreview';
 const knownContracts = config.known_contracts;
 
 const AuctionComponent = (props) => {
-  const  { id } = props;
+  const { id } = props;
   const dispatch = useDispatch();
 
   const listing = useSelector((state) => state.auction.auction);

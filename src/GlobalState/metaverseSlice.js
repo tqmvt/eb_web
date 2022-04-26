@@ -8,7 +8,7 @@ const metaverseSlice = createSlice({
   },
   reducers: {
     showBidDialog: (state, action) => {
-      state.auctionId = action.payload.auctionId
+      state.auctionId = action.payload.auctionId;
       state.bidDialogVisible = true;
     },
     hideBidDialog: (state) => {

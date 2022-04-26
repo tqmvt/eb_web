@@ -6,12 +6,12 @@ import Blockies from 'react-blockies';
 import { Helmet } from 'react-helmet';
 import Footer from '../components/Footer';
 import CollectionListingsGroup from '../components/CollectionListingsGroup';
-import CollectionFilterBar from '../components/CollectionFilterBar';
+// import CollectionFilterBar from '../components/CollectionFilterBar';
 import LayeredIcon from '../components/LayeredIcon';
 import { init, fetchListings, getStats } from '../../GlobalState/collectionSlice';
-import { caseInsensitiveCompare, isCrosmocraftsPartsCollection } from '../../utils';
-import TraitsFilter from '../Collection/TraitsFilter';
-import PowertraitsFilter from '../Collection/PowertraitsFilter';
+import { isCrosmocraftsPartsCollection } from '../../utils';
+// import TraitsFilter from '../Collection/TraitsFilter';
+// import PowertraitsFilter from '../Collection/PowertraitsFilter';
 import SocialsBar from '../Collection/SocialsBar';
 import { CollectionSortOption } from '../Models/collection-sort-option.model';
 import { FilterOption } from '../Models/filter-option.model';
@@ -19,10 +19,10 @@ import config from '../../Assets/networks/rpc_config.json';
 import Market from '../../Contracts/Marketplace.json';
 import CollectionInfoBar from '../components/CollectionInfoBar';
 import stakingPlatforms from '../../core/data/staking-platforms.json';
-import SalesCollection from "../components/SalesCollection";
-import CollectionNftsGroup from "../components/CollectionNftsGroup";
+import SalesCollection from '../components/SalesCollection';
+import CollectionNftsGroup from '../components/CollectionNftsGroup';
 
-const knownContracts = config.known_contracts;
+// const knownContracts = config.known_contracts;
 
 const Collection1155 = ({ collection, tokenId = null, cacheName = 'collection', slug }) => {
   const dispatch = useDispatch();
@@ -224,7 +224,7 @@ const Collection1155 = ({ collection, tokenId = null, cacheName = 'collection', 
             {openMenu === 0 && (
               <div className="tab-1 onStep fadeIn">
                 <div className="row">
-                  <div className='col-md-12'>
+                  <div className="col-md-12">
                     {isUsingListingsFallback ? (
                       <CollectionListingsGroup listings={listings} canLoadMore={canLoadMore} loadMore={loadMore} />
                     ) : (

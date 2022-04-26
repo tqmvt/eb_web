@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { keyframes } from '@emotion/react';
 import Reveal from 'react-awesome-reveal';
 import { createGlobalStyle, default as styled } from 'styled-components';
@@ -12,7 +12,7 @@ import CurrentDrops from '../components/CurrentDrops';
 import { getMarketData } from '../../GlobalState/marketplaceSlice';
 import { siPrefixedNumber } from '../../utils';
 import { theme } from '../../Theme/theme';
-import { faBullhorn, faFire } from '@fortawesome/free-solid-svg-icons';
+import { faFire } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const fadeInUp = keyframes`
@@ -137,11 +137,12 @@ const Home = () => {
     history.push(link);
   };
 
-  useEffect(async function () {
-    dispatch(getMarketData());
-
-    // dispatch(fetchMintData)
-  }, []);
+  useEffect(
+    function () {
+      dispatch(getMarketData());
+    },
+    [dispatch]
+  );
 
   const JumbotronData = () => {
     return (

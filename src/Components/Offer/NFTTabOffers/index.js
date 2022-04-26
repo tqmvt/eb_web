@@ -6,12 +6,6 @@ import OffersRow from './OffersRow';
 import EmptyData from '../EmptyData';
 import { fetchOffersForSingleNFT } from 'src/GlobalState/offerSlice';
 
-const data = {
-  address: '0x89dB...1C56',
-  offerDate: '15.11.2022',
-  offerPrice: '1500 CRO',
-};
-
 export const ROW_TYPE = {
   made: 'Made',
   received: 'Received',
@@ -27,6 +21,7 @@ export default function NFTTabOffers({ nftAddress, nftId }) {
     if (nftAddress && nftId) {
       dispatch(fetchOffersForSingleNFT(nftAddress, nftId));
     }
+    // eslint-disable-next-line
   }, []);
 
   return (

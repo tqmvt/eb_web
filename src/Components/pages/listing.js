@@ -31,7 +31,7 @@ import {
 import config from '../../Assets/networks/rpc_config.json';
 import { croSkullRedPotionImageHack } from '../../hacks';
 import NFTTabOffers from '../Offer/NFTTabOffers';
-import ReactPlayer from "react-player";
+import ReactPlayer from 'react-player';
 
 const Listing = () => {
   const { id } = useParams();
@@ -62,71 +62,83 @@ const Listing = () => {
     dispatch(getListingDetails(id));
   }, [dispatch, id]);
 
-  useEffect(async () => {
-    if (listing && isCroCrowCollection(listing.nftAddress) && croCrowBreed === null) {
-      const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
-      const contract = new Contract(
-        '0x0f1439a290e86a38157831fe27a3dcd302904055',
-        [
-          'function availableCrows(address _owner) public view returns (uint256[] memory, bool[] memory)',
-          'function isCrowUsed(uint256 tokenId) public view returns (bool)',
-        ],
-        readProvider
-      );
-      try {
-        if (listing.nftId < 3500) {
-          const used = await contract.isCrowUsed(listing.nftId);
-          setCroCrowBreed(used);
-        } else {
-          const crows = await contract.availableCrows(listing.seller);
-          for (const [i, o] of crows[0].entries()) {
-            if (o.toNumber() === listing.nftId) {
-              setCroCrowBreed(crows[1][i]);
-              return;
+  useEffect(() => {
+    async function asyncFunc() {
+      if (listing && isCroCrowCollection(listing.nftAddress) && croCrowBreed === null) {
+        const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
+        const contract = new Contract(
+          '0x0f1439a290e86a38157831fe27a3dcd302904055',
+          [
+            'function availableCrows(address _owner) public view returns (uint256[] memory, bool[] memory)',
+            'function isCrowUsed(uint256 tokenId) public view returns (bool)',
+          ],
+          readProvider
+        );
+        try {
+          if (listing.nftId < 3500) {
+            const used = await contract.isCrowUsed(listing.nftId);
+            setCroCrowBreed(used);
+          } else {
+            const crows = await contract.availableCrows(listing.seller);
+            for (const [i, o] of crows[0].entries()) {
+              if (o.toNumber() === listing.nftId) {
+                setCroCrowBreed(crows[1][i]);
+                return;
+              }
             }
           }
+        } catch (error) {
+          console.log(error);
         }
-      } catch (error) {
-        console.log(error);
+      } else {
+        setCroCrowBreed(null);
       }
-    } else {
-      setCroCrowBreed(null);
     }
+    asyncFunc();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [listing]);
 
-  useEffect(async () => {
-    if (listing && isCrognomidesCollection(listing.nftAddress) && crognomideBreed === null) {
-      const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
-      const contract = new Contract(
-        '0xE57742748f98ab8e08b565160D3A9A32BFEF7352',
-        ['function crognomidUsed(uint256) public view returns (bool)'],
-        readProvider
-      );
-      try {
-        const used = await contract.crognomidUsed(listing.nftId);
-        setCrognomideBreed(used);
-      } catch (error) {
-        console.log(error);
+  useEffect(() => {
+    async function asyncFunc() {
+      if (listing && isCrognomidesCollection(listing.nftAddress) && crognomideBreed === null) {
+        const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
+        const contract = new Contract(
+          '0xE57742748f98ab8e08b565160D3A9A32BFEF7352',
+          ['function crognomidUsed(uint256) public view returns (bool)'],
+          readProvider
+        );
+        try {
+          const used = await contract.crognomidUsed(listing.nftId);
+          setCrognomideBreed(used);
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        setCrognomideBreed(null);
       }
-    } else {
-      setCrognomideBreed(null);
     }
+    asyncFunc();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [listing]);
 
-  useEffect(async () => {
-    if (listing && isBabyWeirdApesCollection(listing.nftAddress)) {
-      const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
-      const abiFile = require(`../../Assets/abis/baby-weird-apes.json`);
-      const contract = new Contract(listing.nftAddress, abiFile.abi, readProvider);
-      try {
-        const apeInfo = await contract.apeInfo(listing.nftId);
-        setBabyWeirdApeBreed(apeInfo);
-      } catch (error) {
-        console.log(error);
+  useEffect(() => {
+    async function asyncFunc() {
+      if (listing && isBabyWeirdApesCollection(listing.nftAddress)) {
+        const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
+        const abiFile = require(`../../Assets/abis/baby-weird-apes.json`);
+        const contract = new Contract(listing.nftAddress, abiFile.abi, readProvider);
+        try {
+          const apeInfo = await contract.apeInfo(listing.nftId);
+          setBabyWeirdApeBreed(apeInfo);
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        setBabyWeirdApeBreed(null);
       }
-    } else {
-      setBabyWeirdApeBreed(null);
     }
+    asyncFunc();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [listing]);
 
   const fullImage = () => {
@@ -225,7 +237,7 @@ const Listing = () => {
             <div className="col-md-6 text-center">
               {listing ? (
                 listing.useIframe ? (
-                  <iframe width="100%" height="636" src={listing.iframeSource} />
+                  <iframe width="100%" height="636" src={listing.iframeSource} title="listing" />
                 ) : (
                   <>
                     {listing.nft.video ? (

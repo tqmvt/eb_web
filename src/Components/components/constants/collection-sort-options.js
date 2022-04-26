@@ -35,7 +35,7 @@ const sort = [
     key: 'id',
     direction: 'asc',
     label: 'Token ID (Low to High)',
-  }
+  },
 ];
 
 export const sortOptions = sort.map((x) => CollectionSortOption.fromJson(x));
