@@ -16,6 +16,7 @@ import config from '../../Assets/networks/rpc_config.json';
 import TopFilterBar from './TopFilterBar';
 import { marketPlaceCollectionFilterOptions } from './constants/filter-options';
 import { sortOptions } from './constants/sort-options';
+import {ListingsFilterOption} from "../Models/listings-filter-option.model";
 const knownContracts = config.known_contracts;
 
 const SalesCollection = ({
@@ -55,7 +56,7 @@ const SalesCollection = ({
     const sortOption = marketplace.cachedSort[cacheName] ?? defaultSort;
 
     if (collectionId) {
-      const filterOption = new FilterOption();
+      const filterOption = new ListingsFilterOption();
       filterOption.type = 'collection';
       filterOption.address = collectionId;
       filterOption.name = 'By Collection';
@@ -69,7 +70,7 @@ const SalesCollection = ({
     }
 
     if (sellerId) {
-      const filterOption = new FilterOption();
+      const filterOption = new ListingsFilterOption();
       filterOption.type = 'seller';
       filterOption.address = sellerId;
       filterOption.name = 'By Seller';
@@ -95,12 +96,8 @@ const SalesCollection = ({
   const selectDefaultSortValue = marketplace.cachedSort[cacheName] ?? defaultSort;
   const selectFilterOptions = marketPlaceCollectionFilterOptions;
   const selectSortOptions = useSelector((state) => {
-    if (state.marketplace.hasRank) {
-      return sortOptions;
-    }
-
     return sortOptions
-      .filter((s) => s.key !== 'rank')
+      .filter((s) => state.marketplace.hasRank || s.key !== 'rank')
       .map((o) => {
         if (o.key === 'listingId') {
           return defaultSort();
