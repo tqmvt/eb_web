@@ -3832,10 +3832,10 @@
       "multiToken": false,
       "address": "",
       "onChain": false,
-      "listable": true,
+      "listable": false,
       "metadata": {
         "description": "",
-        "verified": false,
+        "verified": true,
         "avatar": "/img/collections/likehumans/avatar.webp",
         "banner": "/img/collections/likehumans/banner.webp",
         "card": "/img/collections/likehumans/card.webp",
