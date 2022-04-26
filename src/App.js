@@ -36,6 +36,7 @@ const GlobalStyles = createGlobalStyle`
 
 function App() {
   const dispatch = useDispatch();
+  document.documentElement.setAttribute('data-theme', 'light');
 
   const userTheme = useSelector((state) => {
     return state.user.theme;
@@ -53,7 +54,7 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <div className={'wraper ' + (userTheme === 'dark' ? 'greyscheme' : '')}>
+      <div className="wraper">
         <GlobalStyles />
         <AppRouter firebase />
         <ScrollToTopBtn />

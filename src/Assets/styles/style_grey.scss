@@ -1,3 +1,5 @@
+@import './colors';
+
 /* CSS Document */
 
 
@@ -38,16 +40,7 @@
 
 */
 
-/*color*/
-$white: #fff;
-$gray: #bbb;
-$black: #111;
-$general: #a2a2a2;
-$black_soft: #333;
-$black_col: #2e333c;
-$black_more: #0f0f0f;
-$color: #FF343F;
-$color_more: #FC202C;
+
 .greyscheme .col-white{
   color: $white;
 }
