@@ -3886,7 +3886,7 @@
       "multiToken": false,
       "address": "",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "",
         "verified": true,
@@ -3897,6 +3897,25 @@
         "website": "http://www.artgroupink.com/",
         "twitter": "https://twitter.com/Ugonzo_Art",
         "discord": "https://discord.gg/wj72JCGdF4"
+      }
+    },
+    {
+      "name": "Cro Of Thrones",
+      "slug": "cro-of-thrones",
+      "multiToken": false,
+      "address": "",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/cro-of-thrones/avatar.webp",
+        "card": "/img/collections/cro-of-thrones/card.webp",
+        "banner": "/img/collections/cro-of-thrones/banner.webp",
+        "maxSupply": 2500,
+        "website": "https://www.hypednftclub.com/croofthrones",
+        "twitter": "https://twitter.com/Croofthrones",
+        "discord": "https://discord.gg/pYCaAwpZ"
       }
     }
   ],
@@ -5570,6 +5589,31 @@
       "memberCost": "459",
       "foundersOnly": false,
       "start": 1651454100000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false
+    },
+    {
+      "id": 64,
+      "slug": "cro-of-thrones",
+      "imgNft": "/img/drops/cro-of-thrones/drop.webp",
+      "imgPreview": "/img/drops/cro-of-thrones/drop.webp",
+      "imgAvatar": "/img/collections/cro-of-thrones/avatar.webp",
+      "imgBanner": "/img/collections/cro-of-thrones/banner.webp",
+      "title": "Cro Of Thrones",
+      "subtitle": "Cro of Thrones is a collection of 2500 uniquely generated NFTs stored on the Cronos Chain. Each COT NFT is inspired by unique Fantasy Worlds stories! Who shall take the throne of our fantasy world?",
+      "description": "Cro of Thrones is a collection of 2500 uniquely generated NFTs stored on the Cronos Chain. Each COT NFT is inspired by unique Fantasy Worlds stories! Who shall take the throne of our fantasy world?",
+      "author": { "name": "Hyped NFT Club", "link": "https://www.hypednftclub.com/croofthrones" },
+      "address": "",
+      "maxMintPerTx": 7,
+      "maxMintPerAddress": 100,
+      "totalSupply": 2500,
+      "cost": "180",
+      "memberCost": "160",
+      "foundersOnly": false,
+      "start": 1651521600000,
       "end": null,
       "referral": false,
       "is1155": false,
