@@ -273,7 +273,7 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
           return;
         }
         tx = await offerContract.makeOffer(nftData.address, nftData.id, {
-          value: ethers.utils.parseEther(offerPrice),
+          value: ethers.utils.parseEther(offerPrice.toString()),
         });
         receipt = await tx.wait();
       } else if (actionType === OFFER_TYPE.update) {
