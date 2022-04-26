@@ -911,9 +911,9 @@
       "metadata": {
         "description": "",
         "verified": false,
-        "avatar": "/img/collections/likehumans/avatar.jpg",
-        "banner": "/img/collections/likehumans/banner.jpg",
-        "card": "/img/collections/likehumans/card.jpg",
+        "avatar": "/img/collections/likehumans/avatar.webp",
+        "banner": "/img/collections/likehumans/banner.webp",
+        "card": "/img/collections/likehumans/card.webp",
         "maxSupply": 60,
         "website": "https://twitter.com/AtuchinArt"
       }
@@ -1987,10 +1987,10 @@
     {
       "id": 60,
       "slug": "like-humans",
-      "imgNft": "/img/drops/likehumans/drop.jpg",
-      "imgPreview": "/img/drops/likehumans/drop.jpg",
-      "imgAvatar": "/img/collections/likehumans/avatar.jpg",
-      "imgBanner": "/img/collections/likehumans/banner.jpg",
+      "imgNft": "/img/drops/likehumans/drop.webp",
+      "imgPreview": "/img/drops/likehumans/drop.webp",
+      "imgAvatar": "/img/collections/likehumans/avatar.webp",
+      "imgBanner": "/img/collections/likehumans/banner.webp",
       "title": "Like Humans",
       "subtitle": "The \"Like Humans\" series shows a kaleidoscope of emotions so well understood by all of us.",
       "description": "There is hope and faith and joy with childish eyes. Each work has its own color scheme, its own dramaturgy. The series is built in such a way that the works together look whole, and at the same time each of them is self-sufficient.",
