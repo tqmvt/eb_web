@@ -9,7 +9,16 @@ import { dataURItoBlob } from '../Store/utils';
 import { SortOption } from '../Components/Models/sort-option.model';
 import { CollectionSortOption } from '../Components/Models/collection-sort-option.model';
 import { FilterOption } from '../Components/Models/filter-option.model';
-import {caseInsensitiveCompare, convertIpfsResource, isMetapixelsCollection, isSouthSideAntsCollection} from '../utils';
+import {
+  caseInsensitiveCompare,
+  convertIpfsResource,
+  isAntMintPassCollection,
+  isMetapixelsCollection,
+  isSouthSideAntsCollection,
+  isWeirdApesCollection
+} from '../utils';
+import {getAntMintPassMetadata, getWeirdApesStakingStatus} from "./api/chain";
+import {fallbackImageUrl} from "./constants";
 
 const gatewayTools = new IPFSGatewayTools();
 const gateway = 'https://mygateway.mypinata.cloud';
@@ -1045,6 +1054,10 @@ export async function getNftFromFile(collectionId, nftId) {
         uri = await contract.tokenURI(nftId);
       }
 
+      if (isAntMintPassCollection(collectionId)) {
+        uri = 'https://gateway.pinata.cloud/ipfs/QmWLqeupPQsb4MTtJFjxEniQ1F67gpQCzuszwhZHFx6rUM'
+      }
+
       if (gatewayTools.containsCID(uri)) {
         try {
           uri = gatewayTools.convertToDesiredGateway(uri, gateway);
@@ -1222,6 +1235,11 @@ console.log(results);
       const listingId = listed ? getListing(knownContract.address, nft.nftId).listingId : null;
       const price = listed ? getListing(knownContract.address, nft.nftId).price : null;
 
+      if (isAntMintPassCollection(nft.nftAddress)) {
+        const metadata = await getAntMintPassMetadata(nft.nftAddress, nft.nftId);
+        if (metadata) nft = {...nft, ...metadata}
+      }
+
       let image;
       try {
         if (nft.image_aws || nft.image) {
@@ -1252,9 +1270,22 @@ console.log(results);
           }
         }
       } catch (e) {
-        console.log(e, nft);
+        image = fallbackImageUrl;
+        console.log(e);
       }
 
+      let isStaked = false;
+      let canTransfer = true;
+      let canSell = true;
+      if (isWeirdApesCollection(nft.nftAddress)) {
+        const staked = await getWeirdApesStakingStatus(nft.nftAddress, nft.nftId);
+        if (staked) {
+          canTransfer = false;
+          canSell = false;
+          isStaked = true;
+        }
+      }
+      
       return {
         id: nft.nftId,
         name: nft.name,
@@ -1270,8 +1301,9 @@ console.log(results);
         listed,
         listingId,
         price,
-        canSell: true,
-        canTransfer: true,
+        canSell: canSell,
+        canTransfer: canTransfer,
+        isStaked: isStaked,
       }
     })
   );

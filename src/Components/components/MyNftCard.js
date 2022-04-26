@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import config from '../../Assets/networks/rpc_config.json';
 import { croSkullRedPotionImageHack } from '../../hacks';
 import ReactPlayer from 'react-player';
+import {fallbackImageUrl} from "../../core/constants";
 
 const MyNftCard = ({
   nft,
@@ -69,6 +70,10 @@ const MyNftCard = ({
           className="card-img-top marketplace"
           style={{ cursor: 'pointer' }}
           alt={nft.name}
+          onError={({ currentTarget }) => {
+            currentTarget.onerror = null;
+            currentTarget.src = fallbackImageUrl;
+          }}
         />
       )}
       {nft.rank && typeof nft.rank === 'number' && (
