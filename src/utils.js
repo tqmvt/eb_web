@@ -329,6 +329,10 @@ export const isSouthSideAntsCollection = (address) => {
   return isCollection(address, 'south-side-ants');
 };
 
+export const isAntMintPassCollection = (address) => {
+  return isCollection(address, 'ant-mint-pass');
+};
+
 export const isCrosmocraftsPartsCollection = (address) => {
   return isCollection(address, 'crosmocrafts-parts');
 };
