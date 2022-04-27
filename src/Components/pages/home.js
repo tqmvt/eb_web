@@ -4,6 +4,8 @@ import { useHistory } from 'react-router-dom';
 import { keyframes } from '@emotion/react';
 import Reveal from 'react-awesome-reveal';
 import { createGlobalStyle, default as styled } from 'styled-components';
+import { faFire } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Footer from '../components/Footer';
 import ListingCollection from '../components/ListingCollection';
@@ -12,8 +14,6 @@ import CurrentDrops from '../components/CurrentDrops';
 import { getMarketData } from '../../GlobalState/marketplaceSlice';
 import { siPrefixedNumber } from '../../utils';
 import { theme } from '../../Theme/theme';
-import { faFire } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const fadeInUp = keyframes`
   0% {
@@ -104,7 +104,7 @@ const Jumbotron = {
     display: flex;
     flex-direction: column;
     gap: 30px;
-    background: #ffffffdd;
+    background: ${({ theme }) => theme.colors.bgColor2};
     border-radius: 10px;
   `,
 };
