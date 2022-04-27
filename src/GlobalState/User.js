@@ -26,7 +26,7 @@ import { FilterOption } from '../Components/Models/filter-option.model';
 import { nanoid } from 'nanoid';
 import { appAuthInitFinished } from './InitSlice';
 import { captureException } from '@sentry/react';
-import {CNS} from "@cnsdomains/core";
+import {CNS, TextRecords} from "@cnsdomains/core";
 
 const userSlice = createSlice({
   name: 'user',
@@ -517,8 +517,26 @@ export const connectAccount =
         }
 
         try {
+          console.log('working on deets')
           const cns = new CNS(config.chain_id, provider);
           cnsProfile.name = await cns.getName('0x8518094dfB04a118F209F62f333a44Ded824be0e');
+          if (cnsProfile.name) {
+            cnsProfile.twitter = await cns.name(cnsProfile.name).getText(TextRecords.Twitter);
+            cnsProfile.avatar = await cns.name(cnsProfile.name).getText(TextRecords.Avatar);
+            cnsProfile.discord = await cns.name(cnsProfile.name).getText(TextRecords.Discord);
+            cnsProfile.telegram = await cns.name(cnsProfile.name).getText(TextRecords.Telegram);
+            cnsProfile.instagram = await cns.name(cnsProfile.name).getText(TextRecords.Instagram);
+            cnsProfile.email = await cns.name(cnsProfile.name).getText(TextRecords.Email);
+            cnsProfile.url = await cns.name(cnsProfile.name).getText(TextRecords.Url);
+
+            cnsProfile.details = await cns.name(cnsProfile.name).getDetails();
+            cnsProfile.owner = await cns.name(cnsProfile.name).getOwner();
+            cnsProfile.content = await cns.name(cnsProfile.name).getContent();
+            cnsProfile.address = await cns.name(cnsProfile.name).getAddress();
+            cnsProfile.resolverAddr = await cns.name(cnsProfile.name).getResolverAddr();
+
+          }
+          console.log('deets?', cnsProfile);
         } catch (e) {
           console.log('cns error', e);
         }
