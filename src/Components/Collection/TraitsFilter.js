@@ -91,7 +91,7 @@ const TraitsFilter = ({ address }) => {
 
   return (
     <>
-      <div className="mb-4">
+      <div className="mb-2">
         <div className="d-flex justify-content-between align-middle">
           <h3
             className="d-inline-block"

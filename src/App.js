@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import ScrollToTopBtn from './Components/menu/ScrollToTop';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { AppRouter } from './Router/Router';
-import { theme } from './Theme/theme';
+import { getTheme } from './Theme/theme';
 import { toast, ToastContainer } from 'react-toastify';
 
 import { initializeApp } from 'firebase/app';
@@ -36,7 +36,8 @@ const GlobalStyles = createGlobalStyle`
 
 function App() {
   const dispatch = useDispatch();
-  document.documentElement.setAttribute('data-theme', 'dark');
+  const light = 'dark';
+  document.documentElement.setAttribute('data-theme', light);
 
   const userTheme = useSelector((state) => {
     return state.user.theme;
@@ -53,7 +54,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={getTheme(light)}>
       <div className="wraper">
         <GlobalStyles />
         <AppRouter firebase />

@@ -1,9 +1,4 @@
-/* Copied colors from style.scss */
-$color: #218cff;
-$gray: #bbb;
-$black: #111;
-$white: #fff;
-$color_more: #35669e;
+@import './colors';
 
 
 
@@ -101,7 +96,7 @@ canvas {
 .author_list_pp {
     &:hover canvas{
         padding: 3px;
-        -webkit-box-shadow: 0px 0px 0px 2px $color;
+        -webkit-box-shadow: 0px 0px 0px 2px $blue;
         transition: .3s;
     }
 }
@@ -134,8 +129,8 @@ canvas {
     outline: none;
     &:hover {
         color: $white;
-        background: $color;
-        border: solid 1px $color;
+        background: $blue;
+        border: solid 1px $blue;
     }
 }
 
@@ -314,8 +309,9 @@ canvas {
     border-radius: 15px;
     -moz-border-radius: 15px;
     -webkit-border-radius: 15px;
-    background: #ffffff;
+    background: $bgColor1;
     transition: .7s;
+    overflow: hidden;
 
     img {
         width: 100%;
@@ -391,7 +387,7 @@ canvas {
 .eb-social-icons .eb-icon_stack {
     .layer-1 {
         border-radius: 5px;
-        color: $color_more
+        color: $darkBlue
     }
 }
 .profile_avatar .d_profile_img .eb-avatar_badge {
@@ -451,7 +447,7 @@ canvas {
     border-radius: 30px;
     -moz-border-radius: 30px;
     -webkit-border-radius: 30px;
-    border: solid 2px $color;
+    border: solid 2px $blue;
     z-index: 1;
     color: #0d0c22;
     margin: 4px 4px;
@@ -523,5 +519,18 @@ canvas {
 
     tbody td {
         padding: 0 5px;
+    }
+}
+
+/* accordion */
+.accordion {
+    .accordion-button {
+        background: $bgColor1;
+        color: $textColor1;
+        padding: 0.25rem 1.25rem;
+    }
+
+    .accordion-body {
+        background: $bgColor1;
     }
 }
