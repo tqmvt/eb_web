@@ -1986,6 +1986,26 @@
       }
     },
     {
+      "name": "Baby Ape Art Club",
+      "slug": "baby-ape-art-club",
+      "multiToken": false,
+      "address": "0x6d17655195790072233D26a0Dd841Fc9bE8C41cC",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "Baby Ape Art Club a collection for those who love APE Banana and ART Artist palette 2000 baby monkeys with different asset different role and stories",
+        "verified": false,
+        "avatar": "/img/collections/crayonartapeclub/baby/avatar.gif",
+        "card": "/img/collections/crayonartapeclub/baby/card.png",
+        "banner": "/img/collections/crayonartapeclub/baby/banner.png",
+        "maxSupply": 2000,
+        "twitter": "https://twitter.com/CrayonApe",
+        "website": "https://crayon-ape.com/",
+        "discord": "https://discord.gg/JDXQp85yNh",
+        "medium": "https://medium.com/@crayonapeac"
+      }
+    },
+    {
       "name": "Majestic Minotaurs",
       "slug": "majestic-minotaurs",
       "multiToken": false,
