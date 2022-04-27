@@ -4,9 +4,11 @@
   "private": true,
   "dependencies": {
     "@apollo/client": "^3.5.10",
+    "@cnsdomains/core": "^0.1.0",
     "@deficonnect/web3-provider": "^1.6.13",
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
+    "@ensdomains/eth-ens-namehash": "^2.0.15",
     "@firebase/analytics": "^0.7.4",
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-brands-svg-icons": "^5.15.4",

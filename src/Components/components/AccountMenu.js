@@ -28,6 +28,7 @@ import {
 import rpcConfig from '../../Assets/networks/rpc_config.json';
 
 import HandHoldingCroIcon from 'src/Assets/images/hand-holding-cro.svg';
+import {shortAddress} from "../../utils";
 
 const AccountMenu = function () {
   const dispatch = useDispatch();
@@ -172,10 +173,7 @@ const AccountMenu = function () {
               <div className="d-wallet">
                 <h4>My Wallet</h4>
                 <div className="d-flex justify-content-between">
-                  <span id="wallet" className="d-wallet-address">{`${walletAddress.substring(
-                    0,
-                    4
-                  )}...${walletAddress.substring(walletAddress.length - 3, walletAddress.length)}`}</span>
+                  <span id="wallet" className="d-wallet-address">{user.cnsProfile?.name ?? shortAddress(walletAddress)}</span>
                   <button className="btn_menu" title="Copy Address" onClick={handleCopy(walletAddress)}>
                     Copy
                   </button>

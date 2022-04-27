@@ -26,6 +26,7 @@ import { FilterOption } from '../Components/Models/filter-option.model';
 import { nanoid } from 'nanoid';
 import { appAuthInitFinished } from './InitSlice';
 import { captureException } from '@sentry/react';
+import {CNS} from "@cnsdomains/core";
 
 const userSlice = createSlice({
   name: 'user',
@@ -52,7 +53,7 @@ const userSlice = createSlice({
     stateContract: null,
     auctionContract: null,
     offerContract: null,
-    // ebisuContract : null,
+    cnsContract: null,
 
     correctChain: false,
     showWrongChainModal: false,
@@ -87,6 +88,8 @@ const userSlice = createSlice({
 
     // Theme
     theme: 'light',
+
+    cnsProfile: {}
   },
   reducers: {
     accountChanged(state, action) {
@@ -104,8 +107,8 @@ const userSlice = createSlice({
       state.marketBalance = action.payload.marketBalance;
       state.auctionContract = action.payload.auctionContract;
       state.offerContract = action.payload.offerContract;
-      // state.ebisuContract = action.payload.ebisuContract;
       state.gettingContractData = false;
+      state.cnsProfile = action.payload.cnsProfile;
     },
 
     onCorrectChain(state, action) {
@@ -274,6 +277,7 @@ const userSlice = createSlice({
       state.mySoldNfts = [];
       state.myUnfilteredListingsFetching = false;
       state.myUnfilteredListings = [];
+      state.cnsProfile = {};
     },
     onThemeChanged(state, action) {
       console.log('onThemeChanged', action.payload);
@@ -489,7 +493,7 @@ export const connectAccount =
       let offer;
       let sales;
       let stakeCount = 0;
-      // let ebisu;
+      const cnsProfile = {};
 
       if (signer && correctChain) {
         mc = new Contract(config.membership_contract, Membership.abi, signer);
@@ -510,6 +514,13 @@ export const connectAccount =
           balance = ethers.utils.formatEther(await provider.getBalance(address));
         } catch (error) {
           console.log('Error checking CRO balance', error);
+        }
+
+        try {
+          const cns = new CNS(config.chain_id, provider);
+          cnsProfile.name = await cns.getName('0x8518094dfB04a118F209F62f333a44Ded824be0e');
+        } catch (e) {
+          console.log('cns error', e);
         }
       }
 
@@ -533,6 +544,7 @@ export const connectAccount =
           auctionContract: auction,
           offerContract: offer,
           marketBalance: sales,
+          cnsProfile: cnsProfile
         })
       );
     } catch (error) {
