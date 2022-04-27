@@ -4005,7 +4005,7 @@
       "listable": true,
       "metadata": {
         "description": "",
-        "verified": true,
+        "verified": false,
         "avatar": "/img/collections/electric-vibrations/avatar.webp",
         "card": "/img/collections/electric-vibrations/card.webp",
         "banner": "/img/collections/electric-vibrations/banner.webp",
@@ -4014,7 +4014,8 @@
         "twitter": "https://twitter.com/susandoyleart",
         "discord": "https://discord.gg/Rym5kUta"
       }
-    },{
+    },
+    {
       "name": "Tough Lions",
       "slug": "tough-lions",
       "multiToken": false,
