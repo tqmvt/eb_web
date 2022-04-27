@@ -72,7 +72,7 @@ const MyNftCardList = ({ nfts = [], isLoading, listedOnly, activeFilterOption, u
 
   return (
     <>
-      {isLoading ? (
+      {isLoading && nfts.length === 0 ? (
         <div className="row">
           <div className="row mt-4">
             <div className="col-lg-12 text-center">

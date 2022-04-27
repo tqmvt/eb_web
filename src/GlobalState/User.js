@@ -665,29 +665,15 @@ export const fetchChainNfts = (abortSignal) => async (dispatch, getState) => {
 
   const walletAddress = state.user.address;
   const walletProvider = state.user.provider;
-  const nftsInitialized = state.user.nftsInitialized;
-  if (!nftsInitialized) {
-    dispatch(fetchingNfts());
+
+  dispatch(fetchingNfts());
+  try {
     const response = await getNftsForAddress(walletAddress, walletProvider, (nfts) => {
       dispatch(onNftsAdded(nfts));
     }, abortSignal);
     if (abortSignal.aborted) return;
     dispatch(setIsMember(response.isMember));
     await addRanksToNfts(dispatch, getState);
-    dispatch(nftsFetched());
-    return;
-  }
-
-  dispatch(fetchingNfts());
-  const loadedNfts = [];
-  try {
-    const response = await getNftsForAddress(walletAddress, walletProvider, (nfts) => {
-      loadedNfts.push(...nfts);
-    }, abortSignal);
-    if (abortSignal.aborted) return;
-    dispatch(onNftsReplace(loadedNfts));
-    await addRanksToNfts(dispatch, getState);
-    dispatch(setIsMember(response.isMember));
     dispatch(nftsFetched());
   } catch (err) {
     if (err.name === 'AbortError') {
