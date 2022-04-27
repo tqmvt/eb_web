@@ -86,6 +86,9 @@ const MyNfts = ({ walletAddress, isLoading }) => {
                     <NftCardList useChain={showChainSearch} />
                   </>
                 )}
+                <MyNftTransferDialog />
+                <MyNftCancelDialog />
+                <MyNftListDialog />
               </>
             )}
             {openTab === 1 && (
@@ -96,9 +99,6 @@ const MyNfts = ({ walletAddress, isLoading }) => {
             )}
           </div>
         </div>
-        <MyNftTransferDialog />
-        <MyNftCancelDialog />
-        <MyNftListDialog />
       </section>
 
       <Footer />
