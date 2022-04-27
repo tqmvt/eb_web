@@ -3855,7 +3855,7 @@
       "name": "Like Humans",
       "slug": "like-humans",
       "multiToken": false,
-      "address": "",
+      "address": "0xa0F71da7ebA2C23DFaaEb36a880fe3fA07d78A8a",
       "onChain": false,
       "listable": false,
       "metadata": {
@@ -5651,7 +5651,7 @@
       "subtitle": "The \"Like Humans\" series shows a kaleidoscope of emotions so well understood by all of us.",
       "description": "There is hope and faith and joy with childish eyes. Each work has its own color scheme, its own dramaturgy. The series is built in such a way that the works together look whole, and at the same time each of them is self-sufficient.",
       "author": { "name": "Like Humans", "link": "https://twitter.com/AtuchinArt" },
-      "address": "",
+      "address": "0xa0F71da7ebA2C23DFaaEb36a880fe3fA07d78A8a",
       "maxMintPerTx": 1,
       "maxMintPerAddress": 50,
       "totalSupply": 60,
