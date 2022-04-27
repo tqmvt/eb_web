@@ -4014,6 +4014,23 @@
         "twitter": "https://twitter.com/susandoyleart",
         "discord": "https://discord.gg/Rym5kUta"
       }
+    },{
+      "name": "Tough Lions",
+      "slug": "tough-lions",
+      "multiToken": false,
+      "address": "0xb242399f3f52fcfa8b09d7d6e4C3DBe84D0644fc",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": false,
+        "avatar": "/img/collections/toughlions/avatar.png",
+        "card": "/img/collections/toughlions/card.png",
+        "banner": "/img/collections/toughlions/banner.png",
+        "maxSupply": 1111,
+        "twitter": "https://twitter.com/ToughLions1111",
+        "discord": "https://discord.com/invite/8ssS2RWZvn"
+      }
     }
   ],
   "drops": [
