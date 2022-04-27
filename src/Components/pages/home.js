@@ -84,8 +84,10 @@ const Jumbotron = {
   Host: styled.div.attrs(({ theme }) => ({
     className: '',
   }))`
-    background-image: url('/img/background/Ebisus-bg-1_L.webp');
-    background-size: cover;
+    background-image: url(${({ isDark }) =>
+      isDark ? '/img/background/banner-dark.webp' : '/img/background/Ebisus-bg-1_L.webp'});
+    background-size: ${({ isDark }) => (!isDark ? 'cover' : '100% 100%')};
+    background-repeat: no-repeat;
     height: max(100vh, 800px);
     display: flex;
     align-items: center;
@@ -117,6 +119,9 @@ const Home = () => {
 
   const marketData = useSelector((state) => {
     return state.marketplace.marketData;
+  });
+  const userTheme = useSelector((state) => {
+    return state.user.theme;
   });
 
   useEffect(() => {
@@ -237,7 +242,9 @@ const Home = () => {
       {/*    </p>*/}
       {/*  </div>*/}
       {/*</section>*/}
-      <Jumbotron.Host>{!mobile && <div className="container">{JumbotronData()}</div>}</Jumbotron.Host>
+      <Jumbotron.Host isDark={userTheme === 'dark'}>
+        {!mobile && <div className="container">{JumbotronData()}</div>}
+      </Jumbotron.Host>
       {mobile && JumbotronData()}
 
       <section className="container no-bottom">

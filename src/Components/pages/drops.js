@@ -31,7 +31,7 @@ const Drops = () => {
       </section>
       <section
         className="jumbotron breadcumb no-bg h-vh"
-        style={{ backgroundImage: `url(${userTheme !== 'light' ? './img/background/12.webp' : ''})` }}
+        style={{ backgroundImage: `url(${userTheme === 'light' ? './img/background/12.webp' : ''})` }}
       >
         <div className="container">
           <div className="row py-4">
