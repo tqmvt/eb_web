@@ -3936,6 +3936,27 @@
         "twitter": "https://twitter.com/SelfieVerseNFT",
         "discord": "http://www.discord.gg/selfiesofthemultiverse"
       }
+    },
+    {
+      "name": "Genesis Crates",
+      "slug": "genesis-crates",
+      "multiToken": false,
+      "address": "",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/genesis-crates/avatar.webp",
+        "card": "/img/collections/genesis-crates/card.webp",
+        "banner": "/img/collections/genesis-crates/banner.webp",
+        "maxSupply": 5000,
+        "website": "https://crowboys.online/",
+        "twitter": "https://twitter.com/CrowboysGameFi",
+        "discord": "https://discord.gg/crowboys",
+        "medium": "https://medium.com/@crowboysonline",
+        "telegram": "https://t.me/crowboys"
+      }
     }
   ],
   "drops": [
@@ -5665,6 +5686,32 @@
       "published": true,
       "complete": false,
       "embed": "<div style=\"position: relative; padding-top: 100%;\"><iframe src=\"https://iframe.mediadelivery.net/embed/27293/2eb556f6-6f3a-487d-a41f-a6498879eecc?autoplay=true&loop=true&muted=true\" loading=\"lazy\" style=\"border: none; position: absolute; top: 0; height: 100%; width: 100%;\" allow=\"accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;\" allowfullscreen=\"true\"></iframe></div>"
+    },
+    {
+      "id": 66,
+      "slug": "genesis-crates",
+      "imgNft": "/img/drops/genesis-crates/drop.webp",
+      "imgPreview": "/img/drops/genesis-crates/drop.webp",
+      "imgAvatar": "/img/collections/genesis-crates/avatar.webp",
+      "imgBanner": "/img/collections/genesis-crates/banner.webp",
+      "title": "Genesis Crates",
+      "subtitle": "The Genesis Crates is a collection of 5000 NFTs being the first NFTs in the Crowboys Online Ecosystem. These crates come in three rarities (Good, Bad and Ugly), but every crate has its own attributes! Thanks to them you can generate $West token, find wealthy treasure inside, get weapons airdropped, and much more! They also give the holder a variety of other benefits detailed in our whitepaper like royalties paid through staking, discounts in the metaverse saloon, and an automatic whitelist for the next NFT - Genesis Crowboy to name a few.",
+      "description": "The Genesis Crates Collection and the first NFT for Crowboys Online. These crates come in three rarities (Good, Bad and Ugly), and allow the holder to generate passive income in the form of our $WEST token while staked. $WEST will be used in our First-Person Shooter video game and our metaverse ecosystem. With $WEST you can purchase and trade: weapons, skins, horses, wearables, properties, play mini-games or deposit it before playing the competitive mode(Compete 2 Earn).\n\n✮Rarity System % daily passive income:Good 93%= 1x $WEST daily Bad 6%= 1.5x $WEST daily + bad banner airdrop Ugly 1%= 3.5x $WEST daily + ugly banner airdrop \n\n✮Crates will also have 2 weapons inside already, so whenever they come live, holders will get airdrops! They come in different conditions though!\n\n✮Crates will be able to open to get a random treasure (with wealth multiplier from 0 to 10).\n\nMore Benefits:\n\n✮80% of royalties go to holders through Staking.\n✮5% discount in the metaverse saloon!\n✮Automatic whitelist for the next NFT - Genesis Crowboy\n✮First of two genesis NFTs you need to hold to become a Genesis Member, which will be rewarded with special Events, Airdrops & possibility of Alpha/Beta testing of the game and metaverse.\n✮And much more!",
+      "author": { "name": "Crowboys", "link": "https://crowboys.online/" },
+      "address": "",
+      "maxMintPerTx": 8,
+      "maxMintPerAddress": 100,
+      "totalSupply": 5000,
+      "cost": "435",
+      "memberCost": "335",
+      "whitelistCost": "335",
+      "foundersOnly": false,
+      "start": 1651780800000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false
     }
   ],
   "auctions": [
