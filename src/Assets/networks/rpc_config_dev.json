@@ -3473,10 +3473,10 @@
       "multiToken": false,
       "address": "",
       "onChain": false,
-      "listable": true,
+      "listable": false,
       "metadata": {
         "description": "",
-        "verified": false,
+        "verified": true,
         "avatar": "/img/collections/kardia/avatar.webp",
         "card": "/img/collections/kardia/card.webp",
         "banner": "/img/collections/kardia/banner.webp",
