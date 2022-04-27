@@ -1258,6 +1258,8 @@ export async function getNftsForAddress2(walletAddress, walletProvider) {
           } else if (typeof(nft.token_uri) === 'object'){
             image = nft.token_uri.image;
           }
+        } else {
+          image = fallbackImageUrl;
         }
       } catch (e) {
         image = fallbackImageUrl;
