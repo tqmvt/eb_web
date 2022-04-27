@@ -36,7 +36,7 @@ const GlobalStyles = createGlobalStyle`
 
 function App() {
   const dispatch = useDispatch();
-  document.documentElement.setAttribute('data-theme', 'light');
+  document.documentElement.setAttribute('data-theme', 'dark');
 
   const userTheme = useSelector((state) => {
     return state.user.theme;

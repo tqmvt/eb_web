@@ -72,7 +72,6 @@ strong {
 }
 section {
   padding: 90px 0;
-  // background: $bgColor1; // todo: dark
   &.no-top {
     padding-top: 0 !important;
   }
@@ -83,7 +82,7 @@ section {
     display: block;
     width: 50px;
     height: 2px;
-    background: $color;
+    background: $blue;
     border-left: none;
     border-left-color: currentcolor;
     border-right: none;
@@ -100,7 +99,7 @@ section {
   display: block;
   overflow: hidden;
   width: 100%;
-  // background: $bgColor1; // todo: dark
+  background: $bgColor1;
 
   .wraperitem {
     width: 100%;
@@ -135,7 +134,7 @@ section {
   background: $black_more;
 }
 .color {
-  color: $color;
+  color: $blue;
 }
 .btn {
   position: relative;
@@ -143,7 +142,7 @@ section {
   font-size: 11pt;
   color: $white;
   background: none;
-  border: 2px solid $color;
+  border: 2px solid $blue;
   border-radius: 0;
   padding: 10px 44px;
   -webkit-transition-delay: 0s;
@@ -161,7 +160,7 @@ section {
     top: 0;
     left: 0;
     position: absolute;
-    background-image: linear-gradient(to left, $color, $color_more);
+    background-image: linear-gradient(to left, $blue, $darkBlue);
     opacity: 0;
     z-index: 1;
     transition: all 0.3s ease;
@@ -228,7 +227,7 @@ section {
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent;
   display: inline-block;
-  background: linear-gradient(to bottom, $color, $color_more);
+  background: linear-gradient(to bottom, $blue, $darkBlue);
 }
 .spacer-10 {
   width: 100%;
@@ -643,7 +642,7 @@ p.lead {
   width: max-content;
   text-align: center;
   color: #fff !important;
-  background: $color;
+  background: $blue;
   border-radius: 6px;
   letter-spacing: normal;
   outline: 0;
@@ -663,7 +662,7 @@ p.lead {
     display: inline-block;
     margin-right: 15px;
     &.white {
-      color: $color_more !important;
+      color: $darkBlue !important;
       background: $white;
     }
   }
@@ -698,7 +697,7 @@ p.lead {
     display: inline-block;
     margin-right: 15px;
     &.white {
-      color: $color_more !important;
+      color: $darkBlue !important;
       background: $white;
     }
   }
@@ -729,7 +728,7 @@ p.lead {
     display: inline-block;
     margin-right: 15px;
     &.white {
-      color: $color_more !important;
+      color: $darkBlue !important;
       background: $white;
     }
   }
@@ -767,7 +766,7 @@ a {
     box-shadow: none !important;
   }
   &:hover {
-    color: $color;
+    color: $blue;
   }
 }
 .dropdown-toggle::after {
@@ -810,7 +809,7 @@ a {
       text-align: left;
       &:hover {
         color: $white !important;
-        background: $color;
+        background: $blue;
       }
       &:last-child {
         border-bottom: none;
@@ -904,7 +903,7 @@ a {
       top: 22px;
       display: block;
       width: 0;
-      border-bottom: 2px solid $color;
+      border-bottom: 2px solid $blue;
       transition: 0.7s;
     }
     &:hover {
@@ -1202,7 +1201,7 @@ a {
   font-size: 11pt;
   letter-spacing: 1px;
   color: $white;
-  border: 2px solid $color;
+  border: 2px solid $blue;
   background: none;
   border-radius: 0;
   padding: 0 44px;
@@ -1221,7 +1220,7 @@ a {
     top: -100%;
     left: -100%;
     position: absolute;
-    background-image: linear-gradient(to left, $color, $color_more);
+    background-image: linear-gradient(to left, $blue, $darkBlue);
     opacity: 0;
     z-index: 1;
     transition: all 0.3s ease;
@@ -1458,7 +1457,7 @@ a {
         cursor: pointer;
         transition: all 0.3s ease;
         &:hover {
-          color: $color;
+          color: $blue;
           transition: all 0.3s ease;
         }
       }
@@ -1511,7 +1510,7 @@ a {
 .col-feature {
   display: block;
   .sub-color {
-    color: $color;
+    color: $blue;
     font-size: 1.6rem;
     font-weight: 700;
   }
@@ -1611,7 +1610,7 @@ a {
     position: relative;
     text-align: center;
     .heading {
-      color: $color;
+      color: $blue;
       font-weight: 500;
       font-size: 1.2rem;
       margin-bottom: 10px;
@@ -1627,7 +1626,7 @@ a {
       font-size: 11pt;
       letter-spacing: 1px;
       color: #fff;
-      border: 2px solid $color;
+      border: 2px solid $blue;
       background: none;
       border-radius: 0;
       padding: 0 44px;
@@ -1637,7 +1636,7 @@ a {
       cursor: pointer;
       transition: all 0.3s ease;
       &:hover {
-        background: $color;
+        background: $blue;
         border: 2px solid rgba(0, 0, 0, 0);
         transition: all 0.3s ease;
         .shine {
@@ -1652,13 +1651,12 @@ a {
 /*** footer ***/
 footer {
   padding: 80px 0 0 0;
-  background: rgba(255, 255, 255, 0.025) !important; // todo: dark
   &.footer-light {
-    background: #ffffff !important;
-    border-top: solid 1px #eeeeee; // todo: dark rgba(255,255,255,.025)
-    color: #595d69; // todo: dark #a2a2a2
+    background: $bgColor1;
+    border-top: solid 1px $borderColor1;
+    color: $textColor2;
     a {
-      color: #595d69; // todo: dark #a2a2a2
+      color: $textColor2;
       font-weight: 400;
       text-decoration: none !important;
     }
@@ -1683,7 +1681,7 @@ footer {
         font-size: 28px;
         float: left;
         width: 20%;
-        background: $color;
+        background: $blue;
         color: #ffffff;
         display: table-cell;
         padding: 5px 0 5px 0;
@@ -1718,11 +1716,11 @@ footer {
       .social-icons {
         display: inline-block;
         span {
-          color: #595d69;
+          color: $textColor2;
           i {
             text-shadow: none;
             color: $white;
-            background: $color_more; // todo: dark #212428
+            background: $darkBlue; // todo: dark #212428
             padding: 12px 10px 8px 10px;
             width: 34px;
             height: 34px;
@@ -1780,7 +1778,7 @@ footer {
     text-align: center;
     line-height: 30px;
     border-radius: 30px;
-    background: $color;
+    background: $blue;
     transition: all 0.3s ease;
     &:hover {
       transform: scale(1.1);
@@ -1870,7 +1868,7 @@ footer {
       position: absolute;
       top: 0;
       left: 0;
-      background: $color_more;
+      background: $darkBlue;
       z-index: 0;
       opacity: 0.8;
     }
@@ -1923,7 +1921,7 @@ footer {
         text-decoration: none;
         transition: all 0.3s ease;
         &:hover {
-          color: $color;
+          color: $blue;
           transition: all 0.3s ease;
         }
       }
@@ -1965,7 +1963,7 @@ footer {
     font-size: 11pt;
     color: $white;
     background: none;
-    border: 2px solid $color;
+    border: 2px solid $blue;
     border-radius: 0;
     padding: 8px 50px;
     margin-top: 15px;
@@ -1984,7 +1982,7 @@ footer {
       top: 0;
       left: 0;
       position: absolute;
-      background-image: linear-gradient(to left, $color, $color_more);
+      background-image: linear-gradient(to left, $blue, $darkBlue);
       opacity: 0;
       z-index: 1;
       transition: all 0.3s ease;
@@ -2024,7 +2022,7 @@ footer {
   background-color: rgb(242, 246, 254);
   &.text-light {
     color: $white;
-    background: $color_more;
+    background: $darkBlue;
     margin-bottom: 0;
     h3 {
       color: $white;
@@ -2046,7 +2044,7 @@ address {
     line-height: 1.7em;
     margin-bottom: 5px;
     i {
-      color: $color;
+      color: $blue;
       margin-top: 5px;
       margin-left: 5px;
       margin-right: 15px;
@@ -2055,7 +2053,7 @@ address {
     .btn {
       display: inline-block;
       border: 0;
-      color: $color;
+      color: $blue;
       padding: 0;
       margin: 0;
       &:hover {
@@ -2087,7 +2085,7 @@ address {
   padding-top: 20px;
   .p-tagline,
   .p-title {
-    background: $color_more;
+    background: $darkBlue;
     color: $white;
     position: absolute;
     top: 20px;
@@ -2152,7 +2150,7 @@ address {
 }
 .pagination > .active > .a {
   color: #ffffff;
-  background: $color;
+  background: $blue;
 }
 
 /*** create file ***/
@@ -2216,7 +2214,7 @@ address {
       text-align: center;
       border-radius: 100%;
       background: #eee; // todo: dark border: solid 1px rgba(255,255,255,.01);
-      color: $color;
+      color: $blue;
       margin-right: 10px;
     }
   }
@@ -2286,7 +2284,7 @@ address {
       right: 20px;
       top: 30%;
       font-size: 26px;
-      color: $color;
+      color: $blue;
       background: #fff;
       height: 48px;
       width: 48px;
@@ -2304,7 +2302,7 @@ address {
 #follow.active,
 #offer.active,
 #like.active {
-  background: $color !important;
+  background: $blue !important;
   color: $white;
 }
 
@@ -2408,7 +2406,7 @@ i.font60 {
   text-align: center;
   font-size: 28px;
   color: #ffffff;
-  background: $color;
+  background: $blue;
   padding: 14px 0;
   width: 56px;
   height: 56px;
@@ -2653,7 +2651,7 @@ i.font60 {
 .nft_coll_pp i {
   font-size: 10px;
   color: #ffffff;
-  background: $color;
+  background: $blue;
   border-radius: 100%;
   -moz-border-radius: 100%;
   -webkit-border-radius: 100%;
@@ -2832,7 +2830,7 @@ i.font60 {
   font-size: 14px;
   span {
     font-weight: bold;
-    color: $color;
+    color: $blue;
   }
 }
 .nft__item_like {
@@ -2860,7 +2858,7 @@ i.font60 {
   border-radius: 30px;
   -moz-border-radius: 30px;
   -webkit-border-radius: 30px;
-  border: solid 2px $color;
+  border: solid 2px $blue;
   z-index: 1;
   color: #0d0c22; // todo: dark $white
   .Clock-days {
@@ -2890,7 +2888,7 @@ i.font60 {
   display: inline-block;
   width: 50px;
   height: auto;
-  background: $color;
+  background: $blue;
   margin-left: 10px;
   margin-top: -3px;
   border-radius: 100% !important;
@@ -2898,7 +2896,7 @@ i.font60 {
   transition: 0.3s;
   &:hover img {
     padding: 3px;
-    -webkit-box-shadow: 0px 0px 0px 2px $color;
+    -webkit-box-shadow: 0px 0px 0px 2px $blue;
     transition: 0.3s;
   }
 }
@@ -2914,7 +2912,7 @@ i.font60 {
 
 .author_list_pp i {
   color: #ffffff;
-  background: $color;
+  background: $blue;
   font-size: 10px;
   padding: 3px;
   position: absolute;
@@ -3016,7 +3014,7 @@ i.font60 {
   font-size: 40px;
   margin-bottom: 10px;
   transition: 0.3s;
-  color: $color;
+  color: $blue;
 }
 .icon-box span {
   display: block;
@@ -3034,10 +3032,10 @@ i.font60 {
 }
 .icon-box:hover {
   color: #ffffff;
-  background: $color_more;
-  -webkit-box-shadow: 5px 5px 30px 0px $color_more;
-  -moz-box-shadow: 5px 5px 30px 0px $color_more;
-  box-shadow: 5px 5px 30px 0px $color_more;
+  background: $darkBlue;
+  -webkit-box-shadow: 5px 5px 30px 0px $darkBlue;
+  -moz-box-shadow: 5px 5px 30px 0px $darkBlue;
+  box-shadow: 5px 5px 30px 0px $darkBlue;
   transition: 0.3s;
   span,
   i {
@@ -3243,7 +3241,7 @@ i.font60 {
       font-size: 16px;
       float: left;
       width: 60px;
-      background: $color;
+      background: $blue;
       color: #ffffff;
       display: table-cell;
       padding: 13px 0;
@@ -3277,7 +3275,7 @@ i.font60 {
   .profile_username {
     font-size: 16px;
     display: block;
-    color: $color;
+    color: $blue;
   }
 }
 .d_coll .profile_avatar img,
@@ -3300,7 +3298,7 @@ i.font60 {
 }
 .profile_avatar i {
   color: #ffffff;
-  background: $color;
+  background: $blue;
   margin: 110px 0 0 110px;
   display: block;
   position: absolute;
@@ -3353,7 +3351,7 @@ i.font60 {
   outline: none;
   &:hover {
     color: $white;
-    background: $color;
+    background: $blue;
     border: 0;
   }
 }
@@ -3379,7 +3377,7 @@ i.font60 {
       display: block;
       background: #f6f6f6;
       text-decoration: none;
-      color: $color;
+      color: $blue;
       font-size: 15px;
       cursor: poInter;
       -webkit-border-radius: 3px;
@@ -3394,7 +3392,7 @@ i.font60 {
     }
     &.active span {
       color: $white;
-      background: $color_more;
+      background: $darkBlue;
     }
   }
 }
@@ -3471,7 +3469,7 @@ i.font60 {
   }
   i {
     color: #ffffff;
-    background: $color;
+    background: $blue;
     font-size: 10px;
     padding: 3px;
     position: absolute;
@@ -3536,7 +3534,7 @@ img.img-rounded {
   padding: 8px;
   margin-bottom: 20px;
   border: none;
-  border: solid 1px #cccccc;
+  border: solid 1px $borderColor1;
   background: none;
   border-radius: 6px;
   -moz-border-radius: 6px;
@@ -3545,7 +3543,13 @@ img.img-rounded {
   box-shadow: none;
   -moz-box-shadow: none;
   -webkit-box-shadow: none;
-  color: #333;
+  color: $textColor1;
+
+  &:active,
+  &:focus {
+    background: $bgColor1;
+    color: $textColor1;
+  }
 }
 .list.s3 {
   display: inline;
@@ -3556,7 +3560,7 @@ img.img-rounded {
     list-style: none;
     margin-right: 20px;
     span {
-      color: $color;
+      color: $blue;
       font-weight: 600;
       cursor: pointer;
     }
@@ -3578,7 +3582,7 @@ img.img-rounded {
   p {
     color: $general !important;
     span {
-      color: $color;
+      color: $blue;
       text-decoration: none;
       cursor: pointer;
     }
@@ -3607,7 +3611,7 @@ img.img-rounded {
     font-size: 20px;
     margin-right: 20px;
     position: relative;
-    color: $color_more;
+    color: $darkBlue;
     background: rgba(131, 100, 226, 0.1);
     width: 48px;
     height: 48px;
@@ -3622,7 +3626,7 @@ img.img-rounded {
     font-size: 20px;
     margin-right: 20px;
     position: relative;
-    color: $color_more;
+    color: $darkBlue;
     background: rgba(131, 100, 226, 0.1);
     width: 48px;
     height: 48px;
@@ -3671,13 +3675,13 @@ img.img-rounded {
       padding: 30px;
       text-align: center;
       h2 {
-        color: $color_more;
+        color: $darkBlue;
       }
     }
     .mid {
       padding: 40px;
       text-align: center;
-      background: $color_more;
+      background: $darkBlue;
       .m.opt-1 {
         font-size: 48px;
         font-weight: 500;
@@ -3700,7 +3704,7 @@ img.img-rounded {
           color: #505050;
           i {
             margin-right: 10px;
-            color: $color_more;
+            color: $darkBlue;
           }
         }
       }
@@ -3729,7 +3733,7 @@ img.img-rounded {
       border-radius: 8px;
       overflow: hidden;
       .progress-bar {
-        background: $color_more;
+        background: $darkBlue;
         height: 8px;
         box-shadow: none;
       }
@@ -3757,7 +3761,7 @@ img.img-rounded {
   .nav-tabs .nav-item.show .nav-link,
   .nav-tabs .nav-link.active {
     color: $white;
-    background: $color_more;
+    background: $darkBlue;
     border-radius: 4px;
     border: 0;
   }
@@ -3782,7 +3786,7 @@ img.img-rounded {
   .nav-tabs .nav-item.show .nav-link,
   .nav-tabs .nav-link.active {
     color: $white;
-    background: $color_more;
+    background: $darkBlue;
     border-radius: 4px;
     border: 0;
   }
@@ -3808,7 +3812,7 @@ img.img-rounded {
   .nav-tabs .nav-item.show .nav-link,
   .nav-tabs .nav-link.active {
     color: $white;
-    background: $color_more;
+    background: $darkBlue;
     border-radius: 4px;
     border: 0;
   }
@@ -3840,9 +3844,9 @@ img.img-rounded {
       }
       &.active {
         span {
-          border-color: $color;
+          border-color: $blue;
           i {
-            color: $color;
+            color: $blue;
           }
         }
       }
@@ -3853,7 +3857,7 @@ img.img-rounded {
   h5 {
     float: left;
     i {
-      color: $color;
+      color: $blue;
       margin-right: 10px;
     }
   }
@@ -3895,7 +3899,7 @@ img.img-rounded {
       left: 23px;
     }
     input[type='checkbox']:checked + label {
-      background-color: $color;
+      background-color: $blue;
     }
   }
 }
@@ -3930,7 +3934,7 @@ img.img-rounded {
       float: left;
       width: 100%;
       color: #ffffff;
-      background: $color;
+      background: $blue;
       display: table-cell;
       padding: 5px 40px 7px 40px;
       border-radius: 0 8px 8px 0;
@@ -3978,7 +3982,7 @@ img.img-rounded {
     content: '\f00c';
     color: #ffffff;
     border: rgba(0, 0, 0, 0);
-    background: $color;
+    background: $blue;
   }
 }
 
@@ -4032,7 +4036,7 @@ img.img-rounded {
     }
     i {
       color: #ffffff;
-      background: $color;
+      background: $blue;
       font-size: 10px;
       padding: 3px;
       position: absolute;
@@ -4067,10 +4071,10 @@ img.img-rounded {
   }
   li.active {
     span {
-      border-color: $color;
+      border-color: $blue;
       color: $white;
       border-right: none;
-      background: $color;
+      background: $blue;
     }
   }
 }
@@ -4100,7 +4104,7 @@ img.img-rounded {
       float: left;
       width: 100%;
       color: #ffffff;
-      background: $color;
+      background: $blue;
       display: table-cell;
       padding: 5px 40px 7px 40px;
       border-radius: 0 8px 8px 0;
@@ -4141,7 +4145,7 @@ img.img-rounded {
     top: 15px;
     z-index: 9991;
     color: $white;
-    background: $color;
+    background: $blue;
     border-radius: 50px;
     width: 26px;
     height: 26px;
@@ -4228,7 +4232,7 @@ img.img-rounded {
   border-radius: 5px;
   margin-bottom: 8px;
   h5 {
-    color: $color;
+    color: $blue;
     font-size: 14px;
     font-weight: 500;
     margin-bottom: 5px;
@@ -4792,7 +4796,7 @@ blockquote {
     }
   }
   .date {
-    background: $color_more;
+    background: $darkBlue;
     color: #fff;
     display: inline-block;
     padding: 5px;
@@ -4813,7 +4817,7 @@ blockquote {
       -moz-border-radius: 5px;
       -webkit-border-radius: 5px;
       color: #fff !important;
-      background: $color_more;
+      background: $darkBlue;
       padding: 6px 12px 6px 12px;
     }
   }
@@ -4854,7 +4858,7 @@ blockquote {
   a {
     text-align: center;
     color: #fff !important;
-    background: $color;
+    background: $blue;
     border-radius: 6px;
     letter-spacing: normal;
     outline: 0;
@@ -4898,7 +4902,7 @@ blockquote {
       display: inline-block;
       position: absolute;
       z-index: 100;
-      background: $color;
+      background: $blue;
       line-height: 1em;
       padding: 6px;
       width: 22px;
@@ -4932,7 +4936,7 @@ blockquote {
         margin-top: 5px;
       }
       span.viewaall {
-        color: $color;
+        color: $blue;
       }
       ul {
         margin: 0;
@@ -5005,7 +5009,7 @@ blockquote {
           margin-top: 5px;
         }
         span.name {
-          color: $color;
+          color: $blue;
           cursor: pointer;
         }
       }
@@ -5176,7 +5180,7 @@ blockquote {
     .btn-main {
       margin-right: 15px;
       &.btn-light {
-        color: $color !important;
+        color: $blue !important;
         background: rgba(131, 100, 226, 0.2);
       }
     }
