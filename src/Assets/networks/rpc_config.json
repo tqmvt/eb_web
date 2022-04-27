@@ -3957,6 +3957,24 @@
         "medium": "https://medium.com/@crowboysonline",
         "telegram": "https://t.me/crowboys"
       }
+    },
+    {
+      "name": "Croppelganger",
+      "slug": "croppelganger",
+      "multiToken": false,
+      "address": "",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/croppelganger/avatar.webp",
+        "card": "/img/collections/croppelganger/card.webp",
+        "banner": "/img/collections/croppelganger/banner.webp",
+        "maxSupply": 26,
+        "website": "https://www.instagram.com/sophilixart/",
+        "twitter": "https://twitter.com/Sophienfts"
+      }
     }
   ],
   "drops": [
@@ -5705,6 +5723,31 @@
       "cost": "435",
       "memberCost": "335",
       "whitelistCost": "335",
+      "foundersOnly": false,
+      "start": 1651780800000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false
+    },
+    {
+      "id": 66,
+      "slug": "croppelganger",
+      "imgNft": "/img/drops/croppelganger/drop.webp",
+      "imgPreview": "/img/drops/croppelganger/drop.webp",
+      "imgAvatar": "/img/collections/croppelganger/avatar.webp",
+      "imgBanner": "/img/collections/croppelganger/banner.webp",
+      "title": "Croppelganger",
+      "subtitle": "Croppelganger Collection is a unique match-up of a celebrity with their cartoon doppelganger.",
+      "description": "The Croppelganger Collection is a hand drawn match-up series pairing celebrities with their cartoon doppelgangers. Croppelganer was inspired by pop culture online and offline with the idea of merging the two into one creation. Each Croppelganger is a one of one and features half of a celebrity's face mixed with half of a cartoon characters face. This collection was made using charcoal and acrylic paint medium on paper.",
+      "author": { "name": "Sophie NFTs", "link": "https://www.instagram.com/sophilixart/" },
+      "address": "",
+      "maxMintPerTx": 1,
+      "maxMintPerAddress": 100,
+      "totalSupply": 26,
+      "cost": "1000",
+      "memberCost": "750",
       "foundersOnly": false,
       "start": 1651780800000,
       "end": null,
