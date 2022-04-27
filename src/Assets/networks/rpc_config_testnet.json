@@ -956,7 +956,7 @@
         "twitter": "https://twitter.com/SelfieVerseNFT",
         "discord": "http://www.discord.gg/selfiesofthemultiverse"
       }
-    },
+    }
   ],
   "drops": [
     {
@@ -2078,7 +2078,7 @@
       "published": true,
       "complete": false,
       "embed": "<div style=\"position: relative; padding-top: 100%;\"><iframe src=\"https://iframe.mediadelivery.net/embed/27293/2eb556f6-6f3a-487d-a41f-a6498879eecc?autoplay=true&loop=true&muted=true\" loading=\"lazy\" style=\"border: none; position: absolute; top: 0; height: 100%; width: 100%;\" allow=\"accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;\" allowfullscreen=\"true\"></iframe></div>"
-    },
+    }
   ],
   "auctions": [
     {
