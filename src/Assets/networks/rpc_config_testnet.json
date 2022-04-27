@@ -937,7 +937,26 @@
         "discord": "https://discord.gg/MYE5hnC9mq",
         "medium": "https://medium.com/@deplone3"
       }
-    }
+    },
+    {
+      "name": "Selfies of the Multiverse",
+      "slug": "multiverse-selfies",
+      "multiToken": false,
+      "address": "0x794dc82F15fce5f5A90Ea2c4442FA03B76e8C8a8",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/multiverse-selfies/avatar.webp",
+        "card": "/img/collections/multiverse-selfies/card.webp",
+        "banner": "/img/collections/multiverse-selfies/banner.webp",
+        "maxSupply": 10000,
+        "website": "https://selfiesofthemultiverse.com/",
+        "twitter": "https://twitter.com/SelfieVerseNFT",
+        "discord": "http://www.discord.gg/selfiesofthemultiverse"
+      }
+    },
   ],
   "drops": [
     {
@@ -2033,7 +2052,33 @@
       "is1155": false,
       "published": true,
       "complete": false
-    }
+    },
+    {
+      "id": 62,
+      "slug": "multiverse-selfies",
+      "imgNft": "/img/drops/multiverse-selfies/drop.webp",
+      "imgPreview": "/img/drops/multiverse-selfies/drop.webp",
+      "imgAvatar": "/img/collections/multiverse-selfies/avatar.webp",
+      "imgBanner": "/img/collections/multiverse-selfies/banner.webp",
+      "title": "Selfies of the Multiverse",
+      "subtitle": "\"Selfies Of The Multiverse\" features alternative realities where the evolution of matter, biological life and language took a completely different route than we are able to experience today.\n\nWith this collection the artist invites you to an exploratory journey through space and time featuring breathtaking landscapes, magical galaxy formations and unique species.",
+      "description": "\"Selfies Of The Multiverse\" are 10,000 unique, algorithmically generated selfies taken from across alternative universes at the same point in time. Experience alternative realities and mint the rarest selfie in the whole Multiverse!\n\n10% Of Profits Donated Monthly\n\nAdditionally to working with disabled and homeless people as a social worker in Italy, Cabot Cove has participated in various voluntary and international cooperation campaigns.\n\nCabot arrived in Bosnia and Kosovo right after the conflicts that bloodied the streets had ended. He has also assisted Palestinian refugee camps both in the Gaza Strip and in the West Bank.\n\nHaving deep experiential knowledge in the field, Cabot has decided to donate 10% of profits each month to support civilian populations in conflict territories.\n\n50 Custom Selfies Of The MultiverseTOP20 collectors and lucky giveaway winners will receive a custom-made Selfie Of The Multiverse!\n\nRarity table will be made public after sell-out!",
+      "author": { "name": "Selfies of the Multiverse", "link": "https://selfiesofthemultiverse.com/" },
+      "address": "0x794dc82F15fce5f5A90Ea2c4442FA03B76e8C8a8",
+      "maxMintPerTx": 10,
+      "maxMintPerAddress": 100,
+      "totalSupply": 10000,
+      "cost": "75",
+      "memberCost": "50",
+      "foundersOnly": false,
+      "start": 1651705200000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false,
+      "embed": "<div style=\"position: relative; padding-top: 100%;\"><iframe src=\"https://iframe.mediadelivery.net/embed/27293/2eb556f6-6f3a-487d-a41f-a6498879eecc?autoplay=true&loop=true&muted=true\" loading=\"lazy\" style=\"border: none; position: absolute; top: 0; height: 100%; width: 100%;\" allow=\"accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;\" allowfullscreen=\"true\"></iframe></div>"
+    },
   ],
   "auctions": [
     {
