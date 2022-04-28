@@ -484,7 +484,7 @@
       "listable": true,
       "metadata": {
         "description": "The first Dragons on the Cronos Chain!",
-        "verified": true,
+        "verified": false,
         "avatar": "/img/collections/crodrakes/avatar.gif",
         "banner": "/img/collections/crodrakes/banner.png",
         "card": "/img/collections/crodrakes/card.png",
@@ -977,7 +977,7 @@
       "listable": true,
       "metadata": {
         "description": "The first Mage on CRONOS!",
-        "verified": true,
+        "verified": false,
         "avatar": "/img/collections/cromages/avatar.gif",
         "banner": "/img/collections/cromages/banner.webp",
         "card": "/img/collections/cromages/card.png",
@@ -3496,7 +3496,7 @@
       "name": "Kardia",
       "slug": "kardia",
       "multiToken": false,
-      "address": "",
+      "address": "0x2ea93ef899a28d6049146b98c7CFCA4C7f541a8d",
       "onChain": false,
       "listable": false,
       "metadata": {
@@ -4030,12 +4030,31 @@
       "metadata": {
         "description": "",
         "verified": false,
-        "avatar": "/img/collections/toughlions/avatar.png",
-        "card": "/img/collections/toughlions/card.png",
-        "banner": "/img/collections/toughlions/banner.png",
+        "avatar": "/img/collections/toughlions/avatar.webp",
+        "card": "/img/collections/toughlions/card.webp",
+        "banner": "/img/collections/toughlions/banner.webp",
         "maxSupply": 1111,
         "twitter": "https://twitter.com/ToughLions1111",
         "discord": "https://discord.com/invite/8ssS2RWZvn"
+      }
+    },
+    {
+      "name": "Sexy Sea Cows",
+      "slug": "sexy-sea-cows",
+      "multiToken": false,
+      "address": "0x6A69ac09e86aBca5b5d926a9047C03260C222aa5",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": false,
+        "avatar": "/img/collections/sexy-sea-cows/avatar.webp",
+        "card": "/img/collections/sexy-sea-cows/card.webp",
+        "banner": "/img/collections/sexy-sea-cows/banner.webp",
+        "maxSupply": 500,
+        "website": "https://www.sexyseacows.com/",
+        "twitter": "https://twitter.com/SexySeaCows",
+        "discord": "https://discord.gg/tR4fS43UcT"
       }
     }
   ],
@@ -5521,7 +5540,7 @@
       "subtitle": "Kardia is a unique multi-tier gaming NFT project on the KCC and CRO blockchain, starting with the founder's deck of 50,000 playable cards. Using our play-to-earn mechanics, you can play against other players, earn valuable resources, win NFTs, and compete for crypto-related prizes. A crypto-currency prize pool will be generated from secondary sale royalties and will be used to buy NFTs, other cryptocurrencies, and other prizes that can be won as a result of tournaments, special triggers, loot boxes, and more!",
       "description": "The Founder's Deck (CRO) consists of 6010 playing cards, each of them uniquely serialized. Each card grants the owner a certain number of Golden Acorns (in-game currency) based on the rarity of the card. These Golden Acorns can be used for various means on PlayKardia, including opening Loot Boxes for cryptocurrency prizes, additional NFTs, and more!",
       "author": { "name": "Kardia", "link": "https://www.playkardia.com/" },
-      "address": "",
+      "address": "0x2ea93ef899a28d6049146b98c7CFCA4C7f541a8d",
       "maxMintPerTx": 5,
       "maxMintPerAddress": 100,
       "totalSupply": 6010,
