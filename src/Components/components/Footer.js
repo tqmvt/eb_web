@@ -1,4 +1,5 @@
 import React, { memo } from 'react';
+import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { faDiscord, faTwitter, faMedium, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { faSquare, faEnvelope } from '@fortawesome/free-solid-svg-icons';
@@ -6,6 +7,9 @@ import LayeredIcon from './LayeredIcon';
 
 const Footer = () => {
   const location = useLocation();
+  const userTheme = useSelector((state) => {
+    return state.user.theme;
+  });
 
   return (
     <footer className="footer-light" data-is-in-home-page={(location.pathname === '/').toString()}>
@@ -14,17 +18,29 @@ const Footer = () => {
         <div className="row align-items-center">
           <div className="col">
             <a href="https://nebkas.ro" target="_blank" rel="noreferrer">
-              <img src="/img/logos/nebkas-logo.png" alt="nebkas.co" width="128px" />
+              <img
+                src={userTheme === 'light' ? '/img/logos/nebkas-logo.png' : '/img/logos/nebkas-logo.png'}
+                alt="nebkas.co"
+                width="128px"
+              />
             </a>
           </div>
           <div className="col">
-            <a href="https://www.weare.fi/" target="_blank" rel="noreferrer">
-              <img src="/img/logos/wearefi-logo.png" alt="WeAre Solutions" width="64px" />
+            <a href="https://weare.fi/en/" target="_blank" rel="noreferrer">
+              <img
+                src={userTheme === 'light' ? '/img/logos/wearefi-logo.png' : '/img/logos/wearefi-white.png'}
+                alt="WeAre Solutions"
+                width={userTheme === 'light' ? '64px' : '160px'}
+              />
             </a>
           </div>
           <div className="col">
             <a href="https://crodex.app/" target="_blank" rel="noreferrer">
-              <img src="/img/logos/crodex.png" alt="CRODEX" width="150px" />
+              <img
+                src={userTheme === 'light' ? '/img/logos/crodex.png' : '/img/logos/crodex-white.png'}
+                alt="CRODEX"
+                width="150px"
+              />
             </a>
           </div>
         </div>

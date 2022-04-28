@@ -14,6 +14,7 @@ import CurrentDrops from '../components/CurrentDrops';
 import { getMarketData } from '../../GlobalState/marketplaceSlice';
 import { siPrefixedNumber } from '../../utils';
 import { theme } from '../../Theme/theme';
+import Button from '../components/Button';
 
 const fadeInUp = keyframes`
   0% {
@@ -174,22 +175,14 @@ const Home = () => {
             >
               Explore
             </span>
-            <span
-              onClick={() => window.open('https://forms.gle/rRtn6gp16tyavQge9', '_blank')}
-              className="m-0 text-nowrap p-4 pt-2 pb-2 btn-main btn-outline inline white lead"
-              style={{ outline: '1px solid #DDD' }}
-            >
+            <Button onClick={() => window.open('https://forms.gle/rRtn6gp16tyavQge9', '_blank')} type="legacy-outlined">
               Become a Creator
-            </span>
+            </Button>
 
-            <span
-              onClick={() => window.open(`/collection/founding-member`, '_self')}
-              className="m-0 text-nowrap p-4 pt-2 pb-2 btn-main btn-outline inline white lead"
-              style={{ outline: '1px solid #DDD' }}
-            >
+            <Button onClick={() => window.open(`/collection/founding-member`, '_self')} type="legacy-outlined">
               <FontAwesomeIcon icon={faFire} className="me-1" style={{ color: '#ff690e' }} />
               Become a Founding Member
-            </span>
+            </Button>
           </div>
         </Reveal>
         <Reveal className="onStep d-inline" keyframes={inline} delay={900} duration={1200} triggerOnce>
