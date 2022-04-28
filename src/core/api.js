@@ -9,7 +9,16 @@ import { dataURItoBlob } from '../Store/utils';
 import { SortOption } from '../Components/Models/sort-option.model';
 import { CollectionSortOption } from '../Components/Models/collection-sort-option.model';
 import { FilterOption } from '../Components/Models/filter-option.model';
-import {caseInsensitiveCompare, convertIpfsResource, isMetapixelsCollection, isSouthSideAntsCollection} from '../utils';
+import {
+  caseInsensitiveCompare,
+  convertIpfsResource,
+  isAntMintPassCollection,
+  isMetapixelsCollection,
+  isSouthSideAntsCollection,
+  isWeirdApesCollection,
+} from '../utils';
+import { getAntMintPassMetadata, getWeirdApesStakingStatus } from './api/chain';
+import { fallbackImageUrl } from './constants';
 
 const gatewayTools = new IPFSGatewayTools();
 const gateway = 'https://mygateway.mypinata.cloud';
@@ -351,21 +360,7 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
 
   const signer = walletProvider.getSigner();
 
-  let listings = [];
-  let chunkParams = { complete: false, pageSize: 100, curPage: 1 };
-  while (!chunkParams.complete) {
-    const queryString = new URLSearchParams({
-      state: 0,
-      page: chunkParams.curPage,
-      pageSize: chunkParams.pageSize,
-      seller: walletAddress,
-    });
-    const url = new URL(api.listings, `${api.baseUrl}`);
-    const listingsReponse = await (await fetch(`${url}?${queryString}`)).json();
-    listings = [...listings, ...listingsReponse.listings];
-    chunkParams.complete = listingsReponse.listings.length < chunkParams.pageSize;
-    chunkParams.curPage++;
-  }
+  let listings = await getAllListingsForUser(walletAddress);
 
   //  Helper function
   const getListing = (address, id) => {
@@ -375,14 +370,6 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
       return sameId && sameAddress;
     });
   };
-
-  // const getERC1155Listings = (address, id) => {
-  //   return listings.filter((listing) => {
-  //     const sameId = ethers.BigNumber.from(listing['nftId']).eq(id);
-  //     const sameAddress = listing['nftAddress'].toLowerCase() === address.toLowerCase();
-  //     return sameId && sameAddress && listing.state === 0;
-  //   });
-  // };
 
   let response = {
     nfts: [],
@@ -395,7 +382,7 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
       .map(async (knownContract) => {
         try {
           if (abortSignal.aborted) {
-            return Promise.reject(new DOMException("Aborted", "AbortError"));
+            return Promise.reject(new DOMException('Aborted', 'AbortError'));
           }
           const address = knownContract.address;
           const listable = knownContract.listable;
@@ -1045,6 +1032,10 @@ export async function getNftFromFile(collectionId, nftId) {
         uri = await contract.tokenURI(nftId);
       }
 
+      if (isAntMintPassCollection(collectionId)) {
+        uri = 'https://gateway.pinata.cloud/ipfs/QmWLqeupPQsb4MTtJFjxEniQ1F67gpQCzuszwhZHFx6rUM';
+      }
+
       if (gatewayTools.containsCID(uri)) {
         try {
           uri = gatewayTools.convertToDesiredGateway(uri, gateway);
@@ -1156,14 +1147,17 @@ export async function getQuickWallet(walletAddress) {
   const url = new URL(api.wallets, `${api.baseUrl}`);
   const uri = `${url}?${queryString}`;
 
-  return await (await fetch(uri)).json();
+  const json = await (await fetch(uri)).json();
+
+  // @todo: remove once api has this version in prod
+  if (!Array.isArray(json.data)) {
+    json.data = [...json.data.erc1155, ...json.data.erc721];
+  }
+
+  return json;
 }
 
-export async function getNftsForAddress2(walletAddress, walletProvider) {
-  const quickWallet = await getQuickWallet(walletAddress);
-  const results = quickWallet.data;
-  const signer = walletProvider.getSigner();
-
+async function getAllListingsForUser(walletAddress) {
   let listings = [];
   let chunkParams = { complete: false, pageSize: 100, curPage: 1 };
   while (!chunkParams.complete) {
@@ -1180,6 +1174,16 @@ export async function getNftsForAddress2(walletAddress, walletProvider) {
     chunkParams.curPage++;
   }
 
+  return listings;
+}
+
+export async function getNftsForAddress2(walletAddress, walletProvider) {
+  const quickWallet = await getQuickWallet(walletAddress);
+  const results = quickWallet.data;
+  const signer = walletProvider.getSigner();
+
+  let listings = await getAllListingsForUser(walletAddress);
+
   //  Helper function
   const getListing = (address, id) => {
     return listings.find((listing) => {
@@ -1190,89 +1194,112 @@ export async function getNftsForAddress2(walletAddress, walletProvider) {
   };
 
   const getKnownContract = (nft) => {
-    return knownContracts.find(c => {
+    return knownContracts.find((c) => {
       const matchedAddress = caseInsensitiveCompare(c.address, nft.nftAddress);
       const matchedToken = !c.multiToken || parseInt(c.id) === parseInt(nft.nftId);
       return matchedAddress && matchedToken;
     });
   };
 
-console.log(results);
   const writeContracts = [];
-  return await Promise.all(results
-    .filter(nft => {
-      const matchedContract = getKnownContract(nft);
-      if (!matchedContract) return false;
+  return await Promise.all(
+    results
+      .filter((nft) => {
+        const matchedContract = getKnownContract(nft);
+        if (!matchedContract) return false;
 
-      const hasBalance = !matchedContract.multiToken || parseInt(nft.balance) > 0;
+        const hasBalance = !matchedContract.multiToken || parseInt(nft.balance) > 0;
 
-      return matchedContract && hasBalance;
-    })
-    .map(async (nft) => {
-      const knownContract = getKnownContract(nft);
+        return matchedContract && hasBalance;
+      })
+      .map(async (nft) => {
+        const knownContract = getKnownContract(nft);
 
-      let key = knownContract.address;
-      if (knownContract.multiToken) {
-        key = `${key}${knownContract.id}`;
-      }
-      const writeContract = writeContracts[key] ?? new Contract(knownContract.address, knownContract.multiToken ? ERC1155 : ERC721, signer);
-      writeContracts[key] = writeContract;
+        let key = knownContract.address;
+        if (knownContract.multiToken) {
+          key = `${key}${knownContract.id}`;
+        }
+        const writeContract =
+          writeContracts[key] ??
+          new Contract(knownContract.address, knownContract.multiToken ? ERC1155 : ERC721, signer);
+        writeContracts[key] = writeContract;
 
-      const listed = !!getListing(knownContract.address, nft.nftId);
-      const listingId = listed ? getListing(knownContract.address, nft.nftId).listingId : null;
-      const price = listed ? getListing(knownContract.address, nft.nftId).price : null;
+        const listed = !!getListing(knownContract.address, nft.nftId);
+        const listingId = listed ? getListing(knownContract.address, nft.nftId).listingId : null;
+        const price = listed ? getListing(knownContract.address, nft.nftId).price : null;
 
-      let image;
-      try {
-        if (nft.image_aws || nft.image) {
-          image = nft.image_aws ?? nft.image;
-        } else if (nft.token_uri) {
-          if (typeof(nft.token_uri) === 'string'){
-            const uri = nft.token_uri;
-            const checkedUri = (() => {
-              try {
-                if (gatewayTools.containsCID(uri) && !uri.startsWith('ar')) {
-                  return gatewayTools.convertToDesiredGateway(uri, gateway);
+        if (isAntMintPassCollection(nft.nftAddress)) {
+          const metadata = await getAntMintPassMetadata(nft.nftAddress, nft.nftId);
+          if (metadata) nft = { ...nft, ...metadata };
+        }
+
+        let image;
+        try {
+          if (nft.image_aws || nft.image) {
+            image = nft.image_aws ?? nft.image;
+          } else if (nft.token_uri) {
+            if (typeof nft.token_uri === 'string') {
+              const uri = nft.token_uri;
+              const checkedUri = (() => {
+                try {
+                  if (gatewayTools.containsCID(uri) && !uri.startsWith('ar')) {
+                    return gatewayTools.convertToDesiredGateway(uri, gateway);
+                  }
+
+                  if (uri.startsWith('ar')) {
+                    return `https://arweave.net/${uri.substring(5)}`;
+                  }
+
+                  return uri;
+                } catch (e) {
+                  return uri;
                 }
+              })();
 
-                if (uri.startsWith('ar')) {
-                  return `https://arweave.net/${uri.substring(5)}`;
-                }
+              const json = await (await fetch(checkedUri)).json();
+              image = convertIpfsResource(json.token_uri);
+            } else if (typeof nft.token_uri === 'object') {
+              image = nft.token_uri.image;
+            }
+          } else {
+            image = fallbackImageUrl;
+          }
+        } catch (e) {
+          image = fallbackImageUrl;
+          console.log(e);
+        }
 
-                return uri;
-              } catch (e) {
-                return uri;
-              }
-            })();
-
-            const json = await (await fetch(checkedUri)).json();
-            image = convertIpfsResource(json.token_uri)
-          } else if (typeof(nft.token_uri) === 'object'){
-            image = nft.token_uri.image;
+        let isStaked = false;
+        let canTransfer = true;
+        let canSell = true;
+        if (isWeirdApesCollection(nft.nftAddress)) {
+          const staked = await getWeirdApesStakingStatus(nft.nftAddress, nft.nftId);
+          if (staked) {
+            canTransfer = false;
+            canSell = false;
+            isStaked = true;
           }
         }
-      } catch (e) {
-        console.log(e, nft);
-      }
 
-      return {
-        id: nft.nftId,
-        name: nft.name,
-        description: nft.description,
-        properties: nft.properties && nft.properties.length > 0 ? nft.properties : nft.attributes,
-        image: image,
-        count: nft.balance,
-        address: knownContract.address,
-        contract: writeContract,
-        multiToken: knownContract.multiToken,
-        rank: nft.rank,
-        listable: knownContract.listable,
-        listed,
-        listingId,
-        price,
-        canSell: true,
-        canTransfer: true,
-      }
-    })
+        return {
+          id: nft.nftId,
+          name: nft.name,
+          description: nft.description,
+          properties: nft.properties && nft.properties.length > 0 ? nft.properties : nft.attributes,
+          image: image,
+          count: nft.balance,
+          address: knownContract.address,
+          contract: writeContract,
+          multiToken: knownContract.multiToken,
+          rank: nft.rank,
+          listable: knownContract.listable,
+          listed,
+          listingId,
+          price,
+          canSell: canSell,
+          canTransfer: canTransfer,
+          isStaked: isStaked,
+        };
+      })
   );
 }

@@ -45,7 +45,8 @@
         "twitter": "https://twitter.com/EbisusBay",
         "discord": "https://discord.gg/ynrBrSkAFG",
         "medium": "https://blog.ebisusbay.com/",
-        "instagram": "https://www.instagram.com/ebisusbayofficial"
+        "instagram": "https://www.instagram.com/ebisusbayofficial",
+        "telegram": "https://t.me/ebisusbay"
       }
     },
     {
@@ -68,7 +69,8 @@
         "twitter": "https://twitter.com/EbisusBay",
         "discord": "https://discord.gg/ynrBrSkAFG",
         "medium": "https://blog.ebisusbay.com/",
-        "instagram": "https://www.instagram.com/ebisusbayofficial"
+        "instagram": "https://www.instagram.com/ebisusbayofficial",
+        "telegram": "https://t.me/ebisusbay"
       }
     },
     {
@@ -91,7 +93,8 @@
         "twitter": "https://twitter.com/EbisusBay",
         "discord": "https://discord.gg/ynrBrSkAFG",
         "medium": "https://blog.ebisusbay.com/",
-        "instagram": "https://www.instagram.com/ebisusbayofficial"
+        "instagram": "https://www.instagram.com/ebisusbayofficial",
+        "telegram": "https://t.me/ebisusbay"
       }
     },
     {
@@ -133,7 +136,8 @@
         "twitter": "https://twitter.com/EbisusBay",
         "discord": "https://discord.gg/ynrBrSkAFG",
         "medium": "https://blog.ebisusbay.com/",
-        "instagram": "https://www.instagram.com/ebisusbayofficial"
+        "instagram": "https://www.instagram.com/ebisusbayofficial",
+        "telegram": "https://t.me/ebisusbay"
       }
     },
     {
@@ -155,7 +159,8 @@
         "twitter": "https://twitter.com/EbisusBay",
         "discord": "https://discord.gg/ynrBrSkAFG",
         "medium": "https://blog.ebisusbay.com/",
-        "instagram": "https://www.instagram.com/ebisusbayofficial"
+        "instagram": "https://www.instagram.com/ebisusbayofficial",
+        "telegram": "https://t.me/ebisusbay"
       }
     },
     {
@@ -479,7 +484,7 @@
       "listable": true,
       "metadata": {
         "description": "The first Dragons on the Cronos Chain!",
-        "verified": true,
+        "verified": false,
         "avatar": "/img/collections/crodrakes/avatar.gif",
         "banner": "/img/collections/crodrakes/banner.png",
         "card": "/img/collections/crodrakes/card.png",
@@ -972,7 +977,7 @@
       "listable": true,
       "metadata": {
         "description": "The first Mage on CRONOS!",
-        "verified": true,
+        "verified": false,
         "avatar": "/img/collections/cromages/avatar.gif",
         "banner": "/img/collections/cromages/banner.webp",
         "card": "/img/collections/cromages/card.png",
@@ -983,7 +988,7 @@
       }
     },
     {
-      "name": "CroSkull",
+      "name": "CroSkull Originals",
       "slug": "croskull",
       "multiToken": false,
       "address": "0xF87A517A5CaecaA03d7cCa770789BdB61e09e05F",
@@ -992,13 +997,13 @@
       "metadata": {
         "description": "CroSkull is a collection of 6.666 uniquely generated NFTs stored on the Cronos Chain. Each CroSkull NFT is based on 6+ attributes with different rarities. A CroSkull is not simply a PFP but is also the key to the insane Dr. Jiko's laboratory experiments.",
         "verified": true,
-        "avatar": "/img/collections/croskull/avatar.jpg",
+        "avatar": "/img/collections/croskull/avatar.webp",
         "banner": "/img/collections/croskull/banner.webp",
-        "card": "/img/collections/croskull/card.jpg",
+        "card": "/img/collections/croskull/card.webp",
         "maxSupply": 6666,
-        "website": "https://croskull.com/",
+        "website": "https://app.croskull.com/",
         "twitter": "https://twitter.com/CroskullNFT",
-        "discord": "https://discord.gg/aU5YmPuqKy",
+        "discord": "https://discord.gg/croskull",
         "medium": "https://medium.com/@croskullnft",
         "staking": "croskull"
       }
@@ -1377,7 +1382,7 @@
       }
     },
     {
-      "name": "Blue Skull Potions",
+      "name": "CroSkull Blue Potions",
       "slug": "blue-skull-potions",
       "multiToken": false,
       "address": "0xB929D3002208f405180D3C07616F88EDa45F3e14",
@@ -1386,18 +1391,18 @@
       "metadata": {
         "description": "Combine this potion with the red one to get an exclusive Purple Potion that can be used to evolve your Skull.",
         "verified": true,
-        "avatar": "/img/collections/croskull/bluepotions/avatar.jpg",
-        "card": "/img/collections/croskull/bluepotions/card.jpg",
-        "banner": "/img/collections/croskull/bluepotions/banner.jpg",
+        "avatar": "/img/collections/croskull/bluepotions/avatar.webp",
+        "card": "/img/collections/croskull/bluepotions/card.webp",
+        "banner": "/img/collections/croskull/bluepotions/banner.webp",
         "maxSupply": 333,
-        "website": "https://croskull.com/",
+        "website": "https://app.croskull.com/",
         "twitter": "https://twitter.com/CroskullNFT",
-        "discord": "https://discord.gg/aU5YmPuqKy",
-        "medium": "http://medium.com/@croskullnft"
+        "discord": "https://discord.gg/croskull",
+        "medium": "https://medium.com/@croskullnft"
       }
     },
     {
-      "name": "Red Skull Potions",
+      "name": "CroSkull Red Potions",
       "slug": "red-skull-potions",
       "multiToken": false,
       "address": "0x508378E99F5527Acb6eB4f0fc22f954c5783e5F9",
@@ -1406,14 +1411,14 @@
       "metadata": {
         "description": "Combine this potion with the blue one to get an exclusive Purple Potion that can be used to evolve your Skull.",
         "verified": true,
-        "avatar": "/img/collections/croskull/redpotions/avatar.jpg",
-        "card": "/img/collections/croskull/redpotions/card.jpg",
-        "banner": "/img/collections/croskull/redpotions/banner.jpg",
+        "avatar": "/img/collections/croskull/redpotions/avatar.webp",
+        "card": "/img/collections/croskull/redpotions/card.webp",
+        "banner": "/img/collections/croskull/redpotions/banner.webp",
         "maxSupply": 333,
-        "website": "https://croskull.com/",
+        "website": "https://app.croskull.com/",
         "twitter": "https://twitter.com/CroskullNFT",
-        "discord": "https://discord.gg/aU5YmPuqKy",
-        "medium": "http://medium.com/@croskullnft"
+        "discord": "https://discord.gg/croskull",
+        "medium": "https://medium.com/@croskullnft"
       }
     },
     {
@@ -1974,11 +1979,31 @@
       "listable": true,
       "metadata": {
         "description": "Crayon Ape Art Club a collection for those who love APE Banana and ART Artist palette 2,750 Monkey with different asset different role and stories",
-        "verified": true,
+        "verified": false,
         "avatar": "/img/collections/crayonartapeclub/avatar.gif",
         "card": "/img/collections/crayonartapeclub/card.webp",
         "banner": "/img/collections/crayonartapeclub/banner.webp",
         "maxSupply": 2750,
+        "twitter": "https://twitter.com/CrayonApe",
+        "website": "https://crayon-ape.com/",
+        "discord": "https://discord.gg/JDXQp85yNh",
+        "medium": "https://medium.com/@crayonapeac"
+      }
+    },
+    {
+      "name": "Baby Ape Art Club",
+      "slug": "baby-ape-art-club",
+      "multiToken": false,
+      "address": "0x6d17655195790072233D26a0Dd841Fc9bE8C41cC",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "Baby Ape Art Club a collection for those who love APE Banana and ART Artist palette 2000 baby monkeys with different asset different role and stories",
+        "verified": false,
+        "avatar": "/img/collections/crayonartapeclub/baby/avatar.gif",
+        "card": "/img/collections/crayonartapeclub/baby/card.png",
+        "banner": "/img/collections/crayonartapeclub/baby/banner.png",
+        "maxSupply": 2000,
         "twitter": "https://twitter.com/CrayonApe",
         "website": "https://crayon-ape.com/",
         "discord": "https://discord.gg/JDXQp85yNh",
@@ -2274,9 +2299,9 @@
         "card": "/img/collections/croskull/eggs/card.webp",
         "banner": "/img/collections/croskull/eggs/banner.webp",
         "maxSupply": 2200,
-        "website": "https://croskull.com/",
+        "website": "https://app.croskull.com/",
         "twitter": "https://twitter.com/CroskullNFT",
-        "discord": "https://discord.gg/K6s4KgVhYN",
+        "discord": "https://discord.gg/croskull",
         "medium": "https://medium.com/@croskullnft"
       }
     },
@@ -3471,12 +3496,12 @@
       "name": "Kardia",
       "slug": "kardia",
       "multiToken": false,
-      "address": "",
+      "address": "0x2ea93ef899a28d6049146b98c7CFCA4C7f541a8d",
       "onChain": false,
-      "listable": true,
+      "listable": false,
       "metadata": {
         "description": "",
-        "verified": false,
+        "verified": true,
         "avatar": "/img/collections/kardia/avatar.webp",
         "card": "/img/collections/kardia/card.webp",
         "banner": "/img/collections/kardia/banner.webp",
@@ -3827,6 +3852,23 @@
       }
     },
     {
+      "name": "Like Humans",
+      "slug": "like-humans",
+      "multiToken": false,
+      "address": "0xa0F71da7ebA2C23DFaaEb36a880fe3fA07d78A8a",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/likehumans/avatar.webp",
+        "banner": "/img/collections/likehumans/banner.webp",
+        "card": "/img/collections/likehumans/card.webp",
+        "maxSupply": 60,
+        "website": "https://twitter.com/AtuchinArt"
+      }
+    },
+    {
       "name": "Microbots",
       "slug": "microbots",
       "multiToken": false,
@@ -3842,6 +3884,197 @@
         "website": "https://TheCrobots.com",
         "twitter": "https://twitter.com/thecrobots",
         "discord": "https://discord.gg/crobots"
+      }
+    },
+    {
+      "name": "Smash Stunts",
+      "slug": "smash-stunts",
+      "multiToken": false,
+      "address": "",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/smash-stunts/avatar.webp",
+        "card": "/img/collections/smash-stunts/card.webp",
+        "banner": "/img/collections/smash-stunts/banner.webp",
+        "maxSupply": 3000,
+        "website": "http://xtremejunkies.io/",
+        "twitter": "https://twitter.com/mepyDoo",
+        "discord": "https://discord.gg/qCVUfNSzsb"
+      }
+    },
+    {
+      "name": "Psycho Golden Lady",
+      "slug": "psycho-golden-lady",
+      "multiToken": false,
+      "address": "",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/psycho-golden-lady/avatar.webp",
+        "card": "/img/collections/psycho-golden-lady/card.webp",
+        "banner": "/img/collections/psycho-golden-lady/banner.webp",
+        "maxSupply": 3000,
+        "website": "http://www.artgroupink.com/",
+        "twitter": "https://twitter.com/Ugonzo_Art",
+        "discord": "https://discord.gg/wj72JCGdF4"
+      }
+    },
+    {
+      "name": "Cro Of Thrones",
+      "slug": "cro-of-thrones",
+      "multiToken": false,
+      "address": "",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/cro-of-thrones/avatar.webp",
+        "card": "/img/collections/cro-of-thrones/card.webp",
+        "banner": "/img/collections/cro-of-thrones/banner.webp",
+        "maxSupply": 2500,
+        "website": "https://www.hypednftclub.com/croofthrones",
+        "twitter": "https://twitter.com/Croofthrones",
+        "discord": "https://discord.gg/pYCaAwpZ"
+      }
+    },
+    {
+      "name": "Selfies of the Multiverse",
+      "slug": "multiverse-selfies",
+      "multiToken": false,
+      "address": "",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/multiverse-selfies/avatar.webp",
+        "card": "/img/collections/multiverse-selfies/card.webp",
+        "banner": "/img/collections/multiverse-selfies/banner.webp",
+        "maxSupply": 10000,
+        "website": "https://selfiesofthemultiverse.com/",
+        "twitter": "https://twitter.com/SelfieVerseNFT",
+        "discord": "http://www.discord.gg/selfiesofthemultiverse"
+      }
+    },
+    {
+      "name": "Genesis Crates",
+      "slug": "genesis-crates",
+      "multiToken": false,
+      "address": "",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/genesis-crates/avatar.webp",
+        "card": "/img/collections/genesis-crates/card.webp",
+        "banner": "/img/collections/genesis-crates/banner.webp",
+        "maxSupply": 5000,
+        "website": "https://crowboys.online/",
+        "twitter": "https://twitter.com/CrowboysGameFi",
+        "discord": "https://discord.gg/crowboys",
+        "medium": "https://medium.com/@crowboysonline",
+        "telegram": "https://t.me/crowboys"
+      }
+    },
+    {
+      "name": "Croppelganger",
+      "slug": "croppelganger",
+      "multiToken": false,
+      "address": "",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/croppelganger/avatar.webp",
+        "card": "/img/collections/croppelganger/card.webp",
+        "banner": "/img/collections/croppelganger/banner.webp",
+        "maxSupply": 26,
+        "website": "https://www.instagram.com/sophilixart/",
+        "twitter": "https://twitter.com/Sophienfts"
+      }
+    },
+    {
+      "name": "Electric Vibrations",
+      "slug": "electric-vibrations",
+      "multiToken": false,
+      "address": "0x6A5A7557DD15c14f5b05cbf5A0DF6eC32Dd65832",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": false,
+        "avatar": "/img/collections/electric-vibrations/avatar.webp",
+        "card": "/img/collections/electric-vibrations/card.webp",
+        "banner": "/img/collections/electric-vibrations/banner.webp",
+        "maxSupply": 26,
+        "website": "https://www.susandoyleart.com/",
+        "twitter": "https://twitter.com/susandoyleart",
+        "discord": "https://discord.gg/Rym5kUta"
+      }
+    },
+    {
+      "name": "Tough Lions",
+      "slug": "tough-lions",
+      "multiToken": false,
+      "address": "0xb242399f3f52fcfa8b09d7d6e4C3DBe84D0644fc",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": false,
+        "avatar": "/img/collections/toughlions/avatar.webp",
+        "card": "/img/collections/toughlions/card.webp",
+        "banner": "/img/collections/toughlions/banner.webp",
+        "maxSupply": 1111,
+        "twitter": "https://twitter.com/ToughLions1111",
+        "discord": "https://discord.com/invite/8ssS2RWZvn"
+      }
+    },
+    {
+      "name": "Sexy Sea Cows",
+      "slug": "sexy-sea-cows",
+      "multiToken": false,
+      "address": "0x6A69ac09e86aBca5b5d926a9047C03260C222aa5",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": false,
+        "avatar": "/img/collections/sexy-sea-cows/avatar.webp",
+        "card": "/img/collections/sexy-sea-cows/card.webp",
+        "banner": "/img/collections/sexy-sea-cows/banner.webp",
+        "maxSupply": 500,
+        "website": "https://www.sexyseacows.com/",
+        "twitter": "https://twitter.com/SexySeaCows",
+        "discord": "https://discord.gg/tR4fS43UcT"
+      }
+    },
+    {
+      "name": "Croskull Purple Potions",
+      "slug": "croskull-purple-potions",
+      "multiToken": false,
+      "address": "0xA9448e3e496f75488306195F34e49a7fCE5cbD0c",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/croskull/purplepotions/avatar.webp",
+        "card": "/img/collections/croskull/purplepotions/card.webp",
+        "banner": "/img/collections/croskull/purplepotions/banner.webp",
+        "maxSupply": 333,
+        "website": "https://app.croskull.com/",
+        "twitter": "https://twitter.com/CroskullNFT",
+        "discord": "https://discord.gg/croskull",
+        "medium": "https://medium.com/@croskullnft"
       }
     }
   ],
@@ -4238,7 +4471,7 @@
       "title": "Fractals",
       "subtitle": "SeasaltCrisp is a passionate visual artist trying to take you on an adventure with his unique and special artworks.He discovered his love for art already in his early years, but now he's here to share his workon the Cronos Chain as well.",
       "description": "This is a limited art collection of 50 unique and original NFTs.This collection was created to explore whole new worlds and surreal scenarios.Let's turn on our imagination and explore art together!",
-      "author": { "name": "SeasaltCrisp", "link": "https://www.instagram.com/maxx9498/" },
+      "author": { "name": "SeasaltCrisp", "link": "https://www.instagram.com/seasaltcrisp/" },
       "address": "0x78c9156EFb0c417F1E96935a37C3f456D7b3A1d1",
       "maxMintPerTx": 1,
       "totalSupply": 50,
@@ -5327,12 +5560,12 @@
       "subtitle": "Kardia is a unique multi-tier gaming NFT project on the KCC and CRO blockchain, starting with the founder's deck of 50,000 playable cards. Using our play-to-earn mechanics, you can play against other players, earn valuable resources, win NFTs, and compete for crypto-related prizes. A crypto-currency prize pool will be generated from secondary sale royalties and will be used to buy NFTs, other cryptocurrencies, and other prizes that can be won as a result of tournaments, special triggers, loot boxes, and more!",
       "description": "The Founder's Deck (CRO) consists of 6010 playing cards, each of them uniquely serialized. Each card grants the owner a certain number of Golden Acorns (in-game currency) based on the rarity of the card. These Golden Acorns can be used for various means on PlayKardia, including opening Loot Boxes for cryptocurrency prizes, additional NFTs, and more!",
       "author": { "name": "Kardia", "link": "https://www.playkardia.com/" },
-      "address": "",
+      "address": "0x2ea93ef899a28d6049146b98c7CFCA4C7f541a8d",
       "maxMintPerTx": 5,
       "maxMintPerAddress": 100,
       "totalSupply": 6010,
-      "cost": "145",
-      "memberCost": "95",
+      "cost": "100",
+      "memberCost": "150",
       "foundersOnly": false,
       "start": 1651176000000,
       "end": null,
@@ -5440,6 +5673,184 @@
       "memberCost": "250",
       "foundersOnly": false,
       "start": null,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false
+    },
+    {
+      "id": 62,
+      "slug": "like-humans",
+      "imgNft": "/img/drops/likehumans/drop.webp",
+      "imgPreview": "/img/drops/likehumans/drop.webp",
+      "imgAvatar": "/img/collections/likehumans/avatar.webp",
+      "imgBanner": "/img/collections/likehumans/banner.webp",
+      "title": "Like Humans",
+      "subtitle": "The \"Like Humans\" series shows a kaleidoscope of emotions so well understood by all of us.",
+      "description": "There is hope and faith and joy with childish eyes. Each work has its own color scheme, its own dramaturgy. The series is built in such a way that the works together look whole, and at the same time each of them is self-sufficient.",
+      "author": { "name": "Like Humans", "link": "https://twitter.com/AtuchinArt" },
+      "address": "0xa0F71da7ebA2C23DFaaEb36a880fe3fA07d78A8a",
+      "maxMintPerTx": 1,
+      "maxMintPerAddress": 50,
+      "totalSupply": 60,
+      "cost": "200",
+      "memberCost": "150",
+      "foundersOnly": false,
+      "start": 1651176000000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false
+    },
+    {
+      "id": 63,
+      "slug": "smash-stunts",
+      "imgNft": "/img/drops/smash-stunts/drop.webp",
+      "imgPreview": "/img/drops/smash-stunts/drop.webp",
+      "imgAvatar": "/img/collections/smash-stunts/avatar.webp",
+      "imgBanner": "/img/collections/smash-stunts/banner.webp",
+      "title": "Smash Stunts",
+      "subtitle": "Ashley Lammela stunt rider a.k.a. \"SmashStunts\" teamed up with famous artist and former Chuck Jones Background Painter Patrick Guyton to create the SmashStunts comic series. What is she wearing, where is she popping this sick wheelie, and how close to the original can you get? The rarest traits are the original colors of the painting. A mepyDoo® production.",
+      "description": "This NFT is derived from original painting being released in Las Vegas on May 1st 2022 at the DeRubeis Fine Art of Metal Gallery in the Planet Hollywood Resort, Miracle Mile Shops at 5:30pm check @smashstunts to watch.What is she wearing, where is she popping this sick wheelie, and how close to the original can you get? The rarest traits are the original colors of the painting. A mepyDoo® production (@mepyDoo)",
+      "author": { "name": "Smash Stunts", "link": "http://xtremejunkies.io/" },
+      "address": "",
+      "maxMintPerTx": 10,
+      "maxMintPerAddress": 100,
+      "totalSupply": 3000,
+      "cost": "399",
+      "memberCost": "333",
+      "foundersOnly": false,
+      "start": 1651451400000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false
+    },
+    {
+      "id": 64,
+      "slug": "psycho-golden-lady",
+      "imgNft": "/img/drops/psycho-golden-lady/drop.webp",
+      "imgPreview": "/img/drops/psycho-golden-lady/drop.webp",
+      "imgAvatar": "/img/collections/psycho-golden-lady/avatar.webp",
+      "imgBanner": "/img/collections/psycho-golden-lady/banner.webp",
+      "title": "Psycho Golden Lady",
+      "subtitle": "Famed Artist Ugonzo, the creator of PsychoKitty, teamed up with world famous Artist Patrick Guyton, the infamous Gold and Silver Leaf painter and creator of Gilded Modernism® went on a journey to New York to view a very famous Painting. The two artists wanted to collaborate and create something special by an artist that touched them both personally and created the desire in both to pick up a Paint Brush.",
+      "description": "Ugonzo (@Ugonzo_art) and Patrick Guyon (@patrickguyton_) toiled for weeks to create this stunning masterpiece and tribute to their favorite Artist, and bring this concept painting to the 21st Century, in both classical and the new modern NFT style. How close to the original can you get in rarity?\n\nAll will be revealed on May 1st 2022 at 6pm Live in Las Vegas on Instagram from the DeRubeis Fine Art of Metal Gallery in the Planet Hollywood resort, Miracle Mile shops.",
+      "author": { "name": "Psycho Golden Lady", "link": "http://www.artgroupink.com/" },
+      "address": "",
+      "maxMintPerTx": 10,
+      "maxMintPerAddress": 100,
+      "totalSupply": 3000,
+      "cost": "499",
+      "memberCost": "459",
+      "foundersOnly": false,
+      "start": 1651454100000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false
+    },
+    {
+      "id": 64,
+      "slug": "cro-of-thrones",
+      "imgNft": "/img/drops/cro-of-thrones/drop.webp",
+      "imgPreview": "/img/drops/cro-of-thrones/drop.webp",
+      "imgAvatar": "/img/collections/cro-of-thrones/avatar.webp",
+      "imgBanner": "/img/collections/cro-of-thrones/banner.webp",
+      "title": "Cro Of Thrones",
+      "subtitle": "Cro of Thrones is a collection of 2500 uniquely generated NFTs stored on the Cronos Chain. Each COT NFT is inspired by unique Fantasy Worlds stories! Who shall take the throne of our fantasy world?",
+      "description": "Cro of Thrones is a collection of 2500 uniquely generated NFTs stored on the Cronos Chain. Each COT NFT is inspired by unique Fantasy Worlds stories! Who shall take the throne of our fantasy world?",
+      "author": { "name": "Hyped NFT Club", "link": "https://www.hypednftclub.com/croofthrones" },
+      "address": "",
+      "maxMintPerTx": 7,
+      "maxMintPerAddress": 100,
+      "totalSupply": 2500,
+      "cost": "220",
+      "memberCost": "180",
+      "whitelistCost": "160",
+      "foundersOnly": false,
+      "start": 1651521600000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false
+    },
+    {
+      "id": 65,
+      "slug": "multiverse-selfies",
+      "imgNft": "/img/drops/multiverse-selfies/drop.webp",
+      "imgPreview": "/img/drops/multiverse-selfies/drop.webp",
+      "imgAvatar": "/img/collections/multiverse-selfies/avatar.webp",
+      "imgBanner": "/img/collections/multiverse-selfies/banner.webp",
+      "title": "Selfies of the Multiverse",
+      "subtitle": "\"Selfies Of The Multiverse\" features alternative realities where the evolution of matter, biological life and language took a completely different route than we are able to experience today.\n\nWith this collection the artist invites you to an exploratory journey through space and time featuring breathtaking landscapes, magical galaxy formations and unique species.",
+      "description": "\"Selfies Of The Multiverse\" are 10,000 unique, algorithmically generated selfies taken from across alternative universes at the same point in time. Experience alternative realities and mint the rarest selfie in the whole Multiverse!\n\n10% Of Profits Donated Monthly\n\nAdditionally to working with disabled and homeless people as a social worker in Italy, Cabot Cove has participated in various voluntary and international cooperation campaigns.\n\nCabot arrived in Bosnia and Kosovo right after the conflicts that bloodied the streets had ended. He has also assisted Palestinian refugee camps both in the Gaza Strip and in the West Bank.\n\nHaving deep experiential knowledge in the field, Cabot has decided to donate 10% of profits each month to support civilian populations in conflict territories.\n\n50 Custom Selfies Of The MultiverseTOP20 collectors and lucky giveaway winners will receive a custom-made Selfie Of The Multiverse!\n\nRarity table will be made public after sell-out!",
+      "author": { "name": "Selfies of the Multiverse", "link": "https://selfiesofthemultiverse.com/" },
+      "address": "",
+      "maxMintPerTx": 10,
+      "maxMintPerAddress": 100,
+      "totalSupply": 10000,
+      "cost": "75",
+      "memberCost": "50",
+      "foundersOnly": false,
+      "start": 1651705200000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false,
+      "embed": "<div style=\"position: relative; padding-top: 100%;\"><iframe src=\"https://iframe.mediadelivery.net/embed/27293/2eb556f6-6f3a-487d-a41f-a6498879eecc?autoplay=true&loop=true&muted=true\" loading=\"lazy\" style=\"border: none; position: absolute; top: 0; height: 100%; width: 100%;\" allow=\"accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;\" allowfullscreen=\"true\"></iframe></div>"
+    },
+    {
+      "id": 66,
+      "slug": "genesis-crates",
+      "imgNft": "/img/drops/genesis-crates/drop.webp",
+      "imgPreview": "/img/drops/genesis-crates/drop.webp",
+      "imgAvatar": "/img/collections/genesis-crates/avatar.webp",
+      "imgBanner": "/img/collections/genesis-crates/banner.webp",
+      "title": "Genesis Crates",
+      "subtitle": "The Genesis Crates is a collection of 5000 NFTs being the first NFTs in the Crowboys Online Ecosystem. These crates come in three rarities (Good, Bad and Ugly), but every crate has its own attributes! Thanks to them you can generate $West token, find wealthy treasure inside, get weapons airdropped, and much more! They also give the holder a variety of other benefits detailed in our whitepaper like royalties paid through staking, discounts in the metaverse saloon, and an automatic whitelist for the next NFT - Genesis Crowboy to name a few.",
+      "description": "The Genesis Crates Collection and the first NFT for Crowboys Online. These crates come in three rarities (Good, Bad and Ugly), and allow the holder to generate passive income in the form of our $WEST token while staked. $WEST will be used in our First-Person Shooter video game and our metaverse ecosystem. With $WEST you can purchase and trade: weapons, skins, horses, wearables, properties, play mini-games or deposit it before playing the competitive mode(Compete 2 Earn).\n\n✮Rarity System % daily passive income:Good 93%= 1x $WEST daily Bad 6%= 1.5x $WEST daily + bad banner airdrop Ugly 1%= 3.5x $WEST daily + ugly banner airdrop \n\n✮Crates will also have 2 weapons inside already, so whenever they come live, holders will get airdrops! They come in different conditions though!\n\n✮Crates will be able to open to get a random treasure (with wealth multiplier from 0 to 10).\n\nMore Benefits:\n\n✮80% of royalties go to holders through Staking.\n✮5% discount in the metaverse saloon!\n✮Automatic whitelist for the next NFT - Genesis Crowboy\n✮First of two genesis NFTs you need to hold to become a Genesis Member, which will be rewarded with special Events, Airdrops & possibility of Alpha/Beta testing of the game and metaverse.\n✮And much more!",
+      "author": { "name": "Crowboys", "link": "https://crowboys.online/" },
+      "address": "",
+      "maxMintPerTx": 8,
+      "maxMintPerAddress": 100,
+      "totalSupply": 5000,
+      "cost": "435",
+      "memberCost": "335",
+      "whitelistCost": "335",
+      "foundersOnly": false,
+      "start": 1651780800000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false
+    },
+    {
+      "id": 66,
+      "slug": "croppelganger",
+      "imgNft": "/img/drops/croppelganger/drop.webp",
+      "imgPreview": "/img/drops/croppelganger/drop.webp",
+      "imgAvatar": "/img/collections/croppelganger/avatar.webp",
+      "imgBanner": "/img/collections/croppelganger/banner.webp",
+      "title": "Croppelganger",
+      "subtitle": "Croppelganger Collection is a unique match-up of a celebrity with their cartoon doppelganger.",
+      "description": "The Croppelganger Collection is a hand drawn match-up series pairing celebrities with their cartoon doppelgangers. Croppelganer was inspired by pop culture online and offline with the idea of merging the two into one creation. Each Croppelganger is a one of one and features half of a celebrity's face mixed with half of a cartoon characters face. This collection was made using charcoal and acrylic paint medium on paper.",
+      "author": { "name": "Sophie NFTs", "link": "https://www.instagram.com/sophilixart/" },
+      "address": "",
+      "maxMintPerTx": 1,
+      "maxMintPerAddress": 100,
+      "totalSupply": 26,
+      "cost": "1000",
+      "memberCost": "750",
+      "foundersOnly": false,
+      "start": 1651780800000,
       "end": null,
       "referral": false,
       "is1155": false,

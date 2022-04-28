@@ -108,3 +108,17 @@ const getImageFromMetadata = async (json) => {
 
   return image;
 };
+
+export const getWeirdApesStakingStatus = async (collectionAddress, nftId) => {
+  const readContract = new Contract(collectionAddress, ERC721, readProvider);
+  return await readContract.stakedApes(nftId);
+};
+
+export const getAntMintPassMetadata = async (collectionAddress, nftId) => {
+  try {
+    const uri = 'https://gateway.pinata.cloud/ipfs/QmWLqeupPQsb4MTtJFjxEniQ1F67gpQCzuszwhZHFx6rUM';
+    return await (await fetch(uri)).json();
+  } catch (e) {
+    return null;
+  }
+};

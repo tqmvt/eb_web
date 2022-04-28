@@ -49,7 +49,8 @@ const Tab = styled.div`
 
 const OFFERS_TAB = {
   make: 'Made Offers',
-  receive: 'Received Offers',
+  receive: 'Received Direct Offers',
+  receivePublic: 'Received Public Offers',
 };
 
 const MyOffers = () => {
@@ -60,6 +61,7 @@ const MyOffers = () => {
   const madeOffers = useSelector((state) => state.offer.madeOffers);
 
   const [receivedOffers, setReceivedOffers] = useState([]);
+  const [receivedPublicOffers, setReceivedPublicOffers] = useState([]);
   const allOffersLoading = useSelector((state) => state.offer.allOffersLoading);
   const allOffers = useSelector((state) => state.offer.allOffers);
 
@@ -91,23 +93,45 @@ const MyOffers = () => {
 
   useEffect(() => {
     if (myNFTs && !myNFTsLoading && allOffers && collectionsStats.length > 0) {
-      const receivedOffersFilter = allOffers.filter((offer) => {
-        const nft = myNFTs.find(
-          (c) => c.nftAddress.toLowerCase() === offer.nftAddress && c.edition?.toString() === offer.nftId
-        );
+      const receivedOffersFilter = allOffers
+        .filter((offer) => {
+          const nft = myNFTs.find(
+            (c) => c.nftAddress.toLowerCase() === offer.nftAddress && c.edition?.toString() === offer.nftId
+          );
 
-        const knownContract = findKnownContract(offer.nftAddress, offer.nftId);
-        const floorPrice = findCollectionFloor(knownContract);
-        const offerPrice = parseInt(offer.price);
-        const isAboveOfferThreshold = floorPrice ? offerPrice >= floorPrice / 2 : true;
-        const canShowCompletedOffers = !knownContract.multiToken || parseInt(offer.state) === offerState.ACTIVE;
+          const knownContract = findKnownContract(offer.nftAddress, offer.nftId);
+          const floorPrice = findCollectionFloor(knownContract);
+          const offerPrice = parseInt(offer.price);
+          const isAboveOfferThreshold = floorPrice ? offerPrice >= floorPrice / 2 : true;
+          const canShowCompletedOffers = !knownContract.multiToken || parseInt(offer.state) === offerState.ACTIVE;
 
-        if (nft && isAboveOfferThreshold && canShowCompletedOffers) {
-          return true;
-        }
-        return false;
-      });
+          if (nft && isAboveOfferThreshold && canShowCompletedOffers && !nft.is1155) {
+            return true;
+          }
+          return false;
+        })
+        .sort((a, b) => parseInt(b.price) - parseInt(a.price));
+      const receivedPublicOffersFilter = allOffers
+        .filter((offer) => {
+          const nft = myNFTs.find(
+            (c) => c.nftAddress.toLowerCase() === offer.nftAddress && c.edition?.toString() === offer.nftId
+          );
+
+          const knownContract = findKnownContract(offer.nftAddress, offer.nftId);
+          const floorPrice = findCollectionFloor(knownContract);
+          const offerPrice = parseInt(offer.price);
+          const isAboveOfferThreshold = floorPrice ? offerPrice >= floorPrice / 2 : true;
+          const canShowCompletedOffers = !knownContract.multiToken || parseInt(offer.state) === offerState.ACTIVE;
+
+          if (nft && isAboveOfferThreshold && canShowCompletedOffers && nft.is1155) {
+            return true;
+          }
+          return false;
+        })
+        .sort((a, b) => parseInt(b.price) - parseInt(a.price));
+
       setReceivedOffers(receivedOffersFilter);
+      setReceivedPublicOffers(receivedPublicOffersFilter);
     }
     // eslint-disable-next-line
   }, [myNFTs, allOffers, collectionsStats]);
@@ -157,7 +181,7 @@ const MyOffers = () => {
     }
   };
 
-  console.log(lastId);
+  // console.log(lastId);
 
   const Content = () => (
     <>
@@ -181,53 +205,93 @@ const MyOffers = () => {
           <Tab onClick={() => setTab(OFFERS_TAB.receive)} className={`${tab === OFFERS_TAB.receive ? 'active' : ''}`}>
             {OFFERS_TAB.receive}
           </Tab>
-        </Tabs>
-        <MyOffersFilter checked={filterChecked} onFilter={handleOfferFilter} />
-        {tab === OFFERS_TAB.make && (
-          <InfiniteScroll
-            dataLength={madeOffers.length}
-            next={loadMoreMade}
-            hasMore={!!lastId}
-            style={{ overflow: 'hidden' }}
-            loader={
-              madeOffersLoading ? (
-                <div className="row">
-                  <div className="col-lg-12 text-center">
-                    <Spinner animation="border" role="status">
-                      <span className="visually-hidden">Loading...</span>
-                    </Spinner>
-                  </div>
-                </div>
-              ) : (
-                <></>
-              )
-            }
+          <Tab
+            onClick={() => setTab(OFFERS_TAB.receivePublic)}
+            className={`${tab === OFFERS_TAB.receivePublic ? 'active' : ''}`}
           >
-            <MadeOffers offers={madeOffers} isLoading={madeOffersLoading} />
-          </InfiniteScroll>
+            {OFFERS_TAB.receivePublic}
+          </Tab>
+        </Tabs>
+        {tab === OFFERS_TAB.make && (
+          <>
+            <MyOffersFilter checked={filterChecked} onFilter={handleOfferFilter} />
+            <InfiniteScroll
+              dataLength={madeOffers.length}
+              next={loadMoreMade}
+              hasMore={!!lastId}
+              style={{ overflow: 'hidden' }}
+              loader={
+                madeOffersLoading ? (
+                  <div className="row">
+                    <div className="col-lg-12 text-center">
+                      <Spinner animation="border" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                      </Spinner>
+                    </div>
+                  </div>
+                ) : (
+                  <></>
+                )
+              }
+            >
+              <MadeOffers offers={madeOffers} isLoading={madeOffersLoading} />
+            </InfiniteScroll>
+          </>
         )}
         {tab === OFFERS_TAB.receive && (
-          <InfiniteScroll
-            dataLength={receivedOffers.length}
-            next={loadMoreReceived}
-            hasMore={!!lastId}
-            style={{ overflow: 'hidden' }}
-            loader={
-              myNFTsLoading ? (
-                <div className="row">
-                  <div className="col-lg-12 text-center">
-                    <Spinner animation="border" role="status">
-                      <span className="visually-hidden">Loading...</span>
-                    </Spinner>
+          <>
+            <MyOffersFilter checked={filterChecked} onFilter={handleOfferFilter} />
+            <InfiniteScroll
+              dataLength={receivedOffers.length}
+              next={loadMoreReceived}
+              hasMore={!!lastId}
+              style={{ overflow: 'hidden' }}
+              loader={
+                myNFTsLoading ? (
+                  <div className="row">
+                    <div className="col-lg-12 text-center">
+                      <Spinner animation="border" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                      </Spinner>
+                    </div>
                   </div>
-                </div>
-              ) : (
-                <></>
-              )
-            }
-          >
-            <ReceivedOffers offers={receivedOffers} isLoading={allOffersLoading || myNFTsLoading} />
-          </InfiniteScroll>
+                ) : (
+                  <></>
+                )
+              }
+            >
+              <ReceivedOffers offers={receivedOffers} isLoading={allOffersLoading || myNFTsLoading} />
+            </InfiniteScroll>
+          </>
+        )}
+        {tab === OFFERS_TAB.receivePublic && (
+          <>
+            <div className="alert alert-info" role="alert">
+              Public offers are offers on certain collections that any holders of that collection can accept. These
+              offers are on all ERC1155 collections, including Ebisu's Founding Member and VIP Founding Member NFTs.
+            </div>
+            <InfiniteScroll
+              dataLength={receivedPublicOffers.length}
+              next={loadMoreReceived}
+              hasMore={!!lastId}
+              style={{ overflow: 'hidden' }}
+              loader={
+                myNFTsLoading ? (
+                  <div className="row">
+                    <div className="col-lg-12 text-center">
+                      <Spinner animation="border" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                      </Spinner>
+                    </div>
+                  </div>
+                ) : (
+                  <></>
+                )
+              }
+            >
+              <ReceivedOffers offers={receivedPublicOffers} isLoading={allOffersLoading || myNFTsLoading} />
+            </InfiniteScroll>
+          </>
         )}
       </section>
 

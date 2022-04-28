@@ -329,12 +329,20 @@ export const isSouthSideAntsCollection = (address) => {
   return isCollection(address, 'south-side-ants');
 };
 
+export const isAntMintPassCollection = (address) => {
+  return isCollection(address, 'ant-mint-pass');
+};
+
 export const isCrosmocraftsPartsCollection = (address) => {
   return isCollection(address, 'crosmocrafts-parts');
 };
 
 export const isCrosmocraftsCollection = (address) => {
   return isCollection(address, 'crosmocrafts');
+};
+
+export const isWeirdApesCollection = (address) => {
+  return isCollection(address, 'weird-apes-club');
 };
 
 export const isBabyWeirdApesCollection = (address) => {
@@ -410,4 +418,4 @@ export const convertIpfsResource = (resource, tooltip) => {
   }
 
   return linkedResource;
-}
+};

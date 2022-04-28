@@ -1,13 +1,13 @@
-import React, {memo, useCallback, useEffect} from 'react';
-import {connect, useDispatch, useSelector} from 'react-redux';
+import React, { memo, useCallback, useEffect } from 'react';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import NftCard from './MyNftCard';
 import TopFilterBar from './TopFilterBar';
 import { FilterOption } from '../Models/filter-option.model';
 import { Form, Spinner } from 'react-bootstrap';
 import { collectionFilterOptions } from './constants/filter-options';
-import {fetchChainNfts, fetchNfts, MyNftPageActions} from '../../GlobalState/User';
+import { fetchChainNfts, fetchNfts, MyNftPageActions } from '../../GlobalState/User';
 import InvalidListingsPopup from './InvalidListingsPopup';
-import {getAnalytics, logEvent} from "@firebase/analytics";
+import { getAnalytics, logEvent } from '@firebase/analytics';
 
 const mapStateToProps = (state) => ({
   nfts: state.user.nfts,
@@ -72,7 +72,7 @@ const MyNftCardList = ({ nfts = [], isLoading, listedOnly, activeFilterOption, u
 
   return (
     <>
-      {isLoading ? (
+      {isLoading && nfts.length === 0 ? (
         <div className="row">
           <div className="row mt-4">
             <div className="col-lg-12 text-center">
