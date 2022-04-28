@@ -3857,7 +3857,7 @@
       "multiToken": false,
       "address": "0xa0F71da7ebA2C23DFaaEb36a880fe3fA07d78A8a",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "",
         "verified": true,
@@ -5702,7 +5702,7 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false
+      "complete": true
     },
     {
       "id": 63,
