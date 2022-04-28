@@ -484,7 +484,7 @@
       "listable": true,
       "metadata": {
         "description": "The first Dragons on the Cronos Chain!",
-        "verified": true,
+        "verified": false,
         "avatar": "/img/collections/crodrakes/avatar.gif",
         "banner": "/img/collections/crodrakes/banner.png",
         "card": "/img/collections/crodrakes/card.png",
@@ -977,7 +977,7 @@
       "listable": true,
       "metadata": {
         "description": "The first Mage on CRONOS!",
-        "verified": true,
+        "verified": false,
         "avatar": "/img/collections/cromages/avatar.gif",
         "banner": "/img/collections/cromages/banner.webp",
         "card": "/img/collections/cromages/card.png",
