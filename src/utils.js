@@ -1,5 +1,6 @@
 import moment from 'moment';
 import config from './Assets/networks/rpc_config.json';
+import blacklist from './core/configs/blacklist.json';
 import IPFSGatewayTools from '@pinata/ipfs-gateway-tools/dist/browser';
 
 export const drops = config.drops;
@@ -424,4 +425,8 @@ export const convertIpfsResource = (resource, tooltip) => {
   }
 
   return linkedResource;
+}
+
+export const isUserBlacklisted = (address) => {
+  return !!blacklist.users.find((bAddress) => caseInsensitiveCompare(address, bAddress));
 }
