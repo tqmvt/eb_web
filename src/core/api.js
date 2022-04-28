@@ -1256,7 +1256,7 @@ export async function getNftsForAddress2(walletAddress, walletProvider) {
             })();
 
             const json = await (await fetch(checkedUri)).json();
-            image = convertIpfsResource(json.token_uri)
+            image = convertIpfsResource(json.image)
           } else if (typeof(nft.token_uri) === 'object'){
             image = nft.token_uri.image;
           }
