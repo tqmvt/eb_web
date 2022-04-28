@@ -988,7 +988,7 @@
       }
     },
     {
-      "name": "CroSkull",
+      "name": "CroSkull Originals",
       "slug": "croskull",
       "multiToken": false,
       "address": "0xF87A517A5CaecaA03d7cCa770789BdB61e09e05F",
@@ -1382,7 +1382,7 @@
       }
     },
     {
-      "name": "Blue Skull Potions",
+      "name": "CroSkull Blue Potions",
       "slug": "blue-skull-potions",
       "multiToken": false,
       "address": "0xB929D3002208f405180D3C07616F88EDa45F3e14",
@@ -1402,7 +1402,7 @@
       }
     },
     {
-      "name": "Red Skull Potions",
+      "name": "CroSkull Red Potions",
       "slug": "red-skull-potions",
       "multiToken": false,
       "address": "0x508378E99F5527Acb6eB4f0fc22f954c5783e5F9",
@@ -4058,8 +4058,8 @@
       }
     },
     {
-      "name": "Purple Skull Potions",
-      "slug": "purple-skull-potions",
+      "name": "Croskull Purple Potions",
+      "slug": "croskull-purple-potions",
       "multiToken": false,
       "address": "0xA9448e3e496f75488306195F34e49a7fCE5cbD0c",
       "onChain": false,
