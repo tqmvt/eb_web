@@ -155,7 +155,9 @@ export function humanize(str) {
   str = str.toString();
 
   // Only split camel case if it's not completely uppercase
-  if (str !== str.toUpperCase()) {
+  if (str === str.toUpperCase()) {
+    str = str[0].toUpperCase() + str.slice(1).toLowerCase();
+  } else {
     str = str.split(/(?=[A-Z])/)
       .join(' ')
   }
