@@ -536,3 +536,13 @@ canvas {
         background: $bgColor1;
     }
 }
+
+/* react-select */
+.dropdownSelect {
+.css-wenqhu-control{
+      background-color: $bgColor1;
+      border: 1px solid $borderColor2;
+      & > div > div{
+        color: $textColor1;
+      }
+}}

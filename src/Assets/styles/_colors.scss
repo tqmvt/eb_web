@@ -17,6 +17,9 @@
   --color-bgColor2: #bd2727;
 
   --color-borderColor1: #eeeeee;
+  --color-borderColor2: #bbbbbb;
+
+  --color-boxShadow1: rgba(20, 20, 20, 0.1);
 }
 
 // dark theme colors
@@ -38,6 +41,9 @@ html[data-theme='dark'] {
   --color-bgColor2: #bd2727;
 
   --color-borderColor1: rgba(255, 255, 255, 0.1);
+  --color-borderColor2: rgba(255, 255, 255, 0.1);
+
+  --color-boxShadow1: rgba(20, 20, 20, 0.6);
 }
 
 // vars
@@ -58,3 +64,6 @@ $bgColor1: var(--color-bgColor1);
 $bgColor2: var(--color-bgColor2);
 
 $borderColor1: var(--color-borderColor1);
+$borderColor2: var(--color-borderColor2);
+
+$colorBoxShadow1: var(--color-boxShadow1);

@@ -215,7 +215,9 @@ const AccountMenu = function () {
                 <h4>Wallet Balance</h4>
                 <div className="d-flex justify-content-between">
                   {!user.connectingWallet ? (
-                    <span>{user.balance ? <>{Math.round(user.balance * 100) / 100} CRO</> : <>N/A</>}</span>
+                    <span className="d-wallet-value">
+                      {user.balance ? <>{Math.round(user.balance * 100) / 100} CRO</> : <>N/A</>}
+                    </span>
                   ) : (
                     <span>
                       <Spinner animation="border" role="status" size={'sm'}>
@@ -232,7 +234,7 @@ const AccountMenu = function () {
                     <>
                       {user.marketBalance ? (
                         <>
-                          <span>{Math.round(user.marketBalance * 100) / 100} CRO</span>
+                          <span className="d-wallet-value">{Math.round(user.marketBalance * 100) / 100} CRO</span>
                           {user.marketBalance !== '0.0' && (
                             <button className="btn_menu" title="Withdraw Balance" onClick={withdrawBalance}>
                               Withdraw

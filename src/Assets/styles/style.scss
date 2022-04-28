@@ -4850,7 +4850,7 @@ blockquote {
   }
 }
 
-//logout menu
+// logout menu
 .mainside {
   width: max-content;
   padding-left: 0;
@@ -4988,14 +4988,14 @@ blockquote {
       cursor: default;
       width: 250px;
       position: absolute;
-      background: $white;
+      background: $bgColor1;
       border-radius: 5px;
       overflow: hidden;
       inset: 50px auto auto -200px;
       padding: 20px;
       animation: smoothDrop 0.2s ease;
       -webkit-animation: smoothDrop 0.2s ease;
-      box-shadow: 2px 2px 30px 0px rgba(20, 20, 20, 0.1);
+      box-shadow: 2px 2px 30px 0px $colorBoxShadow1;
       z-index: 1;
       .d-name {
         margin-bottom: 15px;
@@ -5042,6 +5042,10 @@ blockquote {
           display: inline-block;
           max-width: 64%;
           overflow: hidden;
+          color: $textColor1;
+        }
+        .d-wallet-value {
+          color: $textColor1;
         }
         #btn_copy {
           margin-left: 15px;
@@ -5081,7 +5085,7 @@ blockquote {
             }
 
             & > span:last-child {
-              color: #0d0c22 !important;
+              color: $textColor1;
               background: none;
               padding: 0;
               font-weight: bold;
