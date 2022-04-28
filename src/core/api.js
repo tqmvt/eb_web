@@ -1149,6 +1149,8 @@ export async function getQuickWallet(walletAddress) {
 
   const json = await (await fetch(uri)).json();
 
+  if (json.status !== 200 || !json.data) return {...json, ...{data: []}};
+
   // @todo: remove once api has this version in prod
   if (!Array.isArray(json.data)) {
     json.data = [...json.data.erc1155, ...json.data.erc721];
