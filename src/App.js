@@ -36,12 +36,11 @@ const GlobalStyles = createGlobalStyle`
 
 function App() {
   const dispatch = useDispatch();
-  const light = 'dark';
-  document.documentElement.setAttribute('data-theme', light);
 
   const userTheme = useSelector((state) => {
     return state.user.theme;
   });
+  document.documentElement.setAttribute('data-theme', userTheme);
 
   useEffect(() => {
     dispatch(appInitializer());
@@ -54,7 +53,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <ThemeProvider theme={getTheme(light)}>
+    <ThemeProvider theme={getTheme(userTheme)}>
       <div className="wraper">
         <GlobalStyles />
         <AppRouter firebase />

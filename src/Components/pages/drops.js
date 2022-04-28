@@ -7,6 +7,7 @@ import CurrentDrops from '../components/CurrentDrops';
 import Footer from '../components/Footer';
 import UpcomingDrops from '../Drops/UpcomingDrops';
 import PastDrops from '../Drops/PastDrops';
+import { getTheme } from 'src/Theme/theme';
 
 const Drops = () => {
   const userTheme = useSelector((state) => {
@@ -17,9 +18,9 @@ const Drops = () => {
       <section style={{ paddingTop: '90px', paddingBottom: '8px', background: 'transparent' }}>
         <div className="d-flex justify-content-center px-5">
           <p className="my-auto me-5">
-            Enjoy amazing discounts on drops and 50% off service fees while holding an Ebisu's Bay Founding Member NFT.{' '}
-            <span className="fw-bold d-block d-md-inline-block text-end">
-              <Link to="/collection/founding-member">Learn More &gt;</Link>
+            Enjoy amazing discounts on drops and 50% off service fees while holding an Ebisu's Bay Founding Member NFT.
+            <span className="fw-bold d-block d-md-inline-block text-end ms-3">
+              <Link to="/collection/founding-member">Learn More</Link>
             </span>
           </p>
           <div style={{ width: '70px' }} className="my-auto">
@@ -31,7 +32,7 @@ const Drops = () => {
       </section>
       <section
         className="jumbotron breadcumb no-bg h-vh"
-        style={{ backgroundImage: `url(${userTheme === 'light' ? './img/background/12.webp' : ''})` }}
+        style={{ backgroundColor: getTheme(userTheme).colors.bgColor3 }}
       >
         <div className="container">
           <div className="row py-4">

@@ -12,15 +12,16 @@ import {
   faSignOutAlt,
   faExclamationCircle,
   faShoppingBag,
+  faMoon,
 } from '@fortawesome/free-solid-svg-icons';
 import { toast } from 'react-toastify';
 import MetaMaskOnboarding from '@metamask/onboarding';
-import { Modal, NavLink, Spinner } from 'react-bootstrap';
+import { Modal, NavLink, Spinner, FormCheck } from 'react-bootstrap';
 
 import {
   connectAccount,
   onLogout,
-  // setTheme,
+  setTheme,
   setShowWrongChainModal,
   chainConnect,
   AccountMenuActions,
@@ -28,6 +29,7 @@ import {
 import rpcConfig from '../../Assets/networks/rpc_config.json';
 
 import HandHoldingCroIcon from 'src/Assets/images/hand-holding-cro.svg';
+import { getThemeInStorage, setThemeInStorage } from 'src/helpers/storage';
 
 const AccountMenu = function () {
   const dispatch = useDispatch();
@@ -47,9 +49,9 @@ const AccountMenu = function () {
   const correctChain = useSelector((state) => {
     return state.user.correctChain;
   });
-  // const theme = useSelector((state) => {
-  //   return state.user.theme;
-  // });
+  const theme = useSelector((state) => {
+    return state.user.theme;
+  });
   const user = useSelector((state) => {
     return state.user;
   });
@@ -75,11 +77,10 @@ const AccountMenu = function () {
     }
   };
 
-  // const toggleTheme = () => {
-  //   const newTheme = theme === 'light' ? 'dark' : 'light';
-  //   console.log('toggleTheme...', newTheme);
-  //   dispatch(setTheme(newTheme));
-  // };
+  const toggleTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    dispatch(setTheme(newTheme));
+  };
 
   const handleCopy = (code) => () => {
     navigator.clipboard.writeText(code);
@@ -102,6 +103,16 @@ const AccountMenu = function () {
     dispatch(onLogout());
     toast.success(`Cookies cleared!`);
   };
+
+  useEffect(() => {
+    const themeInStorage = getThemeInStorage();
+    console.log(themeInStorage);
+    if (themeInStorage) {
+      dispatch(setTheme(themeInStorage));
+    } else {
+      setThemeInStorage('light');
+    }
+  }, []);
 
   useEffect(() => {
     let defiLink = localStorage.getItem('DeFiLink_session_storage_extension');
@@ -133,7 +144,6 @@ const AccountMenu = function () {
         dispatch(connectAccount(false, 'defi'));
       }
     }
-
     // eslint-disable-next-line
   }, []);
 
@@ -262,7 +272,7 @@ const AccountMenu = function () {
                 <li>
                   <span onClick={() => navigateTo(`/nfts`)}>
                     <span>
-                      <FontAwesomeIcon icon={faImage} />{' '}
+                      <FontAwesomeIcon icon={faImage} />
                     </span>
                     <span>My NFTs</span>
                   </span>
@@ -271,12 +281,11 @@ const AccountMenu = function () {
                   <span onClick={() => navigateTo(`/wallet/listings`)}>
                     {walletAddress && correctChain && myUnfilteredListings.some((x) => !x.valid && x.listed) ? (
                       <span>
-                        {' '}
-                        <FontAwesomeIcon color="var(--bs-danger)" icon={faExclamationCircle} size={'2x'} />{' '}
+                        <FontAwesomeIcon color="var(--bs-danger)" icon={faExclamationCircle} size={'2x'} />
                       </span>
                     ) : (
                       <span>
-                        <FontAwesomeIcon icon={faEnvelopeOpenText} />{' '}
+                        <FontAwesomeIcon icon={faEnvelopeOpenText} />
                       </span>
                     )}
                     <span>My Listings </span>
@@ -285,7 +294,7 @@ const AccountMenu = function () {
                 <li>
                   <span onClick={() => navigateTo(`/sales`)}>
                     <span>
-                      <FontAwesomeIcon icon={faShoppingBasket} />{' '}
+                      <FontAwesomeIcon icon={faShoppingBasket} />
                     </span>
                     <span>My Sales</span>
                   </span>
@@ -293,7 +302,7 @@ const AccountMenu = function () {
                 <li className="my-offers-menu-item">
                   <span onClick={() => navigateTo(`/offers`)}>
                     <span>
-                      <img src={HandHoldingCroIcon} alt="handholding-cro" width="14" height="14" />{' '}
+                      <img src={HandHoldingCroIcon} alt="handholding-cro" width="14" height="14" />
                     </span>
                     <span>My Offers</span>
                   </span>
@@ -303,7 +312,7 @@ const AccountMenu = function () {
                   <li>
                     <span onClick={() => navigateTo(`/staking`)}>
                       <span>
-                        <FontAwesomeIcon icon={faShoppingBag} />{' '}
+                        <FontAwesomeIcon icon={faShoppingBag} />
                       </span>
                       <span>My Staking</span>
                     </span>
@@ -312,7 +321,7 @@ const AccountMenu = function () {
                 <li>
                   <span onClick={clearCookies}>
                     <span>
-                      <FontAwesomeIcon icon={faBolt} />{' '}
+                      <FontAwesomeIcon icon={faBolt} />
                     </span>
                     <span>Clear Cookies</span>
                   </span>
@@ -323,9 +332,28 @@ const AccountMenu = function () {
                 <li>
                   <span onClick={logout}>
                     <span>
-                      <FontAwesomeIcon icon={faSignOutAlt} />{' '}
+                      <FontAwesomeIcon icon={faSignOutAlt} />
                     </span>
                     <span>Disconnect Wallet</span>
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <span>
+                      <FontAwesomeIcon icon={faMoon} />
+                    </span>
+                    <span className="d-flex">
+                      <label htmlFor="dark-mode-switch" className="cursor-pointer">
+                        Dark Mode
+                      </label>
+                      <FormCheck
+                        type="switch"
+                        id="dark-mode-switch"
+                        className="ms-2 cursor-pointer"
+                        checked={theme === 'dark'}
+                        onChange={toggleTheme}
+                      />
+                    </span>
                   </span>
                 </li>
               </ul>

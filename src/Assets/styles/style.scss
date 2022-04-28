@@ -2860,7 +2860,7 @@ i.font60 {
   -webkit-border-radius: 30px;
   border: solid 2px $blue;
   z-index: 1;
-  color: #0d0c22; // todo: dark $white
+  color: $textColor1;
   .Clock-days {
     font-weight: bold;
     display: inline-block;

@@ -1,6 +1,8 @@
 @import './colors';
 
-
+.cursor-pointer {
+    cursor: pointer;
+}
 
 // fix when h-vh causes overlapping
 // https://ebisusbay.atlassian.net/browse/WEB-396

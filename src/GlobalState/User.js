@@ -18,7 +18,7 @@ import {
   getNftSalesForAddress,
   getNftsForAddress,
   getNftsForAddress2,
-  getUnfilteredListingsForAddress
+  getUnfilteredListingsForAddress,
 } from '../core/api';
 import { toast } from 'react-toastify';
 import { createSuccessfulTransactionToastContent, sliceIntoChunks } from '../utils';
@@ -26,6 +26,7 @@ import { FilterOption } from '../Components/Models/filter-option.model';
 import { nanoid } from 'nanoid';
 import { appAuthInitFinished } from './InitSlice';
 import { captureException } from '@sentry/react';
+import { setThemeInStorage } from 'src/helpers/storage';
 
 const userSlice = createSlice({
   name: 'user',
@@ -276,7 +277,6 @@ const userSlice = createSlice({
       state.myUnfilteredListings = [];
     },
     onThemeChanged(state, action) {
-      console.log('onThemeChanged', action.payload);
       state.theme = action.payload;
     },
     balanceUpdated(state, action) {
@@ -668,9 +668,14 @@ export const fetchChainNfts = (abortSignal) => async (dispatch, getState) => {
   const nftsInitialized = state.user.nftsInitialized;
   if (!nftsInitialized) {
     dispatch(fetchingNfts());
-    const response = await getNftsForAddress(walletAddress, walletProvider, (nfts) => {
-      dispatch(onNftsAdded(nfts));
-    }, abortSignal);
+    const response = await getNftsForAddress(
+      walletAddress,
+      walletProvider,
+      (nfts) => {
+        dispatch(onNftsAdded(nfts));
+      },
+      abortSignal
+    );
     if (abortSignal.aborted) return;
     dispatch(setIsMember(response.isMember));
     await addRanksToNfts(dispatch, getState);
@@ -681,9 +686,14 @@ export const fetchChainNfts = (abortSignal) => async (dispatch, getState) => {
   dispatch(fetchingNfts());
   const loadedNfts = [];
   try {
-    const response = await getNftsForAddress(walletAddress, walletProvider, (nfts) => {
-      loadedNfts.push(...nfts);
-    }, abortSignal);
+    const response = await getNftsForAddress(
+      walletAddress,
+      walletProvider,
+      (nfts) => {
+        loadedNfts.push(...nfts);
+      },
+      abortSignal
+    );
     if (abortSignal.aborted) return;
     dispatch(onNftsReplace(loadedNfts));
     await addRanksToNfts(dispatch, getState);
@@ -762,7 +772,7 @@ export const fetchUnfilteredListings = (walletAddress) => async (dispatch, getSt
 };
 
 export const setTheme = (theme) => async (dispatch) => {
-  console.log('setting theme.....', theme);
+  setThemeInStorage(theme);
   dispatch(onThemeChanged(theme));
 };
 

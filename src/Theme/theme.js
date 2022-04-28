@@ -12,6 +12,7 @@ export const lightTheme = {
   borderColor6: '#AA4A44',
   bgColor1: '#ffffff',
   bgColor2: '#ffffffdd',
+  bgColor3: '#eeeeee',
 };
 
 export const darkTheme = {
@@ -28,6 +29,7 @@ export const darkTheme = {
   borderColor6: '#AA4A44',
   bgColor1: '#212428',
   bgColor2: '#212428dd',
+  bgColor3: '#212428',
 };
 
 export const theme = {
