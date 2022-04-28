@@ -1233,6 +1233,7 @@ export async function getNftsForAddress2(walletAddress, walletProvider) {
       }
 
       let image;
+      let name = nft.name;
       try {
         if (nft.image_aws || nft.image) {
           image = nft.image_aws ?? nft.image;
@@ -1257,6 +1258,7 @@ export async function getNftsForAddress2(walletAddress, walletProvider) {
 
             const json = await (await fetch(checkedUri)).json();
             image = convertIpfsResource(json.image)
+            if (json.name) name = json.name;
           } else if (typeof(nft.token_uri) === 'object'){
             image = nft.token_uri.image;
           }
@@ -1282,7 +1284,7 @@ export async function getNftsForAddress2(walletAddress, walletProvider) {
       
       return {
         id: nft.nftId,
-        name: nft.name,
+        name: name,
         description: nft.description,
         properties: nft.properties && nft.properties.length > 0 ? nft.properties : nft.attributes,
         image: image,
