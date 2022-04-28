@@ -988,7 +988,7 @@
       }
     },
     {
-      "name": "CroSkull",
+      "name": "CroSkull Originals",
       "slug": "croskull",
       "multiToken": false,
       "address": "0xF87A517A5CaecaA03d7cCa770789BdB61e09e05F",
@@ -997,13 +997,13 @@
       "metadata": {
         "description": "CroSkull is a collection of 6.666 uniquely generated NFTs stored on the Cronos Chain. Each CroSkull NFT is based on 6+ attributes with different rarities. A CroSkull is not simply a PFP but is also the key to the insane Dr. Jiko's laboratory experiments.",
         "verified": true,
-        "avatar": "/img/collections/croskull/avatar.jpg",
+        "avatar": "/img/collections/croskull/avatar.webp",
         "banner": "/img/collections/croskull/banner.webp",
-        "card": "/img/collections/croskull/card.jpg",
+        "card": "/img/collections/croskull/card.webp",
         "maxSupply": 6666,
-        "website": "https://croskull.com/",
+        "website": "https://app.croskull.com/",
         "twitter": "https://twitter.com/CroskullNFT",
-        "discord": "https://discord.gg/aU5YmPuqKy",
+        "discord": "https://discord.gg/croskull",
         "medium": "https://medium.com/@croskullnft",
         "staking": "croskull"
       }
@@ -1382,7 +1382,7 @@
       }
     },
     {
-      "name": "Blue Skull Potions",
+      "name": "CroSkull Blue Potions",
       "slug": "blue-skull-potions",
       "multiToken": false,
       "address": "0xB929D3002208f405180D3C07616F88EDa45F3e14",
@@ -1391,18 +1391,18 @@
       "metadata": {
         "description": "Combine this potion with the red one to get an exclusive Purple Potion that can be used to evolve your Skull.",
         "verified": true,
-        "avatar": "/img/collections/croskull/bluepotions/avatar.jpg",
-        "card": "/img/collections/croskull/bluepotions/card.jpg",
-        "banner": "/img/collections/croskull/bluepotions/banner.jpg",
+        "avatar": "/img/collections/croskull/bluepotions/avatar.webp",
+        "card": "/img/collections/croskull/bluepotions/card.webp",
+        "banner": "/img/collections/croskull/bluepotions/banner.webp",
         "maxSupply": 333,
-        "website": "https://croskull.com/",
+        "website": "https://app.croskull.com/",
         "twitter": "https://twitter.com/CroskullNFT",
-        "discord": "https://discord.gg/aU5YmPuqKy",
-        "medium": "http://medium.com/@croskullnft"
+        "discord": "https://discord.gg/croskull",
+        "medium": "https://medium.com/@croskullnft"
       }
     },
     {
-      "name": "Red Skull Potions",
+      "name": "CroSkull Red Potions",
       "slug": "red-skull-potions",
       "multiToken": false,
       "address": "0x508378E99F5527Acb6eB4f0fc22f954c5783e5F9",
@@ -1411,14 +1411,14 @@
       "metadata": {
         "description": "Combine this potion with the blue one to get an exclusive Purple Potion that can be used to evolve your Skull.",
         "verified": true,
-        "avatar": "/img/collections/croskull/redpotions/avatar.jpg",
-        "card": "/img/collections/croskull/redpotions/card.jpg",
-        "banner": "/img/collections/croskull/redpotions/banner.jpg",
+        "avatar": "/img/collections/croskull/redpotions/avatar.webp",
+        "card": "/img/collections/croskull/redpotions/card.webp",
+        "banner": "/img/collections/croskull/redpotions/banner.webp",
         "maxSupply": 333,
-        "website": "https://croskull.com/",
+        "website": "https://app.croskull.com/",
         "twitter": "https://twitter.com/CroskullNFT",
-        "discord": "https://discord.gg/aU5YmPuqKy",
-        "medium": "http://medium.com/@croskullnft"
+        "discord": "https://discord.gg/croskull",
+        "medium": "https://medium.com/@croskullnft"
       }
     },
     {
@@ -2299,9 +2299,9 @@
         "card": "/img/collections/croskull/eggs/card.webp",
         "banner": "/img/collections/croskull/eggs/banner.webp",
         "maxSupply": 2200,
-        "website": "https://croskull.com/",
+        "website": "https://app.croskull.com/",
         "twitter": "https://twitter.com/CroskullNFT",
-        "discord": "https://discord.gg/K6s4KgVhYN",
+        "discord": "https://discord.gg/croskull",
         "medium": "https://medium.com/@croskullnft"
       }
     },
@@ -4055,6 +4055,26 @@
         "website": "https://www.sexyseacows.com/",
         "twitter": "https://twitter.com/SexySeaCows",
         "discord": "https://discord.gg/tR4fS43UcT"
+      }
+    },
+    {
+      "name": "Croskull Purple Potions",
+      "slug": "croskull-purple-potions",
+      "multiToken": false,
+      "address": "0xA9448e3e496f75488306195F34e49a7fCE5cbD0c",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/croskull/purplepotions/avatar.webp",
+        "card": "/img/collections/croskull/purplepotions/card.webp",
+        "banner": "/img/collections/croskull/purplepotions/banner.webp",
+        "maxSupply": 333,
+        "website": "https://app.croskull.com/",
+        "twitter": "https://twitter.com/CroskullNFT",
+        "discord": "https://discord.gg/croskull",
+        "medium": "https://medium.com/@croskullnft"
       }
     }
   ],
