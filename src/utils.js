@@ -152,12 +152,16 @@ export function classList(classes) {
 export function humanize(str) {
   if (!str) return '';
 
-  let i,
-    frags = str
-      .toString()
-      .split(/(?=[A-Z])/)
+  str = str.toString();
+
+  // Only split camel case if it's not completely uppercase
+  if (str !== str.toUpperCase()) {
+    str = str.split(/(?=[A-Z])/)
       .join(' ')
-      .split('_');
+  }
+
+  let i,
+    frags = str.split('_');
   for (i = 0; i < frags.length; i++) {
     frags[i] = frags[i].charAt(0).toUpperCase() + frags[i].slice(1);
   }
