@@ -6,16 +6,14 @@ import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faBolt,
-  faEnvelopeOpenText,
   faImage,
-  faShoppingBasket,
   faSignOutAlt,
-  faExclamationCircle,
   faShoppingBag,
 } from '@fortawesome/free-solid-svg-icons';
 import { toast } from 'react-toastify';
 import MetaMaskOnboarding from '@metamask/onboarding';
 import { Modal, NavLink, Spinner } from 'react-bootstrap';
+import styled from 'styled-components';
 
 import {
   connectAccount,
@@ -24,11 +22,23 @@ import {
   setShowWrongChainModal,
   chainConnect,
   AccountMenuActions,
+  checkForOutstandingOffers,
 } from '../../GlobalState/User';
 import rpcConfig from '../../Assets/networks/rpc_config.json';
 
 import HandHoldingCroIcon from 'src/Assets/images/hand-holding-cro.svg';
+import {getAllCollections} from "../../GlobalState/collectionsSlice";
+import {fetchMyNFTs} from "../../GlobalState/offerSlice";
 
+const BlockiesBadge = styled.div`
+position: absolute;
+top: 0px;
+right: 0px;
+width: 10px;
+height: 10px;
+border-radius: 10px;
+background-color: #bd2727;
+`
 const AccountMenu = function () {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -56,6 +66,8 @@ const AccountMenu = function () {
   const needsOnboard = useSelector((state) => {
     return state.user.needsOnboard;
   });
+  const collectionsStats = useSelector((state) => state.collections.collections);
+  const myNFTs = useSelector((state) => state.offer.myNFTs);
 
   const navigateTo = (link) => {
     closePop();
@@ -65,6 +77,22 @@ const AccountMenu = function () {
   const logout = async () => {
     dispatch(onLogout());
   };
+
+  useEffect(() => {
+    if (walletAddress) {
+      dispatch(getAllCollections());
+      dispatch(fetchMyNFTs(walletAddress));
+    }
+  }, [walletAddress])
+
+  useEffect(() => {
+    if (collectionsStats &&
+      collectionsStats.length > 0 &&
+      myNFTs &&
+      myNFTs.length > 0) {
+      dispatch(checkForOutstandingOffers());
+    }
+  }, [collectionsStats, myNFTs])
 
   const connectWalletPressed = async () => {
     if (needsOnboard) {
@@ -166,6 +194,9 @@ const AccountMenu = function () {
         <div id="de-click-menu-profile" className="de-menu-profile">
           <span onClick={() => btn_icon_pop(!showpop)}>
             <Blockies seed={user.address} size={8} scale={4} />
+            {user.hasOutstandingOffers && (
+              <BlockiesBadge className="notification-badge"></BlockiesBadge>
+            )}
           </span>
           {showpop && (
             <div className="popshow" ref={refpop}>
@@ -274,7 +305,9 @@ const AccountMenu = function () {
                     </span>
                     <span>My Offers</span>
                   </span>
-                  {/* <div className="notification-badge"></div> */}
+                  {user.hasOutstandingOffers && (
+                    <div className="notification-badge"></div>
+                  )}
                 </li>
                 {(user.vipCount > 0 || user.stakeCount > 0) && (
                   <li>
