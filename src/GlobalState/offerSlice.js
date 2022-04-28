@@ -133,18 +133,10 @@ export const fetchAllOffers =
   async (dispatch, getState) => {
     if (!addresses.length) return;
     dispatch(allOffersLoading());
-    const state = getState().offer;
-    const { data } = await getAllOffers(addresses, stateFilter, state.lastId);
+    const { data } = await getAllOffers(addresses, stateFilter);
 
     if (data) {
-      if (data.length) {
-        let allOffers = [...state.allOffers];
-        allOffers = allOffers.concat(data);
-        const lastId = allOffers.slice(-1)[0]['id'];
-        dispatch(allOffersLoaded({ allOffers, lastId }));
-      } else {
-        dispatch(allOffersLoaded({ allOffers: state.allOffers, lastId: null }));
-      }
+        dispatch(allOffersLoaded({ allOffers: data }));
     } else dispatch(allOffersLoaded([]));
   };
 
@@ -152,18 +144,10 @@ export const fetchMadeOffers =
   (address, stateFilter = '0') =>
   async (dispatch, getState) => {
     dispatch(madeOffersLoading());
-    const state = getState().offer;
-    const { data } = await getMyOffers(address, stateFilter, state.lastId);
+    const { data } = await getMyOffers(address, stateFilter);
 
     if (data) {
-      if (data.length) {
-        let madeOffers = [...state.madeOffers];
-        madeOffers = madeOffers.concat(data);
-        const lastId = madeOffers.slice(-1)[0]['id'];
-        dispatch(madeOffersLoaded({ madeOffers, lastId }));
-      } else {
-        dispatch(madeOffersLoaded({ madeOffers: state.madeOffers, lastId: null }));
-      }
+        dispatch(madeOffersLoaded({ madeOffers: data }));
     } else dispatch(madeOffersLoaded([]));
   };
 

@@ -11,6 +11,7 @@ import MetaMaskOnboarding from '@metamask/onboarding';
 import ProfilePreview from '../components/ProfilePreview';
 import Footer from '../components/Footer';
 import {
+  caseInsensitiveCompare,
   humanize,
   isBabyWeirdApesCollection,
   isCroCrowCollection,
@@ -54,11 +55,14 @@ const Nft721 = ({ address, id }) => {
   );
 
   const powertraits = useSelector((state) => state.nft.nft?.powertraits);
+  const collection = useSelector((state) => {
+    return knownContracts.find((c) => caseInsensitiveCompare(c.address, address));
+  });
   const collectionMetadata = useSelector((state) => {
-    return knownContracts.find((c) => c.address.toLowerCase() === address.toLowerCase())?.metadata;
+    return collection?.metadata;
   });
   const collectionName = useSelector((state) => {
-    return knownContracts.find((c) => c.address.toLowerCase() === address.toLowerCase())?.name;
+    return collection?.name;
   });
   const isLoading = useSelector((state) => state.nft.loading);
 
@@ -312,12 +316,17 @@ const Nft721 = ({ address, id }) => {
                       <span className="fw-bold">This Crognomide has been bred for a Croby</span>
                     </div>
                   )}
-                  <PriceActionBar />
-                  <div className="row">
-                    <button className="btn-main mx-auto mb-5" onClick={() => handleMakeOffer()}>
-                      {offerType === OFFER_TYPE.update ? 'Update' : 'Make'} Offer
-                    </button>
-                  </div>
+
+                  {collection.listable && (
+                    <>
+                      <PriceActionBar />
+                      <div className="row">
+                        <button className="btn-main mx-auto mb-5" onClick={() => handleMakeOffer()}>
+                          {offerType === OFFER_TYPE.update ? 'Update' : 'Make'} Offer
+                        </button>
+                      </div>
+                    </>
+                  )}
 
                   <div className="row" style={{ gap: '2rem 0' }}>
                     {currentListing && (
