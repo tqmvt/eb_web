@@ -546,3 +546,16 @@ canvas {
         color: $textColor1;
       }
 }}
+
+/* PriceActionBar */
+.price-action-bar {
+    .pab-card {
+        color: $textColor1;
+        background: $bgColor1;
+        border-color: #cdcfcf;
+
+        .fw-bold {
+            color: $textColor1;
+        }
+    }
+}

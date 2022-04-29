@@ -8,6 +8,18 @@ const InputContainer = styled.input`
   border-radius: 8px;
   padding: 4px 8px;
   font-size: 14px;
+  color: ${({ theme }) => theme.colors.textColor3};
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  &[type='number'] {
+    -moz-appearance: textfield;
+  }
 
   &.is-error {
     border: 0.5px solid ${({ theme }) => theme.colors.borderColor6};

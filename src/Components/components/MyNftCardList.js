@@ -101,7 +101,7 @@ const MyNftCardList = ({ nfts = [], isLoading, listedOnly, activeFilterOption, u
             <div className="col-12 col-sm-6 col-md-4 m-0 text-nowrap d-flex align-items-center">
               <div className="items_filter">
                 <Form.Switch
-                  className=""
+                  className="mt-4"
                   label={'Only listed'}
                   checked={listedOnly}
                   onChange={() => dispatch(MyNftPageActions.setMyNftPageListedOnly(!listedOnly))}

@@ -31,10 +31,28 @@ import CloseIcon from 'src/Assets/images/close-icon-blue.svg';
 import config from 'src/Assets/networks/rpc_config.json';
 import Market from 'src/Contracts/Marketplace.json';
 
+const StyledTypography = styled(Typography)`
+  color: ${({ theme }) => theme.colors.textColor3};
+`;
+
+const StyledStepLabel = styled(StepLabel)`
+  .MuiStepLabel-label,
+  .MuiStepLabel-label.Mui-active {
+    color: ${({ theme }) => theme.colors.textColor3};
+  }
+`;
+
 const DialogContainer = styled(Dialog)`
+  .MuiPaper-root {
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: ${({ theme }) => theme.colors.bgColor1};
+  }
+
   .MuiDialogContent-root {
     padding: 36px 50px !important;
     border-radius: 8px;
+    background-color: ${({ theme }) => theme.colors.bgColor1};
 
     @media only screen and (max-width: ${({ theme }) => theme.breakpoints.md}) {
       width: 100%;
@@ -57,6 +75,7 @@ const CardMediaContainer = styled(CardMedia)`
 
 const BuyerAddress = styled.div`
   margin-top: 12px;
+  color: ${({ theme }) => theme.colors.textColor3};
 
   & .blockies {
     border-radius: 100px;
@@ -241,26 +260,28 @@ const AcceptOfferDialog = ({ isOpen, toggle, nftData, offerData, collectionMetad
                 <Stepper activeStep={acceptDialogActiveStep} orientation="vertical">
                   {offerSteps.map((step, index) => (
                     <Step key={step.label}>
-                      <StepLabel optional={index === 2 ? <Typography variant="caption">Last step</Typography> : null}>
+                      <StyledStepLabel
+                        optional={index === 2 ? <StyledTypography variant="caption">Last step</StyledTypography> : null}
+                      >
                         {step.label} {index === 1 ? `${offerData.price} CRO` : ''}
-                      </StepLabel>
+                      </StyledStepLabel>
                       <StepContent>
-                        <Typography>{step.description}</Typography>
+                        <StyledTypography>{step.description}</StyledTypography>
                         {index === 1 ? (
                           <Stack>
-                            <Typography>
+                            <StyledTypography>
                               <strong>
                                 Buyer pays:{' '}
                                 <span style={{ fontSize: '18px' }}>{offerData.price ? offerData.price : 0}</span> CRO{' '}
                               </strong>
-                            </Typography>
-                            <Typography>Service Fee: {fee} %</Typography>
-                            <Typography>Royalty Fee: {royalty} %</Typography>
-                            <Typography>
+                            </StyledTypography>
+                            <StyledTypography>Service Fee: {fee} %</StyledTypography>
+                            <StyledTypography>Royalty Fee: {royalty} %</StyledTypography>
+                            <StyledTypography>
                               <strong>
                                 You receive: <span style={{ fontSize: '18px' }}>{getYouReceiveViewValue()}</span> CRO{' '}
                               </strong>
-                            </Typography>
+                            </StyledTypography>
                           </Stack>
                         ) : null}
                         <Box sx={{ mt: 3 }}>

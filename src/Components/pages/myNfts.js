@@ -1,5 +1,5 @@
 import React, { memo, useState } from 'react';
-import { connect, useDispatch } from 'react-redux';
+import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 import Footer from '../components/Footer';
@@ -16,7 +16,7 @@ const mapStateToProps = (state) => ({
 });
 
 const MyNfts = ({ walletAddress, isLoading }) => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const [showChainSearch, setShowChainSearch] = useState(false);
   const [openTab, setOpenTab] = useState(0);
 
