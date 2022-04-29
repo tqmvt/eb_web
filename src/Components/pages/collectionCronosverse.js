@@ -43,7 +43,7 @@ const CollectionCronosverse = ({ collection }) => {
         collection.address
       )
     );
-    dispatch(fetchListings());
+    dispatch(fetchListings(true));
     // eslint-disable-next-line
   }, [dispatch]);
 
