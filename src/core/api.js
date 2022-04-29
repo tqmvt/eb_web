@@ -15,10 +15,10 @@ import {
   isAntMintPassCollection,
   isMetapixelsCollection,
   isSouthSideAntsCollection,
-  isWeirdApesCollection,
+  isWeirdApesCollection
 } from '../utils';
-import { getAntMintPassMetadata, getWeirdApesStakingStatus } from './api/chain';
-import { fallbackImageUrl } from './constants';
+import {getAntMintPassMetadata, getWeirdApesStakingStatus} from "./api/chain";
+import {fallbackImageUrl} from "./constants";
 
 const gatewayTools = new IPFSGatewayTools();
 const gateway = 'https://mygateway.mypinata.cloud';
@@ -382,7 +382,7 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
       .map(async (knownContract) => {
         try {
           if (abortSignal.aborted) {
-            return Promise.reject(new DOMException('Aborted', 'AbortError'));
+            return Promise.reject(new DOMException("Aborted", "AbortError"));
           }
           const address = knownContract.address;
           const listable = knownContract.listable;
@@ -1033,7 +1033,7 @@ export async function getNftFromFile(collectionId, nftId) {
       }
 
       if (isAntMintPassCollection(collectionId)) {
-        uri = 'https://gateway.pinata.cloud/ipfs/QmWLqeupPQsb4MTtJFjxEniQ1F67gpQCzuszwhZHFx6rUM';
+        uri = 'https://gateway.pinata.cloud/ipfs/QmWLqeupPQsb4MTtJFjxEniQ1F67gpQCzuszwhZHFx6rUM'
       }
 
       if (gatewayTools.containsCID(uri)) {
@@ -1196,7 +1196,7 @@ export async function getNftsForAddress2(walletAddress, walletProvider) {
   };
 
   const getKnownContract = (nft) => {
-    return knownContracts.find((c) => {
+    return knownContracts.find(c => {
       const matchedAddress = caseInsensitiveCompare(c.address, nft.nftAddress);
       const matchedToken = !c.multiToken || parseInt(c.id) === parseInt(nft.nftId);
       return matchedAddress && matchedToken;
@@ -1204,36 +1204,33 @@ export async function getNftsForAddress2(walletAddress, walletProvider) {
   };
 
   const writeContracts = [];
-  return await Promise.all(
-    results
-      .filter((nft) => {
-        const matchedContract = getKnownContract(nft);
-        if (!matchedContract) return false;
+  return await Promise.all(results
+    .filter(nft => {
+      const matchedContract = getKnownContract(nft);
+      if (!matchedContract) return false;
 
-        const hasBalance = !matchedContract.multiToken || parseInt(nft.balance) > 0;
+      const hasBalance = !matchedContract.multiToken || parseInt(nft.balance) > 0;
 
-        return matchedContract && hasBalance;
-      })
-      .map(async (nft) => {
-        const knownContract = getKnownContract(nft);
+      return matchedContract && hasBalance;
+    })
+    .map(async (nft) => {
+      const knownContract = getKnownContract(nft);
 
-        let key = knownContract.address;
-        if (knownContract.multiToken) {
-          key = `${key}${knownContract.id}`;
-        }
-        const writeContract =
-          writeContracts[key] ??
-          new Contract(knownContract.address, knownContract.multiToken ? ERC1155 : ERC721, signer);
-        writeContracts[key] = writeContract;
+      let key = knownContract.address;
+      if (knownContract.multiToken) {
+        key = `${key}${knownContract.id}`;
+      }
+      const writeContract = writeContracts[key] ?? new Contract(knownContract.address, knownContract.multiToken ? ERC1155 : ERC721, signer);
+      writeContracts[key] = writeContract;
 
-        const listed = !!getListing(knownContract.address, nft.nftId);
-        const listingId = listed ? getListing(knownContract.address, nft.nftId).listingId : null;
-        const price = listed ? getListing(knownContract.address, nft.nftId).price : null;
+      const listed = !!getListing(knownContract.address, nft.nftId);
+      const listingId = listed ? getListing(knownContract.address, nft.nftId).listingId : null;
+      const price = listed ? getListing(knownContract.address, nft.nftId).price : null;
 
-        if (isAntMintPassCollection(nft.nftAddress)) {
-          const metadata = await getAntMintPassMetadata(nft.nftAddress, nft.nftId);
-          if (metadata) nft = { ...nft, ...metadata };
-        }
+      if (isAntMintPassCollection(nft.nftAddress)) {
+        const metadata = await getAntMintPassMetadata(nft.nftAddress, nft.nftId);
+        if (metadata) nft = {...nft, ...metadata}
+      }
 
       let image;
       let name = nft.name;
@@ -1249,15 +1246,9 @@ export async function getNftsForAddress2(walletAddress, walletProvider) {
                   return gatewayTools.convertToDesiredGateway(uri, gateway);
                 }
 
-                  if (uri.startsWith('ar')) {
-                    return `https://arweave.net/${uri.substring(5)}`;
-                  }
-
-                  return uri;
-                } catch (e) {
-                  return uri;
+                if (uri.startsWith('ar')) {
+                  return `https://arweave.net/${uri.substring(5)}`;
                 }
-              })();
 
                 return uri;
               } catch (e) {
@@ -1271,24 +1262,26 @@ export async function getNftsForAddress2(walletAddress, walletProvider) {
           } else if (typeof(nft.token_uri) === 'object'){
             image = nft.token_uri.image;
           }
-        } catch (e) {
+        } else {
           image = fallbackImageUrl;
-          console.log(e);
         }
+      } catch (e) {
+        image = fallbackImageUrl;
+        console.log(e);
+      }
 
-        let isStaked = false;
-        let canTransfer = true;
-        let canSell = true;
-        if (isWeirdApesCollection(nft.nftAddress)) {
-          const staked = await getWeirdApesStakingStatus(nft.nftAddress, nft.nftId);
-          if (staked) {
-            canTransfer = false;
-            canSell = false;
-            isStaked = true;
-          }
+      let isStaked = false;
+      let canTransfer = true;
+      let canSell = true;
+      if (isWeirdApesCollection(nft.nftAddress)) {
+        const staked = await getWeirdApesStakingStatus(nft.nftAddress, nft.nftId);
+        if (staked) {
+          canTransfer = false;
+          canSell = false;
+          isStaked = true;
         }
       }
-      
+
       return {
         id: nft.nftId,
         name: name,
