@@ -47,13 +47,7 @@ const CollectionCronosverse = ({ collection }) => {
     // eslint-disable-next-line
   }, [dispatch]);
 
-  useEffect(() => {
-    console.log(items.map(i=>i.market));
-    console.log(listings);
-  }, [items]);
-
   const handleMakeOffer = (nft) => {
-    console.log('handleMakeOffer', nft);
     if (user.address) {
       setNftOffer(nft);
       setOpenMakeOfferDialog(!openMakeOfferDialog);
@@ -70,7 +64,6 @@ const CollectionCronosverse = ({ collection }) => {
   };
 
   const handleBuy = (listing) => {
-    console.log('handleBuy', listing);
     // if (listing.market?.id) {
     //   history.push(`/listing/${listing.market?.id}`);
     // } else {
@@ -267,7 +260,7 @@ const CronosverseCollectionBoard = ({ onBuy, onOffer, minting, listings = [], nf
     });
 
     ctx.fillStyle = 'rgba(250, 10, 10, 0.5)';
-    console.log('tileWidth: ', tileWidth, tileWidth * xPos);
+    devLog('tileWidth: ', tileWidth, tileWidth * xPos);
     ctx.fillRect(tileWidth * xPos, tileHeight * yPos + 1, tileWidth - 1, tileHeight - 1);
     setModalFlag('flex');
     setSubDistanceX(0);
