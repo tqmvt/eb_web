@@ -10,7 +10,7 @@ setDefaultBreakpoints([{ xs: 0 }, { l: 1199 }, { xl: 1200 }]);
 
 const GlobalStyles = createGlobalStyle`
   header#myHeader.navbar.white {
-    background: #0078cb;
+    background: ${({ theme }) => theme.colors.bgColor4};
     border-bottom: 0;
     box-shadow: 0 4px 20px 0 rgba(10,10,10, .8);
   }
@@ -59,7 +59,7 @@ const Header = function () {
           <div className="logo px-0">
             <div className="navbar-title navbar-item">
               <NavLink to="/">
-                <img height="40px" src="/img/logo.png" className="img-fluid d-block" alt="#" />
+                <img height="40px" src="/img/web_logo.svg" alt="ebisus bay logo" />
               </NavLink>
             </div>
           </div>

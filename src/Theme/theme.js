@@ -13,6 +13,7 @@ export const lightTheme = {
   bgColor1: '#ffffff',
   bgColor2: '#ffffffdd',
   bgColor3: '#eeeeee',
+  bgColor4: '#0078cb',
 };
 
 export const darkTheme = {
@@ -30,6 +31,7 @@ export const darkTheme = {
   bgColor1: '#212428',
   bgColor2: '#212428dd',
   bgColor3: '#212428',
+  bgColor4: '#000000',
 };
 
 export const theme = {

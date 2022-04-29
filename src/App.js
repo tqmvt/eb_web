@@ -21,13 +21,24 @@ const GlobalStyles = createGlobalStyle`
     background-blend-mode: multiply;
   }
   .jumbotron.breadcumb.no-bg.tint {
-    background-image: url('/img/background/Ebisu-DT-Header.webp');
+
+    background-image: url(${({ isDark }) =>
+      isDark ? '/img/background/header-dark.webp' : '/img/background/Ebisu-DT-Header.webp'});
+    background-repeat: no-repeat;
+    background-size: cover;
     background-position: bottom;
+  }
+
+  @media only screen and (min-width: 1200px) {
+    .jumbotron.breadcumb.no-bg.tint {
+      margin-top: 84px;
+    }
   }
     
   @media only screen and (max-width: 768px) {
     .jumbotron.breadcumb.no-bg.tint {
-      background-image: url('/img/background/Ebisu-Mobile-Header.webp');
+      background-image: url(${({ isDark }) =>
+        isDark ? '/img/background/mobile-header-dark.webp' : '/img/background/Ebisu-Mobile-Header.webp'});
       background-size: cover;
       background-repeat: no-repeat;
     }
@@ -55,7 +66,7 @@ function App() {
   return (
     <ThemeProvider theme={getTheme(userTheme)}>
       <div className="wraper">
-        <GlobalStyles />
+        <GlobalStyles isDark={userTheme === 'dark'} />
         <AppRouter firebase />
         <ScrollToTopBtn />
         <ToastContainer position={toast.POSITION.BOTTOM_LEFT} hideProgressBar={true} />
