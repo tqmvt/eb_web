@@ -2,7 +2,6 @@ import moment from 'moment';
 import config from './Assets/networks/rpc_config.json';
 import blacklist from './core/configs/blacklist.json';
 import IPFSGatewayTools from '@pinata/ipfs-gateway-tools/dist/browser';
-import {fetchVipInfo} from "./GlobalState/Memberships";
 
 export const drops = config.drops;
 export const collections = config.known_contracts;
