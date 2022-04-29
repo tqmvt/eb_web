@@ -2,6 +2,7 @@ import moment from 'moment';
 import config from './Assets/networks/rpc_config.json';
 import blacklist from './core/configs/blacklist.json';
 import IPFSGatewayTools from '@pinata/ipfs-gateway-tools/dist/browser';
+import {fetchVipInfo} from "./GlobalState/Memberships";
 
 export const drops = config.drops;
 export const collections = config.known_contracts;
@@ -433,4 +434,10 @@ export const convertIpfsResource = (resource, tooltip) => {
 
 export const isUserBlacklisted = (address) => {
   return !!blacklist.users.find((bAddress) => caseInsensitiveCompare(address, bAddress));
+}
+
+export const devLog = (...params) => {
+  if (process.env.NODE_ENV === 'development') {
+    console.log(params);
+  }
 }

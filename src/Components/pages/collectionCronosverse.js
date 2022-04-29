@@ -14,7 +14,12 @@ import LayeredIcon from '../components/LayeredIcon';
 import Footer from '../components/Footer';
 import CollectionInfoBar from '../components/CollectionInfoBar';
 import { init, fetchListings, getStats } from '../../GlobalState/collectionSlice';
-import {caseInsensitiveCompare, createSuccessfulTransactionToastContent, isCrosmocraftsCollection} from '../../utils';
+import {
+  caseInsensitiveCompare,
+  createSuccessfulTransactionToastContent,
+  devLog,
+  isCrosmocraftsCollection
+} from '../../utils';
 import TraitsFilter from '../Collection/TraitsFilter';
 import PowertraitsFilter from '../Collection/PowertraitsFilter';
 import SocialsBar from '../Collection/SocialsBar';
@@ -216,7 +221,8 @@ const CronosverseCollectionBoard = ({ onBuy, onOffer, minting, listings = [], nf
   // const previousX = useRef()
   // const previousY = useRef()
 
-  const [subDistance, setSubDistance] = useState(0);
+  const [subDistanceX, setSubDistanceX] = useState(0);
+  const [subDistanceY, setSubDistanceY] = useState(0);
   let sub = 0;
   const getTileType = (xPos, yPos) => {
     if (yPos >= 9 && xPos >= 19 && yPos <= 17 && xPos <= 34) {
@@ -286,6 +292,7 @@ const CronosverseCollectionBoard = ({ onBuy, onOffer, minting, listings = [], nf
 
   const getMousePos = (e) => {
     var rect = e.target.getBoundingClientRect();
+    devLog('mouse', e.clientX, e.clientY, rect.left, rect.top)
     return {
       x: e.clientX - rect.left,
       y: e.clientY - rect.top,
@@ -296,10 +303,6 @@ const CronosverseCollectionBoard = ({ onBuy, onOffer, minting, listings = [], nf
     if (isMintingFlag) {
       return;
     }
-    console.log('click: ');
-    if (subDistance > 0) {
-      console.log('too right: ', sub);
-    }
     const mPos = getMousePos(e);
     let scale = zoomState.scale;
     const tileWidth = ref2.current.width / 54;
@@ -307,7 +310,7 @@ const CronosverseCollectionBoard = ({ onBuy, onOffer, minting, listings = [], nf
     const xPos = Math.floor(mPos.x / (tileWidth * scale));
     const yPos = Math.floor(mPos.y / (tileHeight * scale));
     const type = getTileType(xPos, yPos);
-    console.log(type, xPos, yPos, tileInfo);
+    devLog(type, xPos, yPos, tileInfo);
     let ctx = ref2.current.getContext('2d');
     ctx.clearRect(tileWidth * tileInfo.xPos - 1, tileHeight * tileInfo.yPos - 1, tileWidth + 1, tileHeight + 2);
 
@@ -326,11 +329,14 @@ const CronosverseCollectionBoard = ({ onBuy, onOffer, minting, listings = [], nf
     const tokenId = getTokenId(xPos, yPos);
     const listing = listingForToken(tokenId);
     const nft = nftForToken(tokenId);
-    console.log('selected data', nft, listing)
+    devLog('selected data', nft, listing)
     let price = 0;
     if (listing) {
       price = listing.market.price;
     }
+
+    const globalX = mPos.x + zoomState.offsetX - (subDistanceX > 0 ? 240 - subDistanceX : 0);
+    const globalY = mPos.y + zoomState.offsetY - (subDistanceY > 0 ? 175 - subDistanceY : 0);
 
     setTileInfo({
       tile: tiles[type - 1],
@@ -339,18 +345,21 @@ const CronosverseCollectionBoard = ({ onBuy, onOffer, minting, listings = [], nf
       xPos: xPos,
       yPos: yPos,
       price: price,
-      globalX: mPos.x + zoomState.offsetX - (subDistance > 0 ? 240 - subDistance : 0),
-      globalY: mPos.y + zoomState.offsetY,
+      globalX: globalX,
+      globalY: globalY,
       listing: listing,
       nft: nft,
-      canBuy: !!listing
+      canBuy: !!listing,
+      modalPosition: {x: globalX + 15, y: globalY + 15}
+      // getModalPosition(e.clientX, e.clientY, globalX, globalY)
     });
 
     ctx.fillStyle = 'rgba(250, 10, 10, 0.5)';
     console.log('tileWidth: ', tileWidth, tileWidth * xPos);
     ctx.fillRect(tileWidth * xPos, tileHeight * yPos + 1, tileWidth - 1, tileHeight - 1);
     setModalFlag('flex');
-    setSubDistance(0);
+    setSubDistanceX(0);
+    setSubDistanceY(0);
   };
 
   useEffect(() => {
@@ -399,12 +408,14 @@ const CronosverseCollectionBoard = ({ onBuy, onOffer, minting, listings = [], nf
         onMouseDown={(e) => {
           if (window.innerWidth - e.clientX < 240) {
             sub = window.innerWidth - e.clientX;
-            setSubDistance(sub);
+            setSubDistanceX(sub);
+          }
+          if (window.innerHeight - e.clientY < 175) {
+            sub = window.innerHeight - e.clientY;
+            setSubDistanceY(sub);
           }
           if (minting === true || isMintingFlag === true) {
             return;
-          } else if (canvasDown === true) {
-            setCanvasDown(false);
           }
         }}
       >
@@ -423,7 +434,7 @@ const CronosverseCollectionBoard = ({ onBuy, onOffer, minting, listings = [], nf
 
             <div
               className="tip_modal"
-              style={{ display: modalFlag, left: `${tileInfo.globalX + 15}px`, top: `${tileInfo.globalY + 15}px` }}
+              style={{ display: modalFlag, left: `${tileInfo.modalPosition?.x}px`, top: `${tileInfo.modalPosition?.y}px` }}
             >
               <div className="modal_content">
                 <div
