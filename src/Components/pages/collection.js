@@ -33,7 +33,7 @@ const Collection = () => {
         setRedirect(redirectToCollection.slug);
       }
       setCollection(col);
-      if (isCronosVerseCollection(col.address)) setType(collectionTypes.CRONOSVERSE);
+      if (isCronosVerseCollection(col.address)) setType(collectionTypes.ERC721);
       else setType(col.multiToken ? collectionTypes.ERC1155 : collectionTypes.ERC721);
     } else {
       col = knownContracts.find((c) => caseInsensitiveCompare(c.address, slug));

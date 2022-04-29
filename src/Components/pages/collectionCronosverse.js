@@ -1,36 +1,12 @@
 import React, {useEffect, useRef, useState} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Contract, ethers } from 'ethers';
-import Blockies from 'react-blockies';
-import { Helmet } from 'react-helmet';
-import { faCheck, faCircle } from '@fortawesome/free-solid-svg-icons';
-import { Spinner } from 'react-bootstrap';
-// import Skeleton from 'react-loading-skeleton';
-// import 'react-loading-skeleton/dist/skeleton.css';
-
-// import CollectionListingsGroup from '../components/CollectionListingsGroup';
-import CollectionFilterBar from '../components/CollectionFilterBar';
-import LayeredIcon from '../components/LayeredIcon';
-import Footer from '../components/Footer';
-import CollectionInfoBar from '../components/CollectionInfoBar';
-import { init, fetchListings, getStats } from '../../GlobalState/collectionSlice';
+import { init, fetchListings } from '../../GlobalState/collectionSlice';
 import {
-  caseInsensitiveCompare,
-  createSuccessfulTransactionToastContent,
   devLog,
-  isCrosmocraftsCollection
 } from '../../utils';
-import TraitsFilter from '../Collection/TraitsFilter';
-import PowertraitsFilter from '../Collection/PowertraitsFilter';
-import SocialsBar from '../Collection/SocialsBar';
 import { CollectionSortOption } from '../Models/collection-sort-option.model';
 import { FilterOption } from '../Models/filter-option.model';
 import config from '../../Assets/networks/rpc_config.json';
-import Market from '../../Contracts/Marketplace.json';
-import stakingPlatforms from '../../core/data/staking-platforms.json';
-import SalesCollection from '../components/SalesCollection';
-import CollectionNftsGroup from '../components/CollectionNftsGroup';
-import CollectionListingsGroup from '../components/CollectionListingsGroup';
 import {TransformComponent, TransformWrapper} from "react-zoom-pan-pinch";
 import borderboard from "../../Assets/cronosverse/border_board.png";
 import tile1 from "../../Assets/cronosverse/Plain-tile.png";
@@ -38,16 +14,11 @@ import tile2 from "../../Assets/cronosverse/Suburban-tile.png";
 import tile3 from "../../Assets/cronosverse/Commercial-tile.png";
 import Button from "../components/Button";
 import styled from "styled-components";
-import {toast} from "react-toastify";
-import {getAnalytics, logEvent} from "@firebase/analytics";
-import * as Sentry from "@sentry/react";
 import {chainConnect, connectAccount} from "../../GlobalState/User";
 import MetaMaskOnboarding from "@metamask/onboarding";
 import MakeOfferDialog from "../Offer/MakeOfferDialog";
 import {useHistory} from "react-router-dom";
 import {commify} from "ethers/lib/utils";
-
-const knownContracts = config.known_contracts;
 
 const CollectionCronosverse = ({ collection }) => {
   const dispatch = useDispatch();
@@ -109,72 +80,13 @@ const CollectionCronosverse = ({ collection }) => {
 
   return (
     <div>
-      <Helmet>
-        <title>{collection.name} | Ebisu's Bay Marketplace</title>
-        <meta name="description" content={`${collection.name} for Ebisu's Bay Marketplace`} />
-        <meta name="title" content={`${collection.name} | Ebisu's Bay Marketplace`} />
-        <meta property="og:title" content={`${collection.name} | Ebisu's Bay Marketplace`} />
-        <meta property="og:url" content={`https://app.ebisusbay.com/collection/${collection.slug}`} />
-        <meta property="og:image" content={`https://app.ebisusbay.com${collection.metadata.avatar || '/'}`} />
-        <meta name="twitter:title" content={`${collection.name} | Ebisu's Bay Marketplace`} />
-        <meta name="twitter:image" content={`https://app.ebisusbay.com${collection.metadata.avatar || '/'}`} />
-      </Helmet>
-      <section
-        id="profile_banner"
-        className="jumbotron breadcumb no-bg"
-        style={{
-          backgroundImage: `url(${collection.metadata.banner ?? '/img/background/subheader-blue.webp'})`,
-          backgroundPosition: '50% 50%',
-        }}
-      >
-        <div className="mainbreadcumb"></div>
-      </section>
-
-      <section className="container d_coll no-top no-bottom">
-        <div className="row">
-          <div className="col-md-12">
-            <div className="d_profile">
-              <div className="profile_avatar">
-                <div className="d_profile_img">
-                  {collection.metadata.avatar ? (
-                    <img src={collection.metadata.avatar} alt={collection.name} />
-                  ) : (
-                    <Blockies seed={collection.address.toLowerCase()} size={15} scale={10} />
-                  )}
-                  {collection.metadata.verified && (
-                    <LayeredIcon icon={faCheck} bgIcon={faCircle} shrink={8} stackClass="eb-avatar_badge" />
-                  )}
-                </div>
-
-                <div className="profile_name">
-                  <h4>
-                    {collection.name}
-                    <div className="clearfix" />
-                  </h4>
-                  {collection.metadata.description && <p>{collection.metadata.description}</p>}
-                  <span className="fs-4">
-                    <SocialsBar
-                      collection={knownContracts.find((c) => caseInsensitiveCompare(c.address, collection.address))}
-                    />
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="overflow-auto">
-        <CronosverseCollectionBoard
-          onBuy={handleBuy}
-          onOffer={handleMakeOffer}
-          minting={false}
-          listings={listings}
-          nfts={items}
-        />
-      </section>
-      <Footer />
-
+      <CronosverseCollectionBoard
+        onBuy={handleBuy}
+        onOffer={handleMakeOffer}
+        minting={false}
+        listings={listings}
+        nfts={items}
+      />
       {openMakeOfferDialog && (
         <MakeOfferDialog
           isOpen={openMakeOfferDialog}
