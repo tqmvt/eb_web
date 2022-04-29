@@ -1,18 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import Footer from '../components/Footer';
-import { createSuccessfulTransactionToastContent } from 'src/utils';
-import { Modal, Spinner } from 'react-bootstrap';
-import { Contract, ethers } from 'ethers';
-import config from '../../Assets/networks/rpc_config.json';
-import { getSlothty721NftsFromIds, getSlothty721NftsFromWallet } from '../../core/api/chain';
-import styled, {createGlobalStyle} from 'styled-components';
-import RugsuranceAbi from '../../Contracts/SlothtyRugsurance.json';
-import { useDispatch, useSelector } from 'react-redux';
-import { toast } from 'react-toastify';
-import MetaMaskOnboarding from '@metamask/onboarding';
-import { chainConnect, connectAccount } from '../../GlobalState/User';
-import { ERC721 } from '../../Contracts/Abis';
+import {createGlobalStyle} from 'styled-components';
+import { useDispatch } from 'react-redux';
 import '../../Assets/styles/fire.css';
 import Reveal from "react-awesome-reveal";
 import {keyframes} from "@emotion/react";
@@ -53,7 +43,7 @@ const Application = () => {
     for (var i = 0; i < elements.length; i++) {
       elements[i].classList.remove('active');
     }
-    element.target.parentElement.classList.add('active');
+    element.target.closest('.tab').classList.add('active');
 
     setOpenTab(index);
   };
@@ -115,7 +105,7 @@ const Application = () => {
                   <h4 className="">Become a Creator</h4>
                 </Reveal>
                 <Reveal className='onStep' keyframes={fadeInUp} delay={200} duration={600} triggerOnce>
-                  <p className="">For projects that would like to mint on Ebisu's Bay</p>
+                  <p className="">For projects that would like to mint on the Ebisu's Bay launchpad</p>
                 </Reveal>
               </div>
               <i className="wm icon_lightbulb_alt"></i>
