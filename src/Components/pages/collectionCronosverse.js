@@ -159,7 +159,7 @@ const CollectionCronosverse = ({ collection }) => {
         </div>
       </section>
 
-      <section className="container no-top">
+      <section className="overflow-auto">
         <CronosverseCollectionBoard
           onBuy={handleBuy}
           onOffer={handleMakeOffer}
@@ -444,7 +444,7 @@ const CronosverseCollectionBoard = ({ onBuy, onOffer, minting, listings = [], nf
                     Location: {tileInfo.xPos < 27 ? tileInfo.xPos - 27 : tileInfo.xPos - 26},
                     {tileInfo.yPos < 14 ? 14 - tileInfo.yPos : 13 - tileInfo.yPos}
                   </div>
-                  <div>Price: {commify(tileInfo.price)} CRO</div>
+                  <div>Price: {commify(tileInfo.price ?? 0)} CRO</div>
                   <MakeOffer>
                     {tileInfo.canBuy && (
                       <div>
