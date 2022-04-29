@@ -128,24 +128,30 @@ const Application = () => {
         </div>
         <div className="row">
           <div className="col">
-            <div className="col-lg-12">
+            <div className="col-lg-12 mt-4">
               {openTab === 0 && (
-              <iframe
-                src="https://form.nativeforms.com/iNHbm1jZmoWRPBXaK1Db"
-                width="100%"
-                height="600"
-                frameBorder="0"
-              >
-              </iframe>
+                <>
+                  <h3 className="text-center">Listing Application</h3>
+                  <iframe
+                    src="https://form.nativeforms.com/iNHbm1jZmoWRPBXaK1Db"
+                    width="100%"
+                    height="600"
+                    frameBorder="0"
+                  >
+                  </iframe>
+                </>
               )}
               {openTab === 1 && (
-                <iframe
-                  src="https://form.nativeforms.com/AM0YjZ50jZmoWRPBXaK1Db"
-                  width="100%"
-                  height="600"
-                  frameBorder="0"
-                >
-                </iframe>
+                <>
+                  <h3 className="text-center">Creator Application</h3>
+                  <iframe
+                    src="https://form.nativeforms.com/AM0YjZ50jZmoWRPBXaK1Db"
+                    width="100%"
+                    height="600"
+                    frameBorder="0"
+                  >
+                  </iframe>
+                </>
               )}
             </div>
           </div>
