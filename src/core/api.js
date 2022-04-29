@@ -231,12 +231,10 @@ export async function getCollectionSummary(address) {
   return await (await fetch(uri)).json();
 }
 
-export async function sortAndFetchCollectionDetails(page, sort, filter, traits, powertraits, search, filterListed) {
-  let pagesize = 12;
-
+export async function sortAndFetchCollectionDetails(page, sort, filter, traits, powertraits, search, filterListed, pageSize = 50) {
   let query = {
     page: page,
-    pageSize: pagesize,
+    pageSize: pageSize ?? 50,
     sortBy: 'id',
     direction: 'desc',
   };
