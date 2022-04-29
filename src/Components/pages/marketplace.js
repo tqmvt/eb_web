@@ -9,8 +9,8 @@ import { siPrefixedNumber } from '../../utils';
 import { sortOptions } from '../components/constants/sort-options';
 import { SortOption } from '../Models/sort-option.model';
 import { marketPlaceCollectionFilterOptions } from '../components/constants/filter-options';
-import { FilterOption } from '../Models/filter-option.model';
 import SalesCollection from '../components/SalesCollection';
+import {ListingsFilterOption} from "../Models/listings-filter-option.model";
 
 const Marketplace = () => {
   const cacheName = 'marketplace';
@@ -41,7 +41,7 @@ const Marketplace = () => {
     // eslint-disable-next-line
   }, []);
 
-  const selectDefaultFilterValue = marketplace.cachedFilter[cacheName] ?? FilterOption.default();
+  const selectDefaultFilterValue = marketplace.cachedFilter[cacheName] ?? ListingsFilterOption.default();
   const selectDefaultSortValue = marketplace.cachedSort[cacheName] ?? SortOption.default();
 
   const selectFilterOptions = marketPlaceCollectionFilterOptions;
@@ -123,7 +123,7 @@ const Marketplace = () => {
                       showFilter={true}
                       showSort={true}
                       sortOptions={[SortOption.default(), ...selectSortOptions]}
-                      filterOptions={[FilterOption.default(), ...selectFilterOptions]}
+                      filterOptions={[ListingsFilterOption.default(), ...selectFilterOptions]}
                       defaultSortValue={selectDefaultSortValue}
                       defaultFilterValue={selectDefaultFilterValue}
                       filterPlaceHolder="Filter Collection..."
