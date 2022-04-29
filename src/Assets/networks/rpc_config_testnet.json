@@ -956,6 +956,44 @@
         "twitter": "https://twitter.com/SelfieVerseNFT",
         "discord": "http://www.discord.gg/selfiesofthemultiverse"
       }
+    },
+    {
+      "name": "Cro Of Thrones",
+      "slug": "cro-of-thrones",
+      "multiToken": false,
+      "address": "0x660c86fc9977278204245f2e54C11A0f1276a94b",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/cro-of-thrones/avatar.webp",
+        "card": "/img/collections/cro-of-thrones/card.webp",
+        "banner": "/img/collections/cro-of-thrones/banner.webp",
+        "maxSupply": 2500,
+        "website": "https://www.hypednftclub.com/croofthrones",
+        "twitter": "https://twitter.com/Croofthrones",
+        "discord": "https://discord.gg/pYCaAwpZ"
+      }
+    },
+    {
+      "name": "Smash Stunts",
+      "slug": "smash-stunts",
+      "multiToken": false,
+      "address": "0x1620fe5031743b9af72075c6b81c2159207e2ebc",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/smash-stunts/avatar.webp",
+        "card": "/img/collections/smash-stunts/card.webp",
+        "banner": "/img/collections/smash-stunts/banner.webp",
+        "maxSupply": 3000,
+        "website": "http://xtremejunkies.io/",
+        "twitter": "https://twitter.com/mepyDoo",
+        "discord": "https://discord.gg/qCVUfNSzsb"
+      }
     }
   ],
   "drops": [
@@ -1319,7 +1357,7 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false
+      "complete": true
     },
     {
       "id": 19,
@@ -1474,7 +1512,7 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false
+      "complete": true
     },
     {
       "id": 29,
@@ -1609,7 +1647,7 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false
+      "complete": true
     },
     {
       "id": 35,
@@ -1635,7 +1673,7 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false,
+      "complete": true,
       "embed": "<div style='position: relative; padding-top:56.25%;'><iframe src='https://iframe.mediadelivery.net/embed/27293/2ba3cdf8-d3ff-4ae1-94b6-84de9e9a402e?autoplay=true&loop=true&muted=true'  loading='lazy' style='border: none; position: absolute; top: 0; height: 100%; width: 100%;' allow='accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;' allowFullScreen='true'  title='SportsNFt'> </iframe> </div>"
     },
     {
@@ -1823,7 +1861,7 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false
+      "complete": true
     },
     {
       "id": 48,
@@ -1846,7 +1884,7 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false,
+      "complete": true,
       "featured": true,
       "redirect": "/slothty-rugsurance"
     },
@@ -2078,6 +2116,57 @@
       "published": true,
       "complete": false,
       "embed": "<div style=\"position: relative; padding-top: 100%;\"><iframe src=\"https://iframe.mediadelivery.net/embed/27293/2eb556f6-6f3a-487d-a41f-a6498879eecc?autoplay=true&loop=true&muted=true\" loading=\"lazy\" style=\"border: none; position: absolute; top: 0; height: 100%; width: 100%;\" allow=\"accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;\" allowfullscreen=\"true\"></iframe></div>"
+    },
+    {
+      "id": 63,
+      "slug": "smash-stunts",
+      "imgNft": "/img/drops/smash-stunts/drop.webp",
+      "imgPreview": "/img/drops/smash-stunts/drop.webp",
+      "imgAvatar": "/img/collections/smash-stunts/avatar.webp",
+      "imgBanner": "/img/collections/smash-stunts/banner.webp",
+      "title": "Smash Stunts",
+      "subtitle": "Ashley Lammela stunt rider a.k.a. \"SmashStunts\" teamed up with famous artist and former Chuck Jones Background Painter Patrick Guyton to create the SmashStunts comic series. What is she wearing, where is she popping this sick wheelie, and how close to the original can you get? The rarest traits are the original colors of the painting. A mepyDoo® production.",
+      "description": "This NFT is derived from original painting being released in Las Vegas on May 1st 2022 at the DeRubeis Fine Art of Metal Gallery in the Planet Hollywood Resort, Miracle Mile Shops at 5:30pm check @smashstunts to watch.What is she wearing, where is she popping this sick wheelie, and how close to the original can you get? The rarest traits are the original colors of the painting. A mepyDoo® production (@mepyDoo)",
+      "author": { "name": "Smash Stunts", "link": "http://xtremejunkies.io/" },
+      "address": "0x1620fe5031743b9af72075c6b81c2159207e2ebc",
+      "maxMintPerTx": 10,
+      "maxMintPerAddress": 100,
+      "totalSupply": 3000,
+      "cost": "399",
+      "memberCost": "333",
+      "foundersOnly": false,
+      "start": 1651248180000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false
+    },
+    {
+      "id": 64,
+      "slug": "cro-of-thrones",
+      "imgNft": "/img/drops/cro-of-thrones/drop.webp",
+      "imgPreview": "/img/drops/cro-of-thrones/drop.webp",
+      "imgAvatar": "/img/collections/cro-of-thrones/avatar.webp",
+      "imgBanner": "/img/collections/cro-of-thrones/banner.webp",
+      "title": "Cro Of Thrones",
+      "subtitle": "Cro of Thrones is a collection of 2500 uniquely generated NFTs stored on the Cronos Chain. Each COT NFT is inspired by unique Fantasy Worlds stories! Who shall take the throne of our fantasy world?",
+      "description": "Cro of Thrones is a collection of 2500 uniquely generated NFTs stored on the Cronos Chain. Each COT NFT is inspired by unique Fantasy Worlds stories! Who shall take the throne of our fantasy world?",
+      "author": { "name": "Hyped NFT Club", "link": "https://www.hypednftclub.com/croofthrones" },
+      "address": "0x660c86fc9977278204245f2e54C11A0f1276a94b",
+      "maxMintPerTx": 7,
+      "maxMintPerAddress": 100,
+      "totalSupply": 2500,
+      "cost": "220",
+      "memberCost": "180",
+      "whitelistCost": "160",
+      "foundersOnly": false,
+      "start": 1651248181000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false
     }
   ],
   "auctions": [
