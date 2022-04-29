@@ -956,6 +956,25 @@
         "twitter": "https://twitter.com/SelfieVerseNFT",
         "discord": "http://www.discord.gg/selfiesofthemultiverse"
       }
+    },
+    {
+      "name": "Cro Of Thrones",
+      "slug": "cro-of-thrones",
+      "multiToken": false,
+      "address": "0x660c86fc9977278204245f2e54C11A0f1276a94b",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/cro-of-thrones/avatar.webp",
+        "card": "/img/collections/cro-of-thrones/card.webp",
+        "banner": "/img/collections/cro-of-thrones/banner.webp",
+        "maxSupply": 2500,
+        "website": "https://www.hypednftclub.com/croofthrones",
+        "twitter": "https://twitter.com/Croofthrones",
+        "discord": "https://discord.gg/pYCaAwpZ"
+      }
     }
   ],
   "drops": [
@@ -2078,6 +2097,32 @@
       "published": true,
       "complete": false,
       "embed": "<div style=\"position: relative; padding-top: 100%;\"><iframe src=\"https://iframe.mediadelivery.net/embed/27293/2eb556f6-6f3a-487d-a41f-a6498879eecc?autoplay=true&loop=true&muted=true\" loading=\"lazy\" style=\"border: none; position: absolute; top: 0; height: 100%; width: 100%;\" allow=\"accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;\" allowfullscreen=\"true\"></iframe></div>"
+    },
+    {
+      "id": 64,
+      "slug": "cro-of-thrones",
+      "imgNft": "/img/drops/cro-of-thrones/drop.webp",
+      "imgPreview": "/img/drops/cro-of-thrones/drop.webp",
+      "imgAvatar": "/img/collections/cro-of-thrones/avatar.webp",
+      "imgBanner": "/img/collections/cro-of-thrones/banner.webp",
+      "title": "Cro Of Thrones",
+      "subtitle": "Cro of Thrones is a collection of 2500 uniquely generated NFTs stored on the Cronos Chain. Each COT NFT is inspired by unique Fantasy Worlds stories! Who shall take the throne of our fantasy world?",
+      "description": "Cro of Thrones is a collection of 2500 uniquely generated NFTs stored on the Cronos Chain. Each COT NFT is inspired by unique Fantasy Worlds stories! Who shall take the throne of our fantasy world?",
+      "author": { "name": "Hyped NFT Club", "link": "https://www.hypednftclub.com/croofthrones" },
+      "address": "0x660c86fc9977278204245f2e54C11A0f1276a94b",
+      "maxMintPerTx": 7,
+      "maxMintPerAddress": 100,
+      "totalSupply": 2500,
+      "cost": "220",
+      "memberCost": "180",
+      "whitelistCost": "160",
+      "foundersOnly": false,
+      "start": 1651248181000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false
     }
   ],
   "auctions": [
