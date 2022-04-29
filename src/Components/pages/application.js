@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import Footer from '../components/Footer';
-import {createGlobalStyle} from 'styled-components';
+import styled, {createGlobalStyle} from 'styled-components';
 import { useDispatch } from 'react-redux';
 import '../../Assets/styles/fire.css';
 import Reveal from "react-awesome-reveal";
@@ -22,17 +22,31 @@ const fadeInUp = keyframes`
 
 const GlobalStyles = createGlobalStyle`
   .feature-box.f-boxed.active {
+    background: #145499;
     color: #fff;
     box-shadow: 2px 2px 20px 0px rgba(0, 0, 0, 0.05);
-    background: #403f83;
     transition: 0.7s;
   }
   .feature-box.f-boxed.active h4 {
     color: #fff;
     transition: 0.7s;
   }
+  
+  .feature-box.f-boxed:hover {
+    background: #145499;
+  }
 `;
 
+const ChoiceBox = styled.div`
+  @media only screen and (min-width: ${({ theme }) => theme.breakpoints.lg}) {
+    width: 400px;
+  }
+
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    width: 250px;
+    padding: 30px !important;
+  }
+`;
 
 const Application = () => {
   const dispatch = useDispatch();
@@ -51,12 +65,12 @@ const Application = () => {
   return (
     <div>
       <Helmet>
-        <title>Slothty Rugsurance | Ebisu's Bay Marketplace</title>
+        <title>Project Applications | Ebisu's Bay Marketplace</title>
         <meta name="description" content="Peace of mind minting on Ebisu's Bay Marketplace" />
-        <meta name="title" content="Slothty Rugsurance | Ebisu's Bay Marketplace" />
-        <meta property="og:title" content="Slothty Rugsurance | Ebisu's Bay Marketplace" />
-        <meta property="og:url" content={`https://app.ebisusbay.com/slothty-rugsurance`} />
-        <meta name="twitter:title" content="Slothty Rugsurance | Ebisu's Bay Marketplace" />
+        <meta name="title" content="Project Applications | Ebisu's Bay Marketplace" />
+        <meta property="og:title" content="Project Applications | Ebisu's Bay Marketplace" />
+        <meta property="og:url" content={`https://app.ebisusbay.com/apply`} />
+        <meta name="twitter:title" content="Project Applications | Ebisu's Bay Marketplace" />
       </Helmet>
       <GlobalStyles />
       <section className="jumbotron breadcumb no-bg tint">
@@ -64,7 +78,7 @@ const Application = () => {
           <div className="container">
             <div className="row m-10-hor">
               <div className="col-12">
-                <h1 className="text-center">Application</h1>
+                <h1 className="text-center">Project Application</h1>
               </div>
             </div>
           </div>
@@ -78,8 +92,8 @@ const Application = () => {
         </div>
         <div className="row justify-content-center">
 
-          <div className="col-xl-4">
-            <div className="tab feature-box f-boxed style-3" style={{width: '400px', cursor: 'pointer'}} onClick={handleBtnClick(0)}>
+          <div className="col-xl-4 col-sm-6 d-flex justify-content-center mb-2 mb-sm-0">
+            <ChoiceBox className="tab feature-box f-boxed style-3" style={{cursor: 'pointer'}} onClick={handleBtnClick(0)}>
               <Reveal className='onStep' keyframes={fadeInUp} delay={0} duration={600} triggerOnce>
                 <i className="bg-color-2 i-boxed icon_tags_alt"></i>
               </Reveal>
@@ -92,11 +106,11 @@ const Application = () => {
                 </Reveal>
               </div>
               <i className="wm icon_tags_alt"></i>
-            </div>
+            </ChoiceBox>
           </div>
 
-          <div className="col-xl-4">
-            <div className="tab feature-box f-boxed style-3" style={{width: '400px', cursor: 'pointer'}} onClick={handleBtnClick(1)}>
+          <div className="col-xl-4 col-sm-6 d-flex justify-content-center">
+            <ChoiceBox className="tab feature-box f-boxed style-3" style={{cursor: 'pointer'}} onClick={handleBtnClick(1)}>
               <Reveal className='onStep' keyframes={fadeInUp} delay={0} duration={600} triggerOnce>
                 <i className="bg-color-2 i-boxed icon_lightbulb_alt"></i>
               </Reveal>
@@ -109,7 +123,7 @@ const Application = () => {
                 </Reveal>
               </div>
               <i className="wm icon_lightbulb_alt"></i>
-            </div>
+            </ChoiceBox>
           </div>
         </div>
         <div className="row">
