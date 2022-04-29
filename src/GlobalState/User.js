@@ -519,7 +519,7 @@ export const connectAccount =
         try {
           console.log('working on deets')
           const cns = new CNS(config.chain_id, provider);
-          cnsProfile.name = await cns.getName('0x8518094dfB04a118F209F62f333a44Ded824be0e');
+          cnsProfile.name = await cns.getName(address);
           if (cnsProfile.name) {
             cnsProfile.twitter = await cns.name(cnsProfile.name).getText(TextRecords.Twitter);
             cnsProfile.avatar = await cns.name(cnsProfile.name).getText(TextRecords.Avatar);
@@ -529,12 +529,11 @@ export const connectAccount =
             cnsProfile.email = await cns.name(cnsProfile.name).getText(TextRecords.Email);
             cnsProfile.url = await cns.name(cnsProfile.name).getText(TextRecords.Url);
 
-            cnsProfile.details = await cns.name(cnsProfile.name).getDetails();
-            cnsProfile.owner = await cns.name(cnsProfile.name).getOwner();
-            cnsProfile.content = await cns.name(cnsProfile.name).getContent();
-            cnsProfile.address = await cns.name(cnsProfile.name).getAddress();
-            cnsProfile.resolverAddr = await cns.name(cnsProfile.name).getResolverAddr();
-
+            // cnsProfile.details = await cns.name(cnsProfile.name).getDetails();
+            // cnsProfile.owner = await cns.name(cnsProfile.name).getOwner();
+            // cnsProfile.content = await cns.name(cnsProfile.name).getContent();
+            // cnsProfile.address = await cns.name(cnsProfile.name).getAddress();
+            // cnsProfile.resolverAddr = await cns.name(cnsProfile.name).getResolverAddr();
           }
           console.log('deets?', cnsProfile);
         } catch (e) {
