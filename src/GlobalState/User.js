@@ -108,7 +108,6 @@ const userSlice = createSlice({
       state.auctionContract = action.payload.auctionContract;
       state.offerContract = action.payload.offerContract;
       state.gettingContractData = false;
-      state.cnsProfile = action.payload.cnsProfile;
     },
 
     onCorrectChain(state, action) {
@@ -292,6 +291,9 @@ const userSlice = createSlice({
     setStakeCount(state, action) {
       state.stakeCount = action.payload;
     },
+    setCnsProfile(state, action) {
+      state.cnsProfile = action.payload;
+    },
   },
 });
 
@@ -328,6 +330,7 @@ export const {
   onThemeChanged,
   setVIPCount,
   setStakeCount,
+  setCnsProfile
 } = userSlice.actions;
 export const user = userSlice.reducer;
 
@@ -493,7 +496,8 @@ export const connectAccount =
       let offer;
       let sales;
       let stakeCount = 0;
-      const cnsProfile = {};
+
+      dispatch(retrieveCnsProfile());
 
       if (signer && correctChain) {
         mc = new Contract(config.membership_contract, Membership.abi, signer);
@@ -514,30 +518,6 @@ export const connectAccount =
           balance = ethers.utils.formatEther(await provider.getBalance(address));
         } catch (error) {
           console.log('Error checking CRO balance', error);
-        }
-
-        try {
-          console.log('working on deets')
-          const cns = new CNS(config.chain_id, provider);
-          cnsProfile.name = await cns.getName(address);
-          if (cnsProfile.name) {
-            cnsProfile.twitter = await cns.name(cnsProfile.name).getText(TextRecords.Twitter);
-            cnsProfile.avatar = await cns.name(cnsProfile.name).getText(TextRecords.Avatar);
-            cnsProfile.discord = await cns.name(cnsProfile.name).getText(TextRecords.Discord);
-            cnsProfile.telegram = await cns.name(cnsProfile.name).getText(TextRecords.Telegram);
-            cnsProfile.instagram = await cns.name(cnsProfile.name).getText(TextRecords.Instagram);
-            cnsProfile.email = await cns.name(cnsProfile.name).getText(TextRecords.Email);
-            cnsProfile.url = await cns.name(cnsProfile.name).getText(TextRecords.Url);
-
-            // cnsProfile.details = await cns.name(cnsProfile.name).getDetails();
-            // cnsProfile.owner = await cns.name(cnsProfile.name).getOwner();
-            // cnsProfile.content = await cns.name(cnsProfile.name).getContent();
-            // cnsProfile.address = await cns.name(cnsProfile.name).getAddress();
-            // cnsProfile.resolverAddr = await cns.name(cnsProfile.name).getResolverAddr();
-          }
-          console.log('deets?', cnsProfile);
-        } catch (e) {
-          console.log('cns error', e);
         }
       }
 
@@ -560,8 +540,7 @@ export const connectAccount =
           marketContract: market,
           auctionContract: auction,
           offerContract: offer,
-          marketBalance: sales,
-          cnsProfile: cnsProfile
+          marketBalance: sales
         })
       );
     } catch (error) {
@@ -787,6 +766,37 @@ export const updateBalance = () => async (dispatch, getState) => {
   const balance = ethers.utils.formatEther(await provider.getBalance(address));
   dispatch(userSlice.actions.balanceUpdated(balance));
 };
+
+export const retrieveCnsProfile = () => async (dispatch, getState) => {
+  const { user } = getState();
+  const { address, provider } = user;
+  if (!user.provider) return;
+
+  try {
+    let cnsProfile = {};
+    const cns = new CNS(config.chain_id, provider);
+    cnsProfile.name = await cns.getName(address);
+    if (cnsProfile.name) {
+      cnsProfile.twitter = await cns.name(cnsProfile.name).getText(TextRecords.Twitter);
+      cnsProfile.avatar = await cns.name(cnsProfile.name).getText(TextRecords.Avatar);
+      cnsProfile.discord = await cns.name(cnsProfile.name).getText(TextRecords.Discord);
+      cnsProfile.telegram = await cns.name(cnsProfile.name).getText(TextRecords.Telegram);
+      cnsProfile.instagram = await cns.name(cnsProfile.name).getText(TextRecords.Instagram);
+      cnsProfile.email = await cns.name(cnsProfile.name).getText(TextRecords.Email);
+      cnsProfile.url = await cns.name(cnsProfile.name).getText(TextRecords.Url);
+
+      // cnsProfile.details = await cns.name(cnsProfile.name).getDetails();
+      // cnsProfile.owner = await cns.name(cnsProfile.name).getOwner();
+      // cnsProfile.content = await cns.name(cnsProfile.name).getContent();
+      // cnsProfile.address = await cns.name(cnsProfile.name).getAddress();
+      // cnsProfile.resolverAddr = await cns.name(cnsProfile.name).getResolverAddr();
+    }
+    dispatch(setCnsProfile(cnsProfile));
+  } catch (e) {
+    console.log('cns error', e);
+  }
+};
+
 
 export class AccountMenuActions {
   static withdrawRewards = () => async (dispatch, getState) => {
