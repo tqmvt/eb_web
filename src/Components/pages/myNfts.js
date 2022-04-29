@@ -54,7 +54,7 @@ const MyNfts = ({ walletAddress, isLoading }) => {
 
       <section className="container">
         <div className="de_tab">
-          <ul className="de_nav">
+          <ul className="de_nav mb-4">
             <li id="Mainbtn0" className="tab active">
               <span onClick={handleBtnClick(0)}>NFTs</span>
             </li>
@@ -92,10 +92,7 @@ const MyNfts = ({ walletAddress, isLoading }) => {
                       </span>
                     </p>
                     <div className="alert alert-warning" role="alert">
-                      Note: due to current issues with dropped transactions on the Cronos chain, some NFTs may show
-                      incorrectly below. This may include NFTs not appearing, or remaining even after they have been
-                      sold or staked. If you are experiencing this issue with any in your collection, try the full chain
-                      search above.
+                      <strong>Note</strong>: due to current issues with dropped transactions on the Cronos chain, some NFTs may show incorrectly below. This may include NFTs not appearing, or remaining even after they have been sold or staked. If you are experiencing this issue with any in your collection, try the full chain search above.
                     </div>
                     <NftCardList useChain={showChainSearch} />
                   </>

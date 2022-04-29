@@ -21,7 +21,12 @@ import {
   getUnfilteredListingsForAddress,
 } from '../core/api';
 import { toast } from 'react-toastify';
-import { caseInsensitiveCompare, createSuccessfulTransactionToastContent, sliceIntoChunks } from '../utils';
+import {
+  caseInsensitiveCompare,
+  createSuccessfulTransactionToastContent,
+  isUserBlacklisted,
+  sliceIntoChunks
+} from '../utils';
 import { FilterOption } from '../Components/Models/filter-option.model';
 import { nanoid } from 'nanoid';
 import { appAuthInitFinished } from './InitSlice';
@@ -441,6 +446,10 @@ export const connectAccount =
 
       const address = accounts[0];
       const signer = provider.getSigner();
+
+      if (isUserBlacklisted(address)) {
+        throw "Unable to connect"
+      }
 
       if (!correctChain) {
         if (firstRun) {

@@ -1149,6 +1149,8 @@ export async function getQuickWallet(walletAddress) {
 
   const json = await (await fetch(uri)).json();
 
+  if (json.status !== 200 || !json.data) return {...json, ...{data: []}};
+
   // @todo: remove once api has this version in prod
   if (!Array.isArray(json.data)) {
     json.data = [...json.data.erc1155, ...json.data.erc721];
@@ -1233,18 +1235,19 @@ export async function getNftsForAddress2(walletAddress, walletProvider) {
           if (metadata) nft = { ...nft, ...metadata };
         }
 
-        let image;
-        try {
-          if (nft.image_aws || nft.image) {
-            image = nft.image_aws ?? nft.image;
-          } else if (nft.token_uri) {
-            if (typeof nft.token_uri === 'string') {
-              const uri = nft.token_uri;
-              const checkedUri = (() => {
-                try {
-                  if (gatewayTools.containsCID(uri) && !uri.startsWith('ar')) {
-                    return gatewayTools.convertToDesiredGateway(uri, gateway);
-                  }
+      let image;
+      let name = nft.name;
+      try {
+        if (nft.image_aws || nft.image) {
+          image = nft.image_aws ?? nft.image;
+        } else if (nft.token_uri) {
+          if (typeof(nft.token_uri) === 'string'){
+            const uri = nft.token_uri;
+            const checkedUri = (() => {
+              try {
+                if (gatewayTools.containsCID(uri) && !uri.startsWith('ar')) {
+                  return gatewayTools.convertToDesiredGateway(uri, gateway);
+                }
 
                   if (uri.startsWith('ar')) {
                     return `https://arweave.net/${uri.substring(5)}`;
@@ -1256,13 +1259,17 @@ export async function getNftsForAddress2(walletAddress, walletProvider) {
                 }
               })();
 
-              const json = await (await fetch(checkedUri)).json();
-              image = convertIpfsResource(json.token_uri);
-            } else if (typeof nft.token_uri === 'object') {
-              image = nft.token_uri.image;
-            }
-          } else {
-            image = fallbackImageUrl;
+                return uri;
+              } catch (e) {
+                return uri;
+              }
+            })();
+
+            const json = await (await fetch(checkedUri)).json();
+            image = convertIpfsResource(json.image)
+            if (json.name) name = json.name;
+          } else if (typeof(nft.token_uri) === 'object'){
+            image = nft.token_uri.image;
           }
         } catch (e) {
           image = fallbackImageUrl;
@@ -1280,26 +1287,27 @@ export async function getNftsForAddress2(walletAddress, walletProvider) {
             isStaked = true;
           }
         }
-
-        return {
-          id: nft.nftId,
-          name: nft.name,
-          description: nft.description,
-          properties: nft.properties && nft.properties.length > 0 ? nft.properties : nft.attributes,
-          image: image,
-          count: nft.balance,
-          address: knownContract.address,
-          contract: writeContract,
-          multiToken: knownContract.multiToken,
-          rank: nft.rank,
-          listable: knownContract.listable,
-          listed,
-          listingId,
-          price,
-          canSell: canSell,
-          canTransfer: canTransfer,
-          isStaked: isStaked,
-        };
-      })
+      }
+      
+      return {
+        id: nft.nftId,
+        name: name,
+        description: nft.description,
+        properties: nft.properties && nft.properties.length > 0 ? nft.properties : nft.attributes,
+        image: image,
+        count: nft.balance,
+        address: knownContract.address,
+        contract: writeContract,
+        multiToken: knownContract.multiToken,
+        rank: nft.rank,
+        listable: knownContract.listable,
+        listed,
+        listingId,
+        price,
+        canSell: canSell,
+        canTransfer: canTransfer,
+        isStaked: isStaked,
+      }
+    })
   );
 }

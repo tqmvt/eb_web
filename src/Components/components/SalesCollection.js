@@ -1,23 +1,16 @@
 import React, { memo, useCallback, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import ListingCard from './ListingCard';
 import { init, fetchListings, filterListings, sortListings } from '../../GlobalState/marketplaceSlice';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Spinner, Table } from 'react-bootstrap';
 import { SortOption } from '../Models/sort-option.model';
-
-import { FilterOption } from '../Models/filter-option.model';
-import HiddenCard from './HiddenCard';
-import { isMetapixelsCollection, shortAddress, timeSince } from '../../utils';
+import { shortAddress, timeSince } from '../../utils';
 import { Link } from 'react-router-dom';
-import Blockies from 'react-blockies';
 import { ethers } from 'ethers';
-import config from '../../Assets/networks/rpc_config.json';
 import TopFilterBar from './TopFilterBar';
 import { marketPlaceCollectionFilterOptions } from './constants/filter-options';
 import { sortOptions } from './constants/sort-options';
 import {ListingsFilterOption} from "../Models/listings-filter-option.model";
-const knownContracts = config.known_contracts;
 
 const SalesCollection = ({
   showLoadMore = true,
@@ -80,7 +73,7 @@ const SalesCollection = ({
       return;
     }
 
-    const filterOption = marketplace.cachedFilter[cacheName] ?? FilterOption.default();
+    const filterOption = marketplace.cachedFilter[cacheName] ?? ListingsFilterOption.default();
 
     dispatch(init(sortOption, filterOption));
     dispatch(fetchListings(true));
@@ -92,7 +85,7 @@ const SalesCollection = ({
     }
   };
 
-  const selectDefaultFilterValue = marketplace.cachedFilter[cacheName] ?? FilterOption.default();
+  const selectDefaultFilterValue = marketplace.cachedFilter[cacheName] ?? ListingsFilterOption.default();
   const selectDefaultSortValue = marketplace.cachedSort[cacheName] ?? defaultSort;
   const selectFilterOptions = marketPlaceCollectionFilterOptions;
   const selectSortOptions = useSelector((state) => {
@@ -131,7 +124,7 @@ const SalesCollection = ({
             showFilter={!collectionId}
             showSort={true}
             sortOptions={[SortOption.default(), ...selectSortOptions]}
-            filterOptions={[FilterOption.default(), ...selectFilterOptions]}
+            filterOptions={[ListingsFilterOption.default(), ...selectFilterOptions]}
             defaultSortValue={selectDefaultSortValue}
             defaultFilterValue={selectDefaultFilterValue}
             filterPlaceHolder="Filter Collection..."

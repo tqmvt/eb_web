@@ -3857,7 +3857,7 @@
       "multiToken": false,
       "address": "0xa0F71da7ebA2C23DFaaEb36a880fe3fA07d78A8a",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "",
         "verified": true,
@@ -5564,8 +5564,8 @@
       "maxMintPerTx": 5,
       "maxMintPerAddress": 100,
       "totalSupply": 6010,
-      "cost": "100",
-      "memberCost": "150",
+      "cost": "150",
+      "memberCost": "100",
       "foundersOnly": false,
       "start": 1651176000000,
       "end": null,
@@ -5702,7 +5702,7 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false
+      "complete": true
     },
     {
       "id": 63,
@@ -5713,7 +5713,7 @@
       "imgBanner": "/img/collections/smash-stunts/banner.webp",
       "title": "Smash Stunts",
       "subtitle": "Ashley Lammela stunt rider a.k.a. \"SmashStunts\" teamed up with famous artist and former Chuck Jones Background Painter Patrick Guyton to create the SmashStunts comic series. What is she wearing, where is she popping this sick wheelie, and how close to the original can you get? The rarest traits are the original colors of the painting. A mepyDoo® production.",
-      "description": "This NFT is derived from original painting being released in Las Vegas on May 1st 2022 at the DeRubeis Fine Art of Metal Gallery in the Planet Hollywood Resort, Miracle Mile Shops at 5:30pm check @smashstunts to watch.What is she wearing, where is she popping this sick wheelie, and how close to the original can you get? The rarest traits are the original colors of the painting. A mepyDoo® production (@mepyDoo)",
+      "description": "This NFT is derived from an original painting being released in Las Vegas on May 1st 2022 at the DeRubeis Fine Art of Metal Gallery in the Planet Hollywood Resort, Miracle Mile Shops at 5:30pm Pacific time. Check @smashstunts to watch. What is she wearing, where is she popping this sick wheelie, and how close to the original can you get? The rarest traits are the original colors of the painting. A mepyDoo® production (@mepyDoo)",
       "author": { "name": "Smash Stunts", "link": "http://xtremejunkies.io/" },
       "address": "",
       "maxMintPerTx": 10,
@@ -5755,7 +5755,7 @@
       "complete": false
     },
     {
-      "id": 64,
+      "id": 65,
       "slug": "cro-of-thrones",
       "imgNft": "/img/drops/cro-of-thrones/drop.webp",
       "imgPreview": "/img/drops/cro-of-thrones/drop.webp",
@@ -5781,7 +5781,7 @@
       "complete": false
     },
     {
-      "id": 65,
+      "id": 66,
       "slug": "multiverse-selfies",
       "imgNft": "/img/drops/multiverse-selfies/drop.webp",
       "imgPreview": "/img/drops/multiverse-selfies/drop.webp",
@@ -5807,7 +5807,7 @@
       "embed": "<div style=\"position: relative; padding-top: 100%;\"><iframe src=\"https://iframe.mediadelivery.net/embed/27293/2eb556f6-6f3a-487d-a41f-a6498879eecc?autoplay=true&loop=true&muted=true\" loading=\"lazy\" style=\"border: none; position: absolute; top: 0; height: 100%; width: 100%;\" allow=\"accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;\" allowfullscreen=\"true\"></iframe></div>"
     },
     {
-      "id": 66,
+      "id": 67,
       "slug": "genesis-crates",
       "imgNft": "/img/drops/genesis-crates/drop.webp",
       "imgPreview": "/img/drops/genesis-crates/drop.webp",
@@ -5833,7 +5833,7 @@
       "complete": false
     },
     {
-      "id": 66,
+      "id": 68,
       "slug": "croppelganger",
       "imgNft": "/img/drops/croppelganger/drop.webp",
       "imgPreview": "/img/drops/croppelganger/drop.webp",
