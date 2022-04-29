@@ -26,7 +26,7 @@ import {
   shortAddress,
   timeSince,
   isCrognomidesCollection,
-  isBabyWeirdApesCollection,
+  isBabyWeirdApesCollection, isUserBlacklisted,
 } from '../../utils';
 import config from '../../Assets/networks/rpc_config.json';
 import { croSkullRedPotionImageHack } from '../../hacks';
@@ -534,14 +534,18 @@ const Listing = () => {
                         </div>
                       )}
                       {/* button for checkout */}
-                      {listing.state === 0 ? (
-                        <div className="d-flex flex-row mt-5">
-                          <button className="btn-main lead mb-5 mr15" onClick={showBuy()}>
-                            Buy Now
-                          </button>
-                        </div>
-                      ) : (
-                        <div className="mt-5">LISTING HAS BEEN {listing.state === 1 ? 'SOLD' : 'CANCELLED'}</div>
+                      {!isUserBlacklisted(listing.seller) && (
+                        <>
+                          {listing.state === 0 ? (
+                            <div className="d-flex flex-row mt-5">
+                              <button className="btn-main lead mb-5 mr15" onClick={showBuy()}>
+                                Buy Now
+                              </button>
+                            </div>
+                          ) : (
+                            <div className="mt-5">LISTING HAS BEEN {listing.state === 1 ? 'SOLD' : 'CANCELLED'}</div>
+                          )}
+                        </>
                       )}
                     </div>
                   </div>
