@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import { keyframes } from '@emotion/react';
 import Reveal from 'react-awesome-reveal';
 import { createGlobalStyle, default as styled } from 'styled-components';
@@ -169,13 +169,14 @@ const Home = () => {
             >
               Explore
             </span>
-            <span
-              onClick={() => window.open('https://forms.gle/rRtn6gp16tyavQge9', '_blank')}
-              className="m-0 text-nowrap p-4 pt-2 pb-2 btn-main btn-outline inline white lead"
-              style={{ outline: '1px solid #DDD' }}
-            >
-              Become a Creator
-            </span>
+            <Link to="/apply">
+              <span
+                className="m-0 text-nowrap p-4 pt-2 pb-2 btn-main btn-outline inline white lead"
+                style={{ outline: '1px solid #DDD' }}
+              >
+                Become a Creator
+              </span>
+            </Link>
 
             <span
               onClick={() => window.open(`/collection/founding-member`, '_self')}
