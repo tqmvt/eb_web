@@ -164,7 +164,7 @@ export const init = (filterOption, sortOption, traitFilterOption, address) => as
   }
 };
 
-export const fetchListings = () => async (dispatch, getState) => {
+export const fetchListings = (findAllListings = false) => async (dispatch, getState) => {
   const state = getState();
   dispatch(listingsLoading());
 
@@ -174,6 +174,7 @@ export const fetchListings = () => async (dispatch, getState) => {
     ? null
     : config.known_contracts.find((c) => caseInsensitiveCompare(c.address, address));
   const fallbackContracts = ['red-skull-potions', 'cronos-fc'];
+  const pageSizeOverride = findAllListings ? 1208 : null;
 
   if (weirdApes || fallbackContracts.includes(knownContract.slug)) {
     const { response, cancelled } = await sortAndFetchListings(
@@ -199,7 +200,8 @@ export const fetchListings = () => async (dispatch, getState) => {
       state.collection.query.traits,
       state.collection.query.powertraits,
       state.collection.query.search,
-      state.collection.query.filterListed
+      state.collection.query.filterListed,
+      pageSizeOverride
     );
 
     if (response.status === 200 && response.nfts.length > 0) {

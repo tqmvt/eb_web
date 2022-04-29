@@ -231,12 +231,10 @@ export async function getCollectionSummary(address) {
   return await (await fetch(uri)).json();
 }
 
-export async function sortAndFetchCollectionDetails(page, sort, filter, traits, powertraits, search, filterListed) {
-  let pagesize = 12;
-
+export async function sortAndFetchCollectionDetails(page, sort, filter, traits, powertraits, search, filterListed, pageSize = 50) {
   let query = {
     page: page,
-    pageSize: pagesize,
+    pageSize: pageSize ?? 50,
     sortBy: 'id',
     direction: 'desc',
   };
@@ -1149,6 +1147,8 @@ export async function getQuickWallet(walletAddress) {
 
   const json = await (await fetch(uri)).json();
 
+  if (json.status !== 200 || !json.data) return {...json, ...{data: []}};
+
   // @todo: remove once api has this version in prod
   if (!Array.isArray(json.data)) {
     json.data = [...json.data.erc1155, ...json.data.erc721];
@@ -1231,6 +1231,7 @@ export async function getNftsForAddress2(walletAddress, walletProvider) {
       }
 
       let image;
+      let name = nft.name;
       try {
         if (nft.image_aws || nft.image) {
           image = nft.image_aws ?? nft.image;
@@ -1254,10 +1255,13 @@ export async function getNftsForAddress2(walletAddress, walletProvider) {
             })();
 
             const json = await (await fetch(checkedUri)).json();
-            image = convertIpfsResource(json.token_uri)
+            image = convertIpfsResource(json.image)
+            if (json.name) name = json.name;
           } else if (typeof(nft.token_uri) === 'object'){
             image = nft.token_uri.image;
           }
+        } else {
+          image = fallbackImageUrl;
         }
       } catch (e) {
         image = fallbackImageUrl;
@@ -1278,7 +1282,7 @@ export async function getNftsForAddress2(walletAddress, walletProvider) {
       
       return {
         id: nft.nftId,
-        name: nft.name,
+        name: name,
         description: nft.description,
         properties: nft.properties && nft.properties.length > 0 ? nft.properties : nft.attributes,
         image: image,

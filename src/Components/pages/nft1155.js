@@ -44,14 +44,17 @@ const Nft1155 = ({ address, id }) => {
   );
 
   const powertraits = useSelector((state) => state.nft.nft?.powertraits);
+  const collection = useSelector((state) => {
+    return findCollectionByAddress(address, id);
+  });
   const collectionMetadata = useSelector((state) => {
-    return findCollectionByAddress(address, id)?.metadata;
+    return collection?.metadata;
   });
   const collectionName = useSelector((state) => {
-    return findCollectionByAddress(address, id)?.name;
+    return collection?.name;
   });
   const collectionSlug = useSelector((state) => {
-    return findCollectionByAddress(address, id)?.slug;
+    return collection?.slug;
   });
   const isLoading = useSelector((state) => state.nft.loading);
   const user = useSelector((state) => state.user);
@@ -196,12 +199,16 @@ const Nft1155 = ({ address, id }) => {
                 <div className="item_info">
                   <h2>{nft.name}</h2>
                   <p>{nft.description}</p>
-                  <PriceActionBar />
-                  <div className="row">
-                    <button className="btn-main mx-auto mb-5" onClick={() => handleMakeOffer()}>
-                      {offerType === OFFER_TYPE.update ? 'Update' : 'Make'} Offer
-                    </button>
-                  </div>
+                  {collection.listable && (
+                    <>
+                      <PriceActionBar />
+                      <div className="row">
+                        <button className="btn-main mx-auto mb-5" onClick={() => handleMakeOffer()}>
+                          {offerType === OFFER_TYPE.update ? 'Update' : 'Make'} Offer
+                        </button>
+                      </div>
+                    </>
+                  )}
                   <div className="row" style={{ gap: '2rem 0' }}>
                     <ProfilePreview
                       type="Collection"

@@ -6,9 +6,9 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { Spinner } from 'react-bootstrap';
 import { SortOption } from '../Models/sort-option.model';
 
-import { FilterOption } from '../Models/filter-option.model';
 import HiddenCard from './HiddenCard';
 import { isMetapixelsCollection } from '../../utils';
+import {ListingsFilterOption} from "../Models/listings-filter-option.model";
 
 const ListingCollection = ({ showLoadMore = true, collectionId = null, sellerId = null, cacheName = null }) => {
   const dispatch = useDispatch();
@@ -30,7 +30,7 @@ const ListingCollection = ({ showLoadMore = true, collectionId = null, sellerId 
       sortOption.direction = 'desc';
       sortOption.label = 'By Id';
 
-      const filterOption = new FilterOption();
+      const filterOption = new ListingsFilterOption();
       filterOption.type = 'collection';
       filterOption.address = collectionId;
       filterOption.name = 'By Collection';
@@ -46,7 +46,7 @@ const ListingCollection = ({ showLoadMore = true, collectionId = null, sellerId 
       sortOption.direction = 'desc';
       sortOption.label = 'By Id';
 
-      const filterOption = new FilterOption();
+      const filterOption = new ListingsFilterOption();
       filterOption.type = 'seller';
       filterOption.address = sellerId;
       filterOption.name = 'By Seller';
@@ -56,7 +56,7 @@ const ListingCollection = ({ showLoadMore = true, collectionId = null, sellerId 
       return;
     }
 
-    const filterOption = marketplace.cachedFilter[cacheName] ?? FilterOption.default();
+    const filterOption = marketplace.cachedFilter[cacheName] ?? ListingsFilterOption.default();
     const sortOption = marketplace.cachedSort[cacheName] ?? SortOption.default();
 
     dispatch(init(sortOption, filterOption));
