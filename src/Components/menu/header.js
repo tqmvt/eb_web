@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Breakpoint, { BreakpointProvider, setDefaultBreakpoints } from 'react-socks';
-import { header } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
-import AccountMenu from '../components/AccountMenu';
 import { createGlobalStyle } from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
+
+import AccountMenu from '../components/AccountMenu';
 import InvalidListingWarning from '../components/InvalidListingWarning';
+import { setTheme } from '../../GlobalState/User';
 
 setDefaultBreakpoints([{ xs: 0 }, { l: 1199 }, { xl: 1200 }]);
 
@@ -31,6 +35,15 @@ const GlobalStyles = createGlobalStyle`
 
 const Header = function () {
   const [showmenu, btn_icon] = useState(false);
+  const theme = useSelector((state) => {
+    return state.user.theme;
+  });
+
+  const dispatch = useDispatch();
+  const toggleTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    dispatch(setTheme(newTheme));
+  };
 
   useEffect(() => {
     const header = document.getElementById('myHeader');
@@ -123,6 +136,11 @@ const Header = function () {
                     Drops
                     <span className="lines"></span>
                   </NavLink>
+                </div>
+                <div className="navbar-item">
+                  <span onClick={toggleTheme} className="cursor-pointer">
+                    <FontAwesomeIcon icon={theme === 'dark' ? faMoon : faSun} color="#fff" />
+                  </span>
                 </div>
               </div>
             </Breakpoint>

@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import useOnclickOutside from 'react-cool-onclickoutside';
 import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBolt, faImage, faSignOutAlt, faShoppingBag, faMoon } from '@fortawesome/free-solid-svg-icons';
+import { faBolt, faImage, faSignOutAlt, faShoppingBag } from '@fortawesome/free-solid-svg-icons';
 import { toast } from 'react-toastify';
 import MetaMaskOnboarding from '@metamask/onboarding';
-import { Modal, NavLink, Spinner, FormCheck } from 'react-bootstrap';
+import { Modal, NavLink, Spinner } from 'react-bootstrap';
 import styled from 'styled-components';
 
 import {
@@ -53,9 +53,9 @@ const AccountMenu = function () {
   const correctChain = useSelector((state) => {
     return state.user.correctChain;
   });
-  const theme = useSelector((state) => {
-    return state.user.theme;
-  });
+  // const theme = useSelector((state) => {
+  //   return state.user.theme;
+  // });
   const user = useSelector((state) => {
     return state.user;
   });
@@ -96,10 +96,10 @@ const AccountMenu = function () {
     }
   };
 
-  const toggleTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
-    dispatch(setTheme(newTheme));
-  };
+  // const toggleTheme = () => {
+  //   const newTheme = theme === 'light' ? 'dark' : 'light';
+  //   dispatch(setTheme(newTheme));
+  // };
 
   const handleCopy = (code) => () => {
     navigator.clipboard.writeText(code);
@@ -125,7 +125,7 @@ const AccountMenu = function () {
 
   useEffect(() => {
     const themeInStorage = getThemeInStorage();
-    console.log(themeInStorage);
+
     if (themeInStorage) {
       dispatch(setTheme(themeInStorage));
     } else {
@@ -337,7 +337,7 @@ const AccountMenu = function () {
                     <span>Disconnect Wallet</span>
                   </span>
                 </li>
-                <li>
+                {/* <li>
                   <span>
                     <span>
                       <FontAwesomeIcon icon={faMoon} />
@@ -355,7 +355,7 @@ const AccountMenu = function () {
                       />
                     </span>
                   </span>
-                </li>
+                </li> */}
               </ul>
             </div>
           )}

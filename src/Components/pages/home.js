@@ -87,11 +87,15 @@ const Jumbotron = {
   }))`
     background-image: url(${({ isDark }) =>
       isDark ? '/img/background/banner-dark.webp' : '/img/background/Ebisus-bg-1_L.webp'});
-    background-size: ${({ isDark }) => (!isDark ? 'cover' : '100% 100%')};
+    background-size: cover;
     background-repeat: no-repeat;
     height: max(100vh, 800px);
     display: flex;
     align-items: center;
+
+    // @media only screen and (min-width: ${({ theme }) => theme.breakpoints.xl}) {
+    //   background-size: ${({ isDark }) => (!isDark ? 'cover' : '100% 100%')};
+    // }
 
     @media only screen and (max-width: ${({ theme }) => theme.breakpoints.md}) {
       max-width: ${({ theme }) => theme.breakpoints.md};
