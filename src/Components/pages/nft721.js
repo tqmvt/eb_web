@@ -15,7 +15,7 @@ import {
   humanize,
   isBabyWeirdApesCollection,
   isCroCrowCollection,
-  isCrognomidesCollection, isUserBlacklisted,
+  isCrognomidesCollection, isNftBlacklisted, isUserBlacklisted,
   relativePrecision,
   shortAddress,
   timeSince,
@@ -317,7 +317,9 @@ const Nft721 = ({ address, id }) => {
                     </div>
                   )}
 
-                  {collection.listable && (!currentListing || !isUserBlacklisted(currentListing.seller)) && (
+                  {collection.listable &&
+                  (!currentListing || !isUserBlacklisted(currentListing.seller)) &&
+                  !isNftBlacklisted(address, id) && (
                     <>
                       <PriceActionBar />
                       <div className="row">

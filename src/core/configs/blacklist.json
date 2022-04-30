@@ -6,6 +6,28 @@
     "0x41f766457fa980640829239e74098687f718d260"
   ],
   "collections": [
-
+    {
+      "slug": "maries-cyborgs",
+      "address": "0x2245a6e61dE5661D93183Ab3ADd8924b1DC774db",
+      "ids": [
+        238,
+        403,
+        1076,
+        1294,
+        1598
+      ]
+    },
+    {
+      "slug": "cyborg-brotherhood",
+      "address": "0xd0062DEb460Eac0cB7cE77C312F8aa58378b6d8a",
+      "ids": [
+        312,
+        853,
+        1311,
+        1878,
+        1921,
+        2648
+      ]
+    }
   ]
 }
