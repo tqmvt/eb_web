@@ -4131,6 +4131,44 @@
         "discord": "https://discord.gg/boomersquad",
         "medium": "https://medium.com/@BoomerSquadNFT"
       }
+    },
+    {
+      "name": "Crotama OG Common",
+      "slug": "crotama-og-common",
+      "multiToken": false,
+      "address": "0x6486AC6161BA458e646d7435ffD3f919d0296bb7",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": false,
+        "avatar": "/img/collections/crotama/avatar.webp",
+        "banner": "/img/collections/crotama/banner.webp",
+        "card": "/img/collections/crotama/card.webp",
+        "maxSupply": 246,
+        "website": "https://crotama.com/",
+        "twitter": "https://twitter.com/CrotamaOfficial",
+        "telegram": "https://t.me/crotamaofficial"
+      }
+    },
+    {
+      "name": "Crotama OG Rare",
+      "slug": "crotama-og-rare",
+      "multiToken": false,
+      "address": "0xc2Bbc6b96BA1d48F95A44B1eC7eba42A3C759e79",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": false,
+        "avatar": "/img/collections/crotama/avatar.webp",
+        "banner": "/img/collections/crotama/banner.webp",
+        "card": "/img/collections/crotama/card.webp",
+        "maxSupply": 246,
+        "website": "https://crotama.com/",
+        "twitter": "https://twitter.com/CrotamaOfficial",
+        "telegram": "https://t.me/crotamaofficial"
+      }
     }
   ],
   "drops": [

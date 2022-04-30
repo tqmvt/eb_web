@@ -13,8 +13,8 @@ import {
   caseInsensitiveCompare,
   convertIpfsResource,
   isAntMintPassCollection,
-  isMetapixelsCollection,
-  isSouthSideAntsCollection,
+  isMetapixelsCollection, isNftBlacklisted,
+  isSouthSideAntsCollection, isUserBlacklisted,
   isWeirdApesCollection,
 } from '../utils';
 import { getAntMintPassMetadata, getWeirdApesStakingStatus } from './api/chain';
@@ -364,6 +364,7 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
   if (!walletAddress || !walletProvider) {
     return;
   }
+  const walletBlacklisted = isUserBlacklisted(walletAddress);
 
   const signer = walletProvider.getSigner();
 
@@ -545,6 +546,12 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
               } else {
                 id = ids[i];
               }
+              const nftBlacklisted = isNftBlacklisted(address, id);
+              if (nftBlacklisted) {
+                canTransfer = false;
+                canSell = false;
+              }
+
               const listed = !!getListing(address, id);
               const listingId = listed ? getListing(address, id).listingId : null;
               const price = listed ? getListing(address, id).price : null;
@@ -1190,6 +1197,7 @@ export async function getNftsForAddress2(walletAddress, walletProvider) {
   const quickWallet = await getQuickWallet(walletAddress);
   const results = quickWallet.data;
   const signer = walletProvider.getSigner();
+  const walletBlacklisted = isUserBlacklisted(walletAddress);
 
   let listings = await getAllListingsForUser(walletAddress);
 
@@ -1290,6 +1298,11 @@ export async function getNftsForAddress2(walletAddress, walletProvider) {
             canSell = false;
             isStaked = true;
           }
+        }
+
+        if (walletBlacklisted || isNftBlacklisted(nft.nftAddress, nft.nftId)) {
+          canTransfer = false;
+          canSell = false;
         }
 
         return {
