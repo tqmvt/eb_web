@@ -26,7 +26,7 @@ import {
   shortAddress,
   timeSince,
   isCrognomidesCollection,
-  isBabyWeirdApesCollection, isUserBlacklisted,
+  isBabyWeirdApesCollection, isUserBlacklisted, isNftBlacklisted,
 } from '../../utils';
 import config from '../../Assets/networks/rpc_config.json';
 import { croSkullRedPotionImageHack } from '../../hacks';
@@ -534,7 +534,7 @@ const Listing = () => {
                         </div>
                       )}
                       {/* button for checkout */}
-                      {!isUserBlacklisted(listing.seller) && (
+                      {!isUserBlacklisted(listing.seller) && !isNftBlacklisted(listing.nftAddress, listing.nftId) && (
                         <>
                           {listing.state === 0 ? (
                             <div className="d-flex flex-row mt-5">

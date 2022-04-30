@@ -435,6 +435,16 @@ export const isUserBlacklisted = (address) => {
   return !!blacklist.users.find((bAddress) => caseInsensitiveCompare(address, bAddress));
 }
 
+export const isNftBlacklisted = (slug, id) => {
+  return !!blacklist.collections.find((collection) => {
+    const matchesAddress = caseInsensitiveCompare(collection.address, slug);
+    const matchesSlug = collection.slug === slug;
+    const includesId = collection.ids.includes(id);
+
+    return (matchesSlug || matchesAddress) && includesId;
+  });
+}
+
 export const devLog = (...params) => {
   if (process.env.NODE_ENV === 'development') {
     console.log(params);
