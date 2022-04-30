@@ -184,7 +184,10 @@ const AccountMenu = function () {
   });
 
   return (
-    <div className="mainside">
+    <div className="mainside d-flex">
+      <span onClick={toggleTheme} className="cursor-pointer me-3 my-auto">
+        <FontAwesomeIcon icon={theme === 'dark' ? faMoon : faSun} color="#fff" />
+      </span>
       {!walletAddress && (
         <div className="connect-wal">
           <NavLink onClick={connectWalletPressed}>Connect Wallet</NavLink>
@@ -197,9 +200,6 @@ const AccountMenu = function () {
       )}
       {walletAddress && correctChain && (
         <div id="de-click-menu-profile" className="de-menu-profile">
-          <span onClick={toggleTheme} className="cursor-pointer me-3">
-            <FontAwesomeIcon icon={theme === 'dark' ? faMoon : faSun} color="#fff" />
-          </span>
           <span onClick={() => btn_icon_pop(!showpop)}>
             <Blockies seed={user.address} size={8} scale={4} />
             {user.hasOutstandingOffers && <BlockiesBadge className="notification-badge"></BlockiesBadge>}
