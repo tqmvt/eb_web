@@ -52,7 +52,7 @@ const MyListingCard = ({
 
   return (
     <>
-      <Card style={nft.valid ? {} : { backgroundColor: '#ffadad' }} className="h-100">
+      <Card style={nft.valid ? {} : { backgroundColor: '#ffadad' }} className="h-100 my-listing-card">
         <Card.Body className="d-flex flex-column">
           <div className="row">
             <div className="col-md-4 my-auto text-center">

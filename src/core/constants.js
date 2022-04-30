@@ -1,1 +1,1 @@
-export const fallbackImageUrl = '/img/nft-placeholder.webp'
+export const fallbackImageUrl = '/img/nft-placeholder.webp';

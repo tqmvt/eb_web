@@ -4,13 +4,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import ListingCollection from '../components/ListingCollection';
 import Footer from '../components/Footer';
 import TopFilterBar from '../components/TopFilterBar';
-import { filterListings, getMarketData, sortListings } from '../../GlobalState/marketplaceSlice';
-import { siPrefixedNumber } from '../../utils';
 import { sortOptions } from '../components/constants/sort-options';
-import { SortOption } from '../Models/sort-option.model';
 import { marketPlaceCollectionFilterOptions } from '../components/constants/filter-options';
 import SalesCollection from '../components/SalesCollection';
-import {ListingsFilterOption} from "../Models/listings-filter-option.model";
+import { filterListings, getMarketData, sortListings } from '../../GlobalState/marketplaceSlice';
+import { siPrefixedNumber } from '../../utils';
+import { SortOption } from '../Models/sort-option.model';
+import { ListingsFilterOption } from '../Models/listings-filter-option.model';
 
 const Marketplace = () => {
   const cacheName = 'marketplace';

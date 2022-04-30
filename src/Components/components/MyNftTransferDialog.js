@@ -1,6 +1,5 @@
 import React, { memo, useEffect, useState } from 'react';
 import { connect, useDispatch } from 'react-redux';
-import { MyNftPageActions } from '../../GlobalState/User';
 import {
   Button,
   CardMedia,
@@ -12,6 +11,34 @@ import {
   Grid,
   TextField,
 } from '@mui/material';
+import styled from 'styled-components';
+
+import { MyNftPageActions } from '../../GlobalState/User';
+
+const DialogContainer = styled(Dialog)`
+  .MuiPaper-root {
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: ${({ theme }) => theme.colors.bgColor1};
+  }
+
+  .MuiDialogContent-root {
+    padding: 36px 50px !important;
+    border-radius: 8px;
+    background-color: ${({ theme }) => theme.colors.bgColor1};
+
+    @media only screen and (max-width: ${({ theme }) => theme.breakpoints.md}) {
+      width: 100%;
+    }
+  }
+`;
+
+const StyledTextField = styled(TextField)`
+  .MuiInputBase-input,
+  .MuiInputLabel-root {
+    color: ${({ theme }) => theme.colors.textColor3};
+  }
+`;
 
 const ListDialogStepEnum = {
   WaitingForTransferApproval: 0,
@@ -28,8 +55,6 @@ const mapStateToProps = (state) => ({
 
 const MyNftTransferDialog = ({ walletAddress, myNftPageTransferDialog }) => {
   const dispatch = useDispatch();
-
-  /// TRANSFER------------------
 
   const [transferAddress, setTransferAddress] = useState(null);
 
@@ -55,7 +80,7 @@ const MyNftTransferDialog = ({ walletAddress, myNftPageTransferDialog }) => {
   return (
     <>
       {myNftPageTransferDialog ? (
-        <Dialog onClose={onTransferDialogCancel} open={!!myNftPageTransferDialog}>
+        <DialogContainer onClose={onTransferDialogCancel} open={!!myNftPageTransferDialog}>
           <DialogContent>
             <DialogTitle>Start Transfer</DialogTitle>
             <Grid container spacing={{ sm: 4 }} columns={2}>
@@ -65,7 +90,7 @@ const MyNftTransferDialog = ({ walletAddress, myNftPageTransferDialog }) => {
                 </Container>
               </Grid>
               <Grid item xs={1} key="2">
-                <TextField label="Address" variant="outlined" onChange={onTransferDialogAddressValueChange} />
+                <StyledTextField label="Address" variant="outlined" onChange={onTransferDialogAddressValueChange} />
               </Grid>
             </Grid>
 
@@ -74,7 +99,7 @@ const MyNftTransferDialog = ({ walletAddress, myNftPageTransferDialog }) => {
               <Button onClick={onTransferDialogConfirm}>OK</Button>
             </DialogActions>
           </DialogContent>
-        </Dialog>
+        </DialogContainer>
       ) : null}
     </>
   );

@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import config from '../../Assets/networks/rpc_config.json';
 import { croSkullRedPotionImageHack } from '../../hacks';
 import ReactPlayer from 'react-player';
-import {fallbackImageUrl} from "../../core/constants";
+import { fallbackImageUrl } from '../../core/constants';
 
 const MyNftCard = ({
   nft,

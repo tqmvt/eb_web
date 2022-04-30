@@ -4,12 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import useOnclickOutside from 'react-cool-onclickoutside';
 import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faBolt,
-  faImage,
-  faSignOutAlt,
-  faShoppingBag,
-} from '@fortawesome/free-solid-svg-icons';
+import {faBolt, faImage, faSignOutAlt, faShoppingBag, faMoon, faSun} from '@fortawesome/free-solid-svg-icons';
 import { toast } from 'react-toastify';
 import MetaMaskOnboarding from '@metamask/onboarding';
 import { Modal, NavLink, Spinner } from 'react-bootstrap';
@@ -18,7 +13,7 @@ import styled from 'styled-components';
 import {
   connectAccount,
   onLogout,
-  // setTheme,
+  setTheme,
   setShowWrongChainModal,
   chainConnect,
   AccountMenuActions,
@@ -27,19 +22,20 @@ import {
 import rpcConfig from '../../Assets/networks/rpc_config.json';
 
 import HandHoldingCroIcon from 'src/Assets/images/hand-holding-cro.svg';
-import {getAllCollections} from "../../GlobalState/collectionsSlice";
-import {fetchMyNFTs} from "../../GlobalState/offerSlice";
+import { getThemeInStorage, setThemeInStorage } from 'src/helpers/storage';
+import { getAllCollections } from '../../GlobalState/collectionsSlice';
+import { fetchMyNFTs } from '../../GlobalState/offerSlice';
 import {shortAddress} from "../../utils";
 
 const BlockiesBadge = styled.div`
-position: absolute;
-top: 0px;
-right: 0px;
-width: 10px;
-height: 10px;
-border-radius: 10px;
-background-color: #bd2727;
-`
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+  background-color: #bd2727;
+`;
 const AccountMenu = function () {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -58,9 +54,9 @@ const AccountMenu = function () {
   const correctChain = useSelector((state) => {
     return state.user.correctChain;
   });
-  // const theme = useSelector((state) => {
-  //   return state.user.theme;
-  // });
+  const theme = useSelector((state) => {
+    return state.user.theme;
+  });
   const user = useSelector((state) => {
     return state.user;
   });
@@ -78,22 +74,22 @@ const AccountMenu = function () {
   const logout = async () => {
     dispatch(onLogout());
   };
-
+  const toggleTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    dispatch(setTheme(newTheme));
+  };
   useEffect(() => {
     if (walletAddress) {
       dispatch(getAllCollections());
       dispatch(fetchMyNFTs(walletAddress));
     }
-  }, [walletAddress])
+  }, [walletAddress]);
 
   useEffect(() => {
-    if (collectionsStats &&
-      collectionsStats.length > 0 &&
-      myNFTs &&
-      myNFTs.length > 0) {
+    if (collectionsStats && collectionsStats.length > 0 && myNFTs && myNFTs.length > 0) {
       dispatch(checkForOutstandingOffers());
     }
-  }, [collectionsStats, myNFTs])
+  }, [collectionsStats, myNFTs]);
 
   const connectWalletPressed = async () => {
     if (needsOnboard) {
@@ -106,7 +102,6 @@ const AccountMenu = function () {
 
   // const toggleTheme = () => {
   //   const newTheme = theme === 'light' ? 'dark' : 'light';
-  //   console.log('toggleTheme...', newTheme);
   //   dispatch(setTheme(newTheme));
   // };
 
@@ -131,6 +126,16 @@ const AccountMenu = function () {
     dispatch(onLogout());
     toast.success(`Cookies cleared!`);
   };
+
+  useEffect(() => {
+    const themeInStorage = getThemeInStorage();
+
+    if (themeInStorage) {
+      dispatch(setTheme(themeInStorage));
+    } else {
+      setThemeInStorage('light');
+    }
+  }, []);
 
   useEffect(() => {
     let defiLink = localStorage.getItem('DeFiLink_session_storage_extension');
@@ -162,7 +167,6 @@ const AccountMenu = function () {
         dispatch(connectAccount(false, 'defi'));
       }
     }
-
     // eslint-disable-next-line
   }, []);
 
@@ -180,7 +184,10 @@ const AccountMenu = function () {
   });
 
   return (
-    <div className="mainside">
+    <div className="mainside d-flex">
+      <span onClick={toggleTheme} className="cursor-pointer me-3 my-auto">
+        <FontAwesomeIcon icon={theme === 'dark' ? faMoon : faSun} color="#fff" />
+      </span>
       {!walletAddress && (
         <div className="connect-wal">
           <NavLink onClick={connectWalletPressed}>Connect Wallet</NavLink>
@@ -195,9 +202,7 @@ const AccountMenu = function () {
         <div id="de-click-menu-profile" className="de-menu-profile">
           <span onClick={() => btn_icon_pop(!showpop)}>
             <Blockies seed={user.address} size={8} scale={4} />
-            {user.hasOutstandingOffers && (
-              <BlockiesBadge className="notification-badge"></BlockiesBadge>
-            )}
+            {user.hasOutstandingOffers && <BlockiesBadge className="notification-badge"></BlockiesBadge>}
           </span>
           {showpop && (
             <div className="popshow" ref={refpop}>
@@ -214,7 +219,9 @@ const AccountMenu = function () {
                 <h4>Wallet Balance</h4>
                 <div className="d-flex justify-content-between">
                   {!user.connectingWallet ? (
-                    <span>{user.balance ? <>{Math.round(user.balance * 100) / 100} CRO</> : <>N/A</>}</span>
+                    <span className="d-wallet-value">
+                      {user.balance ? <>{Math.round(user.balance * 100) / 100} CRO</> : <>N/A</>}
+                    </span>
                   ) : (
                     <span>
                       <Spinner animation="border" role="status" size={'sm'}>
@@ -231,7 +238,7 @@ const AccountMenu = function () {
                     <>
                       {user.marketBalance ? (
                         <>
-                          <span>{Math.round(user.marketBalance * 100) / 100} CRO</span>
+                          <span className="d-wallet-value">{Math.round(user.marketBalance * 100) / 100} CRO</span>
                           {user.marketBalance !== '0.0' && (
                             <button className="btn_menu" title="Withdraw Balance" onClick={withdrawBalance}>
                               Withdraw
@@ -291,7 +298,7 @@ const AccountMenu = function () {
                 <li>
                   <span onClick={() => navigateTo(`/nfts`)}>
                     <span>
-                      <FontAwesomeIcon icon={faImage} />{' '}
+                      <FontAwesomeIcon icon={faImage} />
                     </span>
                     <span>My NFTs</span>
                   </span>
@@ -299,19 +306,17 @@ const AccountMenu = function () {
                 <li className="my-offers-menu-item">
                   <span onClick={() => navigateTo(`/offers`)}>
                     <span>
-                      <img src={HandHoldingCroIcon} alt="handholding-cro" width="14" height="14" />{' '}
+                      <img src={HandHoldingCroIcon} alt="handholding-cro" width="14" height="14" />
                     </span>
                     <span>My Offers</span>
                   </span>
-                  {user.hasOutstandingOffers && (
-                    <div className="notification-badge"></div>
-                  )}
+                  {user.hasOutstandingOffers && <div className="notification-badge"></div>}
                 </li>
                 {(user.vipCount > 0 || user.stakeCount > 0) && (
                   <li>
                     <span onClick={() => navigateTo(`/staking`)}>
                       <span>
-                        <FontAwesomeIcon icon={faShoppingBag} />{' '}
+                        <FontAwesomeIcon icon={faShoppingBag} />
                       </span>
                       <span>My Staking</span>
                     </span>
@@ -320,7 +325,7 @@ const AccountMenu = function () {
                 <li>
                   <span onClick={clearCookies}>
                     <span>
-                      <FontAwesomeIcon icon={faBolt} />{' '}
+                      <FontAwesomeIcon icon={faBolt} />
                     </span>
                     <span>Clear Cookies</span>
                   </span>
@@ -331,11 +336,30 @@ const AccountMenu = function () {
                 <li>
                   <span onClick={logout}>
                     <span>
-                      <FontAwesomeIcon icon={faSignOutAlt} />{' '}
+                      <FontAwesomeIcon icon={faSignOutAlt} />
                     </span>
                     <span>Disconnect Wallet</span>
                   </span>
                 </li>
+                {/* <li>
+                  <span>
+                    <span>
+                      <FontAwesomeIcon icon={faMoon} />
+                    </span>
+                    <span className="d-flex">
+                      <label htmlFor="dark-mode-switch" className="cursor-pointer">
+                        Dark Mode
+                      </label>
+                      <FormCheck
+                        type="switch"
+                        id="dark-mode-switch"
+                        className="ms-2 cursor-pointer"
+                        checked={theme === 'dark'}
+                        onChange={toggleTheme}
+                      />
+                    </span>
+                  </span>
+                </li> */}
               </ul>
             </div>
           )}
