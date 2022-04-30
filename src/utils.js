@@ -356,6 +356,10 @@ export const isBabyWeirdApesCollection = (address) => {
   return isCollection(address, 'baby-weird-apes');
 };
 
+export const isCronosVerseCollection = (address) => {
+  return isCollection(address, 'cronosverse');
+};
+
 export const percentage = (partialValue, totalValue) => {
   if (!totalValue || totalValue === 0) return 0;
   return Math.floor((100 * partialValue) / totalValue);
@@ -429,4 +433,10 @@ export const convertIpfsResource = (resource, tooltip) => {
 
 export const isUserBlacklisted = (address) => {
   return !!blacklist.users.find((bAddress) => caseInsensitiveCompare(address, bAddress));
+}
+
+export const devLog = (...params) => {
+  if (process.env.NODE_ENV === 'development') {
+    console.log(params);
+  }
 }

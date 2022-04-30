@@ -25,6 +25,7 @@ import HandHoldingCroIcon from 'src/Assets/images/hand-holding-cro.svg';
 import { getThemeInStorage, setThemeInStorage } from 'src/helpers/storage';
 import { getAllCollections } from '../../GlobalState/collectionsSlice';
 import { fetchMyNFTs } from '../../GlobalState/offerSlice';
+import {shortAddress} from "../../utils";
 
 const BlockiesBadge = styled.div`
   position: absolute;
@@ -208,10 +209,7 @@ const AccountMenu = function () {
               <div className="d-wallet">
                 <h4>My Wallet</h4>
                 <div className="d-flex justify-content-between">
-                  <span id="wallet" className="d-wallet-address">{`${walletAddress.substring(
-                    0,
-                    4
-                  )}...${walletAddress.substring(walletAddress.length - 3, walletAddress.length)}`}</span>
+                  <span id="wallet" className="d-wallet-address">{user.cnsProfile?.name ?? shortAddress(walletAddress)}</span>
                   <button className="btn_menu" title="Copy Address" onClick={handleCopy(walletAddress)}>
                     Copy
                   </button>
