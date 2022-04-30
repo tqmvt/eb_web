@@ -178,12 +178,18 @@ canvas {
     -moz-border-radius: 15px;
     -webkit-border-radius: 15px;
     margin-bottom: 25px;
-    background: #ffffff;
+    background: $bgColor1;
     transition: .7s;
     cursor: pointer;
     &:hover{
         box-shadow: 2px 2px 30px 0px rgba(10, 10, 10, 0.1);
         transition: .7s;
+    }
+
+    .nft__item_price {
+        span {
+            color: $textColor1;
+        }
     }
 }
 
