@@ -37,7 +37,8 @@ const StyledTypography = styled(Typography)`
 
 const StyledStepLabel = styled(StepLabel)`
   .MuiStepLabel-label,
-  .MuiStepLabel-label.Mui-active {
+  .MuiStepLabel-label.Mui-active,
+  .MuiStepLabel-label.Mui-completed {
     color: ${({ theme }) => theme.colors.textColor3};
   }
 `;

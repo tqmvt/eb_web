@@ -8,7 +8,7 @@ import { SortOption } from '../Models/sort-option.model';
 
 import HiddenCard from './HiddenCard';
 import { isMetapixelsCollection } from '../../utils';
-import {ListingsFilterOption} from "../Models/listings-filter-option.model";
+import { ListingsFilterOption } from '../Models/listings-filter-option.model';
 
 const ListingCollection = ({ showLoadMore = true, collectionId = null, sellerId = null, cacheName = null }) => {
   const dispatch = useDispatch();

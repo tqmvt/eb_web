@@ -1,4 +1,4 @@
-import {FilterOption} from "./filter-option.model";
+import { FilterOption } from './filter-option.model';
 
 export class ListingsFilterOption extends FilterOption {
   type = 'collection';

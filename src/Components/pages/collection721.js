@@ -14,7 +14,7 @@ import LayeredIcon from '../components/LayeredIcon';
 import Footer from '../components/Footer';
 import CollectionInfoBar from '../components/CollectionInfoBar';
 import { init, fetchListings, getStats } from '../../GlobalState/collectionSlice';
-import {caseInsensitiveCompare, isCronosVerseCollection, isCrosmocraftsCollection} from '../../utils';
+import { caseInsensitiveCompare, isCronosVerseCollection, isCrosmocraftsCollection } from '../../utils';
 import TraitsFilter from '../Collection/TraitsFilter';
 import PowertraitsFilter from '../Collection/PowertraitsFilter';
 import SocialsBar from '../Collection/SocialsBar';
@@ -26,8 +26,8 @@ import stakingPlatforms from '../../core/data/staking-platforms.json';
 import SalesCollection from '../components/SalesCollection';
 import CollectionNftsGroup from '../components/CollectionNftsGroup';
 import CollectionListingsGroup from '../components/CollectionListingsGroup';
-import CollectionCronosverse from "./collectionCronosverse";
-import styled from "styled-components";
+import CollectionCronosverse from './collectionCronosverse';
+import styled from 'styled-components';
 
 const knownContracts = config.known_contracts;
 
@@ -35,7 +35,6 @@ const NegativeMargin = styled.div`
   margin-left: -1.75rem !important;
   margin-right: -1.75rem !important;
 `;
-
 
 const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) => {
   const dispatch = useDispatch();

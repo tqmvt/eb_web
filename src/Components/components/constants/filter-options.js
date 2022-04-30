@@ -1,6 +1,6 @@
 import { FilterOption } from '../../Models/filter-option.model';
 import config from '../../../Assets/networks/rpc_config.json';
-import {ListingsFilterOption} from "../../Models/listings-filter-option.model";
+import { ListingsFilterOption } from '../../Models/listings-filter-option.model';
 
 const knownContracts = config.known_contracts;
 

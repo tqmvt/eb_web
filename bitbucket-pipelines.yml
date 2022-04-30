@@ -166,7 +166,7 @@ pipelines:
             - 'self.hosted'
             - 'linux'
             - 'web'
-          size: 1x
+          size: 2x
           script:
             - *update
             - *version
@@ -201,7 +201,7 @@ pipelines:
             - 'self.hosted'
             - 'linux'
             - 'web'
-          size: 1x
+          size: 2x
           script:
             - *update
             - *version

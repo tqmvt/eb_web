@@ -70,7 +70,7 @@ const Header = function () {
           <div className="logo px-0">
             <div className="navbar-title navbar-item">
               <NavLink to="/">
-                <img src="/img/web_logo.png" alt="ebisus bay logo" style={{width: '44px', height: '40px'}}/>
+                <img src="/img/web_logo.png" alt="ebisus bay logo" style={{ width: '44px', height: '40px' }} />
               </NavLink>
             </div>
           </div>

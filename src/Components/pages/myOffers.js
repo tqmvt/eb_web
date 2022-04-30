@@ -11,7 +11,7 @@ import ReceivedOffers from '../Offer/ReceivedOffers';
 import MyOffersFilter from '../Offer/MyOffersFilter';
 import { initOffers, fetchMadeOffers, fetchAllOffers, fetchMyNFTs } from '../../GlobalState/offerSlice';
 import { getAllCollections, knownContracts } from '../../GlobalState/collectionsSlice';
-import { caseInsensitiveCompare } from '../../utils';
+import { caseInsensitiveCompare, isNftBlacklisted } from '../../utils';
 import { offerState } from '../../core/api/enums';
 
 const Tabs = styled.div`
@@ -104,11 +104,9 @@ const MyOffers = () => {
           const offerPrice = parseInt(offer.price);
           const isAboveOfferThreshold = floorPrice ? offerPrice >= floorPrice / 2 : true;
           const canShowCompletedOffers = !knownContract.multiToken || parseInt(offer.state) === offerState.ACTIVE;
+          const isBlacklisted = isNftBlacklisted(offer.nftAddress, offer.nftId);
 
-          if (nft && isAboveOfferThreshold && canShowCompletedOffers && !nft.is1155) {
-            return true;
-          }
-          return false;
+          return nft && isAboveOfferThreshold && canShowCompletedOffers && !nft.is1155 && !isBlacklisted;
         })
         .sort((a, b) => parseInt(b.price) - parseInt(a.price));
       const receivedPublicOffersFilter = allOffers
@@ -122,11 +120,9 @@ const MyOffers = () => {
           const offerPrice = parseInt(offer.price);
           const isAboveOfferThreshold = floorPrice ? offerPrice >= floorPrice / 2 : true;
           const canShowCompletedOffers = !knownContract.multiToken || parseInt(offer.state) === offerState.ACTIVE;
+          const isBlacklisted = isNftBlacklisted(offer.nftAddress, offer.nftId);
 
-          if (nft && isAboveOfferThreshold && canShowCompletedOffers && nft.is1155) {
-            return true;
-          }
-          return false;
+          return nft && isAboveOfferThreshold && canShowCompletedOffers && nft.is1155 && !isBlacklisted;
         })
         .sort((a, b) => parseInt(b.price) - parseInt(a.price));
 

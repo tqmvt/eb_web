@@ -32,7 +32,15 @@ const StyledTypography = styled(Typography)`
 
 const StyledStepLabel = styled(StepLabel)`
   .MuiStepLabel-label,
-  .MuiStepLabel-label.Mui-active {
+  .MuiStepLabel-label.Mui-active,
+  .MuiStepLabel-label.Mui-completed {
+    color: ${({ theme }) => theme.colors.textColor3};
+  }
+`;
+
+const StyledTextField = styled(TextField)`
+  .MuiInputBase-input,
+  .MuiInputLabel-root {
     color: ${({ theme }) => theme.colors.textColor3};
   }
 `;
@@ -130,18 +138,18 @@ const MyNftListDialog = ({ walletAddress, marketContract, myNftPageListDialog })
   const [royalty, setRoyalty] = useState(0);
 
   const [floorPrice, setFloorPrice] = useState(0);
-  const [belowFloor, setBelowFloor] = useState(false);
+  // const [belowFloor, setBelowFloor] = useState(false);
 
   useEffect(() => {
     const re = /^[0-9\b]+$/;
     if (salePrice && salePrice.length > 0 && salePrice[0] !== '0' && re.test(salePrice)) {
       setPriceError('');
       setNextEnabled(true);
-      if (salePrice != null) {
-        if (salePrice <= floorPrice) {
-          setBelowFloor(true);
-        }
-      }
+      // if (salePrice != null) {
+      //   if (salePrice <= floorPrice) {
+      //     setBelowFloor(true);
+      //   }
+      // }
     } else {
       if (salePrice != '' && salePrice != null) {
         setPriceError('Price must only contain full numbers!');
@@ -237,7 +245,7 @@ const MyNftListDialog = ({ walletAddress, marketContract, myNftPageListDialog })
     setNextEnabled(false);
     setPriceError('');
     setFloorPrice(0);
-    setBelowFloor(false);
+    // setBelowFloor(false);
     setSalePrice(null);
   };
 
@@ -287,7 +295,7 @@ const MyNftListDialog = ({ walletAddress, marketContract, myNftPageListDialog })
                         <StyledTypography>{step.description}</StyledTypography>
                         {index === 1 ? (
                           <Stack>
-                            <TextField
+                            <StyledTextField
                               sx={{ marginTop: '10px', marginBottom: '10px' }}
                               type="number"
                               label="Price"
