@@ -15,7 +15,9 @@ import {
   humanize,
   isBabyWeirdApesCollection,
   isCroCrowCollection,
-  isCrognomidesCollection, isNftBlacklisted, isUserBlacklisted,
+  isCrognomidesCollection,
+  isNftBlacklisted,
+  isUserBlacklisted,
   relativePrecision,
   shortAddress,
   timeSince,
@@ -318,17 +320,17 @@ const Nft721 = ({ address, id }) => {
                   )}
 
                   {collection.listable &&
-                  (!currentListing || !isUserBlacklisted(currentListing.seller)) &&
-                  !isNftBlacklisted(address, id) && (
-                    <>
-                      <PriceActionBar />
-                      <div className="row">
-                        <button className="btn-main mx-auto mb-5" onClick={() => handleMakeOffer()}>
-                          {offerType === OFFER_TYPE.update ? 'Update' : 'Make'} Offer
-                        </button>
-                      </div>
-                    </>
-                  )}
+                    (!currentListing || !isUserBlacklisted(currentListing.seller)) &&
+                    !isNftBlacklisted(address, id) && (
+                      <>
+                        <PriceActionBar />
+                        <div className="row">
+                          <button className="btn-main mx-auto mb-5" onClick={() => handleMakeOffer()}>
+                            {offerType === OFFER_TYPE.update ? 'Update' : 'Make'} Offer
+                          </button>
+                        </div>
+                      </>
+                    )}
 
                   <div className="row" style={{ gap: '2rem 0' }}>
                     {currentListing && (

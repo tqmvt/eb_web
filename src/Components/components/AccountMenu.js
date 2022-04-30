@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import useOnclickOutside from 'react-cool-onclickoutside';
 import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faBolt, faImage, faSignOutAlt, faShoppingBag, faMoon, faSun} from '@fortawesome/free-solid-svg-icons';
+import { faBolt, faImage, faSignOutAlt, faShoppingBag, faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import { toast } from 'react-toastify';
 import MetaMaskOnboarding from '@metamask/onboarding';
-import { Modal, NavLink, Spinner } from 'react-bootstrap';
+import { Modal, NavLink, Spinner, ModalTitle } from 'react-bootstrap';
 import styled from 'styled-components';
 
 import {
@@ -25,7 +25,7 @@ import HandHoldingCroIcon from 'src/Assets/images/hand-holding-cro.svg';
 import { getThemeInStorage, setThemeInStorage } from 'src/helpers/storage';
 import { getAllCollections } from '../../GlobalState/collectionsSlice';
 import { fetchMyNFTs } from '../../GlobalState/offerSlice';
-import {isUserBlacklisted, shortAddress} from "../../utils";
+import { isUserBlacklisted, shortAddress } from '../../utils';
 
 const BlockiesBadge = styled.div`
   position: absolute;
@@ -36,6 +36,17 @@ const BlockiesBadge = styled.div`
   border-radius: 10px;
   background-color: #bd2727;
 `;
+
+const StyledModal = styled(Modal)`
+  .modal-content {
+    background: ${({ theme }) => theme.colors.bgColor1};
+  }
+`;
+
+const StyledModalTitle = styled(ModalTitle)`
+  color: ${({ theme }) => theme.colors.textColor3};
+`;
+
 const AccountMenu = function () {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -209,7 +220,9 @@ const AccountMenu = function () {
               <div className="d-wallet">
                 <h4>My Wallet</h4>
                 <div className="d-flex justify-content-between">
-                  <span id="wallet" className="d-wallet-address">{user.cnsProfile?.name ?? shortAddress(walletAddress)}</span>
+                  <span id="wallet" className="d-wallet-address">
+                    {user.cnsProfile?.name ?? shortAddress(walletAddress)}
+                  </span>
                   <button className="btn_menu" title="Copy Address" onClick={handleCopy(walletAddress)}>
                     Copy
                   </button>
@@ -366,15 +379,15 @@ const AccountMenu = function () {
         </div>
       )}
 
-      <Modal show={user.showWrongChainModal} onHide={onWrongChainModalClose}>
+      <StyledModal show={user.showWrongChainModal} onHide={onWrongChainModalClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Wrong network!</Modal.Title>
+          <StyledModalTitle>Wrong network!</StyledModalTitle>
         </Modal.Header>
         <Modal.Body>
           To continue, you need to switch the network to <span style={{ fontWeight: 'bold' }}>{rpcConfig.name}</span>.{' '}
         </Modal.Body>
         <Modal.Footer>
-          <button className="p-4 pt-2 pb-2 btn_menu inline white lead " onClick={onWrongChainModalClose}>
+          <button className="p-4 pt-2 pb-2 btn_menu inline white lead" onClick={onWrongChainModalClose}>
             Close
           </button>
           <button
@@ -384,7 +397,7 @@ const AccountMenu = function () {
             Switch
           </button>
         </Modal.Footer>
-      </Modal>
+      </StyledModal>
     </div>
   );
 };

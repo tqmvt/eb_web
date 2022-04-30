@@ -41,7 +41,9 @@ export const getAllCollections =
         let contract;
         if (collection.collection.indexOf('-') !== -1) {
           let parts = collection.collection.split('-');
-          contract = knownContracts.find((c) => caseInsensitiveCompare(c.address, parts[0]) && c.id === parseInt(parts[1]));
+          contract = knownContracts.find(
+            (c) => caseInsensitiveCompare(c.address, parts[0]) && c.id === parseInt(parts[1])
+          );
           if (contract && !contract.split) return;
         } else {
           contract = knownContracts.find((c) => caseInsensitiveCompare(c.address, collection.collection));

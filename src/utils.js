@@ -159,8 +159,7 @@ export function humanize(str) {
   if (str === str.toUpperCase()) {
     str = str[0].toUpperCase() + str.slice(1).toLowerCase();
   } else {
-    str = str.split(/(?=[A-Z])/)
-      .join(' ')
+    str = str.split(/(?=[A-Z])/).join(' ');
   }
 
   let i,
@@ -429,11 +428,11 @@ export const convertIpfsResource = (resource, tooltip) => {
   }
 
   return linkedResource;
-}
+};
 
 export const isUserBlacklisted = (address) => {
   return !!blacklist.users.find((bAddress) => caseInsensitiveCompare(address, bAddress));
-}
+};
 
 export const isNftBlacklisted = (address, id) => {
   return !!blacklist.collections.find((collection) => {
@@ -443,10 +442,10 @@ export const isNftBlacklisted = (address, id) => {
 
     return (matchesSlug || matchesAddress) && includesId;
   });
-}
+};
 
 export const devLog = (...params) => {
   if (process.env.NODE_ENV === 'development') {
     console.log(params);
   }
-}
+};

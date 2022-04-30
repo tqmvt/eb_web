@@ -10,7 +10,7 @@ import { ethers } from 'ethers';
 import TopFilterBar from './TopFilterBar';
 import { marketPlaceCollectionFilterOptions } from './constants/filter-options';
 import { sortOptions } from './constants/sort-options';
-import {ListingsFilterOption} from "../Models/listings-filter-option.model";
+import { ListingsFilterOption } from '../Models/listings-filter-option.model';
 
 const SalesCollection = ({
   showLoadMore = true,

@@ -9,7 +9,7 @@ import { croSkullRedPotionImageHack } from 'src/hacks';
 import Button from './Button';
 import MakeOfferDialog from '../Offer/MakeOfferDialog';
 import { connectAccount, chainConnect } from 'src/GlobalState/User';
-import {isNftBlacklisted} from "../../utils";
+import { isNftBlacklisted } from '../../utils';
 
 const Watermarked = styled.div`
   position: relative;
@@ -56,7 +56,7 @@ const NftCard = ({ royalty, listing, imgClass = 'marketplace', watermark, addres
   const handleMakeOffer = () => {
     const isBlacklisted = isNftBlacklisted(listing.address, listing.id);
     if (isBlacklisted) return;
-    
+
     if (user.address) {
       setOpenMakeOfferDialog(!openMakeOfferDialog);
     } else {

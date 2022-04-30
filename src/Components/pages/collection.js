@@ -4,8 +4,8 @@ import { Redirect, useParams } from 'react-router-dom';
 import Collection1155 from './collection1155';
 import Collection721 from './collection721';
 import config from '../../Assets/networks/rpc_config.json';
-import {caseInsensitiveCompare, isCronosVerseCollection} from '../../utils';
-import CollectionCronosverse from "./collectionCronosverse";
+import { caseInsensitiveCompare, isCronosVerseCollection } from '../../utils';
+import CollectionCronosverse from './collectionCronosverse';
 
 const knownContracts = config.known_contracts;
 
@@ -13,7 +13,7 @@ const collectionTypes = {
   UNSET: -1,
   ERC721: 0,
   ERC1155: 1,
-  CRONOSVERSE: 2
+  CRONOSVERSE: 2,
 };
 
 const Collection = () => {
@@ -57,17 +57,17 @@ const Collection = () => {
                 <>
                   {type === collectionTypes.CRONOSVERSE ? (
                     <CollectionCronosverse collection={collection} slug={slug} cacheName={slug} />
-                  ) : (type === collectionTypes.ERC1155 ? (
-                      <>
-                        {collection.split ? (
-                          <Collection1155 collection={collection} tokenId={collection.id} slug={slug} cacheName={slug} />
-                        ) : (
-                          <Collection1155 collection={collection} slug={slug} cacheName={slug} />
-                        )}
-                      </>
+                  ) : type === collectionTypes.ERC1155 ? (
+                    <>
+                      {collection.split ? (
+                        <Collection1155 collection={collection} tokenId={collection.id} slug={slug} cacheName={slug} />
+                      ) : (
+                        <Collection1155 collection={collection} slug={slug} cacheName={slug} />
+                      )}
+                    </>
                   ) : (
                     <Collection721 collection={collection} slug={slug} cacheName={slug} />
-                  ))}
+                  )}
                 </>
               ) : (
                 <Redirect to="/" />
