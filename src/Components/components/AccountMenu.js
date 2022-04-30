@@ -25,7 +25,7 @@ import HandHoldingCroIcon from 'src/Assets/images/hand-holding-cro.svg';
 import { getThemeInStorage, setThemeInStorage } from 'src/helpers/storage';
 import { getAllCollections } from '../../GlobalState/collectionsSlice';
 import { fetchMyNFTs } from '../../GlobalState/offerSlice';
-import {shortAddress} from "../../utils";
+import {isUserBlacklisted, shortAddress} from "../../utils";
 
 const BlockiesBadge = styled.div`
   position: absolute;
@@ -268,7 +268,7 @@ const AccountMenu = function () {
                           {user.rewards ? (
                             <>
                               <span>{Math.round(user.rewards * 100) / 100} CRO</span>
-                              {user.rewards !== '0.0' && (
+                              {user.rewards !== '0.0' && !isUserBlacklisted(user.address) && (
                                 <button
                                   className="btn_menu"
                                   title="Withdraw Referral Rewards"
