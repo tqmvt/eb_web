@@ -1,8 +1,10 @@
 import React, { memo } from 'react';
 import Select from 'react-select';
+import { useSelector } from 'react-redux';
+
 import { SortOption } from '../Models/sort-option.model';
 import { FilterOption } from '../Models/filter-option.model';
-import Form from 'react-bootstrap/Form';
+import { getTheme } from '../../Theme/theme';
 
 const TopFilterBar = ({
   showFilter = true,
@@ -18,14 +20,18 @@ const TopFilterBar = ({
   sortValue = undefined,
   filterValue = undefined,
 }) => {
+  const userTheme = useSelector((state) => {
+    return state.user.theme;
+  });
   const customStyles = {
     option: (base, state) => ({
       ...base,
-      background: '#fff',
-      color: '#333',
+      background: getTheme(userTheme).colors.bgColor2,
+      color: getTheme(userTheme).colors.textColor3,
       borderRadius: state.isFocused ? '0' : 0,
       '&:hover': {
         background: '#eee',
+        color: '#000',
       },
     }),
     menu: (base) => ({

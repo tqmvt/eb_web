@@ -1,5 +1,5 @@
-import React, {memo, useState} from 'react';
-import { connect, useDispatch } from 'react-redux';
+import React, { memo, useState } from 'react';
+import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 import Footer from '../components/Footer';
@@ -7,8 +7,8 @@ import NftCardList from '../components/MyNftCardList';
 import MyNftTransferDialog from '../components/MyNftTransferDialog';
 import MyNftCancelDialog from '../components/MyNftCancelDialog';
 import MyNftListDialog from '../components/MyNftListDialog';
-import MyListingsCollection from "../components/MyListingsCollection";
-import MySoldNftCollection from "../components/MySoldNftCollection";
+import MyListingsCollection from '../components/MyListingsCollection';
+import MySoldNftCollection from '../components/MySoldNftCollection';
 
 const mapStateToProps = (state) => ({
   walletAddress: state.user.address,
@@ -16,13 +16,13 @@ const mapStateToProps = (state) => ({
 });
 
 const MyNfts = ({ walletAddress, isLoading }) => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const [showChainSearch, setShowChainSearch] = useState(false);
   const [openTab, setOpenTab] = useState(0);
 
   const onClickChainSearch = (searchChain) => {
     setShowChainSearch(searchChain);
-  }
+  };
 
   const handleBtnClick = (index) => (element) => {
     var elements = document.querySelectorAll('.tab');
@@ -71,15 +71,26 @@ const MyNfts = ({ walletAddress, isLoading }) => {
               <>
                 {showChainSearch ? (
                   <>
-                    <p className="text-center text-md-end">Viewing chain results <span className="color fw-bold" role="button" onClick={() => onClickChainSearch(false)}>Go Back</span></p>
+                    <p className="text-center text-md-end">
+                      Viewing chain results{' '}
+                      <span className="color fw-bold" role="button" onClick={() => onClickChainSearch(false)}>
+                        Go Back
+                      </span>
+                    </p>
                     <div className="alert alert-info" role="alert">
-                      A full search will search the Cronos chain directly to get your NFT information. This is slower, but may return NFTs that might be missing due to dropped transaction issues.
+                      A full search will search the Cronos chain directly to get your NFT information. This is slower,
+                      but may return NFTs that might be missing due to dropped transaction issues.
                     </div>
                     <NftCardList useChain={showChainSearch} />
                   </>
-                ) :(
+                ) : (
                   <>
-                    <p className="text-center text-md-end">NFTs not showing correctly? Try a full search <span className="color fw-bold" role="button" onClick={() => onClickChainSearch(true)}>here</span></p>
+                    <p className="text-center text-md-end">
+                      NFTs not showing correctly? Try a full search{' '}
+                      <span className="color fw-bold" role="button" onClick={() => onClickChainSearch(true)}>
+                        here
+                      </span>
+                    </p>
                     <div className="alert alert-warning" role="alert">
                       <strong>Note</strong>: due to current issues with dropped transactions on the Cronos chain, some NFTs may show incorrectly below. This may include NFTs not appearing, or remaining even after they have been sold or staked. If you are experiencing this issue with any in your collection, try the full chain search above.
                     </div>
@@ -91,12 +102,8 @@ const MyNfts = ({ walletAddress, isLoading }) => {
                 <MyNftListDialog />
               </>
             )}
-            {openTab === 1 && (
-              <MyListingsCollection walletAddress={walletAddress} />
-            )}
-            {openTab === 2 && (
-              <MySoldNftCollection walletAddress={walletAddress} />
-            )}
+            {openTab === 1 && <MyListingsCollection walletAddress={walletAddress} />}
+            {openTab === 2 && <MySoldNftCollection walletAddress={walletAddress} />}
           </div>
         </div>
       </section>

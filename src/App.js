@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import ScrollToTopBtn from './Components/menu/ScrollToTop';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { AppRouter } from './Router/Router';
-import { theme } from './Theme/theme';
+import { getTheme } from './Theme/theme';
 import { toast, ToastContainer } from 'react-toastify';
 
 import { initializeApp } from 'firebase/app';
@@ -21,13 +21,24 @@ const GlobalStyles = createGlobalStyle`
     background-blend-mode: multiply;
   }
   .jumbotron.breadcumb.no-bg.tint {
-    background-image: url('/img/background/Ebisu-DT-Header.webp');
+
+    background-image: url(${({ isDark }) =>
+      isDark ? '/img/background/header-dark.webp' : '/img/background/Ebisu-DT-Header.webp'});
+    background-repeat: no-repeat;
+    background-size: cover;
     background-position: bottom;
+  }
+
+  @media only screen and (min-width: 1200px) {
+    .jumbotron.breadcumb.no-bg.tint {
+      margin-top: 84px;
+    }
   }
     
   @media only screen and (max-width: 768px) {
     .jumbotron.breadcumb.no-bg.tint {
-      background-image: url('/img/background/Ebisu-Mobile-Header.webp');
+      background-image: url(${({ isDark }) =>
+        isDark ? '/img/background/mobile-header-dark.webp' : '/img/background/Ebisu-Mobile-Header.webp'});
       background-size: cover;
       background-repeat: no-repeat;
     }
@@ -40,6 +51,7 @@ function App() {
   const userTheme = useSelector((state) => {
     return state.user.theme;
   });
+  document.documentElement.setAttribute('data-theme', userTheme);
 
   useEffect(() => {
     dispatch(appInitializer());
@@ -52,9 +64,9 @@ function App() {
   }, [dispatch]);
 
   return (
-    <ThemeProvider theme={theme}>
-      <div className={'wraper ' + (userTheme === 'dark' ? 'greyscheme' : '')}>
-        <GlobalStyles />
+    <ThemeProvider theme={getTheme(userTheme)}>
+      <div className="wraper">
+        <GlobalStyles isDark={userTheme === 'dark'} />
         <AppRouter firebase />
         <ScrollToTopBtn />
         <ToastContainer position={toast.POSITION.BOTTOM_LEFT} hideProgressBar={true} />

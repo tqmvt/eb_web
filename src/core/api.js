@@ -1279,7 +1279,7 @@ export async function getNftsForAddress2(walletAddress, walletProvider) {
           isStaked = true;
         }
       }
-      
+
       return {
         id: nft.nftId,
         name: name,

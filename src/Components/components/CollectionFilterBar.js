@@ -3,12 +3,13 @@ import Select from 'react-select';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { Form } from 'react-bootstrap';
+import { ethers } from 'ethers';
 
 import { sortOptions } from './constants/collection-sort-options';
 import { CollectionSortOption } from '../Models/collection-sort-option.model';
 import { listingFilterOptions } from './constants/filter-options';
-import { sortListings, resetListings, searchListings, filterListingsByListed } from '../../GlobalState/collectionSlice';
-import { ethers } from 'ethers';
+import { sortListings, searchListings, filterListingsByListed } from '../../GlobalState/collectionSlice';
+import { getTheme } from '../../Theme/theme';
 
 const CollectionFilterBarContainer = styled.div`
   margin: 0 0 22px;
@@ -59,14 +60,19 @@ const CollectionFilterBar = ({ cacheName = null }) => {
   //   dispatch(resetListings());
   // }, [dispatch]);
 
+  const userTheme = useSelector((state) => {
+    return state.user.theme;
+  });
+
   const customStyles = {
     option: (base, state) => ({
       ...base,
-      background: '#fff',
-      color: '#333',
+      background: getTheme(userTheme).colors.bgColor2,
+      color: getTheme(userTheme).colors.textColor3,
       borderRadius: state.isFocused ? '0' : 0,
       '&:hover': {
         background: '#eee',
+        color: '#000',
       },
     }),
     menu: (base) => ({
