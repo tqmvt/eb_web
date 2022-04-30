@@ -4091,6 +4091,26 @@
         "card": "/img/collections/toughlions/card.png",
         "banner": "/img/collections/toughlions/banner.png"
       }
+    },
+    {
+      "name": "B.A.D. - Spacebags",
+      "slug": "bad-spacebags",
+      "multiToken": false,
+      "address": "0x1A8C07dd1933433cDdBE3123b583695AE3C56b9b",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/babyaliendivision/spacebags/avatar.webp",
+        "banner": "/img/collections/babyaliendivision/spacebags/banner.webp",
+        "card": "/img/collections/babyaliendivision/spacebags/card.webp",
+        "maxSupply": 5000,
+        "website": "https://badaliens.io/",
+        "twitter": "https://twitter.com/BAD_Cronos",
+        "discord": "https://discord.gg/qKBy2azf69",
+        "medium": "https://medium.com/@babyaliendivision"
+      }
     }
   ],
   "drops": [
