@@ -26,7 +26,9 @@ import {
   shortAddress,
   timeSince,
   isCrognomidesCollection,
-  isBabyWeirdApesCollection, isUserBlacklisted, isNftBlacklisted,
+  isBabyWeirdApesCollection,
+  isUserBlacklisted,
+  isNftBlacklisted,
 } from '../../utils';
 import config from '../../Assets/networks/rpc_config.json';
 import { croSkullRedPotionImageHack } from '../../hacks';

@@ -293,7 +293,9 @@ const Nft1155 = ({ address, id }) => {
                                         <div className="nft_attr">
                                           <h5>{humanize(data.trait_type)}</h5>
                                           <h4>
-                                            {data.value ? (humanize(isCrosmocraftsPartsDrop(address) ? data.Value : data.value)) : 'N/A'}
+                                            {data.value
+                                              ? humanize(isCrosmocraftsPartsDrop(address) ? data.Value : data.value)
+                                              : 'N/A'}
                                           </h4>
                                           {data.occurrence ? (
                                             <span>{Math.round(data.occurrence * 100)}% have this trait</span>

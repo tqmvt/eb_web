@@ -1,24 +1,22 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { init, fetchListings } from '../../GlobalState/collectionSlice';
-import {
-  devLog,
-} from '../../utils';
+import { devLog } from '../../utils';
 import { CollectionSortOption } from '../Models/collection-sort-option.model';
 import { FilterOption } from '../Models/filter-option.model';
 import config from '../../Assets/networks/rpc_config.json';
-import {TransformComponent, TransformWrapper} from "react-zoom-pan-pinch";
-import borderboard from "../../Assets/cronosverse/border_board.png";
-import tile1 from "../../Assets/cronosverse/Plain-tile.png";
-import tile2 from "../../Assets/cronosverse/Suburban-tile.png";
-import tile3 from "../../Assets/cronosverse/Commercial-tile.png";
-import Button from "../components/Button";
-import styled from "styled-components";
-import {chainConnect, connectAccount} from "../../GlobalState/User";
-import MetaMaskOnboarding from "@metamask/onboarding";
-import MakeOfferDialog from "../Offer/MakeOfferDialog";
-import {useHistory} from "react-router-dom";
-import {commify} from "ethers/lib/utils";
+import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
+import borderboard from '../../Assets/cronosverse/border_board.png';
+import tile1 from '../../Assets/cronosverse/Plain-tile.png';
+import tile2 from '../../Assets/cronosverse/Suburban-tile.png';
+import tile3 from '../../Assets/cronosverse/Commercial-tile.png';
+import Button from '../components/Button';
+import styled from 'styled-components';
+import { chainConnect, connectAccount } from '../../GlobalState/User';
+import MetaMaskOnboarding from '@metamask/onboarding';
+import MakeOfferDialog from '../Offer/MakeOfferDialog';
+import { useHistory } from 'react-router-dom';
+import { commify } from 'ethers/lib/utils';
 
 const CollectionCronosverse = ({ collection }) => {
   const dispatch = useDispatch();
@@ -35,14 +33,7 @@ const CollectionCronosverse = ({ collection }) => {
     const filterOption = FilterOption.default();
     filterOption.type = 'collection';
     filterOption.address = collection.address;
-    dispatch(
-      init(
-        filterOption,
-        CollectionSortOption.default(),
-        {},
-        collection.address
-      )
-    );
+    dispatch(init(filterOption, CollectionSortOption.default(), {}, collection.address));
     dispatch(fetchListings(true));
     // eslint-disable-next-line
   }, [dispatch]);
@@ -91,7 +82,6 @@ const CollectionCronosverse = ({ collection }) => {
   );
 };
 export default CollectionCronosverse;
-
 
 const MakeOffer = styled.div`
   margin-top: 8px;
@@ -197,7 +187,7 @@ const CronosverseCollectionBoard = ({ onBuy, onOffer, minting, listings = [], nf
 
   const getMousePos = (e) => {
     var rect = e.target.getBoundingClientRect();
-    devLog('mouse', e.clientX, e.clientY, rect.left, rect.top)
+    devLog('mouse', e.clientX, e.clientY, rect.left, rect.top);
     return {
       x: e.clientX - rect.left,
       y: e.clientY - rect.top,
@@ -234,7 +224,7 @@ const CronosverseCollectionBoard = ({ onBuy, onOffer, minting, listings = [], nf
     const tokenId = getTokenId(xPos, yPos);
     const listing = listingForToken(tokenId);
     const nft = nftForToken(tokenId);
-    devLog('selected data', nft, listing)
+    devLog('selected data', nft, listing);
     let price = 0;
     if (listing) {
       price = listing.market.price;
@@ -255,7 +245,7 @@ const CronosverseCollectionBoard = ({ onBuy, onOffer, minting, listings = [], nf
       listing: listing,
       nft: nft,
       canBuy: !!listing,
-      modalPosition: {x: globalX + 15, y: globalY + 15}
+      modalPosition: { x: globalX + 15, y: globalY + 15 },
       // getModalPosition(e.clientX, e.clientY, globalX, globalY)
     });
 
@@ -339,7 +329,11 @@ const CronosverseCollectionBoard = ({ onBuy, onOffer, minting, listings = [], nf
 
             <div
               className="tip_modal"
-              style={{ display: modalFlag, left: `${tileInfo.modalPosition?.x}px`, top: `${tileInfo.modalPosition?.y}px` }}
+              style={{
+                display: modalFlag,
+                left: `${tileInfo.modalPosition?.x}px`,
+                top: `${tileInfo.modalPosition?.y}px`,
+              }}
             >
               <div className="modal_content">
                 <div
@@ -360,9 +354,7 @@ const CronosverseCollectionBoard = ({ onBuy, onOffer, minting, listings = [], nf
                     Location: {tileInfo.xPos < 27 ? tileInfo.xPos - 27 : tileInfo.xPos - 26},
                     {tileInfo.yPos < 14 ? 14 - tileInfo.yPos : 13 - tileInfo.yPos}
                   </div>
-                  {tileInfo.canBuy && (
-                    <div>Price: {commify(tileInfo.price ?? 0)} CRO</div>
-                  )}
+                  {tileInfo.canBuy && <div>Price: {commify(tileInfo.price ?? 0)} CRO</div>}
                   <MakeOffer>
                     {tileInfo.canBuy && (
                       <div className="me-2">

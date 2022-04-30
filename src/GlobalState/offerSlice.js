@@ -136,7 +136,7 @@ export const fetchAllOffers =
     const { data } = await getAllOffers(addresses, stateFilter);
 
     if (data) {
-        dispatch(allOffersLoaded({ allOffers: data }));
+      dispatch(allOffersLoaded({ allOffers: data }));
     } else dispatch(allOffersLoaded([]));
   };
 
@@ -147,7 +147,7 @@ export const fetchMadeOffers =
     const { data } = await getMyOffers(address, stateFilter);
 
     if (data) {
-        dispatch(madeOffersLoaded({ madeOffers: data }));
+      dispatch(madeOffersLoaded({ madeOffers: data }));
     } else dispatch(madeOffersLoaded([]));
   };
 

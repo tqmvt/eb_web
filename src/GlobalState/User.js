@@ -25,7 +25,7 @@ import {
   caseInsensitiveCompare,
   createSuccessfulTransactionToastContent,
   isUserBlacklisted,
-  sliceIntoChunks
+  sliceIntoChunks,
 } from '../utils';
 import { FilterOption } from '../Components/Models/filter-option.model';
 import { nanoid } from 'nanoid';
@@ -34,7 +34,7 @@ import { captureException } from '@sentry/react';
 import { setThemeInStorage } from 'src/helpers/storage';
 import { getAllOffers } from '../core/subgraph';
 import { offerState } from '../core/api/enums';
-import {CNS, TextRecords} from "@cnsdomains/core";
+import { CNS, TextRecords } from '@cnsdomains/core';
 
 const knownContracts = config.known_contracts;
 
@@ -102,7 +102,7 @@ const userSlice = createSlice({
     // Theme
     theme: 'light',
 
-    cnsProfile: {}
+    cnsProfile: {},
   },
   reducers: {
     accountChanged(state, action) {
@@ -346,7 +346,7 @@ export const {
   setVIPCount,
   setStakeCount,
   onOutstandingOffersFound,
-  setCnsProfile
+  setCnsProfile,
 } = userSlice.actions;
 export const user = userSlice.reducer;
 
@@ -455,7 +455,7 @@ export const connectAccount =
       const signer = provider.getSigner();
 
       if (isUserBlacklisted(address)) {
-        throw "Unable to connect"
+        throw 'Unable to connect';
       }
 
       if (!correctChain) {
@@ -560,7 +560,7 @@ export const connectAccount =
           marketContract: market,
           auctionContract: auction,
           offerContract: offer,
-          marketBalance: sales
+          marketBalance: sales,
         })
       );
     } catch (error) {
@@ -886,7 +886,6 @@ export const retrieveCnsProfile = () => async (dispatch, getState) => {
     console.log('cns error', e);
   }
 };
-
 
 export class AccountMenuActions {
   static withdrawRewards = () => async (dispatch, getState) => {
