@@ -999,7 +999,7 @@
       "name": "Smash Stunts",
       "slug": "smash-stunts",
       "multiToken": false,
-      "address": "0x1620fe5031743b9af72075c6b81c2159207e2ebc",
+      "address": "0xB458E21EB481Ef9652684e0656a96ca002554AAb",
       "onChain": false,
       "listable": false,
       "metadata": {
@@ -2147,7 +2147,7 @@
       "subtitle": "Ashley Lammela stunt rider a.k.a. \"SmashStunts\" teamed up with famous artist and former Chuck Jones Background Painter Patrick Guyton to create the SmashStunts comic series. What is she wearing, where is she popping this sick wheelie, and how close to the original can you get? The rarest traits are the original colors of the painting. A mepyDoo® production.",
       "description": "This NFT is derived from an original painting being released in Las Vegas on May 1st 2022 at the DeRubeis Fine Art of Metal Gallery in the Planet Hollywood Resort, Miracle Mile Shops at 5:30pm Pacific time. Check @smashstunts to watch. What is she wearing, where is she popping this sick wheelie, and how close to the original can you get? The rarest traits are the original colors of the painting. A mepyDoo® production (@mepyDoo)",
       "author": { "name": "Smash Stunts", "link": "http://xtremejunkies.io/" },
-      "address": "0x1620fe5031743b9af72075c6b81c2159207e2ebc",
+      "address": "0xB458E21EB481Ef9652684e0656a96ca002554AAb",
       "maxMintPerTx": 10,
       "maxMintPerAddress": 100,
       "totalSupply": 3000,

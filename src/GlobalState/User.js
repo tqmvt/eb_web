@@ -33,6 +33,7 @@ import { appAuthInitFinished } from './InitSlice';
 import { captureException } from '@sentry/react';
 import {getAllOffers} from "../core/subgraph";
 import {offerState} from "../core/api/enums";
+import {CNS, TextRecords} from "@cnsdomains/core";
 
 const knownContracts = config.known_contracts;
 
@@ -61,7 +62,7 @@ const userSlice = createSlice({
     stateContract: null,
     auctionContract: null,
     offerContract: null,
-    // ebisuContract : null,
+    cnsContract: null,
 
     correctChain: false,
     showWrongChainModal: false,
@@ -99,6 +100,8 @@ const userSlice = createSlice({
 
     // Theme
     theme: 'light',
+
+    cnsProfile: {}
   },
   reducers: {
     accountChanged(state, action) {
@@ -116,7 +119,6 @@ const userSlice = createSlice({
       state.marketBalance = action.payload.marketBalance;
       state.auctionContract = action.payload.auctionContract;
       state.offerContract = action.payload.offerContract;
-      // state.ebisuContract = action.payload.ebisuContract;
       state.gettingContractData = false;
     },
 
@@ -286,6 +288,7 @@ const userSlice = createSlice({
       state.mySoldNfts = [];
       state.myUnfilteredListingsFetching = false;
       state.myUnfilteredListings = [];
+      state.cnsProfile = {};
     },
     onThemeChanged(state, action) {
       console.log('onThemeChanged', action.payload);
@@ -302,7 +305,10 @@ const userSlice = createSlice({
     },
     onOutstandingOffersFound(state, action) {
       state.hasOutstandingOffers = action.payload;
-    }
+    },
+    setCnsProfile(state, action) {
+      state.cnsProfile = action.payload;
+    },
   },
 });
 
@@ -339,7 +345,8 @@ export const {
   onThemeChanged,
   setVIPCount,
   setStakeCount,
-  onOutstandingOffersFound
+  onOutstandingOffersFound,
+  setCnsProfile
 } = userSlice.actions;
 export const user = userSlice.reducer;
 
@@ -509,7 +516,8 @@ export const connectAccount =
       let offer;
       let sales;
       let stakeCount = 0;
-      // let ebisu;
+
+      dispatch(retrieveCnsProfile());
 
       if (signer && correctChain) {
         mc = new Contract(config.membership_contract, Membership.abi, signer);
@@ -552,7 +560,7 @@ export const connectAccount =
           marketContract: market,
           auctionContract: auction,
           offerContract: offer,
-          marketBalance: sales,
+          marketBalance: sales
         })
       );
     } catch (error) {
@@ -826,6 +834,37 @@ export const updateBalance = () => async (dispatch, getState) => {
   const balance = ethers.utils.formatEther(await provider.getBalance(address));
   dispatch(userSlice.actions.balanceUpdated(balance));
 };
+
+export const retrieveCnsProfile = () => async (dispatch, getState) => {
+  const { user } = getState();
+  const { address, provider } = user;
+  if (!user.provider) return;
+
+  try {
+    let cnsProfile = {};
+    const cns = new CNS(config.chain_id, provider);
+    cnsProfile.name = await cns.getName(address);
+    if (cnsProfile.name) {
+      cnsProfile.twitter = await cns.name(cnsProfile.name).getText(TextRecords.Twitter);
+      cnsProfile.avatar = await cns.name(cnsProfile.name).getText(TextRecords.Avatar);
+      cnsProfile.discord = await cns.name(cnsProfile.name).getText(TextRecords.Discord);
+      cnsProfile.telegram = await cns.name(cnsProfile.name).getText(TextRecords.Telegram);
+      cnsProfile.instagram = await cns.name(cnsProfile.name).getText(TextRecords.Instagram);
+      cnsProfile.email = await cns.name(cnsProfile.name).getText(TextRecords.Email);
+      cnsProfile.url = await cns.name(cnsProfile.name).getText(TextRecords.Url);
+
+      // cnsProfile.details = await cns.name(cnsProfile.name).getDetails();
+      // cnsProfile.owner = await cns.name(cnsProfile.name).getOwner();
+      // cnsProfile.content = await cns.name(cnsProfile.name).getContent();
+      // cnsProfile.address = await cns.name(cnsProfile.name).getAddress();
+      // cnsProfile.resolverAddr = await cns.name(cnsProfile.name).getResolverAddr();
+    }
+    dispatch(setCnsProfile(cnsProfile));
+  } catch (e) {
+    console.log('cns error', e);
+  }
+};
+
 
 export class AccountMenuActions {
   static withdrawRewards = () => async (dispatch, getState) => {

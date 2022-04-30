@@ -4076,6 +4076,21 @@
         "discord": "https://discord.gg/croskull",
         "medium": "https://medium.com/@croskullnft"
       }
+    },
+    {
+      "name": "Cronos Name Service",
+      "slug": "cronos-name-service",
+      "multiToken": false,
+      "address": "0x15F7A67075C8b0883c355814Aa4e6C1e19994Af3",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/toughlions/avatar.png",
+        "card": "/img/collections/toughlions/card.png",
+        "banner": "/img/collections/toughlions/banner.png"
+      }
     }
   ],
   "drops": [
