@@ -434,11 +434,11 @@ export const isUserBlacklisted = (address) => {
   return !!blacklist.users.find((bAddress) => caseInsensitiveCompare(address, bAddress));
 };
 
-export const isNftBlacklisted = (slug, id) => {
+export const isNftBlacklisted = (address, id) => {
   return !!blacklist.collections.find((collection) => {
-    const matchesAddress = caseInsensitiveCompare(collection.address, slug);
-    const matchesSlug = collection.slug === slug;
-    const includesId = collection.ids.includes(id);
+    const matchesAddress = caseInsensitiveCompare(collection.address, address);
+    const matchesSlug = collection.slug === address;
+    const includesId = collection.ids.includes(parseInt(id));
 
     return (matchesSlug || matchesAddress) && includesId;
   });
