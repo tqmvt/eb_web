@@ -164,6 +164,7 @@ pipelines:
             - *version
             # RPC config
             - cp -p ./src/Assets/networks/rpc_config_dev.json ./src/Assets/networks/rpc_config.json
+            - export NODE_OPTIONS=--max_old_space_size=3072
             # Build frontend
             - *build
           artifacts:
