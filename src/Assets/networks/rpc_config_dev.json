@@ -4111,6 +4111,26 @@
         "discord": "https://discord.gg/qKBy2azf69",
         "medium": "https://medium.com/@babyaliendivision"
       }
+    },
+    {
+      "name": "Boomer Squad",
+      "slug": "boomer-squad",
+      "multiToken": false,
+      "address": "0xb650279e3d726B0c75C984cAA55341cB87A7F501",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/boomer-squad/avatar.webp",
+        "banner": "/img/collections/boomer-squad/banner.webp",
+        "card": "/img/collections/boomer-squad/card.webp",
+        "maxSupply": 8008,
+        "website": "https://www.boomersquad.io/",
+        "twitter": "https://twitter.com/BoomerSquadNFT1",
+        "discord": "https://discord.gg/boomersquad",
+        "medium": "https://medium.com/@BoomerSquadNFT"
+      }
     }
   ],
   "drops": [
