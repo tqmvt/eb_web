@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import useOnclickOutside from 'react-cool-onclickoutside';
 import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBolt, faImage, faSignOutAlt, faShoppingBag } from '@fortawesome/free-solid-svg-icons';
+import {faBolt, faImage, faSignOutAlt, faShoppingBag, faMoon, faSun} from '@fortawesome/free-solid-svg-icons';
 import { toast } from 'react-toastify';
 import MetaMaskOnboarding from '@metamask/onboarding';
 import { Modal, NavLink, Spinner } from 'react-bootstrap';
@@ -53,9 +53,9 @@ const AccountMenu = function () {
   const correctChain = useSelector((state) => {
     return state.user.correctChain;
   });
-  // const theme = useSelector((state) => {
-  //   return state.user.theme;
-  // });
+  const theme = useSelector((state) => {
+    return state.user.theme;
+  });
   const user = useSelector((state) => {
     return state.user;
   });
@@ -73,7 +73,10 @@ const AccountMenu = function () {
   const logout = async () => {
     dispatch(onLogout());
   };
-
+  const toggleTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    dispatch(setTheme(newTheme));
+  };
   useEffect(() => {
     if (walletAddress) {
       dispatch(getAllCollections());
@@ -193,6 +196,9 @@ const AccountMenu = function () {
       )}
       {walletAddress && correctChain && (
         <div id="de-click-menu-profile" className="de-menu-profile">
+          <span onClick={toggleTheme} className="cursor-pointer me-3">
+            <FontAwesomeIcon icon={theme === 'dark' ? faMoon : faSun} color="#fff" />
+          </span>
           <span onClick={() => btn_icon_pop(!showpop)}>
             <Blockies seed={user.address} size={8} scale={4} />
             {user.hasOutstandingOffers && <BlockiesBadge className="notification-badge"></BlockiesBadge>}

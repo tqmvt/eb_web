@@ -3,8 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import Breakpoint, { BreakpointProvider, setDefaultBreakpoints } from 'react-socks';
 import { NavLink } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 
 import AccountMenu from '../components/AccountMenu';
 import InvalidListingWarning from '../components/InvalidListingWarning';
@@ -136,11 +134,6 @@ const Header = function () {
                     Drops
                     <span className="lines"></span>
                   </NavLink>
-                </div>
-                <div className="navbar-item">
-                  <span onClick={toggleTheme} className="cursor-pointer">
-                    <FontAwesomeIcon icon={theme === 'dark' ? faMoon : faSun} color="#fff" />
-                  </span>
                 </div>
               </div>
             </Breakpoint>
