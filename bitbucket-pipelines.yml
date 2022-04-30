@@ -71,9 +71,10 @@ pipelines:
           script:
             - *update
             - *version
+            # Increase memory
+            - export NODE_OPTIONS=--max_old_space_size=3072
             # RPC config
             - cp -p ./src/Assets/networks/rpc_config_dev.json ./src/Assets/networks/rpc_config.json
-            - export NODE_OPTIONS=--max_old_space_size=3072
             # Build frontend
             - *build
           artifacts:
@@ -95,9 +96,10 @@ pipelines:
           script:
             - *update
             - *version
+            # Increase memory
+            - export NODE_OPTIONS=--max_old_space_size=3072
             # RPC config
             - cp -p ./src/Assets/networks/rpc_config_testnet.json ./src/Assets/networks/rpc_config.json
-            - export NODE_OPTIONS=--max_old_space_size=3072
             # Build frontend
             - *build
           artifacts:
@@ -119,9 +121,10 @@ pipelines:
           script:
             - *update
             - *version
+            # Increase memory
+            - export NODE_OPTIONS=--max_old_space_size=3072
             # RPC config
             - cp -p ./src/Assets/networks/rpc_config_testnet.json ./src/Assets/networks/rpc_config.json
-            - export NODE_OPTIONS=--max_old_space_size=3072
             # Build frontend
             - *build
           artifacts:
@@ -143,6 +146,7 @@ pipelines:
           script:
             - *update
             - *version
+            # Increase memory
             - export NODE_OPTIONS=--max_old_space_size=3072
             # Build frontend
             - *build
@@ -166,9 +170,10 @@ pipelines:
           script:
             - *update
             - *version
+            # Increase memory
+            - export NODE_OPTIONS=--max_old_space_size=3072
             # RPC config
             - cp -p ./src/Assets/networks/rpc_config_dev.json ./src/Assets/networks/rpc_config.json
-            - export NODE_OPTIONS=--max_old_space_size=3072
             # Build frontend
             - *build
           artifacts:
@@ -200,6 +205,8 @@ pipelines:
           script:
             - *update
             - *version
+            # Increase memory
+            - export NODE_OPTIONS=--max_old_space_size=3072
             # RPC config
             #- cp -p ./src/Assets/networks/rpc_config.json ./src/Assets/networks/rpc_config.json
             # Build frontend
