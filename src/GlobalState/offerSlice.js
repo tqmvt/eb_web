@@ -8,6 +8,7 @@ import { createSuccessfulTransactionToastContent } from '../utils';
 import { ERC1155, ERC721, MetaPixelsAbi } from '../Contracts/Abis';
 import { isMetapixelsCollection } from '../utils';
 import config from '../Assets/networks/rpc_config.json';
+import {offerState} from "../core/api/enums";
 
 const knownContracts = config.known_contracts;
 
@@ -171,7 +172,10 @@ export const fetchOffersForSingleNFT = (nftAddress, nftId) => async (dispatch) =
   dispatch(offersForSingleNFTLoading());
   const { data } = await getOffersForSingleNFT(nftAddress, nftId);
 
-  if (data) dispatch(offersForSingleNFTLoaded(data));
+  if (data) {
+    const activeOffers = data.filter((offer) => offer.state.toString() === offerState.ACTIVE.toString());
+    dispatch(offersForSingleNFTLoaded(activeOffers));
+  }
   else dispatch(offersForSingleNFTLoaded([]));
 };
 
