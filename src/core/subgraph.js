@@ -84,6 +84,7 @@ export const getMyOffers = async (myAddress, stateFilter, lastId) => {
           state: stateFilter,
           lastId: lastId || '',
         },
+        fetchPolicy: 'no-cache',
       })
     );
   });
