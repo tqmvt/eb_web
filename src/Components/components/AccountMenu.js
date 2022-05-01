@@ -144,7 +144,7 @@ const AccountMenu = function () {
     if (themeInStorage) {
       dispatch(setTheme(themeInStorage));
     } else {
-      setThemeInStorage('light');
+      setThemeInStorage('dark');
     }
   }, []);
 
