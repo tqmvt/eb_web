@@ -96,6 +96,10 @@ const LegacyOutlinedButton = styled.button`
     box-shadow: 2px 2px 20px 0px rgb(131 100 226 / 50%);
     transition: all 0.3s ease;
   }
+  
+  &:focus {
+    outline: 1px solid #ddd !important;
+  }
 
   &:disabled {
     cursor: unset;

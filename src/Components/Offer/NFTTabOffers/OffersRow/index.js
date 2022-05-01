@@ -6,6 +6,8 @@ import moment from 'moment';
 
 import Button from 'src/Components/components/Button';
 import { shortAddress } from 'src/utils';
+import {commify} from "ethers/lib.esm/utils";
+import {Link} from "react-router-dom";
 
 const TableRowContainer = styled.div`
   display: flex;
@@ -120,12 +122,14 @@ export default function OffersRow({ data, type }) {
     <>
       <TableRowContainer>
         <div className="table-row-item address">
-          <Blockies seed={data.buyer} size={6} scale={5} className="blockies" />
-          {data.buyer ? shortAddress(data.buyer) : '-'}
+          <Link to={`/seller/${data.buyer}`}>
+            <Blockies seed={data.buyer} size={6} scale={5} className="blockies" />
+            <span className="my-auto">{shortAddress(data.buyer)}</span>
+          </Link>
         </div>
         <div className="table-row-item">{getOfferDate(data.timeCreated)}</div>
         {type === 'Observer' && <div className="table-row-item">Offered</div>}
-        <div className="table-row-item">{data.price} CRO</div>
+        <div className="table-row-item">{commify(data.price)} CRO</div>
         {type === 'Received' && (
           <div className="table-row-item">
             <Button>Accept</Button>
@@ -162,7 +166,7 @@ export default function OffersRow({ data, type }) {
         </ItemRow>
         <ItemRow>
           <div>Offer Price</div>
-          <div>{data.price} CRO</div>
+          <div>{commify(data.price)} CRO</div>
         </ItemRow>
         {type === 'Received' && (
           <ItemRow>

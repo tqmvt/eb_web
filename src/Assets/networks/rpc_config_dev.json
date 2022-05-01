@@ -3928,7 +3928,7 @@
       "name": "Cro Of Thrones",
       "slug": "cro-of-thrones",
       "multiToken": false,
-      "address": "",
+      "address": "0x42ED65e25546585fe87eFBB7C6B382E92c3cB8E7",
       "onChain": false,
       "listable": false,
       "metadata": {
@@ -4140,7 +4140,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "The Crotama common NFTs are 235 uniquely generated art on the Cronos blockchain. Holding this NFT adds to it's benefits including automatic whitelist for Crotama's ETH presale when they bridge to Ethereum and automatic whitelist for next batch of NFTs. Not only this but enjoy a fixed 400% APY with staking these NFTs alongside a multiplier in points for the play2earn game which releases very soon.",
         "verified": false,
         "avatar": "/img/collections/crotama/avatar.webp",
         "banner": "/img/collections/crotama/banner.webp",
@@ -4159,7 +4159,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "The Crotama rare NFTs are 10 uniquely generated art on the Cronos blockchain. Holding this NFT adds to it's benefits including automatic whitelist for Crotama's ETH presale when they bridge to Ethereum and automatic whitelist for next batch of NFTs. In comparison to the common NFTs, these have a higher fixed APY staking of 1500% alongside a increased multiplier in points for the play2earn game which releases very soon.",
         "verified": false,
         "avatar": "/img/collections/crotama/avatar.webp",
         "banner": "/img/collections/crotama/banner.webp",
@@ -5862,7 +5862,7 @@
       "subtitle": "Cro of Thrones is a collection of 2500 uniquely generated NFTs stored on the Cronos Chain. Each COT NFT is inspired by unique Fantasy Worlds stories! Who shall take the throne of our fantasy world?",
       "description": "Cro of Thrones is a collection of 2500 uniquely generated NFTs stored on the Cronos Chain. Each COT NFT is inspired by unique Fantasy Worlds stories! Who shall take the throne of our fantasy world?",
       "author": { "name": "Hyped NFT Club", "link": "https://www.hypednftclub.com/croofthrones" },
-      "address": "",
+      "address": "0x42ED65e25546585fe87eFBB7C6B382E92c3cB8E7",
       "maxMintPerTx": 7,
       "maxMintPerAddress": 100,
       "totalSupply": 2500,
