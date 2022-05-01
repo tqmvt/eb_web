@@ -100,7 +100,7 @@ const userSlice = createSlice({
     hasOutstandingOffers: false,
 
     // Theme
-    theme: 'light',
+    theme: 'dark',
 
     cnsProfile: {},
   },
