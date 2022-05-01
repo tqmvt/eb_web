@@ -191,7 +191,7 @@ export function siPrefixedNumber(num) {
 
 export function shortAddress(address) {
   if (!address) return '';
-  
+
   return `${address.substring(0, 4)}...${address.substring(address.length - 3, address.length)}`;
 }
 
