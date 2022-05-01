@@ -12,12 +12,14 @@ const marketplaceSlice = createSlice({
     curPage: 0,
     curFilter: FilterOption.default(),
     curSort: SortOption.default(),
+    curSearch: null,
     totalPages: 0,
     collection: null,
     marketData: null,
     hasRank: false,
     cachedFilter: {},
     cachedSort: {},
+    cachedSearch: {},
   },
   reducers: {
     listingsLoading: (state, action) => {
@@ -44,6 +46,7 @@ const marketplaceSlice = createSlice({
       if (hardClear) {
         state.cachedFilter = {};
         state.cachedSort = {};
+        state.cachedSearch = {};
       }
     },
     onFilter: (state, action) => {
@@ -70,6 +73,18 @@ const marketplaceSlice = createSlice({
         state.cachedSort[cacheName] = option;
       }
     },
+    onSearch: (state, action) => {
+      const { cacheName, search } = action.payload;
+
+      state.listings = [];
+      state.totalPages = 0;
+      state.curPage = 0;
+      state.curSearch = search;
+
+      if (cacheName) {
+        state.cachedSearch[cacheName] = search;
+      }
+    },
     onCollectionDataLoaded: (state, action) => {
       state.collection = action.payload.collection;
     },
@@ -89,6 +104,7 @@ export const {
   listingsReceived,
   onFilter,
   onSort,
+  onSearch,
   clearSet,
   onCollectionDataLoaded,
   onRankingsLoaded,
@@ -121,7 +137,7 @@ export const fetchListings =
       state.marketplace.curFilter,
       null,
       null,
-      null,
+      state.marketplace.curSearch,
       isSales ? 1 : 0
     );
 
@@ -144,6 +160,11 @@ export const sortListings =
     dispatch(onSort({ option: sortOption, cacheName }));
     dispatch(fetchListings(isSales));
   };
+
+export const searchListings = (value, cacheName, isSales) => async (dispatch) => {
+  dispatch(onSearch({search: value, cacheName}));
+  dispatch(fetchListings(isSales));
+};
 
 export const resetListings =
   (isSales = false) =>
