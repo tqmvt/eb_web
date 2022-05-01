@@ -1,10 +1,10 @@
 import React, { memo, useCallback, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { init, fetchListings, filterListings, sortListings } from '../../GlobalState/marketplaceSlice';
+import {init, fetchListings, filterListings, sortListings, searchListings} from '../../GlobalState/marketplaceSlice';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Spinner, Table } from 'react-bootstrap';
 import { SortOption } from '../Models/sort-option.model';
-import { shortAddress, timeSince } from '../../utils';
+import {debounce, shortAddress, timeSince} from '../../utils';
 import { Link } from 'react-router-dom';
 import { ethers } from 'ethers';
 import TopFilterBar from './TopFilterBar';
@@ -87,6 +87,7 @@ const SalesCollection = ({
 
   const selectDefaultFilterValue = marketplace.cachedFilter[cacheName] ?? ListingsFilterOption.default();
   const selectDefaultSortValue = marketplace.cachedSort[cacheName] ?? defaultSort;
+  const selectDefaultSearchValue = marketplace.cachedSearch[cacheName] ?? '';
   const selectFilterOptions = marketPlaceCollectionFilterOptions;
   const selectSortOptions = useSelector((state) => {
     return sortOptions
@@ -116,6 +117,11 @@ const SalesCollection = ({
     [dispatch]
   );
 
+  const onSearch = debounce((event) => {
+    const { value } = event.target;
+    dispatch(searchListings(value, cacheName, true));
+  }, 300);
+
   return (
     <>
       <div className="row">
@@ -127,10 +133,12 @@ const SalesCollection = ({
             filterOptions={[ListingsFilterOption.default(), ...selectFilterOptions]}
             defaultSortValue={selectDefaultSortValue}
             defaultFilterValue={selectDefaultFilterValue}
+            defaultSearchValue={selectDefaultSearchValue}
             filterPlaceHolder="Filter Collection..."
             sortPlaceHolder="Sort Listings..."
             onFilterChange={onFilterChange}
             onSortChange={onSortChange}
+            onSearch={onSearch}
           />
         </div>
       </div>

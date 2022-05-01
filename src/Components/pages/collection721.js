@@ -211,9 +211,7 @@ const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) 
                 </div>
               </div>
             )}
-            <div className="d-item col-md-12 mb-4 mx-auto">
-              <CollectionInfoBar collectionStats={collectionStats} royalty={royalty} />
-            </div>
+            <CollectionInfoBar collectionStats={collectionStats} royalty={royalty} />
             {collection.address.toLowerCase() === '0x7D5f8F9560103E1ad958A6Ca43d49F954055340a'.toLowerCase() && (
               <div className="row m-3">
                 <div className="mx-auto text-center fw-bold" style={{ fontSize: '1.2em' }}>
@@ -249,7 +247,7 @@ const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) 
         )}
 
         <div className="de_tab">
-          <ul className="de_nav">
+          <ul className="de_nav mb-2">
             <li id="Mainbtn0" className="tab active">
               <span onClick={handleBtnClick(0)}>Items</span>
             </li>

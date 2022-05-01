@@ -7,8 +7,8 @@ import TopFilterBar from '../components/TopFilterBar';
 import { sortOptions } from '../components/constants/sort-options';
 import { marketPlaceCollectionFilterOptions } from '../components/constants/filter-options';
 import SalesCollection from '../components/SalesCollection';
-import { filterListings, getMarketData, sortListings } from '../../GlobalState/marketplaceSlice';
-import { siPrefixedNumber } from '../../utils';
+import {filterListings, getMarketData, searchListings, sortListings} from '../../GlobalState/marketplaceSlice';
+import {debounce, siPrefixedNumber} from '../../utils';
 import { SortOption } from '../Models/sort-option.model';
 import { ListingsFilterOption } from '../Models/listings-filter-option.model';
 
@@ -43,6 +43,7 @@ const Marketplace = () => {
 
   const selectDefaultFilterValue = marketplace.cachedFilter[cacheName] ?? ListingsFilterOption.default();
   const selectDefaultSortValue = marketplace.cachedSort[cacheName] ?? SortOption.default();
+  const selectDefaultSearchValue = marketplace.cachedSearch[cacheName] ?? '';
 
   const selectFilterOptions = marketPlaceCollectionFilterOptions;
   const selectSortOptions = useSelector((state) => {
@@ -66,6 +67,11 @@ const Marketplace = () => {
     },
     [dispatch]
   );
+
+  const onSearch = debounce((event) => {
+    const { value } = event.target;
+    dispatch(searchListings(value, cacheName));
+  }, 300);
 
   return (
     <div>
@@ -105,7 +111,7 @@ const Marketplace = () => {
           )}
         </div>
         <div className="de_tab">
-          <ul className="de_nav">
+          <ul className="de_nav mb-2">
             <li id="Mainbtn0" className="tab active">
               <span onClick={handleBtnClick(0)}>Listings</span>
             </li>
@@ -126,10 +132,12 @@ const Marketplace = () => {
                       filterOptions={[ListingsFilterOption.default(), ...selectFilterOptions]}
                       defaultSortValue={selectDefaultSortValue}
                       defaultFilterValue={selectDefaultFilterValue}
+                      defaultSearchValue={selectDefaultSearchValue}
                       filterPlaceHolder="Filter Collection..."
                       sortPlaceHolder="Sort Listings..."
                       onFilterChange={onFilterChange}
                       onSortChange={onSortChange}
+                      onSearch={onSearch}
                     />
                   </div>
                 </div>

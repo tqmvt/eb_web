@@ -86,11 +86,12 @@ const MyNftCardList = ({ nfts = [], isLoading, listedOnly, activeFilterOption, u
         <>
           <InvalidListingsPopup navigateTo={true} />
           <div className="row">
-            <div className="col-12 col-sm-6 col-lg-3">
+            <div className="col-12">
               <TopFilterBar
                 className="col-6"
                 showFilter={true}
                 showSort={false}
+                showSearch={false}
                 filterOptions={[FilterOption.default(), ...possibleCollections]}
                 defaultFilterValue={activeFilterOption}
                 filterPlaceHolder="Filter Collection..."
