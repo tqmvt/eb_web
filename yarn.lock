@@ -10988,6 +10988,11 @@
   "resolved" "https://registry.npmjs.org/native-fetch/-/native-fetch-3.0.0.tgz"
   "version" "3.0.0"
 
+"native-forms-react@^1.9.52":
+  "integrity" "sha512-UKwXvgQcBEG0RdkniWSsYDvhFZzKSQpuqAHGZKwzamF4Bg3s8C5/QgHCvOIIBpCBsqxrx/PeZwQ3l8vW1s+LDA=="
+  "resolved" "https://registry.npmjs.org/native-forms-react/-/native-forms-react-1.9.52.tgz"
+  "version" "1.9.52"
+
 "native-url@^0.2.6":
   "integrity" "sha512-k4bDC87WtgrdD362gZz6zoiXQrl40kYlBmpfmSjwRO1VU0V5ccwJTlxuE72F6m3V0vc1xOf6n3UCP9QyerRqmA=="
   "resolved" "https://registry.npmjs.org/native-url/-/native-url-0.2.6.tgz"
