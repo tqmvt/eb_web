@@ -124,6 +124,7 @@ export const getFilteredOffers = async (nftAddress, nftId, walletAddress) => {
         variables: {
           first: 100,
         },
+        fetchPolicy: 'no-cache',
       })
     );
   });

@@ -203,7 +203,7 @@ const Nft721 = ({ address, id }) => {
 
   useEffect(() => {
     async function func() {
-      const filteredOffers = await getFilteredOffers(nft.nftAddress, nft.nftId.toString(), user.address);
+      const filteredOffers = await getFilteredOffers(nft.address, nft.id.toString(), user.address);
       const data = filteredOffers ? filteredOffers.data.filter((o) => o.state === offerState.ACTIVE.toString()) : [];
       if (data && data.length > 0) {
         setOfferType(OFFER_TYPE.update);
@@ -212,7 +212,7 @@ const Nft721 = ({ address, id }) => {
         setOfferType(OFFER_TYPE.make);
       }
     }
-    if (!offerType && user.address && nft && nft.nftAddress && nft.nftId) {
+    if (!offerType && user.address && nft && nft.address && nft.id) {
       func();
     }
 
