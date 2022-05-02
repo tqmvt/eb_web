@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import Footer from '../components/Footer';
 import styled, {createGlobalStyle} from 'styled-components';
-import { useDispatch } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import '../../Assets/styles/fire.css';
 import Reveal from "react-awesome-reveal";
 import {keyframes} from "@emotion/react";
+import NativeForms from 'native-forms-react';
 
 const fadeInUp = keyframes`
   0% {
@@ -48,8 +49,19 @@ const ChoiceBox = styled.div`
   }
 `;
 
+const StyledForm = styled.div`
+  .nf-form-container * {
+    color: ${({ theme }) => theme.colors.textColor3} !important;
+    background: ${({ theme }) => theme.colors.bgColor1} !important;
+  }
+`;
+
 const Application = () => {
   const dispatch = useDispatch();
+
+  const userTheme = useSelector((state) => {
+    return state.user.theme;
+  });
 
   const [openTab, setOpenTab] = useState(null);
   const handleBtnClick = (index) => (element) => {
@@ -136,25 +148,17 @@ const Application = () => {
               {openTab === 0 && (
                 <>
                   <h3 className="text-center">Listing Application</h3>
-                  <iframe
-                    src="https://form.nativeforms.com/iNHbm1jZmoWRPBXaK1Db"
-                    width="100%"
-                    height="600"
-                    frameBorder="0"
-                  >
-                  </iframe>
+                  <StyledForm isDark={userTheme === 'dark'}>
+                    <NativeForms form="https://form.nativeforms.com/iNHbm1jZmoWRPBXaK1Db" />
+                  </StyledForm>
                 </>
               )}
               {openTab === 1 && (
                 <>
                   <h3 className="text-center">Creator Application</h3>
-                  <iframe
-                    src="https://form.nativeforms.com/AM0YjZ50jZmoWRPBXaK1Db"
-                    width="100%"
-                    height="600"
-                    frameBorder="0"
-                  >
-                  </iframe>
+                  <StyledForm isDark={userTheme === 'dark'}>
+                    <NativeForms form="https://form.nativeforms.com/AM0YjZ50jZmoWRPBXaK1Db" />
+                  </StyledForm>
                 </>
               )}
             </div>
