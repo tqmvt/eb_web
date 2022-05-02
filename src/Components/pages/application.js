@@ -54,6 +54,18 @@ const StyledForm = styled.div`
     color: ${({ theme }) => theme.colors.textColor3} !important;
     background: ${({ theme }) => theme.colors.bgColor1} !important;
   }
+  .nf-form-container input {
+    color: ${({ theme }) => theme.colors.textColor3} !important;
+    -webkit-text-fill-color: ${({ theme }) => theme.colors.textColor3} !important;
+  }
+  .nf-form-container .nf-files-upload {
+    fill: ${({ theme }) => theme.colors.textColor3} !important;
+  }
+  
+  .nf-root *, .nf-status-container * {
+    color: ${({ theme }) => theme.colors.textColor3} !important;
+    background: ${({ theme }) => theme.colors.bgColor1} !important;
+  }
 `;
 
 const Application = () => {
