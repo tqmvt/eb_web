@@ -4169,6 +4169,26 @@
         "twitter": "https://twitter.com/CrotamaOfficial",
         "telegram": "https://t.me/crotamaofficial"
       }
+    },
+    {
+      "name": "Cromodo Dragons Society",
+      "slug": "cromodo-dragons-society",
+      "multiToken": false,
+      "address": "0xAD5161a1a368496dbdE4b23127c9D0DD94a93722",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "Cromodo Dragons Society is a cutting edge project that brings first on Cronoschain the fusion feature, a mechanism that brings the potential minimum supply to 1111 NFTs, rarer and with very high staking rewards and royalties.\n\nOwning a Cromodo Dragons Society NFT will give you access to exclusive members-only perks such as giveaways, airdrops, staking, farming, royalties, intellectual property, Dragons Quest (P2E), voting rights, future drops and more!",
+        "verified": false,
+        "avatar": "/img/collections/cromododragons/avatar.gif",
+        "banner": "/img/collections/cromododragons/banner.png",
+        "card": "/img/collections/cromododragons/card.png",
+        "maxSupply": 3333,
+        "website": "https://cromododragonsociety.com/",
+        "twitter": "https://twitter.com/CromodoDragons",
+        "discord": "https://discord.gg/znVknTzPKS",
+        "medium": "https://medium.com/@CromodoDragons"
+      }
     }
   ],
   "drops": [
