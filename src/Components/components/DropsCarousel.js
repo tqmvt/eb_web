@@ -91,7 +91,7 @@ export default class Responsive extends Component {
   }
 
   arrangeCollections() {
-    const timeToShowInHours = 3600000 * 24;
+    const timeToShowInHours = 3600000 * 12;
     const maxShowTimeInDays = 3600000 * 24 * 2;
     const defaultMaxCount = 5;
 
