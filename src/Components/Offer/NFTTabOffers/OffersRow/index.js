@@ -8,6 +8,7 @@ import Button from 'src/Components/components/Button';
 import { shortAddress } from 'src/utils';
 import {commify} from "ethers/lib.esm/utils";
 import {Link} from "react-router-dom";
+import {offerState} from "../../../../core/api/enums";
 
 const TableRowContainer = styled.div`
   display: flex;
@@ -128,7 +129,14 @@ export default function OffersRow({ data, type }) {
           </Link>
         </div>
         <div className="table-row-item">{getOfferDate(data.timeCreated)}</div>
-        {type === 'Observer' && <div className="table-row-item">Offered</div>}
+        {type === 'Observer' && (
+          <div className="table-row-item">
+            {data.state === offerState.ACTIVE.toString() && <>Offered</>}
+            {data.state === offerState.CANCELLED.toString() && <>Cancelled</>}
+            {data.state === offerState.REJECTED.toString() && <>Rejected</>}
+            {data.state === offerState.ACCEPTED.toString() && <>Accepted</>}
+          </div>
+        )}
         <div className="table-row-item">{commify(data.price)} CRO</div>
         {type === 'Received' && (
           <div className="table-row-item">
