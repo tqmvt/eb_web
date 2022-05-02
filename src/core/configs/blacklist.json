@@ -1,0 +1,20 @@
+{
+  "users": [
+    "0x2BB875482dA1a32991172E7d2EfDE6D764fBEfbC",
+    "0x971a77e83Fdff3B2dAA9107c2d18491CC7D2F134",
+    "0x2BB875482dA1a32991172E7d2EfDE6D764fBEfbC",
+    "0x41f766457fa980640829239e74098687f718d260"
+  ],
+  "collections": [
+    {
+      "slug": "maries-cyborgs",
+      "address": "0x2245a6e61dE5661D93183Ab3ADd8924b1DC774db",
+      "ids": [238, 403, 1076, 1294, 1598]
+    },
+    {
+      "slug": "cyborg-brotherhood",
+      "address": "0xd0062DEb460Eac0cB7cE77C312F8aa58378b6d8a",
+      "ids": [312, 853, 1311, 1878, 1921, 2648]
+    }
+  ]
+}

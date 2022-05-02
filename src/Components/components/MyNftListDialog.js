@@ -20,9 +20,61 @@ import { toast } from 'react-toastify';
 import { ethers } from 'ethers';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import styled from 'styled-components';
+
 import { MyNftPageActions } from '../../GlobalState/User';
 import { getCollectionMetadata } from '../../core/api';
-import { numberToWords } from 'number-to-words';
+// import { numberToWords } from 'number-to-words';
+
+const StyledTypography = styled(Typography)`
+  color: ${({ theme }) => theme.colors.textColor3};
+`;
+
+const StyledStepLabel = styled(StepLabel)`
+  .MuiStepLabel-label,
+  .MuiStepLabel-label.Mui-active,
+  .MuiStepLabel-label.Mui-completed {
+    color: ${({ theme }) => theme.colors.textColor3};
+  }
+`;
+
+const StyledTextField = styled(TextField)`
+  .MuiInputBase-input,
+  .MuiInputLabel-root {
+    color: ${({ theme }) => theme.colors.textColor3};
+  }
+`;
+
+const DialogContainer = styled(Dialog)`
+  .MuiPaper-root {
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: ${({ theme }) => theme.colors.bgColor1};
+  }
+
+  .MuiDialogContent-root {
+    padding: 36px 50px !important;
+    border-radius: 8px;
+    background-color: ${({ theme }) => theme.colors.bgColor1};
+
+    @media only screen and (max-width: ${({ theme }) => theme.breakpoints.md}) {
+      width: 100%;
+    }
+  }
+`;
+
+const DialogTitleContainer = styled(DialogTitle)`
+  font-size: 18px !important;
+  color: ${({ theme }) => theme.colors.textColor3};
+  padding: 0px 24px !important;
+  margin-bottom: 12px !important;
+  font-weight: bold !important;
+  text-align: left;
+`;
+
+const CardMediaContainer = styled(CardMedia)`
+  border-radius: 6px;
+`;
 
 const ListDialogStepEnum = {
   WaitingForTransferApproval: 0,
@@ -86,18 +138,18 @@ const MyNftListDialog = ({ walletAddress, marketContract, myNftPageListDialog })
   const [royalty, setRoyalty] = useState(0);
 
   const [floorPrice, setFloorPrice] = useState(0);
-  const [belowFloor, setBelowFloor] = useState(false);
+  // const [belowFloor, setBelowFloor] = useState(false);
 
   useEffect(() => {
     const re = /^[0-9\b]+$/;
     if (salePrice && salePrice.length > 0 && salePrice[0] !== '0' && re.test(salePrice)) {
       setPriceError('');
       setNextEnabled(true);
-      if (salePrice != null) {
-        if (salePrice <= floorPrice) {
-          setBelowFloor(true);
-        }
-      }
+      // if (salePrice != null) {
+      //   if (salePrice <= floorPrice) {
+      //     setBelowFloor(true);
+      //   }
+      // }
     } else {
       if (salePrice != '' && salePrice != null) {
         setPriceError('Price must only contain full numbers!');
@@ -193,7 +245,7 @@ const MyNftListDialog = ({ walletAddress, marketContract, myNftPageListDialog })
     setNextEnabled(false);
     setPriceError('');
     setFloorPrice(0);
-    setBelowFloor(false);
+    // setBelowFloor(false);
     setSalePrice(null);
   };
 
@@ -221,27 +273,29 @@ const MyNftListDialog = ({ walletAddress, marketContract, myNftPageListDialog })
   return (
     <>
       {myNftPageListDialog ? (
-        <Dialog onClose={cancelList} open={!!myNftPageListDialog}>
+        <DialogContainer onClose={cancelList} open={!!myNftPageListDialog}>
           <DialogContent>
-            <DialogTitle>List {myNftPageListDialog.name}</DialogTitle>
+            <DialogTitleContainer>List {myNftPageListDialog.name}</DialogTitleContainer>
             <Grid container spacing={{ sm: 4 }} columns={2}>
               <Grid item xs={2} md={1} key="1">
                 <Container>
-                  <CardMedia component="img" src={myNftPageListDialog.image} width="150" />
+                  <CardMediaContainer component="img" src={myNftPageListDialog.image} width="150" />
                 </Container>
               </Grid>
               <Grid item xs={1} key="2">
                 <Stepper activeStep={listDialogActiveStep} orientation="vertical">
                   {listingSteps.map((step, index) => (
                     <Step key={step.label}>
-                      <StepLabel optional={index === 3 ? <Typography variant="caption">Last step</Typography> : null}>
+                      <StyledStepLabel
+                        optional={index === 3 ? <StyledTypography variant="caption">Last step</StyledTypography> : null}
+                      >
                         {step.label}
-                      </StepLabel>
+                      </StyledStepLabel>
                       <StepContent>
-                        <Typography>{step.description}</Typography>
+                        <StyledTypography>{step.description}</StyledTypography>
                         {index === 1 ? (
                           <Stack>
-                            <TextField
+                            <StyledTextField
                               sx={{ marginTop: '10px', marginBottom: '10px' }}
                               type="number"
                               label="Price"
@@ -255,10 +309,10 @@ const MyNftListDialog = ({ walletAddress, marketContract, myNftPageListDialog })
                                 onListingDialogPriceValueChange(e);
                               }}
                             />
-                            <Typography sx={{ color: 'red' }}>
+                            <StyledTypography sx={{ color: 'red' }}>
                               <strong>{priceError}</strong>
-                            </Typography>
-                            <Typography>
+                            </StyledTypography>
+                            <StyledTypography>
                               <strong>
                                 {' '}
                                 Buyer pays:{' '}
@@ -267,37 +321,37 @@ const MyNftListDialog = ({ walletAddress, marketContract, myNftPageListDialog })
                                 </span>{' '}
                                 CRO{' '}
                               </strong>
-                            </Typography>
-                            <Typography>Service Fee: {fee} %</Typography>
-                            <Typography>Royalty Fee: {royalty} %</Typography>
-                            <Typography>
+                            </StyledTypography>
+                            <StyledTypography>Service Fee: {fee} %</StyledTypography>
+                            <StyledTypography>Royalty Fee: {royalty} %</StyledTypography>
+                            <StyledTypography>
                               <strong>
                                 {' '}
                                 You receive: <span style={{ fontSize: '18px' }}>
                                   {getYouReceiveViewValue()}
                                 </span> CRO{' '}
                               </strong>
-                            </Typography>
+                            </StyledTypography>
                           </Stack>
                         ) : null}
                         {index === 2 ? (
                           <Stack>
                             {floorPrice !== 0 && ((floorPrice - Number(salePrice)) / floorPrice) * 100 > 5 && (
                               <>
-                                <Typography sx={{ color: 'red' }}>
+                                <StyledTypography sx={{ color: 'red' }}>
                                   <strong>
                                     {(((floorPrice - Number(salePrice)) / floorPrice) * 100).toFixed(1)}% BELOW FLOOR
                                     PRICE
                                   </strong>
-                                </Typography>
+                                </StyledTypography>
                               </>
                             )}
                             {floorPrice !== 0 && (
-                              <Typography sx={{ color: '#750b1c' }}>
+                              <StyledTypography sx={{ color: '#750b1c' }}>
                                 <strong>Floor price: {floorPrice} CRO</strong>
-                              </Typography>
+                              </StyledTypography>
                             )}
-                            <Typography>
+                            <StyledTypography>
                               <strong>
                                 {' '}
                                 Buyer pays:{' '}
@@ -306,30 +360,30 @@ const MyNftListDialog = ({ walletAddress, marketContract, myNftPageListDialog })
                                 </span>{' '}
                                 CRO{' '}
                               </strong>
-                            </Typography>
-                            <Typography>Service Fee: {fee} %</Typography>
-                            <Typography>Royalty Fee: {royalty} %</Typography>
-                            <Typography>
+                            </StyledTypography>
+                            <StyledTypography>Service Fee: {fee} %</StyledTypography>
+                            <StyledTypography>Royalty Fee: {royalty} %</StyledTypography>
+                            <StyledTypography>
                               <strong>
                                 {' '}
                                 You receive: <span style={{ fontSize: '18px' }}>
                                   {getYouReceiveViewValue()}
                                 </span> CRO{' '}
                               </strong>
-                            </Typography>
+                            </StyledTypography>
                             {/*
                             {salePrice && (
-                            <Typography>
+                            <StyledTypography>
                               <strong>
                                 { numberToWords.toWords(salePrice) }
                               </strong>
-                            </Typography>
+                            </StyledTypography>
                             )} */}
                           </Stack>
                         ) : null}
                         {index === 3 ? (
                           <Stack>
-                            <Typography>
+                            <StyledTypography>
                               <strong>
                                 {' '}
                                 Buyer pays:{' '}
@@ -338,17 +392,17 @@ const MyNftListDialog = ({ walletAddress, marketContract, myNftPageListDialog })
                                 </span>{' '}
                                 CRO{' '}
                               </strong>
-                            </Typography>
-                            <Typography>Service Fee: {fee} %</Typography>
-                            <Typography>Royalty Fee: {royalty} %</Typography>
-                            <Typography>
+                            </StyledTypography>
+                            <StyledTypography>Service Fee: {fee} %</StyledTypography>
+                            <StyledTypography>Royalty Fee: {royalty} %</StyledTypography>
+                            <StyledTypography>
                               <strong>
                                 {' '}
                                 You receive: <span style={{ fontSize: '18px' }}>
                                   {getYouReceiveViewValue()}
                                 </span> CRO{' '}
                               </strong>
-                            </Typography>
+                            </StyledTypography>
                           </Stack>
                         ) : null}
                         <Box sx={{ mt: 3 }}>
@@ -392,7 +446,7 @@ const MyNftListDialog = ({ walletAddress, marketContract, myNftPageListDialog })
               </Grid>
             </Grid>
           </DialogContent>
-        </Dialog>
+        </DialogContainer>
       ) : null}
     </>
   );

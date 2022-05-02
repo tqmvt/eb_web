@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import { createGlobalStyle, default as styled } from 'styled-components';
 import { keyframes } from '@emotion/react';
 import Reveal from 'react-awesome-reveal';
@@ -68,7 +68,8 @@ const Jumbotron = {
   Host: styled.div.attrs(({ theme }) => ({
     className: '',
   }))`
-    background-image: url('/img/background/Ebisus-bg-1_L.webp');
+    background-image: url(${({ isDark }) =>
+      isDark ? '/img/background/banner-dark.webp' : '/img/background/Ebisus-bg-1_L.webp'});
     background-size: cover;
     height: max(100vh, 800px);
     display: flex;
@@ -88,13 +89,17 @@ const Jumbotron = {
     display: flex;
     flex-direction: column;
     gap: 30px;
-    background: #ffffffdd;
+    background: ${({ theme }) => theme.colors.bgColor2};
     border-radius: 10px;
   `,
 };
 
 export const ErrorPage = () => {
   const dispatch = useDispatch();
+
+  const userTheme = useSelector((state) => {
+    return state.user.theme;
+  });
 
   const [mobile, setMobile] = useState(window.innerWidth < theme.breakpointsNum.md);
 
@@ -143,7 +148,7 @@ export const ErrorPage = () => {
   return (
     <div>
       <GlobalStyles />
-      <Jumbotron.Host>{!mobile && <div className="container">{JumbotronData()}</div>}</Jumbotron.Host>
+      <Jumbotron.Host isDark={userTheme === 'dark'}>{!mobile && <div className="container">{JumbotronData()}</div>}</Jumbotron.Host>
       {mobile && JumbotronData()}
       <Footer />
     </div>

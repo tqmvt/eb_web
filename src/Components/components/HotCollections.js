@@ -17,8 +17,8 @@ const HotCollections = () => {
     return state.collections.collections
       .slice()
       .sort((a, b) => {
-        const aVal = parseInt(a.volume30d) * parseInt(a.volume30d);
-        const bVal = parseInt(b.volume30d) * parseInt(b.volume30d);
+        const aVal = parseInt(a.volume7d); // * parseInt(a.sales1d);
+        const bVal = parseInt(b.volume7d); // * parseInt(b.sales1d);
         return aVal < bVal ? 1 : -1;
       })
       .slice(0, 10);

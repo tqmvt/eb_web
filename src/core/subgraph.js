@@ -41,6 +41,7 @@ export const getAllOffers = async (addresses, stateFilter, lastId) => {
           state: stateFilter,
           lastId: lastId || '',
         },
+        fetchPolicy: 'no-cache',
       })
     );
   });
@@ -83,6 +84,7 @@ export const getMyOffers = async (myAddress, stateFilter, lastId) => {
           state: stateFilter,
           lastId: lastId || '',
         },
+        fetchPolicy: 'no-cache',
       })
     );
   });
@@ -122,6 +124,7 @@ export const getFilteredOffers = async (nftAddress, nftId, walletAddress) => {
         variables: {
           first: 100,
         },
+        fetchPolicy: 'no-cache',
       })
     );
   });

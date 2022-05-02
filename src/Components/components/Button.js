@@ -78,7 +78,8 @@ const LegacyOutlinedButton = styled.button`
   align-items: center;
   justify-content: center;
   width: max-content;
-  color: #35669e !important;
+  color: ${({ theme }) => theme.colors.textColor5} !important;
+  background-color: ${({ theme }) => theme.colors.bgColor1} !important;
   border-radius: 6px;
   letter-spacing: normal;
   outline: 1px solid #ddd;
@@ -94,6 +95,10 @@ const LegacyOutlinedButton = styled.button`
   &:hover {
     box-shadow: 2px 2px 20px 0px rgb(131 100 226 / 50%);
     transition: all 0.3s ease;
+  }
+  
+  &:focus {
+    outline: 1px solid #ddd !important;
   }
 
   &:disabled {
@@ -142,11 +147,7 @@ export default function Button({ type = 'default', isLoading = false, children, 
 
   if (type === 'legacy-outlined') {
     return (
-      <LegacyOutlinedButton
-        className="m-0 text-nowrap p-4 pt-2 pb-2 btn-outline inline white"
-        style={{ outline: '1px solid #DDD' }}
-        {...props}
-      >
+      <LegacyOutlinedButton className="m-0 text-nowrap p-4 pt-2 pb-2 btn-outline inline white" {...props}>
         {children}
       </LegacyOutlinedButton>
     );

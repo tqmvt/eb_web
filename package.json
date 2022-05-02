@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@apollo/client": "^3.5.10",
+    "@cnsdomains/core": "^0.1.2",
     "@deficonnect/web3-provider": "^1.6.13",
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
@@ -68,7 +69,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "format": "prettier --write \"**/*.+(js|jsx|json|md|mdx)\""
+    "format": "prettier --write \"**/*.+(js|jsx|json|md|mdx|css|scss)\""
   },
   "eslintConfig": {
     "extends": [

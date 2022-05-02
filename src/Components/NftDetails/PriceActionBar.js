@@ -68,16 +68,12 @@ const PriceActionBar = () => {
   };
 
   return (
-    <div className="row">
+    <div className="row price-action-bar">
       {listing && (
-        <Card
-          id={`lid-${listing.listingId}`}
-          className="mb-4 border-1 shadow"
-          style={{ color: '#141619', borderColor: '#cdcfcf' }}
-        >
+        <Card id={`lid-${listing.listingId}`} className="mb-4 border-1 shadow pab-card">
           <Card.Body>
             <div className="d-flex flex-row justify-content-between">
-              <div className={`my-auto fw-bold`} style={{ color: '#000' }}>
+              <div className={`my-auto fw-bold`}>
                 <>
                   <h5>Listing Price:</h5> <span className="fs-3 ms-1">{ethers.utils.commify(listing.price)} CRO</span>
                 </>

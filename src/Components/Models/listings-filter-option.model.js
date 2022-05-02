@@ -1,4 +1,4 @@
-import {FilterOption} from "./filter-option.model";
+import { FilterOption } from './filter-option.model';
 
 export class ListingsFilterOption extends FilterOption {
   type = 'collection';
@@ -45,6 +45,12 @@ export class ListingsFilterOption extends FilterOption {
       return {
         address: this.lowercasedAddress(),
         tokenId: this.id,
+      };
+    }
+
+    if (this.address && this.type === 'seller') {
+      return {
+        seller: this.lowercasedAddress()
       };
     }
 

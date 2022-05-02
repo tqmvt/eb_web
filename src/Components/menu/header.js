@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Breakpoint, { BreakpointProvider, setDefaultBreakpoints } from 'react-socks';
-import { header } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
-import AccountMenu from '../components/AccountMenu';
 import { createGlobalStyle } from 'styled-components';
+
+import AccountMenu from '../components/AccountMenu';
 import InvalidListingWarning from '../components/InvalidListingWarning';
+import { setTheme } from '../../GlobalState/User';
 
 setDefaultBreakpoints([{ xs: 0 }, { l: 1199 }, { xl: 1200 }]);
 
 const GlobalStyles = createGlobalStyle`
   header#myHeader.navbar.white {
-    background: #0078cb;
+    background: ${({ theme }) => theme.colors.bgColor4};
     border-bottom: 0;
     box-shadow: 0 4px 20px 0 rgba(10,10,10, .8);
   }
@@ -31,6 +33,15 @@ const GlobalStyles = createGlobalStyle`
 
 const Header = function () {
   const [showmenu, btn_icon] = useState(false);
+  const theme = useSelector((state) => {
+    return state.user.theme;
+  });
+
+  const dispatch = useDispatch();
+  const toggleTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    dispatch(setTheme(newTheme));
+  };
 
   useEffect(() => {
     const header = document.getElementById('myHeader');
@@ -59,7 +70,7 @@ const Header = function () {
           <div className="logo px-0">
             <div className="navbar-title navbar-item">
               <NavLink to="/">
-                <img height="40px" src="/img/logo.png" className="img-fluid d-block" alt="#" />
+                <img src="/img/web_logo.png" alt="ebisus bay logo" style={{ width: '44px', height: '40px' }} />
               </NavLink>
             </div>
           </div>

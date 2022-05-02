@@ -26,11 +26,18 @@ import { findCollectionByAddress } from 'src/utils';
 const knownContracts = config.known_contracts;
 
 const DialogContainer = styled(Dialog)`
+  .MuiPaper-root {
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: ${({ theme }) => theme.colors.bgColor1};
+  }
+
   .MuiDialogContent-root {
     width: 700px;
     padding: 15px 42px 28px !important;
     border-radius: 8px;
     max-width: 734px;
+    background-color: ${({ theme }) => theme.colors.bgColor1};
 
     @media only screen and (max-width: ${({ theme }) => theme.breakpoints.md}) {
       width: 100%;
@@ -228,7 +235,7 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
     async function func() {
       setIsGettingOfferType(true);
       const filteredOffers = await getFilteredOffers(nftData.address, nftData.id, walletAddress);
-      const data = filteredOffers ? filteredOffers.data.filter((o) => o.state === offerState.ACTIVE) : [];
+      const data = filteredOffers ? filteredOffers.data.filter((o) => o.state.toString() === offerState.ACTIVE.toString()) : [];
       if (data && data.length > 0) {
         setOfferDataNew(data);
         setOfferType(OFFER_TYPE.update);

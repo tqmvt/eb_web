@@ -3,17 +3,18 @@
   background-image: url('../cronosverse/Bit-back.png');
   background-size: 100% 100%;
   background-repeat: no-repeat;
-  display: flex; 
-  justify-content: center; 
+  display: flex;
+  justify-content: center;
   align-items: center;
+  min-width: 1200px;
 }
 
 .canvas {
   margin-top: 16%;
-  margin-bottom: 12%; 
+  margin-bottom: 12%;
   padding-right: 1%;
   /* width: 100%;  */
-  display: flex; 
+  display: flex;
   justify-content: center;
   position: relative;
 }
@@ -30,42 +31,42 @@
 }
 
 .tip_modal {
-  position: absolute; 
-  background-color: white; 
+  position: absolute;
+  background-color: white;
   border-radius: 5px;
-  border: 1px solid black; 
-  padding: 10px; 
+  border: 1px solid black;
+  padding: 10px;
   z-index: 1;
 
-  min-width:206px;
+  min-width: 206px;
 }
 
 .tip_modal .modal_content {
-  display: flex; 
-  justify-content: flex-start
+  display: flex;
+  justify-content: flex-start;
 }
 
 .tip_modal .modal_content .tile_img {
-  width: 40px; 
-  height: 40px; 
-  border-radius:5px; 
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
   margin-right: 10px;
 }
 
 .tip_modal .modal_content .tile_items {
-  display:flex; 
-  flex-direction: column; 
-  align-items: flex-start
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .cross {
-  font-size: 40px; 
-  position: absolute; 
-  right: 10px; 
-  top: 10px; 
-  width: 20px; 
-  height: 20px; 
-  display: flex; 
+  font-size: 40px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 20px;
+  height: 20px;
+  display: flex;
   align-items: center;
   cursor: pointer;
 }

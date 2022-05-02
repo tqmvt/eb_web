@@ -11,7 +11,7 @@ import ReceivedOffers from '../Offer/ReceivedOffers';
 import MyOffersFilter from '../Offer/MyOffersFilter';
 import { initOffers, fetchMadeOffers, fetchAllOffers, fetchMyNFTs } from '../../GlobalState/offerSlice';
 import { getAllCollections, knownContracts } from '../../GlobalState/collectionsSlice';
-import { caseInsensitiveCompare } from '../../utils';
+import { caseInsensitiveCompare, isNftBlacklisted } from '../../utils';
 import { offerState } from '../../core/api/enums';
 
 const Tabs = styled.div`
@@ -93,38 +93,38 @@ const MyOffers = () => {
 
   useEffect(() => {
     if (myNFTs && !myNFTsLoading && allOffers && collectionsStats.length > 0) {
-      const receivedOffersFilter = allOffers.filter((offer) => {
-        const nft = myNFTs.find(
-          (c) => c.nftAddress.toLowerCase() === offer.nftAddress && c.edition?.toString() === offer.nftId
-        );
+      const receivedOffersFilter = allOffers
+        .filter((offer) => {
+          const nft = myNFTs.find(
+            (c) => c.nftAddress.toLowerCase() === offer.nftAddress && c.edition?.toString() === offer.nftId
+          );
 
-        const knownContract = findKnownContract(offer.nftAddress, offer.nftId);
-        const floorPrice = findCollectionFloor(knownContract);
-        const offerPrice = parseInt(offer.price);
-        const isAboveOfferThreshold = floorPrice ? offerPrice >= floorPrice / 2 : true;
-        const canShowCompletedOffers = !knownContract.multiToken || parseInt(offer.state) === offerState.ACTIVE;
+          const knownContract = findKnownContract(offer.nftAddress, offer.nftId);
+          const floorPrice = findCollectionFloor(knownContract);
+          const offerPrice = parseInt(offer.price);
+          const isAboveOfferThreshold = floorPrice ? offerPrice >= floorPrice / 2 : true;
+          const canShowCompletedOffers = !knownContract.multiToken || parseInt(offer.state) === offerState.ACTIVE;
+          const isBlacklisted = isNftBlacklisted(offer.nftAddress, offer.nftId);
 
-        if (nft && isAboveOfferThreshold && canShowCompletedOffers && !nft.is1155) {
-          return true;
-        }
-        return false;
-      }).sort((a, b) => parseInt(b.price) - parseInt(a.price));
-      const receivedPublicOffersFilter = allOffers.filter((offer) => {
-        const nft = myNFTs.find(
-          (c) => c.nftAddress.toLowerCase() === offer.nftAddress && c.edition?.toString() === offer.nftId
-        );
+          return nft && isAboveOfferThreshold && canShowCompletedOffers && !nft.is1155 && !isBlacklisted;
+        })
+        .sort((a, b) => parseInt(b.price) - parseInt(a.price));
+      const receivedPublicOffersFilter = allOffers
+        .filter((offer) => {
+          const nft = myNFTs.find(
+            (c) => c.nftAddress.toLowerCase() === offer.nftAddress && c.edition?.toString() === offer.nftId
+          );
 
-        const knownContract = findKnownContract(offer.nftAddress, offer.nftId);
-        const floorPrice = findCollectionFloor(knownContract);
-        const offerPrice = parseInt(offer.price);
-        const isAboveOfferThreshold = floorPrice ? offerPrice >= floorPrice / 2 : true;
-        const canShowCompletedOffers = !knownContract.multiToken || parseInt(offer.state) === offerState.ACTIVE;
+          const knownContract = findKnownContract(offer.nftAddress, offer.nftId);
+          const floorPrice = findCollectionFloor(knownContract);
+          const offerPrice = parseInt(offer.price);
+          const isAboveOfferThreshold = floorPrice ? offerPrice >= floorPrice / 2 : true;
+          const canShowCompletedOffers = !knownContract.multiToken || parseInt(offer.state) === offerState.ACTIVE;
+          const isBlacklisted = isNftBlacklisted(offer.nftAddress, offer.nftId);
 
-        if (nft && isAboveOfferThreshold && canShowCompletedOffers && nft.is1155) {
-          return true;
-        }
-        return false;
-      }).sort((a, b) => parseInt(b.price) - parseInt(a.price));
+          return nft && isAboveOfferThreshold && canShowCompletedOffers && nft.is1155 && !isBlacklisted;
+        })
+        .sort((a, b) => parseInt(b.price) - parseInt(a.price));
 
       setReceivedOffers(receivedOffersFilter);
       setReceivedPublicOffers(receivedPublicOffersFilter);
@@ -201,7 +201,10 @@ const MyOffers = () => {
           <Tab onClick={() => setTab(OFFERS_TAB.receive)} className={`${tab === OFFERS_TAB.receive ? 'active' : ''}`}>
             {OFFERS_TAB.receive}
           </Tab>
-          <Tab onClick={() => setTab(OFFERS_TAB.receivePublic)} className={`${tab === OFFERS_TAB.receivePublic ? 'active' : ''}`}>
+          <Tab
+            onClick={() => setTab(OFFERS_TAB.receivePublic)}
+            className={`${tab === OFFERS_TAB.receivePublic ? 'active' : ''}`}
+          >
             {OFFERS_TAB.receivePublic}
           </Tab>
         </Tabs>
@@ -260,7 +263,8 @@ const MyOffers = () => {
         {tab === OFFERS_TAB.receivePublic && (
           <>
             <div className="alert alert-info" role="alert">
-              Public offers are offers on certain collections that any holders of that collection can accept. These offers are on all ERC1155 collections, including Ebisu's Founding Member and VIP Founding Member NFTs.
+              Public offers are offers on certain collections that any holders of that collection can accept. These
+              offers are on all ERC1155 collections, including Ebisu's Founding Member and VIP Founding Member NFTs.
             </div>
             <InfiniteScroll
               dataLength={receivedPublicOffers.length}

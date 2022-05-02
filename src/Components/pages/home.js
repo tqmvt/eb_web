@@ -4,6 +4,8 @@ import {Link, useHistory} from 'react-router-dom';
 import { keyframes } from '@emotion/react';
 import Reveal from 'react-awesome-reveal';
 import { createGlobalStyle, default as styled } from 'styled-components';
+import { faFire } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Footer from '../components/Footer';
 import ListingCollection from '../components/ListingCollection';
@@ -12,8 +14,7 @@ import CurrentDrops from '../components/CurrentDrops';
 import { getMarketData } from '../../GlobalState/marketplaceSlice';
 import { siPrefixedNumber } from '../../utils';
 import { theme } from '../../Theme/theme';
-import { faFire } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Button from '../components/Button';
 
 const fadeInUp = keyframes`
   0% {
@@ -84,11 +85,17 @@ const Jumbotron = {
   Host: styled.div.attrs(({ theme }) => ({
     className: '',
   }))`
-    background-image: url('/img/background/Ebisus-bg-1_L.webp');
+    background-image: url(${({ isDark }) =>
+      isDark ? '/img/background/banner-dark.webp' : '/img/background/Ebisus-bg-1_L.webp'});
     background-size: cover;
+    background-repeat: no-repeat;
     height: max(100vh, 800px);
     display: flex;
     align-items: center;
+
+    // @media only screen and (min-width: ${({ theme }) => theme.breakpoints.xl}) {
+    //   background-size: ${({ isDark }) => (!isDark ? 'cover' : '100% 100%')};
+    // }
 
     @media only screen and (max-width: ${({ theme }) => theme.breakpoints.md}) {
       max-width: ${({ theme }) => theme.breakpoints.md};
@@ -104,7 +111,7 @@ const Jumbotron = {
     display: flex;
     flex-direction: column;
     gap: 30px;
-    background: #ffffffdd;
+    background: ${({ theme }) => theme.colors.bgColor2};
     border-radius: 10px;
   `,
 };
@@ -117,6 +124,9 @@ const Home = () => {
 
   const marketData = useSelector((state) => {
     return state.marketplace.marketData;
+  });
+  const userTheme = useSelector((state) => {
+    return state.user.theme;
   });
 
   useEffect(() => {
@@ -170,22 +180,15 @@ const Home = () => {
               Explore
             </span>
             <Link to="/apply">
-              <span
-                className="m-0 text-nowrap p-4 pt-2 pb-2 btn-main btn-outline inline white lead"
-                style={{ outline: '1px solid #DDD' }}
-              >
+              <Button type="legacy-outlined">
                 Become a Creator
-              </span>
+              </Button>
             </Link>
 
-            <span
-              onClick={() => window.open(`/collection/founding-member`, '_self')}
-              className="m-0 text-nowrap p-4 pt-2 pb-2 btn-main btn-outline inline white lead"
-              style={{ outline: '1px solid #DDD' }}
-            >
+            <Button onClick={() => window.open(`/collection/founding-member`, '_self')} type="legacy-outlined">
               <FontAwesomeIcon icon={faFire} className="me-1" style={{ color: '#ff690e' }} />
               Become a Founding Member
-            </span>
+            </Button>
           </div>
         </Reveal>
         <Reveal className="onStep d-inline" keyframes={inline} delay={900} duration={1200} triggerOnce>
@@ -238,7 +241,9 @@ const Home = () => {
       {/*    </p>*/}
       {/*  </div>*/}
       {/*</section>*/}
-      <Jumbotron.Host>{!mobile && <div className="container">{JumbotronData()}</div>}</Jumbotron.Host>
+      <Jumbotron.Host isDark={userTheme === 'dark'}>
+        {!mobile && <div className="container">{JumbotronData()}</div>}
+      </Jumbotron.Host>
       {mobile && JumbotronData()}
 
       <section className="container no-bottom">

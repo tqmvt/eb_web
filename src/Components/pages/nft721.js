@@ -11,10 +11,13 @@ import MetaMaskOnboarding from '@metamask/onboarding';
 import ProfilePreview from '../components/ProfilePreview';
 import Footer from '../components/Footer';
 import {
+  caseInsensitiveCompare,
   humanize,
   isBabyWeirdApesCollection,
   isCroCrowCollection,
   isCrognomidesCollection,
+  isNftBlacklisted,
+  isUserBlacklisted,
   relativePrecision,
   shortAddress,
   timeSince,
@@ -54,11 +57,14 @@ const Nft721 = ({ address, id }) => {
   );
 
   const powertraits = useSelector((state) => state.nft.nft?.powertraits);
+  const collection = useSelector((state) => {
+    return knownContracts.find((c) => caseInsensitiveCompare(c.address, address));
+  });
   const collectionMetadata = useSelector((state) => {
-    return knownContracts.find((c) => c.address.toLowerCase() === address.toLowerCase())?.metadata;
+    return collection?.metadata;
   });
   const collectionName = useSelector((state) => {
-    return knownContracts.find((c) => c.address.toLowerCase() === address.toLowerCase())?.name;
+    return collection?.name;
   });
   const isLoading = useSelector((state) => state.nft.loading);
 
@@ -197,7 +203,7 @@ const Nft721 = ({ address, id }) => {
 
   useEffect(() => {
     async function func() {
-      const filteredOffers = await getFilteredOffers(nft.nftAddress, nft.nftId.toString(), user.address);
+      const filteredOffers = await getFilteredOffers(nft.address, nft.id.toString(), user.address);
       const data = filteredOffers ? filteredOffers.data.filter((o) => o.state === offerState.ACTIVE.toString()) : [];
       if (data && data.length > 0) {
         setOfferType(OFFER_TYPE.update);
@@ -206,7 +212,7 @@ const Nft721 = ({ address, id }) => {
         setOfferType(OFFER_TYPE.make);
       }
     }
-    if (!offerType && user.address && nft && nft.nftAddress && nft.nftId) {
+    if (!offerType && user.address && nft && nft.address && nft.id) {
       func();
     }
 
@@ -312,12 +318,19 @@ const Nft721 = ({ address, id }) => {
                       <span className="fw-bold">This Crognomide has been bred for a Croby</span>
                     </div>
                   )}
-                  <PriceActionBar />
-                  <div className="row">
-                    <button className="btn-main mx-auto mb-5" onClick={() => handleMakeOffer()}>
-                      {offerType === OFFER_TYPE.update ? 'Update' : 'Make'} Offer
-                    </button>
-                  </div>
+
+                  {collection.listable &&
+                    (!currentListing || !isUserBlacklisted(currentListing.seller)) &&
+                    !isNftBlacklisted(address, id) && (
+                      <>
+                        <PriceActionBar />
+                        <div className="row">
+                          <button className="btn-main mx-auto mb-5" onClick={() => handleMakeOffer()}>
+                            {offerType === OFFER_TYPE.update ? 'Update' : 'Make'} Offer
+                          </button>
+                        </div>
+                      </>
+                    )}
 
                   <div className="row" style={{ gap: '2rem 0' }}>
                     {currentListing && (

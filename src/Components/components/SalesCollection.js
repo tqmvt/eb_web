@@ -1,23 +1,16 @@
 import React, { memo, useCallback, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import ListingCard from './ListingCard';
-import { init, fetchListings, filterListings, sortListings } from '../../GlobalState/marketplaceSlice';
+import {init, fetchListings, filterListings, sortListings, searchListings} from '../../GlobalState/marketplaceSlice';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Spinner, Table } from 'react-bootstrap';
 import { SortOption } from '../Models/sort-option.model';
-
-import { FilterOption } from '../Models/filter-option.model';
-import HiddenCard from './HiddenCard';
-import { isMetapixelsCollection, shortAddress, timeSince } from '../../utils';
+import {debounce, shortAddress, timeSince} from '../../utils';
 import { Link } from 'react-router-dom';
-import Blockies from 'react-blockies';
 import { ethers } from 'ethers';
-import config from '../../Assets/networks/rpc_config.json';
 import TopFilterBar from './TopFilterBar';
 import { marketPlaceCollectionFilterOptions } from './constants/filter-options';
 import { sortOptions } from './constants/sort-options';
-import {ListingsFilterOption} from "../Models/listings-filter-option.model";
-const knownContracts = config.known_contracts;
+import { ListingsFilterOption } from '../Models/listings-filter-option.model';
 
 const SalesCollection = ({
   showLoadMore = true,
@@ -80,7 +73,7 @@ const SalesCollection = ({
       return;
     }
 
-    const filterOption = marketplace.cachedFilter[cacheName] ?? FilterOption.default();
+    const filterOption = marketplace.cachedFilter[cacheName] ?? ListingsFilterOption.default();
 
     dispatch(init(sortOption, filterOption));
     dispatch(fetchListings(true));
@@ -92,8 +85,9 @@ const SalesCollection = ({
     }
   };
 
-  const selectDefaultFilterValue = marketplace.cachedFilter[cacheName] ?? FilterOption.default();
+  const selectDefaultFilterValue = marketplace.cachedFilter[cacheName] ?? ListingsFilterOption.default();
   const selectDefaultSortValue = marketplace.cachedSort[cacheName] ?? defaultSort;
+  const selectDefaultSearchValue = marketplace.cachedSearch[cacheName] ?? '';
   const selectFilterOptions = marketPlaceCollectionFilterOptions;
   const selectSortOptions = useSelector((state) => {
     return sortOptions
@@ -123,6 +117,11 @@ const SalesCollection = ({
     [dispatch]
   );
 
+  const onSearch = debounce((event) => {
+    const { value } = event.target;
+    dispatch(searchListings(value, cacheName, true));
+  }, 300);
+
   return (
     <>
       <div className="row">
@@ -131,13 +130,15 @@ const SalesCollection = ({
             showFilter={!collectionId}
             showSort={true}
             sortOptions={[SortOption.default(), ...selectSortOptions]}
-            filterOptions={[FilterOption.default(), ...selectFilterOptions]}
+            filterOptions={[ListingsFilterOption.default(), ...selectFilterOptions]}
             defaultSortValue={selectDefaultSortValue}
             defaultFilterValue={selectDefaultFilterValue}
+            defaultSearchValue={selectDefaultSearchValue}
             filterPlaceHolder="Filter Collection..."
             sortPlaceHolder="Sort Listings..."
             onFilterChange={onFilterChange}
             onSortChange={onSortChange}
+            onSearch={onSearch}
           />
         </div>
       </div>

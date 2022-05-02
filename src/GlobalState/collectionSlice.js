@@ -164,52 +164,56 @@ export const init = (filterOption, sortOption, traitFilterOption, address) => as
   }
 };
 
-export const fetchListings = () => async (dispatch, getState) => {
-  const state = getState();
-  dispatch(listingsLoading());
+export const fetchListings =
+  (findAllListings = false) =>
+  async (dispatch, getState) => {
+    const state = getState();
+    dispatch(listingsLoading());
 
-  const address = state.collection.query.filter.address;
-  const weirdApes = Array.isArray(address);
-  const knownContract = weirdApes
-    ? null
-    : config.known_contracts.find((c) => caseInsensitiveCompare(c.address, address));
-  const fallbackContracts = ['red-skull-potions', 'cronos-fc'];
+    const address = state.collection.query.filter.address;
+    const weirdApes = Array.isArray(address);
+    const knownContract = weirdApes
+      ? null
+      : config.known_contracts.find((c) => caseInsensitiveCompare(c.address, address));
+    const fallbackContracts = ['red-skull-potions', 'cronos-fc'];
+    const pageSizeOverride = findAllListings ? 1208 : null;
 
-  if (weirdApes || fallbackContracts.includes(knownContract.slug)) {
-    const { response, cancelled } = await sortAndFetchListings(
-      state.collection.query.page + 1,
-      state.collection.query.sort,
-      state.collection.query.filter,
-      state.collection.query.traits,
-      state.collection.query.powertraits,
-      state.collection.query.search
-    );
+    if (weirdApes || fallbackContracts.includes(knownContract.slug)) {
+      const { response, cancelled } = await sortAndFetchListings(
+        state.collection.query.page + 1,
+        state.collection.query.sort,
+        state.collection.query.filter,
+        state.collection.query.traits,
+        state.collection.query.powertraits,
+        state.collection.query.search
+      );
 
-    if (!cancelled) {
-      response.hasRank =
-        response.listings.length > 0 &&
-        (typeof response.listings[0].rank !== 'undefined' || !!response.listings[0].nft.rank);
-      dispatch(listingsReceived({ ...response, isUsingListingsFallback: true }));
-    }
-  } else {
-    const { response, cancelled } = await sortAndFetchCollectionDetails(
-      state.collection.query.page + 1,
-      state.collection.query.sort,
-      state.collection.query.filter,
-      state.collection.query.traits,
-      state.collection.query.powertraits,
-      state.collection.query.search,
-      state.collection.query.filterListed
-    );
-
-    if (response.status === 200 && response.nfts.length > 0) {
       if (!cancelled) {
-        response.hasRank = response.nfts.length > 0 && typeof response.nfts[0].rank !== 'undefined';
-        dispatch(listingsReceived({ ...response, isUsingListingsFallback: false }));
+        response.hasRank =
+          response.listings.length > 0 &&
+          (typeof response.listings[0].rank !== 'undefined' || !!response.listings[0].nft.rank);
+        dispatch(listingsReceived({ ...response, isUsingListingsFallback: true }));
+      }
+    } else {
+      const { response, cancelled } = await sortAndFetchCollectionDetails(
+        state.collection.query.page + 1,
+        state.collection.query.sort,
+        state.collection.query.filter,
+        state.collection.query.traits,
+        state.collection.query.powertraits,
+        state.collection.query.search,
+        state.collection.query.filterListed,
+        pageSizeOverride
+      );
+
+      if (response.status === 200 && response.nfts.length > 0) {
+        if (!cancelled) {
+          response.hasRank = response.nfts.length > 0 && typeof response.nfts[0].rank !== 'undefined';
+          dispatch(listingsReceived({ ...response, isUsingListingsFallback: false }));
+        }
       }
     }
-  }
-};
+  };
 
 export const filterListings = (filterOption, cacheName) => async (dispatch) => {
   dispatch(onFilter({ option: filterOption, cacheName }));

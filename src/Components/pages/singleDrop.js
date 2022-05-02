@@ -503,7 +503,17 @@ const SingleDrop = () => {
                       />
                     )}
 
-                    {drop.embed && <div dangerouslySetInnerHTML={{ __html: drop.embed }} />}
+                    {drop.slug === 'psycho-golden-lady' || drop.slug === 'smash-stunts' ? (
+                      <>
+                        {new Date() > 1651449600000 && new Date() < 1651464000000 && (
+                          <div dangerouslySetInnerHTML={{ __html: drop.embed }} />
+                        )}
+                      </>
+                    ) : (
+                      <>
+                        {drop.embed && <div dangerouslySetInnerHTML={{ __html: drop.embed }} />}
+                      </>
+                    )}
                   </>
                 </Reveal>
               </div>

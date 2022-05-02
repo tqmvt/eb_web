@@ -18,14 +18,25 @@ import {
   getNftSalesForAddress,
   getNftsForAddress,
   getNftsForAddress2,
-  getUnfilteredListingsForAddress
+  getUnfilteredListingsForAddress,
 } from '../core/api';
 import { toast } from 'react-toastify';
-import { createSuccessfulTransactionToastContent, sliceIntoChunks } from '../utils';
+import {
+  caseInsensitiveCompare,
+  createSuccessfulTransactionToastContent,
+  isUserBlacklisted,
+  sliceIntoChunks,
+} from '../utils';
 import { FilterOption } from '../Components/Models/filter-option.model';
 import { nanoid } from 'nanoid';
 import { appAuthInitFinished } from './InitSlice';
 import { captureException } from '@sentry/react';
+import { setThemeInStorage } from 'src/helpers/storage';
+import { getAllOffers } from '../core/subgraph';
+import { offerState } from '../core/api/enums';
+import { CNS, TextRecords } from '@cnsdomains/core';
+
+const knownContracts = config.known_contracts;
 
 const userSlice = createSlice({
   name: 'user',
@@ -52,7 +63,7 @@ const userSlice = createSlice({
     stateContract: null,
     auctionContract: null,
     offerContract: null,
-    // ebisuContract : null,
+    cnsContract: null,
 
     correctChain: false,
     showWrongChainModal: false,
@@ -85,8 +96,13 @@ const userSlice = createSlice({
     mySoldNftsCurPage: 0,
     mySoldNftsTotalPages: 0,
 
+    // Offers
+    hasOutstandingOffers: false,
+
     // Theme
-    theme: 'light',
+    theme: 'dark',
+
+    cnsProfile: {},
   },
   reducers: {
     accountChanged(state, action) {
@@ -104,7 +120,6 @@ const userSlice = createSlice({
       state.marketBalance = action.payload.marketBalance;
       state.auctionContract = action.payload.auctionContract;
       state.offerContract = action.payload.offerContract;
-      // state.ebisuContract = action.payload.ebisuContract;
       state.gettingContractData = false;
     },
 
@@ -274,9 +289,9 @@ const userSlice = createSlice({
       state.mySoldNfts = [];
       state.myUnfilteredListingsFetching = false;
       state.myUnfilteredListings = [];
+      state.cnsProfile = {};
     },
     onThemeChanged(state, action) {
-      console.log('onThemeChanged', action.payload);
       state.theme = action.payload;
     },
     balanceUpdated(state, action) {
@@ -287,6 +302,12 @@ const userSlice = createSlice({
     },
     setStakeCount(state, action) {
       state.stakeCount = action.payload;
+    },
+    onOutstandingOffersFound(state, action) {
+      state.hasOutstandingOffers = action.payload;
+    },
+    setCnsProfile(state, action) {
+      state.cnsProfile = action.payload;
     },
   },
 });
@@ -324,6 +345,8 @@ export const {
   onThemeChanged,
   setVIPCount,
   setStakeCount,
+  onOutstandingOffersFound,
+  setCnsProfile,
 } = userSlice.actions;
 export const user = userSlice.reducer;
 
@@ -431,6 +454,10 @@ export const connectAccount =
       const address = accounts[0];
       const signer = provider.getSigner();
 
+      if (isUserBlacklisted(address)) {
+        throw 'Unable to connect';
+      }
+
       if (!correctChain) {
         if (firstRun) {
           dispatch(appAuthInitFinished());
@@ -489,7 +516,8 @@ export const connectAccount =
       let offer;
       let sales;
       let stakeCount = 0;
-      // let ebisu;
+
+      dispatch(retrieveCnsProfile());
 
       if (signer && correctChain) {
         mc = new Contract(config.membership_contract, Membership.abi, signer);
@@ -665,12 +693,34 @@ export const fetchChainNfts = (abortSignal) => async (dispatch, getState) => {
 
   const walletAddress = state.user.address;
   const walletProvider = state.user.provider;
+  const nftsInitialized = state.user.nftsInitialized;
+  if (!nftsInitialized) {
+    dispatch(fetchingNfts());
+    const response = await getNftsForAddress(
+      walletAddress,
+      walletProvider,
+      (nfts) => {
+        dispatch(onNftsAdded(nfts));
+      },
+      abortSignal
+    );
+    if (abortSignal.aborted) return;
+    dispatch(setIsMember(response.isMember));
+    await addRanksToNfts(dispatch, getState);
+    dispatch(nftsFetched());
+    return;
+  }
 
   dispatch(fetchingNfts());
   try {
-    const response = await getNftsForAddress(walletAddress, walletProvider, (nfts) => {
-      dispatch(onNftsAdded(nfts));
-    }, abortSignal);
+    const response = await getNftsForAddress(
+      walletAddress,
+      walletProvider,
+      (nfts) => {
+        dispatch(onNftsAdded(nfts));
+      },
+      abortSignal
+    );
     if (abortSignal.aborted) return;
     dispatch(setIsMember(response.isMember));
     await addRanksToNfts(dispatch, getState);
@@ -747,8 +797,56 @@ export const fetchUnfilteredListings = (walletAddress) => async (dispatch, getSt
   dispatch(myUnfilteredListingsFetched(listings));
 };
 
+export const checkForOutstandingOffers = () => async (dispatch, getState) => {
+  const state = getState();
+  const collectionsStats = state.collections.collections;
+  const nfts = state.offer.myNFTs;
+
+  const collectionAddresses = nfts.map((nft) => nft.nftAddress.toLowerCase());
+  const offers = await getAllOffers(collectionAddresses, offerState.ACTIVE.toString());
+
+  const findCollectionFloor = (knownContract) => {
+    const collectionStats = collectionsStats.find((o) => {
+      if (knownContract.multiToken && o.collection.indexOf('-') !== -1) {
+        let parts = o.collection.split('-');
+        return caseInsensitiveCompare(knownContract.address, parts[0]) && knownContract.id === parseInt(parts[1]);
+      } else {
+        return caseInsensitiveCompare(knownContract.address, o.collection);
+      }
+    });
+
+    return collectionStats ? collectionStats.floorPrice : null;
+  };
+  const findKnownContract = (address, nftId) => {
+    return knownContracts.find((c) => {
+      const matchedAddress = caseInsensitiveCompare(c.address, address);
+      const matchedToken = !c.multiToken || parseInt(nftId) === c.id;
+      return matchedAddress && matchedToken;
+    });
+  };
+
+  const receivedOffers = offers.data.filter((offer) => {
+    const nft = nfts.find(
+      (c) => c.nftAddress.toLowerCase() === offer.nftAddress && c.edition?.toString() === offer.nftId
+    );
+
+    const knownContract = findKnownContract(offer.nftAddress, offer.nftId);
+    const floorPrice = findCollectionFloor(knownContract);
+    const offerPrice = parseInt(offer.price);
+    const isAboveOfferThreshold = floorPrice ? offerPrice >= floorPrice / 2 : true;
+    const canShowCompletedOffers = !knownContract.multiToken || parseInt(offer.state) === offerState.ACTIVE;
+
+    if (nft && isAboveOfferThreshold && canShowCompletedOffers && !nft.is1155) {
+      return true;
+    }
+    return false;
+  });
+
+  dispatch(onOutstandingOffersFound(receivedOffers.length > 0));
+};
+
 export const setTheme = (theme) => async (dispatch) => {
-  console.log('setting theme.....', theme);
+  setThemeInStorage(theme);
   dispatch(onThemeChanged(theme));
 };
 
@@ -757,6 +855,36 @@ export const updateBalance = () => async (dispatch, getState) => {
   const { address, provider } = user;
   const balance = ethers.utils.formatEther(await provider.getBalance(address));
   dispatch(userSlice.actions.balanceUpdated(balance));
+};
+
+export const retrieveCnsProfile = () => async (dispatch, getState) => {
+  const { user } = getState();
+  const { address, provider } = user;
+  if (!user.provider) return;
+
+  try {
+    let cnsProfile = {};
+    const cns = new CNS(config.chain_id, provider);
+    cnsProfile.name = await cns.getName(address);
+    if (cnsProfile.name) {
+      cnsProfile.twitter = await cns.name(cnsProfile.name).getText(TextRecords.Twitter);
+      cnsProfile.avatar = await cns.name(cnsProfile.name).getText(TextRecords.Avatar);
+      cnsProfile.discord = await cns.name(cnsProfile.name).getText(TextRecords.Discord);
+      cnsProfile.telegram = await cns.name(cnsProfile.name).getText(TextRecords.Telegram);
+      cnsProfile.instagram = await cns.name(cnsProfile.name).getText(TextRecords.Instagram);
+      cnsProfile.email = await cns.name(cnsProfile.name).getText(TextRecords.Email);
+      cnsProfile.url = await cns.name(cnsProfile.name).getText(TextRecords.Url);
+
+      // cnsProfile.details = await cns.name(cnsProfile.name).getDetails();
+      // cnsProfile.owner = await cns.name(cnsProfile.name).getOwner();
+      // cnsProfile.content = await cns.name(cnsProfile.name).getContent();
+      // cnsProfile.address = await cns.name(cnsProfile.name).getAddress();
+      // cnsProfile.resolverAddr = await cns.name(cnsProfile.name).getResolverAddr();
+    }
+    dispatch(setCnsProfile(cnsProfile));
+  } catch (e) {
+    console.log('cns error', e);
+  }
 };
 
 export class AccountMenuActions {

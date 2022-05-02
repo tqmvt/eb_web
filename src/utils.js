@@ -1,5 +1,6 @@
 import moment from 'moment';
 import config from './Assets/networks/rpc_config.json';
+import blacklist from './core/configs/blacklist.json';
 import IPFSGatewayTools from '@pinata/ipfs-gateway-tools/dist/browser';
 
 export const drops = config.drops;
@@ -152,12 +153,17 @@ export function classList(classes) {
 export function humanize(str) {
   if (!str) return '';
 
+  str = str.toString();
+
+  // Only split camel case if it's not completely uppercase
+  if (str === str.toUpperCase()) {
+    str = str[0].toUpperCase() + str.slice(1).toLowerCase();
+  } else {
+    str = str.split(/(?=[A-Z])/).join(' ');
+  }
+
   let i,
-    frags = str
-      .toString()
-      .split(/(?=[A-Z])/)
-      .join(' ')
-      .split('_');
+    frags = str.split('_');
   for (i = 0; i < frags.length; i++) {
     frags[i] = frags[i].charAt(0).toUpperCase() + frags[i].slice(1);
   }
@@ -184,6 +190,8 @@ export function siPrefixedNumber(num) {
 }
 
 export function shortAddress(address) {
+  if (!address) return '';
+
   return `${address.substring(0, 4)}...${address.substring(address.length - 3, address.length)}`;
 }
 
@@ -349,6 +357,10 @@ export const isBabyWeirdApesCollection = (address) => {
   return isCollection(address, 'baby-weird-apes');
 };
 
+export const isCronosVerseCollection = (address) => {
+  return isCollection(address, 'cronosverse');
+};
+
 export const percentage = (partialValue, totalValue) => {
   if (!totalValue || totalValue === 0) return 0;
   return Math.floor((100 * partialValue) / totalValue);
@@ -418,4 +430,24 @@ export const convertIpfsResource = (resource, tooltip) => {
   }
 
   return linkedResource;
-}
+};
+
+export const isUserBlacklisted = (address) => {
+  return !!blacklist.users.find((bAddress) => caseInsensitiveCompare(address, bAddress));
+};
+
+export const isNftBlacklisted = (address, id) => {
+  return !!blacklist.collections.find((collection) => {
+    const matchesAddress = caseInsensitiveCompare(collection.address, address);
+    const matchesSlug = collection.slug === address;
+    const includesId = collection.ids.includes(parseInt(id));
+
+    return (matchesSlug || matchesAddress) && includesId;
+  });
+};
+
+export const devLog = (...params) => {
+  if (process.env.NODE_ENV === 'development') {
+    console.log(params);
+  }
+};

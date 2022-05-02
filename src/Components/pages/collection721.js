@@ -14,7 +14,7 @@ import LayeredIcon from '../components/LayeredIcon';
 import Footer from '../components/Footer';
 import CollectionInfoBar from '../components/CollectionInfoBar';
 import { init, fetchListings, getStats } from '../../GlobalState/collectionSlice';
-import { caseInsensitiveCompare, isCrosmocraftsCollection } from '../../utils';
+import { caseInsensitiveCompare, isCronosVerseCollection, isCrosmocraftsCollection } from '../../utils';
 import TraitsFilter from '../Collection/TraitsFilter';
 import PowertraitsFilter from '../Collection/PowertraitsFilter';
 import SocialsBar from '../Collection/SocialsBar';
@@ -26,8 +26,15 @@ import stakingPlatforms from '../../core/data/staking-platforms.json';
 import SalesCollection from '../components/SalesCollection';
 import CollectionNftsGroup from '../components/CollectionNftsGroup';
 import CollectionListingsGroup from '../components/CollectionListingsGroup';
+import CollectionCronosverse from './collectionCronosverse';
+import styled from 'styled-components';
 
 const knownContracts = config.known_contracts;
+
+const NegativeMargin = styled.div`
+  margin-left: -1.75rem !important;
+  margin-right: -1.75rem !important;
+`;
 
 const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) => {
   const dispatch = useDispatch();
@@ -204,9 +211,7 @@ const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) 
                 </div>
               </div>
             )}
-            <div className="d-item col-md-12 mb-4 mx-auto">
-              <CollectionInfoBar collectionStats={collectionStats} royalty={royalty} />
-            </div>
+            <CollectionInfoBar collectionStats={collectionStats} royalty={royalty} />
             {collection.address.toLowerCase() === '0x7D5f8F9560103E1ad958A6Ca43d49F954055340a'.toLowerCase() && (
               <div className="row m-3">
                 <div className="mx-auto text-center fw-bold" style={{ fontSize: '1.2em' }}>
@@ -242,13 +247,18 @@ const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) 
         )}
 
         <div className="de_tab">
-          <ul className="de_nav">
+          <ul className="de_nav mb-2">
             <li id="Mainbtn0" className="tab active">
               <span onClick={handleBtnClick(0)}>Items</span>
             </li>
             <li id="Mainbtn1" className="tab">
               <span onClick={handleBtnClick(1)}>Activity</span>
             </li>
+            {isCronosVerseCollection(collection.address) && (
+              <li id="Mainbtn9" className="tab">
+                <span onClick={handleBtnClick(9)}>Map</span>
+              </li>
+            )}
           </ul>
 
           <div className="de_tab_content">
@@ -307,6 +317,11 @@ const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) 
               <div className="tab-2 onStep fadeIn">
                 <SalesCollection cacheName="collection" collectionId={collection.address} />
               </div>
+            )}
+            {openMenu === 9 && (
+              <NegativeMargin className="tab-2 onStep fadeIn overflow-auto mt-2">
+                <CollectionCronosverse collection={collection} slug={slug} cacheName={slug} />
+              </NegativeMargin>
             )}
           </div>
         </div>
