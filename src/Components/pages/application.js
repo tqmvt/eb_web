@@ -51,7 +51,7 @@ const ChoiceBox = styled.div`
 const Application = () => {
   const dispatch = useDispatch();
 
-  const [openTab, setOpenTab] = useState(0);
+  const [openTab, setOpenTab] = useState(null);
   const handleBtnClick = (index) => (element) => {
     var elements = document.querySelectorAll('.tab');
     for (var i = 0; i < elements.length; i++) {
@@ -93,40 +93,44 @@ const Application = () => {
         <div className="row justify-content-center">
 
           <div className="col-xl-4 col-sm-6 d-flex justify-content-center mb-2 mb-sm-0">
-            <ChoiceBox className="tab feature-box f-boxed style-3" style={{cursor: 'pointer'}} onClick={handleBtnClick(0)}>
-              <Reveal className='onStep' keyframes={fadeInUp} delay={0} duration={600} triggerOnce>
-                <i className="bg-color-2 i-boxed icon_tags_alt"></i>
-              </Reveal>
-              <div className="text">
-                <Reveal className='onStep' keyframes={fadeInUp} delay={100} duration={600} triggerOnce>
-                  <h4 className="">Submit a Listing</h4>
+            <a href="#form">
+              <ChoiceBox className="tab feature-box f-boxed style-3" style={{cursor: 'pointer'}} onClick={handleBtnClick(0)}>
+                <Reveal className='onStep' keyframes={fadeInUp} delay={0} duration={600} triggerOnce>
+                  <i className="bg-color-2 i-boxed icon_tags_alt"></i>
                 </Reveal>
-                <Reveal className='onStep' keyframes={fadeInUp} delay={200} duration={600} triggerOnce>
-                  <p className="">For established projects that would like to be added to the marketplace.</p>
-                </Reveal>
-              </div>
-              <i className="wm icon_tags_alt"></i>
-            </ChoiceBox>
+                <div className="text">
+                  <Reveal className='onStep' keyframes={fadeInUp} delay={100} duration={600} triggerOnce>
+                    <h4 className="">Submit a Listing</h4>
+                  </Reveal>
+                  <Reveal className='onStep' keyframes={fadeInUp} delay={200} duration={600} triggerOnce>
+                    <p className="">For established projects that would like to be added to the marketplace.</p>
+                  </Reveal>
+                </div>
+                <i className="wm icon_tags_alt"></i>
+              </ChoiceBox>
+            </a>
           </div>
 
           <div className="col-xl-4 col-sm-6 d-flex justify-content-center">
-            <ChoiceBox className="tab feature-box f-boxed style-3" style={{cursor: 'pointer'}} onClick={handleBtnClick(1)}>
-              <Reveal className='onStep' keyframes={fadeInUp} delay={0} duration={600} triggerOnce>
-                <i className="bg-color-2 i-boxed icon_lightbulb_alt"></i>
-              </Reveal>
-              <div className="text">
-                <Reveal className='onStep' keyframes={fadeInUp} delay={100} duration={600} triggerOnce>
-                  <h4 className="">Become a Creator</h4>
+            <a href="#form">
+              <ChoiceBox className="tab feature-box f-boxed style-3" style={{cursor: 'pointer'}} onClick={handleBtnClick(1)}>
+                <Reveal className='onStep' keyframes={fadeInUp} delay={0} duration={600} triggerOnce>
+                  <i className="bg-color-2 i-boxed icon_lightbulb_alt"></i>
                 </Reveal>
-                <Reveal className='onStep' keyframes={fadeInUp} delay={200} duration={600} triggerOnce>
-                  <p className="">For projects that would like to mint on the Ebisu's Bay launchpad</p>
-                </Reveal>
-              </div>
-              <i className="wm icon_lightbulb_alt"></i>
-            </ChoiceBox>
+                <div className="text">
+                  <Reveal className='onStep' keyframes={fadeInUp} delay={100} duration={600} triggerOnce>
+                    <h4 className="">Become a Creator</h4>
+                  </Reveal>
+                  <Reveal className='onStep' keyframes={fadeInUp} delay={200} duration={600} triggerOnce>
+                    <p className="">For projects that would like to mint on the Ebisu's Bay launchpad</p>
+                  </Reveal>
+                </div>
+                <i className="wm icon_lightbulb_alt"></i>
+              </ChoiceBox>
+            </a>
           </div>
         </div>
-        <div className="row">
+        <div id="form" className="row">
           <div className="col">
             <div className="col-lg-12 mt-4">
               {openTab === 0 && (
