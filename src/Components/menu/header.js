@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Breakpoint, { BreakpointProvider, setDefaultBreakpoints } from 'react-socks';
 import { NavLink } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
 
 import AccountMenu from '../components/AccountMenu';
 import InvalidListingWarning from '../components/InvalidListingWarning';
-import { setTheme } from '../../GlobalState/User';
+// import { setTheme } from '../../GlobalState/User';
 
 setDefaultBreakpoints([{ xs: 0 }, { l: 1199 }, { xl: 1200 }]);
 
@@ -37,11 +37,11 @@ const Header = function () {
     return state.user.theme;
   });
 
-  const dispatch = useDispatch();
-  const toggleTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
-    dispatch(setTheme(newTheme));
-  };
+  // const dispatch = useDispatch();
+  // const toggleTheme = () => {
+  //   const newTheme = theme === 'light' ? 'dark' : 'light';
+  //   dispatch(setTheme(newTheme));
+  // };
 
   useEffect(() => {
     const header = document.getElementById('myHeader');
@@ -70,7 +70,11 @@ const Header = function () {
           <div className="logo px-0">
             <div className="navbar-title navbar-item">
               <NavLink to="/">
-                <img src="/img/web_logo.png" alt="ebisus bay logo" style={{ width: '44px', height: '40px' }} />
+                <img
+                  src={theme === 'light' ? '/img/logo-light.svg' : '/img/logo-dark-prod.svg'}
+                  alt="ebisus bay logo"
+                  style={{ width: '44px', height: '40px' }}
+                />
               </NavLink>
             </div>
           </div>
