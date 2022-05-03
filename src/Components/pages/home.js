@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import { keyframes } from '@emotion/react';
 import Reveal from 'react-awesome-reveal';
 import { createGlobalStyle, default as styled } from 'styled-components';
@@ -179,9 +179,11 @@ const Home = () => {
             >
               Explore
             </span>
-            <Button onClick={() => window.open('https://forms.gle/rRtn6gp16tyavQge9', '_blank')} type="legacy-outlined">
-              Become a Creator
-            </Button>
+            <Link to="/apply">
+              <Button type="legacy-outlined">
+                Become a Creator
+              </Button>
+            </Link>
 
             <Button onClick={() => window.open(`/collection/founding-member`, '_self')} type="legacy-outlined">
               <FontAwesomeIcon icon={faFire} className="me-1" style={{ color: '#ff690e' }} />
