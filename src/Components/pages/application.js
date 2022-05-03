@@ -97,24 +97,13 @@ const Application = () => {
         <meta name="twitter:title" content="Project Applications | Ebisu's Bay Marketplace" />
       </Helmet>
       <GlobalStyles />
-      <section className="jumbotron breadcumb no-bg tint">
-        <div className="mainbreadcumb">
-          <div className="container">
-            <div className="row m-10-hor">
-              <div className="col-12">
-                <h1 className="text-center">Project Application</h1>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section className="container">
+      <section className="container mt-0 mt-lg-5">
         <div className="row">
           <div className="col">
             <h2>Choose Application Type</h2>
           </div>
         </div>
-        <div className="row justify-content-center">
+        <div className="row justify-content-center mt-2">
 
           <div className="col-xl-4 col-sm-6 d-flex justify-content-center mb-2 mb-sm-0">
             <a href="#form">
@@ -124,7 +113,7 @@ const Application = () => {
                 </Reveal>
                 <div className="text">
                   <Reveal className='onStep' keyframes={fadeInUp} delay={100} duration={600} triggerOnce>
-                    <h4 className="">Submit a Listing</h4>
+                    <h4 className="">Listing Request</h4>
                   </Reveal>
                   <Reveal className='onStep' keyframes={fadeInUp} delay={200} duration={600} triggerOnce>
                     <p className="">For established projects that would like to be added to the marketplace.</p>
@@ -143,10 +132,10 @@ const Application = () => {
                 </Reveal>
                 <div className="text">
                   <Reveal className='onStep' keyframes={fadeInUp} delay={100} duration={600} triggerOnce>
-                    <h4 className="">Become a Creator</h4>
+                    <h4 className="">Launchpad Request</h4>
                   </Reveal>
                   <Reveal className='onStep' keyframes={fadeInUp} delay={200} duration={600} triggerOnce>
-                    <p className="">For projects that would like to mint on the Ebisu's Bay launchpad</p>
+                    <p className="">For projects that would like to launch on the Ebisu's Bay launchpad</p>
                   </Reveal>
                 </div>
                 <i className="wm icon_lightbulb_alt"></i>
@@ -159,7 +148,7 @@ const Application = () => {
             <div className="col-lg-12 mt-4">
               {openTab === 0 && (
                 <>
-                  <h3 className="text-center">Listing Application</h3>
+                  <h3 className="text-center">Listing Request</h3>
                   <StyledForm isDark={userTheme === 'dark'}>
                     <NativeForms form="https://form.nativeforms.com/iNHbm1jZmoWRPBXaK1Db" />
                   </StyledForm>
@@ -167,7 +156,7 @@ const Application = () => {
               )}
               {openTab === 1 && (
                 <>
-                  <h3 className="text-center">Creator Application</h3>
+                  <h3 className="text-center">Launchpad Request</h3>
                   <StyledForm isDark={userTheme === 'dark'}>
                     <NativeForms form="https://form.nativeforms.com/AM0YjZ50jZmoWRPBXaK1Db" />
                   </StyledForm>
