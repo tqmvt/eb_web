@@ -260,7 +260,7 @@ const AccountMenu = function () {
                             <button className="btn_menu" title="Withdraw Balance" onClick={withdrawBalance}>
                               {user.withdrawingMarketBalance ? (
                                 <>
-                                  <Spinner animation="border" role="status" size="sm" className="ms-1">
+                                  <Spinner animation="border" role="status" size="sm">
                                     <span className="visually-hidden">Loading...</span>
                                   </Spinner>
                                 </>
@@ -297,7 +297,7 @@ const AccountMenu = function () {
                               <button className="btn_menu" title="Harvest Staking Rewards" onClick={harvestStakingRewards}>
                                 {user.harvestingStakingRewards ? (
                                   <>
-                                    <Spinner animation="border" role="status" size="sm" className="ms-1">
+                                    <Spinner animation="border" role="status" size="sm">
                                       <span className="visually-hidden">Loading...</span>
                                     </Spinner>
                                   </>
