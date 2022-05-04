@@ -415,31 +415,37 @@ const RewardsCard = ({}) => {
               </div>
               {userPendingRewards > 0 ? (
                 <>
-                  <p className="text-center my-xl-auto fs-5" style={{color: getTheme(userTheme).colors.textColor3}}>
-                    You have <strong>{commify(round(userPendingRewards, 3))} CRO</strong>{' '}
-                    available for harvest!
+                  <p className="text-center my-auto">
+                    Waiting for staking to start...
                   </p>
-                  <button
-                    className="btn-main lead mx-1 mb-1 mt-2"
-                    onClick={harvest}
-                    disabled={!(userPendingRewards > 0)}
-                    style={{ width: 'auto' }}
-                  >
-                    {isHarvesting ? (
-                      <>
-                        Harvesting...
-                        <Spinner animation="border" role="status" size="sm" className="ms-1">
-                          <span className="visually-hidden">Loading...</span>
-                        </Spinner>
-                      </>
-                    ) : (
-                      <>Harvest</>
-                    )}
-                  </button>
+                  {/*<p className="text-center my-xl-auto fs-5" style={{color: getTheme(userTheme).colors.textColor3}}>*/}
+                  {/*  You have <strong>{commify(round(userPendingRewards, 3))} CRO</strong>{' '}*/}
+                  {/*  available for harvest!*/}
+                  {/*</p>*/}
+                  {/*<button*/}
+                  {/*  className="btn-main lead mx-1 mb-1 mt-2"*/}
+                  {/*  onClick={harvest}*/}
+                  {/*  disabled={!(userPendingRewards > 0)}*/}
+                  {/*  style={{ width: 'auto' }}*/}
+                  {/*>*/}
+                  {/*  {isHarvesting ? (*/}
+                  {/*    <>*/}
+                  {/*      Harvesting...*/}
+                  {/*      <Spinner animation="border" role="status" size="sm" className="ms-1">*/}
+                  {/*        <span className="visually-hidden">Loading...</span>*/}
+                  {/*      </Spinner>*/}
+                  {/*    </>*/}
+                  {/*  ) : (*/}
+                  {/*    <>Harvest</>*/}
+                  {/*  )}*/}
+                  {/*</button>*/}
                 </>
               ) : (
+                // <p className="text-center my-auto">
+                //   No harvestable rewards yet. Check back later!
+                // </p>
                 <p className="text-center my-auto">
-                  No harvestable rewards yet. Check back later!
+                Waiting for staking to start...
                 </p>
               )}
             </>
