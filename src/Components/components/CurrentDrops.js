@@ -15,10 +15,12 @@ const carouselSetings = {
   ...settings,
 };
 
-const CurrentDrops = ({ showAll = false }) => {
+const CurrentDrops = ({ useCarousel = true }) => {
   const dispatch = useDispatch();
+  const threePerRowSize = window.innerWidth < 992;
 
   const [currentDrops, setCurrentDrops] = useState([]);
+  const [showAll, setShowAll] = useState(false);
 
   function arrangeCollections() {
     const liveDrops = drops.filter((d) => !d.complete && d.published && d.start && d.start < Date.now());
@@ -28,6 +30,10 @@ const CurrentDrops = ({ showAll = false }) => {
     });
     setCurrentDrops(dropCollections.filter((d) => d.collection).sort((a, b) => (a.drop.start < b.drop.start ? 1 : -1)));
   }
+
+  const onSeeMoreClicked = () => {
+    setShowAll(true);
+  };
 
   useEffect(() => {
     arrangeCollections();
@@ -53,45 +59,48 @@ const CurrentDrops = ({ showAll = false }) => {
 
   return (
     <>
-      {showAll ? (
-        <div className="row">
-          {currentDrops &&
-            currentDrops.map((item, index) => (
-              <div className="col-12 col-xs-6 col-md-4 col-lg-3" key={index}>
-                <CustomSlide
-                  key={index}
-                  index={index + 1}
-                  avatar={item.drop.imgAvatar}
-                  banner={item.collection.metadata.card}
-                  title={item.drop.title}
-                  subtitle={item.drop.author.name}
-                  collectionId={item.drop.slug}
-                  url={item.drop.redirect ?? `/drops/${item.drop.slug}`}
-                  externalPage={!!item.drop.redirect}
-                  verified={item.collection.metadata.verified}
-                />
-              </div>
-            ))}
-        </div>
-      ) : (
+      {useCarousel ? (
         <div className="nft">
           <Slider {...carouselSetings} prevArrow={<PrevArrow />} nextArrow={<NextArrow />}>
             {currentDrops &&
-              currentDrops.map((item, index) => (
-                <CustomSlide
-                  key={index}
-                  index={index + 1}
-                  avatar={item.drop.imgAvatar}
-                  banner={item.collection.metadata.card}
-                  title={item.drop.title}
-                  subtitle={item.drop.author.name}
-                  collectionId={item.drop.slug}
-                  url={item.drop.redirect ?? `/drops/${item.drop.slug}`}
-                  externalPage={!!item.drop.redirect}
-                  verified={item.collection.metadata.verified}
-                />
-              ))}
+            currentDrops.map((item, index) => (
+              <CustomSlide
+                key={index}
+                index={index + 1}
+                avatar={item.drop.imgAvatar}
+                banner={item.collection.metadata.card}
+                title={item.drop.title}
+                subtitle={item.drop.author.name}
+                collectionId={item.drop.slug}
+                url={item.drop.redirect ?? `/drops/${item.drop.slug}`}
+                externalPage={!!item.drop.redirect}
+                verified={item.collection.metadata.verified}
+              />
+            ))}
           </Slider>
+        </div>
+      ) : (
+        <div className="row">
+          {currentDrops &&
+          currentDrops.slice(showAll ? undefined : 0, showAll ? undefined : (threePerRowSize ? 3 : 4)).map((item, index) => (
+            <div className="col-12 col-xs-6 col-md-4 col-lg-3" key={index}>
+              <CustomSlide
+                key={index}
+                index={index + 1}
+                avatar={item.drop.imgAvatar}
+                banner={item.collection.metadata.card}
+                title={item.drop.title}
+                subtitle={item.drop.author.name}
+                collectionId={item.drop.slug}
+                url={item.drop.redirect ?? `/drops/${item.drop.slug}`}
+                externalPage={!!item.drop.redirect}
+                verified={item.collection.metadata.verified}
+              />
+            </div>
+          ))}
+          {!showAll && (
+            <span className="text-end fw-bold pe-4" onClick={onSeeMoreClicked} style={{cursor: 'pointer'}}>See More</span>
+          )}
         </div>
       )}
     </>
