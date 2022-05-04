@@ -50,7 +50,11 @@ const Footer = () => {
         <div className="container">
           <div className="row align-items-center">
             <div className="col-2">
-              <img height="40px" src="/img/web_logo.svg" alt="#" />
+              <img
+                height="40px"
+                src={userTheme === 'light' ? '/img/logo-light.svg' : '/img/logo-dark-prod.svg'}
+                alt="ebisus bay logo"
+              />
             </div>
 
             <div className="col-10 social-icons d-flex justify-content-end">
