@@ -4,7 +4,7 @@ import { init, fetchListings } from '../../GlobalState/collectionSlice';
 import { devLog } from '../../utils';
 import { CollectionSortOption } from '../Models/collection-sort-option.model';
 import { FilterOption } from '../Models/filter-option.model';
-import config from '../../Assets/networks/rpc_config.json';
+// import config from '../../Assets/networks/rpc_config.json';
 import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
 import borderboard from '../../Assets/cronosverse/border_board.png';
 import tile1 from '../../Assets/cronosverse/Plain-tile.png';
@@ -103,13 +103,14 @@ const CronosverseCollectionBoard = ({ onBuy, onOffer, minting, listings = [], nf
   const ref2 = useRef();
   const [tileInfo, setTileInfo] = useState({});
   const [modalFlag, setModalFlag] = useState('none');
-  const [canvasDown, setCanvasDown] = useState(false);
+  // const [canvasDown, setCanvasDown] = useState(false);
   const [zoomState, setZoomState] = useState({
     offsetX: 0,
     offsetY: 0,
     scale: 1,
   });
-  const [isMintingFlag, setIsMintingFlag] = useState(false);
+  const isMintingFlag = false; // todo: lint fix
+  // const [isMintingFlag, setIsMintingFlag] = useState(false);
 
   const [tempWidth, setTempWidth] = useState(1);
   const [tempHeight, setTempHeight] = useState(1);
@@ -170,11 +171,11 @@ const CronosverseCollectionBoard = ({ onBuy, onOffer, minting, listings = [], nf
   };
 
   const listingForToken = (tokenId) => {
-    return listings.find((listing) => tokenId == listing.id);
+    return listings.find((listing) => tokenId === listing.id);
   };
 
   const nftForToken = (tokenId) => {
-    return nfts.find((nft) => tokenId == nft.id);
+    return nfts.find((nft) => tokenId === nft.id);
   };
 
   const changeCanvasState = (ReactZoomPanPinchRef, event) => {
@@ -215,7 +216,7 @@ const CronosverseCollectionBoard = ({ onBuy, onOffer, minting, listings = [], nf
       ctx.fillRect(tileWidth * tileInfo.xPos - 1, tileHeight * tileInfo.yPos - 1, tileWidth + 1, tileHeight + 2);
     }
 
-    if (type == 0 || type == 4) {
+    if (type === 0 || type === 4) {
       setModalFlag('none');
 
       return;
@@ -287,12 +288,13 @@ const CronosverseCollectionBoard = ({ onBuy, onOffer, minting, listings = [], nf
   }, [listings]);
 
   useEffect(() => {
-    if (minting == false) {
+    if (minting === false) {
       // let ctx2 = ref2.current.getContext('2d');
       // ctx2.clearRect(0, 0, ref2.current.width, ref2.current.height);
       setTileInfo({ ...tileInfo, xPos: null, yPos: null });
       setModalFlag('none');
     }
+    // eslint-disable-next-line
   }, [minting]);
 
   return (

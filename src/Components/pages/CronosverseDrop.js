@@ -577,7 +577,7 @@ const CronosverseMintBoard = ({ mintNow, minting, mintedIds, prices }) => {
   };
 
   const isMinted = (tokenId) => {
-    return mintedIds?.some((id) => tokenId == id);
+    return mintedIds?.some((id) => tokenId === id);
   };
 
   const changeCanvasState = (ReactZoomPanPinchRef, event) => {
@@ -614,7 +614,7 @@ const CronosverseMintBoard = ({ mintNow, minting, mintedIds, prices }) => {
     console.log(type, xPos, yPos, tileInfo);
     let ctx = ref2.current.getContext('2d');
     ctx.clearRect(tileWidth * tileInfo.xPos - 1, tileHeight * tileInfo.yPos - 1, tileWidth + 1, tileHeight + 2);
-    if (type == 0 || type == 4) {
+    if (type === 0 || type === 4) {
       setModalFlag('none');
 
       return;
@@ -662,7 +662,7 @@ const CronosverseMintBoard = ({ mintNow, minting, mintedIds, prices }) => {
     let ctx = ref2.current.getContext('2d');
     ctx.clearRect(0, 0, ref2.current.width, ref2.current.height);
     ctx.fillStyle = 'rgba(50, 50, 50, 0.5)';
-    if (mintedIds?.length == 0) {
+    if (mintedIds?.length === 0) {
       return;
     } else {
       for (let i = 0; i < mintedIds.length; i++) {
@@ -673,12 +673,13 @@ const CronosverseMintBoard = ({ mintNow, minting, mintedIds, prices }) => {
   }, [mintedIds]);
 
   useEffect(() => {
-    if (minting == false) {
+    if (minting === false) {
       // let ctx2 = ref2.current.getContext('2d');
       // ctx2.clearRect(0, 0, ref2.current.width, ref2.current.height);
       setTileInfo({ ...tileInfo, xPos: null, yPos: null });
       setModalFlag('none');
     }
+    // eslint-disable-next-line
   }, [minting]);
 
   return (
