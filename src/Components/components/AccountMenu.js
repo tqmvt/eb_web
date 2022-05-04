@@ -129,6 +129,10 @@ const AccountMenu = function () {
     dispatch(AccountMenuActions.withdrawBalance());
   };
 
+  const withdrawStakingRewards = async () => {
+    dispatch(AccountMenuActions.withdrawStakingRewards());
+  };
+
   // const registerCode = async () => {
   //   dispatch(AccountMenuActions.registerCode());
   // };
@@ -259,7 +263,7 @@ const AccountMenu = function () {
                           )}
                         </>
                       ) : (
-                        <>N/A</>
+                        <span className="d-wallet-value">0.0 CRO</span>
                       )}
                     </>
                   ) : (
@@ -271,6 +275,35 @@ const AccountMenu = function () {
                   )}
                 </div>
               </div>
+              {(user.vipCount > 0 || user.stakeCount > 0) && (
+                <div className="d-wallet">
+                  <h4>Staking Rewards</h4>
+                  <div className="d-flex justify-content-between">
+                    {!user.connectingWallet ? (
+                      <>
+                        {user.stakingRewards ? (
+                          <>
+                            <span className="d-wallet-value">{Math.round(user.stakingRewards * 100) / 100} CRO</span>
+                            {user.stakingRewards > 0 && (
+                              <button className="btn_menu" title="Withdraw Balance" onClick={withdrawStakingRewards}>
+                                Harvest
+                              </button>
+                            )}
+                          </>
+                        ) : (
+                          <span className="d-wallet-value">0.0 CRO</span>
+                        )}
+                      </>
+                    ) : (
+                      <span>
+                      <Spinner animation="border" role="status" size={'sm'}>
+                        <span className="visually-hidden">Loading...</span>
+                      </Spinner>
+                    </span>
+                    )}
+                  </div>
+                </div>
+              )}
               {user.isMember && user.rewards !== '0.0' && (
                 <>
                   <div className="d-wallet">

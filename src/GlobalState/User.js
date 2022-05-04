@@ -72,6 +72,7 @@ const userSlice = createSlice({
     rewards: null,
     marketBalance: null,
     balance: null,
+    stakingRewards: null,
 
     // My NFTs
     fetchingNfts: false,
@@ -118,6 +119,7 @@ const userSlice = createSlice({
       state.stakeCount = action.payload.stakeCount;
       state.marketContract = action.payload.marketContract;
       state.marketBalance = action.payload.marketBalance;
+      state.stakingRewards = action.payload.stakingRewards;
       state.auctionContract = action.payload.auctionContract;
       state.offerContract = action.payload.offerContract;
       state.gettingContractData = false;
@@ -242,6 +244,9 @@ const userSlice = createSlice({
     withdrewPayments(state) {
       state.marketBalance = 0;
     },
+    withdrewStakingRewards(state) {
+      state.stakingRewards = 0;
+    },
     transferedNFT(state, action) {
       const indexesToRemove = state.nfts
         .map((nft, index) => {
@@ -279,6 +284,7 @@ const userSlice = createSlice({
       state.balance = null;
       state.rewards = null;
       state.marketBalance = null;
+      state.stakingRewards = null;
       state.isMember = false;
       state.vipCount = 0;
       state.stakeCount = 0;
@@ -335,6 +341,7 @@ export const {
   registeredCode,
   withdrewRewards,
   withdrewPayments,
+  withdrewStakingRewards,
   listingUpdate,
   transferedNFT,
   setIsMember,
@@ -516,6 +523,7 @@ export const connectAccount =
       let offer;
       let sales;
       let stakeCount = 0;
+      let stakingRewards = 0;
 
       dispatch(retrieveCnsProfile());
 
@@ -533,6 +541,7 @@ export const connectAccount =
         auction = new Contract(config.auction_contract, Auction.abi, signer);
         offer = new Contract(config.offer_contract, Offer.abi, signer);
         sales = ethers.utils.formatEther(await market.payments(address));
+        stakingRewards = ethers.utils.formatEther(await sc.getReward(address));
 
         try {
           balance = ethers.utils.formatEther(await provider.getBalance(address));
@@ -561,6 +570,7 @@ export const connectAccount =
           auctionContract: auction,
           offerContract: offer,
           marketBalance: sales,
+          stakingRewards: stakingRewards
         })
       );
     } catch (error) {
@@ -915,6 +925,26 @@ export class AccountMenuActions {
       const receipt = await tx.wait();
       toast.success(createSuccessfulTransactionToastContent(receipt.transactionHash));
       dispatch(withdrewPayments());
+      dispatch(updateBalance());
+    } catch (error) {
+      if (error.data) {
+        toast.error(error.data.message);
+      } else if (error.message) {
+        toast.error(error.message);
+      } else {
+        console.log(error);
+        toast.error('Unknown Error');
+      }
+    }
+  };
+
+  static withdrawStakingRewards = () => async (dispatch, getState) => {
+    const { user } = getState();
+    try {
+      const tx = await user.stakeContract.harvest(user.address);
+      const receipt = await tx.wait();
+      toast.success(createSuccessfulTransactionToastContent(receipt.transactionHash));
+      dispatch(withdrewStakingRewards());
       dispatch(updateBalance());
     } catch (error) {
       if (error.data) {
