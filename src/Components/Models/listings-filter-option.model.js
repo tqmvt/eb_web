@@ -50,7 +50,7 @@ export class ListingsFilterOption extends FilterOption {
 
     if (this.address && this.type === 'seller') {
       return {
-        seller: this.lowercasedAddress()
+        seller: this.lowercasedAddress(),
       };
     }
 

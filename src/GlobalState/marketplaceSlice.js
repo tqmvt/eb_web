@@ -162,7 +162,7 @@ export const sortListings =
   };
 
 export const searchListings = (value, cacheName, isSales) => async (dispatch) => {
-  dispatch(onSearch({search: value, cacheName}));
+  dispatch(onSearch({ search: value, cacheName }));
   dispatch(fetchListings(isSales));
 };
 

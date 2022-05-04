@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { createGlobalStyle, default as styled } from 'styled-components';
 import { keyframes } from '@emotion/react';
 import Reveal from 'react-awesome-reveal';
@@ -119,6 +119,7 @@ export const ErrorPage = () => {
 
   useEffect(() => {
     dispatch(getMarketData());
+    // eslint-disable-next-line
   }, []);
 
   const JumbotronData = () => {
@@ -148,7 +149,9 @@ export const ErrorPage = () => {
   return (
     <div>
       <GlobalStyles />
-      <Jumbotron.Host isDark={userTheme === 'dark'}>{!mobile && <div className="container">{JumbotronData()}</div>}</Jumbotron.Host>
+      <Jumbotron.Host isDark={userTheme === 'dark'}>
+        {!mobile && <div className="container">{JumbotronData()}</div>}
+      </Jumbotron.Host>
       {mobile && JumbotronData()}
       <Footer />
     </div>

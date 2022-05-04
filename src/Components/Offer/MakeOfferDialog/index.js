@@ -235,7 +235,9 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
     async function func() {
       setIsGettingOfferType(true);
       const filteredOffers = await getFilteredOffers(nftData.address, nftData.id, walletAddress);
-      const data = filteredOffers ? filteredOffers.data.filter((o) => o.state.toString() === offerState.ACTIVE.toString()) : [];
+      const data = filteredOffers
+        ? filteredOffers.data.filter((o) => o.state.toString() === offerState.ACTIVE.toString())
+        : [];
       if (data && data.length > 0) {
         setOfferDataNew(data);
         setOfferType(OFFER_TYPE.update);

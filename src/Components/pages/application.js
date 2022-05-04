@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import Footer from '../components/Footer';
-import styled, {createGlobalStyle} from 'styled-components';
-import {useDispatch, useSelector} from 'react-redux';
+import styled, { createGlobalStyle } from 'styled-components';
+import { useSelector } from 'react-redux';
 import '../../Assets/styles/fire.css';
-import Reveal from "react-awesome-reveal";
-import {keyframes} from "@emotion/react";
+import Reveal from 'react-awesome-reveal';
+import { keyframes } from '@emotion/react';
 import NativeForms from 'native-forms-react';
 
 const fadeInUp = keyframes`
@@ -61,15 +61,16 @@ const StyledForm = styled.div`
   .nf-form-container .nf-files-upload {
     fill: ${({ theme }) => theme.colors.textColor3} !important;
   }
-  
-  .nf-root *, .nf-status-container * {
+
+  .nf-root *,
+  .nf-status-container * {
     color: ${({ theme }) => theme.colors.textColor3} !important;
     background: ${({ theme }) => theme.colors.bgColor1} !important;
   }
 `;
 
 const Application = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const userTheme = useSelector((state) => {
     return state.user.theme;
@@ -104,18 +105,21 @@ const Application = () => {
           </div>
         </div>
         <div className="row justify-content-center mt-2">
-
           <div className="col-xl-4 col-sm-6 d-flex justify-content-center mb-2 mb-sm-0">
             <a href="#form">
-              <ChoiceBox className="tab feature-box f-boxed style-3" style={{cursor: 'pointer'}} onClick={handleBtnClick(0)}>
-                <Reveal className='onStep' keyframes={fadeInUp} delay={0} duration={600} triggerOnce>
+              <ChoiceBox
+                className="tab feature-box f-boxed style-3"
+                style={{ cursor: 'pointer' }}
+                onClick={handleBtnClick(0)}
+              >
+                <Reveal className="onStep" keyframes={fadeInUp} delay={0} duration={600} triggerOnce>
                   <i className="bg-color-2 i-boxed icon_tags_alt"></i>
                 </Reveal>
                 <div className="text">
-                  <Reveal className='onStep' keyframes={fadeInUp} delay={100} duration={600} triggerOnce>
+                  <Reveal className="onStep" keyframes={fadeInUp} delay={100} duration={600} triggerOnce>
                     <h4 className="">Listing Request</h4>
                   </Reveal>
-                  <Reveal className='onStep' keyframes={fadeInUp} delay={200} duration={600} triggerOnce>
+                  <Reveal className="onStep" keyframes={fadeInUp} delay={200} duration={600} triggerOnce>
                     <p className="">For established projects that would like to be added to the marketplace.</p>
                   </Reveal>
                 </div>
@@ -126,15 +130,19 @@ const Application = () => {
 
           <div className="col-xl-4 col-sm-6 d-flex justify-content-center">
             <a href="#form">
-              <ChoiceBox className="tab feature-box f-boxed style-3" style={{cursor: 'pointer'}} onClick={handleBtnClick(1)}>
-                <Reveal className='onStep' keyframes={fadeInUp} delay={0} duration={600} triggerOnce>
+              <ChoiceBox
+                className="tab feature-box f-boxed style-3"
+                style={{ cursor: 'pointer' }}
+                onClick={handleBtnClick(1)}
+              >
+                <Reveal className="onStep" keyframes={fadeInUp} delay={0} duration={600} triggerOnce>
                   <i className="bg-color-2 i-boxed icon_lightbulb_alt"></i>
                 </Reveal>
                 <div className="text">
-                  <Reveal className='onStep' keyframes={fadeInUp} delay={100} duration={600} triggerOnce>
+                  <Reveal className="onStep" keyframes={fadeInUp} delay={100} duration={600} triggerOnce>
                     <h4 className="">Launchpad Request</h4>
                   </Reveal>
-                  <Reveal className='onStep' keyframes={fadeInUp} delay={200} duration={600} triggerOnce>
+                  <Reveal className="onStep" keyframes={fadeInUp} delay={200} duration={600} triggerOnce>
                     <p className="">For projects that would like to launch on the Ebisu's Bay launchpad</p>
                   </Reveal>
                 </div>
