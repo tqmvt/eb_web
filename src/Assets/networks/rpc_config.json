@@ -5942,10 +5942,10 @@
       "memberCost": "490",
       "whitelistCost": "490",
       "foundersOnly": false,
-      "start": 1651694400000,
+      "start": 1651780800000,
       "salePeriods": {
-        "presale": 1651694400000,
-        "public": 1651780800000
+        "presale": 1651780800000,
+        "public": 1651867200000
       },
       "end": null,
       "referral": false,
