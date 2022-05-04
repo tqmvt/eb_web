@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setStakeCount, setVIPCount } from '../../GlobalState/User';
 import { Form, Spinner } from 'react-bootstrap';
 import { toast } from 'react-toastify';
-import { createSuccessfulTransactionToastContent, round } from '../../utils';
+import {createSuccessfulTransactionToastContent, round, siPrefixedNumber} from '../../utils';
 import { Contract, ethers } from 'ethers';
 import { RewardsPoolAbi } from '../../Contracts/Abis';
 import config from '../../Assets/networks/rpc_config.json';
@@ -22,6 +22,7 @@ import {
   faExternalLinkAlt,
   faTrophy,
 } from '@fortawesome/free-solid-svg-icons';
+import {getTheme} from "../../Theme/theme";
 
 const txExtras = {
   gasPrice: ethers.utils.parseUnits('5000', 'gwei'),
@@ -314,14 +315,18 @@ const StakeCard = ({stake, threshold, buttonName, buttonActionName}) => {
 
 const RewardsCard = ({}) => {
   const user = useSelector((state) => state.user);
+  const userTheme = useSelector((state) => {
+    return state.user.theme;
+  });
+
+
   const [isHarvesting, setIsHarvesting] = useState(false);
   const [inInitMode, setIsInInitMode] = useState(false);
-
-  // Completed pool state
   const [rewardsInfoLoading, setRewardsInfoLoading] = useState(false);
   const [userPendingRewards, setUserPendingRewards] = useState(0);
   const [userReleasedRewards, setUserReleasedRewards] = useState(0);
   const [globalPaidRewards, setGlobalPaidRewards] = useState(0);
+  const [globalStakedTotal, setglobalStakedTotal] = useState(0);
 
   const getRewardsInfo = async () => {
     if (!user.stakeContract) return;
@@ -331,10 +336,12 @@ const RewardsCard = ({}) => {
       const mUserPendingRewards = await user.stakeContract.getReward(user.address);
       const mGlobalPaidRewards = await user.stakeContract.rewardsPaid();
       const mUserReleasedRewards = await user.stakeContract.getReleasedReward(user.address);
+      const mGlobalStakedTotal = await user.stakeContract.totalStaked();
 
       setUserPendingRewards(ethers.utils.formatEther(mUserPendingRewards));
       setUserReleasedRewards(ethers.utils.formatEther(mUserReleasedRewards));
       setGlobalPaidRewards(ethers.utils.formatEther(mGlobalPaidRewards));
+      setglobalStakedTotal(parseInt(mGlobalStakedTotal));
     } catch (error) {
       console.log(error);
     } finally {
@@ -386,40 +393,54 @@ const RewardsCard = ({}) => {
             </Spinner>
           ) : (
             <>
-              {inInitMode ? (
-                <p className="text-center my-auto">Rewards will start soon!</p>
-              ) : (
+              <div className="row mb-4">
+                <div className="col-4 text-center">
+                  <div>Total Staked</div>
+                  <div className="fw-bold" style={{color: getTheme(userTheme).colors.textColor3}}>
+                    {globalStakedTotal}
+                  </div>
+                </div>
+                <div className="col-4 text-center">
+                  <div>Total Harvested</div>
+                  <div className="fw-bold" style={{color: getTheme(userTheme).colors.textColor3}}>
+                    {round(siPrefixedNumber(Number(globalPaidRewards)), 3)} CRO
+                  </div>
+                </div>
+                <div className="col-4 text-center">
+                  <div>My Share</div>
+                  <div className="fw-bold" style={{color: getTheme(userTheme).colors.textColor3}}>
+                    {round(siPrefixedNumber(Number(userReleasedRewards)), 3)} CRO
+                  </div>
+                </div>
+              </div>
+              {userPendingRewards > 0 ? (
                 <>
-                  {userPendingRewards > 0 ? (
-                    <>
-                      <p className="text-center my-xl-auto fs-5">
-                        You have <strong>{commify(round(userPendingRewards, 3))} CRO</strong>{' '}
-                        available for harvest!
-                      </p>
-                      <button
-                        className="btn-main lead mx-1 mb-1 mt-2"
-                        onClick={harvest}
-                        disabled={!(userPendingRewards > 0)}
-                        style={{ width: 'auto' }}
-                      >
-                        {isHarvesting ? (
-                          <>
-                            Harvesting...
-                            <Spinner animation="border" role="status" size="sm" className="ms-1">
-                              <span className="visually-hidden">Loading...</span>
-                            </Spinner>
-                          </>
-                        ) : (
-                          <>Harvest</>
-                        )}
-                      </button>
-                    </>
-                  ) : (
-                    <p className="text-center my-auto">
-                      No harvestable rewards yet. Check back later!
-                    </p>
-                  )}
+                  <p className="text-center my-xl-auto fs-5" style={{color: getTheme(userTheme).colors.textColor3}}>
+                    You have <strong>{commify(round(userPendingRewards, 3))} CRO</strong>{' '}
+                    available for harvest!
+                  </p>
+                  <button
+                    className="btn-main lead mx-1 mb-1 mt-2"
+                    onClick={harvest}
+                    disabled={!(userPendingRewards > 0)}
+                    style={{ width: 'auto' }}
+                  >
+                    {isHarvesting ? (
+                      <>
+                        Harvesting...
+                        <Spinner animation="border" role="status" size="sm" className="ms-1">
+                          <span className="visually-hidden">Loading...</span>
+                        </Spinner>
+                      </>
+                    ) : (
+                      <>Harvest</>
+                    )}
+                  </button>
                 </>
+              ) : (
+                <p className="text-center my-auto">
+                  No harvestable rewards yet. Check back later!
+                </p>
               )}
             </>
           )}
