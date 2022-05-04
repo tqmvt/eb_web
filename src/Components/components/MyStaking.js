@@ -317,8 +317,7 @@ const RewardsCard = () => {
     return state.user.theme;
   });
 
-  // const [isHarvesting, setIsHarvesting] = useState(false);
-  // const [inInitMode, setIsInInitMode] = useState(false);
+  const [isHarvesting, setIsHarvesting] = useState(false);
   const [rewardsInfoLoading, setRewardsInfoLoading] = useState(false);
   const [userPendingRewards, setUserPendingRewards] = useState(0);
   const [userReleasedRewards, setUserReleasedRewards] = useState(0);
@@ -347,12 +346,11 @@ const RewardsCard = () => {
     }
   };
 
-  /*
   const harvest = async () => {
     if (!user.stakeContract) return;
 
     try {
-      // setIsHarvesting(true);
+      setIsHarvesting(true);
       const amountToHarvest = await user.stakeContract.getReward(user.address);
 
       if (amountToHarvest.gt(0)) {
@@ -370,10 +368,9 @@ const RewardsCard = () => {
     } catch (err) {
       toast.error(err.message);
     } finally {
-      // setIsHarvesting(false);
+      setIsHarvesting(false);
     }
   };
-  */
 
   useEffect(() => {
     async function func() {

@@ -83,8 +83,6 @@ const CronosverseDrop = () => {
   const [regularCost, setRegularCost] = useState([]);
   const [totalSupply, setTotalSupply] = useState(0);
 
-  console.log(loading, maxSupply, totalSupply);
-
   useEffect(() => {
     logEvent(getAnalytics(), 'screen_view', {
       firebase_screen: 'drop',
@@ -577,7 +575,7 @@ const CronosverseMintBoard = ({ mintNow, minting, mintedIds, prices }) => {
   };
 
   const isMinted = (tokenId) => {
-    return mintedIds?.some((id) => tokenId === id);
+    return mintedIds?.some((id) => parseInt(tokenId) === parseInt(id));
   };
 
   const changeCanvasState = (ReactZoomPanPinchRef, event) => {

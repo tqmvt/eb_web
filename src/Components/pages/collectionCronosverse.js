@@ -67,7 +67,6 @@ const CollectionCronosverse = ({ collection }) => {
       <CronosverseCollectionBoard
         onBuy={handleBuy}
         onOffer={handleMakeOffer}
-        minting={false}
         listings={listings}
         nfts={items}
       />
@@ -98,7 +97,7 @@ const MakeOffer = styled.div`
 const tiles = [tile1, tile2, tile3];
 const tileType = ['Plain', 'Suburban', 'Commercial'];
 
-const CronosverseCollectionBoard = ({ onBuy, onOffer, minting, listings = [], nfts = [] }) => {
+const CronosverseCollectionBoard = ({ onBuy, onOffer, listings = [], nfts = [] }) => {
   const ref0 = useRef();
   const ref2 = useRef();
   const [tileInfo, setTileInfo] = useState({});
@@ -171,11 +170,11 @@ const CronosverseCollectionBoard = ({ onBuy, onOffer, minting, listings = [], nf
   };
 
   const listingForToken = (tokenId) => {
-    return listings.find((listing) => tokenId === listing.id);
+    return listings.find((listing) => parseInt(tokenId) === parseInt(listing.id));
   };
 
   const nftForToken = (tokenId) => {
-    return nfts.find((nft) => tokenId === nft.id);
+    return nfts.find((nft) => parseInt(tokenId) === parseInt(nft.id));
   };
 
   const changeCanvasState = (ReactZoomPanPinchRef, event) => {
@@ -196,9 +195,6 @@ const CronosverseCollectionBoard = ({ onBuy, onOffer, minting, listings = [], nf
   };
 
   const handleClick = (e) => {
-    if (isMintingFlag) {
-      return;
-    }
     const mPos = getMousePos(e);
     let scale = zoomState.scale;
     const tileWidth = ref2.current.width / 54;
@@ -287,16 +283,6 @@ const CronosverseCollectionBoard = ({ onBuy, onOffer, minting, listings = [], nf
     }
   }, [listings]);
 
-  useEffect(() => {
-    if (minting === false) {
-      // let ctx2 = ref2.current.getContext('2d');
-      // ctx2.clearRect(0, 0, ref2.current.width, ref2.current.height);
-      setTileInfo({ ...tileInfo, xPos: null, yPos: null });
-      setModalFlag('none');
-    }
-    // eslint-disable-next-line
-  }, [minting]);
-
   return (
     <div>
       <div
@@ -310,9 +296,6 @@ const CronosverseCollectionBoard = ({ onBuy, onOffer, minting, listings = [], nf
           if (window.innerHeight - e.clientY < 175) {
             sub = window.innerHeight - e.clientY;
             setSubDistanceY(sub);
-          }
-          if (minting === true || isMintingFlag === true) {
-            return;
           }
         }}
       >
@@ -341,9 +324,7 @@ const CronosverseCollectionBoard = ({ onBuy, onOffer, minting, listings = [], nf
                 <div
                   className="cross"
                   onClick={() => {
-                    if (!isMintingFlag) {
-                      setModalFlag('none');
-                    }
+                    setModalFlag('none');
                   }}
                 >
                   &times;
