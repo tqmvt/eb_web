@@ -69,10 +69,12 @@ const userSlice = createSlice({
     showWrongChainModal: false,
 
     // Primary Balances
+    balance: null,
     rewards: null,
     marketBalance: null,
-    balance: null,
+    withdrawingMarketBalance: false,
     stakingRewards: null,
+    harvestingStakingRewards: false,
 
     // My NFTs
     fetchingNfts: false,
@@ -241,11 +243,23 @@ const userSlice = createSlice({
     withdrewRewards(state) {
       state.rewards = 0;
     },
-    withdrewPayments(state) {
-      state.marketBalance = 0;
+    withdrawingMarketBalance(state) {
+      state.withdrawingMarketBalance = true;
     },
-    withdrewStakingRewards(state) {
-      state.stakingRewards = 0;
+    withdrewMarketBalance(state, action) {
+      state.withdrawingMarketBalance = false;
+      if (action.payload.success) {
+        state.marketBalance = 0;
+      }
+    },
+    harvestingStakingRewards(state) {
+      state.harvestingStakingRewards = true;
+    },
+    harvestedStakingRewards(state, action) {
+      state.harvestingStakingRewards = false;
+      if (action.payload.success) {
+        state.stakingRewards = 0;
+      }
     },
     transferedNFT(state, action) {
       const indexesToRemove = state.nfts
@@ -340,8 +354,10 @@ export const {
   onCorrectChain,
   registeredCode,
   withdrewRewards,
-  withdrewPayments,
-  withdrewStakingRewards,
+  withdrawingMarketBalance,
+  withdrewMarketBalance,
+  harvestingStakingRewards,
+  harvestedStakingRewards,
   listingUpdate,
   transferedNFT,
   setIsMember,
@@ -918,15 +934,17 @@ export class AccountMenuActions {
     }
   };
 
-  static withdrawBalance = () => async (dispatch, getState) => {
+  static withdrawMarketBalance = () => async (dispatch, getState) => {
     const { user } = getState();
     try {
+      dispatch(withdrawingMarketBalance());
       const tx = await user.marketContract.withdrawPayments(user.address);
       const receipt = await tx.wait();
       toast.success(createSuccessfulTransactionToastContent(receipt.transactionHash));
-      dispatch(withdrewPayments());
+      dispatch(withdrewMarketBalance({success: true}));
       dispatch(updateBalance());
     } catch (error) {
+      dispatch(withdrewMarketBalance({success: false}));
       if (error.data) {
         toast.error(error.data.message);
       } else if (error.message) {
@@ -935,18 +953,21 @@ export class AccountMenuActions {
         console.log(error);
         toast.error('Unknown Error');
       }
+    } finally {
     }
   };
 
-  static withdrawStakingRewards = () => async (dispatch, getState) => {
+  static harvestStakingRewards = () => async (dispatch, getState) => {
     const { user } = getState();
     try {
+      dispatch(harvestingStakingRewards());
       const tx = await user.stakeContract.harvest(user.address);
       const receipt = await tx.wait();
       toast.success(createSuccessfulTransactionToastContent(receipt.transactionHash));
-      dispatch(withdrewStakingRewards());
+      dispatch(harvestedStakingRewards({success: true}));
       dispatch(updateBalance());
     } catch (error) {
+      dispatch(harvestedStakingRewards({success: false}));
       if (error.data) {
         toast.error(error.data.message);
       } else if (error.message) {
