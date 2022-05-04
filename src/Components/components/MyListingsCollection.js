@@ -42,6 +42,7 @@ const MyListingsCollection = ({ walletAddress = null }) => {
   useEffect(() => {
     dispatch(clearMyUnfilteredListings());
     dispatch(fetchUnfilteredListings(walletAddress));
+    // eslint-disable-next-line
   }, [walletAddress]);
 
   useEffect(() => {

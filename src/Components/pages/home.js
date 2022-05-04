@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {Link, useHistory} from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { keyframes } from '@emotion/react';
 import Reveal from 'react-awesome-reveal';
 import { createGlobalStyle, default as styled } from 'styled-components';
@@ -180,9 +180,7 @@ const Home = () => {
               Explore
             </span>
             <Link to="/apply">
-              <Button type="legacy-outlined">
-                Become a Creator
-              </Button>
+              <Button type="legacy-outlined">Become a Creator</Button>
             </Link>
 
             <Button onClick={() => window.open(`/collection/founding-member`, '_self')} type="legacy-outlined">

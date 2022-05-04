@@ -70,7 +70,7 @@ const CronosverseDrop = () => {
 
   const [loading, setLoading] = useState(true);
   const [minting, setMinting] = useState(false);
-  const [referral, setReferral] = useState('');
+  // const [referral, setReferral] = useState('');
   const [dropObject, setDropObject] = useState(null);
   const [status, setStatus] = useState(statuses.UNSET);
   const [whitelisted, setWhiteListed] = useState(false);
@@ -88,6 +88,7 @@ const CronosverseDrop = () => {
       firebase_screen: 'drop',
       drop_id: slug,
     });
+    // eslint-disable-next-line
   }, []);
 
   const user = useSelector((state) => {
@@ -106,8 +107,12 @@ const CronosverseDrop = () => {
     return state.cronies;
   });
 
-  useEffect(async () => {
-    await retrieveDropInfo();
+  useEffect(() => {
+    async function fetchData() {
+      await retrieveDropInfo();
+    }
+    fetchData();
+    // eslint-disable-next-line
   }, [user, membership, cronies]);
 
   const retrieveDropInfo = async () => {
@@ -152,7 +157,7 @@ const CronosverseDrop = () => {
         //   `regularCost: ${infos.regularCost}\n`,
         //   `whitelistCost: ${infos.whitelistCost}\n`
         // );
-        const canMint = user.address ? await readContract.canMint(user.address) : 0;
+        // const canMint = user.address ? await readContract.canMint(user.address) : 0;
         // console.log('canMint: ', canMint.toString())
         const isWhitelisted = user.address ? await readContract.isWhiteList(user.address) : false;
         // console.log('isWhitelisted: ', isWhitelisted);
@@ -211,10 +216,10 @@ const CronosverseDrop = () => {
     else setStatus(statuses.NOT_STARTED);
   };
 
-  const handleChangeReferralCode = (event) => {
-    const { value } = event.target;
-    setReferral(value);
-  };
+  // const handleChangeReferralCode = (event) => {
+  //   const { value } = event.target;
+  //   setReferral(value);
+  // };
 
   const calculateCost = async (user, id) => {
     if (isUsingDefaultDropAbi(dropObject.abi) || isUsingAbiFile(dropObject.abi)) {
@@ -242,7 +247,7 @@ const CronosverseDrop = () => {
       const contract = dropObject.writeContract;
       try {
         let cost = await calculateCost(user, id);
-        if (cost == -1) cost = ethers.utils.parseEther(price);
+        if (cost === -1) cost = ethers.utils.parseEther(price);
         let extra = {
           value: cost,
           gasPrice: ethers.utils.parseUnits('5000', 'gwei'),
@@ -570,7 +575,7 @@ const CronosverseMintBoard = ({ mintNow, minting, mintedIds, prices }) => {
   };
 
   const isMinted = (tokenId) => {
-    return mintedIds?.some((id) => tokenId == id);
+    return mintedIds?.some((id) => parseInt(tokenId) === parseInt(id));
   };
 
   const changeCanvasState = (ReactZoomPanPinchRef, event) => {
@@ -607,7 +612,7 @@ const CronosverseMintBoard = ({ mintNow, minting, mintedIds, prices }) => {
     console.log(type, xPos, yPos, tileInfo);
     let ctx = ref2.current.getContext('2d');
     ctx.clearRect(tileWidth * tileInfo.xPos - 1, tileHeight * tileInfo.yPos - 1, tileWidth + 1, tileHeight + 2);
-    if (type == 0 || type == 4) {
+    if (type === 0 || type === 4) {
       setModalFlag('none');
 
       return;
@@ -655,7 +660,7 @@ const CronosverseMintBoard = ({ mintNow, minting, mintedIds, prices }) => {
     let ctx = ref2.current.getContext('2d');
     ctx.clearRect(0, 0, ref2.current.width, ref2.current.height);
     ctx.fillStyle = 'rgba(50, 50, 50, 0.5)';
-    if (mintedIds?.length == 0) {
+    if (mintedIds?.length === 0) {
       return;
     } else {
       for (let i = 0; i < mintedIds.length; i++) {
@@ -666,12 +671,13 @@ const CronosverseMintBoard = ({ mintNow, minting, mintedIds, prices }) => {
   }, [mintedIds]);
 
   useEffect(() => {
-    if (minting == false) {
+    if (minting === false) {
       // let ctx2 = ref2.current.getContext('2d');
       // ctx2.clearRect(0, 0, ref2.current.width, ref2.current.height);
       setTileInfo({ ...tileInfo, xPos: null, yPos: null });
       setModalFlag('none');
     }
+    // eslint-disable-next-line
   }, [minting]);
 
   return (

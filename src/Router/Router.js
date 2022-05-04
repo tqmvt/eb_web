@@ -25,7 +25,7 @@ import Collections from '../Components/pages/collections';
 import MetaverseAuctions from '../Components/pages/metaverseAuctions';
 import { ErrorPage } from '../Components/pages/ErrorPage';
 import ManageAuctions from '../Components/pages/manageAuctions';
-import Application from "../Components/pages/application";
+import Application from '../Components/pages/application';
 
 const SentryEnhancedRoute = Sentry.withSentryRouting(Route);
 

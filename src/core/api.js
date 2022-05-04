@@ -13,8 +13,10 @@ import {
   caseInsensitiveCompare,
   convertIpfsResource,
   isAntMintPassCollection,
-  isMetapixelsCollection, isNftBlacklisted,
-  isSouthSideAntsCollection, isUserBlacklisted,
+  isMetapixelsCollection,
+  isNftBlacklisted,
+  isSouthSideAntsCollection,
+  isUserBlacklisted,
   isWeirdApesCollection,
 } from '../utils';
 import { getAntMintPassMetadata, getWeirdApesStakingStatus } from './api/chain';
@@ -364,7 +366,7 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
   if (!walletAddress || !walletProvider) {
     return;
   }
-  const walletBlacklisted = isUserBlacklisted(walletAddress);
+  // const walletBlacklisted = isUserBlacklisted(walletAddress);
 
   const signer = walletProvider.getSigner();
 

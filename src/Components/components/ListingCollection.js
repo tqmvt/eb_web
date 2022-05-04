@@ -61,6 +61,7 @@ const ListingCollection = ({ showLoadMore = true, collectionId = null, sellerId 
 
     dispatch(init(sortOption, filterOption));
     dispatch(fetchListings());
+    // eslint-disable-next-line
   }, [dispatch]);
 
   const loadMore = () => {
