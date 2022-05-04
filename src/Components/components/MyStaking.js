@@ -330,15 +330,16 @@ const RewardsCard = () => {
 
     setRewardsInfoLoading(true);
     try {
+      const mGlobalStakedTotal = await user.stakeContract.totalStaked();
+      setglobalStakedTotal(parseInt(mGlobalStakedTotal));
+
       const mUserPendingRewards = await user.stakeContract.getReward(user.address);
       const mGlobalPaidRewards = await user.stakeContract.rewardsPaid();
       const mUserReleasedRewards = await user.stakeContract.getReleasedReward(user.address);
-      const mGlobalStakedTotal = await user.stakeContract.totalStaked();
 
       setUserPendingRewards(ethers.utils.formatEther(mUserPendingRewards));
       setUserReleasedRewards(ethers.utils.formatEther(mUserReleasedRewards));
       setGlobalPaidRewards(ethers.utils.formatEther(mGlobalPaidRewards));
-      setglobalStakedTotal(parseInt(mGlobalStakedTotal));
     } catch (error) {
       console.log(error);
     } finally {
@@ -394,28 +395,28 @@ const RewardsCard = () => {
           ) : (
             <>
               <div className="row mb-4">
-                <div className="col-4 text-center">
+                <div className="col-12 col-sm-4 text-center">
                   <div>Total Staked</div>
                   <div className="fw-bold" style={{ color: getTheme(userTheme).colors.textColor3 }}>
                     {globalStakedTotal}
                   </div>
                 </div>
-                <div className="col-4 text-center">
+                <div className="col-12 col-sm-4 text-center">
                   <div>Total Harvested</div>
                   <div className="fw-bold" style={{ color: getTheme(userTheme).colors.textColor3 }}>
-                    {round(siPrefixedNumber(Number(globalPaidRewards)), 3)} CRO
+                    {siPrefixedNumber(Number(globalPaidRewards))} CRO
                   </div>
                 </div>
-                <div className="col-4 text-center">
+                <div className="col-12 col-sm-4 text-center">
                   <div>My Share</div>
                   <div className="fw-bold" style={{ color: getTheme(userTheme).colors.textColor3 }}>
-                    {round(siPrefixedNumber(Number(userReleasedRewards)), 3)} CRO
+                    {siPrefixedNumber(Number(userReleasedRewards))} CRO
                   </div>
                 </div>
               </div>
               {userPendingRewards > 0 ? (
                 <>
-                  <p className="text-center my-auto">Waiting for staking to start...</p>
+                  <p className="text-center my-auto">Waiting for harvest season...</p>
                   {/*<p className="text-center my-xl-auto fs-5" style={{color: getTheme(userTheme).colors.textColor3}}>*/}
                   {/*  You have <strong>{commify(round(userPendingRewards, 3))} CRO</strong>{' '}*/}
                   {/*  available for harvest!*/}
@@ -442,7 +443,7 @@ const RewardsCard = () => {
                 // <p className="text-center my-auto">
                 //   No harvestable rewards yet. Check back later!
                 // </p>
-                <p className="text-center my-auto">Waiting for staking to start...</p>
+                <p className="text-center my-auto">Waiting for harvest season...</p>
               )}
             </>
           )}
