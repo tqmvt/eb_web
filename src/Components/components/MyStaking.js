@@ -3,12 +3,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setStakeCount, setVIPCount } from '../../GlobalState/User';
 import { Form, Spinner } from 'react-bootstrap';
 import { toast } from 'react-toastify';
-import {createSuccessfulTransactionToastContent, round, siPrefixedNumber} from '../../utils';
-import { Contract, ethers } from 'ethers';
-import { RewardsPoolAbi } from '../../Contracts/Abis';
-import config from '../../Assets/networks/rpc_config.json';
-import { commify } from 'ethers/lib.esm/utils';
-import Countdown from 'react-countdown';
+import { createSuccessfulTransactionToastContent, round, siPrefixedNumber } from '../../utils';
+import { ethers } from 'ethers';
+// import { RewardsPoolAbi } from '../../Contracts/Abis';
+// import config from '../../Assets/networks/rpc_config.json';
+// import { commify } from 'ethers/lib.esm/utils';
+// import Countdown from 'react-countdown';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faBatteryEmpty,
@@ -17,12 +17,12 @@ import {
   faBatteryQuarter,
   faBatteryThreeQuarters,
   faBolt,
-  faChargingStation,
-  faExclamationTriangle,
   faExternalLinkAlt,
-  faTrophy,
+  // faChargingStation,
+  // faExclamationTriangle,
+  // faTrophy,
 } from '@fortawesome/free-solid-svg-icons';
-import {getTheme} from "../../Theme/theme";
+import { getTheme } from '../../Theme/theme';
 
 const txExtras = {
   gasPrice: ethers.utils.parseUnits('5000', 'gwei'),
@@ -111,6 +111,7 @@ const MyStaking = () => {
         setIsInitializing(false);
       }
     }
+    // eslint-disable-next-line
   }, [user.connectingWallet]);
 
   const PromptToPurchase = () => {
@@ -155,6 +156,7 @@ const MyStaking = () => {
                   href="https://blog.ebisusbay.com/founding-member-vip-staking-6f7405a68eed"
                   className="fw-bold"
                   target="_blank"
+                  rel="noreferrer"
                 >
                   Learn More <FontAwesomeIcon icon={faExternalLinkAlt} />
                 </a>
@@ -244,7 +246,7 @@ const MyStaking = () => {
 
 export default memo(MyStaking);
 
-const StakeCard = ({stake, threshold, buttonName, buttonActionName}) => {
+const StakeCard = ({ stake, threshold, buttonName, buttonActionName }) => {
   const [quantity, setQuantity] = useState(1);
   const [isStaking, setIsStaking] = useState(false);
 
@@ -270,6 +272,7 @@ const StakeCard = ({stake, threshold, buttonName, buttonActionName}) => {
     } else if (quantity === 0 && threshold > 0) {
       setQuantity(1);
     }
+    // eslint-disable-next-line
   }, [threshold]);
 
   return (
@@ -289,11 +292,7 @@ const StakeCard = ({stake, threshold, buttonName, buttonActionName}) => {
           </div>
 
           <div className="btn-group mt-4 flex-wrap">
-            <button
-              className="btn-main lead mx-1 mb-2"
-              onClick={execute}
-              disabled={quantity === 0 || threshold === 0}
-            >
+            <button className="btn-main lead mx-1 mb-2" onClick={execute} disabled={quantity === 0 || threshold === 0}>
               {isStaking ? (
                 <>
                   {buttonActionName}
@@ -309,19 +308,17 @@ const StakeCard = ({stake, threshold, buttonName, buttonActionName}) => {
         </div>
       </div>
     </div>
-  )
+  );
 };
 
-
-const RewardsCard = ({}) => {
+const RewardsCard = () => {
   const user = useSelector((state) => state.user);
   const userTheme = useSelector((state) => {
     return state.user.theme;
   });
 
-
-  const [isHarvesting, setIsHarvesting] = useState(false);
-  const [inInitMode, setIsInInitMode] = useState(false);
+  // const [isHarvesting, setIsHarvesting] = useState(false);
+  // const [inInitMode, setIsInInitMode] = useState(false);
   const [rewardsInfoLoading, setRewardsInfoLoading] = useState(false);
   const [userPendingRewards, setUserPendingRewards] = useState(0);
   const [userReleasedRewards, setUserReleasedRewards] = useState(0);
@@ -349,11 +346,12 @@ const RewardsCard = ({}) => {
     }
   };
 
+  /*
   const harvest = async () => {
     if (!user.stakeContract) return;
 
     try {
-      setIsHarvesting(true);
+      // setIsHarvesting(true);
       const amountToHarvest = await user.stakeContract.getReward(user.address);
 
       if (amountToHarvest.gt(0)) {
@@ -371,15 +369,17 @@ const RewardsCard = ({}) => {
     } catch (err) {
       toast.error(err.message);
     } finally {
-      setIsHarvesting(false);
+      // setIsHarvesting(false);
     }
   };
+  */
 
   useEffect(() => {
     async function func() {
       await getRewardsInfo();
     }
     func();
+    // eslint-disable-next-line
   }, []);
 
   return (
@@ -396,28 +396,26 @@ const RewardsCard = ({}) => {
               <div className="row mb-4">
                 <div className="col-4 text-center">
                   <div>Total Staked</div>
-                  <div className="fw-bold" style={{color: getTheme(userTheme).colors.textColor3}}>
+                  <div className="fw-bold" style={{ color: getTheme(userTheme).colors.textColor3 }}>
                     {globalStakedTotal}
                   </div>
                 </div>
                 <div className="col-4 text-center">
                   <div>Total Harvested</div>
-                  <div className="fw-bold" style={{color: getTheme(userTheme).colors.textColor3}}>
+                  <div className="fw-bold" style={{ color: getTheme(userTheme).colors.textColor3 }}>
                     {round(siPrefixedNumber(Number(globalPaidRewards)), 3)} CRO
                   </div>
                 </div>
                 <div className="col-4 text-center">
                   <div>My Share</div>
-                  <div className="fw-bold" style={{color: getTheme(userTheme).colors.textColor3}}>
+                  <div className="fw-bold" style={{ color: getTheme(userTheme).colors.textColor3 }}>
                     {round(siPrefixedNumber(Number(userReleasedRewards)), 3)} CRO
                   </div>
                 </div>
               </div>
               {userPendingRewards > 0 ? (
                 <>
-                  <p className="text-center my-auto">
-                    Waiting for staking to start...
-                  </p>
+                  <p className="text-center my-auto">Waiting for staking to start...</p>
                   {/*<p className="text-center my-xl-auto fs-5" style={{color: getTheme(userTheme).colors.textColor3}}>*/}
                   {/*  You have <strong>{commify(round(userPendingRewards, 3))} CRO</strong>{' '}*/}
                   {/*  available for harvest!*/}
@@ -444,9 +442,7 @@ const RewardsCard = ({}) => {
                 // <p className="text-center my-auto">
                 //   No harvestable rewards yet. Check back later!
                 // </p>
-                <p className="text-center my-auto">
-                Waiting for staking to start...
-                </p>
+                <p className="text-center my-auto">Waiting for staking to start...</p>
               )}
             </>
           )}

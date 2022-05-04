@@ -103,6 +103,7 @@ const MyNftListDialog = ({ walletAddress, marketContract, myNftPageListDialog })
       }
     }
     asyncFunc();
+    // eslint-disable-next-line
   }, [myNftPageListDialog]);
 
   const [salePrice, setSalePrice] = useState(0);
@@ -151,7 +152,7 @@ const MyNftListDialog = ({ walletAddress, marketContract, myNftPageListDialog })
       //   }
       // }
     } else {
-      if (salePrice != '' && salePrice != null) {
+      if (salePrice !== '' && salePrice !== null) {
         setPriceError('Price must only contain full numbers!');
       }
       setNextEnabled(false);

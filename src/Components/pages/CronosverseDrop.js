@@ -70,7 +70,7 @@ const CronosverseDrop = () => {
 
   const [loading, setLoading] = useState(true);
   const [minting, setMinting] = useState(false);
-  const [referral, setReferral] = useState('');
+  // const [referral, setReferral] = useState('');
   const [dropObject, setDropObject] = useState(null);
   const [status, setStatus] = useState(statuses.UNSET);
   const [whitelisted, setWhiteListed] = useState(false);
@@ -83,11 +83,14 @@ const CronosverseDrop = () => {
   const [regularCost, setRegularCost] = useState([]);
   const [totalSupply, setTotalSupply] = useState(0);
 
+  console.log(loading, maxSupply, totalSupply);
+
   useEffect(() => {
     logEvent(getAnalytics(), 'screen_view', {
       firebase_screen: 'drop',
       drop_id: slug,
     });
+    // eslint-disable-next-line
   }, []);
 
   const user = useSelector((state) => {
@@ -106,8 +109,12 @@ const CronosverseDrop = () => {
     return state.cronies;
   });
 
-  useEffect(async () => {
-    await retrieveDropInfo();
+  useEffect(() => {
+    async function fetchData() {
+      await retrieveDropInfo();
+    }
+    fetchData();
+    // eslint-disable-next-line
   }, [user, membership, cronies]);
 
   const retrieveDropInfo = async () => {
@@ -152,7 +159,7 @@ const CronosverseDrop = () => {
         //   `regularCost: ${infos.regularCost}\n`,
         //   `whitelistCost: ${infos.whitelistCost}\n`
         // );
-        const canMint = user.address ? await readContract.canMint(user.address) : 0;
+        // const canMint = user.address ? await readContract.canMint(user.address) : 0;
         // console.log('canMint: ', canMint.toString())
         const isWhitelisted = user.address ? await readContract.isWhiteList(user.address) : false;
         // console.log('isWhitelisted: ', isWhitelisted);
@@ -211,10 +218,10 @@ const CronosverseDrop = () => {
     else setStatus(statuses.NOT_STARTED);
   };
 
-  const handleChangeReferralCode = (event) => {
-    const { value } = event.target;
-    setReferral(value);
-  };
+  // const handleChangeReferralCode = (event) => {
+  //   const { value } = event.target;
+  //   setReferral(value);
+  // };
 
   const calculateCost = async (user, id) => {
     if (isUsingDefaultDropAbi(dropObject.abi) || isUsingAbiFile(dropObject.abi)) {
@@ -242,7 +249,7 @@ const CronosverseDrop = () => {
       const contract = dropObject.writeContract;
       try {
         let cost = await calculateCost(user, id);
-        if (cost == -1) cost = ethers.utils.parseEther(price);
+        if (cost === -1) cost = ethers.utils.parseEther(price);
         let extra = {
           value: cost,
           gasPrice: ethers.utils.parseUnits('5000', 'gwei'),

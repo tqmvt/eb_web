@@ -34,6 +34,7 @@ const CollectionFilterBar = ({ cacheName = null }) => {
     (sortOption) => {
       dispatch(sortListings(sortOption, cacheName));
     },
+    // eslint-disable-next-line
     [dispatch]
   );
 

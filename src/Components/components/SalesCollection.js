@@ -1,10 +1,10 @@
-import React, { memo, useCallback, useEffect, useState } from 'react';
+import React, { memo, useCallback, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {init, fetchListings, filterListings, sortListings, searchListings} from '../../GlobalState/marketplaceSlice';
+import { init, fetchListings, filterListings, sortListings, searchListings } from '../../GlobalState/marketplaceSlice';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Spinner, Table } from 'react-bootstrap';
 import { SortOption } from '../Models/sort-option.model';
-import {debounce, shortAddress, timeSince} from '../../utils';
+import { debounce, shortAddress, timeSince } from '../../utils';
 import { Link } from 'react-router-dom';
 import { ethers } from 'ethers';
 import TopFilterBar from './TopFilterBar';
@@ -21,8 +21,8 @@ const SalesCollection = ({
 }) => {
   const dispatch = useDispatch();
 
-  const mobileListBreakpoint = 768;
-  const [tableMobileView, setTableMobileView] = useState(window.innerWidth > mobileListBreakpoint);
+  // const mobileListBreakpoint = 768;
+  // const [tableMobileView, setTableMobileView] = useState(window.innerWidth > mobileListBreakpoint);
 
   const listings = useSelector((state) => {
     return state.marketplace.listings;
@@ -77,6 +77,8 @@ const SalesCollection = ({
 
     dispatch(init(sortOption, filterOption));
     dispatch(fetchListings(true));
+
+    // eslint-disable-next-line
   }, [dispatch]);
 
   const loadMore = () => {
@@ -104,6 +106,7 @@ const SalesCollection = ({
     (filterOption) => {
       dispatch(filterListings(filterOption, cacheName, true));
     },
+    // eslint-disable-next-line
     [dispatch]
   );
 
@@ -114,6 +117,7 @@ const SalesCollection = ({
       }
       dispatch(sortListings(sortOption, cacheName, true));
     },
+    // eslint-disable-next-line
     [dispatch]
   );
 
