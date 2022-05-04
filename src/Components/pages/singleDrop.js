@@ -32,6 +32,7 @@ import {
 import { dropState as statuses } from '../../core/api/enums';
 import { EbisuDropAbi } from '../../Contracts/Abis';
 import { commify } from 'ethers/lib.esm/utils';
+import {getTheme} from "../../Theme/theme";
 
 export const drops = config.drops;
 
@@ -135,6 +136,10 @@ const SingleDrop = () => {
 
   const cronies = useSelector((state) => {
     return state.cronies;
+  });
+
+  const userTheme = useSelector((state) => {
+    return state.user.theme;
   });
 
   useEffect(() => {
@@ -617,7 +622,7 @@ const SingleDrop = () => {
                 <div className="mt-3">{newlineText(drop.description)}</div>
 
                 {drop.disclaimer && (
-                  <p className="fw-bold text-center my-4" style={{ color: 'black' }}>
+                  <p className="fw-bold text-center my-4" style={{color: getTheme(userTheme).colors.textColor3}}>
                     {drop.disclaimer}
                   </p>
                 )}

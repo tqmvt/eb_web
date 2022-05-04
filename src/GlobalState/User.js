@@ -69,9 +69,12 @@ const userSlice = createSlice({
     showWrongChainModal: false,
 
     // Primary Balances
+    balance: null,
     rewards: null,
     marketBalance: null,
-    balance: null,
+    withdrawingMarketBalance: false,
+    stakingRewards: null,
+    harvestingStakingRewards: false,
 
     // My NFTs
     fetchingNfts: false,
@@ -118,6 +121,7 @@ const userSlice = createSlice({
       state.stakeCount = action.payload.stakeCount;
       state.marketContract = action.payload.marketContract;
       state.marketBalance = action.payload.marketBalance;
+      state.stakingRewards = action.payload.stakingRewards;
       state.auctionContract = action.payload.auctionContract;
       state.offerContract = action.payload.offerContract;
       state.gettingContractData = false;
@@ -239,8 +243,23 @@ const userSlice = createSlice({
     withdrewRewards(state) {
       state.rewards = 0;
     },
-    withdrewPayments(state) {
-      state.marketBalance = 0;
+    withdrawingMarketBalance(state) {
+      state.withdrawingMarketBalance = true;
+    },
+    withdrewMarketBalance(state, action) {
+      state.withdrawingMarketBalance = false;
+      if (action.payload.success) {
+        state.marketBalance = 0;
+      }
+    },
+    harvestingStakingRewards(state) {
+      state.harvestingStakingRewards = true;
+    },
+    harvestedStakingRewards(state, action) {
+      state.harvestingStakingRewards = false;
+      if (action.payload.success) {
+        state.stakingRewards = 0;
+      }
     },
     transferedNFT(state, action) {
       const indexesToRemove = state.nfts
@@ -279,6 +298,7 @@ const userSlice = createSlice({
       state.balance = null;
       state.rewards = null;
       state.marketBalance = null;
+      state.stakingRewards = null;
       state.isMember = false;
       state.vipCount = 0;
       state.stakeCount = 0;
@@ -334,7 +354,10 @@ export const {
   onCorrectChain,
   registeredCode,
   withdrewRewards,
-  withdrewPayments,
+  withdrawingMarketBalance,
+  withdrewMarketBalance,
+  harvestingStakingRewards,
+  harvestedStakingRewards,
   listingUpdate,
   transferedNFT,
   setIsMember,
@@ -516,6 +539,7 @@ export const connectAccount =
       let offer;
       let sales;
       let stakeCount = 0;
+      let stakingRewards = 0;
 
       dispatch(retrieveCnsProfile());
 
@@ -533,6 +557,7 @@ export const connectAccount =
         auction = new Contract(config.auction_contract, Auction.abi, signer);
         offer = new Contract(config.offer_contract, Offer.abi, signer);
         sales = ethers.utils.formatEther(await market.payments(address));
+        stakingRewards = 0;//ethers.utils.formatEther(await sc.getReward(address));
 
         try {
           balance = ethers.utils.formatEther(await provider.getBalance(address));
@@ -561,6 +586,7 @@ export const connectAccount =
           auctionContract: auction,
           offerContract: offer,
           marketBalance: sales,
+          stakingRewards: stakingRewards
         })
       );
     } catch (error) {
@@ -908,15 +934,40 @@ export class AccountMenuActions {
     }
   };
 
-  static withdrawBalance = () => async (dispatch, getState) => {
+  static withdrawMarketBalance = () => async (dispatch, getState) => {
     const { user } = getState();
     try {
+      dispatch(withdrawingMarketBalance());
       const tx = await user.marketContract.withdrawPayments(user.address);
       const receipt = await tx.wait();
       toast.success(createSuccessfulTransactionToastContent(receipt.transactionHash));
-      dispatch(withdrewPayments());
+      dispatch(withdrewMarketBalance({success: true}));
       dispatch(updateBalance());
     } catch (error) {
+      dispatch(withdrewMarketBalance({success: false}));
+      if (error.data) {
+        toast.error(error.data.message);
+      } else if (error.message) {
+        toast.error(error.message);
+      } else {
+        console.log(error);
+        toast.error('Unknown Error');
+      }
+    } finally {
+    }
+  };
+
+  static harvestStakingRewards = () => async (dispatch, getState) => {
+    const { user } = getState();
+    try {
+      dispatch(harvestingStakingRewards());
+      const tx = await user.stakeContract.harvest(user.address);
+      const receipt = await tx.wait();
+      toast.success(createSuccessfulTransactionToastContent(receipt.transactionHash));
+      dispatch(harvestedStakingRewards({success: true}));
+      dispatch(updateBalance());
+    } catch (error) {
+      dispatch(harvestedStakingRewards({success: false}));
       if (error.data) {
         toast.error(error.data.message);
       } else if (error.message) {

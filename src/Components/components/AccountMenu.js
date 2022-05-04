@@ -17,7 +17,7 @@ import {
   setShowWrongChainModal,
   chainConnect,
   AccountMenuActions,
-  checkForOutstandingOffers,
+  checkForOutstandingOffers, harvestingStakingRewards,
 } from '../../GlobalState/User';
 import rpcConfig from '../../Assets/networks/rpc_config.json';
 
@@ -126,7 +126,11 @@ const AccountMenu = function () {
   };
 
   const withdrawBalance = async () => {
-    dispatch(AccountMenuActions.withdrawBalance());
+    dispatch(AccountMenuActions.withdrawMarketBalance());
+  };
+
+  const harvestStakingRewards = async () => {
+    dispatch(AccountMenuActions.harvestStakingRewards());
   };
 
   // const registerCode = async () => {
@@ -254,12 +258,20 @@ const AccountMenu = function () {
                           <span className="d-wallet-value">{Math.round(user.marketBalance * 100) / 100} CRO</span>
                           {user.marketBalance !== '0.0' && (
                             <button className="btn_menu" title="Withdraw Balance" onClick={withdrawBalance}>
-                              Withdraw
+                              {user.withdrawingMarketBalance ? (
+                                <>
+                                  <Spinner animation="border" role="status" size="sm" className="ms-1">
+                                    <span className="visually-hidden">Loading...</span>
+                                  </Spinner>
+                                </>
+                              ) : (
+                                <>Withdraw</>
+                              )}
                             </button>
                           )}
                         </>
                       ) : (
-                        <>N/A</>
+                        <span className="d-wallet-value">0.0 CRO</span>
                       )}
                     </>
                   ) : (
@@ -271,6 +283,44 @@ const AccountMenu = function () {
                   )}
                 </div>
               </div>
+              {(user.vipCount > 0 || user.stakeCount > 0) && (
+                <div className="d-wallet">
+                  <h4>Staking Rewards</h4>
+                  <div className="d-flex justify-content-between">
+                    {!user.connectingWallet ? (
+                      <>
+                        {user.stakingRewards ? (
+                          <>
+                            <span className="d-wallet-value">{Math.round(user.stakingRewards * 100) / 100} CRO</span>
+
+                            {user.stakingRewards > 0 && (
+                              <button className="btn_menu" title="Harvest Staking Rewards" onClick={harvestStakingRewards}>
+                                {user.harvestingStakingRewards ? (
+                                  <>
+                                    <Spinner animation="border" role="status" size="sm" className="ms-1">
+                                      <span className="visually-hidden">Loading...</span>
+                                    </Spinner>
+                                  </>
+                                ) : (
+                                  <>Harvest</>
+                                )}
+                              </button>
+                            )}
+                          </>
+                        ) : (
+                          <span className="d-wallet-value">0.0 CRO</span>
+                        )}
+                      </>
+                    ) : (
+                      <span>
+                      <Spinner animation="border" role="status" size={'sm'}>
+                        <span className="visually-hidden">Loading...</span>
+                      </Spinner>
+                    </span>
+                    )}
+                  </div>
+                </div>
+              )}
               {user.isMember && user.rewards !== '0.0' && (
                 <>
                   <div className="d-wallet">

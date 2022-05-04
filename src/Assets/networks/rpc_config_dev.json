@@ -3947,7 +3947,7 @@
       "name": "Selfies of the Multiverse",
       "slug": "multiverse-selfies",
       "multiToken": false,
-      "address": "",
+      "address": "0x2b8Bf01907Fcc40BF679c71588E7fF902b67Aac3",
       "onChain": false,
       "listable": false,
       "metadata": {
@@ -5908,7 +5908,7 @@
       "subtitle": "\"Selfies Of The Multiverse\" features alternative realities where the evolution of matter, biological life and language took a completely different route than we are able to experience today.\n\nWith this collection the artist invites you to an exploratory journey through space and time featuring breathtaking landscapes, magical galaxy formations and unique species.",
       "description": "\"Selfies Of The Multiverse\" are 10,000 unique, algorithmically generated selfies taken from across alternative universes at the same point in time. Experience alternative realities and mint the rarest selfie in the whole Multiverse!\n\n10% Of Profits Donated Monthly\n\nAdditionally to working with disabled and homeless people as a social worker in Italy, Cabot Cove has participated in various voluntary and international cooperation campaigns.\n\nCabot arrived in Bosnia and Kosovo right after the conflicts that bloodied the streets had ended. He has also assisted Palestinian refugee camps both in the Gaza Strip and in the West Bank.\n\nHaving deep experiential knowledge in the field, Cabot has decided to donate 10% of profits each month to support civilian populations in conflict territories.\n\n50 Custom Selfies Of The MultiverseTOP20 collectors and lucky giveaway winners will receive a custom-made Selfie Of The Multiverse!\n\nRarity table will be made public after sell-out!",
       "author": { "name": "Selfies of the Multiverse", "link": "https://selfiesofthemultiverse.com/" },
-      "address": "",
+      "address": "0x2b8Bf01907Fcc40BF679c71588E7fF902b67Aac3",
       "maxMintPerTx": 10,
       "maxMintPerAddress": 100,
       "totalSupply": 10000,
@@ -5938,16 +5938,21 @@
       "maxMintPerTx": 8,
       "maxMintPerAddress": 100,
       "totalSupply": 5000,
-      "cost": "435",
-      "memberCost": "335",
-      "whitelistCost": "335",
+      "cost": "640",
+      "memberCost": "490",
+      "whitelistCost": "490",
       "foundersOnly": false,
-      "start": 1651780800000,
+      "start": 1651694400000,
+      "salePeriods": {
+        "presale": 1651694400000,
+        "public": 1651780800000
+      },
       "end": null,
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false
+      "complete": false,
+      "disclaimer": "Presale is limited to whitelisted addresses only (limit 8 per address). Please check the Crowboys discord for more information."
     },
     {
       "id": 68,
