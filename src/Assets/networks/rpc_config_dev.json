@@ -5938,16 +5938,21 @@
       "maxMintPerTx": 8,
       "maxMintPerAddress": 100,
       "totalSupply": 5000,
-      "cost": "435",
-      "memberCost": "335",
-      "whitelistCost": "335",
+      "cost": "640",
+      "memberCost": "490",
+      "whitelistCost": "490",
       "foundersOnly": false,
-      "start": 1651780800000,
+      "start": 1651694400000,
+      "salePeriods": {
+        "presale": 1651694400000,
+        "public": 1651780800000
+      },
       "end": null,
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false
+      "complete": false,
+      "disclaimer": "Presale is limited to whitelisted addresses only (limit 8 per address). Please check the Crowboys discord for more information."
     },
     {
       "id": 68,
