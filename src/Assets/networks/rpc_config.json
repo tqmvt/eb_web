@@ -3966,7 +3966,7 @@
       "name": "Genesis Crates",
       "slug": "genesis-crates",
       "multiToken": false,
-      "address": "0x9F2a53e79C87f8b8c476c1F7849829d6a81e9Dd4",
+      "address": "0x46A417dD49C8e29637a27a371f19ad889767BC99",
       "onChain": false,
       "listable": true,
       "metadata": {
@@ -5934,7 +5934,7 @@
       "subtitle": "The Genesis Crates is a collection of 5000 NFTs being the first NFTs in the Crowboys Online Ecosystem. These crates come in three rarities (Good, Bad and Ugly), but every crate has its own attributes! Thanks to them you can generate $West token, find wealthy treasure inside, get weapons airdropped, and much more! They also give the holder a variety of other benefits detailed in our whitepaper like royalties paid through staking, discounts in the metaverse saloon, and an automatic whitelist for the next NFT - Genesis Crowboy to name a few.",
       "description": "The Genesis Crates Collection and the first NFT for Crowboys Online. These crates come in three rarities (Good, Bad and Ugly), and allow the holder to generate passive income in the form of our $WEST token while staked. $WEST will be used in our First-Person Shooter video game and our metaverse ecosystem. With $WEST you can purchase and trade: weapons, skins, horses, wearables, properties, play mini-games or deposit it before playing the competitive mode(Compete 2 Earn).\n\n✮Rarity System % daily passive income:Good 93%= 1x $WEST daily Bad 6%= 1.5x $WEST daily + bad banner airdrop Ugly 1%= 3.5x $WEST daily + ugly banner airdrop \n\n✮Crates will also have 2 weapons inside already, so whenever they come live, holders will get airdrops! They come in different conditions though!\n\n✮Crates will be able to open to get a random treasure (with wealth multiplier from 0 to 10).\n\nMore Benefits:\n\n✮80% of royalties go to holders through Staking.\n✮5% discount in the metaverse saloon!\n✮Automatic whitelist for the next NFT - Genesis Crowboy\n✮First of two genesis NFTs you need to hold to become a Genesis Member, which will be rewarded with special Events, Airdrops & possibility of Alpha/Beta testing of the game and metaverse.\n✮And much more!",
       "author": { "name": "Crowboys", "link": "https://crowboys.online/" },
-      "address": "0x9F2a53e79C87f8b8c476c1F7849829d6a81e9Dd4",
+      "address": "0x46A417dD49C8e29637a27a371f19ad889767BC99",
       "maxMintPerTx": 8,
       "maxMintPerAddress": 100,
       "totalSupply": 5000,
