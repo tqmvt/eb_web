@@ -374,10 +374,11 @@ const RewardsCard = () => {
   };
 
   useEffect(() => {
-    const timer = setTimeout(async () => {
+    async function func() {
       await getRewardsInfo();
-    }, 1000 * 60);
-    return () => clearTimeout(timer);
+    }
+    func();
+    // eslint-disable-next-line
   }, []);
 
   return (
