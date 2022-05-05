@@ -558,7 +558,7 @@ export const connectAccount =
         auction = new Contract(config.auction_contract, Auction.abi, signer);
         offer = new Contract(config.offer_contract, Offer.abi, signer);
         sales = ethers.utils.formatEther(await market.payments(address));
-        stakingRewards = 0; //ethers.utils.formatEther(await sc.getReward(address));
+        stakingRewards = ethers.utils.formatEther(await sc.getReward(address));
 
         try {
           balance = ethers.utils.formatEther(await provider.getBalance(address));
