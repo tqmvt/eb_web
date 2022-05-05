@@ -75,7 +75,6 @@ const Component = ({ walletAddress, authInitFinished }) => {
           <SentryEnhancedRoute exact path="/" component={Home} />
           <SentryEnhancedRoute path="/home" render={() => <Redirect to="/" />} />
           <SentryEnhancedRoute exact path="/marketplace" component={Marketplace} />
-          {/*<Route exact path="/roadmap" component={Roadmap} />*/}
           <PrivateRoute exact path="/nfts" component={MyNfts} />
           <PrivateRoute exact path="/sales" component={MySales} />
           <PrivateRoute exact path="/offers" component={MyOffers} />
@@ -106,10 +105,8 @@ const Component = ({ walletAddress, authInitFinished }) => {
           />
           <SentryEnhancedRoute exact path="/collection/:slug" component={Collection} />
           <SentryEnhancedRoute exact path="/collection/:slug/:id" component={Nft} />
-          {/* <SentryEnhancedRoute exact path="/collection-detail/:id" component={CollectionDetail} /> */}
           <SentryEnhancedRoute exact path="/seller/:address" component={Seller} />
           <SentryEnhancedRoute exact path="/metaverse-auctions" component={MetaverseAuctions} />
-          {/*<SentryEnhancedRoute exact path="/slothty-rugsurance" component={Rugsurance} />*/}
           <SentryEnhancedRoute exact path="/apply" component={Application} />
           <SentryEnhancedRoute path="*" render={() => <Redirect to="/" />} />
         </Switch>
