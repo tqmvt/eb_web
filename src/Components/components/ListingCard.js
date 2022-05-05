@@ -9,6 +9,7 @@ import { croSkullRedPotionImageHack } from 'src/hacks';
 import Button from './Button';
 import MakeOfferDialog from '../Offer/MakeOfferDialog';
 import { connectAccount, chainConnect } from 'src/GlobalState/User';
+import {round} from "../../utils";
 
 const Watermarked = styled.div`
   position: relative;
@@ -105,7 +106,7 @@ const ListingCard = ({ listing, imgClass = 'marketplace', watermark, address, co
             <h6 className="card-title mt-auto">{listing.nft.name}</h6>
           </Link>
           <MakeBuy>
-            <div>{ethers.utils.commify(listing.price)} CRO</div>
+            <div>{ethers.utils.commify(round(listing.price))} CRO</div>
           </MakeBuy>
           <MakeOffer>
             <Link className="linkPointer" to={`/collection/${listing.nftAddress}/${listing.nftId}`}>
