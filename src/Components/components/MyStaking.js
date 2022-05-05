@@ -380,7 +380,9 @@ const RewardsCard = () => {
     }
 
     timer.current = setInterval(async () => {
-      await getRewardsInfo();
+      if (!isHarvesting && !rewardsInfoLoading) {
+        await getRewardsInfo();
+      }
     }, 1000 * 60);
 
     func();
