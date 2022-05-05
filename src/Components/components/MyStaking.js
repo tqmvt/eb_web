@@ -375,11 +375,18 @@ const RewardsCard = () => {
 
   const timer = useRef(null);
   useEffect(() => {
-    timer.current = setInterval(async () => {
+    async function func() {
       await getRewardsInfo();
+    }
+
+    timer.current = setInterval(async () => {
+      if (!isHarvesting && !rewardsInfoLoading) {
+        await getRewardsInfo();
+      }
     }, 1000 * 60);
 
-    // clear on component unmount
+    func();
+
     return () => {
       clearInterval(timer.current);
     };
