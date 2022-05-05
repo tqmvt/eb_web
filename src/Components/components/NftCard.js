@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from 'react';
+import React, { memo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { Link, useHistory } from 'react-router-dom';
@@ -9,7 +9,7 @@ import { croSkullRedPotionImageHack } from 'src/hacks';
 import Button from './Button';
 import MakeOfferDialog from '../Offer/MakeOfferDialog';
 import { connectAccount, chainConnect } from 'src/GlobalState/User';
-import { isNftBlacklisted } from '../../utils';
+import {isNftBlacklisted, round} from '../../utils';
 
 const Watermarked = styled.div`
   position: relative;
@@ -113,7 +113,7 @@ const NftCard = ({ royalty, listing, imgClass = 'marketplace', watermark, addres
           </Link>
           {getIsNftListed() && (
             <MakeBuy>
-              <div>{ethers.utils.commify(listing.market?.price)} CRO</div>
+              <div>{ethers.utils.commify(round(listing.market?.price))} CRO</div>
             </MakeBuy>
           )}
           <MakeOffer>

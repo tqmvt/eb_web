@@ -31,7 +31,9 @@ const Collections = () => {
 
   const dispatch = useDispatch();
 
-  const [tableMobileView, setTableMobileView] = useState(window.innerWidth > mobileListBreakpoint);
+  const tableMobileView = window.innerWidth > mobileListBreakpoint;
+
+  // const [tableMobileView, setTableMobileView] = useState(window.innerWidth > mobileListBreakpoint);
   const [searchTerms, setSearchTerms] = useState(null);
   const [filteredCollections, setFilteredCollections] = useState([]);
 
@@ -56,6 +58,7 @@ const Collections = () => {
     } else {
       setFilteredCollections(collections);
     }
+    // eslint-disable-next-line
   }, [collections]);
 
   const sortCollections = (key, override) => {

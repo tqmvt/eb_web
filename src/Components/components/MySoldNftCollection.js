@@ -31,6 +31,7 @@ const MySoldNftCollection = ({ walletAddress = null }) => {
   useEffect(() => {
     dispatch(clearMySales());
     dispatch(fetchSales(walletAddress));
+    // eslint-disable-next-line
   }, [walletAddress]);
 
   useEffect(() => {

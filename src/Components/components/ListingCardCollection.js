@@ -1,6 +1,6 @@
 import React, { memo, useState } from 'react';
 import styled from 'styled-components';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ethers } from 'ethers';
 import { croSkullRedPotionImageHack } from '../../hacks';
 import Button from './Button';
@@ -46,19 +46,19 @@ const MakeOffer = styled.div`
 `;
 
 const ListingCardCollection = ({ listing, imgClass = 'marketplace', watermark, address, collectionMetadata }) => {
-  const history = useHistory();
+  // const history = useHistory();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const [openMakeOfferDialog, setOpenMakeOfferDialog] = useState(false);
-  const [modalType, setModalType] = useState('Make');
+  // const [modalType, setModalType] = useState('Make');
 
-  const handleBuy = () => {
-    if (listing.listingId) {
-      history.push(`/listing/${listing.listingId}`);
-    } else {
-      history.push(`/collection/${listing.nftAddress}/${listing.nftId}`);
-    }
-  };
+  // const handleBuy = () => {
+  //   if (listing.listingId) {
+  //     history.push(`/listing/${listing.listingId}`);
+  //   } else {
+  //     history.push(`/collection/${listing.nftAddress}/${listing.nftId}`);
+  //   }
+  // };
 
   const handleMakeOffer = () => {
     // setModalType(type);
@@ -136,7 +136,7 @@ const ListingCardCollection = ({ listing, imgClass = 'marketplace', watermark, a
           toggle={() => setOpenMakeOfferDialog(!openMakeOfferDialog)}
           nftData={convertListingData(listing)}
           collectionMetadata={collectionMetadata}
-          type={modalType}
+          type={'Make'}
         />
       )}
     </>

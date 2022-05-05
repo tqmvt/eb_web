@@ -478,7 +478,8 @@ export const connectAccount =
       const signer = provider.getSigner();
 
       if (isUserBlacklisted(address)) {
-        throw 'Unable to connect';
+        const error = { err: 'Unable to connect' };
+        throw error;
       }
 
       if (!correctChain) {
@@ -557,7 +558,7 @@ export const connectAccount =
         auction = new Contract(config.auction_contract, Auction.abi, signer);
         offer = new Contract(config.offer_contract, Offer.abi, signer);
         sales = ethers.utils.formatEther(await market.payments(address));
-        stakingRewards = 0;//ethers.utils.formatEther(await sc.getReward(address));
+        stakingRewards = 0; //ethers.utils.formatEther(await sc.getReward(address));
 
         try {
           balance = ethers.utils.formatEther(await provider.getBalance(address));
@@ -586,7 +587,7 @@ export const connectAccount =
           auctionContract: auction,
           offerContract: offer,
           marketBalance: sales,
-          stakingRewards: stakingRewards
+          stakingRewards: stakingRewards,
         })
       );
     } catch (error) {
@@ -941,10 +942,10 @@ export class AccountMenuActions {
       const tx = await user.marketContract.withdrawPayments(user.address);
       const receipt = await tx.wait();
       toast.success(createSuccessfulTransactionToastContent(receipt.transactionHash));
-      dispatch(withdrewMarketBalance({success: true}));
+      dispatch(withdrewMarketBalance({ success: true }));
       dispatch(updateBalance());
     } catch (error) {
-      dispatch(withdrewMarketBalance({success: false}));
+      dispatch(withdrewMarketBalance({ success: false }));
       if (error.data) {
         toast.error(error.data.message);
       } else if (error.message) {
@@ -964,10 +965,10 @@ export class AccountMenuActions {
       const tx = await user.stakeContract.harvest(user.address);
       const receipt = await tx.wait();
       toast.success(createSuccessfulTransactionToastContent(receipt.transactionHash));
-      dispatch(harvestedStakingRewards({success: true}));
+      dispatch(harvestedStakingRewards({ success: true }));
       dispatch(updateBalance());
     } catch (error) {
-      dispatch(harvestedStakingRewards({success: false}));
+      dispatch(harvestedStakingRewards({ success: false }));
       if (error.data) {
         toast.error(error.data.message);
       } else if (error.message) {

@@ -4,7 +4,7 @@ import { init, fetchListings } from '../../GlobalState/collectionSlice';
 import { devLog } from '../../utils';
 import { CollectionSortOption } from '../Models/collection-sort-option.model';
 import { FilterOption } from '../Models/filter-option.model';
-import config from '../../Assets/networks/rpc_config.json';
+// import config from '../../Assets/networks/rpc_config.json';
 import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
 import borderboard from '../../Assets/cronosverse/border_board.png';
 import tile1 from '../../Assets/cronosverse/Plain-tile.png';
@@ -67,7 +67,6 @@ const CollectionCronosverse = ({ collection }) => {
       <CronosverseCollectionBoard
         onBuy={handleBuy}
         onOffer={handleMakeOffer}
-        minting={false}
         listings={listings}
         nfts={items}
       />
@@ -98,18 +97,19 @@ const MakeOffer = styled.div`
 const tiles = [tile1, tile2, tile3];
 const tileType = ['Plain', 'Suburban', 'Commercial'];
 
-const CronosverseCollectionBoard = ({ onBuy, onOffer, minting, listings = [], nfts = [] }) => {
+const CronosverseCollectionBoard = ({ onBuy, onOffer, listings = [], nfts = [] }) => {
   const ref0 = useRef();
   const ref2 = useRef();
   const [tileInfo, setTileInfo] = useState({});
   const [modalFlag, setModalFlag] = useState('none');
-  const [canvasDown, setCanvasDown] = useState(false);
+  // const [canvasDown, setCanvasDown] = useState(false);
   const [zoomState, setZoomState] = useState({
     offsetX: 0,
     offsetY: 0,
     scale: 1,
   });
-  const [isMintingFlag, setIsMintingFlag] = useState(false);
+  const isMintingFlag = false; // todo: lint fix
+  // const [isMintingFlag, setIsMintingFlag] = useState(false);
 
   const [tempWidth, setTempWidth] = useState(1);
   const [tempHeight, setTempHeight] = useState(1);
@@ -170,11 +170,11 @@ const CronosverseCollectionBoard = ({ onBuy, onOffer, minting, listings = [], nf
   };
 
   const listingForToken = (tokenId) => {
-    return listings.find((listing) => tokenId == listing.id);
+    return listings.find((listing) => parseInt(tokenId) === parseInt(listing.id));
   };
 
   const nftForToken = (tokenId) => {
-    return nfts.find((nft) => tokenId == nft.id);
+    return nfts.find((nft) => parseInt(tokenId) === parseInt(nft.id));
   };
 
   const changeCanvasState = (ReactZoomPanPinchRef, event) => {
@@ -195,9 +195,6 @@ const CronosverseCollectionBoard = ({ onBuy, onOffer, minting, listings = [], nf
   };
 
   const handleClick = (e) => {
-    if (isMintingFlag) {
-      return;
-    }
     const mPos = getMousePos(e);
     let scale = zoomState.scale;
     const tileWidth = ref2.current.width / 54;
@@ -215,7 +212,7 @@ const CronosverseCollectionBoard = ({ onBuy, onOffer, minting, listings = [], nf
       ctx.fillRect(tileWidth * tileInfo.xPos - 1, tileHeight * tileInfo.yPos - 1, tileWidth + 1, tileHeight + 2);
     }
 
-    if (type == 0 || type == 4) {
+    if (type === 0 || type === 4) {
       setModalFlag('none');
 
       return;
@@ -286,15 +283,6 @@ const CronosverseCollectionBoard = ({ onBuy, onOffer, minting, listings = [], nf
     }
   }, [listings]);
 
-  useEffect(() => {
-    if (minting == false) {
-      // let ctx2 = ref2.current.getContext('2d');
-      // ctx2.clearRect(0, 0, ref2.current.width, ref2.current.height);
-      setTileInfo({ ...tileInfo, xPos: null, yPos: null });
-      setModalFlag('none');
-    }
-  }, [minting]);
-
   return (
     <div>
       <div
@@ -308,9 +296,6 @@ const CronosverseCollectionBoard = ({ onBuy, onOffer, minting, listings = [], nf
           if (window.innerHeight - e.clientY < 175) {
             sub = window.innerHeight - e.clientY;
             setSubDistanceY(sub);
-          }
-          if (minting === true || isMintingFlag === true) {
-            return;
           }
         }}
       >
@@ -339,9 +324,7 @@ const CronosverseCollectionBoard = ({ onBuy, onOffer, minting, listings = [], nf
                 <div
                   className="cross"
                   onClick={() => {
-                    if (!isMintingFlag) {
-                      setModalFlag('none');
-                    }
+                    setModalFlag('none');
                   }}
                 >
                   &times;

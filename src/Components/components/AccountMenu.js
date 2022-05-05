@@ -17,7 +17,8 @@ import {
   setShowWrongChainModal,
   chainConnect,
   AccountMenuActions,
-  checkForOutstandingOffers, harvestingStakingRewards,
+  checkForOutstandingOffers,
+  // harvestingStakingRewards,
 } from '../../GlobalState/User';
 import rpcConfig from '../../Assets/networks/rpc_config.json';
 
@@ -94,12 +95,14 @@ const AccountMenu = function () {
       dispatch(getAllCollections());
       dispatch(fetchMyNFTs(walletAddress));
     }
+    // eslint-disable-next-line
   }, [walletAddress]);
 
   useEffect(() => {
     if (collectionsStats && collectionsStats.length > 0 && myNFTs && myNFTs.length > 0) {
       dispatch(checkForOutstandingOffers());
     }
+    // eslint-disable-next-line
   }, [collectionsStats, myNFTs]);
 
   const connectWalletPressed = async () => {
@@ -150,6 +153,7 @@ const AccountMenu = function () {
     } else {
       setThemeInStorage('dark');
     }
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
@@ -194,9 +198,9 @@ const AccountMenu = function () {
     dispatch(chainConnect());
   };
 
-  const myUnfilteredListings = useSelector((state) => {
-    return state.user.myUnfilteredListings;
-  });
+  // const myUnfilteredListings = useSelector((state) => {
+  //   return state.user.myUnfilteredListings;
+  // });
 
   return (
     <div className="mainside d-flex">
@@ -260,7 +264,7 @@ const AccountMenu = function () {
                             <button className="btn_menu" title="Withdraw Balance" onClick={withdrawBalance}>
                               {user.withdrawingMarketBalance ? (
                                 <>
-                                  <Spinner animation="border" role="status" size="sm" className="ms-1">
+                                  <Spinner animation="border" role="status" size="sm">
                                     <span className="visually-hidden">Loading...</span>
                                   </Spinner>
                                 </>
@@ -294,10 +298,14 @@ const AccountMenu = function () {
                             <span className="d-wallet-value">{Math.round(user.stakingRewards * 100) / 100} CRO</span>
 
                             {user.stakingRewards > 0 && (
-                              <button className="btn_menu" title="Harvest Staking Rewards" onClick={harvestStakingRewards}>
+                              <button
+                                className="btn_menu"
+                                title="Harvest Staking Rewards"
+                                onClick={harvestStakingRewards}
+                              >
                                 {user.harvestingStakingRewards ? (
                                   <>
-                                    <Spinner animation="border" role="status" size="sm" className="ms-1">
+                                    <Spinner animation="border" role="status" size="sm">
                                       <span className="visually-hidden">Loading...</span>
                                     </Spinner>
                                   </>
@@ -313,10 +321,10 @@ const AccountMenu = function () {
                       </>
                     ) : (
                       <span>
-                      <Spinner animation="border" role="status" size={'sm'}>
-                        <span className="visually-hidden">Loading...</span>
-                      </Spinner>
-                    </span>
+                        <Spinner animation="border" role="status" size={'sm'}>
+                          <span className="visually-hidden">Loading...</span>
+                        </Spinner>
+                      </span>
                     )}
                   </div>
                 </div>

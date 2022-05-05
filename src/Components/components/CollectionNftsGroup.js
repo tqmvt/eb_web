@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Spinner } from 'react-bootstrap';
 
-import ListingCardCollection from './ListingCardCollection';
+// import ListingCardCollection from './ListingCardCollection';
 import NftCard from './NftCard';
 
 const CollectionNftsGroup = ({

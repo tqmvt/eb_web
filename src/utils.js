@@ -176,7 +176,7 @@ export function humanize(str) {
  * @param num
  * @returns {string|number}
  */
-export function siPrefixedNumber(num) {
+export function siPrefixedNumber(num, ) {
   // Nine Zeroes for Billions
   return Math.abs(Number(num)) >= 1.0e9
     ? (Math.abs(Number(num)) / 1.0e9).toFixed(2) + 'B'
@@ -186,7 +186,7 @@ export function siPrefixedNumber(num) {
     : // Three Zeroes for Thousands
     Math.abs(Number(num)) >= 1.0e3
     ? (Math.abs(Number(num)) / 1.0e3).toFixed(2) + 'K'
-    : Math.abs(Number(num)).toFixed(2);
+    : Math.abs(Number(num));
 }
 
 export function shortAddress(address) {
@@ -402,7 +402,8 @@ export const findCollectionByAddress = (address, tokenId) => {
 };
 
 export const round = (num, decimals) => {
-  if (!decimals) return num;
+  if (!decimals) return Math.round(num);
+
   const pow = Math.pow(10, decimals);
   return Math.round(num * pow) / pow;
 };

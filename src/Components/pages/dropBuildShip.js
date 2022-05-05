@@ -52,6 +52,7 @@ const Drop = () => {
     } finally {
       setIsLoading(false);
     }
+    // eslint-disable-next-line
   }, [user.address, user.provider]);
 
   const refreshPartsBalance = async () => {
@@ -232,6 +233,7 @@ const ShipBuilderCard = ({ type, shipAddress, key, mintCallback, quantityCollect
   useEffect(() => {
     const maxAvailable = Math.min(...quantityCollected);
     setQuantity(maxAvailable > 0 ? 1 : 0);
+    // eslint-disable-next-line
   }, []);
 
   return (

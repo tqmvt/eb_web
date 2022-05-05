@@ -41,7 +41,7 @@ const MetaverseModal = (props) => {
           <Modal.Title>Metaverse</Modal.Title>
         </Modal.Header>
         <Modal.Body className="pt-0 pb-0 px-0">
-          <iframe src={metaverseUrl} className="metaverse" allow="microphone; camera; vr; speaker;" />
+          <iframe src={metaverseUrl} className="metaverse" allow="microphone; camera; vr; speaker;" title="metaverse" />
         </Modal.Body>
         <Modal.Footer>
           <span className="btn-main" onClick={handleClose}>

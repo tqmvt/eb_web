@@ -306,9 +306,15 @@ export default class Responsive extends Component {
                             <div className="col my-auto">
                               {this.calculateStatus(drop.salePeriods.public) > dropState.NOT_STARTED ? (
                                 <>
-                                  {this.calculateStatus(drop.salePeriods.public) === dropState.LIVE && <h3>Drop is Live!</h3>}
-                                  {this.calculateStatus(drop.salePeriods.public) === dropState.EXPIRED && <h3>Drop Ended</h3>}
-                                  {this.calculateStatus(drop.salePeriods.public) === dropState.SOLD_OUT && <h3>Sold Out</h3>}
+                                  {this.calculateStatus(drop.salePeriods.public) === dropState.LIVE && (
+                                    <h3>Drop is Live!</h3>
+                                  )}
+                                  {this.calculateStatus(drop.salePeriods.public) === dropState.EXPIRED && (
+                                    <h3>Drop Ended</h3>
+                                  )}
+                                  {this.calculateStatus(drop.salePeriods.public) === dropState.SOLD_OUT && (
+                                    <h3>Sold Out</h3>
+                                  )}
                                 </>
                               ) : (
                                 <>
@@ -320,7 +326,9 @@ export default class Responsive extends Component {
                                       </div>
                                     </>
                                   )}
-                                  {this.calculateStatus(drop.salePeriods.presale) === dropState.LIVE && <h3>Presale Live!</h3>}
+                                  {this.calculateStatus(drop.salePeriods.presale) === dropState.LIVE && (
+                                    <h3>Presale Live!</h3>
+                                  )}
                                   {this.calculateStatus(drop.salePeriods.public) === dropState.NOT_STARTED && (
                                     <>
                                       <span className="d-title">Public Sale starts in</span>
@@ -331,9 +339,6 @@ export default class Responsive extends Component {
                                   )}
                                 </>
                               )}
-
-
-
                             </div>
                           ) : (
                             <div className="col my-auto">
