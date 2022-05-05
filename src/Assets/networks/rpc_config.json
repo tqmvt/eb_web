@@ -3987,7 +3987,7 @@
       "name": "Croppelganger",
       "slug": "croppelganger",
       "multiToken": false,
-      "address": "",
+      "address": "0x8b3413DA8bb9caF971001e51941DAa9e17c8B33A",
       "onChain": false,
       "listable": true,
       "metadata": {
@@ -5965,7 +5965,7 @@
       "subtitle": "Croppelganger Collection is a unique match-up of a celebrity with their cartoon doppelganger.",
       "description": "The Croppelganger Collection is a hand drawn match-up series pairing celebrities with their cartoon doppelgangers. Croppelganer was inspired by pop culture online and offline with the idea of merging the two into one creation. Each Croppelganger is a one of one and features half of a celebrity's face mixed with half of a cartoon characters face. This collection was made using charcoal and acrylic paint medium on paper.",
       "author": { "name": "Sophie NFTs", "link": "https://www.instagram.com/sophilixart/" },
-      "address": "",
+      "address": "0x8b3413DA8bb9caF971001e51941DAa9e17c8B33A",
       "maxMintPerTx": 1,
       "maxMintPerAddress": 100,
       "totalSupply": 26,

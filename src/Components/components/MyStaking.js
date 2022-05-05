@@ -406,7 +406,7 @@ const RewardsCard = () => {
                   </div>
                 </div>
                 <div className="col-12 col-sm-4 text-center">
-                  <div>My Share</div>
+                  <div>My Harvest</div>
                   <div className="fw-bold" style={{ color: getTheme(userTheme).colors.textColor3 }}>
                     {siPrefixedNumber(round(Number(userReleasedRewards)))} CRO
                   </div>
