@@ -18,7 +18,6 @@ import {
   chainConnect,
   AccountMenuActions,
   checkForOutstandingOffers,
-  // harvestingStakingRewards,
 } from '../../GlobalState/User';
 import rpcConfig from '../../Assets/networks/rpc_config.json';
 
