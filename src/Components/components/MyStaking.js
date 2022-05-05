@@ -318,6 +318,7 @@ const RewardsCard = () => {
     return state.user.theme;
   });
 
+  const [firstRunComplete, setFirstRunComplete] = useState(false);
   const [isHarvesting, setIsHarvesting] = useState(false);
   const [rewardsInfoLoading, setRewardsInfoLoading] = useState(false);
   const [userPendingRewards, setUserPendingRewards] = useState(0);
@@ -328,7 +329,10 @@ const RewardsCard = () => {
   const getRewardsInfo = async () => {
     if (!user.stakeContract) return;
 
-    setRewardsInfoLoading(true);
+    if (!firstRunComplete) {
+      setRewardsInfoLoading(true);
+    }
+    
     try {
       const mGlobalStakedTotal = await user.stakeContract.totalStaked();
       setglobalStakedTotal(parseInt(mGlobalStakedTotal));
@@ -343,6 +347,7 @@ const RewardsCard = () => {
     } catch (error) {
       console.log(error);
     } finally {
+      setFirstRunComplete(true);
       setRewardsInfoLoading(false);
     }
   };
