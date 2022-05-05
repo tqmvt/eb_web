@@ -151,7 +151,8 @@ export function classList(classes) {
  * @returns {string}
  */
 export function humanize(str) {
-  if (!str) return '';
+  if (str === null || str === undefined) return '';
+  if (!str) return str;
 
   str = str.toString();
 
