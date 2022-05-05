@@ -375,11 +375,16 @@ const RewardsCard = () => {
 
   const timer = useRef(null);
   useEffect(() => {
+    async function func() {
+      await getRewardsInfo();
+    }
+
     timer.current = setInterval(async () => {
       await getRewardsInfo();
     }, 1000 * 60);
 
-    // clear on component unmount
+    func();
+
     return () => {
       clearInterval(timer.current);
     };
