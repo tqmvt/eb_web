@@ -1,4 +1,4 @@
-import React, { memo, useState, useEffect } from 'react';
+import React, {memo, useState, useEffect, useRef} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setStakeCount, setVIPCount } from '../../GlobalState/User';
 import { Form, Spinner } from 'react-bootstrap';
@@ -373,12 +373,16 @@ const RewardsCard = () => {
     }
   };
 
+  const timer = useRef(null);
   useEffect(() => {
-    async function func() {
+    timer.current = setInterval(async () => {
       await getRewardsInfo();
-    }
-    func();
-    // eslint-disable-next-line
+    }, 1000 * 60);
+
+    // clear on component unmount
+    return () => {
+      clearInterval(timer.current);
+    };
   }, []);
 
   return (
