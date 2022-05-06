@@ -668,7 +668,7 @@ const SingleDrop = () => {
                 </div>
 
                 {drop.priceDescription && (
-                  <p className="my-2" style={{ color: 'black' }}>
+                  <p className="my-2" style={{ color: getTheme(userTheme).colors.textColor3 }}>
                     *{drop.priceDescription}
                   </p>
                 )}
