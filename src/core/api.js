@@ -1155,10 +1155,22 @@ export async function getAuction(auctionId) {
   }
 }
 
-export async function getQuickWallet(walletAddress) {
-  const queryString = new URLSearchParams({
-    wallet: walletAddress,
+export async function getQuickWallet(walletAddress, queryParams = {}) {
+  const pagingSupported = true;
+
+  let queryString = new URLSearchParams({
+    wallet: walletAddress
   });
+
+  if (pagingSupported) {
+    queryString = new URLSearchParams({
+      ...{
+        wallet: walletAddress,
+        pageSize: 1000
+      },
+      ...queryParams
+    });
+  }
 
   const url = new URL(api.wallets, `${api.baseUrl}`);
   const uri = `${url}?${queryString}`;
@@ -1195,8 +1207,10 @@ async function getAllListingsForUser(walletAddress) {
   return listings;
 }
 
-export async function getNftsForAddress2(walletAddress, walletProvider) {
-  const quickWallet = await getQuickWallet(walletAddress);
+export async function getNftsForAddress2(walletAddress, walletProvider, page) {
+  const quickWallet = await getQuickWallet(walletAddress, {page});
+  if (!quickWallet.data) return [];
+
   const results = quickWallet.data;
   const signer = walletProvider.getSigner();
   const walletBlacklisted = isUserBlacklisted(walletAddress);
