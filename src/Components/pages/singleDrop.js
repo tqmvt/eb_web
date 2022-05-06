@@ -503,8 +503,6 @@ const SingleDrop = () => {
                         muted={true}
                         playing={true}
                         loop={true}
-                        width="75%"
-                        height="75%"
                       />
                     )}
 
@@ -668,7 +666,7 @@ const SingleDrop = () => {
                 </div>
 
                 {drop.priceDescription && (
-                  <p className="my-2" style={{ color: 'black' }}>
+                  <p className="my-2" style={{ color: getTheme(userTheme).colors.textColor3 }}>
                     *{drop.priceDescription}
                   </p>
                 )}

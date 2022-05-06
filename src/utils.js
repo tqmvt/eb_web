@@ -2,6 +2,7 @@ import moment from 'moment';
 import config from './Assets/networks/rpc_config.json';
 import blacklist from './core/configs/blacklist.json';
 import IPFSGatewayTools from '@pinata/ipfs-gateway-tools/dist/browser';
+import {useEffect, useRef} from "react";
 
 export const drops = config.drops;
 export const collections = config.known_contracts;
@@ -453,3 +454,30 @@ export const devLog = (...params) => {
     console.log(params);
   }
 };
+
+/**
+ * Better way to set an interval that works with React hooks
+ * Source: https://overreacted.io/making-setinterval-declarative-with-react-hooks/
+ *
+ * @param callback
+ * @param delay
+ */
+export const useInterval = (callback, delay) => {
+  const savedCallback = useRef();
+
+  // Remember the latest callback.
+  useEffect(() => {
+    savedCallback.current = callback;
+  }, [callback]);
+
+  // Set up the interval.
+  useEffect(() => {
+    function tick() {
+      savedCallback.current();
+    }
+    if (delay !== null) {
+      let id = setInterval(tick, delay);
+      return () => clearInterval(id);
+    }
+  }, [delay]);
+}

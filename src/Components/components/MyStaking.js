@@ -1,14 +1,10 @@
-import React, {memo, useState, useEffect, useRef} from 'react';
+import React, {memo, useState, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setStakeCount, setVIPCount } from '../../GlobalState/User';
 import { Form, Spinner } from 'react-bootstrap';
 import { toast } from 'react-toastify';
-import { createSuccessfulTransactionToastContent, round, siPrefixedNumber } from '../../utils';
+import {createSuccessfulTransactionToastContent, round, siPrefixedNumber, useInterval} from '../../utils';
 import { ethers } from 'ethers';
-// import { RewardsPoolAbi } from '../../Contracts/Abis';
-// import config from '../../Assets/networks/rpc_config.json';
-// import { commify } from 'ethers/lib.esm/utils';
-// import Countdown from 'react-countdown';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faBatteryEmpty,
@@ -18,9 +14,6 @@ import {
   faBatteryThreeQuarters,
   faBolt,
   faExternalLinkAlt,
-  // faChargingStation,
-  // faExclamationTriangle,
-  // faTrophy,
 } from '@fortawesome/free-solid-svg-icons';
 import { getTheme } from '../../Theme/theme';
 import {commify} from "ethers/lib.esm/utils";
@@ -318,6 +311,7 @@ const RewardsCard = () => {
     return state.user.theme;
   });
 
+  const [firstRunComplete, setFirstRunComplete] = useState(false);
   const [isHarvesting, setIsHarvesting] = useState(false);
   const [rewardsInfoLoading, setRewardsInfoLoading] = useState(false);
   const [userPendingRewards, setUserPendingRewards] = useState(0);
@@ -328,7 +322,10 @@ const RewardsCard = () => {
   const getRewardsInfo = async () => {
     if (!user.stakeContract) return;
 
-    setRewardsInfoLoading(true);
+    if (!firstRunComplete) {
+      setRewardsInfoLoading(true);
+    }
+
     try {
       const mGlobalStakedTotal = await user.stakeContract.totalStaked();
       setglobalStakedTotal(parseInt(mGlobalStakedTotal));
@@ -343,6 +340,7 @@ const RewardsCard = () => {
     } catch (error) {
       console.log(error);
     } finally {
+      setFirstRunComplete(true);
       setRewardsInfoLoading(false);
     }
   };
@@ -373,24 +371,21 @@ const RewardsCard = () => {
     }
   };
 
-  const timer = useRef(null);
   useEffect(() => {
     async function func() {
       await getRewardsInfo();
     }
+    func();
+  }, []);
 
-    timer.current = setInterval(async () => {
+  useInterval(() => {
+    async function func() {
       if (!isHarvesting && !rewardsInfoLoading) {
         await getRewardsInfo();
       }
-    }, 1000 * 60);
-
+    }
     func();
-
-    return () => {
-      clearInterval(timer.current);
-    };
-  }, []);
+  }, 1000 * 60);
 
   return (
     <div className="col">
@@ -398,7 +393,7 @@ const RewardsCard = () => {
         <div className="card-body d-flex flex-column">
           <h5>Rewards</h5>
           {rewardsInfoLoading ? (
-            <Spinner animation="border" role="status" size="sm" className="ms-1">
+            <Spinner animation="border" role="status" size="sm" className="mx-auto">
               <span className="visually-hidden">Loading...</span>
             </Spinner>
           ) : (
