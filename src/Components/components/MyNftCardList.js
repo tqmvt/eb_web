@@ -29,7 +29,7 @@ const MyNftCardList = ({ nfts = [], isLoading, listedOnly, activeFilterOption, u
   const loadMore = () => {
     if (!isFetching && !useChain) {
       let nextPage = page + 1;
-      dispatch(fetchNfts(nextPage));
+      dispatch(fetchNfts(nextPage, true));
       setPage(nextPage);
     }
   };
