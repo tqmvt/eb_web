@@ -398,8 +398,13 @@ export const findCollectionByAddress = (address, tokenId) => {
     const matchesAddress = caseInsensitiveCompare(c.address, address);
     if (!tokenId) return matchesAddress;
 
-    const matchesTokenIf1155 = !c.multiToken || (tokenId && parseInt(c.id) === parseInt(tokenId));
-    return matchesAddress && matchesTokenIf1155;
+    if (c.multiToken) {
+      const ids = c.tokens?.map(t => t.id) ?? [c.id];
+      const matchesToken = ids.includes(parseInt(tokenId));
+      return matchesAddress && matchesToken;
+    }
+
+    return matchesAddress;
   });
 };
 

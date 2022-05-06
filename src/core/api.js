@@ -11,7 +11,7 @@ import { CollectionSortOption } from '../Components/Models/collection-sort-optio
 import { FilterOption } from '../Components/Models/filter-option.model';
 import {
   caseInsensitiveCompare,
-  convertIpfsResource,
+  convertIpfsResource, findCollectionByAddress,
   isAntMintPassCollection,
   isMetapixelsCollection,
   isNftBlacklisted,
@@ -400,69 +400,75 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
           const isSouthSideAnts = isSouthSideAntsCollection(address);
 
           if (knownContract.multiToken) {
-            let canTransfer = true;
-            let canSell = true;
-            const listed = !!getListing(address, knownContract.id);
-            const listingId = listed ? getListing(address, knownContract.id).listingId : null;
-            const price = listed ? getListing(address, knownContract.id).price : null;
-            // let erc1155Listings = getERC1155Listings(address, knownContract.id);
+            const ids = knownContract.tokens?.map(t => t.id) ?? [knownContract.id];
+            console.log('ids',knownContract.name, ids);
+            for (const id of ids) {
+              let canTransfer = true;
+              let canSell = true;
+              const listed = !!getListing(address, id);
+              const listingId = listed ? getListing(address, id).listingId : null;
+              const price = listed ? getListing(address, id).price : null;
+              // let erc1155Listings = getERC1155Listings(address, id);
 
-            const readContract = new Contract(knownContract.address, ERC1155, readProvider);
-            const writeContract = new Contract(knownContract.address, ERC1155, signer);
+              const readContract = new Contract(knownContract.address, ERC1155, readProvider);
+              const writeContract = new Contract(knownContract.address, ERC1155, signer);
 
-            readContract.connect(readProvider);
-            writeContract.connect(signer);
+              readContract.connect(readProvider);
+              writeContract.connect(signer);
 
-            let count = await readContract.balanceOf(walletAddress, knownContract.id);
-            count = count.toNumber();
-            if (knownContract.address === config.membership_contract && count > 0) {
-              response.isMember = true;
-            }
-            if (count === 0) {
-              return;
-            }
-
-            let uri = await readContract.uri(knownContract.id);
-
-            if (gatewayTools.containsCID(uri)) {
-              try {
-                uri = gatewayTools.convertToDesiredGateway(uri, gateway);
-              } catch (error) {
-                //console.log(error);
+              let count = await readContract.balanceOf(walletAddress, id);
+              count = count.toNumber();
+              if (knownContract.address === config.membership_contract && count > 0) {
+                response.isMember = true;
               }
-            }
-            const json = await (await fetch(uri)).json();
-            const name = json.name;
-            const image = gatewayTools.containsCID(json.image)
-              ? gatewayTools.convertToDesiredGateway(json.image, gateway)
-              : json.image;
-            const description = json.description;
-            const properties = json.properties;
-            const nft = {
-              name: name,
-              id: knownContract.id,
-              image: image,
-              video: json.animation_url,
-              count: count,
-              description: description,
-              properties: properties,
-              contract: writeContract,
-              address: knownContract.address,
-              multiToken: true,
-              listable,
-              listed,
-              listingId,
-              price,
-              canSell: canSell,
-              canTransfer: canTransfer,
-            };
+              if (count === 0) {
+                return;
+              }
 
-            onNftLoaded([nft]);
+              let uri = await readContract.uri(id);
+
+              if (gatewayTools.containsCID(uri)) {
+                try {
+                  uri = gatewayTools.convertToDesiredGateway(uri, gateway);
+                } catch (error) {
+                  //console.log(error);
+                }
+              }
+              console.log('uri',knownContract.name, uri);
+              const json = await (await fetch(uri)).json();
+              const name = json.name;
+              const image = gatewayTools.containsCID(json.image)
+                ? gatewayTools.convertToDesiredGateway(json.image, gateway)
+                : json.image;
+              const description = json.description;
+              const properties = json.properties;
+              console.log('image',knownContract.name, image);
+              const nft = {
+                name: name,
+                id: id,
+                image: image,
+                video: json.animation_url ?? (image.split('.').pop() === 'mp4' ? image : null),
+                count: count,
+                description: description,
+                properties: properties,
+                contract: writeContract,
+                address: knownContract.address,
+                multiToken: true,
+                listable,
+                listed,
+                listingId,
+                price,
+                canSell: canSell,
+                canTransfer: canTransfer,
+              };
+
+              onNftLoaded([nft]);
+            }
             /*
             for (const item of erc1155Listings) {
               let nft = {
                 name: name,
-                id: knownContract.id,
+                id: id,
                 image: image,
                 description: description,
                 properties: properties,
@@ -488,7 +494,7 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
               console.log(canSell);
               let nft = {
                 name: name,
-                id: knownContract.id,
+                id: id,
                 image: image,
                 description: description,
                 properties: properties,
@@ -1224,7 +1230,7 @@ export async function getNftsForAddress2(walletAddress, walletProvider) {
   return await Promise.all(
     results
       .filter((nft) => {
-        const matchedContract = getKnownContract(nft);
+        const matchedContract = findCollectionByAddress(nft.nftAddress, nft.nftId);
         if (!matchedContract) return false;
 
         const hasBalance = !matchedContract.multiToken || parseInt(nft.balance) > 0;
@@ -1232,7 +1238,7 @@ export async function getNftsForAddress2(walletAddress, walletProvider) {
         return matchedContract && hasBalance;
       })
       .map(async (nft) => {
-        const knownContract = getKnownContract(nft);
+        const knownContract = findCollectionByAddress(nft.nftAddress, nft.nftId);
 
         let key = knownContract.address;
         if (knownContract.multiToken) {
@@ -1313,6 +1319,7 @@ export async function getNftsForAddress2(walletAddress, walletProvider) {
           description: nft.description,
           properties: nft.properties && nft.properties.length > 0 ? nft.properties : nft.attributes,
           image: image,
+          video: image.split('.').pop() === 'mp4' ? image : null,
           count: nft.balance,
           address: knownContract.address,
           contract: writeContract,
