@@ -503,8 +503,6 @@ const SingleDrop = () => {
                         muted={true}
                         playing={true}
                         loop={true}
-                        width="75%"
-                        height="75%"
                       />
                     )}
 
