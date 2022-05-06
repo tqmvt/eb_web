@@ -4189,6 +4189,26 @@
         "discord": "https://discord.gg/znVknTzPKS",
         "medium": "https://medium.com/@CromodoDragons"
       }
+    },
+    {
+      "name": "Crobra",
+      "slug": "crobra",
+      "multiToken": false,
+      "address": "0x2dcA205C12c17e803F8962AefbaB6B3F50d15551",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "The venomous land on the Cronos blockchain! Crobra is a collection of 1250 unique snakes with over 150 different attributes. Spinning the wheel of the roulette game will be a taste of the Crobra adventure, with a reward guaranteed between 0-100 CRO! Remember that even small snakes are poisonous!",
+        "verified": false,
+        "avatar": "/img/collections/crobra/avatar.webp",
+        "banner": "/img/collections/crobra/banner.webp",
+        "card": "/img/collections/crobra/card.webp",
+        "maxSupply": 1250,
+        "website": "https://crobranft.com/",
+        "twitter": "https://twitter.com/CrobraNFT",
+        "discord": "https://discord.gg/DtbJTP26VH",
+        "medium": "https://medium.com/@crobra666"
+      }
     }
   ],
   "drops": [
