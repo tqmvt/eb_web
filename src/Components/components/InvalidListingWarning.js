@@ -1,11 +1,11 @@
 import React, { memo } from 'react';
 import { useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useRouter } from 'next/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 
 const InvalidListingWarning = function (props) {
-  const history = useHistory();
+  const history = useRouter();
 
   const walletAddress = useSelector((state) => {
     return state.user.address;

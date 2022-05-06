@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import styled from 'styled-components';
-import { useHistory } from 'react-router-dom';
+import { useRouter } from 'next/router';
 import { ethers } from 'ethers';
 import moment from 'moment';
 
@@ -15,7 +15,7 @@ const Outer = styled.div`
 `;
 
 const SoldNftCard = ({ nft, index, className = 'col-sm-12 col-md-12 col-lg-6 d-item', width, onImgLoad }) => {
-  const history = useHistory();
+  const history = useRouter();
 
   const navigateTo = (link) => {
     history.push(link);

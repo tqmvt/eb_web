@@ -2,7 +2,7 @@ import React, { memo, useEffect, useState } from 'react';
 import Blockies from 'react-blockies';
 import { useDispatch, useSelector } from 'react-redux';
 import useOnclickOutside from 'react-cool-onclickoutside';
-import { useHistory } from 'react-router-dom';
+import { useRouter } from 'next/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBolt, faImage, faSignOutAlt, faShoppingBag, faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import { toast } from 'react-toastify';
@@ -49,7 +49,7 @@ const StyledModalTitle = styled(ModalTitle)`
 
 const AccountMenu = function () {
   const dispatch = useDispatch();
-  const history = useHistory();
+  const history = useRouter();
 
   const [showpop, btn_icon_pop] = useState(false);
 

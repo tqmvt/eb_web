@@ -1,6 +1,5 @@
 import React, { memo, useState } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 
 import Footer from '../components/Footer';
 import NftCardList from '../components/MyNftCardList';
@@ -35,7 +34,8 @@ const MyNfts = ({ walletAddress, isLoading }) => {
   };
 
   if (!walletAddress) {
-    return <Redirect to="/marketplace" />;
+    router.push('/marketplace');
+    return;
   }
 
   return (

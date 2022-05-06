@@ -1,6 +1,5 @@
 import React, { memo, useEffect, useState } from 'react';
 import { findCollectionByAddress } from '../../utils';
-import { useParams, Redirect } from 'react-router-dom';
 
 import config from '../../Assets/networks/rpc_config.json';
 import Nft1155 from './nft1155';
@@ -8,7 +7,8 @@ import Nft721 from './nft721';
 const knownContracts = config.known_contracts;
 
 const Nft = () => {
-  const { slug, id } = useParams();
+  const router = useRouter();
+  const { slug, id } = router.query;
 
   const [type, setType] = useState('721');
   const [collection, setCollection] = useState(null);
@@ -32,26 +32,24 @@ const Nft = () => {
     setInitialized(true);
   }, [slug, id]);
 
+  if (redirect) {
+    router.push(`/collection/${redirect}/${id}`);
+    return;
+  }
+
+  if (!collection) {
+    router.push('/');
+    return;
+  }
+
   return (
     <>
       {initialized && (
         <>
-          {redirect ? (
-            <Redirect to={`/collection/${redirect}/${id}`} />
+          {type === '1155' ? (
+            <Nft1155 address={collection.address} id={id} />
           ) : (
-            <>
-              {collection ? (
-                <>
-                  {type === '1155' ? (
-                    <Nft1155 address={collection.address} id={id} />
-                  ) : (
-                    <Nft721 address={collection.address} id={id} />
-                  )}
-                </>
-              ) : (
-                <Redirect to="/" />
-              )}
-            </>
+            <Nft721 address={collection.address} id={id} />
           )}
         </>
       )}

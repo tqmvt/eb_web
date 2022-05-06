@@ -1,6 +1,7 @@
 import React, { memo, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory, Link } from 'react-router-dom';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import Blockies from 'react-blockies';
 import { ethers } from 'ethers';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
@@ -33,7 +34,7 @@ import { OFFER_TYPE } from '../Offer/MadeOffersRow';
 
 const Nft1155 = ({ address, id }) => {
   const dispatch = useDispatch();
-  const history = useHistory();
+  const history = useRouter();
 
   const nft = useSelector((state) => state.nft.nft);
   const soldListings = useSelector((state) =>

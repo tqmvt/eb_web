@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import Blockies from 'react-blockies';
 import { createSuccessfulTransactionToastContent, shortAddress, timeSince } from 'src/utils';
-import { Link, useHistory } from 'react-router-dom';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { ethers } from 'ethers';
 // import { listingUpdated } from '../../../../GlobalState/listingSlice';
 import { toast } from 'react-toastify';
@@ -13,7 +14,7 @@ import { getNftDetails } from '../../../../GlobalState/nftSlice';
 
 export default function ListingsRow({ listing }) {
   const dispatch = useDispatch();
-  const history = useHistory();
+  const history = useRouter();
 
   const user = useSelector((state) => state.user);
 

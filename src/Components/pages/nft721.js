@@ -1,6 +1,7 @@
 import React, { memo, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory, Link } from 'react-router-dom';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import Blockies from 'react-blockies';
 import { Contract, ethers } from 'ethers';
 import { faCrow, faExternalLinkAlt, faHeart } from '@fortawesome/free-solid-svg-icons';
@@ -42,7 +43,7 @@ const knownContracts = config.known_contracts;
 
 const Nft721 = ({ address, id }) => {
   const dispatch = useDispatch();
-  const history = useHistory();
+  const history = useRouter();
 
   const user = useSelector((state) => state.user);
 

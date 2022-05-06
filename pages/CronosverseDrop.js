@@ -6,7 +6,7 @@ import Countdown from 'react-countdown';
 import { getAnalytics, logEvent } from '@firebase/analytics';
 import { keyframes } from '@emotion/react';
 import Reveal from 'react-awesome-reveal';
-import { useParams } from 'react-router-dom';
+import { useRouter } from 'next/router';
 import { Spinner } from 'react-bootstrap';
 import ReactPlayer from 'react-player';
 import * as Sentry from '@sentry/react';
@@ -63,7 +63,8 @@ const HeroSection = styled.section`
 `;
 
 const CronosverseDrop = () => {
-  const { slug } = useParams();
+  const router = useRouter();
+  const { slug } = router.query;
 
   const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
   const dispatch = useDispatch();

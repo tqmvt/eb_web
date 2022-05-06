@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 import styled from 'styled-components';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Spinner } from 'react-bootstrap';
@@ -177,7 +176,10 @@ const MyOffers = () => {
     }
   };
 
-  // console.log(lastId);
+  if (!walletAddress) {
+    router.push('/marketplace');
+    return;
+  }
 
   const Content = () => (
     <>
@@ -295,7 +297,11 @@ const MyOffers = () => {
     </>
   );
 
-  return <div>{walletAddress ? <Content /> : <Redirect to="/marketplace" />}</div>;
+  return (
+    <div>
+      <Content />{' '}
+    </div>
+  );
 };
 
 export default MyOffers;

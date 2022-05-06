@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { useParams } from 'react-router-dom';
+import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 import { Helmet } from 'react-helmet';
 
@@ -13,9 +13,10 @@ import { shortAddress } from 'src/utils';
 
 const Seller = () => {
   const cacheName = 'sellerPage';
+  const router = useRouter();
+  const { address } = router.query;
 
   const dispatch = useDispatch();
-  const { address } = useParams();
 
   const marketplace = useSelector((state) => {
     return state.marketplace;

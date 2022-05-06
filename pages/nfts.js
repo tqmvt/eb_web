@@ -1,6 +1,6 @@
 import React, { memo, useState } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { useRouter } from 'next/router';
 
 import Footer from '../components/Footer';
 import NftCardList from '../components/MyNftCardList';
@@ -16,7 +16,8 @@ const mapStateToProps = (state) => ({
 });
 
 const MyNfts = ({ walletAddress, isLoading }) => {
-  // const dispatch = useDispatch();
+  const router = useRouter();
+
   const [showChainSearch, setShowChainSearch] = useState(false);
   const [openTab, setOpenTab] = useState(0);
 
@@ -35,7 +36,8 @@ const MyNfts = ({ walletAddress, isLoading }) => {
   };
 
   if (!walletAddress) {
-    return <Redirect to="/marketplace" />;
+    router.push('/marketplace');
+    return;
   }
 
   return (

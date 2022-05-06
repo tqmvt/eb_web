@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useRouter } from 'next/router';
+
 import { init, fetchListings } from '../../GlobalState/collectionSlice';
 import { devLog } from '../../utils';
 import { CollectionSortOption } from '../Models/collection-sort-option.model';
 import { FilterOption } from '../Models/filter-option.model';
-// import config from '../../Assets/networks/rpc_config.json';
 import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
 import borderboard from '../../Assets/cronosverse/border_board.png';
 import tile1 from '../../Assets/cronosverse/Plain-tile.png';
@@ -15,12 +16,11 @@ import styled from 'styled-components';
 import { chainConnect, connectAccount } from '../../GlobalState/User';
 import MetaMaskOnboarding from '@metamask/onboarding';
 import MakeOfferDialog from '../Offer/MakeOfferDialog';
-import { useHistory } from 'react-router-dom';
 import { commify } from 'ethers/lib/utils';
 
 const CollectionCronosverse = ({ collection }) => {
   const dispatch = useDispatch();
-  const history = useHistory();
+  const router = useRouter();
 
   const user = useSelector((state) => state.user);
   const items = useSelector((state) => state.collection.listings);
@@ -58,18 +58,13 @@ const CollectionCronosverse = ({ collection }) => {
     // if (listing.market?.id) {
     //   history.push(`/listing/${listing.market?.id}`);
     // } else {
-    history.push(`/collection/${listing.address}/${listing.id}`);
+    router.push(`/collection/${listing.address}/${listing.id}`);
     // }
   };
 
   return (
     <div>
-      <CronosverseCollectionBoard
-        onBuy={handleBuy}
-        onOffer={handleMakeOffer}
-        listings={listings}
-        nfts={items}
-      />
+      <CronosverseCollectionBoard onBuy={handleBuy} onOffer={handleMakeOffer} listings={listings} nfts={items} />
       {openMakeOfferDialog && (
         <MakeOfferDialog
           isOpen={openMakeOfferDialog}

@@ -46,7 +46,6 @@ const MakeOffer = styled.div`
 `;
 
 const ListingCardCollection = ({ listing, imgClass = 'marketplace', watermark, address, collectionMetadata }) => {
-  // const history = useHistory();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const [openMakeOfferDialog, setOpenMakeOfferDialog] = useState(false);

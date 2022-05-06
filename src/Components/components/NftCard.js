@@ -1,7 +1,8 @@
 import React, { memo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { Link, useHistory } from 'react-router-dom';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 import { ethers } from 'ethers';
 import MetaMaskOnboarding from '@metamask/onboarding';
 
@@ -9,7 +10,7 @@ import { croSkullRedPotionImageHack } from 'src/hacks';
 import Button from './Button';
 import MakeOfferDialog from '../Offer/MakeOfferDialog';
 import { connectAccount, chainConnect } from 'src/GlobalState/User';
-import {isNftBlacklisted, round} from '../../utils';
+import { isNftBlacklisted, round } from '../../utils';
 
 const Watermarked = styled.div`
   position: relative;
@@ -48,7 +49,7 @@ const MakeOffer = styled.div`
 `;
 
 const NftCard = ({ royalty, listing, imgClass = 'marketplace', watermark, address, collectionMetadata }) => {
-  const history = useHistory();
+  const history = useRouter();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const [openMakeOfferDialog, setOpenMakeOfferDialog] = useState(false);

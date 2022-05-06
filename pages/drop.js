@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useRouter } from 'next/router';
 
 import config from '../../Assets/networks/rpc_config.json';
 import MultiDrop from './multiDrop';
@@ -9,7 +9,8 @@ import CronosverseDrop from './CronosverseDrop';
 export const drops = config.drops;
 
 const Drop = () => {
-  const { slug } = useParams();
+  const router = useRouter();
+  const { slug } = router.query;
 
   const [isMultiDrop, setIsMultiDrop] = useState(false);
   const [isMultiPrice, setIsMultiPrice] = useState(false);

@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useRouter } from 'next/router';
 import { ethers } from 'ethers';
 import { toast } from 'react-toastify';
 import { faLink } from '@fortawesome/free-solid-svg-icons';
@@ -23,7 +23,7 @@ const MyNftCard = ({
   newTab = false,
   imgClass = 'marketplace',
 }) => {
-  const history = useHistory();
+  const history = useRouter();
 
   const navigateTo = (link) => {
     if (newTab) {

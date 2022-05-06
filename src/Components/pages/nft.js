@@ -1,6 +1,6 @@
 import React, { memo, useEffect, useState } from 'react';
 import { findCollectionByAddress } from '../../utils';
-import { useParams, Redirect } from 'react-router-dom';
+import { useRouter } from 'next/router';
 
 import config from '../../Assets/networks/rpc_config.json';
 import Nft1155 from './nft1155';
@@ -8,7 +8,8 @@ import Nft721 from './nft721';
 const knownContracts = config.known_contracts;
 
 const Nft = () => {
-  const { slug, id } = useParams();
+  const router = useRouter();
+  const { slug, id } = router.query;
 
   const [type, setType] = useState('721');
   const [collection, setCollection] = useState(null);

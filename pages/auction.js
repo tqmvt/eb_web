@@ -1,9 +1,11 @@
 import React, { memo } from 'react';
-import { useParams } from 'react-router-dom';
+import { useRouter } from 'next/router';
+
 import AuctionComponent from '../components/AuctionComponent';
 
 const Auction = () => {
-  const { id } = useParams();
+  const router = useRouter();
+  const { id } = router.query;
 
   return <AuctionComponent id={id} />;
 };

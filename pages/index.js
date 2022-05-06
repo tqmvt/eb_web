@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 import { keyframes } from '@emotion/react';
 import Reveal from 'react-awesome-reveal';
 import { createGlobalStyle, default as styled } from 'styled-components';
@@ -117,7 +118,7 @@ const Jumbotron = {
 };
 
 const Home = () => {
-  const history = useHistory();
+  const history = useRouter();
   const dispatch = useDispatch();
 
   const [mobile, setMobile] = useState(window.innerWidth < theme.breakpointsNum.md);

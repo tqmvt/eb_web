@@ -1,12 +1,16 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 
 import Footer from '../components/Footer';
 import MyStakingComponent from '../components/MyStaking';
 
 const MyStaking = () => {
   const walletAddress = useSelector((state) => state.user.address);
+
+  if (!walletAddress) {
+    router.push('/marketplace');
+    return;
+  }
 
   const Content = () => (
     <>
@@ -30,7 +34,11 @@ const MyStaking = () => {
     </>
   );
 
-  return <div>{walletAddress ? <Content /> : <Redirect to="/marketplace" />}</div>;
+  return (
+    <div>
+      <Content />
+    </div>
+  );
 };
 
 export default MyStaking;
