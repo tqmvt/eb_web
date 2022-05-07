@@ -80,6 +80,7 @@ const userSlice = createSlice({
     fetchingNfts: false,
     nftsInitialized: false,
     nfts: [],
+    nftsFullyFetched: false,
     myNftPageTransferDialog: null,
     myNftPageListDialog: null,
     myNftPageCancelDialog: null,
@@ -148,7 +149,9 @@ const userSlice = createSlice({
 
     fetchingNfts(state, action) {
       state.fetchingNfts = true;
-      state.nfts = [];
+      if (!action.payload?.persist) {
+        state.nfts = [];
+      }
     },
     onNftsAdded(state, action) {
       state.nfts.push(...action.payload);
@@ -162,6 +165,10 @@ const userSlice = createSlice({
       if (action.payload) {
         state.nfts = action.payload;
       }
+    },
+    nftsFullyFetched(state) {
+      state.fetchingNfts = false;
+      state.nftsFullyFetched = true;
     },
     setMyNftPageTransferDialog(state, action) {
       state.myNftPageTransferDialog = action.payload;
@@ -341,6 +348,7 @@ export const {
   onNftsAdded,
   onNftsReplace,
   nftsFetched,
+  nftsFullyFetched,
   onNftLoaded,
   myUnfilteredListingsFetching,
   myUnfilteredListingsFetched,
@@ -704,15 +712,20 @@ export const chainConnect = (type) => async (dispatch) => {
   }
 };
 
-export const fetchNfts = () => async (dispatch, getState) => {
+export const fetchNfts = (page, persist = false) => async (dispatch, getState) => {
   const state = getState();
 
   const walletAddress = state.user.address;
   const walletProvider = state.user.provider;
 
-  dispatch(fetchingNfts());
-  const response = await getNftsForAddress2(walletAddress, walletProvider);
-  dispatch(nftsFetched(response));
+  dispatch(fetchingNfts({persist}));
+  const response = await getNftsForAddress2(walletAddress, walletProvider, page);
+  if (response.length > 0) {
+    dispatch(onNftsAdded(response));
+    dispatch(nftsFetched());
+  } else {
+    dispatch(nftsFullyFetched());
+  }
 };
 
 export const fetchChainNfts = (abortSignal) => async (dispatch, getState) => {
@@ -720,23 +733,6 @@ export const fetchChainNfts = (abortSignal) => async (dispatch, getState) => {
 
   const walletAddress = state.user.address;
   const walletProvider = state.user.provider;
-  const nftsInitialized = state.user.nftsInitialized;
-  if (!nftsInitialized) {
-    dispatch(fetchingNfts());
-    const response = await getNftsForAddress(
-      walletAddress,
-      walletProvider,
-      (nfts) => {
-        dispatch(onNftsAdded(nfts));
-      },
-      abortSignal
-    );
-    if (abortSignal.aborted) return;
-    dispatch(setIsMember(response.isMember));
-    await addRanksToNfts(dispatch, getState);
-    dispatch(nftsFetched());
-    return;
-  }
 
   dispatch(fetchingNfts());
   try {
