@@ -66,7 +66,7 @@ const HeroSection = styled.section`
   padding: 0 0;
   background-size: cover;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   position: relative;
   display: flex;
   align-items: center;
@@ -485,25 +485,30 @@ const SingleDrop = () => {
         >
           <div className="container">
             <div className="row align-items-center">
-              <div className={`col-lg-6 ${drop.mediaPosition === 'left' ? 'order-1' : 'order-2'}`}>
+              <div className={`col-lg-6 mb-4 mb-sm-0 ${drop.mediaPosition === 'left' ? 'order-1' : 'order-2'}`}>
                 <Reveal className="onStep" keyframes={fadeInUp} delay={600} duration={900} triggerOnce>
                   <>
                     {drop.video && (
-                      <ReactPlayer
-                        controls
-                        url={drop.video}
-                        config={{
-                          file: {
-                            attributes: {
-                              onContextMenu: (e) => e.preventDefault(),
-                              controlsList: 'nodownload',
+                      <div className='player-wrapper'>
+                        <ReactPlayer
+                          className='react-player'
+                          controls
+                          url={drop.video}
+                          config={{
+                            file: {
+                              attributes: {
+                                onContextMenu: (e) => e.preventDefault(),
+                                controlsList: 'nodownload',
+                              },
                             },
-                          },
-                        }}
-                        muted={true}
-                        playing={true}
-                        loop={true}
-                      />
+                          }}
+                          muted={true}
+                          playing={true}
+                          loop={true}
+                          width="100%"
+                          height="100%"
+                        />
+                      </div>
                     )}
 
                     {drop.slug === 'psycho-golden-lady' || drop.slug === 'smash-stunts' ? (
