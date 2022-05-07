@@ -23,7 +23,8 @@ const MyNftCardList = ({ nfts = [], isLoading, listedOnly, activeFilterOption, u
   const [page, setPage] = useState(1);
   const isFetching = useSelector((state) => state.user.fetchingNfts);
   const canLoadMore = useSelector((state) => {
-    return !useChain && !state.user.nftsFullyFetched;
+    return false;
+    // return !useChain && !state.user.nftsFullyFetched;
   });
 
   const loadMore = () => {
