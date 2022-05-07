@@ -1156,7 +1156,7 @@ export async function getAuction(auctionId) {
 }
 
 export async function getQuickWallet(walletAddress, queryParams = {}) {
-  const pagingSupported = true;
+  const pagingSupported = false;
 
   let queryString = new URLSearchParams({
     wallet: walletAddress
