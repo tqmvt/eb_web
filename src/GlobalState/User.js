@@ -35,6 +35,7 @@ import { setThemeInStorage } from 'src/helpers/storage';
 import { getAllOffers } from '../core/subgraph';
 import { offerState } from '../core/api/enums';
 import { CNS, TextRecords } from '@cnsdomains/core';
+import {txExtras} from "../core/constants";
 
 const knownContracts = config.known_contracts;
 
@@ -1072,7 +1073,7 @@ export class MyNftPageActions {
       try {
         const price = ethers.utils.parseEther(salePrice);
 
-        let tx = await marketContract.makeListing(contractAddress, nftId, price);
+        let tx = await marketContract.makeListing(contractAddress, nftId, price, txExtras);
 
         let receipt = await tx.wait();
 
