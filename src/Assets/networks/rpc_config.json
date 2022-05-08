@@ -4229,6 +4229,26 @@
         "discord": "https://discord.gg/cWdCce8XAx",
         "medium": "https://medium.com/panels-project"
       }
+    },
+    {
+      "name": "CroArmy Soldier",
+      "slug": "cro-army-soldier",
+      "multiToken": false,
+      "address": "0xE4a36Aa88d8380DB252558104dbe0D71505aF7a5",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": false,
+        "avatar": "/img/collections/cro-army-soldier/avatar.webp",
+        "card": "/img/collections/cro-army-soldier/card.webp",
+        "banner": "/img/collections/cro-army-soldier/banner.webp",
+        "maxSupply": 1000,
+        "website": "https://croarmy.io/",
+        "twitter": "https://twitter.com/croarmy_eth",
+        "discord": "https://discord.gg/croarmy",
+        "telegram": "https://t.me/CroArmy_ETH"
+      }
     }
   ],
   "drops": [
