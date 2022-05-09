@@ -12,19 +12,19 @@ import ReactPlayer from 'react-player';
 import * as Sentry from '@sentry/react';
 import styled from 'styled-components';
 import { Helmet } from 'react-helmet';
-import Footer from '../components/Footer';
+import Footer from '../src/Components/components/Footer';
 import config from '../../Assets/networks/rpc_config.json';
 import { connectAccount } from '../../GlobalState/User';
-import borderboard from '../../Assets/cronosverse/border_board.png';
-import tile1 from '../../Assets/cronosverse/Plain-tile.png';
-import tile2 from '../../Assets/cronosverse/Suburban-tile.png';
-import tile3 from '../../Assets/cronosverse/Commercial-tile.png';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 import { createSuccessfulTransactionToastContent, isFounderDrop, newlineText } from '../../utils';
 import { dropState as statuses } from '../../core/api/enums';
 import { EbisuDropAbi } from '../../Contracts/Abis';
 
-const tiles = [tile1, tile2, tile3];
+const tiles = [
+  '/img/cronosverse/Plain-tile.png',
+  '/img/cronosverse/Suburban-tile.png',
+  '/img/cronosverse/Commercial-tile.png',
+];
 const tileType = ['Plain', 'Suburban', 'Commercial'];
 
 export const drops = config.drops;
@@ -707,7 +707,12 @@ const CronosverseMintBoard = ({ mintNow, minting, mintedIds, prices }) => {
             onPanning={() => setModalFlag('none')}
           >
             <TransformComponent>
-              <img src={borderboard} alt="boardboard" style={{ width: `${tempWidth}px`, height: `${tempHeight}px` }} />
+              <img
+                src="/img/cronosverse/border_board.png"
+                alt="boardboard"
+                width={`${tempWidth}px`}
+                height={`${tempHeight}px`}
+              />
               <canvas className="canvasFront" ref={ref2} onClick={handleClick}></canvas>
             </TransformComponent>
 
