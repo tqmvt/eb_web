@@ -4268,6 +4268,26 @@
         "website": "https://trooprz.army/",
         "discord": "https://discord.gg/trooprz"
       }
+    },
+    {
+      "name": "Beta Mascots",
+      "slug": "beta-mascots",
+      "multiToken": false,
+      "address": "",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/goldpartner/avatar.gif",
+        "card": "/img/collections/goldpartner/card.png",
+        "banner": "/img/collections/goldpartner/banner.png",
+        "maxSupply": 3456,
+        "website": "https://www.betamascots.com/",
+        "twitter": "https://twitter.com/TheSportsNFT",
+        "discord": "https://discord.gg/9Exq5ECpDv",
+        "medium": "https://medium.com/@thesportsnft"
+      }
     }
   ],
   "drops": [
@@ -5301,7 +5321,7 @@
       "title": "Gold Partner",
       "subtitle": "Gold Partner Collection - The Hall of Fame is a collection of 300- 3D animated NFT's with unique features and utilities. Every NFT is a VIP founding members pass on our project. Holders of these NFT's will enjoy 30% share of the primary profits earned from all upcoming collections, marketplace and other benefits from time to time. These NFT's offer a profit-sharing partnership opportunity to the buyers and holders to earn passive income by staking these NFTs.",
       "description": "Gold Partner Collection - The Hall of Fame is designed to offer direct profit-sharing partnership for all holders of these NFTs.\nLong term goal of this project is to create a decentralized marketplace for trading real-world collectibles (not just pictures). This will allow P2P trading of real-world collectables on the blockchain.\nUnique Utilities:\nâ€¢    30% of primary profits are shared directly among the holders of this collection.\nâ€¢    Exclusive giveaways for the gold partners.\nâ€¢    Exclusive access to DAO- This will give all holders the power to cast their vote towards proposals put forward by the team, along with community proposals for roadmap ideas and utility.\nâ€¢    Chance to be a Platinum partner and enjoy a bigger chunk of profits.\nâ€¢    Come explore the joy of owning a share in NFT project and become a founding member!",
-      "author": { "name": "Sports NFTs", "link": "https://thesportsnft.io/" },
+      "author": { "name": "The Sports NFT", "link": "https://thesportsnft.io/" },
       "address": "0xF4C80B77AA1F73E09348693a81d744Fcd1263A2D",
       "maxMintPerTx": 5,
       "maxMintPerAddress": 5,
@@ -6087,6 +6107,32 @@
       "complete": false,
       "featured": false,
       "redirect": "https://www.boomersquad.io/selectmint"
+    },
+    {
+      "id": 70,
+      "slug": "beta-mascots",
+      "imgNft": "/img/drops/beta-mascots/drop.webp",
+      "imgPreview": "/img/drops/beta-mascots/drop.webp",
+      "imgAvatar": "/img/collections/beta-mascots/avatar.webp",
+      "imgBanner": "/img/collections/beta-mascots/banner.webp",
+      "title": "Beta Mascots",
+      "subtitle": "Beta Mascots is a PFP collection power packed with utilities by The Sports NFT. Their first collection was sold out in 30 seconds !!\n\nJoin Beta Mascots and be a founding member in our ecosystem. Beta Mascots are divided in 6 factions and they represent 6 major sports (Soccer, Baseball, Basketball, Golf, Hockey, Cricket) with estimated fan count of 9+ Billion across the world. \n\nEvery faction will have individual rankings and rarity which will be displayed on our website.",
+      "description": "Immediate Utility\n\nFree Mint- 10% of the collection (345 mascots) is raffle tickets. Random Token# are generated and posted in our discord. You will be eligible for 100% refund if you mint those token numbers.\n\nShort-term Utility\n\n2% Rare VIP Gold Chain trait- NFT's with VIP Gold Chain trait will become profit sharing partners and will be eligible to receive profit share equal to gold partners from this drop and ahead.\n\nTop 10 holders will get an air drop of 1/1 legendary.\n\n90% of royalties from secondary markets will be used to reward holders with weekly raffles.\n\nLong-term Utility\n\nFree Ticket- NFT will act as a membership ticket to trade free on our upcoming marketplace.\n\nHolders will be WL for future drops and Presale of Tokens in next Phase.",
+      "author": { "name": "The Sports NFT", "link": "https://www.betamascots.com/" },
+      "address": "",
+      "maxMintPerTx": 10,
+      "maxMintPerAddress": 100,
+      "totalSupply": 3456,
+      "cost": "325",
+      "memberCost": "275",
+      "whitelistCost": "250",
+      "foundersOnly": false,
+      "start": 1652475600000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false
     }
   ],
   "auctions": [
