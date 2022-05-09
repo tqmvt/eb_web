@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Redirect, useParams } from 'react-router-dom';
-
+import { useRouter } from 'next/router';
 import Collection1155 from './collection1155';
 import Collection721 from './collection721';
 import config from '../../Assets/networks/rpc_config.json';
@@ -17,7 +16,8 @@ const collectionTypes = {
 };
 
 const Collection = () => {
-  const { slug } = useParams();
+  const router = useRouter();
+  const { slug } = router.query;
 
   const [type, setType] = useState(collectionTypes.ERC721);
   const [collection, setCollection] = useState(null);
@@ -45,35 +45,33 @@ const Collection = () => {
     setInitialized(true);
   }, [slug]);
 
+  if (redirect) {
+    router.push(`/collection/${redirect}`);
+  }
+
+  if (!collection) {
+    router.push('/');
+  }
+
   return (
     <>
       {initialized && (
         <>
-          {redirect ? (
-            <Redirect to={`/collection/${redirect}`} />
-          ) : (
-            <>
-              {collection ? (
-                <>
-                  {type === collectionTypes.CRONOSVERSE ? (
-                    <CollectionCronosverse collection={collection} slug={slug} cacheName={slug} />
-                  ) : type === collectionTypes.ERC1155 ? (
-                    <>
-                      {collection.split ? (
-                        <Collection1155 collection={collection} tokenId={collection.id} slug={slug} cacheName={slug} />
-                      ) : (
-                        <Collection1155 collection={collection} slug={slug} cacheName={slug} />
-                      )}
-                    </>
-                  ) : (
-                    <Collection721 collection={collection} slug={slug} cacheName={slug} />
-                  )}
-                </>
-              ) : (
-                <Redirect to="/" />
-              )}
-            </>
-          )}
+          <>
+            {type === collectionTypes.CRONOSVERSE ? (
+              <CollectionCronosverse collection={collection} slug={slug} cacheName={slug} />
+            ) : type === collectionTypes.ERC1155 ? (
+              <>
+                {collection.split ? (
+                  <Collection1155 collection={collection} tokenId={collection.id} slug={slug} cacheName={slug} />
+                ) : (
+                  <Collection1155 collection={collection} slug={slug} cacheName={slug} />
+                )}
+              </>
+            ) : (
+              <Collection721 collection={collection} slug={slug} cacheName={slug} />
+            )}
+          </>
         </>
       )}
     </>

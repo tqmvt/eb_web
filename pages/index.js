@@ -8,14 +8,14 @@ import { createGlobalStyle, default as styled } from 'styled-components';
 import { faFire } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import Footer from '../components/Footer';
-import ListingCollection from '../components/ListingCollection';
-import HotCollections from '../components/HotCollections';
-import CurrentDrops from '../components/CurrentDrops';
-import { getMarketData } from '../../GlobalState/marketplaceSlice';
-import { siPrefixedNumber } from '../../utils';
-import { theme } from '../../Theme/theme';
-import Button from '../components/Button';
+import Footer from '../src/Components/components/Footer';
+import ListingCollection from '../src/Components/components/ListingCollection';
+import HotCollections from '../src/Components/components/HotCollections';
+import CurrentDrops from '../src/Components/components/CurrentDrops';
+import { getMarketData } from '../src/GlobalState/marketplaceSlice';
+import { siPrefixedNumber } from '../src/utils';
+import { theme } from '../src/Theme/theme';
+import Button from '../src/Components/components/Button';
 
 const fadeInUp = keyframes`
   0% {

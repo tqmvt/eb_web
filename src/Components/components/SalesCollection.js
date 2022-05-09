@@ -5,7 +5,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { Spinner, Table } from 'react-bootstrap';
 import { SortOption } from '../Models/sort-option.model';
 import { debounce, shortAddress, timeSince } from '../../utils';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { ethers } from 'ethers';
 import TopFilterBar from './TopFilterBar';
 import { marketPlaceCollectionFilterOptions } from './constants/filter-options';

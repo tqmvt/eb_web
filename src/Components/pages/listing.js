@@ -1,6 +1,7 @@
 import React, { memo, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams, Link } from 'react-router-dom';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 import { Contract, ethers } from 'ethers';
 import MetaMaskOnboarding from '@metamask/onboarding';
 import { Spinner } from 'react-bootstrap';
@@ -36,7 +37,8 @@ import NFTTabOffers from '../Offer/NFTTabOffers';
 import ReactPlayer from 'react-player';
 
 const Listing = () => {
-  const { id } = useParams();
+  const router = useRouter();
+  const { id } = router.query;
   const dispatch = useDispatch();
 
   const listing = useSelector((state) => state.listing.listing);

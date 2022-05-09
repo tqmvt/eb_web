@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import Blockies from 'react-blockies';
 import { faCheck, faCircle } from '@fortawesome/free-solid-svg-icons';
 

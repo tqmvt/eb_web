@@ -1,7 +1,6 @@
 import React, { memo, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Spinner } from 'react-bootstrap';
-// import { Link } from 'react-router-dom';
 // import InfiniteScroll from 'react-infinite-scroll-component';
 
 import AuctionCard from './AuctionCard';

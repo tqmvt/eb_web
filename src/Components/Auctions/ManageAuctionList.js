@@ -10,7 +10,7 @@ import { sortAndFetchAuctions } from '../../core/api';
 import Clock from '../components/Clock';
 // import MetaMaskOnboarding from '@metamask/onboarding';
 // import { chainConnect, connectAccount } from '../../GlobalState/User';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { auctionState } from '../../core/api/enums';
 
 const ManageAuctionList = () => {

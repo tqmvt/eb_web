@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createGlobalStyle } from 'styled-components';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { ethers } from 'ethers';
 import Blockies from 'react-blockies';
 import { Form, Spinner } from 'react-bootstrap';

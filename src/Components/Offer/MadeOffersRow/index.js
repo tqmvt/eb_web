@@ -10,7 +10,7 @@ import config from 'src/Assets/networks/rpc_config.json';
 import { getNftDetails } from 'src/GlobalState/nftSlice';
 import MakeOfferDialog from '../MakeOfferDialog';
 import AcceptOfferDialog from '../AcceptOfferDialog';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { commify } from 'ethers/lib.esm/utils';
 
 const knownContracts = config.known_contracts;

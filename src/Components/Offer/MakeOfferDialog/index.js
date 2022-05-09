@@ -13,7 +13,6 @@ import ProfilePreview from 'src/Components/components/ProfilePreview';
 import { croSkullRedPotionImageHack } from 'src/hacks';
 import { caseInsensitiveCompare, humanize, shortAddress } from 'src/utils';
 import { OFFER_TYPE } from '../MadeOffersRow';
-import CloseIcon from 'src/Assets/images/close-icon-blue.svg';
 import { updateOfferSuccess, updateOfferFailed } from 'src/GlobalState/offerSlice';
 import EmptyData from '../EmptyData';
 import config from 'src/Assets/networks/rpc_config.json';
@@ -462,7 +461,7 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
           </EmptyData>
         )}
         <CloseIconContainer onClick={() => toggle(OFFER_TYPE.none)}>
-          <img src={CloseIcon} alt="close" />
+          <img src="/img/icons/close-icon-blue.svg" alt="close" width="40" height="40" />
         </CloseIconContainer>
       </DialogContent>
     </DialogContainer>

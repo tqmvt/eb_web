@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import Breakpoint, { BreakpointProvider, setDefaultBreakpoints } from 'react-socks';
-import { NavLink } from 'react-router-dom';
+import Link from 'next/link';
 import { createGlobalStyle } from 'styled-components';
 
 import AccountMenu from '../components/AccountMenu';
@@ -69,13 +69,13 @@ const Header = function () {
         <div className="row w-100-nav">
           <div className="logo px-0">
             <div className="navbar-title navbar-item">
-              <NavLink to="/">
+              <Link to="/">
                 <img
                   src={theme === 'light' ? '/img/logo-light.svg' : '/img/logo-dark-prod.svg'}
                   alt="ebisus bay logo"
                   style={{ width: '44px', height: '40px' }}
                 />
-              </NavLink>
+              </Link>
             </div>
           </div>
 
@@ -85,28 +85,28 @@ const Header = function () {
                 <div className="menu">
                   <div className="menu">
                     <div className="navbar-item">
-                      <NavLink to="/home">
+                      <Link to="/home">
                         Home
                         <span className="lines"></span>
-                      </NavLink>
+                      </Link>
                     </div>
                     <div className="navbar-item">
-                      <NavLink to="/marketplace">
+                      <Link to="/marketplace">
                         Marketplace
                         <span className="lines"></span>
-                      </NavLink>
+                      </Link>
                     </div>
                     <div className="navbar-item">
-                      <NavLink to="/collections">
+                      <Link to="/collections">
                         Collections
                         <span className="lines"></span>
-                      </NavLink>
+                      </Link>
                     </div>
                     <div className="navbar-item">
-                      <NavLink to="/drops">
+                      <Link to="/drops">
                         Drops
                         <span className="lines"></span>
-                      </NavLink>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -116,28 +116,28 @@ const Header = function () {
             <Breakpoint xl>
               <div className="menu">
                 <div className="navbar-item">
-                  <NavLink to="/home">
+                  <Link to="/home">
                     Home
                     <span className="lines"></span>
-                  </NavLink>
+                  </Link>
                 </div>
                 <div className="navbar-item">
-                  <NavLink to="/marketplace">
+                  <Link to="/marketplace">
                     Marketplace
                     <span className="lines"></span>
-                  </NavLink>
+                  </Link>
                 </div>
                 <div className="navbar-item">
-                  <NavLink to="/collections">
+                  <Link to="/collections">
                     Collections
                     <span className="lines"></span>
-                  </NavLink>
+                  </Link>
                 </div>
                 <div className="navbar-item">
-                  <NavLink to="/drops">
+                  <Link to="/drops">
                     Drops
                     <span className="lines"></span>
-                  </NavLink>
+                  </Link>
                 </div>
               </div>
             </Breakpoint>

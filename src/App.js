@@ -2,7 +2,7 @@ import React, { useEffect, useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ScrollToTopBtn from './Components/menu/ScrollToTop';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
-import { AppRouter } from './Router/Router';
+// import { AppRouter } from './Router/Router';
 import { getTheme } from './Theme/theme';
 import { toast, ToastContainer } from 'react-toastify';
 
@@ -67,7 +67,7 @@ function App() {
     <ThemeProvider theme={getTheme(userTheme)}>
       <div className="wraper">
         <GlobalStyles isDark={userTheme === 'dark'} />
-        <AppRouter firebase />
+        {/* <AppRouter firebase /> */}
         <ScrollToTopBtn />
         <ToastContainer position={toast.POSITION.BOTTOM_LEFT} hideProgressBar={true} />
       </div>

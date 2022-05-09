@@ -1,7 +1,7 @@
 import React, { memo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { ethers } from 'ethers';
 import MetaMaskOnboarding from '@metamask/onboarding';
 
@@ -9,7 +9,7 @@ import { croSkullRedPotionImageHack } from 'src/hacks';
 import Button from './Button';
 import MakeOfferDialog from '../Offer/MakeOfferDialog';
 import { connectAccount, chainConnect } from 'src/GlobalState/User';
-import {round} from "../../utils";
+import { round } from '../../utils';
 
 const Watermarked = styled.div`
   position: relative;

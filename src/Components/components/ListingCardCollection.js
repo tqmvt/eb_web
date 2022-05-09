@@ -1,6 +1,6 @@
 import React, { memo, useState } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { ethers } from 'ethers';
 import { croSkullRedPotionImageHack } from '../../hacks';
 import Button from './Button';

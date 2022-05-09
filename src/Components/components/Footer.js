@@ -1,12 +1,12 @@
 import React, { memo } from 'react';
 import { useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
+import { useRouter } from 'next/router';
 import { faDiscord, faTwitter, faMedium, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { faSquare, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import LayeredIcon from './LayeredIcon';
 
 const Footer = () => {
-  const location = useLocation();
+  const location = useRouter();
   const userTheme = useSelector((state) => {
     return state.user.theme;
   });

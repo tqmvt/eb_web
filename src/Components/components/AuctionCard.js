@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 // import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { ethers } from 'ethers';
 import Clock from './Clock';
 import { auctionState } from '../../core/api/enums';
