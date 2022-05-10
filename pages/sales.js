@@ -5,6 +5,9 @@ import MySoldNftCollection from '../components/MySoldNftCollection';
 import Footer from '../components/Footer';
 
 const MySales = () => {
+  if (typeof window === 'undefined') {
+    return;
+  }
   const walletAddress = useSelector((state) => state.user.address);
 
   if (!walletAddress) {

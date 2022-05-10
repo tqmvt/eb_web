@@ -1,11 +1,11 @@
 import moment from 'moment';
 import config from './Assets/networks/rpc_config.json';
 import blacklist from './core/configs/blacklist.json';
-import IPFSGatewayTools from '@pinata/ipfs-gateway-tools/dist/browser';
+// import IPFSGatewayTools from '@pinata/ipfs-gateway-tools/dist/browser';
 
 export const drops = config.drops;
 export const collections = config.known_contracts;
-const gatewayTools = new IPFSGatewayTools();
+let gatewayTools; // = new IPFSGatewayTools();
 const gateway = 'https://mygateway.mypinata.cloud';
 
 export function debounce(func, wait, immediate) {
@@ -176,7 +176,7 @@ export function humanize(str) {
  * @param num
  * @returns {string|number}
  */
-export function siPrefixedNumber(num, ) {
+export function siPrefixedNumber(num) {
   // Nine Zeroes for Billions
   return Math.abs(Number(num)) >= 1.0e9
     ? (Math.abs(Number(num)) / 1.0e9).toFixed(2) + 'B'

@@ -9,6 +9,9 @@ import CronosverseDrop from './CronosverseDrop';
 export const drops = config.drops;
 
 const Drop = () => {
+  if (typeof window === 'undefined') {
+    return;
+  }
   const router = useRouter();
   const { slug } = router.query;
 

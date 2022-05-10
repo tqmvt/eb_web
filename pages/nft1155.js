@@ -33,6 +33,9 @@ import { getFilteredOffers } from '../../core/subgraph';
 import { OFFER_TYPE } from '../Offer/MadeOffersRow';
 
 const Nft1155 = ({ address, id }) => {
+  if (typeof window === 'undefined') {
+    return;
+  }
   const dispatch = useDispatch();
   const history = useRouter();
 

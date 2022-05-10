@@ -13,6 +13,9 @@ import { SortOption } from '../Models/sort-option.model';
 import { ListingsFilterOption } from '../Models/listings-filter-option.model';
 
 const Marketplace = () => {
+  if (typeof window === 'undefined') {
+    return;
+  }
   const cacheName = 'marketplace';
 
   const dispatch = useDispatch();

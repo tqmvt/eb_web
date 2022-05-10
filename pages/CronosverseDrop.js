@@ -63,6 +63,9 @@ const HeroSection = styled.section`
 `;
 
 const CronosverseDrop = () => {
+  if (typeof window === 'undefined') {
+    return;
+  }
   const router = useRouter();
   const { slug } = router.query;
 

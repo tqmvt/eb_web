@@ -7,6 +7,9 @@ import MetaverseModal from '../components/MetaverseModal';
 export const drops = config.drops;
 
 const MetaverseAuctions = () => {
+  if (typeof window === 'undefined') {
+    return;
+  }
   return (
     <div>
       <section className="container no-bottom">

@@ -10,6 +10,9 @@ import PastDrops from '../Drops/PastDrops';
 import { getTheme } from 'src/Theme/theme';
 
 const Drops = () => {
+  if (typeof window === 'undefined') {
+    return;
+  }
   const userTheme = useSelector((state) => {
     return state.user.theme;
   });

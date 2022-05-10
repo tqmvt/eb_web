@@ -53,6 +53,9 @@ const OFFERS_TAB = {
 };
 
 const MyOffers = () => {
+  if (typeof window === 'undefined') {
+    return;
+  }
   const walletAddress = useSelector((state) => state.user.address);
 
   const lastId = useSelector((state) => state.offer.lastId);

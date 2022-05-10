@@ -42,6 +42,9 @@ import { offerState } from '../../core/api/enums';
 const knownContracts = config.known_contracts;
 
 const Nft721 = ({ address, id }) => {
+  if (typeof window === 'undefined') {
+    return;
+  }
   const dispatch = useDispatch();
   const history = useRouter();
 

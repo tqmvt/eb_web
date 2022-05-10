@@ -19,6 +19,9 @@ import MakeOfferDialog from '../Offer/MakeOfferDialog';
 import { commify } from 'ethers/lib/utils';
 
 const CollectionCronosverse = ({ collection }) => {
+  if (typeof window === 'undefined') {
+    return;
+  }
   const dispatch = useDispatch();
   const router = useRouter();
 

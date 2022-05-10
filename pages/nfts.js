@@ -16,6 +16,9 @@ const mapStateToProps = (state) => ({
 });
 
 const MyNfts = ({ walletAddress, isLoading }) => {
+  if (typeof window === 'undefined') {
+    return;
+  }
   const router = useRouter();
 
   const [showChainSearch, setShowChainSearch] = useState(false);

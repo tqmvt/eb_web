@@ -7,6 +7,9 @@ import Nft721 from './nft721';
 const knownContracts = config.known_contracts;
 
 const Nft = () => {
+  if (typeof window === 'undefined') {
+    return;
+  }
   const router = useRouter();
   const { slug, id } = router.query;
 

@@ -5,6 +5,9 @@ import Footer from '../components/Footer';
 import MyStakingComponent from '../components/MyStaking';
 
 const MyStaking = () => {
+  if (typeof window === 'undefined') {
+    return;
+  }
   const walletAddress = useSelector((state) => state.user.address);
 
   if (!walletAddress) {

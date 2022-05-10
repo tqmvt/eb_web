@@ -95,6 +95,9 @@ const Jumbotron = {
 };
 
 export const ErrorPage = () => {
+  if (typeof window === 'undefined') {
+    return;
+  }
   const dispatch = useDispatch();
 
   const userTheme = useSelector((state) => {

@@ -17,6 +17,9 @@ const collectionTypes = {
 };
 
 const Collection = () => {
+  if (typeof window === 'undefined') {
+    return;
+  }
   const router = useRouter();
   const { slug } = router.query;
 

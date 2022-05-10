@@ -58,6 +58,9 @@ const HeroSection = styled.section`
 `;
 
 const MultiDrop = () => {
+  if (typeof window === 'undefined') {
+    return;
+  }
   const router = useRouter();
   const { slug } = router.query;
 

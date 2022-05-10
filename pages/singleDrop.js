@@ -81,6 +81,9 @@ const HeroSection = styled.section`
 `;
 
 const SingleDrop = () => {
+  if (typeof window === 'undefined') {
+    return;
+  }
   const router = useRouter();
   const { slug } = router.query;
 

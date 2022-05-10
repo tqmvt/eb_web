@@ -10,6 +10,9 @@ import ManageAuctionList from '../Auctions/ManageAuctionList';
 // import AuctionContract from '../../Contracts/Auction.json';
 
 const ManageAuctions = () => {
+  if (typeof window === 'undefined') {
+    return;
+  }
   // const user = useSelector((state) => state.user);
 
   // const [nftAddress, setNftAddress] = useState('');

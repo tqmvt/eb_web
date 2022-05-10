@@ -37,6 +37,9 @@ const NegativeMargin = styled.div`
 `;
 
 const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) => {
+  if (typeof window === 'undefined') {
+    return;
+  }
   const dispatch = useDispatch();
 
   const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);

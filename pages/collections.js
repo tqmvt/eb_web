@@ -27,6 +27,9 @@ const GlobalStyles = createGlobalStyle`
 `;
 
 const Collections = () => {
+  if (typeof window === 'undefined') {
+    return;
+  }
   const mobileListBreakpoint = 1000;
 
   const dispatch = useDispatch();

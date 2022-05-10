@@ -118,6 +118,10 @@ const Jumbotron = {
 };
 
 const Home = () => {
+  if (typeof window === 'undefined') {
+    return<></>;
+  }
+
   const history = useRouter();
   const dispatch = useDispatch();
 

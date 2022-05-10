@@ -12,6 +12,9 @@ import ShipItemABI from '../../Contracts/ShipItem.json';
 import styled from 'styled-components';
 
 const Drop = () => {
+  if (typeof window === 'undefined') {
+    return;
+  }
   const [ships, setShips] = useState([]);
   const [partsBalances, setPartsBalances] = useState([]);
   const [shipContract, setShipContract] = useState(null);

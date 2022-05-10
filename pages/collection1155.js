@@ -25,6 +25,9 @@ import CollectionNftsGroup from '../components/CollectionNftsGroup';
 // const knownContracts = config.known_contracts;
 
 const Collection1155 = ({ collection, tokenId = null, cacheName = 'collection', slug }) => {
+  if (typeof window === 'undefined') {
+    return;
+  }
   const dispatch = useDispatch();
 
   const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);

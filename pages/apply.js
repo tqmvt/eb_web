@@ -70,6 +70,9 @@ const StyledForm = styled.div`
 `;
 
 const Application = () => {
+  if (typeof window === 'undefined') {
+    return;
+  }
   // const dispatch = useDispatch();
 
   const userTheme = useSelector((state) => {

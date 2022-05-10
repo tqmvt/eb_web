@@ -12,6 +12,9 @@ import { sortListings } from '../../GlobalState/marketplaceSlice';
 import { shortAddress } from 'src/utils';
 
 const Seller = () => {
+  if (typeof window === 'undefined') {
+    return;
+  }
   const cacheName = 'sellerPage';
   const router = useRouter();
   const { address } = router.query;

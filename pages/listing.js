@@ -37,6 +37,9 @@ import NFTTabOffers from '../Offer/NFTTabOffers';
 import ReactPlayer from 'react-player';
 
 const Listing = () => {
+  if (typeof window === 'undefined') {
+    return;
+  }
   const router = useRouter();
   const { id } = router.query;
   const dispatch = useDispatch();

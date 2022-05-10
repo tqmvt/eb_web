@@ -33,6 +33,9 @@ import { croSkullRedPotionImageHack } from '../../hacks';
 import NFTTabOffers from '../Offer/NFTTabOffers';
 
 const CollectionDetail = () => {
+  if (typeof window === 'undefined') {
+    return;
+  }
   const router = useRouter();
   const { id } = router.query;
   const dispatch = useDispatch();
