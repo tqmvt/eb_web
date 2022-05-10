@@ -94,10 +94,6 @@ const Jumbotron = {
     display: flex;
     align-items: center;
 
-    // @media only screen and (min-width: ${({ theme }) => theme.breakpoints.xl}) {
-    //   background-size: ${({ isDark }) => (!isDark ? 'cover' : '100% 100%')};
-    // }
-
     @media only screen and (max-width: ${({ theme }) => theme.breakpoints.md}) {
       max-width: ${({ theme }) => theme.breakpoints.md};
       height: 200px;
@@ -119,7 +115,7 @@ const Jumbotron = {
 
 const Home = () => {
   if (typeof window === 'undefined') {
-    return<></>;
+    return <></>;
   }
 
   const history = useRouter();
@@ -184,8 +180,10 @@ const Home = () => {
             >
               Explore
             </span>
-            <Link to="/apply">
-              <Button type="legacy-outlined">Become a Creator</Button>
+            <Link href="/apply">
+              <a>
+                <Button type="legacy-outlined">Become a Creator</Button>
+              </a>
             </Link>
 
             <Button onClick={() => window.open(`/collection/founding-member`, '_self')} type="legacy-outlined">

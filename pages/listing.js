@@ -467,20 +467,24 @@ const Listing = () => {
                             <>
                               {history.map((item, index) => (
                                 <div className="p_list" key={index}>
-                                  <Link to={`/seller/${item.purchaser}`}>
-                                    <div className="p_list_pp">
-                                      <span>
+                                  <Link href={`/seller/${item.purchaser}`}>
+                                    <a>
+                                      <div className="p_list_pp">
                                         <span>
-                                          <Blockies seed={item.purchaser} size={10} scale={5} />
+                                          <span>
+                                            <Blockies seed={item.purchaser} size={10} scale={5} />
+                                          </span>
                                         </span>
-                                      </span>
-                                    </div>
+                                      </div>
+                                    </a>
                                   </Link>
                                   <div className="p_list_info">
                                     <span>{timeSince(item.saleTime + '000')} ago</span>
                                     Bought by{' '}
                                     <b>
-                                      <Link to={`/seller/${item.purchaser}`}>{shortAddress(item.purchaser)}</Link>
+                                      <Link href={`/seller/${item.purchaser}`}>
+                                        <a>{shortAddress(item.purchaser)}</a>
+                                      </Link>
                                     </b>{' '}
                                     for <b>{ethers.utils.commify(item.price)} CRO</b>
                                   </div>

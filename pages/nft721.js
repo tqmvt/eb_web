@@ -483,20 +483,24 @@ const Nft721 = ({ address, id }) => {
                             <>
                               {listingHistory.map((listing, index) => (
                                 <div className="p_list" key={index}>
-                                  <Link to={`/seller/${listing.purchaser}`}>
-                                    <div className="p_list_pp">
-                                      <span>
-                                        <span onClick={viewSeller(listing.purchaser)}>
-                                          <Blockies seed={listing.purchaser} size={10} scale={5} />
+                                  <Link href={`/seller/${listing.purchaser}`}>
+                                    <a>
+                                      <div className="p_list_pp">
+                                        <span>
+                                          <span onClick={viewSeller(listing.purchaser)}>
+                                            <Blockies seed={listing.purchaser} size={10} scale={5} />
+                                          </span>
                                         </span>
-                                      </span>
-                                    </div>
+                                      </div>
+                                    </a>
                                   </Link>
                                   <div className="p_list_info">
                                     <span>{timeSince(listing.saleTime + '000')} ago</span>
                                     Bought by{' '}
                                     <b>
-                                      <Link to={`/seller/${listing.purchaser}`}>{shortAddress(listing.purchaser)}</Link>
+                                      <Link href={`/seller/${listing.purchaser}`}>
+                                        <a>{shortAddress(listing.purchaser)}</a>
+                                      </Link>
                                     </b>{' '}
                                     for <b>{ethers.utils.commify(listing.price)} CRO</b>
                                   </div>

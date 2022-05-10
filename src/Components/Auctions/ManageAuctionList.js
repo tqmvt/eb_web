@@ -120,7 +120,9 @@ const ManageAuctionList = () => {
                   </p>
                 </div>
                 <div className="card-footer d-flex justify-content-between">
-                  <Link to={`/auctions/${auction.auctionId}`}>View</Link>
+                  <Link href={`/auctions/${auction.auctionId}`}>
+                    <a>View</a>
+                  </Link>
                 </div>
               </div>
             </div>

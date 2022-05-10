@@ -91,33 +91,37 @@ const ListingCardCollection = ({ listing, imgClass = 'marketplace', watermark, a
   return (
     <>
       <div className="card eb-nft__card h-100 shadow">
-        <Link className="linkPointer" to={`/collection/${listing.nftAddress}/${listing.nftId}`}>
-          {watermark ? (
-            <Watermarked watermark={watermark}>
+        <Link className="linkPointer" href={`/collection/${listing.nftAddress}/${listing.nftId}`}>
+          <a>
+            {watermark ? (
+              <Watermarked watermark={watermark}>
+                <img
+                  src={croSkullRedPotionImageHack(listing.nftAddress, listing.nft.image)}
+                  className={`card-img-top ${imgClass}`}
+                  alt={listing.nft.name}
+                />
+              </Watermarked>
+            ) : (
               <img
                 src={croSkullRedPotionImageHack(listing.nftAddress, listing.nft.image)}
                 className={`card-img-top ${imgClass}`}
                 alt={listing.nft.name}
               />
-            </Watermarked>
-          ) : (
-            <img
-              src={croSkullRedPotionImageHack(listing.nftAddress, listing.nft.image)}
-              className={`card-img-top ${imgClass}`}
-              alt={listing.nft.name}
-            />
-          )}
+            )}
+          </a>
         </Link>
         {listing.nft.rank && <div className="badge bg-rarity text-wrap mt-1 mx-1">Rank: #{listing.nft.rank}</div>}
         <div className="card-body d-flex flex-column justify-content-between">
-          <Link className="linkPointer" to={`/collection/${listing.nftAddress}/${listing.nftId}`}>
-            <h6 className="card-title mt-auto">{listing.nft.name}</h6>
+          <Link className="linkPointer" href={`/collection/${listing.nftAddress}/${listing.nftId}`}>
+            <a>
+              <h6 className="card-title mt-auto">{listing.nft.name}</h6>
+            </a>
           </Link>
           <MakeBuy>
             <div>{ethers.utils.commify(listing.price)} CRO</div>
           </MakeBuy>
           <MakeOffer>
-            <Link className="linkPointer" to={`/collection/${listing.nftAddress}/${listing.nftId}`}>
+            <Link className="linkPointer" href={`/collection/${listing.nftAddress}/${listing.nftId}`}>
               <Button type="legacy">Buy</Button>
             </Link>
             <div>

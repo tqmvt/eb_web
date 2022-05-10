@@ -34,7 +34,8 @@ const rootReducer = combineReducers({
   metaverse: metaverseReducer,
 });
 
-const reduxDevToolsComposeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const reduxDevToolsComposeEnhancers =
+  (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
 
 const sentryEnhancedMiddlewares = applyMiddleware(thunk, createSentryMiddleware(Sentry, {}));
 

@@ -223,16 +223,20 @@ const Collections = () => {
                         <th scope="row" className="row gap-4 border-bottom-0" style={{ paddingLeft: 0 }}>
                           <div className="col-12" style={{ paddingLeft: '75px' }}>
                             <div className="coll_list_pp" style={{ cursor: 'pointer' }}>
-                              <Link to={`/collection/${collection.slug}`}>
-                                {collection.metadata?.avatar ? (
-                                  <img className="lazy" src={collection.metadata.avatar} alt={collection?.name} />
-                                ) : (
-                                  <Blockies seed={collection.collection.toLowerCase()} size={10} scale={5} />
-                                )}
+                              <Link href={`/collection/${collection.slug}`}>
+                                <a>
+                                  {collection.metadata?.avatar ? (
+                                    <img className="lazy" src={collection.metadata.avatar} alt={collection?.name} />
+                                  ) : (
+                                    <Blockies seed={collection.collection.toLowerCase()} size={10} scale={5} />
+                                  )}
+                                </a>
                               </Link>
                             </div>
                             <span>
-                              <Link to={`/collection/${collection.slug}`}>{collection?.name ?? 'Unknown'}</Link>
+                              <Link href={`/collection/${collection.slug}`}>
+                                <a>{collection?.name ?? 'Unknown'}</a>
+                              </Link>
                             </span>
                           </div>
 

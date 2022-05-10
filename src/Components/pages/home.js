@@ -180,7 +180,7 @@ const Home = () => {
             >
               Explore
             </span>
-            <Link to="/apply">
+            <Link href="/apply">
               <Button type="legacy-outlined">Become a Creator</Button>
             </Link>
 

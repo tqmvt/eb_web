@@ -90,27 +90,31 @@ const NftCard = ({ royalty, listing, imgClass = 'marketplace', watermark, addres
   return (
     <>
       <div className="card eb-nft__card h-100 shadow">
-        <Link className="linkPointer" to={`/collection/${listing.address}/${listing.id}`}>
-          {watermark ? (
-            <Watermarked watermark={watermark}>
+        <Link className="linkPointer" href={`/collection/${listing.address}/${listing.id}`}>
+          <a>
+            {watermark ? (
+              <Watermarked watermark={watermark}>
+                <img
+                  src={croSkullRedPotionImageHack(listing.address, listing.image)}
+                  className={`card-img-top ${imgClass}`}
+                  alt={listing.name}
+                />
+              </Watermarked>
+            ) : (
               <img
                 src={croSkullRedPotionImageHack(listing.address, listing.image)}
                 className={`card-img-top ${imgClass}`}
                 alt={listing.name}
               />
-            </Watermarked>
-          ) : (
-            <img
-              src={croSkullRedPotionImageHack(listing.address, listing.image)}
-              className={`card-img-top ${imgClass}`}
-              alt={listing.name}
-            />
-          )}
+            )}
+          </a>
         </Link>
         {listing.rank && <div className="badge bg-rarity text-wrap mt-1 mx-1">Rank: #{listing.rank}</div>}
         <div className="card-body d-flex flex-column justify-content-between">
-          <Link className="linkPointer" to={`/collection/${listing.address}/${listing.id}`}>
-            <h6 className="card-title mt-auto">{listing.name}</h6>
+          <Link className="linkPointer" href={`/collection/${listing.address}/${listing.id}`}>
+            <a>
+              <h6 className="card-title mt-auto">{listing.name}</h6>
+            </a>
           </Link>
           {getIsNftListed() && (
             <MakeBuy>

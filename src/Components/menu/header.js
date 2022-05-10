@@ -69,12 +69,14 @@ const Header = function () {
         <div className="row w-100-nav">
           <div className="logo px-0">
             <div className="navbar-title navbar-item">
-              <Link to="/">
-                <img
-                  src={theme === 'light' ? '/img/logo-light.svg' : '/img/logo-dark-prod.svg'}
-                  alt="ebisus bay logo"
-                  style={{ width: '44px', height: '40px' }}
-                />
+              <Link href="/">
+                <a>
+                  <img
+                    src={theme === 'light' ? '/img/logo-light.svg' : '/img/logo-dark-prod.svg'}
+                    alt="ebisus bay logo"
+                    style={{ width: '44px', height: '40px' }}
+                  />
+                </a>
               </Link>
             </div>
           </div>
@@ -85,27 +87,35 @@ const Header = function () {
                 <div className="menu">
                   <div className="menu">
                     <div className="navbar-item">
-                      <Link to="/home">
-                        Home
-                        <span className="lines"></span>
+                      <Link href="/home">
+                        <a>
+                          Home
+                          <span className="lines"></span>
+                        </a>
                       </Link>
                     </div>
                     <div className="navbar-item">
-                      <Link to="/marketplace">
-                        Marketplace
-                        <span className="lines"></span>
+                      <Link href="/marketplace">
+                        <a>
+                          Marketplace
+                          <span className="lines"></span>
+                        </a>
                       </Link>
                     </div>
                     <div className="navbar-item">
-                      <Link to="/collections">
-                        Collections
-                        <span className="lines"></span>
+                      <Link href="/collections">
+                        <a>
+                          Collections
+                          <span className="lines"></span>
+                        </a>
                       </Link>
                     </div>
                     <div className="navbar-item">
-                      <Link to="/drops">
-                        Drops
-                        <span className="lines"></span>
+                      <Link href="/drops">
+                        <a>
+                          Drops
+                          <span className="lines"></span>
+                        </a>
                       </Link>
                     </div>
                   </div>
@@ -116,27 +126,35 @@ const Header = function () {
             <Breakpoint xl>
               <div className="menu">
                 <div className="navbar-item">
-                  <Link to="/home">
-                    Home
-                    <span className="lines"></span>
+                  <Link href="/home">
+                    <a>
+                      Home
+                      <span className="lines"></span>
+                    </a>
                   </Link>
                 </div>
                 <div className="navbar-item">
-                  <Link to="/marketplace">
-                    Marketplace
-                    <span className="lines"></span>
+                  <Link href="/marketplace">
+                    <a>
+                      Marketplace
+                      <span className="lines"></span>
+                    </a>
                   </Link>
                 </div>
                 <div className="navbar-item">
-                  <Link to="/collections">
-                    Collections
-                    <span className="lines"></span>
+                  <Link href="/collections">
+                    <a>
+                      Collections
+                      <span className="lines"></span>
+                    </a>
                   </Link>
                 </div>
                 <div className="navbar-item">
-                  <Link to="/drops">
-                    Drops
-                    <span className="lines"></span>
+                  <Link href="/drops">
+                    <a>
+                      Drops
+                      <span className="lines"></span>
+                    </a>
                   </Link>
                 </div>
               </div>

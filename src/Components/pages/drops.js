@@ -20,12 +20,16 @@ const Drops = () => {
           <p className="my-auto me-5">
             Enjoy amazing discounts on drops and 50% off service fees while holding an Ebisu's Bay Founding Member NFT.
             <span className="fw-bold d-block d-md-inline-block text-end ms-3">
-              <Link to="/collection/founding-member">Learn More</Link>
+              <Link href="/collection/founding-member">
+                <a>Learn More</a>
+              </Link>
             </span>
           </p>
           <div style={{ width: '70px' }} className="my-auto">
-            <Link to="/collection/founding-member">
-              <img src="/img/founding_member_sm.png" className="img-responsive" alt="Founding Member Membership" />
+            <Link href="/collection/founding-member">
+              <a>
+                <img src="/img/founding_member_sm.png" className="img-responsive" alt="Founding Member Membership" />
+              </a>
             </Link>
           </div>
         </div>

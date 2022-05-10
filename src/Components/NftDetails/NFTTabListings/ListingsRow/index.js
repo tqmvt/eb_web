@@ -69,20 +69,24 @@ export default function ListingsRow({ listing }) {
     <div className="p_list">
       <div className="row">
         <div className="col-8">
-          <Link to={`/seller/${listing.seller}`}>
-            <div className="p_list_pp" style={{ zIndex: 1 }}>
-              <span>
-                <span onClick={viewSeller(listing.seller)}>
-                  <Blockies seed={listing.seller} size={10} scale={5} />
+          <Link href={`/seller/${listing.seller}`}>
+            <a>
+              <div className="p_list_pp" style={{ zIndex: 1 }}>
+                <span>
+                  <span onClick={viewSeller(listing.seller)}>
+                    <Blockies seed={listing.seller} size={10} scale={5} />
+                  </span>
                 </span>
-              </span>
-            </div>
+              </div>
+            </a>
           </Link>
           <div className="p_list_info">
             <span>{timeSince(listing.listingTime + '000')} ago</span>
             Listed by{' '}
             <b>
-              <Link to={`/seller/${listing.seller}`}>{shortAddress(listing.seller)}</Link>
+              <Link href={`/seller/${listing.seller}`}>
+                <a>{shortAddress(listing.seller)}</a>
+              </Link>
             </b>{' '}
             for <b>{ethers.utils.commify(listing.price)} CRO</b>
           </div>
