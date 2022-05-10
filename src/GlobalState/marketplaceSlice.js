@@ -138,7 +138,9 @@ export const fetchListings =
       null,
       null,
       state.marketplace.curSearch,
-      isSales ? 1 : 0
+      isSales ? 1 : 0,
+      null,
+      state.marketplace.curFilter.limit
     );
 
     if (!cancelled) {

@@ -1,10 +1,12 @@
 import { FilterOption } from './filter-option.model';
+import { limitSizeOptions } from '../components/constants/filter-options';
 
 export class ListingsFilterOption extends FilterOption {
   type = 'collection';
   address = null;
   name = 'All';
   id = null;
+  limit = limitSizeOptions.lg;
 
   get getOptionLabel() {
     return this.name;
