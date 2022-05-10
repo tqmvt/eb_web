@@ -101,7 +101,7 @@ const SingleDrop = () => {
   const [memberCost, setMemberCost] = useState(0);
   const [regularCost, setRegularCost] = useState(0);
   const [whitelistCost, setWhitelistCost] = useState(0);
-  const [specialWhitelistCost, setSpecialWhitelistCost] = useState(0);
+  const [specialWhitelist, setSpecialWhitelist] = useState(null);
   const [totalSupply, setTotalSupply] = useState(0);
   const [canMintQuantity, setCanMintQuantity] = useState(0);
 
@@ -262,7 +262,7 @@ const SingleDrop = () => {
     setRegularCost(drop.cost);
     setTotalSupply(supply);
     setWhitelistCost(drop.whitelistCost);
-    setSpecialWhitelistCost(drop.specialWhitelistCost);
+    setSpecialWhitelist(drop.specialWhitelistCost);
     setCanMintQuantity(drop.maxMintPerTx);
   };
 
@@ -662,10 +662,10 @@ const SingleDrop = () => {
                       <h5>{whitelistCost} CRO</h5>
                     </div>
                   )}
-                  {specialWhitelistCost > 0 && (
+                  {specialWhitelist && (
                     <div className="me-4">
-                      <h6 className="mb-1">Special Whitelist</h6>
-                      <h5>{specialWhitelistCost} CRO</h5>
+                      <h6 className="mb-1">{specialWhitelist.name}</h6>
+                      <h5>{specialWhitelist.value} CRO</h5>
                     </div>
                   )}
                 </div>
