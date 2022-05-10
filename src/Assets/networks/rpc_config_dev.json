@@ -2995,7 +2995,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "verified": false,
+        "verified": true,
         "avatar": "/img/collections/slavikfruitfarm/avatar.gif",
         "banner": "/img/collections/slavikfruitfarm/banner.png",
         "card": "/img/collections/slavikfruitfarm/card.jpg",
