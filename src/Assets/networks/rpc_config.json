@@ -2995,6 +2995,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
+        "description": "5000 Fruit Farmers Living & Loving on Cronos. Slavik Fruit Farmers grant the holder FRODEX Token Allocation, 3D Voxel Airdrops and Exclusive first access to SFF Expansions. Each Farmer is a Membership pass into the SlavikVerse Ecosystem!",
         "verified": true,
         "avatar": "/img/collections/slavikfruitfarm/avatar.gif",
         "banner": "/img/collections/slavikfruitfarm/banner.png",
@@ -4297,7 +4298,7 @@
       "onChain": false,
       "listable": false,
       "metadata": {
-        "description": "",
+        "description": "EyezInTheDeep NFT is the first PFP Collection from CronosEyez, 2000 Unique NFTs living in the Cronos Blockchain. Owners share a part of the CronosArt.org Art Vault among another perks.",
         "verified": true,
         "avatar": "/img/collections/cronoseyez/eyezinthedeep/avatar.webp",
         "banner": "/img/collections/cronoseyez/eyezinthedeep/banner.webp",
