@@ -298,7 +298,7 @@ export default class Responsive extends Component {
                                 <h5>Whitelist: {ethers.utils.commify(drop.whitelistCost)} CRO</h5>
                               ))}
                             {drop.specialWhitelistCost && (
-                              <h5>Special Whitelist: {ethers.utils.commify(drop.specialWhitelistCost)} CRO</h5>
+                              <h5>{drop.specialWhitelistCost.name}: {ethers.utils.commify(drop.specialWhitelistCost.value)} CRO</h5>
                             )}
                           </div>
                           <div className="line my-auto"></div>

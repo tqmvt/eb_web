@@ -245,6 +245,9 @@ const SingleDrop = () => {
           setDropInfo(currentDrop, currentSupply);
           calculateStatus(currentDrop, currentSupply, currentDrop.totalSupply);
         }
+        if (drop.specialWhitelistCost) {
+          setSpecialWhitelist(drop.specialWhitelistCost);
+        }
       }
     } catch (error) {
       console.log(error);
