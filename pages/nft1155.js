@@ -7,9 +7,12 @@ import { ethers } from 'ethers';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Helmet } from 'react-helmet';
+import ReactPlayer from 'react-player';
+import { Spinner } from 'react-bootstrap';
+import MetaMaskOnboarding from '@metamask/onboarding';
 
-import ProfilePreview from '../components/ProfilePreview';
-import Footer from '../components/Footer';
+import ProfilePreview from '../src/Components/components/ProfilePreview';
+import Footer from '../src/Components/components/Footer';
 import {
   findCollectionByAddress,
   humanize,
@@ -17,19 +20,15 @@ import {
   relativePrecision,
   shortAddress,
   timeSince,
-} from '../../utils';
-import { getNftDetails } from '../../GlobalState/nftSlice';
-import { croSkullRedPotionImageHack } from '../../hacks';
+} from '../src/utils';
+import { getNftDetails } from '../src/GlobalState/nftSlice';
+import { croSkullRedPotionImageHack } from '../src/hacks';
+import { chainConnect, connectAccount } from '../src/GlobalState/User';
+import { listingState, offerState } from '../src/core/api/enums';
+import { getFilteredOffers } from '../src/core/subgraph';
 import PriceActionBar from '../NftDetails/PriceActionBar';
-import { Spinner } from 'react-bootstrap';
-import MetaMaskOnboarding from '@metamask/onboarding';
-import { chainConnect, connectAccount } from '../../GlobalState/User';
-import MakeOfferDialog from '../Offer/MakeOfferDialog';
-import ReactPlayer from 'react-player';
-// import NFTTabOffers from '../Offer/NFTTabOffers';
 import NFTTabListings from '../NftDetails/NFTTabListings';
-import { listingState, offerState } from '../../core/api/enums';
-import { getFilteredOffers } from '../../core/subgraph';
+import MakeOfferDialog from '../Offer/MakeOfferDialog';
 import { OFFER_TYPE } from '../Offer/MadeOffersRow';
 
 const Nft1155 = ({ address, id }) => {

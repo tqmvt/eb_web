@@ -1,13 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import MySoldNftCollection from '../components/MySoldNftCollection';
-import Footer from '../components/Footer';
+import MySoldNftCollection from '../src/Components/components/MySoldNftCollection';
+import Footer from '../src/Components/components/Footer';
 
 const MySales = () => {
-  if (typeof window === 'undefined') {
-    return;
-  }
   const walletAddress = useSelector((state) => state.user.address);
 
   if (!walletAddress) {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import Footer from '../components/Footer';
+import Footer from '../src/Components/components/Footer';
 import MyListingsCollection from '../components/MyListingsCollection';
 
 const MyListings = () => {

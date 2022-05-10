@@ -3,18 +3,15 @@ import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 import { Helmet } from 'react-helmet';
 
-import ListingCollection from '../components/ListingCollection';
-import Footer from '../components/Footer';
-import TopFilterBar from '../components/TopFilterBar';
-import { sortOptions } from '../components/constants/sort-options';
-import { SortOption } from '../Models/sort-option.model';
-import { sortListings } from '../../GlobalState/marketplaceSlice';
-import { shortAddress } from 'src/utils';
+import ListingCollection from '../src/Components/components/ListingCollection';
+import Footer from '../src/Components/components/Footer';
+import TopFilterBar from '../src/Components/components/TopFilterBar';
+import { sortOptions } from '../src/Components/components/constants/sort-options';
+import { SortOption } from '../src/Components/Models/sort-option.model';
+import { sortListings } from '../src/GlobalState/marketplaceSlice';
+import { shortAddress } from '../src/utils';
 
 const Seller = () => {
-  if (typeof window === 'undefined') {
-    return;
-  }
   const cacheName = 'sellerPage';
   const router = useRouter();
   const { address } = router.query;

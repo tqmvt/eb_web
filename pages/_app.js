@@ -2,8 +2,10 @@ import React from 'react';
 import Head from 'next/head';
 import { Provider } from 'react-redux';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
+import { toast, ToastContainer } from 'react-toastify';
 
 import Header from '../src/Components/menu/header';
+import ScrollToTopBtn from '../src/Components/menu/ScrollToTop';
 import { getTheme } from '../src/Theme/theme';
 import store from '../src/Store/store';
 // import { SentryLoggingService } from '../src/services/sentry-logging.service';
@@ -19,6 +21,38 @@ import '../src/Assets/styles/Everything.css';
 
 // SentryLoggingService.init();
 // Site24x7LoggingService.init();
+const GlobalStyles = createGlobalStyle`
+  :root {
+    scroll-behavior: smooth;
+  }
+  .jumbotron.tint{
+    background-color: rgba(0,0,0,0.6);
+    background-blend-mode: multiply;
+  }
+  .jumbotron.breadcumb.no-bg.tint {
+
+    background-image: url(${({ isDark }) =>
+      isDark ? '/img/background/header-dark.webp' : '/img/background/Ebisu-DT-Header.webp'});
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+  }
+
+  @media only screen and (min-width: 1200px) {
+    .jumbotron.breadcumb.no-bg.tint {
+      margin-top: 84px;
+    }
+  }
+    
+  @media only screen and (max-width: 768px) {
+    .jumbotron.breadcumb.no-bg.tint {
+      background-image: url(${({ isDark }) =>
+        isDark ? '/img/background/mobile-header-dark.webp' : '/img/background/Ebisu-Mobile-Header.webp'});
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+  }
+`;
 
 export default function MyApp({ Component, pageProps }) {
   return (
@@ -33,8 +67,13 @@ export default function MyApp({ Component, pageProps }) {
             />
             <title>Ebisu's Bay Marketplace</title>
           </Head>
-          <Header />
-          <Component {...pageProps} />
+          <div className="wraper">
+            <GlobalStyles isDark={false} />
+            <Header />
+            <Component {...pageProps} />
+            <ScrollToTopBtn />
+            <ToastContainer position={toast.POSITION.BOTTOM_LEFT} hideProgressBar={true} />
+          </div>
         </ThemeProvider>
       </Provider>
     </>

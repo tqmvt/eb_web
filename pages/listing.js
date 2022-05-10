@@ -11,12 +11,13 @@ import { faCrow, faExternalLinkAlt, faHeart } from '@fortawesome/free-solid-svg-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as Sentry from '@sentry/react';
 import { Helmet } from 'react-helmet';
+import ReactPlayer from 'react-player';
 
-import ProfilePreview from '../components/ProfilePreview';
-import LayeredIcon from '../components/LayeredIcon';
-import Footer from '../components/Footer';
-import { getListingDetails, listingUpdated } from '../../GlobalState/listingSlice';
-import { connectAccount, chainConnect } from '../../GlobalState/User';
+import ProfilePreview from '../src/Components/components/ProfilePreview';
+import LayeredIcon from '../src/Components/components/LayeredIcon';
+import Footer from '../src/Components/components/Footer';
+import { getListingDetails, listingUpdated } from '../src/GlobalState/listingSlice';
+import { connectAccount, chainConnect } from '../src/GlobalState/User';
 import {
   findCollectionByAddress,
   createSuccessfulTransactionToastContent,
@@ -30,11 +31,10 @@ import {
   isBabyWeirdApesCollection,
   isUserBlacklisted,
   isNftBlacklisted,
-} from '../../utils';
-import config from '../../Assets/networks/rpc_config.json';
-import { croSkullRedPotionImageHack } from '../../hacks';
+} from '../src/utils';
+import config from '../src/Assets/networks/rpc_config.json';
+import { croSkullRedPotionImageHack } from '../src/hacks';
 import NFTTabOffers from '../Offer/NFTTabOffers';
-import ReactPlayer from 'react-player';
 
 const Listing = () => {
   if (typeof window === 'undefined') {

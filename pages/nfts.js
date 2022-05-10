@@ -2,13 +2,13 @@ import React, { memo, useState } from 'react';
 import { connect } from 'react-redux';
 import { useRouter } from 'next/router';
 
-import Footer from '../components/Footer';
-import NftCardList from '../components/MyNftCardList';
-import MyNftTransferDialog from '../components/MyNftTransferDialog';
-import MyNftCancelDialog from '../components/MyNftCancelDialog';
-import MyNftListDialog from '../components/MyNftListDialog';
-import MyListingsCollection from '../components/MyListingsCollection';
-import MySoldNftCollection from '../components/MySoldNftCollection';
+import Footer from '../src/Components/components/Footer';
+import NftCardList from '../src/Components/components/MyNftCardList';
+import MyNftTransferDialog from '../src/Components/components/MyNftTransferDialog';
+import MyNftCancelDialog from '../src/Components/components/MyNftCancelDialog';
+import MyNftListDialog from '../src/Components/components/MyNftListDialog';
+import MyListingsCollection from '../src/Components/components/MyListingsCollection';
+import MySoldNftCollection from '../src/Components/components/MySoldNftCollection';
 
 const mapStateToProps = (state) => ({
   walletAddress: state.user.address,

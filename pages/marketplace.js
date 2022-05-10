@@ -1,21 +1,18 @@
 import React, { useCallback, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import ListingCollection from '../components/ListingCollection';
-import Footer from '../components/Footer';
-import TopFilterBar from '../components/TopFilterBar';
-import { sortOptions } from '../components/constants/sort-options';
-import { marketPlaceCollectionFilterOptions } from '../components/constants/filter-options';
-import SalesCollection from '../components/SalesCollection';
-import { filterListings, getMarketData, searchListings, sortListings } from '../../GlobalState/marketplaceSlice';
-import { debounce, siPrefixedNumber } from '../../utils';
-import { SortOption } from '../Models/sort-option.model';
-import { ListingsFilterOption } from '../Models/listings-filter-option.model';
+import ListingCollection from '../src/Components/components/ListingCollection';
+import Footer from '../src/Components/components/Footer';
+import TopFilterBar from '../src/Components/components/TopFilterBar';
+import { sortOptions } from '../src/Components/components/constants/sort-options';
+import { marketPlaceCollectionFilterOptions } from '../src/Components/components/constants/filter-options';
+import SalesCollection from '../src/Components/components/SalesCollection';
+import { filterListings, getMarketData, searchListings, sortListings } from '../src/GlobalState/marketplaceSlice';
+import { debounce, siPrefixedNumber } from '../src/utils';
+import { SortOption } from '../src/Components/Models/sort-option.model';
+import { ListingsFilterOption } from '../src/Components/Models/listings-filter-option.model';
 
 const Marketplace = () => {
-  if (typeof window === 'undefined') {
-    return;
-  }
   const cacheName = 'marketplace';
 
   const dispatch = useDispatch();

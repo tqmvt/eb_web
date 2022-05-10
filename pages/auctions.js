@@ -4,8 +4,8 @@ import React from 'react';
 // import { toast } from 'react-toastify';
 
 // import { createSuccessfulTransactionToastContent } from '../../utils';
-import CreateAuction from '../Auctions/CreateAuction';
-import ManageAuctionList from '../Auctions/ManageAuctionList';
+import CreateAuction from '../src/Components/Auctions/CreateAuction';
+import ManageAuctionList from '../src/Components/Auctions/ManageAuctionList';
 // import config from '../../Assets/networks/rpc_config.json';
 // import AuctionContract from '../../Contracts/Auction.json';
 

@@ -6,9 +6,9 @@ import { ethers } from 'ethers';
 import Blockies from 'react-blockies';
 import { Form, Spinner } from 'react-bootstrap';
 
-import Footer from '../components/Footer';
-import { getAllCollections } from '../../GlobalState/collectionsSlice';
-import { debounce, siPrefixedNumber } from '../../utils';
+import Footer from '../src/Components/components/Footer';
+import { getAllCollections } from '../src/GlobalState/collectionsSlice';
+import { debounce, siPrefixedNumber } from '../src/utils';
 
 const GlobalStyles = createGlobalStyle`
   .mobile-view-list-item {
@@ -27,14 +27,11 @@ const GlobalStyles = createGlobalStyle`
 `;
 
 const Collections = () => {
-  if (typeof window === 'undefined') {
-    return;
-  }
   const mobileListBreakpoint = 1000;
 
   const dispatch = useDispatch();
 
-  const tableMobileView = window.innerWidth > mobileListBreakpoint;
+  const tableMobileView = typeof window !== 'undefined' && window.innerWidth > mobileListBreakpoint;
 
   // const [tableMobileView, setTableMobileView] = useState(window.innerWidth > mobileListBreakpoint);
   const [searchTerms, setSearchTerms] = useState(null);

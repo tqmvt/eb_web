@@ -4,7 +4,7 @@ const withTM = require('next-transpile-modules')(['ethers']);
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["ipfs.io"],
+    domains: ['ipfs.io'],
   },
 };
 

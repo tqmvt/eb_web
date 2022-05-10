@@ -3,8 +3,8 @@ import { useRouter } from 'next/router';
 
 import Collection1155 from './collection1155';
 import Collection721 from './collection721';
-import config from '../../Assets/networks/rpc_config.json';
-import { caseInsensitiveCompare, isCronosVerseCollection } from '../../utils';
+import config from '../src/Assets/networks/rpc_config.json';
+import { caseInsensitiveCompare, isCronosVerseCollection } from '../src/utils';
 import CollectionCronosverse from './collectionCronosverse';
 
 const knownContracts = config.known_contracts;

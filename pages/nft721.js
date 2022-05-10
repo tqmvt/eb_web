@@ -8,9 +8,12 @@ import { faCrow, faExternalLinkAlt, faHeart } from '@fortawesome/free-solid-svg-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Helmet } from 'react-helmet';
 import MetaMaskOnboarding from '@metamask/onboarding';
+import { Spinner } from 'react-bootstrap';
+import ReactPlayer from 'react-player';
 
-import ProfilePreview from '../components/ProfilePreview';
-import Footer from '../components/Footer';
+import ProfilePreview from '../src/Components/components/ProfilePreview';
+import Footer from '../src/Components/components/Footer';
+import LayeredIcon from '../src/Components/components/LayeredIcon';
 import {
   caseInsensitiveCompare,
   humanize,
@@ -22,22 +25,18 @@ import {
   relativePrecision,
   shortAddress,
   timeSince,
-} from '../../utils';
-import { getNftDetails } from '../../GlobalState/nftSlice';
-import config from '../../Assets/networks/rpc_config.json';
-import { croSkullRedPotionImageHack } from '../../hacks';
-import NFTTabOffers from '../Offer/NFTTabOffers';
+} from '../src/utils';
+import { getNftDetails } from '../src/GlobalState/nftSlice';
+import { connectAccount, chainConnect } from '../src/GlobalState/User';
+import config from '../src/Assets/networks/rpc_config.json';
+import { croSkullRedPotionImageHack } from '../src/hacks';
 import PriceActionBar from '../NftDetails/PriceActionBar';
+import { ERC721 } from '../src/Contracts/Abis';
+import { getFilteredOffers } from '../src/core/subgraph';
 import MakeOfferDialog from '../Offer/MakeOfferDialog';
-import { connectAccount, chainConnect } from 'src/GlobalState/User';
-import { Spinner } from 'react-bootstrap';
-
-import ReactPlayer from 'react-player';
-import LayeredIcon from '../components/LayeredIcon';
-import { ERC721 } from '../../Contracts/Abis';
-import { getFilteredOffers } from 'src/core/subgraph';
+import NFTTabOffers from '../Offer/NFTTabOffers';
 import { OFFER_TYPE } from '../Offer/MadeOffersRow';
-import { offerState } from '../../core/api/enums';
+import { offerState } from '../src/core/api/enums';
 
 const knownContracts = config.known_contracts;
 
@@ -149,7 +148,7 @@ const Nft721 = ({ address, id }) => {
     async function getApeInfo() {
       if (isBabyWeirdApesCollection(address)) {
         const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
-        const abiFile = require(`../../Assets/abis/baby-weird-apes.json`);
+        const abiFile = require(`../src/Assets/abis/baby-weird-apes.json`);
         const contract = new Contract(address, abiFile.abi, readProvider);
         try {
           const apeInfo = await contract.apeInfo(id);

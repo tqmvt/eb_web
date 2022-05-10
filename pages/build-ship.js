@@ -4,12 +4,13 @@ import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { Form, ProgressBar, Spinner } from 'react-bootstrap';
 import * as Sentry from '@sentry/react';
-import Footer from '../components/Footer';
-import config from '../../Assets/networks/rpc_config.json';
-import { createSuccessfulTransactionToastContent, humanize, percentage } from '../../utils';
-import ShipABI from '../../Contracts/Ship.json';
-import ShipItemABI from '../../Contracts/ShipItem.json';
 import styled from 'styled-components';
+
+import Footer from '../src/Components/components/Footer';
+import config from '../src/Assets/networks/rpc_config.json';
+import { createSuccessfulTransactionToastContent, humanize, percentage } from '../src/utils';
+import ShipABI from '../src/Contracts/Ship.json';
+import ShipItemABI from '../src/Contracts/ShipItem.json';
 
 const Drop = () => {
   if (typeof window === 'undefined') {

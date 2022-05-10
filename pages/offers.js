@@ -4,14 +4,14 @@ import styled from 'styled-components';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Spinner } from 'react-bootstrap';
 
-import Footer from '../components/Footer';
+import Footer from '../src/Components/components/Footer';
 import MadeOffers from '../Offer/MadeOffers';
 import ReceivedOffers from '../Offer/ReceivedOffers';
 import MyOffersFilter from '../Offer/MyOffersFilter';
-import { initOffers, fetchMadeOffers, fetchAllOffers, fetchMyNFTs } from '../../GlobalState/offerSlice';
-import { getAllCollections, knownContracts } from '../../GlobalState/collectionsSlice';
-import { caseInsensitiveCompare, isNftBlacklisted } from '../../utils';
-import { offerState } from '../../core/api/enums';
+import { initOffers, fetchMadeOffers, fetchAllOffers, fetchMyNFTs } from '../src/GlobalState/offerSlice';
+import { getAllCollections, knownContracts } from '../src/GlobalState/collectionsSlice';
+import { caseInsensitiveCompare, isNftBlacklisted } from '../src/utils';
+import { offerState } from '../src/core/api/enums';
 
 const Tabs = styled.div`
   display: flex;
@@ -53,9 +53,6 @@ const OFFERS_TAB = {
 };
 
 const MyOffers = () => {
-  if (typeof window === 'undefined') {
-    return;
-  }
   const walletAddress = useSelector((state) => state.user.address);
 
   const lastId = useSelector((state) => state.offer.lastId);

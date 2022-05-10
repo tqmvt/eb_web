@@ -1,22 +1,19 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
-
-import { init, fetchListings } from '../../GlobalState/collectionSlice';
-import { devLog } from '../../utils';
-import { CollectionSortOption } from '../Models/collection-sort-option.model';
-import { FilterOption } from '../Models/filter-option.model';
-import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
-import borderboard from '../../Assets/cronosverse/border_board.png';
-import tile1 from '../../Assets/cronosverse/Plain-tile.png';
-import tile2 from '../../Assets/cronosverse/Suburban-tile.png';
-import tile3 from '../../Assets/cronosverse/Commercial-tile.png';
-import Button from '../components/Button';
 import styled from 'styled-components';
-import { chainConnect, connectAccount } from '../../GlobalState/User';
 import MetaMaskOnboarding from '@metamask/onboarding';
-import MakeOfferDialog from '../Offer/MakeOfferDialog';
 import { commify } from 'ethers/lib/utils';
+import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
+
+import { init, fetchListings } from '../src/GlobalState/collectionSlice';
+import { devLog } from '../src/utils';
+import { CollectionSortOption } from '../src/Components/Models/collection-sort-option.model';
+import { FilterOption } from '../src/Components/Models/filter-option.model';
+import borderboard from '../src/Assets/cronosverse/border_board.png';
+import Button from '../src/Components/components/Button';
+import { chainConnect, connectAccount } from '../src/GlobalState/User';
+import MakeOfferDialog from '../Offer/MakeOfferDialog';
 
 const CollectionCronosverse = ({ collection }) => {
   if (typeof window === 'undefined') {
@@ -92,7 +89,11 @@ const MakeOffer = styled.div`
   }
 `;
 
-const tiles = [tile1, tile2, tile3];
+const tiles = [
+  '/img/cronosverse/Plain-tile.png',
+  '/img/cronosverse/Suburban-tile.png',
+  '/img/cronosverse/Commercial-tile.png',
+];
 const tileType = ['Plain', 'Suburban', 'Commercial'];
 
 const CronosverseCollectionBoard = ({ onBuy, onOffer, listings = [], nfts = [] }) => {

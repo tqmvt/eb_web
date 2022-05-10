@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
-import config from '../../Assets/networks/rpc_config.json';
+import config from '../src/Assets/networks/rpc_config.json';
 import MultiDrop from './multiDrop';
 import SingleDrop from './singleDrop';
 import CronosverseDrop from './CronosverseDrop';
@@ -9,9 +9,6 @@ import CronosverseDrop from './CronosverseDrop';
 export const drops = config.drops;
 
 const Drop = () => {
-  if (typeof window === 'undefined') {
-    return;
-  }
   const router = useRouter();
   const { slug } = router.query;
 

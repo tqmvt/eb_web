@@ -1,13 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import Footer from '../components/Footer';
-import MyStakingComponent from '../components/MyStaking';
+import Footer from '../src/Components/components/Footer';
+import MyStakingComponent from '../src/Components/components/MyStaking';
 
 const MyStaking = () => {
-  if (typeof window === 'undefined') {
-    return;
-  }
   const walletAddress = useSelector((state) => state.user.address);
 
   if (!walletAddress) {

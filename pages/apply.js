@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
-import Footer from '../components/Footer';
 import styled, { createGlobalStyle } from 'styled-components';
 import { useSelector } from 'react-redux';
-import '../../Assets/styles/fire.css';
 import Reveal from 'react-awesome-reveal';
 import { keyframes } from '@emotion/react';
 import NativeForms from 'native-forms-react';
+
+import Footer from '../src/Components/components/Footer';
+import '../src/Assets/styles/fire.css';
 
 const fadeInUp = keyframes`
   0% {
@@ -70,9 +71,6 @@ const StyledForm = styled.div`
 `;
 
 const Application = () => {
-  if (typeof window === 'undefined') {
-    return;
-  }
   // const dispatch = useDispatch();
 
   const userTheme = useSelector((state) => {

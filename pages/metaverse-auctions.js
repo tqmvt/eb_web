@@ -1,15 +1,12 @@
 import React from 'react';
 
-import Footer from '../components/Footer';
-import AuctionCollection from '../components/AuctionCollection';
-import config from '../../Assets/networks/rpc_config.json';
-import MetaverseModal from '../components/MetaverseModal';
+import Footer from '../src/Components/components/Footer';
+import AuctionCollection from '../src/Components/components/AuctionCollection';
+import config from '../src/Assets/networks/rpc_config.json';
+import MetaverseModal from '../src/Components/components/MetaverseModal';
 export const drops = config.drops;
 
 const MetaverseAuctions = () => {
-  if (typeof window === 'undefined') {
-    return;
-  }
   return (
     <div>
       <section className="container no-bottom">

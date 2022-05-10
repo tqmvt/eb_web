@@ -13,14 +13,14 @@ import * as Sentry from '@sentry/react';
 import styled from 'styled-components';
 import { Helmet } from 'react-helmet';
 
-import Footer from '../components/Footer';
-import config from '../../Assets/networks/rpc_config.json';
-import { connectAccount } from '../../GlobalState/User';
-import { fetchMemberInfo, fetchVipInfo } from '../../GlobalState/Memberships';
-import { fetchCronieInfo } from '../../GlobalState/Cronies';
-import { createSuccessfulTransactionToastContent, isCmbDrop, newlineText, percentage } from '../../utils';
-import { dropState as statuses } from '../../core/api/enums';
-import { EbisuDropAbi } from '../../Contracts/Abis';
+import Footer from '../src/Components/components/Footer';
+import config from '../src/Assets/networks/rpc_config.json';
+import { connectAccount } from '../src/GlobalState/User';
+import { fetchMemberInfo, fetchVipInfo } from '../src/GlobalState/Memberships';
+import { fetchCronieInfo } from '../src/GlobalState/Cronies';
+import { createSuccessfulTransactionToastContent, isCmbDrop, newlineText, percentage } from '../src/utils';
+import { dropState as statuses } from '../src/core/api/enums';
+import { EbisuDropAbi } from '../src/Contracts/Abis';
 
 export const drops = config.drops;
 

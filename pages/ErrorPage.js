@@ -4,9 +4,9 @@ import { createGlobalStyle, default as styled } from 'styled-components';
 import { keyframes } from '@emotion/react';
 import Reveal from 'react-awesome-reveal';
 
-import Footer from '../components/Footer';
-import { getMarketData } from '../../GlobalState/marketplaceSlice';
-import { theme } from '../../Theme/theme';
+import Footer from '../src/Components/components/Footer';
+import { getMarketData } from '../src/GlobalState/marketplaceSlice';
+import { theme } from '../src/Theme/theme';
 
 const fadeInUp = keyframes`
   0% {
