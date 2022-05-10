@@ -1015,6 +1015,26 @@
         "discord": "https://discord.gg/9Exq5ECpDv",
         "medium": "https://medium.com/@thesportsnft"
       }
+    },
+    {
+      "name": "Ghetto Doves",
+      "slug": "ghetto-doves",
+      "multiToken": false,
+      "address": "0xA6d3d33ae29A01d8288a29E69F82314F2e25129D",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/ghetto-doves/avatar.webp",
+        "card": "/img/collections/ghetto-doves/card.webp",
+        "banner": "/img/collections/ghetto-doves/banner.webp",
+        "maxSupply": 3500,
+        "twitter": "https://twitter.com/DovesGhetto",
+        "website": "https://ghettodoves.com/",
+        "discord": "https://discord.gg/ghetto-doves",
+        "medium": "https://medium.com/@gd_29360/welcome-to-the-city-of-new-york-d940fff215c1"
+      }
     }
   ],
   "drops": [
@@ -2212,6 +2232,37 @@
       "is1155": false,
       "published": true,
       "complete": false
+    },
+    {
+      "id": 71,
+      "slug": "ghetto-doves",
+      "imgNft": "/img/drops/ghetto-doves/drop.webp",
+      "imgPreview": "/img/drops/ghetto-doves/drop.webp",
+      "imgAvatar": "/img/collections/ghetto-doves/avatar.webp",
+      "imgBanner": "/img/collections/ghetto-doves/banner.webp",
+      "title": "Ghetto Doves",
+      "subtitle": "The Ghetto-Doves™ are a 7 character friend group of city pigeon kids. The “self titled” drop of 3500 NFT’s on the Cronos chain is a fun and edgy collection. Enter the imaginative and dynamic throwback urban landscape of your favorite characters and be a part of their adventures.",
+      "description": "The news around the block:Do you remember the days of collecting and trading cards and vinyl seemed like the coolest thing to do? Today, those coveted collectibles have been widely replaced by NFTs.\n\nWe offer the ability to utilize an IRL value trading and gamification aspect to build a collection and “level up” from the airdrop “EB-NFT™” Card, to a Deli.\n\nEach holder’s goal will be to collect one of each of the characters a total of 7 by the end of the minting process. Missing characters in your collection may be acquired only through secondary to fulfill your collection.\n\nAdditional attributes and 7 character gamification will be revealed prior to Mint day .. Stay Tuned!!! \uD83D\uDC8E\uD83D\uDC8E",
+      "author": { "name": "Ghetto Doves NFT", "link": "https://ghettodoves.com/" },
+      "address": "0xA6d3d33ae29A01d8288a29E69F82314F2e25129D",
+      "maxMintPerTx": 20,
+      "maxMintPerAddress": 100,
+      "totalSupply": 3500,
+      "cost": "290",
+      "memberCost": "275",
+      "whitelistCost": "275",
+      "specialWhitelistCost": {
+        "name": "Passport Holders",
+        "value": "250"
+      },
+      "foundersOnly": false,
+      "start": 1652204741000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false,
+      "disclaimer": "**Assets and characters from other Ghetto-Doves™ collections do not apply in the 7 character collection."
     }
   ],
   "auctions": [
