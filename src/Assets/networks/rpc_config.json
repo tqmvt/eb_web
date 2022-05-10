@@ -4288,6 +4288,25 @@
         "discord": "https://discord.gg/9Exq5ECpDv",
         "medium": "https://medium.com/@thesportsnft"
       }
+    },
+    {
+      "name": "EyesInTheDeep",
+      "slug": "eyezinthedeep",
+      "multiToken": false,
+      "address": "0xe7EEE45A6D27B066443Fbe4b7b409d6514B812d7",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/cronoseyez/eyezinthedeep/avatar.webp",
+        "banner": "/img/collections/cronoseyez/eyezinthedeep/banner.webp",
+        "card": "/img/collections/cronoseyez/eyezinthedeep/card.webp",
+        "maxSupply": 2000,
+        "website": "https://cronosart.org/eyezinthedeep-roadmap/",
+        "twitter": "https://twitter.com/cronoseyezNFT",
+        "discord": "https://discord.gg/jFX4RNrFGu"
+      }
     }
   ],
   "drops": [
