@@ -1020,11 +1020,11 @@
       "name": "Ghetto Doves",
       "slug": "ghetto-doves",
       "multiToken": false,
-      "address": "",
+      "address": "0xA6d3d33ae29A01d8288a29E69F82314F2e25129D",
       "onChain": false,
       "listable": false,
       "metadata": {
-        "description": "0xA6d3d33ae29A01d8288a29E69F82314F2e25129D",
+        "description": "",
         "verified": true,
         "avatar": "/img/collections/ghetto-doves/avatar.webp",
         "card": "/img/collections/ghetto-doves/card.webp",
