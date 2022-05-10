@@ -21,7 +21,6 @@ import {
 } from '../../GlobalState/User';
 import rpcConfig from '../../Assets/networks/rpc_config.json';
 
-import HandHoldingCroIcon from 'src/Assets/images/hand-holding-cro.svg';
 import { getThemeInStorage, setThemeInStorage } from 'src/helpers/storage';
 import { getAllCollections } from '../../GlobalState/collectionsSlice';
 import { fetchMyNFTs } from '../../GlobalState/offerSlice';
@@ -376,7 +375,7 @@ const AccountMenu = function () {
                 <li className="my-offers-menu-item">
                   <span onClick={() => navigateTo(`/offers`)}>
                     <span>
-                      <img src={HandHoldingCroIcon} alt="handholding-cro" width="14" height="14" />
+                      <img src={'/img/icons/hand-holding-cro.svg'} alt="handholding-cro" width="14" height="14" />
                     </span>
                     <span>My Offers</span>
                   </span>

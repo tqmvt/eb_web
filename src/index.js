@@ -1,3 +1,4 @@
+// todo: remove
 import React from 'react';
 import ReactDOM from 'react-dom';
 import '../node_modules/elegant-icons/style.css';

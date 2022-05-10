@@ -176,21 +176,23 @@ export default function TableRow({ data, type }) {
       <TableRowContainer>
         <div className="table-row-item">
           <div className="coll_list_pp" style={{ cursor: 'pointer' }}>
-            <Link to={`/collection/${collectionData?.slug}`}>
-              {getCollectionAvatar() ? (
-                <img
-                  className="lazy"
-                  src={getCollectionAvatar()}
-                  alt={getCollectionName()}
-                  width="50"
-                  height="50"
-                  style={{ marginRight: '10px', borderRadius: '100px' }}
-                />
-              ) : (
-                <span style={{ marginRight: '10px', borderRadius: '100px' }}>
-                  <Blockies seed={nftAddress} size={10} scale={5} />
-                </span>
-              )}
+            <Link href={`/collection/${collectionData?.slug}`}>
+              <a>
+                {getCollectionAvatar() ? (
+                  <img
+                    className="lazy"
+                    src={getCollectionAvatar()}
+                    alt={getCollectionName()}
+                    width="50"
+                    height="50"
+                    style={{ marginRight: '10px', borderRadius: '100px' }}
+                  />
+                ) : (
+                  <span style={{ marginRight: '10px', borderRadius: '100px' }}>
+                    <Blockies seed={nftAddress} size={10} scale={5} />
+                  </span>
+                )}
+              </a>
             </Link>
           </div>
           <div className="collection-name">{getCollectionName()}</div>
