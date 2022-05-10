@@ -9,6 +9,7 @@ import { dataURItoBlob } from '../Store/utils';
 import { SortOption } from '../Components/Models/sort-option.model';
 import { CollectionSortOption } from '../Components/Models/collection-sort-option.model';
 import { FilterOption } from '../Components/Models/filter-option.model';
+import { limitSizeOptions } from '../Components/components/constants/filter-options';
 import {
   caseInsensitiveCompare,
   convertIpfsResource,
@@ -45,9 +46,7 @@ export default api;
 //  just for sortAndFetchListings function
 let abortController = null;
 
-export async function sortAndFetchListings(page, sort, filter, traits, powertraits, search, state, filterListed) {
-  let pagesize = 50;
-
+export async function sortAndFetchListings(page, sort, filter, traits, powertraits, search, state, filterListed, pagesize = limitSizeOptions.lg) {
   let query = {
     state: state ?? 0,
     page: page,
