@@ -2995,7 +2995,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "verified": false,
+        "verified": true,
         "avatar": "/img/collections/slavikfruitfarm/avatar.gif",
         "banner": "/img/collections/slavikfruitfarm/banner.png",
         "card": "/img/collections/slavikfruitfarm/card.jpg",
@@ -4306,6 +4306,25 @@
         "website": "https://cronosart.org/eyezinthedeep-roadmap/",
         "twitter": "https://twitter.com/cronoseyezNFT",
         "discord": "https://discord.gg/jFX4RNrFGu"
+      }
+    },
+    {
+      "name": "Cronos Fossils",
+      "slug": "cronos-fossils",
+      "multiToken": false,
+      "address": "0xbd6b9a1A0477d64E99F660b7b7C205f4604E4Ff3",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/cronos-fossils/avatar.webp",
+        "card": "/img/collections/cronos-fossils/card.webp",
+        "banner": "/img/collections/cronos-fossils/banner.webp",
+        "maxSupply": 600,
+        "twitter": "https://twitter.com/CronosRocksNFT",
+        "website": "https://www.cronosrocks.com/",
+        "discord": "https://discord.gg/hHEMUEq6vE"
       }
     }
   ],
