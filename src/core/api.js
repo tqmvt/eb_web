@@ -1231,14 +1231,6 @@ export async function getNftsForAddress2(walletAddress, walletProvider, page) {
     });
   };
 
-  const getKnownContract = (nft) => {
-    return knownContracts.find((c) => {
-      const matchedAddress = caseInsensitiveCompare(c.address, nft.nftAddress);
-      const matchedToken = !c.multiToken || parseInt(c.id) === parseInt(nft.nftId);
-      return matchedAddress && matchedToken;
-    });
-  };
-
   const writeContracts = [];
   return await Promise.all(
     results

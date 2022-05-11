@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import moment from 'moment';
 import Blockies from 'react-blockies';
 
-import { caseInsensitiveCompare, shortAddress } from 'src/utils';
+import {caseInsensitiveCompare, findCollectionByAddress, shortAddress} from 'src/utils';
 import config from 'src/Assets/networks/rpc_config.json';
 import { getNftDetails } from 'src/GlobalState/nftSlice';
 import MakeOfferDialog from '../MakeOfferDialog';
@@ -119,11 +119,7 @@ export default function TableRow({ data, type }) {
     setOfferType(type);
   };
 
-  const collectionData = knownContracts.find((c) => {
-    const matchedAddress = caseInsensitiveCompare(c.address, nftAddress);
-    const matchedToken = !c.multiToken || parseInt(nftId) === c.id;
-    return matchedAddress && matchedToken;
-  });
+  const collectionData = findCollectionByAddress(nftAddress, nftId);
 
   const getCollectionName = () => {
     return collectionData ? collectionData?.name : '';
