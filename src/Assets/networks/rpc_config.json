@@ -4171,6 +4171,26 @@
         "discord": "https://discord.gg/ghetto-doves",
         "medium": "https://medium.com/@gd_29360/welcome-to-the-city-of-new-york-d940fff215c1"
       }
+    },
+    {
+      "name": "CBS: CPU Upgrade Chips",
+      "slug": "cbs-cpu-upgrade-chips",
+      "multiToken": false,
+      "address": "0x92E706cfa069d6366305bC659ff16ac792a47b82",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "Use this CPU Upgrade Chip to upgrade your Cronos Bot Society Gen 1 Bot into a BILLIONAIRE BOT \uD83E\uDD16",
+        "verified": false,
+        "avatar": "/img/collections/cronosbotsociety/cpu/avatar.webp",
+        "card": "/img/collections/cronosbotsociety/cpu/card.webp",
+        "banner": "/img/collections/cronosbotsociety/cpu/banner.webp",
+        "maxSupply": 100,
+        "website": "https://cronosbotsociety.com/",
+        "twitter": "https://twitter.com/CronosBots",
+        "discord": "discord.gg/cronosbotsociety",
+        "medium": "https://medium.com/@Cronos-Bot-Society"
+      }
     }
   ],
   "drops": [
