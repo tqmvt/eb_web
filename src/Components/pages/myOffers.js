@@ -11,7 +11,7 @@ import ReceivedOffers from '../Offer/ReceivedOffers';
 import MyOffersFilter from '../Offer/MyOffersFilter';
 import { initOffers, fetchMadeOffers, fetchAllOffers, fetchMyNFTs } from '../../GlobalState/offerSlice';
 import { getAllCollections, knownContracts } from '../../GlobalState/collectionsSlice';
-import { caseInsensitiveCompare, isNftBlacklisted } from '../../utils';
+import {caseInsensitiveCompare, findCollectionByAddress, isNftBlacklisted} from '../../utils';
 import { offerState } from '../../core/api/enums';
 
 const Tabs = styled.div`
@@ -99,7 +99,7 @@ const MyOffers = () => {
             (c) => caseInsensitiveCompare(c.nftAddress, offer.nftAddress) && c.edition?.toString() === offer.nftId
           );
 
-          const knownContract = findKnownContract(offer.nftAddress, offer.nftId);
+          const knownContract = findCollectionByAddress(offer.nftAddress, offer.nftId);
           const floorPrice = findCollectionFloor(knownContract);
           const offerPrice = parseInt(offer.price);
           const isAboveOfferThreshold = floorPrice ? offerPrice >= floorPrice / 2 : true;
@@ -115,7 +115,7 @@ const MyOffers = () => {
             (c) => c.nftAddress.toLowerCase() === offer.nftAddress && c.edition?.toString() === offer.nftId
           );
 
-          const knownContract = findKnownContract(offer.nftAddress, offer.nftId);
+          const knownContract = findCollectionByAddress(offer.nftAddress, offer.nftId);
           const floorPrice = findCollectionFloor(knownContract);
           const offerPrice = parseInt(offer.price);
           const isAboveOfferThreshold = floorPrice ? offerPrice >= floorPrice / 2 : true;
@@ -131,14 +131,6 @@ const MyOffers = () => {
     }
     // eslint-disable-next-line
   }, [myNFTs, allOffers, collectionsStats]);
-
-  const findKnownContract = (address, nftId) => {
-    return knownContracts.find((c) => {
-      const matchedAddress = caseInsensitiveCompare(c.address, address);
-      const matchedToken = !c.multiToken || parseInt(nftId) === c.id;
-      return matchedAddress && matchedToken;
-    });
-  };
 
   const findCollectionFloor = (knownContract) => {
     const collectionStats = collectionsStats.find((o) => {

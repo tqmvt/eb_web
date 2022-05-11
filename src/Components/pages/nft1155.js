@@ -30,6 +30,7 @@ import NFTTabListings from '../NftDetails/NFTTabListings';
 import { listingState, offerState } from '../../core/api/enums';
 import { getFilteredOffers } from '../../core/subgraph';
 import { OFFER_TYPE } from '../Offer/MadeOffersRow';
+import NFTTabOffers from "../Offer/NFTTabOffers";
 
 const Nft1155 = ({ address, id }) => {
   const dispatch = useDispatch();
@@ -257,6 +258,9 @@ const Nft1155 = ({ address, id }) => {
                       <li id="Mainbtn3" className="tab">
                         <span onClick={handleBtnClick(3)}>Listings</span>
                       </li>
+                      <li id="Mainbtn4" className="tab">
+                        <span onClick={handleBtnClick(4)}>Offers</span>
+                      </li>
                     </ul>
 
                     <div className="de_tab_content">
@@ -399,6 +403,7 @@ const Nft1155 = ({ address, id }) => {
                           <NFTTabListings listings={activeListings} />
                         </div>
                       )}
+                      {openMenu === 4 && <NFTTabOffers nftAddress={address} nftId={id} />}
                     </div>
                   </div>
                 </div>
