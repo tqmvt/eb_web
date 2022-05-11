@@ -37,9 +37,6 @@ const NegativeMargin = styled.div`
 `;
 
 const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) => {
-  if (typeof window === 'undefined') {
-    return;
-  }
   const dispatch = useDispatch();
 
   const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
@@ -74,6 +71,9 @@ const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) 
   // };
   const [openMenu, setOpenMenu] = React.useState(0);
   const handleBtnClick = (index) => (element) => {
+    if (typeof window === 'undefined') {
+      return;
+    }
     var elements = document.querySelectorAll('.tab');
     for (var i = 0; i < elements.length; i++) {
       elements[i].classList.remove('active');

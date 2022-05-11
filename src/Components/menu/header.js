@@ -89,7 +89,7 @@ const Header = function () {
                 <div className="menu">
                   <div className="menu">
                     <div className="navbar-item">
-                      <Link href="/home">
+                      <Link href="/">
                         <a>
                           Home
                           <span className="lines"></span>
@@ -128,7 +128,7 @@ const Header = function () {
             <Breakpoint xl>
               <div className="menu">
                 <div className="navbar-item">
-                  <Link href="/home">
+                  <Link href="/">
                     <a>
                       Home
                       <span className="lines"></span>

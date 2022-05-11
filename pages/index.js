@@ -114,14 +114,10 @@ const Jumbotron = {
 };
 
 const Home = () => {
-  if (typeof window === 'undefined') {
-    return <></>;
-  }
-
   const history = useRouter();
   const dispatch = useDispatch();
 
-  const [mobile, setMobile] = useState(window.innerWidth < theme.breakpointsNum.md);
+  const [mobile, setMobile] = useState(typeof window !== 'undefined' && window.innerWidth < theme.breakpointsNum.md);
 
   const marketData = useSelector((state) => {
     return state.marketplace.marketData;
@@ -131,17 +127,19 @@ const Home = () => {
   });
 
   useEffect(() => {
-    const breakpointObserver = ({ target }) => {
-      const { innerWidth } = target;
-      const newValue = innerWidth < theme.breakpointsNum.md;
-      setMobile(newValue);
-    };
+    if (typeof window !== 'undefined') {
+      const breakpointObserver = ({ target }) => {
+        const { innerWidth } = target;
+        const newValue = innerWidth < theme.breakpointsNum.md;
+        setMobile(newValue);
+      };
 
-    window.addEventListener('resize', breakpointObserver);
+      window.addEventListener('resize', breakpointObserver);
 
-    return () => {
-      window.removeEventListener('resize', breakpointObserver);
-    };
+      return () => {
+        window.removeEventListener('resize', breakpointObserver);
+      };
+    }
   }, [dispatch]);
 
   const navigateTo = (link) => {

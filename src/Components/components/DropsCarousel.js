@@ -140,6 +140,7 @@ export default class Responsive extends Component {
   }
 
   navigateToDrop(drop) {
+    if (typeof window === 'undefined') return;
     if (drop.redirect) {
       window.open(drop.redirect, '_blank');
     } else {

@@ -81,9 +81,6 @@ const HeroSection = styled.section`
 `;
 
 const SingleDrop = () => {
-  if (typeof window === 'undefined') {
-    return;
-  }
   const router = useRouter();
   const { slug } = router.query;
 
@@ -633,7 +630,10 @@ const SingleDrop = () => {
                   <div className="mb-4">
                     <span>Once you have minted your parts, you can&nbsp;</span>
                     <div className="nft__item_action d-inline-block" style={{ fontSize: '16px' }}>
-                      <span onClick={() => window.open('/build-ship', '_self')} style={{ cursor: 'pointer' }}>
+                      <span
+                        onClick={() => typeof window !== 'undefined' && window.open('/build-ship', '_self')}
+                        style={{ cursor: 'pointer' }}
+                      >
                         build your Crosmocraft
                       </span>
                     </div>

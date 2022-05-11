@@ -16,9 +16,6 @@ const mapStateToProps = (state) => ({
 });
 
 const MyNfts = ({ walletAddress, isLoading }) => {
-  if (typeof window === 'undefined') {
-    return;
-  }
   const router = useRouter();
 
   const [showChainSearch, setShowChainSearch] = useState(false);
@@ -29,6 +26,9 @@ const MyNfts = ({ walletAddress, isLoading }) => {
   };
 
   const handleBtnClick = (index) => (element) => {
+    if (typeof window === 'undefined') {
+      return;
+    }
     var elements = document.querySelectorAll('.tab');
     for (var i = 0; i < elements.length; i++) {
       elements[i].classList.remove('active');

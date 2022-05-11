@@ -3,11 +3,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Spinner } from 'react-bootstrap';
+import { useRouter } from 'next/router';
 
 import Footer from '../src/Components/components/Footer';
-import MadeOffers from '../Offer/MadeOffers';
-import ReceivedOffers from '../Offer/ReceivedOffers';
-import MyOffersFilter from '../Offer/MyOffersFilter';
+import MadeOffers from '../src/Components/Offer/MadeOffers';
+import ReceivedOffers from '../src/Components/Offer/ReceivedOffers';
+import MyOffersFilter from '../src/Components/Offer/MyOffersFilter';
 import { initOffers, fetchMadeOffers, fetchAllOffers, fetchMyNFTs } from '../src/GlobalState/offerSlice';
 import { getAllCollections, knownContracts } from '../src/GlobalState/collectionsSlice';
 import { caseInsensitiveCompare, isNftBlacklisted } from '../src/utils';
@@ -53,6 +54,7 @@ const OFFERS_TAB = {
 };
 
 const MyOffers = () => {
+  const router = useRouter();
   const walletAddress = useSelector((state) => state.user.address);
 
   const lastId = useSelector((state) => state.offer.lastId);

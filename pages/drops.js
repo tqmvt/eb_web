@@ -10,9 +10,6 @@ import PastDrops from '../src/Components/Drops/PastDrops';
 import { getTheme } from '../src/Theme/theme';
 
 const Drops = () => {
-  if (typeof window === 'undefined') {
-    return;
-  }
   const userTheme = useSelector((state) => {
     return state.user.theme;
   });
@@ -57,7 +54,7 @@ const Drops = () => {
             </div>
           </div>
           <div className="col-lg-12">
-            <CurrentDrops useCarousel={window.innerWidth >= 576} />
+            <CurrentDrops useCarousel={typeof window !== 'undefined' && window.innerWidth >= 576} />
           </div>
         </div>
       </section>

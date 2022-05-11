@@ -30,9 +30,6 @@ const txExtras = {
 };
 
 const Rugsurance = () => {
-  if (typeof window === 'undefined') {
-    return;
-  }
   const dispatch = useDispatch();
   let audio = new Audio('https://files.ebisusbay.com/slothty/slothty-burning.mp4');
   const user = useSelector((state) => state.user);

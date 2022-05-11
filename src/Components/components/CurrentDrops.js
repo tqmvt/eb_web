@@ -17,7 +17,7 @@ const carouselSetings = {
 
 const CurrentDrops = ({ useCarousel = true }) => {
   const dispatch = useDispatch();
-  const threePerRowSize = window.innerWidth < 992;
+  const threePerRowSize = typeof window !== 'undefined' && window.innerWidth < 992;
 
   const [currentDrops, setCurrentDrops] = useState([]);
   const [showAll, setShowAll] = useState(false);
