@@ -8,6 +8,7 @@ import { collectionFilterOptions } from './constants/filter-options';
 import { fetchChainNfts, fetchNfts, MyNftPageActions } from '../../GlobalState/User';
 import InvalidListingsPopup from './InvalidListingsPopup';
 import InfiniteScroll from "react-infinite-scroll-component";
+import {caseInsensitiveCompare, findCollectionByAddress} from "../../utils";
 
 const mapStateToProps = (state) => ({
   nfts: state.user.nfts,
@@ -58,7 +59,7 @@ const MyNftCardList = ({ nfts = [], isLoading, listedOnly, activeFilterOption, u
   );
 
   const possibleCollections = collectionFilterOptions.filter((collection) =>
-    isLoading ? true : !!nfts.find((x) => x.address === collection.address)
+    isLoading ? true : !!nfts.find((x) => caseInsensitiveCompare(x.address, collection.address))
   );
 
   const filteredNFTs = nfts
@@ -68,21 +69,11 @@ const MyNftCardList = ({ nfts = [], isLoading, listedOnly, activeFilterOption, u
         return true;
       }
 
-      const isSameAddress = activeFilterOption.getOptionValue === nft.address;
-
-      if (!nft.multiToken) {
-        return isSameAddress;
+      let targetCollection = findCollectionByAddress(activeFilterOption.getOptionValue);
+      if (targetCollection.multiToken)  {
+        targetCollection = findCollectionByAddress(activeFilterOption.getOptionValue, nft.id);
       }
-
-      const hasId = !!nft.id;
-
-      if (!hasId) {
-        return isSameAddress;
-      }
-
-      const isSameId = activeFilterOption.id === nft.id;
-
-      return isSameId && isSameAddress;
+      return targetCollection && caseInsensitiveCompare(targetCollection.address, nft.address);
     });
 
   return (
