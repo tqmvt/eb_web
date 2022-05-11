@@ -5382,3 +5382,12 @@ iframe.metaverse {
   margin-bottom: -10px;
   background: white;
 }
+
+.listing-tab {
+  height: 400px;
+  overflow: scroll;
+
+  .avatar {
+    position: relative;
+  }
+}

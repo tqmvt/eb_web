@@ -366,12 +366,12 @@ const Nft1155 = ({ address, id }) => {
                         </div>
                       )}
                       {openMenu === 2 && (
-                        <div className="tab-3 onStep fadeIn">
+                        <div className="listing-tab tab-3 onStep fadeIn">
                           {soldListings && soldListings.length > 0 ? (
                             <>
                               {soldListings.map((listing, index) => (
                                 <div className="p_list" key={index}>
-                                  <Link to={`/seller/${listing.purchaser}`}>
+                                  <Link className='avatar' to={`/seller/${listing.purchaser}`}>
                                     <div className="p_list_pp">
                                       <span>
                                         <span onClick={viewSeller(listing.purchaser)}>

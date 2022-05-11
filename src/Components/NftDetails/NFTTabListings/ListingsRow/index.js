@@ -68,7 +68,7 @@ export default function ListingsRow({ listing }) {
     <div className="p_list">
       <div className="row">
         <div className="col-8">
-          <Link to={`/seller/${listing.seller}`}>
+          <Link className='avatar' to={`/seller/${listing.seller}`}>
             <div className="p_list_pp" style={{ zIndex: 1 }}>
               <span>
                 <span onClick={viewSeller(listing.seller)}>
