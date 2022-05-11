@@ -140,7 +140,7 @@ const Drop = () => {
                       onClick={() => window.open('/collection/crosmocrafts-parts', '_self')}
                       style={{ cursor: 'pointer' }}
                     >
-                      Buy Crosmocrafts Parts
+                      Buy Crosmocraft Parts
                     </span>
                   </div>
                 </div>
