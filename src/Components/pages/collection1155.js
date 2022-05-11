@@ -234,7 +234,7 @@ const Collection1155 = ({ collection, tokenId = null, cacheName = 'collection', 
                         canLoadMore={canLoadMore}
                         loadMore={loadMore}
                         address={collection.address}
-                        collectionMetadata={collection.metadata}
+                        collection={collection}
                       />
                     )}
                   </div>
