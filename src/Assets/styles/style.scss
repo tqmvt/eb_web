@@ -5386,6 +5386,7 @@ iframe.metaverse {
 .listing-tab {
   height: 400px;
   overflow-y: scroll;
+  overflow-x: hidden;
 
   .avatar {
     position: relative;
