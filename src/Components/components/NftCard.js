@@ -47,7 +47,7 @@ const MakeOffer = styled.div`
   }
 `;
 
-const NftCard = ({ royalty, listing, imgClass = 'marketplace', watermark, address, collectionMetadata }) => {
+const NftCard = ({ royalty, listing, imgClass = 'marketplace', watermark, address, collection }) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
@@ -113,6 +113,7 @@ const NftCard = ({ royalty, listing, imgClass = 'marketplace', watermark, addres
           </Link>
           {getIsNftListed() && (
             <MakeBuy>
+              {collection.multiToken && <div>Floor:</div>}
               <div>{ethers.utils.commify(round(listing.market?.price))} CRO</div>
             </MakeBuy>
           )}
@@ -140,7 +141,6 @@ const NftCard = ({ royalty, listing, imgClass = 'marketplace', watermark, addres
           toggle={() => setOpenMakeOfferDialog(!openMakeOfferDialog)}
           nftData={listing}
           royalty={royalty}
-          collectionMetadata={collectionMetadata}
         />
       )}
     </>
