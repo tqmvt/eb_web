@@ -9,6 +9,7 @@ import { dataURItoBlob } from '../Store/utils';
 import { SortOption } from '../Components/Models/sort-option.model';
 import { CollectionSortOption } from '../Components/Models/collection-sort-option.model';
 import { FilterOption } from '../Components/Models/filter-option.model';
+import { limitSizeOptions } from '../Components/components/constants/filter-options';
 import {
   caseInsensitiveCompare,
   convertIpfsResource, findCollectionByAddress,
@@ -45,9 +46,7 @@ export default api;
 //  just for sortAndFetchListings function
 let abortController = null;
 
-export async function sortAndFetchListings(page, sort, filter, traits, powertraits, search, state, filterListed) {
-  let pagesize = 50;
-
+export async function sortAndFetchListings(page, sort, filter, traits, powertraits, search, state, filterListed, pagesize = limitSizeOptions.lg) {
   let query = {
     state: state ?? 0,
     page: page,
@@ -1161,10 +1160,22 @@ export async function getAuction(auctionId) {
   }
 }
 
-export async function getQuickWallet(walletAddress) {
-  const queryString = new URLSearchParams({
-    wallet: walletAddress,
+export async function getQuickWallet(walletAddress, queryParams = {}) {
+  const pagingSupported = false;
+
+  let queryString = new URLSearchParams({
+    wallet: walletAddress
   });
+
+  if (pagingSupported) {
+    queryString = new URLSearchParams({
+      ...{
+        wallet: walletAddress,
+        pageSize: 1000
+      },
+      ...queryParams
+    });
+  }
 
   const url = new URL(api.wallets, `${api.baseUrl}`);
   const uri = `${url}?${queryString}`;
@@ -1201,8 +1212,10 @@ async function getAllListingsForUser(walletAddress) {
   return listings;
 }
 
-export async function getNftsForAddress2(walletAddress, walletProvider) {
-  const quickWallet = await getQuickWallet(walletAddress);
+export async function getNftsForAddress2(walletAddress, walletProvider, page) {
+  const quickWallet = await getQuickWallet(walletAddress, {page});
+  if (!quickWallet.data) return [];
+
   const results = quickWallet.data;
   const signer = walletProvider.getSigner();
   const walletBlacklisted = isUserBlacklisted(walletAddress);

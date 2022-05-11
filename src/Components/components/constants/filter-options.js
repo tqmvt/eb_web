@@ -4,6 +4,11 @@ import { ListingsFilterOption } from '../../Models/listings-filter-option.model'
 
 const knownContracts = config.known_contracts;
 
+export const limitSizeOptions = {
+  md: 12,
+  lg: 50
+}
+
 export const collectionFilterOptions = knownContracts
   .sort((a, b) => (a.name > b.name ? 1 : -1))
   .map((x) => FilterOption.fromJson(x));

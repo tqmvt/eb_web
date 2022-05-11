@@ -23,6 +23,7 @@ import { getAllCollections } from '../../../GlobalState/collectionsSlice';
 import { offerState } from '../../../core/api/enums';
 import { commify } from 'ethers/lib/utils';
 import { findCollectionByAddress } from 'src/utils';
+import {txExtras} from "../../../core/constants";
 const knownContracts = config.known_contracts;
 
 const DialogContainer = styled(Dialog)`
@@ -282,8 +283,12 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
           return;
         }
         tx = await offerContract.makeOffer(nftData.address, nftData.id, {
-          value: ethers.utils.parseEther(offerPrice.toString()),
+            ...{
+                value: ethers.utils.parseEther(offerPrice.toString()),
+            },
+            ...txExtras
         });
+
         receipt = await tx.wait();
       } else if (actionType === OFFER_TYPE.update) {
         if (!offerPrice || offerPrice <= Number(offerDataNew.price) || !isAboveOfferThreshold) {
@@ -292,14 +297,17 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
           return;
         }
         tx = await offerContract.makeOffer(nftData.address, nftData.id, {
-          value: ethers.utils.parseEther((offerPrice - offerDataNew.price).toString()),
+          ...{
+            value: ethers.utils.parseEther((offerPrice - offerDataNew.price).toString()),
+          },
+          ...txExtras
         });
         receipt = await tx.wait();
       } else if (actionType === OFFER_TYPE.cancel) {
-        tx = await offerContract.cancelOffer(offerDataNew?.hash, offerDataNew?.offerIndex);
+        tx = await offerContract.cancelOffer(offerDataNew?.hash, offerDataNew?.offerIndex, txExtras);
         receipt = await tx.wait();
       } else if (actionType === OFFER_TYPE.reject) {
-        tx = await offerContract.rejectOffer(offerDataNew?.hash, offerDataNew?.offerIndex);
+        tx = await offerContract.rejectOffer(offerDataNew?.hash, offerDataNew?.offerIndex, txExtras);
         receipt = await tx.wait();
       }
 

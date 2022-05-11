@@ -7,10 +7,10 @@ import { Spinner } from 'react-bootstrap';
 import { SortOption } from '../Models/sort-option.model';
 
 import HiddenCard from './HiddenCard';
-import { isMetapixelsCollection } from '../../utils';
+import {findCollectionByAddress, isMetapixelsCollection} from '../../utils';
 import { ListingsFilterOption } from '../Models/listings-filter-option.model';
 
-const ListingCollection = ({ showLoadMore = true, collectionId = null, sellerId = null, cacheName = null }) => {
+const ListingCollection = ({ limitSize, showLoadMore = true, collectionId = null, sellerId = null, cacheName = null }) => {
   const dispatch = useDispatch();
   const listings = useSelector((state) => state.marketplace.listings);
 
@@ -24,13 +24,16 @@ const ListingCollection = ({ showLoadMore = true, collectionId = null, sellerId 
   });
 
   useEffect(() => {
+    const sortOption = new SortOption();
+    const filterOption = new ListingsFilterOption();
+
+    if (limitSize) filterOption.limit = limitSize;
+
     if (collectionId) {
-      const sortOption = new SortOption();
       sortOption.key = 'listingId';
       sortOption.direction = 'desc';
       sortOption.label = 'By Id';
 
-      const filterOption = new ListingsFilterOption();
       filterOption.type = 'collection';
       filterOption.address = collectionId;
       filterOption.name = 'By Collection';
@@ -41,12 +44,10 @@ const ListingCollection = ({ showLoadMore = true, collectionId = null, sellerId 
     }
 
     if (sellerId) {
-      const sortOption = new SortOption();
       sortOption.key = 'listingId';
       sortOption.direction = 'desc';
       sortOption.label = 'By Id';
 
-      const filterOption = new ListingsFilterOption();
       filterOption.type = 'seller';
       filterOption.address = sellerId;
       filterOption.name = 'By Seller';
@@ -56,10 +57,10 @@ const ListingCollection = ({ showLoadMore = true, collectionId = null, sellerId 
       return;
     }
 
-    const filterOption = marketplace.cachedFilter[cacheName] ?? ListingsFilterOption.default();
-    const sortOption = marketplace.cachedSort[cacheName] ?? SortOption.default();
-
-    dispatch(init(sortOption, filterOption));
+    dispatch(init(
+      marketplace.cachedSort[cacheName] ?? sortOption,
+      marketplace.cachedFilter[cacheName] ?? filterOption
+    ));
     dispatch(fetchListings());
     // eslint-disable-next-line
   }, [dispatch]);
@@ -111,6 +112,7 @@ const ListingCollection = ({ showLoadMore = true, collectionId = null, sellerId 
                     watermark={
                       isMetapixelsCollection(listing.nftAddress) ? '/img/collections/metapixels/avatar.png' : null
                     }
+                    collection={findCollectionByAddress(listing.nftAddress, listing.nftId)}
                   />
                 )}
               </div>
@@ -134,6 +136,7 @@ const ListingCollection = ({ showLoadMore = true, collectionId = null, sellerId 
                     watermark={
                       isMetapixelsCollection(listing.nftAddress) ? '/img/collections/metapixels/avatar.png' : null
                     }
+                    collection={findCollectionByAddress(listing.nftAddress, listing.nftId)}
                   />
                 )}
               </div>

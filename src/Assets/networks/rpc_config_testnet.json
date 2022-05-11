@@ -191,23 +191,6 @@
       }
     },
     {
-      "slug": "fractals",
-      "name": "Fractals",
-      "multiToken": false,
-      "address": "0x4C2c10BD29bB91db5996b018baf2307D17A69ca9",
-      "onChain": false,
-      "listable": true,
-      "metadata": {
-        "description": "",
-        "verified": true,
-        "avatar": "/img/collections/fractals/avatar.png",
-        "card": "/img/collections/fractals/card.png",
-        "banner": "/img/collections/fractals/banner.webp",
-        "maxSupply": 50,
-        "website": "https://www.instagram.com/maxx9498/"
-      }
-    },
-    {
       "slug": "lazy-horse-pony",
       "name": "The Lazy Horse Member NFT (PONY)",
       "multiToken": false,
@@ -486,26 +469,6 @@
       }
     },
     {
-      "name": "Crosmocrafts Parts",
-      "slug": "crosmocrafts-parts",
-      "multiToken": false,
-      "address": "0x984f6c2836c0B4e2E9c889135aAAC62575d310A9",
-      "onChain": false,
-      "listable": false,
-      "metadata": {
-        "description": "",
-        "verified": true,
-        "avatar": "/img/collections/crosmonauts/parts/avatar.webp",
-        "card": "/img/collections/crosmonauts/parts/card.webp",
-        "banner": "/img/collections/crosmonauts/ship/banner.webp",
-        "maxSupply": 8430,
-        "website": "https://www.crosmonauts.club/",
-        "twitter": "https://twitter.com/crosmonaut",
-        "discord": "https://discord.gg/yhyJjZ2uWk",
-        "medium": "https://medium.com/@crosmonaut"
-      }
-    },
-    {
       "name": "Cronos Gorilla Business",
       "slug": "cronos-gorilla-business",
       "multiToken": false,
@@ -758,26 +721,6 @@
         "website": "https://www.crobees.com/",
         "discord": "discord.gg/BdYExfEJ8v",
         "medium": "https://medium.com/the-crobees"
-      }
-    },
-    {
-      "name": "Cyborg Brotherhood",
-      "slug": "cyborg-brotherhood",
-      "multiToken": false,
-      "address": "0x570455059613388F01A5275C40BdcD2Cb5390966",
-      "onChain": false,
-      "listable": false,
-      "metadata": {
-        "description": "",
-        "verified": true,
-        "avatar": "/img/collections/cyborgbrotherhood/avatar.webp",
-        "card": "/img/collections/cyborgbrotherhood/card.webp",
-        "banner": "/img/collections/cyborgbrotherhood/banner.webp",
-        "maxSupply": 3333,
-        "website": "https://www.cyborgbh.io/",
-        "twitter": "https://twitter.com/mariescyborgs",
-        "discord": "https://discord.gg/x9bvzuSBeV",
-        "medium": "https://medium.com/@mariescyborgs/cyborg-brotherhood-28173eccf03a"
       }
     },
     {
@@ -1052,6 +995,46 @@
         "medium": "https://medium.com/@crowboysonline",
         "telegram": "https://t.me/crowboys"
       }
+    },
+    {
+      "name": "Beta Mascots",
+      "slug": "beta-mascots",
+      "multiToken": false,
+      "address": "0xb588883f69E94889A81608bf58EB0a578B93aa6f",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/beta-mascots/avatar.webp",
+        "card": "/img/collections/beta-mascots/card.webp",
+        "banner": "/img/collections/beta-mascots/banner.webp",
+        "maxSupply": 3456,
+        "website": "https://www.betamascots.com/",
+        "twitter": "https://twitter.com/TheSportsNFT",
+        "discord": "https://discord.gg/9Exq5ECpDv",
+        "medium": "https://medium.com/@thesportsnft"
+      }
+    },
+    {
+      "name": "Ghetto Doves",
+      "slug": "ghetto-doves",
+      "multiToken": false,
+      "address": "0x01A0962b78AF631AE0a56cDE60458Abdb81467Db",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/ghetto-doves/avatar.webp",
+        "card": "/img/collections/ghetto-doves/card.webp",
+        "banner": "/img/collections/ghetto-doves/banner.webp",
+        "maxSupply": 3500,
+        "twitter": "https://twitter.com/DovesGhetto",
+        "website": "https://ghettodoves.com/",
+        "discord": "https://discord.gg/ghetto-doves",
+        "medium": "https://medium.com/@gd_29360/welcome-to-the-city-of-new-york-d940fff215c1"
+      }
     }
   ],
   "drops": [
@@ -1255,36 +1238,6 @@
       "end": null,
       "referral": false,
       "is1155": false
-    },
-    {
-      "id": 13,
-      "slug": "fractals",
-      "imgNft": "/img/drops/fractals/drop.webp",
-      "imgPreview": "/img/drops/fractals/drop.webp",
-      "imgAvatar": "/img/collections/fractals/avatar.png",
-      "imgBanner": "/img/drops/fractals/banner.webp",
-      "title": "Fractals",
-      "subtitle": "SeasaltCrisp is a passionate visual artist trying to take you on an adventure with his unique and special artworks.He discovered his love for art already in his early years, but now he's here to share his workon the Cronos Chain as well.",
-      "description": "This is a limited art collection of 50 unique and original NFTs.This collection was created to explore whole new worlds and surreal scenarios.Let's turn on our imagination and explore art together!",
-      "author": { "name": "SeasaltCrisp", "link": "https://www.instagram.com/maxx9498/" },
-      "address": "",
-      "maxMintPerTx": 1,
-      "totalSupply": 50,
-      "cost": "300",
-      "memberCost": "250",
-      "foundersOnly": false,
-      "abi": [
-        "function mint(uint256 _mintAmount) public payable",
-        "function totalSupply() public view returns (uint256)",
-        "function cost() view returns (uint256)",
-        "function setCost(uint, bool) public"
-      ],
-      "start": 1643313600000,
-      "end": null,
-      "referral": false,
-      "is1155": false,
-      "published": true,
-      "complete": true
     },
     {
       "id": 14,
@@ -1622,31 +1575,6 @@
       "foundersOnly": false,
       "published": true,
       "featured": true,
-      "complete": false
-    },
-    {
-      "id": 31,
-      "slug": "crosmocrafts-parts",
-      "imgNft": "/img/drops/crosmonautsShip/drop.png",
-      "imgPreview": "/img/drops/crosmonautsShip/drop.png",
-      "imgAvatar": "/img/collections/crosmonauts/parts/avatar.webp",
-      "imgBanner": "/img/drops/crosmonautsShip/banner.png",
-      "title": "Crosmocrafts Parts",
-      "subtitle": "These spaceship-parts are needed to build a Crosmocraft! \nParts come in 3 types, Engines, Boosters and Space Decks. Types are further divided into classes, being ; Regular, rare and legendary. There are a total of 9 possibilities and your parts have to be of the same class to be able to build a spaceship!",
-      "description": "Spaceship-parts are needed to build your very own Crosmocraft! When minting parts you will randomly receive one of the three distinct parts that are needed for a Crosmocraft. These are a Booster, an Engine and a Space Deck. All parts will come in either a Regular, Great or Legendary rarity. The rarity of the parts will directly influence the rarity of the Crosmocraft and its traits!",
-      "author": { "name": "Crosmonauts", "link": "https://www.crosmonauts.club/" },
-      "address": "0x984f6c2836c0B4e2E9c889135aAAC62575d310A9",
-      "maxMintPerTx": 12,
-      "maxMintPerAddress": 50,
-      "totalSupply": 8430,
-      "cost": "3",
-      "memberCost": "2",
-      "foundersOnly": false,
-      "start": 1643727600000,
-      "end": null,
-      "referral": false,
-      "is1155": true,
-      "published": true,
       "complete": false
     },
     {
@@ -1998,33 +1926,6 @@
       "complete": false
     },
     {
-      "id": 51,
-      "slug": "cyborg-brotherhood",
-      "imgNft": "/img/drops/cyborgbrotherhood/drop.webp",
-      "imgPreview": "/img/drops/cyborgbrotherhood/drop.webp",
-      "imgAvatar": "/img/collections/cyborgbrotherhood/avatar.webp",
-      "imgBanner": "/img/collections/cyborgbrotherhood/banner.webp",
-      "title": "Cyborg Brotherhood",
-      "subtitle": "For as long as my forefathers can remember my family has been part of the Brotherhood. We are faithful servants of the last noble cause, we have put our skill of arms at the service of justice, of our justice. In a world where good and evil only have differences if the forbiddens ones dare to speaks them, we secretly and faithfully maintained the balance.",
-      "description": "Join the Cyborg Brotherhood and become an Assassin\n\n- 10% of the mint sale of the Cyborg Brotherhood divided among Assassins and all future MC projects\n- 10% on the first mint of all the projects we will help to launch through our incubator\n- Increased decision-making power on all MC decisions (real DAO)",
-      "author": { "name": "Marie's Cyborgs", "link": "https://www.mariescyborgs.io/" },
-      "address": "0x570455059613388F01A5275C40BdcD2Cb5390966",
-      "maxMintPerTx": 25,
-      "maxMintPerAddress": 100,
-      "totalSupply": 3333,
-      "cost": "499",
-      "memberCost": "449",
-      "whitelistCost": "399",
-      "priceDescription": "WL price only valid for up to 3 per whitelisted address",
-      "foundersOnly": false,
-      "start": 1647795651000,
-      "end": null,
-      "referral": false,
-      "is1155": false,
-      "published": true,
-      "complete": false
-    },
-    {
       "id": 52,
       "slug": "kardia",
       "imgNft": "/img/drops/kardia/drop.webp",
@@ -2305,6 +2206,63 @@
       "is1155": false,
       "published": true,
       "complete": false
+    },
+    {
+      "id": 70,
+      "slug": "beta-mascots",
+      "imgNft": "/img/drops/beta-mascots/drop.webp",
+      "imgPreview": "/img/drops/beta-mascots/drop.webp",
+      "imgAvatar": "/img/collections/beta-mascots/avatar.webp",
+      "imgBanner": "/img/collections/beta-mascots/banner.webp",
+      "title": "Beta Mascots",
+      "subtitle": "Beta Mascots is a PFP collection power packed with utilities by The Sports NFT. Their first collection was sold out in 30 seconds !!\n\nJoin Beta Mascots and be a founding member in our ecosystem. Beta Mascots are divided in 6 factions and they represent 6 major sports (Soccer, Baseball, Basketball, Golf, Hockey, Cricket) with estimated fan count of 9+ Billion across the world. \n\nEvery faction will have individual rankings and rarity which will be displayed on our website.",
+      "description": "Immediate Utility\n\nFree Mint- 10% of the collection (345 mascots) is raffle tickets. Random Token# are generated and posted in our discord. You will be eligible for 100% refund if you mint those token numbers.\n\nShort-term Utility\n\n2% Rare VIP Gold Chain trait- NFT's with VIP Gold Chain trait will become profit sharing partners and will be eligible to receive profit share equal to gold partners from this drop and ahead.\n\nTop 10 holders will get an air drop of 1/1 legendary.\n\n90% of royalties from secondary markets will be used to reward holders with weekly raffles.\n\nLong-term Utility\n\nFree Ticket- NFT will act as a membership ticket to trade free on our upcoming marketplace.\n\nHolders will be WL for future drops and Presale of Tokens in next Phase.",
+      "author": { "name": "The Sports NFT", "link": "https://www.betamascots.com/" },
+      "address": "0xb588883f69E94889A81608bf58EB0a578B93aa6f",
+      "maxMintPerTx": 10,
+      "maxMintPerAddress": 100,
+      "totalSupply": 3456,
+      "cost": "325",
+      "memberCost": "275",
+      "whitelistCost": "250",
+      "foundersOnly": false,
+      "start": 1652196547000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false
+    },
+    {
+      "id": 71,
+      "slug": "ghetto-doves",
+      "imgNft": "/img/drops/ghetto-doves/drop.webp",
+      "imgPreview": "/img/drops/ghetto-doves/drop.webp",
+      "imgAvatar": "/img/collections/ghetto-doves/avatar.webp",
+      "imgBanner": "/img/collections/ghetto-doves/banner.webp",
+      "title": "Ghetto Doves",
+      "subtitle": "The Ghetto-Doves™ are a 7 character friend group of city pigeon kids. The “self titled” drop of 3500 NFT’s on the Cronos chain is a fun and edgy collection. Enter the imaginative and dynamic throwback urban landscape of your favorite characters and be a part of their adventures.",
+      "description": "The news around the block:Do you remember the days of collecting and trading cards and vinyl seemed like the coolest thing to do? Today, those coveted collectibles have been widely replaced by NFTs.\n\nWe offer the ability to utilize an IRL value trading and gamification aspect to build a collection and “level up” from the airdrop “EB-NFT™” Card, to a Deli.\n\nEach holder’s goal will be to collect one of each of the characters a total of 7 by the end of the minting process. Missing characters in your collection may be acquired only through secondary to fulfill your collection.\n\nAdditional attributes and 7 character gamification will be revealed prior to Mint day .. Stay Tuned!!! \uD83D\uDC8E\uD83D\uDC8E",
+      "author": { "name": "Ghetto Doves NFT", "link": "https://ghettodoves.com/" },
+      "address": "0x01A0962b78AF631AE0a56cDE60458Abdb81467Db",
+      "maxMintPerTx": 20,
+      "maxMintPerAddress": 100,
+      "totalSupply": 3500,
+      "cost": "290",
+      "memberCost": "275",
+      "whitelistCost": "275",
+      "specialWhitelistCost": {
+        "name": "Passport Holders",
+        "value": "250"
+      },
+      "foundersOnly": false,
+      "start": 1652204741000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false,
+      "disclaimer": "**Assets and characters from other Ghetto-Doves™ collections do not apply in the 7 character collection."
     }
   ],
   "auctions": [

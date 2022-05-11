@@ -2609,9 +2609,9 @@
       "metadata": {
         "description": "",
         "verified": true,
-        "avatar": "/img/collections/goldpartner/avatar.gif",
-        "card": "/img/collections/goldpartner/card.png",
-        "banner": "/img/collections/goldpartner/banner.png",
+        "avatar": "/img/collections/goldpartner/avatar.webp",
+        "card": "/img/collections/goldpartner/card.webp",
+        "banner": "/img/collections/goldpartner/banner.webp",
         "maxSupply": 300,
         "website": "https://thesportsnft.io/",
         "twitter": "https://twitter.com/TheSportsNFT",
@@ -2995,7 +2995,8 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "verified": false,
+        "description": "5000 Fruit Farmers Living & Loving on Cronos. Slavik Fruit Farmers grant the holder FRODEX Token Allocation, 3D Voxel Airdrops and Exclusive first access to SFF Expansions. Each Farmer is a Membership pass into the SlavikVerse Ecosystem!",
+        "verified": true,
         "avatar": "/img/collections/slavikfruitfarm/avatar.gif",
         "banner": "/img/collections/slavikfruitfarm/banner.png",
         "card": "/img/collections/slavikfruitfarm/card.jpg",
@@ -3500,7 +3501,7 @@
       "onChain": false,
       "listable": false,
       "metadata": {
-        "description": "",
+        "description": "Kardia is a unique multi-tier gaming NFT project on the KCC and CRO blockchain, starting with the founder's deck of 11,051 playable cards. Using our play-to-earn mechanics, you can play against other players, earn valuable resources, win NFTs, stake for cryptocurrencies, and compete for crypto-related prizes. A crypto-currency prize pool will be generated from secondary sale royalties and will be used to buy NFTs, other cryptocurrencies, and other prizes that can be won as a result of tournaments, special triggers, loot boxes, and more!",
         "verified": true,
         "avatar": "/img/collections/kardia/avatar.webp",
         "card": "/img/collections/kardia/card.webp",
@@ -4189,6 +4190,163 @@
         "discord": "https://discord.gg/znVknTzPKS",
         "medium": "https://medium.com/@CromodoDragons"
       }
+    },
+    {
+      "name": "Crobra",
+      "slug": "crobra",
+      "multiToken": false,
+      "address": "0x2dcA205C12c17e803F8962AefbaB6B3F50d15551",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "The venomous land on the Cronos blockchain! Crobra is a collection of 1250 unique snakes with over 150 different attributes. Spinning the wheel of the roulette game will be a taste of the Crobra adventure, with a reward guaranteed between 0-100 CRO! Remember that even small snakes are poisonous!",
+        "verified": false,
+        "avatar": "/img/collections/crobra/avatar.webp",
+        "banner": "/img/collections/crobra/banner.webp",
+        "card": "/img/collections/crobra/card.webp",
+        "maxSupply": 1250,
+        "website": "https://crobranft.com/",
+        "twitter": "https://twitter.com/CrobraNFT",
+        "discord": "https://discord.gg/DtbJTP26VH",
+        "medium": "https://medium.com/@crobra666"
+      }
+    },
+    {
+      "name": "Cyber Gorilla House",
+      "slug": "cyber-gorilla-house",
+      "multiToken": false,
+      "address": "0xea23408d7AcF83Ead662f280FFCAbB51A9d0B4a2",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "Cyber Gorilla House is a collection resulting from the partnership between Panels Project and Primate Cronos. Inspired by the story of Aculaetus, these unique houses will give you the opportunity to embark on different adventures.",
+        "verified": false,
+        "avatar": "/img/collections/panelsproject/gorilla/avatar.webp",
+        "banner": "/img/collections/panelsproject/gorilla/banner.webp",
+        "card": "/img/collections/panelsproject/gorilla/card.webp",
+        "maxSupply": 156,
+        "website": "https://www.panelsproject.com/",
+        "twitter": "https://twitter.com/PanelsProject",
+        "discord": "https://discord.gg/cWdCce8XAx",
+        "medium": "https://medium.com/panels-project"
+      }
+    },
+    {
+      "name": "CroArmy Soldier",
+      "slug": "cro-army-soldier",
+      "multiToken": false,
+      "address": "0xE4a36Aa88d8380DB252558104dbe0D71505aF7a5",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "CroArmy is a collection of 1000 NFT's that pair with our $ARMY Token. The NFT's act as a membership to our treasury fund and will receive airdrops as the treasury profits.",
+        "verified": false,
+        "avatar": "/img/collections/cro-army-soldier/avatar.webp",
+        "card": "/img/collections/cro-army-soldier/card.webp",
+        "banner": "/img/collections/cro-army-soldier/banner.webp",
+        "maxSupply": 1000,
+        "website": "https://croarmy.io/",
+        "twitter": "https://twitter.com/croarmy_eth",
+        "discord": "https://discord.gg/croarmy",
+        "telegram": "https://t.me/CroArmy_ETH"
+      }
+    },
+    {
+      "name": "miCRObes by Trooprz",
+      "slug": "trooprz-microbes",
+      "multiToken": false,
+      "address": "0xbabdFDD5f88035C9FbA58Be1b5c76DcFC6A847f3",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "8200 miCRObes have landing to infect the Trooprz - Collect 4 miCRObes to spawn an ultra rare Mutantz NFT from an original Trooprz NFT.",
+        "verified": true,
+        "avatar": "/img/collections/trooprz/microbes/avatar.webp",
+        "card": "/img/collections/trooprz/microbes/card.webp",
+        "banner": "/img/collections/trooprz/microbes/banner.webp",
+        "maxSupply": 8200,
+        "twitter": "https://twitter.com/trooprzarmy",
+        "website": "https://trooprz.army/",
+        "discord": "https://discord.gg/trooprz"
+      }
+    },
+    {
+      "name": "Beta Mascots",
+      "slug": "beta-mascots",
+      "multiToken": false,
+      "address": "",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/beta-mascots/avatar.webp",
+        "card": "/img/collections/beta-mascots/card.webp",
+        "banner": "/img/collections/beta-mascots/banner.webp",
+        "maxSupply": 3456,
+        "website": "https://www.betamascots.com/",
+        "twitter": "https://twitter.com/TheSportsNFT",
+        "discord": "https://discord.gg/9Exq5ECpDv",
+        "medium": "https://medium.com/@thesportsnft"
+      }
+    },
+    {
+      "name": "EyesInTheDeep",
+      "slug": "eyezinthedeep",
+      "multiToken": false,
+      "address": "0xe7EEE45A6D27B066443Fbe4b7b409d6514B812d7",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "EyezInTheDeep NFT is the first PFP Collection from CronosEyez, 2000 Unique NFTs living in the Cronos Blockchain. Owners share a part of the CronosArt.org Art Vault among another perks.",
+        "verified": true,
+        "avatar": "/img/collections/cronoseyez/eyezinthedeep/avatar.webp",
+        "banner": "/img/collections/cronoseyez/eyezinthedeep/banner.webp",
+        "card": "/img/collections/cronoseyez/eyezinthedeep/card.webp",
+        "maxSupply": 2000,
+        "website": "https://cronosart.org/eyezinthedeep-roadmap/",
+        "twitter": "https://twitter.com/cronoseyezNFT",
+        "discord": "https://discord.gg/jFX4RNrFGu"
+      }
+    },
+    {
+      "name": "Cronos Fossils",
+      "slug": "cronos-fossils",
+      "multiToken": false,
+      "address": "0xbd6b9a1A0477d64E99F660b7b7C205f4604E4Ff3",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/cronos-fossils/avatar.webp",
+        "card": "/img/collections/cronos-fossils/card.webp",
+        "banner": "/img/collections/cronos-fossils/banner.webp",
+        "maxSupply": 600,
+        "twitter": "https://twitter.com/CronosRocksNFT",
+        "website": "https://www.cronosrocks.com/",
+        "discord": "https://discord.gg/hHEMUEq6vE"
+      }
+    },
+    {
+      "name": "Ghetto Doves",
+      "slug": "ghetto-doves",
+      "multiToken": false,
+      "address": "",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/ghetto-doves/avatar.webp",
+        "card": "/img/collections/ghetto-doves/card.webp",
+        "banner": "/img/collections/ghetto-doves/banner.webp",
+        "maxSupply": 3500,
+        "twitter": "https://twitter.com/DovesGhetto",
+        "website": "https://ghettodoves.com/",
+        "discord": "https://discord.gg/ghetto-doves",
+        "medium": "https://medium.com/@gd_29360/welcome-to-the-city-of-new-york-d940fff215c1"
+      }
     }
   ],
   "drops": [
@@ -4726,7 +4884,10 @@
       "cost": "300",
       "memberCost": "250",
       "whitelistCost": "250",
-      "specialWhitelistCost": "200",
+      "specialWhitelistCost": {
+        "name": "Special Whitelist",
+        "value": "200"
+      },
       "foundersOnly": false,
       "abi": "mag-brew-vikings.json",
       "start": 1643666400000,
@@ -5217,12 +5378,12 @@
       "slug": "gold-partner",
       "imgNft": "/img/drops/goldpartner/drop.webp",
       "imgPreview": "/img/drops/goldpartner/drop.webp",
-      "imgAvatar": "/img/collections/goldpartner/avatar.gif",
-      "imgBanner": "/img/collections/goldpartner/banner.png",
+      "imgAvatar": "/img/collections/goldpartner/avatar.webp",
+      "imgBanner": "/img/collections/goldpartner/banner.webp",
       "title": "Gold Partner",
       "subtitle": "Gold Partner Collection - The Hall of Fame is a collection of 300- 3D animated NFT's with unique features and utilities. Every NFT is a VIP founding members pass on our project. Holders of these NFT's will enjoy 30% share of the primary profits earned from all upcoming collections, marketplace and other benefits from time to time. These NFT's offer a profit-sharing partnership opportunity to the buyers and holders to earn passive income by staking these NFTs.",
       "description": "Gold Partner Collection - The Hall of Fame is designed to offer direct profit-sharing partnership for all holders of these NFTs.\nLong term goal of this project is to create a decentralized marketplace for trading real-world collectibles (not just pictures). This will allow P2P trading of real-world collectables on the blockchain.\nUnique Utilities:\nâ€¢    30% of primary profits are shared directly among the holders of this collection.\nâ€¢    Exclusive giveaways for the gold partners.\nâ€¢    Exclusive access to DAO- This will give all holders the power to cast their vote towards proposals put forward by the team, along with community proposals for roadmap ideas and utility.\nâ€¢    Chance to be a Platinum partner and enjoy a bigger chunk of profits.\nâ€¢    Come explore the joy of owning a share in NFT project and become a founding member!",
-      "author": { "name": "Sports NFTs", "link": "https://thesportsnft.io/" },
+      "author": { "name": "The Sports NFT", "link": "https://thesportsnft.io/" },
       "address": "0xF4C80B77AA1F73E09348693a81d744Fcd1263A2D",
       "maxMintPerTx": 5,
       "maxMintPerAddress": 5,
@@ -5670,8 +5831,8 @@
       "imgAvatar": "/img/collections/kardia/avatar.webp",
       "imgBanner": "/img/collections/kardia/banner.webp",
       "title": "Kardia",
-      "subtitle": "Kardia is a unique multi-tier gaming NFT project on the KCC and CRO blockchain, starting with the founder's deck of 50,000 playable cards. Using our play-to-earn mechanics, you can play against other players, earn valuable resources, win NFTs, and compete for crypto-related prizes. A crypto-currency prize pool will be generated from secondary sale royalties and will be used to buy NFTs, other cryptocurrencies, and other prizes that can be won as a result of tournaments, special triggers, loot boxes, and more!",
-      "description": "The Founder's Deck (CRO) consists of 6010 playing cards, each of them uniquely serialized. Each card grants the owner a certain number of Golden Acorns (in-game currency) based on the rarity of the card. These Golden Acorns can be used for various means on PlayKardia, including opening Loot Boxes for cryptocurrency prizes, additional NFTs, and more!",
+      "subtitle": "Kardia is a unique multi-tier gaming NFT project on the KCC and CRO blockchain, starting with the founder's deck of 11,051 playable cards. Using our play-to-earn mechanics, you can play against other players, earn valuable resources, win NFTs, stake for cryptocurrencies, and compete for crypto-related prizes. A crypto-currency prize pool will be generated from secondary sale royalties and will be used to buy NFTs, other cryptocurrencies, and other prizes that can be won as a result of tournaments, special triggers, loot boxes, and more!",
+      "description": "The Founder's Deck (CRO) consists of 6010 playing cards, each of them uniquely serialized. Each card earns Golden Acorns (in-game currency) which increases based on the rarity of the card. These Golden Acorns can be used for various in-game activities on PlayKardia, including opening Loot Boxes for cryptocurrency prizes, additional NFTs, and more!",
       "author": { "name": "Kardia", "link": "https://www.playkardia.com/" },
       "address": "0x2ea93ef899a28d6049146b98c7CFCA4C7f541a8d",
       "maxMintPerTx": 5,
@@ -5952,7 +6113,8 @@
       "is1155": false,
       "published": true,
       "complete": false,
-      "disclaimer": "Presale is limited to whitelisted addresses only (limit 8 per address). Please check the Crowboys discord for more information."
+      "disclaimer": "Presale is limited to whitelisted addresses only (limit 8 per address). Please check the Crowboys discord for more information.",
+      "video": "https://youtu.be/ZCKF8fDk7V4"
     },
     {
       "id": 68,
@@ -5977,7 +6139,7 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false
+      "complete": true
     },
     {
       "id": 69,
@@ -6007,6 +6169,63 @@
       "complete": false,
       "featured": false,
       "redirect": "https://www.boomersquad.io/selectmint"
+    },
+    {
+      "id": 70,
+      "slug": "beta-mascots",
+      "imgNft": "/img/drops/beta-mascots/drop.webp",
+      "imgPreview": "/img/drops/beta-mascots/drop.webp",
+      "imgAvatar": "/img/collections/beta-mascots/avatar.webp",
+      "imgBanner": "/img/collections/beta-mascots/banner.webp",
+      "title": "Beta Mascots",
+      "subtitle": "Beta Mascots is a PFP collection power packed with utilities by The Sports NFT. Their first collection was sold out in 30 seconds !!\n\nJoin Beta Mascots and be a founding member in our ecosystem. Beta Mascots are divided in 6 factions and they represent 6 major sports (Soccer, Baseball, Basketball, Golf, Hockey, Cricket) with estimated fan count of 9+ Billion across the world. \n\nEvery faction will have individual rankings and rarity which will be displayed on our website.",
+      "description": "Immediate Utility\n\n• Free Mint- 10% of the collection (345 mascots) is raffle tickets. Random Token# are generated and posted in our discord. You will be eligible for 100% refund if you mint those token numbers.\n\nShort-term Utility\n\n• 2% Rare VIP Gold Chain trait- NFT's with VIP Gold Chain trait will become profit sharing partners and will be eligible to receive profit share equal to gold partners from this drop and ahead.\n\n• Top 10 holders will get an air drop of 1/1 legendary.\n\n• 90% of royalties from secondary markets will be used to reward holders with weekly raffles.\n\nLong-term Utility\n\n• Free Ticket- NFT will act as a membership ticket to trade free on our upcoming marketplace.\n\n• Holders will be WL for future drops and Presale of Tokens in next Phase.",
+      "author": { "name": "The Sports NFT", "link": "https://www.betamascots.com/" },
+      "address": "",
+      "maxMintPerTx": 10,
+      "maxMintPerAddress": 100,
+      "totalSupply": 3456,
+      "cost": "325",
+      "memberCost": "275",
+      "whitelistCost": "250",
+      "foundersOnly": false,
+      "start": 1652475600000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false
+    },
+    {
+      "id": 71,
+      "slug": "ghetto-doves",
+      "imgNft": "/img/drops/ghetto-doves/drop.webp",
+      "imgPreview": "/img/drops/ghetto-doves/drop.webp",
+      "imgAvatar": "/img/collections/ghetto-doves/avatar.webp",
+      "imgBanner": "/img/collections/ghetto-doves/banner.webp",
+      "title": "Ghetto Doves",
+      "subtitle": "The Ghetto-Doves™ are a 7 character friend group of city pigeon kids. The “self titled” drop of 3500 NFT’s on the Cronos chain is a fun and edgy collection. Enter the imaginative and dynamic throwback urban landscape of your favorite characters and be a part of their adventures.",
+      "description": "The news around the block: Do you remember the days of collecting and trading cards and vinyl seemed like the coolest thing to do? Today, those coveted collectibles have been widely replaced by NFTs.\n\nWe offer the ability to utilize an IRL value trading and gamification aspect to build a collection and “level up” from the airdrop “EB-NFT™” Card, to a virtual airline ticket.\n\nEach holder’s goal will be to collect one of each of the characters a total of 7 by the end of the minting process. Missing characters in your collection may be acquired only through secondary to fulfill your collection. \n\nA snapshot will be taken 4-6 weeks post mint out of the 3500 piece collection. \n\nAdditional attributes and 7 character gamification will be revealed prior to Mint day .. Stay Tuned!!! \uD83D\uDC8E\uD83D\uDC8E**Assets and characters or VIP from other Ghetto-Doves™ collections do not apply in the 7 character collection.",
+      "author": { "name": "Ghetto Doves NFT", "link": "https://ghettodoves.com/" },
+      "address": "",
+      "maxMintPerTx": 20,
+      "maxMintPerAddress": 100,
+      "totalSupply": 3500,
+      "cost": "290",
+      "memberCost": "275",
+      "whitelistCost": "275",
+      "specialWhitelistCost": {
+        "name": "Passport Holders",
+        "value": "250"
+      },
+      "foundersOnly": false,
+      "start": 1652400000000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false,
+      "disclaimer": "**Assets and characters from other Ghetto-Doves™ collections do not apply in the 7 character collection."
     }
   ],
   "auctions": [

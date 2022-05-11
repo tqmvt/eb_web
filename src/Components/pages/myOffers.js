@@ -96,7 +96,7 @@ const MyOffers = () => {
       const receivedOffersFilter = allOffers
         .filter((offer) => {
           const nft = myNFTs.find(
-            (c) => c.nftAddress.toLowerCase() === offer.nftAddress && c.edition?.toString() === offer.nftId
+            (c) => caseInsensitiveCompare(c.nftAddress, offer.nftAddress) && c.edition?.toString() === offer.nftId
           );
 
           const knownContract = findKnownContract(offer.nftAddress, offer.nftId);

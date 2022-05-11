@@ -3,7 +3,7 @@ import config from '../Assets/networks/rpc_config.json';
 
 const APIURL = `${config.subgraph_base}${config.chain_id === '25' ? 'offers' : 'offers-testnet'}`;
 
-const FIRST = 100;
+const FIRST = 1000;
 
 const client = new ApolloClient({
   uri: APIURL,

@@ -14,6 +14,7 @@ import CurrentDrops from '../components/CurrentDrops';
 import { getMarketData } from '../../GlobalState/marketplaceSlice';
 import { siPrefixedNumber } from '../../utils';
 import { theme } from '../../Theme/theme';
+import { limitSizeOptions } from '../components/constants/filter-options';
 import Button from '../components/Button';
 
 const fadeInUp = keyframes`
@@ -281,7 +282,7 @@ const Home = () => {
             </div>
           </div>
           <div className="col-lg-12">
-            <ListingCollection showLoadMore={false} />
+            <ListingCollection limitSize={limitSizeOptions.md} showLoadMore={false} />
           </div>
           <div className="col-lg-12">
             <div className="spacer-single"></div>

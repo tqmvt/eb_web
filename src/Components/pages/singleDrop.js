@@ -66,7 +66,7 @@ const HeroSection = styled.section`
   padding: 0 0;
   background-size: cover;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   position: relative;
   display: flex;
   align-items: center;
@@ -101,7 +101,7 @@ const SingleDrop = () => {
   const [memberCost, setMemberCost] = useState(0);
   const [regularCost, setRegularCost] = useState(0);
   const [whitelistCost, setWhitelistCost] = useState(0);
-  const [specialWhitelistCost, setSpecialWhitelistCost] = useState(0);
+  const [specialWhitelist, setSpecialWhitelist] = useState(null);
   const [totalSupply, setTotalSupply] = useState(0);
   const [canMintQuantity, setCanMintQuantity] = useState(0);
 
@@ -245,6 +245,9 @@ const SingleDrop = () => {
           setDropInfo(currentDrop, currentSupply);
           calculateStatus(currentDrop, currentSupply, currentDrop.totalSupply);
         }
+        if (drop.specialWhitelistCost) {
+          setSpecialWhitelist(drop.specialWhitelistCost);
+        }
       }
     } catch (error) {
       console.log(error);
@@ -262,7 +265,7 @@ const SingleDrop = () => {
     setRegularCost(drop.cost);
     setTotalSupply(supply);
     setWhitelistCost(drop.whitelistCost);
-    setSpecialWhitelistCost(drop.specialWhitelistCost);
+    setSpecialWhitelist(drop.specialWhitelistCost);
     setCanMintQuantity(drop.maxMintPerTx);
   };
 
@@ -485,27 +488,30 @@ const SingleDrop = () => {
         >
           <div className="container">
             <div className="row align-items-center">
-              <div className={`col-lg-6 ${drop.mediaPosition === 'left' ? 'order-1' : 'order-2'}`}>
+              <div className={`col-lg-6 mb-4 mb-sm-0 ${drop.mediaPosition === 'left' ? 'order-1' : 'order-2'}`}>
                 <Reveal className="onStep" keyframes={fadeInUp} delay={600} duration={900} triggerOnce>
                   <>
                     {drop.video && (
-                      <ReactPlayer
-                        controls
-                        url={drop.video}
-                        config={{
-                          file: {
-                            attributes: {
-                              onContextMenu: (e) => e.preventDefault(),
-                              controlsList: 'nodownload',
+                      <div className='player-wrapper'>
+                        <ReactPlayer
+                          className='react-player'
+                          controls
+                          url={drop.video}
+                          config={{
+                            file: {
+                              attributes: {
+                                onContextMenu: (e) => e.preventDefault(),
+                                controlsList: 'nodownload',
+                              },
                             },
-                          },
-                        }}
-                        muted={true}
-                        playing={true}
-                        loop={true}
-                        width="75%"
-                        height="75%"
-                      />
+                          }}
+                          muted={true}
+                          playing={true}
+                          loop={true}
+                          width="100%"
+                          height="100%"
+                        />
+                      </div>
                     )}
 
                     {drop.slug === 'psycho-golden-lady' || drop.slug === 'smash-stunts' ? (
@@ -659,10 +665,10 @@ const SingleDrop = () => {
                       <h5>{whitelistCost} CRO</h5>
                     </div>
                   )}
-                  {specialWhitelistCost > 0 && (
+                  {specialWhitelist && (
                     <div className="me-4">
-                      <h6 className="mb-1">Special Whitelist</h6>
-                      <h5>{specialWhitelistCost} CRO</h5>
+                      <h6 className="mb-1">{specialWhitelist.name}</h6>
+                      <h5>{specialWhitelist.value} CRO</h5>
                     </div>
                   )}
                 </div>

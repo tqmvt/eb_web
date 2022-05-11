@@ -15,6 +15,16 @@
       "slug": "cyborg-brotherhood",
       "address": "0xd0062DEb460Eac0cB7cE77C312F8aa58378b6d8a",
       "ids": [312, 853, 1311, 1878, 1921, 2648]
+    },
+    {
+      "slug": "mad-meerkat",
+      "address": "0x89dBC8Bd9a6037Cbd6EC66C4bF4189c9747B1C56",
+      "ids": [6601, 6617, 7641, 1475, 1321, 6616, 6618, 7640, 5478]
+    },
+    {
+      "slug": "mm-treehouse",
+      "address": "0xDC5bBDb4A4b051BDB85B959eB3cBD1c8C0d0c105",
+      "ids": [163, 8991, 8993, 8992]
     }
   ]
 }
