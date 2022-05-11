@@ -39,6 +39,7 @@ const DialogContainer = styled(Dialog)`
     border-radius: 8px;
     max-width: 734px;
     background-color: ${({ theme }) => theme.colors.bgColor1};
+    color: ${({ theme }) => theme.colors.textColor3};
 
     @media only screen and (max-width: ${({ theme }) => theme.breakpoints.md}) {
       width: 100%;
