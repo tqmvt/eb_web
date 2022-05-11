@@ -217,7 +217,7 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
 
   useEffect(() => {
     async function asyncFunc() {
-      const knownContract = findKnownContract(nftData.address, nftData.id);
+      const knownContract = findCollectionByAddress(nftData.address, nftData.id);
       const floorPrice = findCollectionFloor(knownContract);
       setFloorPrice(floorPrice);
     }
@@ -328,14 +328,6 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
     return nftData.image;
   };
 
-  const findKnownContract = (address, nftId) => {
-    return knownContracts.find((c) => {
-      const matchedAddress = caseInsensitiveCompare(c.address, address);
-      const matchedToken = !c.multiToken || parseInt(nftId) === c.id;
-      return matchedAddress && matchedToken;
-    });
-  };
-
   const findCollectionFloor = (knownContract) => {
     const collectionStats = collectionsStats.find((o) => {
       if (knownContract.multiToken && o.collection.indexOf('-') !== -1) {
@@ -352,7 +344,7 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
     <DialogContainer onClose={() => toggle(OFFER_TYPE.none)} open={isOpen} maxWidth="md">
       <DialogContent>
         {!isGettingOfferType && <DialogTitleContainer>{offerType} Offer</DialogTitleContainer>}
-        {findKnownContract(nftData.address, nftData.id)?.multiToken && (
+        {findCollectionByAddress(nftData.address, nftData.id)?.multiToken && (
           <div className="mb-5">
             If you are trying to make multiple offers on the same ERC1155 token, this is not possible currently. It will
             instead update your current offer for this token.

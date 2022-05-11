@@ -23,7 +23,7 @@ import {
 import { toast } from 'react-toastify';
 import {
   caseInsensitiveCompare,
-  createSuccessfulTransactionToastContent,
+  createSuccessfulTransactionToastContent, findCollectionByAddress,
   isUserBlacklisted,
   sliceIntoChunks,
 } from '../utils';
@@ -841,20 +841,13 @@ export const checkForOutstandingOffers = () => async (dispatch, getState) => {
 
     return collectionStats ? collectionStats.floorPrice : null;
   };
-  const findKnownContract = (address, nftId) => {
-    return knownContracts.find((c) => {
-      const matchedAddress = caseInsensitiveCompare(c.address, address);
-      const matchedToken = !c.multiToken || parseInt(nftId) === c.id;
-      return matchedAddress && matchedToken;
-    });
-  };
 
   const receivedOffers = offers.data.filter((offer) => {
     const nft = nfts.find(
       (c) => c.nftAddress.toLowerCase() === offer.nftAddress && c.edition?.toString() === offer.nftId
     );
 
-    const knownContract = findKnownContract(offer.nftAddress, offer.nftId);
+    const knownContract = findCollectionByAddress(offer.nftAddress, offer.nftId);
     const floorPrice = findCollectionFloor(knownContract);
     const offerPrice = parseInt(offer.price);
     const isAboveOfferThreshold = floorPrice ? offerPrice >= floorPrice / 2 : true;
