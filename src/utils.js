@@ -1,6 +1,7 @@
 import moment from 'moment';
 import config from './Assets/networks/rpc_config.json';
 import blacklist from './core/configs/blacklist.json';
+import attributes from './core/configs/attributes.json';
 import IPFSGatewayTools from '@pinata/ipfs-gateway-tools/dist/browser';
 import {useEffect, useRef} from "react";
 
@@ -170,6 +171,19 @@ export function humanize(str) {
     frags[i] = frags[i].charAt(0).toUpperCase() + frags[i].slice(1);
   }
   return frags.join(' ');
+}
+
+export function mapAttributeString(str, address, makeHuman = false) {
+  const mappings = attributes[address];
+  let newStr = str;
+
+  if (mappings) {
+    for (const [key, value] of Object.entries(mappings)) {
+      newStr = newStr.replace(key, value);
+    }
+  }
+
+  return makeHuman ? humanize(newStr) : newStr;
 }
 
 /**
