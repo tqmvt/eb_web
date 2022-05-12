@@ -81,7 +81,6 @@ const Component = ({ walletAddress, authInitFinished }) => {
           <PrivateRoute exact path="/staking" component={MyStaking} />
           <PrivateRoute exact path="/wallet/listings" component={MyListings} />
           <SentryEnhancedRoute exact path="/build-ship" component={DropBuildShip} />
-
           <SentryEnhancedRoute exact path="/drops" component={Drops} />
           <SentryEnhancedRoute
             exact
@@ -90,7 +89,7 @@ const Component = ({ walletAddress, authInitFinished }) => {
           />
           <SentryEnhancedRoute exact path="/drops/:slug" component={Drop} />
           <SentryEnhancedRoute exact path="/listing/:id" component={Listing} />
-          <SentryEnhancedRoute exact path="/manage/auctions" component={ManageAuctions} />
+          <SentryEnhancedRoute exact path="/manage/auctions" component={ManageAuctions} /> {/** auctions */}
           <SentryEnhancedRoute exact path="/auctions/:id" component={Auction} />
           <SentryEnhancedRoute exact path="/collections" component={Collections} />
           <SentryEnhancedRoute
