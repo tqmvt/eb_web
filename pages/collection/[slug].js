@@ -52,15 +52,9 @@ const Collection = () => {
     }
   }
 
-  if (!collection) {
-    if (typeof window !== 'undefined') {
-      router.push('/');
-    }
-  }
-
   return (
     <>
-      {initialized && (
+      {initialized && collection && (
         <>
           {type === collectionTypes.CRONOSVERSE ? (
             <CollectionCronosverse collection={collection} slug={slug} cacheName={slug} />

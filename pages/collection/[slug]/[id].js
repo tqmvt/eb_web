@@ -35,17 +35,11 @@ const Nft = () => {
 
   if (redirect) {
     router.push(`/collection/${redirect}/${id}`);
-    return;
-  }
-
-  if (!collection) {
-    router.push('/');
-    return;
   }
 
   return (
     <>
-      {initialized && (
+      {initialized && collection && (
         <>
           {type === '1155' ? (
             <Nft1155 address={collection.address} id={id} />

@@ -34,7 +34,7 @@ import {
 } from '../../src/utils';
 import config from '../../src/Assets/networks/rpc_config.json';
 import { croSkullRedPotionImageHack } from '../../src/hacks';
-import NFTTabOffers from '../Offer/NFTTabOffers';
+import NFTTabOffers from '../../src/Components/Offer/NFTTabOffers';
 
 const Listing = () => {
   const router = useRouter();
@@ -129,7 +129,7 @@ const Listing = () => {
     async function asyncFunc() {
       if (listing && isBabyWeirdApesCollection(listing.nftAddress)) {
         const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
-        const abiFile = require(`../../Assets/abis/baby-weird-apes.json`);
+        const abiFile = require(`../../src/Assets/abis/baby-weird-apes.json`);
         const contract = new Contract(listing.nftAddress, abiFile.abi, readProvider);
         try {
           const apeInfo = await contract.apeInfo(listing.nftId);

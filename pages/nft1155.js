@@ -32,9 +32,6 @@ import MakeOfferDialog from '../src/Components/Offer/MakeOfferDialog';
 import { OFFER_TYPE } from '../src/Components/Offer/MadeOffersRow';
 
 const Nft1155 = ({ address, id }) => {
-  if (typeof window === 'undefined') {
-    return;
-  }
   const dispatch = useDispatch();
   const history = useRouter();
 
@@ -81,6 +78,9 @@ const Nft1155 = ({ address, id }) => {
 
   const [openMenu, setOpenMenu] = React.useState(0);
   const handleBtnClick = (index) => (element) => {
+    if (typeof window === 'undefined') {
+      return;
+    }
     var elements = document.querySelectorAll('.tab');
     for (var i = 0; i < elements.length; i++) {
       elements[i].classList.remove('active');
@@ -190,7 +190,12 @@ const Nft1155 = ({ address, id }) => {
               )}
               {nft && nft.original_image && (
                 <div className="nft__item_action mt-2" style={{ cursor: 'pointer' }}>
-                  <span onClick={() => window.open(croSkullRedPotionImageHack(address, fullImage()), '_blank')}>
+                  <span
+                    onClick={() =>
+                      typeof window !== 'undefined' &&
+                      window.open(croSkullRedPotionImageHack(address, fullImage()), '_blank')
+                    }
+                  >
                     <span className="p-2">View Full Image</span>
                     <FontAwesomeIcon icon={faExternalLinkAlt} />
                   </span>
