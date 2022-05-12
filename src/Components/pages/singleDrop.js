@@ -33,6 +33,7 @@ import { dropState as statuses } from '../../core/api/enums';
 import { EbisuDropAbi } from '../../Contracts/Abis';
 import { commify } from 'ethers/lib.esm/utils';
 import { getTheme } from '../../Theme/theme';
+import SocialsBar from "../Collection/SocialsBar";
 
 export const drops = config.drops;
 
@@ -582,12 +583,18 @@ const SingleDrop = () => {
                     <div className="profile_name">
                       <h4>
                         {drop.author.name}
-                        {drop.author.link && (
+                        {drop.author.link ? (
                           <span className="profile_username">
                             <a href={drop.author.link} target="_blank" rel="noreferrer">
                               View Website
                             </a>
                           </span>
+                        ) : (
+                          <SocialsBar
+                            address={drop.address}
+                            collection={drop.author}
+                            showCopy={false}
+                          />
                         )}
                       </h4>
                     </div>

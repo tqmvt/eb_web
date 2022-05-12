@@ -188,7 +188,8 @@ const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) 
                   {collection.metadata.description && <p>{collection.metadata.description}</p>}
                   <span className="fs-4">
                     <SocialsBar
-                      collection={knownContracts.find((c) => caseInsensitiveCompare(c.address, collection.address))}
+                      address={collection.address}
+                      collection={collection.metadata}
                     />
                   </span>
                 </div>
