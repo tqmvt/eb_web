@@ -29,7 +29,7 @@ const ListingItem = ({ user, route, time, price, primaryTitle, primaryText, butt
           for <b>{price} CRO</b>
         </div>
       </div>
-      {buttonText && <button className="btn-main" onClick={onClick} disabled={isProcessing}>
+      {buttonText && <button className="btn-main me-2" onClick={onClick} disabled={isProcessing}>
         {isProcessing ? (
           <>
             {`${buttonText}...`}
