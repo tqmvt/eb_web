@@ -71,12 +71,6 @@
     "start": "next start",
     "format": "prettier --write \"**/*.+(js|jsx|json|md|mdx|css|scss)\""
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
   "lint-staged": {
     "src/**/*.{js,jsx,json,md,mdx}": [
       "prettier --write"

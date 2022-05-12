@@ -14,7 +14,6 @@ import { getSlothty721NftsFromIds, getSlothty721NftsFromWallet } from '../src/co
 import RugsuranceAbi from '../src/Contracts/SlothtyRugsurance.json';
 import { chainConnect, connectAccount } from '../src/GlobalState/User';
 import { ERC721 } from '../src/Contracts/Abis';
-import '../src/Assets/styles/fire.css';
 
 const knownContracts = config.known_contracts;
 const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);

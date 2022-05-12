@@ -30,7 +30,7 @@ import {
 } from '../src/utils';
 import config from '../src/Assets/networks/rpc_config.json';
 import { croSkullRedPotionImageHack } from '../src/hacks';
-import NFTTabOffers from '../Offer/NFTTabOffers';
+import NFTTabOffers from '../src/Components/Offer/NFTTabOffers';
 
 const CollectionDetail = () => {
   if (typeof window === 'undefined') {

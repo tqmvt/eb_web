@@ -1,8 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import Footer from '../src/Components/components/Footer';
-import MyListingsCollection from '../src/Components/components/MyListingsCollection';
+import Footer from '../../src/Components/components/Footer';
+import MyListingsCollection from '../../src/Components/components/MyListingsCollection';
 
 const MyListings = () => {
   const walletAddress = useSelector((state) => state.user.address);

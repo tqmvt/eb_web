@@ -7,7 +7,6 @@ import { keyframes } from '@emotion/react';
 import NativeForms from 'native-forms-react';
 
 import Footer from '../src/Components/components/Footer';
-import '../src/Assets/styles/fire.css';
 
 const fadeInUp = keyframes`
   0% {

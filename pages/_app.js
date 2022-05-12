@@ -14,6 +14,7 @@ import '../src/Assets/styles/style.scss';
 import '../src/Assets/styles/override.scss';
 import '../src/Assets/styles/Everything.css';
 import '../src/Assets/styles/Filters.css';
+import '../src/Assets/styles/fire.css';
 
 // SentryLoggingService.init();
 // Site24x7LoggingService.init();
