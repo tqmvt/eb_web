@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { keyframes } from '@emotion/react';
 import Reveal from 'react-awesome-reveal';
-import { createGlobalStyle, default as styled } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import { faFire } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -83,9 +83,7 @@ const GlobalStyles = createGlobalStyle`
 `;
 
 const Jumbotron = {
-  Host: styled.div.attrs(({ theme }) => ({
-    className: '',
-  }))`
+  Host: styled.div`
     background-image: url(${({ isDark }) =>
       isDark ? '/img/background/banner-dark.webp' : '/img/background/Ebisus-bg-1_L.webp'});
     background-size: cover;
@@ -99,9 +97,7 @@ const Jumbotron = {
       height: 200px;
     }
   `,
-  Data: styled.div.attrs(({ theme }) => ({
-    className: '',
-  }))`
+  Data: styled.div`
     max-width: 700px;
 
     padding: 1.5rem !important;

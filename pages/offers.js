@@ -301,7 +301,7 @@ const MyOffers = () => {
 
   return (
     <div>
-      <Content />{' '}
+      <Content />
     </div>
   );
 };

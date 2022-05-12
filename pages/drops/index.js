@@ -35,7 +35,7 @@ const Drops = () => {
         </div>
       </section>
       <section
-        className="jumbotron breadcumb no-bg h-vh"
+        className="jumbotron breadcumb no-bg"
         style={{ backgroundColor: getTheme(userTheme).colors.bgColor3 }}
       >
         <div className="container">

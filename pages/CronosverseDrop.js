@@ -13,12 +13,12 @@ import * as Sentry from '@sentry/react';
 import styled from 'styled-components';
 import { Helmet } from 'react-helmet';
 import Footer from '../src/Components/components/Footer';
-import config from '../../Assets/networks/rpc_config.json';
-import { connectAccount } from '../../GlobalState/User';
+import config from '../src/Assets/networks/rpc_config.json';
+import { connectAccount } from '../src/GlobalState/User';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
-import { createSuccessfulTransactionToastContent, isFounderDrop, newlineText } from '../../utils';
-import { dropState as statuses } from '../../core/api/enums';
-import { EbisuDropAbi } from '../../Contracts/Abis';
+import { createSuccessfulTransactionToastContent, isFounderDrop, newlineText } from '../src/utils';
+import { dropState as statuses } from '../src/core/api/enums';
+import { EbisuDropAbi } from '../src/Contracts/Abis';
 
 const tiles = [
   '/img/cronosverse/Plain-tile.png',
@@ -63,9 +63,6 @@ const HeroSection = styled.section`
 `;
 
 const CronosverseDrop = () => {
-  if (typeof window === 'undefined') {
-    return;
-  }
   const router = useRouter();
   const { slug } = router.query;
 
@@ -133,7 +130,7 @@ const CronosverseDrop = () => {
     // Use the new contract format if applicable
     let abi = currentDrop.abi;
     if (isUsingAbiFile(abi)) {
-      const abiJson = require(`../../Assets/abis/${currentDrop.abi}`);
+      const abiJson = require(`../src/Assets/abis/${currentDrop.abi}`);
       abi = abiJson.abi ?? abiJson;
     } else if (isUsingDefaultDropAbi(abi)) {
       abi = EbisuDropAbi;
@@ -690,7 +687,7 @@ const CronosverseMintBoard = ({ mintNow, minting, mintedIds, prices }) => {
         className="bitpixel_back"
         ref={ref0}
         onMouseDown={(e) => {
-          if (window.innerWidth - e.clientX < 240) {
+          if (typeof window !== 'undefined' && window.innerWidth - e.clientX < 240) {
             sub = window.innerWidth - e.clientX;
             setSubDistance(sub);
           }
