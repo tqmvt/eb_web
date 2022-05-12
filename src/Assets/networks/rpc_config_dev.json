@@ -3717,7 +3717,7 @@
       "multiToken": false,
       "address": "0xfe03f1ac15de36235333d5dc2a410574fcb5ff63",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "",
         "verified": true,
@@ -5846,7 +5846,7 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false,
+      "complete": true,
       "embed": "<div style=\"padding:56.25% 0 0 0;position:relative;\"><iframe\nid=\"r-embed-player-iframe\"\nsrc=\"https://player.restream.io/?token=4ba6d209ca9d4adc927ecc54ace56547&vwrs=1\"\nallow=\"autoplay\" allowfullscreen frameborder=\"0\"\nstyle=\"position:absolute;top:0;left:0;width:100%;height:100%;\"/></iframe></div>"
     },
     {
