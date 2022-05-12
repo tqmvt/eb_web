@@ -82,6 +82,7 @@ const Component = ({ walletAddress, authInitFinished }) => {
           <PrivateRoute exact path="/wallet/listings" component={MyListings} />
           <SentryEnhancedRoute exact path="/build-ship" component={DropBuildShip} />
           <SentryEnhancedRoute exact path="/drops" component={Drops} />
+          {/** todo: routing */}
           <SentryEnhancedRoute
             exact
             path="/drops/founding-member"
@@ -92,21 +93,25 @@ const Component = ({ walletAddress, authInitFinished }) => {
           <SentryEnhancedRoute exact path="/manage/auctions" component={ManageAuctions} /> {/** auctions */}
           <SentryEnhancedRoute exact path="/auctions/:id" component={Auction} />
           <SentryEnhancedRoute exact path="/collections" component={Collections} />
+          {/** todo: routing */}
           <SentryEnhancedRoute
             exact
             path="/collection/mad-treehouse"
             render={() => <Redirect to="/collection/mm-treehouse" />}
           />
+          {/** todo: routing */}
           <SentryEnhancedRoute
             exact
             path="/collection/weird-apes-club-v2"
             render={() => <Redirect to="/collection/weird-apes-club" />}
           />
           <SentryEnhancedRoute exact path="/collection/:slug" component={Collection} />
+          {/** todo: routing */}
           <SentryEnhancedRoute exact path="/collection/:slug/:id" component={Nft} />
           <SentryEnhancedRoute exact path="/seller/:address" component={Seller} />
           <SentryEnhancedRoute exact path="/metaverse-auctions" component={MetaverseAuctions} />
           <SentryEnhancedRoute exact path="/apply" component={Application} />
+          {/** todo: routing */}
           <SentryEnhancedRoute path="*" render={() => <Redirect to="/" />} />
         </Switch>
       </Sentry.ErrorBoundary>

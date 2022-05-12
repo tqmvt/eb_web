@@ -1,9 +1,10 @@
 import React, { memo, useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 
-import { findCollectionByAddress } from '../src/utils';
-import config from '../src/Assets/networks/rpc_config.json';
-import Nft1155 from './nft1155';
-import Nft721 from './nft721';
+import { findCollectionByAddress } from '../../../src/utils';
+import config from '../../../src/Assets/networks/rpc_config.json';
+import Nft1155 from '../../nft1155';
+import Nft721 from '../../nft721';
 const knownContracts = config.known_contracts;
 
 const Nft = () => {

@@ -30,12 +30,12 @@ import { getNftDetails } from '../src/GlobalState/nftSlice';
 import { connectAccount, chainConnect } from '../src/GlobalState/User';
 import config from '../src/Assets/networks/rpc_config.json';
 import { croSkullRedPotionImageHack } from '../src/hacks';
-import PriceActionBar from '../NftDetails/PriceActionBar';
+import PriceActionBar from '../src/Components/NftDetails/PriceActionBar';
 import { ERC721 } from '../src/Contracts/Abis';
 import { getFilteredOffers } from '../src/core/subgraph';
-import MakeOfferDialog from '../Offer/MakeOfferDialog';
-import NFTTabOffers from '../Offer/NFTTabOffers';
-import { OFFER_TYPE } from '../Offer/MadeOffersRow';
+import MakeOfferDialog from '../src/Components/Offer/MakeOfferDialog';
+import NFTTabOffers from '../src/Components/Offer/NFTTabOffers';
+import { OFFER_TYPE } from '../src/Components/Offer/MadeOffersRow';
 import { offerState } from '../src/core/api/enums';
 
 const knownContracts = config.known_contracts;

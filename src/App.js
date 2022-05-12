@@ -62,6 +62,7 @@ function App({ Component, pageProps }) {
   }, [dispatch]);
 
   useLayoutEffect(() => {
+    if (typeof window === 'undefined') return;
     const firebase = initializeApp(firebaseConfig);
     initializeAnalytics(firebase);
     dispatch(initProvider());

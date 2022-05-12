@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
-import Collection1155 from './collection1155';
-import Collection721 from './collection721';
-import config from '../src/Assets/networks/rpc_config.json';
-import { caseInsensitiveCompare, isCronosVerseCollection } from '../src/utils';
-import CollectionCronosverse from './collectionCronosverse';
+import Collection1155 from '../collection1155';
+import Collection721 from '../collection721';
+import config from '../../src/Assets/networks/rpc_config.json';
+import { caseInsensitiveCompare, isCronosVerseCollection } from '../../src/utils';
+import CollectionCronosverse from '../collectionCronosverse';
 
 const knownContracts = config.known_contracts;
 
@@ -47,13 +47,15 @@ const Collection = () => {
   }, [slug]);
 
   if (redirect) {
-    router.push(`/collection/${redirect}`);
-    return;
+    if (typeof window !== 'undefined') {
+      router.push(`/collection/${redirect}`);
+    }
   }
 
   if (!collection) {
-    router.push('/');
-    return;
+    if (typeof window !== 'undefined') {
+      router.push('/');
+    }
   }
 
   return (

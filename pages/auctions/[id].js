@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { useRouter } from 'next/router';
 
-import AuctionComponent from '../src/Components/components/AuctionComponent';
+import AuctionComponent from '../../src/Components/components/AuctionComponent';
 
 const Auction = () => {
   const router = useRouter();

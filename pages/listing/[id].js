@@ -13,11 +13,11 @@ import * as Sentry from '@sentry/react';
 import { Helmet } from 'react-helmet';
 import ReactPlayer from 'react-player';
 
-import ProfilePreview from '../src/Components/components/ProfilePreview';
-import LayeredIcon from '../src/Components/components/LayeredIcon';
-import Footer from '../src/Components/components/Footer';
-import { getListingDetails, listingUpdated } from '../src/GlobalState/listingSlice';
-import { connectAccount, chainConnect } from '../src/GlobalState/User';
+import ProfilePreview from '../../src/Components/components/ProfilePreview';
+import LayeredIcon from '../../src/Components/components/LayeredIcon';
+import Footer from '../../src/Components/components/Footer';
+import { getListingDetails, listingUpdated } from '../../src/GlobalState/listingSlice';
+import { connectAccount, chainConnect } from '../../src/GlobalState/User';
 import {
   findCollectionByAddress,
   createSuccessfulTransactionToastContent,
@@ -31,15 +31,12 @@ import {
   isBabyWeirdApesCollection,
   isUserBlacklisted,
   isNftBlacklisted,
-} from '../src/utils';
-import config from '../src/Assets/networks/rpc_config.json';
-import { croSkullRedPotionImageHack } from '../src/hacks';
+} from '../../src/utils';
+import config from '../../src/Assets/networks/rpc_config.json';
+import { croSkullRedPotionImageHack } from '../../src/hacks';
 import NFTTabOffers from '../Offer/NFTTabOffers';
 
 const Listing = () => {
-  if (typeof window === 'undefined') {
-    return;
-  }
   const router = useRouter();
   const { id } = router.query;
   const dispatch = useDispatch();
@@ -159,6 +156,9 @@ const Listing = () => {
 
   const [openMenu, setOpenMenu] = React.useState(0);
   const handleBtnClick = (index) => (element) => {
+    if (typeof window === 'undefined') {
+      return;
+    }
     var elements = document.querySelectorAll('.tab');
     for (var i = 0; i < elements.length; i++) {
       elements[i].classList.remove('active');
@@ -280,7 +280,10 @@ const Listing = () => {
               {listing && listing.nft.original_image && (
                 <div className="nft__item_action mt-2" style={{ cursor: 'pointer' }}>
                   <span
-                    onClick={() => window.open(croSkullRedPotionImageHack(listing.nftAddress, fullImage()), '_blank')}
+                    onClick={() =>
+                      typeof window !== 'undefined' &&
+                      window.open(croSkullRedPotionImageHack(listing.nftAddress, fullImage()), '_blank')
+                    }
                   >
                     <span className="p-2">View Full Image</span>
                     <FontAwesomeIcon icon={faExternalLinkAlt} />

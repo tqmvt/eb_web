@@ -13,7 +13,7 @@ import { init, fetchListings, getStats } from '../src/GlobalState/collectionSlic
 import { isCrosmocraftsPartsCollection } from '../src/utils';
 // import TraitsFilter from '../Collection/TraitsFilter';
 // import PowertraitsFilter from '../Collection/PowertraitsFilter';
-import SocialsBar from '../Collection/SocialsBar';
+import SocialsBar from '../src/Components/Collection/SocialsBar';
 import { CollectionSortOption } from '../src/Components/Models/collection-sort-option.model';
 import { FilterOption } from '../src/Components/Models/filter-option.model';
 import config from '../src/Assets/networks/rpc_config.json';

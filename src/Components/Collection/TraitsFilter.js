@@ -6,7 +6,6 @@ import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 import { filterListingsByTrait } from '../../GlobalState/collectionSlice';
 import { humanize } from '../../utils';
-import './Filters.css';
 
 const TraitsFilter = ({ address }) => {
   const dispatch = useDispatch();

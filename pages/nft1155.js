@@ -26,10 +26,10 @@ import { croSkullRedPotionImageHack } from '../src/hacks';
 import { chainConnect, connectAccount } from '../src/GlobalState/User';
 import { listingState, offerState } from '../src/core/api/enums';
 import { getFilteredOffers } from '../src/core/subgraph';
-import PriceActionBar from '../NftDetails/PriceActionBar';
-import NFTTabListings from '../NftDetails/NFTTabListings';
-import MakeOfferDialog from '../Offer/MakeOfferDialog';
-import { OFFER_TYPE } from '../Offer/MadeOffersRow';
+import PriceActionBar from '../src/Components/NftDetails/PriceActionBar';
+import NFTTabListings from '../src/Components/NftDetails/NFTTabListings';
+import MakeOfferDialog from '../src/Components/Offer/MakeOfferDialog';
+import { OFFER_TYPE } from '../src/Components/Offer/MadeOffersRow';
 
 const Nft1155 = ({ address, id }) => {
   if (typeof window === 'undefined') {

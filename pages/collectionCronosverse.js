@@ -10,10 +10,9 @@ import { init, fetchListings } from '../src/GlobalState/collectionSlice';
 import { devLog } from '../src/utils';
 import { CollectionSortOption } from '../src/Components/Models/collection-sort-option.model';
 import { FilterOption } from '../src/Components/Models/filter-option.model';
-import borderboard from '../src/Assets/cronosverse/border_board.png';
 import Button from '../src/Components/components/Button';
 import { chainConnect, connectAccount } from '../src/GlobalState/User';
-import MakeOfferDialog from '../Offer/MakeOfferDialog';
+import MakeOfferDialog from '../src/Components/Offer/MakeOfferDialog';
 
 const CollectionCronosverse = ({ collection }) => {
   if (typeof window === 'undefined') {
@@ -307,7 +306,11 @@ const CronosverseCollectionBoard = ({ onBuy, onOffer, listings = [], nfts = [] }
             onPanning={() => setModalFlag('none')}
           >
             <TransformComponent>
-              <img src={borderboard} alt="boardboard" style={{ width: `${tempWidth}px`, height: `${tempHeight}px` }} />
+              <img
+                src={'/img/cronosverse/border_board.png'}
+                alt="boardboard"
+                style={{ width: `${tempWidth}px`, height: `${tempHeight}px` }}
+              />
               <canvas className="canvasFront" ref={ref2} onClick={handleClick}></canvas>
             </TransformComponent>
 
