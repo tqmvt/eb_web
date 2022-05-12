@@ -96,7 +96,7 @@ const MyOffers = () => {
       const receivedOffersFilter = allOffers
         .filter((offer) => {
           const nft = myNFTs.find(
-            (c) => caseInsensitiveCompare(c.nftAddress, offer.nftAddress) && c.edition?.toString() === offer.nftId
+            (c) => caseInsensitiveCompare(c.nftAddress, offer.nftAddress) && c.nftId === offer.nftId
           );
 
           const knownContract = findCollectionByAddress(offer.nftAddress, offer.nftId);
@@ -112,7 +112,7 @@ const MyOffers = () => {
       const receivedPublicOffersFilter = allOffers
         .filter((offer) => {
           const nft = myNFTs.find(
-            (c) => c.nftAddress.toLowerCase() === offer.nftAddress && c.edition?.toString() === offer.nftId
+            (c) => caseInsensitiveCompare(c.nftAddress, offer.nftAddress) && c.nftId === offer.nftId
           );
 
           const knownContract = findCollectionByAddress(offer.nftAddress, offer.nftId);

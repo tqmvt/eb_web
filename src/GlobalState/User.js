@@ -844,7 +844,7 @@ export const checkForOutstandingOffers = () => async (dispatch, getState) => {
 
   const receivedOffers = offers.data.filter((offer) => {
     const nft = nfts.find(
-      (c) => c.nftAddress.toLowerCase() === offer.nftAddress && c.edition?.toString() === offer.nftId
+      (c) => caseInsensitiveCompare(c.nftAddress, offer.nftAddress) && c.nftId === offer.nftId
     );
 
     const knownContract = findCollectionByAddress(offer.nftAddress, offer.nftId);
