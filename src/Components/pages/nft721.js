@@ -1,7 +1,5 @@
 import React, { memo, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory, Link } from 'react-router-dom';
-import Blockies from 'react-blockies';
 import { Contract, ethers } from 'ethers';
 import { faCrow, faExternalLinkAlt, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -26,6 +24,7 @@ import { getNftDetails } from '../../GlobalState/nftSlice';
 import config from '../../Assets/networks/rpc_config.json';
 import { croSkullRedPotionImageHack } from '../../hacks';
 import NFTTabOffers from '../Offer/NFTTabOffers';
+import ListingItem from '../NftDetails/NFTTabListings/ListingItem';
 import PriceActionBar from '../NftDetails/PriceActionBar';
 import MakeOfferDialog from '../Offer/MakeOfferDialog';
 import { connectAccount, chainConnect } from 'src/GlobalState/User';
@@ -42,7 +41,6 @@ const knownContracts = config.known_contracts;
 
 const Nft721 = ({ address, id }) => {
   const dispatch = useDispatch();
-  const history = useHistory();
 
   const user = useSelector((state) => state.user);
 
@@ -161,10 +159,6 @@ const Nft721 = ({ address, id }) => {
 
     // eslint-disable-next-line
   }, [address]);
-
-  const viewSeller = (seller) => () => {
-    history.push(`/seller/${seller}`);
-  };
 
   const fullImage = () => {
     if (nft.original_image.startsWith('ipfs://')) {
@@ -502,25 +496,15 @@ const Nft721 = ({ address, id }) => {
                           {listingHistory && listingHistory.length > 0 ? (
                             <>
                               {listingHistory.map((listing, index) => (
-                                <div className="p_list" key={index}>
-                                  <Link className='avatar' to={`/seller/${listing.purchaser}`}>
-                                    <div className="p_list_pp">
-                                      <span>
-                                        <span onClick={viewSeller(listing.purchaser)}>
-                                          <Blockies seed={listing.purchaser} size={10} scale={5} />
-                                        </span>
-                                      </span>
-                                    </div>
-                                  </Link>
-                                  <div className="p_list_info">
-                                    <span>{timeSince(listing.saleTime + '000')} ago</span>
-                                    Bought by{' '}
-                                    <b>
-                                      <Link to={`/seller/${listing.purchaser}`}>{shortAddress(listing.purchaser)}</Link>
-                                    </b>{' '}
-                                    for <b>{ethers.utils.commify(listing.price)} CRO</b>
-                                  </div>
-                                </div>
+                                <ListingItem
+                                  key={`sold-item-${index}`}
+                                  route='/seller'
+                                  primaryTitle='Bought by'
+                                  user={listing.purchaser}
+                                  time={timeSince(listing.saleTime + '000')}
+                                  price={ethers.utils.commify(listing.price)}
+                                  primaryText={shortAddress(listing.purchaser)}
+                                />
                               ))}
                             </>
                           ) : (

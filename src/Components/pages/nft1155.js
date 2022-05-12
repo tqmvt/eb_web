@@ -1,7 +1,5 @@
 import React, { memo, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory, Link } from 'react-router-dom';
-import Blockies from 'react-blockies';
 import { ethers } from 'ethers';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -27,6 +25,7 @@ import MakeOfferDialog from '../Offer/MakeOfferDialog';
 import ReactPlayer from 'react-player';
 // import NFTTabOffers from '../Offer/NFTTabOffers';
 import NFTTabListings from '../NftDetails/NFTTabListings';
+import ListingItem from '../NftDetails/NFTTabListings/ListingItem';
 import { listingState, offerState } from '../../core/api/enums';
 import { getFilteredOffers } from '../../core/subgraph';
 import { OFFER_TYPE } from '../Offer/MadeOffersRow';
@@ -34,7 +33,6 @@ import NFTTabOffers from "../Offer/NFTTabOffers";
 
 const Nft1155 = ({ address, id }) => {
   const dispatch = useDispatch();
-  const history = useHistory();
 
   const nft = useSelector((state) => state.nft.nft);
   const soldListings = useSelector((state) =>
@@ -63,10 +61,6 @@ const Nft1155 = ({ address, id }) => {
   useEffect(() => {
     dispatch(getNftDetails(address, id));
   }, [dispatch, address, id]);
-
-  const viewSeller = (seller) => () => {
-    history.push(`/seller/${seller}`);
-  };
 
   const fullImage = () => {
     if (nft.original_image.startsWith('ipfs://')) {
@@ -370,25 +364,15 @@ const Nft1155 = ({ address, id }) => {
                           {soldListings && soldListings.length > 0 ? (
                             <>
                               {soldListings.map((listing, index) => (
-                                <div className="p_list" key={index}>
-                                  <Link className='avatar' to={`/seller/${listing.purchaser}`}>
-                                    <div className="p_list_pp">
-                                      <span>
-                                        <span onClick={viewSeller(listing.purchaser)}>
-                                          <Blockies seed={listing.purchaser} size={10} scale={5} />
-                                        </span>
-                                      </span>
-                                    </div>
-                                  </Link>
-                                  <div className="p_list_info">
-                                    <span>{timeSince(listing.saleTime + '000')} ago</span>
-                                    Bought by{' '}
-                                    <b>
-                                      <Link to={`/seller/${listing.purchaser}`}>{shortAddress(listing.purchaser)}</Link>
-                                    </b>{' '}
-                                    for <b>{ethers.utils.commify(listing.price)} CRO</b>
-                                  </div>
-                                </div>
+                                <ListingItem
+                                  key={`sold-item-${index}`}
+                                  route='/seller'
+                                  primaryTitle='Bought by'
+                                  user={listing.purchaser}
+                                  time={timeSince(listing.saleTime + '000')}
+                                  price={ethers.utils.commify(listing.price)}
+                                  primaryText={shortAddress(listing.purchaser)}
+                                />
                               ))}
                             </>
                           ) : (

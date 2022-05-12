@@ -5388,7 +5388,28 @@ iframe.metaverse {
   overflow-y: scroll;
   overflow-x: hidden;
 
-  .avatar {
-    position: relative;
+  .listing-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 22px;
+
+    .listing-container {
+      display: flex;
+      align-items: center;
+      margin-right: 14px;
+
+      .avatar {
+        margin-right: 18px;
+
+        canvas {
+          border-radius: 100% !important;
+        }
+      }
+
+      .p_list_info {
+        padding-left: 0px !important;
+      }
+    }
   }
 }
