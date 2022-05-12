@@ -237,7 +237,7 @@ const Nft1155 = ({ address, id }) => {
                   <div className="spacer-40"></div>
 
                   <div className="de_tab">
-                    <ul className="de_nav">
+                    <ul className="de_nav nft_tabs_options">
                       <li id="Mainbtn0" className="tab active">
                         <span onClick={handleBtnClick(0)}>Details</span>
                       </li>
