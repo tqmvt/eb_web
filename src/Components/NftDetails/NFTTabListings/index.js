@@ -1,9 +1,9 @@
 import React from 'react';
 import ListingsRow from './ListingsRow';
 
-export default function NFTTabListings({ listings }) {
+export default function NFTTabListings({ listings }) {  
   return (
-    <div>
+    <div className='listing-tab'>
       {listings && listings.length > 0 ? (
         <>
           {listings.map((listing, index) => (

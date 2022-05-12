@@ -5382,3 +5382,38 @@ iframe.metaverse {
   margin-bottom: -10px;
   background: white;
 }
+
+.listing-tab {
+  height: 400px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+  .listing-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 22px;
+
+    .listing-container {
+      display: flex;
+      align-items: center;
+      margin-right: 14px;
+
+      .avatar {
+        margin-right: 18px;
+
+        canvas {
+          border-radius: 100% !important;
+        }
+      }
+
+      .p_list_info {
+        padding-left: 0px !important;
+      }
+    }
+  }
+}
+
+.de_tab .nft_tabs_options .tab {
+  margin-bottom: 10px;
+}

@@ -232,7 +232,7 @@
       "listable": true,
       "metadata": {
         "description": "Monkeys on Cronos that loves Bananas!",
-        "verified": true,
+        "verified": false,
         "avatar": "/img/collections/cromonkeys/avatar.gif",
         "card": "/img/collections/cromonkeys/card.png",
         "banner": "/img/collections/cromonkeys/banner.png",
@@ -2587,7 +2587,7 @@
       "multiToken": false,
       "address": "0xA9CC74Bf256C02AdAd4E47af5344d008b5F2F556",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "",
         "verified": false,
@@ -3717,7 +3717,7 @@
       "multiToken": false,
       "address": "0xfe03f1ac15de36235333d5dc2a410574fcb5ff63",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "",
         "verified": true,
@@ -4188,8 +4188,29 @@
         "maxSupply": 100,
         "website": "https://cronosbotsociety.com/",
         "twitter": "https://twitter.com/CronosBots",
-        "discord": "discord.gg/cronosbotsociety",
+        "discord": "https://discord.gg/cronosbotsociety",
         "medium": "https://medium.com/@Cronos-Bot-Society"
+      }
+    },
+    {
+      "name": "AlienCRO",
+      "slug": "alien-cro",
+      "multiToken": false,
+      "address": "",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "The AlienCRO genesis NFT drop consists of a total of 1060 unique NFTs with, hand drawn traits. Holding NFTs from the collection will grant access to the staking pool and random NFT airdrops. You can expect to earn native CRO rewards from the staking pools, while the NFTs are going to be from popular Cronos projects!",
+        "verified": true,
+        "avatar": "/img/collections/alien-cro/avatar.webp",
+        "card": "/img/collections/alien-cro/card.webp",
+        "banner": "/img/collections/alien-cro/banner.webp",
+        "maxSupply": 1060,
+        "website": "https://aliencro.com/",
+        "twitter": "https://twitter.com/aliencro",
+        "discord": "https://discord.gg/ux3kWhx7ww",
+        "medium": "https://aliencro.medium.com/",
+        "telegram": "https://t.me/AlienCRO"
       }
     }
   ],
@@ -5846,7 +5867,7 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false,
+      "complete": true,
       "embed": "<div style=\"padding:56.25% 0 0 0;position:relative;\"><iframe\nid=\"r-embed-player-iframe\"\nsrc=\"https://player.restream.io/?token=4ba6d209ca9d4adc927ecc54ace56547&vwrs=1\"\nallow=\"autoplay\" allowfullscreen frameborder=\"0\"\nstyle=\"position:absolute;top:0;left:0;width:100%;height:100%;\"/></iframe></div>"
     },
     {
@@ -6081,6 +6102,39 @@
       "published": true,
       "complete": false,
       "disclaimer": "**Assets and characters from other Ghetto-Doves™ collections do not apply in the 7 character collection."
+    },
+    {
+      "id": 72,
+      "slug": "alien-cro",
+      "imgNft": "/img/drops/alien-cro/drop.webp",
+      "imgPreview": "/img/drops/alien-cro/drop.webp",
+      "imgAvatar": "/img/collections/alien-cro/avatar.webp",
+      "imgBanner": "/img/collections/alien-cro/banner.webp",
+      "title": "AlienCRO",
+      "subtitle": "The AlienCRO NFT drop introduces you to the mysterious and uncovered outer ends of our universe. Get your hands on one of 1060 unique Aliens and be part of the intergalactic crypto exploration.",
+      "description": "The AlienCRO genesis NFT drop consists of a total of 1060 unique NFTs with, hand drawn traits. Holding NFTs from the collection will grant access to the staking pool and random NFT airdrops. You can expect to earn native CRO rewards from the staking pools, while the NFTs are going to be from popular Cronos projects!\n\nOne of the outstanding features to sustain a high floor price is the so called 'elimination'. The team is going to regularly buy-back and burn random floor NFTs. \n\nThe community is the lifeblood of the project and will be involved in various decisions to assure longevity.",
+      "author": {
+        "name": "AlienCRO",
+        "twitter": "https://twitter.com/aliencro",
+        "website": "https://aliencro.com/",
+        "discord": "https://discord.gg/ux3kWhx7ww",
+        "medium": "https://aliencro.medium.com/",
+        "telegram": "https://t.me/AlienCRO"
+      },
+      "address": "",
+      "maxMintPerTx": 10,
+      "maxMintPerAddress": 100,
+      "totalSupply": 1060,
+      "cost": "350",
+      "memberCost": "300",
+      "whitelistCost": "280",
+      "foundersOnly": false,
+      "start": 1652904000000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": false,
+      "complete": false
     }
   ],
   "auctions": [

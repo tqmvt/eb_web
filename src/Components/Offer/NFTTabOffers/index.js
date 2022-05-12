@@ -25,7 +25,7 @@ export default function NFTTabOffers({ nftAddress, nftId }) {
   }, []);
 
   return (
-    <div>
+    <div className='listing-tab'>
       {nftOffers.length > 0 ? (
         nftOffers.map((offer, index) => <OffersRow key={index} data={offer} type={ROW_TYPE.observer} />)
       ) : nftOffersLoading ? (

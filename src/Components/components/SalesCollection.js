@@ -46,7 +46,7 @@ const SalesCollection = ({
   };
 
   useEffect(() => {
-    const sortOption = marketplace.cachedSort[cacheName] ?? defaultSort;
+    const sortOption = marketplace.cachedSort[cacheName] ?? defaultSort();
 
     if (collectionId) {
       const filterOption = new ListingsFilterOption();
@@ -88,7 +88,7 @@ const SalesCollection = ({
   };
 
   const selectDefaultFilterValue = marketplace.cachedFilter[cacheName] ?? ListingsFilterOption.default();
-  const selectDefaultSortValue = marketplace.cachedSort[cacheName] ?? defaultSort;
+  const selectDefaultSortValue = marketplace.cachedSort[cacheName] ?? defaultSort();
   const selectDefaultSearchValue = marketplace.cachedSearch[cacheName] ?? '';
   const selectFilterOptions = marketPlaceCollectionFilterOptions;
   const selectSortOptions = useSelector((state) => {
