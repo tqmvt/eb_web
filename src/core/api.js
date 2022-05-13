@@ -738,106 +738,11 @@ export async function getUnfilteredListingsForAddress(walletAddress, walletProvi
     let json = await response.json();
     const listings = json.listings || [];
 
-    // to get id and address of nft to check if it's inside user's wallet.
-    const walletNftsNotFlattened = await Promise.all(
-      knownContracts
-        .filter((x) => !!x.address)
-        .map(async (knownContract) => {
-          try {
-            const address = knownContract.address;
-            const isMetaPixels =
-              (
-                (knownContracts.find((knownContract) => knownContract.name === 'MetaPixels') ?? {}).address ?? ''
-              ).toLowerCase() === address.toLowerCase();
-
-            const contract = (() => {
-              if (knownContract.multiToken) {
-                return new Contract(knownContract.address, ERC1155, signer);
-              }
-              if (isMetaPixels) {
-                return new Contract(knownContract.address, MetaPixelsAbi, signer);
-              }
-              return new Contract(knownContract.address, ERC721, signer);
-            })();
-
-            const count = await (async () => {
-              const bigNumber = knownContract.multiToken
-                ? await contract.balanceOf(walletAddress, knownContract.id)
-                : await contract.balanceOf(walletAddress);
-              return bigNumber.toNumber();
-            })();
-
-            if (knownContract.multiToken && count !== 0) {
-              return [
-                {
-                  id: knownContract.id,
-                  address: knownContract.address.toLowerCase(),
-                },
-              ];
-            }
-
-            const readContract = (() => {
-              if (isMetaPixels) {
-                return new Contract(knownContract.address, MetaPixelsAbi, readProvider);
-              }
-              return new Contract(knownContract.address, ERC721, readProvider);
-            })();
-
-            const ids = await (async () => {
-              if (count > 0) {
-                try {
-                  await readContract.tokenOfOwnerByIndex(walletAddress, 0);
-                } catch (error) {
-                  return await readContract.walletOfOwner(walletAddress);
-                }
-              }
-              return [];
-            })();
-
-            const nfts = [];
-
-            for (let i = 0; i < count; i++) {
-              const id = await (async () => {
-                if (ids.length === 0) {
-                  try {
-                    return await readContract.tokenOfOwnerByIndex(walletAddress, i);
-                  } catch (error) {
-                    return null;
-                  }
-                } else {
-                  return ids[i];
-                }
-              })();
-
-              if (id === null) {
-                continue;
-              }
-
-              if (isMetaPixels) {
-                const numberId = id instanceof BigNumber ? id.toNumber() : id;
-                nfts.push({
-                  id: numberId,
-                  address: knownContract.address.toLowerCase(),
-                });
-                continue;
-              }
-
-              nfts.push({
-                id: id.toNumber(),
-                address: knownContract.address.toLowerCase(),
-              });
-            }
-
-            return nfts;
-          } catch (e) {
-            console.log('Failed to check user nfts for : ' + knownContract.address);
-            console.log(e);
-            return [];
-          }
-        })
-    );
     //  array of {id, address} wallet nfts
-    const walletNfts = walletNftsNotFlattened.flat();
+    const quickWallet = await getQuickWallet(walletAddress);
+    const walletNfts = quickWallet.data.map((nft) => {
+      return {id:nft.nfdId, address:nft.nftAddress}
+    });
 
     const filteredListings = listings
       .map((item) => {
@@ -1301,6 +1206,8 @@ export async function getNftsForAddress2(walletAddress, walletProvider, page) {
           console.log(e);
         }
 
+        const video = nft.animation_url ?? (image.split('.').pop() === 'mp4' ? image : null);
+
         let isStaked = false;
         let canTransfer = true;
         let canSell = true;
@@ -1324,7 +1231,7 @@ export async function getNftsForAddress2(walletAddress, walletProvider, page) {
           description: nft.description,
           properties: nft.properties && nft.properties.length > 0 ? nft.properties : nft.attributes,
           image: image,
-          video: image.split('.').pop() === 'mp4' ? image : null,
+          video: video,
           count: nft.balance,
           address: knownContract.address,
           contract: writeContract,
