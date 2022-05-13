@@ -1301,6 +1301,8 @@ export async function getNftsForAddress2(walletAddress, walletProvider, page) {
           console.log(e);
         }
 
+        const video = nft.animation_url ?? (image.split('.').pop() === 'mp4' ? image : null);
+
         let isStaked = false;
         let canTransfer = true;
         let canSell = true;
@@ -1324,7 +1326,7 @@ export async function getNftsForAddress2(walletAddress, walletProvider, page) {
           description: nft.description,
           properties: nft.properties && nft.properties.length > 0 ? nft.properties : nft.attributes,
           image: image,
-          video: image.split('.').pop() === 'mp4' ? image : null,
+          video: video,
           count: nft.balance,
           address: knownContract.address,
           contract: writeContract,
