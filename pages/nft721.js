@@ -1,12 +1,12 @@
 import React, { memo, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Blockies from 'react-blockies';
 import { Contract, ethers } from 'ethers';
 import { faCrow, faExternalLinkAlt, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Helmet } from 'react-helmet';
 import MetaMaskOnboarding from '@metamask/onboarding';
 import { Spinner } from 'react-bootstrap';
 import ReactPlayer from 'react-player';
@@ -224,7 +224,7 @@ const Nft721 = ({ address, id }) => {
 
   return (
     <div>
-      <Helmet>
+      <Head>
         <title>{nft?.name || 'NFT'} | Ebisu's Bay Marketplace</title>
         <meta name="description" content={`${nft?.name || 'NFT'} for Ebisu's Bay Marketplace`} />
         <meta name="title" content={`${nft?.name || 'NFT'} | Ebisu's Bay Marketplace`} />
@@ -233,7 +233,7 @@ const Nft721 = ({ address, id }) => {
         <meta property="og:image" content={nft?.image} />
         <meta name="twitter:title" content={`${nft?.name || 'NFT'} | Ebisu's Bay Marketplace`} />
         <meta name="twitter:image" content={nft?.image} />
-      </Helmet>
+      </Head>
       {isLoading ? (
         <section className="container">
           <div className="row mt-4">

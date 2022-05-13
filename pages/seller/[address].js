@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
-import { Helmet } from 'react-helmet';
+import Head from 'next/head';
 
 import ListingCollection from '../../src/Components/components/ListingCollection';
 import Footer from '../../src/Components/components/Footer';
@@ -41,14 +41,14 @@ const Seller = () => {
 
   return (
     <div>
-      <Helmet>
+      <Head>
         <title>{shortAddress(address) || 'Seller'} | Ebisu's Bay Marketplace</title>
         <meta name="description" content={`${shortAddress(address) || 'Seller'} for Ebisu's Bay Marketplace`} />
         <meta name="title" content={`${shortAddress(address) || 'Seller'} | Ebisu's Bay Marketplace`} />
         <meta property="og:title" content={`${shortAddress(address) || 'Seller'} | Ebisu's Bay Marketplace`} />
         <meta property="og:url" content={`https://app.ebisusbay.com/seller/${address}`} />
         <meta name="twitter:title" content={`${shortAddress(address) || 'Seller'} | Ebisu's Bay Marketplace`} />
-      </Helmet>
+      </Head>
       <section className="jumbotron breadcumb no-bg tint">
         <div className="mainbreadcumb">
           <div className="container">

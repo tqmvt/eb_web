@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { ethers } from 'ethers';
 import { useSelector, useDispatch } from 'react-redux';
+import Head from 'next/head';
+import { ethers } from 'ethers';
 import { toast } from 'react-toastify';
 import Countdown from 'react-countdown';
 import { getAnalytics, logEvent } from '@firebase/analytics';
@@ -11,11 +12,11 @@ import { Spinner } from 'react-bootstrap';
 import ReactPlayer from 'react-player';
 import * as Sentry from '@sentry/react';
 import styled from 'styled-components';
-import { Helmet } from 'react-helmet';
+import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
+
 import Footer from '../src/Components/components/Footer';
 import config from '../src/Assets/networks/rpc_config.json';
 import { connectAccount } from '../src/GlobalState/User';
-import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 import { createSuccessfulTransactionToastContent, isFounderDrop, newlineText } from '../src/utils';
 import { dropState as statuses } from '../src/core/api/enums';
 import { EbisuDropAbi } from '../src/Contracts/Abis';
@@ -309,7 +310,7 @@ const CronosverseDrop = () => {
   return (
     <div>
       <>
-        <Helmet>
+        <Head>
           <title>{drop?.title || 'Drop'} | Ebisu's Bay Marketplace</title>
           <meta name="description" content={`${drop?.title || 'Drop'} for Ebisu's Bay Marketplace`} />
           <meta name="title" content={`${drop?.title || 'Drop'} | Ebisu's Bay Marketplace`} />
@@ -318,7 +319,7 @@ const CronosverseDrop = () => {
           <meta property="og:image" content={`https://app.ebisusbay.com${drop?.imgAvatar || '/'}`} />
           <meta name="twitter:title" content={`${drop?.title || 'Drop'} | Ebisu's Bay Marketplace`} />
           <meta name="twitter:image" content={`https://app.ebisusbay.com${drop?.imgAvatar || '/'}`} />
-        </Helmet>
+        </Head>
         <HeroSection
           className={`jumbotron h-vh tint`}
           style={{ backgroundImage: `url(${drop.imgBanner ? drop.imgBanner : '/img/background/Ebisus-bg-1_L.webp'})` }}

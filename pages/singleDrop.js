@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { ethers, constants } from 'ethers';
 import { useSelector, useDispatch } from 'react-redux';
+import Head from 'next/head';
+import { ethers, constants } from 'ethers';
 import { toast } from 'react-toastify';
 import Countdown from 'react-countdown';
 import { getAnalytics, logEvent } from '@firebase/analytics';
@@ -11,7 +12,6 @@ import { Form, ProgressBar, Spinner } from 'react-bootstrap';
 import ReactPlayer from 'react-player';
 import * as Sentry from '@sentry/react';
 import styled from 'styled-components';
-import { Helmet } from 'react-helmet';
 import { commify } from 'ethers/lib.esm/utils';
 
 import Footer from '../src/Components/components/Footer';
@@ -470,7 +470,7 @@ const SingleDrop = () => {
   return (
     <div>
       <>
-        <Helmet>
+        <Head>
           <title>{drop?.title || 'Drop'} | Ebisu's Bay Marketplace</title>
           <meta name="description" content={`${drop?.title || 'Drop'} for Ebisu's Bay Marketplace`} />
           <meta name="title" content={`${drop?.title || 'Drop'} | Ebisu's Bay Marketplace`} />
@@ -479,7 +479,7 @@ const SingleDrop = () => {
           <meta property="og:image" content={`https://app.ebisusbay.com${drop?.imgAvatar || '/'}`} />
           <meta name="twitter:title" content={`${drop?.title || 'Drop'} | Ebisu's Bay Marketplace`} />
           <meta name="twitter:image" content={`https://app.ebisusbay.com${drop?.imgAvatar || '/'}`} />
-        </Helmet>
+        </Head>
         <HeroSection
           className={`jumbotron h-vh tint`}
           style={{ backgroundImage: `url(${drop.imgBanner ? drop.imgBanner : '/img/background/Ebisus-bg-1_L.webp'})` }}

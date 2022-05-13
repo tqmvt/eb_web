@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet';
+import Head from 'next/head';
 import { Modal, Spinner } from 'react-bootstrap';
 import { Contract, ethers } from 'ethers';
 import styled from 'styled-components';
@@ -222,14 +222,14 @@ const Rugsurance = () => {
 
   return (
     <div>
-      <Helmet>
+      <Head>
         <title>Slothty Rugsurance | Ebisu's Bay Marketplace</title>
         <meta name="description" content="Peace of mind minting on Ebisu's Bay Marketplace" />
         <meta name="title" content="Slothty Rugsurance | Ebisu's Bay Marketplace" />
         <meta property="og:title" content="Slothty Rugsurance | Ebisu's Bay Marketplace" />
         <meta property="og:url" content={`https://app.ebisusbay.com/slothty-rugsurance`} />
         <meta name="twitter:title" content="Slothty Rugsurance | Ebisu's Bay Marketplace" />
-      </Helmet>
+      </Head>
       <section className="jumbotron breadcumb no-bg tint">
         <div className="mainbreadcumb">
           <div className="container">

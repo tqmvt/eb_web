@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import Head from 'next/head';
 import { Contract, ethers } from 'ethers';
 import Blockies from 'react-blockies';
-import { Helmet } from 'react-helmet';
 import { faCheck, faCircle } from '@fortawesome/free-solid-svg-icons';
 import { Spinner } from 'react-bootstrap';
 import styled from 'styled-components';
@@ -146,7 +146,7 @@ const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) 
 
   return (
     <div>
-      <Helmet>
+      <Head>
         <title>{collection.name} | Ebisu's Bay Marketplace</title>
         <meta name="description" content={`${collection.name} for Ebisu's Bay Marketplace`} />
         <meta name="title" content={`${collection.name} | Ebisu's Bay Marketplace`} />
@@ -155,7 +155,7 @@ const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) 
         <meta property="og:image" content={`https://app.ebisusbay.com${collection.metadata.avatar || '/'}`} />
         <meta name="twitter:title" content={`${collection.name} | Ebisu's Bay Marketplace`} />
         <meta name="twitter:image" content={`https://app.ebisusbay.com${collection.metadata.avatar || '/'}`} />
-      </Helmet>
+      </Head>
       <section
         id="profile_banner"
         className="jumbotron breadcumb no-bg"

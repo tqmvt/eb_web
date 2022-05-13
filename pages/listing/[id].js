@@ -1,5 +1,6 @@
 import React, { memo, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { Contract, ethers } from 'ethers';
@@ -10,7 +11,6 @@ import Blockies from 'react-blockies';
 import { faCrow, faExternalLinkAlt, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as Sentry from '@sentry/react';
-import { Helmet } from 'react-helmet';
 import ReactPlayer from 'react-player';
 
 import ProfilePreview from '../../src/Components/components/ProfilePreview';
@@ -218,7 +218,7 @@ const Listing = () => {
 
   return (
     <div>
-      <Helmet>
+      <Head>
         <title>{listing?.nft?.name || 'Listing'} | Ebisu's Bay Marketplace</title>
         <meta name="description" content={`${listing?.nft?.name || 'Listing'} for Ebisu's Bay Marketplace`} />
         <meta name="title" content={`${listing?.nft?.name || 'Listing'} | Ebisu's Bay Marketplace`} />
@@ -227,7 +227,7 @@ const Listing = () => {
         <meta property="og:image" content={listing?.nft?.image} />
         <meta name="twitter:title" content={`${listing?.nft?.name || 'Listing'} | Ebisu's Bay Marketplace`} />
         <meta name="twitter:image" content={listing?.nft?.image} />
-      </Helmet>
+      </Head>
       {isLoading ? (
         <section className="container">
           <div className="row mt-4">

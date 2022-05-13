@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Helmet } from 'react-helmet';
+import Head from 'next/head';
 import styled, { createGlobalStyle } from 'styled-components';
 import { useSelector } from 'react-redux';
 import Reveal from 'react-awesome-reveal';
@@ -89,14 +89,14 @@ const Application = () => {
 
   return (
     <div>
-      <Helmet>
+      <Head>
         <title>Project Applications | Ebisu's Bay Marketplace</title>
         <meta name="description" content="Peace of mind minting on Ebisu's Bay Marketplace" />
         <meta name="title" content="Project Applications | Ebisu's Bay Marketplace" />
         <meta property="og:title" content="Project Applications | Ebisu's Bay Marketplace" />
         <meta property="og:url" content={`https://app.ebisusbay.com/apply`} />
         <meta name="twitter:title" content="Project Applications | Ebisu's Bay Marketplace" />
-      </Helmet>
+      </Head>
       <GlobalStyles />
       <section className="container mt-0 mt-lg-5">
         <div className="row">
