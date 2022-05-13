@@ -400,7 +400,7 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
 
           if (knownContract.multiToken) {
             const ids = knownContract.tokens?.map(t => t.id) ?? [knownContract.id];
-            console.log('ids',knownContract.name, ids);
+            
             for (const id of ids) {
               let canTransfer = true;
               let canSell = true;
@@ -433,7 +433,7 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
                   //console.log(error);
                 }
               }
-              console.log('uri',knownContract.name, uri);
+
               const json = await (await fetch(uri)).json();
               const name = json.name;
               const image = gatewayTools.containsCID(json.image)
@@ -441,7 +441,7 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
                 : json.image;
               const description = json.description;
               const properties = json.properties;
-              console.log('image',knownContract.name, image);
+
               const nft = {
                 name: name,
                 id: id,
