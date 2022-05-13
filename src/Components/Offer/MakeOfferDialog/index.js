@@ -6,22 +6,22 @@ import { Contract, ethers } from 'ethers';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Spinner } from 'react-bootstrap';
+import { commify } from 'ethers/lib/utils';
 
-import Button from 'src/Components/components/Button';
-import Input from 'src/Components/components/common/Input';
-import ProfilePreview from 'src/Components/components/ProfilePreview';
-import { croSkullRedPotionImageHack } from 'src/hacks';
-import { caseInsensitiveCompare, humanize, shortAddress } from 'src/utils';
+import Button from '../../../Components/components/Button';
+import Input from '../../../Components/components/common/Input';
+import ProfilePreview from '../../../Components/components/ProfilePreview';
+import { croSkullRedPotionImageHack } from '../../../hacks';
+import { caseInsensitiveCompare, humanize, shortAddress } from '../../../utils';
 import { OFFER_TYPE } from '../MadeOffersRow';
-import { updateOfferSuccess, updateOfferFailed } from 'src/GlobalState/offerSlice';
+import { updateOfferSuccess, updateOfferFailed } from '../../../GlobalState/offerSlice';
 import EmptyData from '../EmptyData';
-import config from 'src/Assets/networks/rpc_config.json';
-import Market from 'src/Contracts/Marketplace.json';
-import { getFilteredOffers } from 'src/core/subgraph';
+import config from '../../../Assets/networks/rpc_config.json';
+import Market from '../../../Contracts/Marketplace.json';
+import { getFilteredOffers } from '../../../core/subgraph';
 import { getAllCollections } from '../../../GlobalState/collectionsSlice';
 import { offerState } from '../../../core/api/enums';
-import { commify } from 'ethers/lib/utils';
-import { findCollectionByAddress } from 'src/utils';
+import { findCollectionByAddress } from '../../../utils';
 const knownContracts = config.known_contracts;
 
 const DialogContainer = styled(Dialog)`

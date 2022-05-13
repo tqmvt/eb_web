@@ -31,7 +31,7 @@ import { FilterOption } from '../Components/Models/filter-option.model';
 import { nanoid } from 'nanoid';
 import { appAuthInitFinished } from './InitSlice';
 import { captureException } from '@sentry/react';
-import { setThemeInStorage } from 'src/helpers/storage';
+import { setThemeInStorage } from '../helpers/storage';
 import { getAllOffers } from '../core/subgraph';
 import { offerState } from '../core/api/enums';
 import { CNS, TextRecords } from '@cnsdomains/core';

@@ -4,7 +4,7 @@ import { Spinner } from 'react-bootstrap';
 
 import OffersRow from './OffersRow';
 import EmptyData from '../EmptyData';
-import { fetchOffersForSingleNFT } from 'src/GlobalState/offerSlice';
+import { fetchOffersForSingleNFT } from '../../../GlobalState/offerSlice';
 
 export const ROW_TYPE = {
   made: 'Made',

@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import Blockies from 'react-blockies';
-import { createSuccessfulTransactionToastContent, shortAddress, timeSince } from 'src/utils';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { ethers } from 'ethers';
-// import { listingUpdated } from '../../../../GlobalState/listingSlice';
 import { toast } from 'react-toastify';
 import MetaMaskOnboarding from '@metamask/onboarding';
-import { chainConnect, connectAccount } from '../../../../GlobalState/User';
 import { useDispatch, useSelector } from 'react-redux';
 import { Spinner } from 'react-bootstrap';
+
+import { createSuccessfulTransactionToastContent, shortAddress, timeSince } from '../../../../utils';
+import { chainConnect, connectAccount } from '../../../../GlobalState/User';
 import { getNftDetails } from '../../../../GlobalState/nftSlice';
 
 export default function ListingsRow({ listing }) {

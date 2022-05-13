@@ -2,9 +2,7 @@ import React from 'react';
 
 import Footer from '../src/Components/components/Footer';
 import AuctionCollection from '../src/Components/components/AuctionCollection';
-import config from '../src/Assets/networks/rpc_config.json';
 import MetaverseModal from '../src/Components/components/MetaverseModal';
-export const drops = config.drops;
 
 const MetaverseAuctions = () => {
   return (

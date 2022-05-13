@@ -21,7 +21,7 @@ import {
 } from '../../GlobalState/User';
 import rpcConfig from '../../Assets/networks/rpc_config.json';
 
-import { getThemeInStorage, setThemeInStorage } from 'src/helpers/storage';
+import { getThemeInStorage, setThemeInStorage } from '../../helpers/storage';
 import { getAllCollections } from '../../GlobalState/collectionsSlice';
 import { fetchMyNFTs } from '../../GlobalState/offerSlice';
 import { isUserBlacklisted, shortAddress } from '../../utils';

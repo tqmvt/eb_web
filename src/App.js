@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect } from 'react';
+import React, { useEffect } from 'react';
 import Head from 'next/head';
 import { useDispatch, useSelector } from 'react-redux';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
@@ -61,8 +61,7 @@ function App({ Component, pageProps }) {
     dispatch(appInitializer());
   }, [dispatch]);
 
-  useLayoutEffect(() => {
-    if (typeof window === 'undefined') return;
+  useEffect(() => {
     const firebase = initializeApp(firebaseConfig);
     initializeAnalytics(firebase);
     dispatch(initProvider());

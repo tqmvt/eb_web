@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import Button from 'src/Components/components/Button';
 import styled from 'styled-components';
 import moment from 'moment';
 import Blockies from 'react-blockies';
+import { commify } from 'ethers/lib.esm/utils';
+import Link from 'next/link';
 
-import { caseInsensitiveCompare, shortAddress } from 'src/utils';
-import config from 'src/Assets/networks/rpc_config.json';
-import { getNftDetails } from 'src/GlobalState/nftSlice';
+import Button from '../../../Components/components/Button';
+import { caseInsensitiveCompare, shortAddress } from '../../../utils';
+import config from '../../../Assets/networks/rpc_config.json';
+import { getNftDetails } from '../../../GlobalState/nftSlice';
 import MakeOfferDialog from '../MakeOfferDialog';
 import AcceptOfferDialog from '../AcceptOfferDialog';
-import Link from 'next/link';
-import { commify } from 'ethers/lib.esm/utils';
 
 const knownContracts = config.known_contracts;
 

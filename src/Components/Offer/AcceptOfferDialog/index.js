@@ -25,10 +25,10 @@ import { Spinner } from 'react-bootstrap';
 
 import { OFFER_TYPE } from '../MadeOffersRow';
 import EmptyData from '../EmptyData';
-import { updateContractInstance, updateOfferSuccess, updateOfferFailed } from 'src/GlobalState/offerSlice';
-import { shortAddress } from 'src/utils';
-import config from 'src/Assets/networks/rpc_config.json';
-import Market from 'src/Contracts/Marketplace.json';
+import { updateContractInstance, updateOfferSuccess, updateOfferFailed } from '../../../GlobalState/offerSlice';
+import { shortAddress } from '../../../utils';
+import config from '../../../Assets/networks/rpc_config.json';
+import Market from '../../../Contracts/Marketplace.json';
 
 const StyledTypography = styled(Typography)`
   color: ${({ theme }) => theme.colors.textColor3};

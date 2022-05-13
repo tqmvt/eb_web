@@ -5,10 +5,10 @@ import Link from 'next/link';
 import { ethers } from 'ethers';
 import MetaMaskOnboarding from '@metamask/onboarding';
 
-import { croSkullRedPotionImageHack } from 'src/hacks';
+import { croSkullRedPotionImageHack } from '../../hacks';
 import Button from './Button';
 import MakeOfferDialog from '../Offer/MakeOfferDialog';
-import { connectAccount, chainConnect } from 'src/GlobalState/User';
+import { connectAccount, chainConnect } from '../../GlobalState/User';
 import { round } from '../../utils';
 
 const Watermarked = styled.div`
