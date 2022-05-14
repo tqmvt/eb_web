@@ -1205,7 +1205,8 @@ export async function getNftsForAddress2(walletAddress, walletProvider, page) {
           image = fallbackImageUrl;
           console.log(e);
         }
-
+        if (!image) image = fallbackImageUrl;
+        
         const video = nft.animation_url ?? (image.split('.').pop() === 'mp4' ? image : null);
 
         let isStaked = false;
