@@ -4219,7 +4219,7 @@
       "multiToken": false,
       "address": "0x6dc39efcaaf66dd9D46E95cBC69AfC12fdf1E728",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "Rekt Apes is a true-to-reality collection showcasing what happens to cute lil' apes when they stare at the moon too long.",
         "verified": false,
@@ -4241,7 +4241,7 @@
       "onChain": false,
       "listable": false,
       "metadata": {
-        "description": "Rekt Apes is a true-to-reality collection showcasing what happens to cute lil' apes when they stare at the moon too long.",
+        "description": "The Bankroll Bear Society is an NFT project consisting of 5,000 Bears. Found on the Cronos chain. We are offering direct REAL-LIFE utilities. Our Bears are a VIP gateway into the Bankroll Universe and ecosystem.",
         "verified": true,
         "avatar": "/img/collections/bankroll-bear-society/avatar.webp",
         "card": "/img/collections/bankroll-bear-society/card.webp",
