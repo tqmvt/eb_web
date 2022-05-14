@@ -4212,6 +4212,26 @@
         "medium": "https://aliencro.medium.com/",
         "telegram": "https://t.me/AlienCRO"
       }
+    },
+    {
+      "name": "RektApes",
+      "slug": "rekt-apes",
+      "multiToken": false,
+      "address": "0x6dc39efcaaf66dd9D46E95cBC69AfC12fdf1E728",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "Rekt Apes is a true-to-reality collection showcasing what happens to cute lil' apes when they stare at the moon too long.",
+        "verified": false,
+        "avatar": "/img/collections/rekt-apes/avatar.webp",
+        "card": "/img/collections/rekt-apes/card.webp",
+        "banner": "/img/collections/rekt-apes/banner.webp",
+        "maxSupply": 1000,
+        "website": "https://rektapes.co/",
+        "twitter": "https://twitter.com/RektApesNFT",
+        "discord": "https://discord.gg/uKzJWZmvne",
+        "telegram": "https://t.me/cronexfinance"
+      }
     }
   ],
   "drops": [
