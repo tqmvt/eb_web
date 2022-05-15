@@ -173,9 +173,9 @@
       "metadata": {
         "description": "The Mad Meerkat is inspired by the cheeky nature of the loveable rogues, who loves nothing more than cavorting together in the sun. An expansion from our OG Ethereum collection, these 10000 Next Gen Cro Meerkats will traverse the novel Cronos chain. Guided by the M.A.D values, we will embark on an adventure to explore and unlock all that lies within Cronos. With each Mad Meerkat sharing and learning from one another regardless the chain, it is our next step forward as one Burrow.",
         "verified": true,
-        "avatar": "/img/collections/meerkats/avatar.png",
-        "banner": "/img/collections/meerkats/banner.jpg",
-        "card": "/img/collections/meerkats/card.jpg",
+        "avatar": "/img/collections/meerkats/avatar.webp",
+        "banner": "/img/collections/meerkats/banner.webp",
+        "card": "/img/collections/meerkats/card.webp",
         "rarity": "rarity_sniper",
         "raritySniperSlug": "mad-meerkat",
         "maxSupply": 10000,
@@ -2237,9 +2237,9 @@
       "metadata": {
         "description": "The MM TreeHouse represents a celebration of inclusivity and empowerment amongst all. Connecting branches between all of Cronos, it is a shared space where innovation is created from discovering shared value between differences- To build a lush future for everyone to succeed in their unique ways. Welcome to Stage 2 of MM.",
         "verified": true,
-        "avatar": "/img/collections/meerkats/treehouse/avatar.png",
-        "card": "/img/collections/meerkats/treehouse/card.jpg",
-        "banner": "/img/collections/meerkats/treehouse/banner.jpg",
+        "avatar": "/img/collections/meerkats/treehouse/avatar.webp",
+        "card": "/img/collections/meerkats/treehouse/card.webp",
+        "banner": "/img/collections/meerkats/treehouse/banner.webp",
         "rarity": "rarity_sniper",
         "raritySniperSlug": "mm-treehouse",
         "maxSupply": 10000,
@@ -4250,6 +4250,26 @@
         "website": "http://www.bankrollbearsociety.com/",
         "twitter": "https://twitter.com/Bankrollbears",
         "discord": "http://discord.gg/bankrollbearsociety"
+      }
+    },
+    {
+      "name": "Degen Mad Meerkat",
+      "slug": "degen-mad-meerkat",
+      "multiToken": false,
+      "address": "0xA19bFcE9BaF34b92923b71D487db9D0D051a88F8",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "The Degen Mad Meerkat Collection is the symbol of True Madness within MM. Loving the thrill of celebrating highs and avenging lows, this is what it means to be on an Adventure like no other. MM has and will always be a movement for those who burn bright in the Madness no matter what happens. #MAD4LIFE.",
+        "verified": true,
+        "avatar": "/img/collections/meerkats/degen/avatar.webp",
+        "banner": "/img/collections/meerkats/degen/banner.webp",
+        "card": "/img/collections/meerkats/degen/card.webp",
+        "maxSupply": 10010,
+        "website": "https://madmeerkat.io/",
+        "twitter": "https://twitter.com/MadMeerkatNFT",
+        "discord": "https://discord.gg/madmeerkat",
+        "medium": "https://medium.com/@madmeerkat0"
       }
     }
   ],
