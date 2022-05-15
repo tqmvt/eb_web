@@ -4258,7 +4258,7 @@
       "multiToken": false,
       "address": "0xA19bFcE9BaF34b92923b71D487db9D0D051a88F8",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "The Degen Mad Meerkat Collection is the symbol of True Madness within MM. Loving the thrill of celebrating highs and avenging lows, this is what it means to be on an Adventure like no other. MM has and will always be a movement for those who burn bright in the Madness no matter what happens. #MAD4LIFE.",
         "verified": true,
