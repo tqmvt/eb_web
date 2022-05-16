@@ -27,7 +27,7 @@ import { FilterOption } from '../Models/filter-option.model';
 import config from '../../Assets/networks/rpc_config.json';
 import Market from '../../Contracts/Marketplace.json';
 import stakingPlatforms from '../../core/data/staking-platforms.json';
-import CollectionCronosverse from '../components/Collection/collectionCronosverse';
+import CollectionCronosverse from '../Collection/collectionCronosverse';
 
 const knownContracts = config.known_contracts;
 
