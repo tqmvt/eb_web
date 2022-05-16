@@ -259,7 +259,7 @@ const Collections = () => {
                                 onClick={() => sortCollections('floorPrice')}
                               >
                                 <span>Floor Price</span>
-                                <span className="text-end">{collectionFloorPriceValue(collection)} CRO</span>
+                                <span className="text-end">{collection.numberActive > 0 ? `${collectionFloorPriceValue(collection)} CRO` : 'N/A'}</span>
                               </div>
                               <div className="col-12 mobile-view-list-item">
                                 <span>
@@ -282,7 +282,7 @@ const Collections = () => {
                         </th>
                         {tableMobileView && <td>{siPrefixedNumber(collectionVolume(collection))} CRO</td>}
                         {tableMobileView && <td>{siPrefixedNumber(collectionSales(collection))}</td>}
-                        {tableMobileView && <td>{collectionFloorPriceValue(collection)} CRO</td>}
+                        {tableMobileView && <td>{collection.numberActive > 0 ? `${collectionFloorPriceValue(collection)} CRO` : '-'}</td>}
                         {tableMobileView && <td>{collectionAveragePrices(collection)} CRO</td>}
                         {tableMobileView && <td>{siPrefixedNumber(collectionNumberActiveValue(collection))}</td>}
                       </tr>

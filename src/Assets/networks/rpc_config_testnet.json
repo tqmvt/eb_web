@@ -1035,6 +1035,27 @@
         "discord": "https://discord.gg/ghetto-doves",
         "medium": "https://medium.com/@gd_29360/welcome-to-the-city-of-new-york-d940fff215c1"
       }
+    },
+    {
+      "name": "Ghetto Doves: The Self Titled Drop - VIP",
+      "slug": "ghetto-doves-vip",
+      "multiToken": true,
+      "tokens": [{ "id": 1 }],
+      "address": "0x2fAe3a245CAE5e863faA3954E74F486BC08E25ff",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/ghetto-doves/avatar.webp",
+        "card": "/img/collections/ghetto-doves/card.webp",
+        "banner": "/img/collections/ghetto-doves/banner.webp",
+        "maxSupply": 1,
+        "twitter": "https://twitter.com/DovesGhetto",
+        "website": "https://ghettodoves.com/",
+        "discord": "https://discord.gg/ghetto-doves",
+        "medium": "https://medium.com/@gd_29360/welcome-to-the-city-of-new-york-d940fff215c1"
+      }
     }
   ],
   "drops": [
