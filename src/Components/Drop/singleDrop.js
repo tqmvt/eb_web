@@ -164,7 +164,7 @@ const SingleDrop = () => {
     // Use the new contract format if applicable
     let abi = currentDrop.abi;
     if (isUsingAbiFile(abi)) {
-      const abiJson = require(`../src/Assets/abis/${currentDrop.abi}`);
+      const abiJson = require(`../../Assets/abis/${currentDrop.abi}`);
       abi = abiJson.abi ?? abiJson;
     } else if (isUsingDefaultDropAbi(abi)) {
       abi = EbisuDropAbi;
