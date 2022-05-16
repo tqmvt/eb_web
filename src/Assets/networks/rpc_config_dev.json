@@ -4282,7 +4282,7 @@
       "slug": "ghetto-doves-vip",
       "multiToken": true,
       "tokens": [{ "id": 1 }],
-      "address": "",
+      "address": "0x197a3bf1FC06e8446d7187572ca31E02940918ab",
       "onChain": false,
       "listable": true,
       "metadata": {
