@@ -6,7 +6,6 @@ import { Contract, ethers } from 'ethers';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Spinner } from 'react-bootstrap';
-import { commify } from 'ethers/lib/utils';
 
 import Button from '../../../Components/components/Button';
 import Input from '../../../Components/components/common/Input';
@@ -402,7 +401,7 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
               </FlexRow>
               <FlexRow>
                 <FloorPrice>Floor Price</FloorPrice>
-                <FloorPrice>{floorPrice ? `${commify(floorPrice)} CRO` : '-'}</FloorPrice>
+                <FloorPrice>{floorPrice ? `${ethers.utils.commify(floorPrice)} CRO` : '-'}</FloorPrice>
               </FlexRow>
               {(offerType === OFFER_TYPE.make || offerType === OFFER_TYPE.update) && (
                 <>

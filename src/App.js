@@ -3,12 +3,12 @@ import Head from 'next/head';
 import { useDispatch, useSelector } from 'react-redux';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { toast, ToastContainer } from 'react-toastify';
+import { initializeApp } from 'firebase/app';
+import { initializeAnalytics } from 'firebase/analytics';
 
 import ScrollToTopBtn from './Components/menu/ScrollToTop';
 import Header from './Components/menu/header';
-import { initializeApp } from 'firebase/app';
 import firebaseConfig from './Firebase/firebase_config';
-import { initializeAnalytics } from 'firebase/analytics';
 import { initProvider } from './GlobalState/User';
 import { appInitializer } from './GlobalState/InitSlice';
 import { getTheme } from './Theme/theme';

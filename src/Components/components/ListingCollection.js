@@ -1,9 +1,10 @@
 import React, { memo, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import ListingCard from './ListingCard';
-import { init, fetchListings } from '../../GlobalState/marketplaceSlice';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Spinner } from 'react-bootstrap';
+
+import ListingCard from './ListingCard';
+import { init, fetchListings } from '../../GlobalState/marketplaceSlice';
 import { SortOption } from '../Models/sort-option.model';
 
 import HiddenCard from './HiddenCard';

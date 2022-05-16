@@ -12,7 +12,6 @@ import { Form, ProgressBar, Spinner } from 'react-bootstrap';
 import ReactPlayer from 'react-player';
 import * as Sentry from '@sentry/react';
 import styled from 'styled-components';
-import { commify } from 'ethers/lib.esm/utils';
 
 import Footer from '../src/Components/components/Footer';
 import config from '../src/Assets/networks/rpc_config.json';
@@ -603,7 +602,7 @@ const SingleDrop = () => {
                 <h2>{drop.title}</h2>
                 {status === statuses.UNSET || status === statuses.NOT_STARTED || drop.complete ? (
                   <div>
-                    <div className="fs-6 fw-bold mb-1">Supply: {commify(maxSupply.toString())}</div>
+                    <div className="fs-6 fw-bold mb-1">Supply: {ethers.utils.commify(maxSupply.toString())}</div>
                   </div>
                 ) : (
                   <div>

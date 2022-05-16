@@ -4,7 +4,7 @@ import Blockies from 'react-blockies';
 import { Dropdown } from 'react-bootstrap';
 import moment from 'moment';
 import Link from 'next/link';
-import { commify } from 'ethers/lib.esm/utils';
+import { commify } from 'ethers/lib/utils';
 
 import Button from '../../../../Components/components/Button';
 import { shortAddress } from '../../../../utils';

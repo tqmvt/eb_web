@@ -7,7 +7,6 @@ import { createSuccessfulTransactionToastContent, round, siPrefixedNumber } from
 import { ethers } from 'ethers';
 // import { RewardsPoolAbi } from '../../Contracts/Abis';
 // import config from '../../Assets/networks/rpc_config.json';
-// import { commify } from 'ethers/lib.esm/utils';
 // import Countdown from 'react-countdown';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -23,7 +22,6 @@ import {
   // faTrophy,
 } from '@fortawesome/free-solid-svg-icons';
 import { getTheme } from '../../Theme/theme';
-import { commify } from 'ethers/lib.esm/utils';
 
 const txExtras = {
   gasPrice: ethers.utils.parseUnits('5000', 'gwei'),
@@ -415,7 +413,8 @@ const RewardsCard = () => {
               {userPendingRewards > 0 ? (
                 <>
                   <p className="text-center my-xl-auto fs-5" style={{ color: getTheme(userTheme).colors.textColor3 }}>
-                    You have <strong>{commify(round(userPendingRewards, 3))} CRO</strong> available for harvest!
+                    You have <strong>{ethers.utils.commify(round(userPendingRewards, 3))} CRO</strong> available for
+                    harvest!
                   </p>
                   <button
                     className="btn-main lead mx-1 mb-1 mt-2"

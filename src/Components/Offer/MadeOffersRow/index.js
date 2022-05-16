@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import moment from 'moment';
 import Blockies from 'react-blockies';
-import { commify } from 'ethers/lib.esm/utils';
+import { commify } from 'ethers/lib/utils';
 import Link from 'next/link';
 
 import Button from '../../../Components/components/Button';
