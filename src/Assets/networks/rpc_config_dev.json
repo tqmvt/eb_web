@@ -3910,11 +3910,16 @@
       "onChain": false,
       "listable": false,
       "metadata": {
-        "description": "",
+        "description": "CNS domains are unique decentralized domains for web3. CNS makes the blockchain ecosystem a bit simpler by allowing users to create a global username for their public addresses and decentralized dapps. Join our discord community to learn more about CNS.",
         "verified": true,
-        "avatar": "/img/collections/toughlions/avatar.png",
-        "card": "/img/collections/toughlions/card.png",
-        "banner": "/img/collections/toughlions/banner.png"
+        "avatar": "/img/collections/cronos-name-service/avatar.webp",
+        "card": "/img/collections/cronos-name-service/card.webp",
+        "banner": "/img/collections/cronos-name-service/banner.webp",
+        "website": "https://www.cronos.domains/",
+        "twitter": "https://twitter.com/Cronos_domains",
+        "discord": "https://bit.ly/3sXzV9l",
+        "medium": "https://bit.ly/3wl1PN2",
+        "telegram": "https://bit.ly/3LaM1Sx"
       }
     },
     {
