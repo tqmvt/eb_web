@@ -5,12 +5,12 @@ import MySoldNftCollection from '../src/Components/components/MySoldNftCollectio
 import Footer from '../src/Components/components/Footer';
 
 const MySales = () => {
-  const walletAddress = useSelector((state) => state.user.address);
+  // const walletAddress = useSelector((state) => state.user.address);
 
-  if (!walletAddress) {
-    router.push('/marketplace');
-    return;
-  }
+  // if (!walletAddress) {
+  //   router.push('/marketplace');
+  //   return;
+  // }
 
   const Content = () => (
     <>

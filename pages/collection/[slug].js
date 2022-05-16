@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
-import Collection1155 from '../collection1155';
-import Collection721 from '../collection721';
+import Collection1155 from '../../src/Components/Collection/collection1155';
+import Collection721 from '../../src/Components/Collection/collection721';
+import CollectionCronosverse from '../../src/Components/Collection/collectionCronosverse';
 import config from '../../src/Assets/networks/rpc_config.json';
 import { caseInsensitiveCompare, isCronosVerseCollection } from '../../src/utils';
-import CollectionCronosverse from '../collectionCronosverse';
 
 const knownContracts = config.known_contracts;
 
@@ -46,11 +46,11 @@ const Collection = () => {
     setInitialized(true);
   }, [slug]);
 
-  if (redirect) {
-    if (typeof window !== 'undefined') {
-      router.push(`/collection/${redirect}`);
-    }
-  }
+  // if (redirect) {
+  //   if (typeof window !== 'undefined') {
+  //     router.push(`/collection/${redirect}`);
+  //   }
+  // }
 
   return (
     <>

@@ -7,13 +7,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import MetaMaskOnboarding from '@metamask/onboarding';
 
-import Footer from '../src/Components/components/Footer';
-import { createSuccessfulTransactionToastContent } from '../src/utils';
-import config from '../src/Assets/networks/rpc_config.json';
-import { getSlothty721NftsFromIds, getSlothty721NftsFromWallet } from '../src/core/api/chain';
-import RugsuranceAbi from '../src/Contracts/SlothtyRugsurance.json';
-import { chainConnect, connectAccount } from '../src/GlobalState/User';
-import { ERC721 } from '../src/Contracts/Abis';
+import Footer from '../components/Footer';
+import { createSuccessfulTransactionToastContent } from '../../utils';
+import config from '../../Assets/networks/rpc_config.json';
+import { getSlothty721NftsFromIds, getSlothty721NftsFromWallet } from '../../core/api/chain';
+import RugsuranceAbi from '../../Contracts/SlothtyRugsurance.json';
+import { chainConnect, connectAccount } from '../../GlobalState/User';
+import { ERC721 } from '../../Contracts/Abis';
 
 const knownContracts = config.known_contracts;
 const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);

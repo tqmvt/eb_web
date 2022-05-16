@@ -6,13 +6,13 @@ import MetaMaskOnboarding from '@metamask/onboarding';
 import { commify } from 'ethers/lib/utils';
 import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
 
-import { init, fetchListings } from '../src/GlobalState/collectionSlice';
-import { devLog } from '../src/utils';
-import { CollectionSortOption } from '../src/Components/Models/collection-sort-option.model';
-import { FilterOption } from '../src/Components/Models/filter-option.model';
-import Button from '../src/Components/components/Button';
-import { chainConnect, connectAccount } from '../src/GlobalState/User';
-import MakeOfferDialog from '../src/Components/Offer/MakeOfferDialog';
+import { init, fetchListings } from '../../GlobalState/collectionSlice';
+import { devLog } from '../../utils';
+import { CollectionSortOption } from '../Models/collection-sort-option.model';
+import { FilterOption } from '../Models/filter-option.model';
+import Button from '../components/Button';
+import { chainConnect, connectAccount } from '../../GlobalState/User';
+import MakeOfferDialog from '../Offer/MakeOfferDialog';
 
 const CollectionCronosverse = ({ collection }) => {
   if (typeof window === 'undefined') {

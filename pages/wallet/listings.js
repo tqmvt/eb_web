@@ -5,12 +5,12 @@ import Footer from '../../src/Components/components/Footer';
 import MyListingsCollection from '../../src/Components/components/MyListingsCollection';
 
 const MyListings = () => {
-  const walletAddress = useSelector((state) => state.user.address);
+  // const walletAddress = useSelector((state) => state.user.address);
 
-  if (!walletAddress) {
-    router.push('/marketplace');
-    return;
-  }
+  // if (!walletAddress) {
+  //   router.push('/marketplace');
+  //   return;
+  // }
 
   const Content = () => (
     <>

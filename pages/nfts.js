@@ -38,10 +38,10 @@ const MyNfts = ({ walletAddress, isLoading }) => {
     setOpenTab(index);
   };
 
-  if (!walletAddress) {
-    router.push('/marketplace');
-    return;
-  }
+  // if (!walletAddress) {
+  //   router.push('/marketplace');
+  //   return;
+  // }
 
   return (
     <div>

@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
 import config from '../../src/Assets/networks/rpc_config.json';
-import MultiDrop from '../multiDrop';
-import SingleDrop from '../singleDrop';
-import CronosverseDrop from '../CronosverseDrop';
+import MultiDrop from '../../src/multiDrop';
+import SingleDrop from '../../src/Components/Drop/singleDrop';
+import CronosverseDrop from '../../src/Components/Drop/CronosverseDrop';
 
 export const drops = config.drops;
 

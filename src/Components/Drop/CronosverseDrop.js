@@ -14,12 +14,12 @@ import * as Sentry from '@sentry/react';
 import styled from 'styled-components';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 
-import Footer from '../src/Components/components/Footer';
-import config from '../src/Assets/networks/rpc_config.json';
-import { connectAccount } from '../src/GlobalState/User';
-import { createSuccessfulTransactionToastContent, isFounderDrop, newlineText } from '../src/utils';
-import { dropState as statuses } from '../src/core/api/enums';
-import { EbisuDropAbi } from '../src/Contracts/Abis';
+import Footer from '../components/Footer';
+import config from '../../Assets/networks/rpc_config.json';
+import { connectAccount } from '../../GlobalState/User';
+import { createSuccessfulTransactionToastContent, isFounderDrop, newlineText } from '../../utils';
+import { dropState as statuses } from '../../core/api/enums';
+import { EbisuDropAbi } from '../../Contracts/Abis';
 
 const tiles = [
   '/img/cronosverse/Plain-tile.png',

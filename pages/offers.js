@@ -178,10 +178,10 @@ const MyOffers = () => {
     }
   };
 
-  if (!walletAddress) {
-    router.push('/marketplace');
-    return;
-  }
+  // if (!walletAddress) {
+  //   router.push('/marketplace');
+  //   return;
+  // }
 
   const Content = () => (
     <>

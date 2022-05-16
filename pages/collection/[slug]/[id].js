@@ -3,8 +3,8 @@ import { useRouter } from 'next/router';
 
 import { findCollectionByAddress } from '../../../src/utils';
 import config from '../../../src/Assets/networks/rpc_config.json';
-import Nft1155 from '../../nft1155';
-import Nft721 from '../../nft721';
+import Nft1155 from '../../../src/Components/Collection/nft1155';
+import Nft721 from '../../../src/Components/Collection/nft721';
 const knownContracts = config.known_contracts;
 
 const Nft = () => {
@@ -33,9 +33,9 @@ const Nft = () => {
     setInitialized(true);
   }, [slug, id]);
 
-  if (redirect) {
-    router.push(`/collection/${redirect}/${id}`);
-  }
+  // if (redirect) {
+  //   router.push(`/collection/${redirect}/${id}`);
+  // }
 
   return (
     <>

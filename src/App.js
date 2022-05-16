@@ -63,8 +63,10 @@ function App({ Component, pageProps }) {
 
   useEffect(() => {
     const firebase = initializeApp(firebaseConfig);
-    initializeAnalytics(firebase);
-    dispatch(initProvider());
+    if (typeof window !== 'undefined') {
+      initializeAnalytics(firebase);
+      dispatch(initProvider());
+    }
   }, [dispatch]);
 
   return (

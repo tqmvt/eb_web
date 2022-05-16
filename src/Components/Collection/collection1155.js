@@ -5,23 +5,23 @@ import { Contract, ethers } from 'ethers';
 import { faCheck, faCircle } from '@fortawesome/free-solid-svg-icons';
 import Blockies from 'react-blockies';
 
-import Footer from '../src/Components/components/Footer';
-import CollectionListingsGroup from '../src/Components/components/CollectionListingsGroup';
+import Footer from '../components/Footer';
+import CollectionListingsGroup from '../components/CollectionListingsGroup';
 // import CollectionFilterBar from '../src/Components/components/CollectionFilterBar';
-import LayeredIcon from '../src/Components/components/LayeredIcon';
-import { init, fetchListings, getStats } from '../src/GlobalState/collectionSlice';
-import { isCrosmocraftsPartsCollection } from '../src/utils';
+import LayeredIcon from '../components/LayeredIcon';
+import { init, fetchListings, getStats } from '../../GlobalState/collectionSlice';
+import { isCrosmocraftsPartsCollection } from '../../utils';
 // import TraitsFilter from '../Collection/TraitsFilter';
 // import PowertraitsFilter from '../Collection/PowertraitsFilter';
-import SocialsBar from '../src/Components/Collection/SocialsBar';
-import { CollectionSortOption } from '../src/Components/Models/collection-sort-option.model';
-import { FilterOption } from '../src/Components/Models/filter-option.model';
-import config from '../src/Assets/networks/rpc_config.json';
-import Market from '../src/Contracts/Marketplace.json';
-import CollectionInfoBar from '../src/Components/components/CollectionInfoBar';
-import stakingPlatforms from '../src/core/data/staking-platforms.json';
-import SalesCollection from '../src/Components/components/SalesCollection';
-import CollectionNftsGroup from '../src/Components/components/CollectionNftsGroup';
+import SocialsBar from './SocialsBar';
+import { CollectionSortOption } from '../Models/collection-sort-option.model';
+import { FilterOption } from '../Models/filter-option.model';
+import config from '../../Assets/networks/rpc_config.json';
+import Market from '../../Contracts/Marketplace.json';
+import CollectionInfoBar from '../components/CollectionInfoBar';
+import stakingPlatforms from '../../core/data/staking-platforms.json';
+import SalesCollection from '../components/SalesCollection';
+import CollectionNftsGroup from '../components/CollectionNftsGroup';
 
 // const knownContracts = config.known_contracts;
 

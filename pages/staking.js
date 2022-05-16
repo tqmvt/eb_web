@@ -5,12 +5,12 @@ import Footer from '../src/Components/components/Footer';
 import MyStakingComponent from '../src/Components/components/MyStaking';
 
 const MyStaking = () => {
-  const walletAddress = useSelector((state) => state.user.address);
+  // const walletAddress = useSelector((state) => state.user.address);
 
-  if (!walletAddress) {
-    router.push('/marketplace');
-    return;
-  }
+  // if (!walletAddress) {
+  //   router.push('/marketplace');
+  //   return;
+  // }
 
   const Content = () => (
     <>

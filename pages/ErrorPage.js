@@ -95,18 +95,18 @@ const Jumbotron = {
 };
 
 export const ErrorPage = () => {
-  if (typeof window === 'undefined') {
-    return;
-  }
   const dispatch = useDispatch();
 
   const userTheme = useSelector((state) => {
     return state.user.theme;
   });
 
-  const [mobile, setMobile] = useState(window.innerWidth < theme.breakpointsNum.md);
+  const [mobile, setMobile] = useState(typeof window !== 'undefined' && window.innerWidth < theme.breakpointsNum.md);
 
   useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
     const breakpointObserver = ({ target }) => {
       const { innerWidth } = target;
       const newValue = innerWidth < theme.breakpointsNum.md;
@@ -138,7 +138,7 @@ export const ErrorPage = () => {
         <Reveal className="onStep call-to-action" keyframes={inline} delay={800} duration={900} triggerOnce>
           <div className="min-width-on-column mb-2 w-100 d-inline-flex flex-column flex-md-row flex-lg-column flex-xl-row gap-3   align-items-center">
             <span
-              onClick={() => window.open('/', '_self')}
+              onClick={() => typeof window !== 'undefined' && window.open('/', '_self')}
               className="m-0 text-nowrap p-4 pt-2 pb-2 btn-main inline lead"
             >
               GO TO HOMEPAGE

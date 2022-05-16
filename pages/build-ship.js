@@ -13,9 +13,6 @@ import ShipABI from '../src/Contracts/Ship.json';
 import ShipItemABI from '../src/Contracts/ShipItem.json';
 
 const Drop = () => {
-  if (typeof window === 'undefined') {
-    return;
-  }
   const [ships, setShips] = useState([]);
   const [partsBalances, setPartsBalances] = useState([]);
   const [shipContract, setShipContract] = useState(null);
@@ -141,7 +138,7 @@ const Drop = () => {
                   <span>Need more parts? &nbsp;</span>
                   <div className="nft__item_action d-inline-block" style={{ fontSize: '16px' }}>
                     <span
-                      onClick={() => window.open('/drops/crosmocrafts-parts', '_self')}
+                      onClick={() => typeof window !== 'undefined' && window.open('/drops/crosmocrafts-parts', '_self')}
                       style={{ cursor: 'pointer' }}
                     >
                       Mint Crosmocrafts Parts
