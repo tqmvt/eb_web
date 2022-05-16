@@ -4276,6 +4276,26 @@
         "discord": "https://discord.gg/madmeerkat",
         "medium": "https://medium.com/@madmeerkat0"
       }
+    },
+    {
+      "name": "Ghetto Doves: The Self Titled Drop - VIP",
+      "slug": "ghetto-doves-vip",
+      "multiToken": true,
+      "tokens": [{ "id": 1 }],
+      "address": "0x197a3bf1FC06e8446d7187572ca31E02940918ab",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "A special airdrop gifted to all EB-VIP members.",
+        "verified": true,
+        "avatar": "/img/collections/ghetto-doves/avatar.webp",
+        "card": "/img/collections/ghetto-doves/card.webp",
+        "banner": "/img/collections/ghetto-doves/banner.webp",
+        "twitter": "https://twitter.com/DovesGhetto",
+        "website": "https://ghettodoves.com/",
+        "discord": "https://discord.gg/ghetto-doves",
+        "medium": "https://medium.com/@gd_29360/welcome-to-the-city-of-new-york-d940fff215c1"
+      }
     }
   ],
   "drops": [
