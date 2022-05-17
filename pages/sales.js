@@ -1,16 +1,19 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 
 import MySoldNftCollection from '../src/Components/components/MySoldNftCollection';
 import Footer from '../src/Components/components/Footer';
 
 const MySales = () => {
-  // const walletAddress = useSelector((state) => state.user.address);
+  const router = useRouter();
+  const walletAddress = useSelector((state) => state.user.address);
 
-  // if (!walletAddress) {
-  //   router.push('/marketplace');
-  //   return;
-  // }
+  if (!walletAddress) {
+    if (typeof window !== 'undefined') {
+      router.push('/marketplace');
+    }
+  }
 
   const Content = () => (
     <>

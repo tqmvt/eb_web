@@ -1,16 +1,19 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 
 import Footer from '../../src/Components/components/Footer';
 import MyListingsCollection from '../../src/Components/components/MyListingsCollection';
 
 const MyListings = () => {
-  // const walletAddress = useSelector((state) => state.user.address);
+  const router = useRouter();
+  const walletAddress = useSelector((state) => state.user.address);
 
-  // if (!walletAddress) {
-  //   router.push('/marketplace');
-  //   return;
-  // }
+  if (!walletAddress) {
+    if (typeof window !== 'undefined') {
+      router.push('/marketplace');
+    }
+  }
 
   const Content = () => (
     <>
