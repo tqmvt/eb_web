@@ -4353,6 +4353,25 @@
         "website": "https://cronodes.app",
         "discord": "https://discord.gg/cronodesofficial"
       }
+    },
+    {
+      "name": "Cronos Chibis",
+      "slug": "cronos-chibis",
+      "multiToken": false,
+      "address": "0x84Fda8563E6556a7Fb1578E10e114dB56d64638d",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "On 14th May, 2222 Cronos Chibis will be warped into the Cronos universe! As they battle their way through different worlds, only the strongest and sharpest Chibis will reach their Ultimate Chibi form (limited to 50 total). Who knows what treasures may await throughout their adventures.  The community will also help design the first Cronos Chibis manga series as their NFTs can be chosen to star in a real manga storyline. Rewards will be flowing throughout our quests and games nights. Passive income via staking is just one of the numerous utilities Chibis will bring. Come join the Cronos Chibis and become family.",
+        "verified": false,
+        "avatar": "/img/collections/cronos-chibis/avatar.webp",
+        "card": "/img/collections/cronos-chibis/card.webp",
+        "banner": "/img/collections/cronos-chibis/banner.webp",
+        "maxSupply": 2222,
+        "twitter": "https://www.twitter.com/CronosChibis",
+        "website": "https://www.cronoschibis.com",
+        "discord": "https://discord.gg/Y6Pa5J8S66"
+      }
     }
   ],
   "drops": [
