@@ -7,7 +7,7 @@ const nextConfig = {
     styledComponents: true,
   },
   images: {
-    domains: ['res.cloudinary.com'],
+    domains: ['ipfs.io', 'app.ebisusbay.com', 'files.ebisusbay.com', 'gateway.ebisusbay.com', 'res.cloudinary.com'],
   },
 };
 
