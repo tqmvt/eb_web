@@ -211,6 +211,12 @@ export function shortAddress(address) {
   return `${address.substring(0, 4)}...${address.substring(address.length - 3, address.length)}`;
 }
 
+export function shortString(str, leftChars = 3, rightChars = 3) {
+  if (!str) return '';
+
+  return `${str.substring(0, leftChars)}...${str.substring(str.length - rightChars, str.length)}`;
+}
+
 export function timeSince(date) {
   var seconds = Math.floor((new Date() - date) / 1000);
 

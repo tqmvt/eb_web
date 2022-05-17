@@ -4259,7 +4259,7 @@
     },
     {
       "name": "Mad Meerkat Degen",
-      "slug": "degen-mad-meerkat",
+      "slug": "mad-meerkat-degen",
       "multiToken": false,
       "address": "0xA19bFcE9BaF34b92923b71D487db9D0D051a88F8",
       "onChain": false,
