@@ -206,13 +206,12 @@ export function siPrefixedNumber(num, ) {
 }
 
 export function shortAddress(address) {
-  if (!address) return '';
-
-  return `${address.substring(0, 4)}...${address.substring(address.length - 3, address.length)}`;
+  return shortString(address, 4, 3);
 }
 
 export function shortString(str, leftChars = 3, rightChars = 3) {
   if (!str) return '';
+  if (str.length <= (leftChars + rightChars)) return str;
 
   return `${str.substring(0, leftChars)}...${str.substring(str.length - rightChars, str.length)}`;
 }
