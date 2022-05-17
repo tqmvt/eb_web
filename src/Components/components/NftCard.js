@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react';
+import React, { memo, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
@@ -11,6 +11,7 @@ import Button from './Button';
 import MakeOfferDialog from '../Offer/MakeOfferDialog';
 import { connectAccount, chainConnect } from '../../GlobalState/User';
 import { isNftBlacklisted, round } from '../../utils';
+import useWidth from '../../hooks/useWidth';
 
 const Watermarked = styled.div`
   position: relative;
@@ -49,10 +50,25 @@ const MakeOffer = styled.div`
 `;
 
 const NftCard = ({ royalty, listing, imgClass = 'marketplace', watermark, address, collectionMetadata }) => {
+  const windowWidth = useWidth();
   const history = useRouter();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const [openMakeOfferDialog, setOpenMakeOfferDialog] = useState(false);
+
+  const [nftImgWidth, setNftImgWidth] = useState();
+
+  useEffect(() => {
+    if (windowWidth >= 1280) {
+      setNftImgWidth(240);
+    } else if (windowWidth < 1280 && windowWidth >= 768) {
+      setNftImgWidth(180);
+    } else if (windowWidth < 768 && windowWidth > 576) {
+      setNftImgWidth(160);
+    } else {
+      setNftImgWidth(180);
+    }
+  }, [windowWidth]);
 
   const handleMakeOffer = () => {
     const isBlacklisted = isNftBlacklisted(listing.address, listing.id);
@@ -87,6 +103,7 @@ const NftCard = ({ royalty, listing, imgClass = 'marketplace', watermark, addres
     return false;
   };
 
+  console.log('nftcard', croSkullRedPotionImageHack(listing.address, listing.image));
   return (
     <>
       <div className="card eb-nft__card h-100 shadow">
@@ -97,6 +114,8 @@ const NftCard = ({ royalty, listing, imgClass = 'marketplace', watermark, addres
                 <img
                   src={croSkullRedPotionImageHack(listing.address, listing.image)}
                   className={`card-img-top ${imgClass}`}
+                  width={nftImgWidth}
+                  height={nftImgWidth}
                   alt={listing.name}
                 />
               </Watermarked>

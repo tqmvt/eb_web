@@ -7,7 +7,7 @@ const nextConfig = {
     styledComponents: true,
   },
   images: {
-    domains: ['ipfs.io'],
+    domains: ['ipfs.io', 'app.ebisusbay.com'],
   },
 };
 
