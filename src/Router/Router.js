@@ -101,6 +101,11 @@ const Component = ({ walletAddress, authInitFinished }) => {
           />
           <SentryEnhancedRoute
             exact
+            path="/collection/degen-mad-meerkat"
+            render={() => <Redirect to="/collection/mad-meerkat-degen" />}
+          />
+          <SentryEnhancedRoute
+            exact
             path="/collection/weird-apes-club-v2"
             render={() => <Redirect to="/collection/weird-apes-club" />}
           />
