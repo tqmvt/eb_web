@@ -4392,6 +4392,26 @@
         "discord": "https://discord.gg/croarmy",
         "telegram": "https://t.me/CroArmy_ETH"
       }
+    },
+    {
+      "name": "CROKE",
+      "slug": "croke",
+      "multiToken": false,
+      "address": "0x9e43a04211aB4e53a21adC54eC0e5030F48C0Bc8",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "Raising awareness on the dangers of drug addiction through unique evolving NFTs!",
+        "verified": false,
+        "avatar": "/img/collections/croke/avatar.webp",
+        "card": "/img/collections/croke/card.webp",
+        "banner": "/img/collections/croke/banner.webp",
+        "maxSupply": 4200,
+        "website": "https://www.croke.io/",
+        "twitter": "https://twitter.com/CrokeNfts",
+        "discord": "https://discord.gg/kmrZV97uvR",
+        "medium": "https://medium.com/@CrokeNFT/"
+      }
     }
   ],
   "drops": [
