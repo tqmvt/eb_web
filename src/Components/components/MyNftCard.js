@@ -2,12 +2,13 @@ import React, { memo } from 'react';
 import { useHistory } from 'react-router-dom';
 import { ethers } from 'ethers';
 import { toast } from 'react-toastify';
-import { faLink } from '@fortawesome/free-solid-svg-icons';
+import { faLink, faEllipsisH, faExchangeAlt, faTag, faTimes, faPen } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import config from '../../Assets/networks/rpc_config.json';
 import { croSkullRedPotionImageHack } from '../../hacks';
 import ReactPlayer from 'react-player';
 import { fallbackImageUrl } from '../../core/constants';
+import PopupMen from './PopupMenu';
 
 const MyNftCard = ({
   nft,
@@ -41,6 +42,47 @@ const MyNftCard = ({
     navigator.clipboard.writeText(url);
     toast.success('Copied!');
   };
+
+  const getOptions = () => {
+    const options = [];
+
+    if(canSell){
+      options.push({ 
+        icon: faTag, 
+        label: 'Sell',
+        handleClick: onSellButtonPressed
+      });
+    }
+    if(canTransfer){
+      options.push({ 
+        icon: faExchangeAlt, 
+        label: 'Transfer',
+        handleClick: onTransferButtonPressed 
+      });
+    }
+    if(canUpdate){
+      options.push({ 
+        icon: faPen, 
+        label: 'Update',
+        handleClick: onUpdateButtonPressed
+      });
+    }
+    if(canCancel){
+      options.push({ 
+        icon: faTimes, 
+        label: 'Cancel',
+        handleClick: onCancelButtonPressed 
+      });
+    }
+
+    options.push({ icon: faLink, 
+      label: 'Copy link', 
+      handleClick: onCopyLinkButtonPressed(new URL(nftUrl(), config.app_base)
+    )});
+
+    return options;
+
+  }
 
   return (
     <div className="card eb-nft__card h-100 shadow">
@@ -95,39 +137,17 @@ const MyNftCard = ({
           {nft.listed && nft.price ? <>{ethers.utils.commify(nft.price)} CRO</> : <>&nbsp;</>}
         </p>
       </div>
-      <div className="card-footer d-flex justify-content-between">
-        {canTransfer && (
-          <span className="mx-1" onClick={onTransferButtonPressed} style={{ cursor: 'pointer' }}>
-            Transfer
-          </span>
-        )}
-        {canSell && (
-          <span className="mx-1" onClick={onSellButtonPressed} style={{ cursor: 'pointer' }}>
-            Sell
-          </span>
-        )}
-        {isStaked && (
-          <span className="mx-1">
-            <strong>STAKED</strong>
-          </span>
-        )}
-        {canCancel && (
-          <span className="mx-1" onClick={onCancelButtonPressed} style={{ cursor: 'pointer' }}>
-            Cancel
-          </span>
-        )}
-        {canUpdate && !isStaked && (
-          <span className="mx-1" onClick={onUpdateButtonPressed} style={{ cursor: 'pointer' }}>
-            Update
-          </span>
-        )}
-        <span
-          className="mx-1"
-          onClick={onCopyLinkButtonPressed(new URL(nftUrl(), config.app_base))}
-          style={{ cursor: 'pointer' }}
-        >
-          <FontAwesomeIcon icon={faLink} />
-        </span>
+      <div className="card-footer mynft-card-footer" >
+        <div>
+          {isStaked && (
+            <span className="mx-1">
+              <strong>STAKED</strong>
+            </span>
+          )}
+        </div>
+        <PopupMen icon={faEllipsisH} options={getOptions()}>
+          <FontAwesomeIcon icon={faEllipsisH} style={{ cursor: 'pointer' }}/>
+        </PopupMen>
       </div>
     </div>
   );
