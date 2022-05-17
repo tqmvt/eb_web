@@ -15,7 +15,7 @@ import {
   isCroCrowCollection,
   isCrognomidesCollection,
   isNftBlacklisted,
-  isUserBlacklisted,
+  isUserBlacklisted, mapAttributeString, millisecondTimestamp,
   relativePrecision,
   shortAddress,
   timeSince,
@@ -409,9 +409,9 @@ const Nft721 = ({ address, id }) => {
                                               {data.value !== undefined ? (
                                                 <>
                                                   {data?.display_type === 'date' ? (
-                                                    <>{(new Date(data.value * 1000)).toDateString()}</>
+                                                    <>{(new Date(millisecondTimestamp(data.value))).toDateString()}</>
                                                   ) : (
-                                                    <>{humanize(data.value)}</>
+                                                    <>{mapAttributeString(data.value, address)}</>
                                                   )}
                                                 </>
                                               ) : (
@@ -438,9 +438,9 @@ const Nft721 = ({ address, id }) => {
                                             {data.value !== undefined ? (
                                               <>
                                                 {data?.display_type === 'date' ? (
-                                                  <>{(new Date(data.value * 1000)).toDateString()}</>
+                                                  <>{(new Date(millisecondTimestamp(data.value))).toDateString()}</>
                                                 ) : (
-                                                  <>{humanize(data.value)}</>
+                                                  <>{mapAttributeString(data.value, address, true)}</>
                                                 )}
                                               </>
                                             ) : (

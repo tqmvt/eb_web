@@ -2,7 +2,7 @@
   "name": "Cronos Mainnet Beta",
   "chain_id": "25",
   "write_rpc": "https://evm.cronos.org/",
-  "read_rpc": "https://rpc.ebisusbay.com/",
+  "read_rpc": "https://gateway.nebkas.ro",
   "symbol": "CRO",
   "explorer": "https://cronoscan.com/",
   "api_base": "https://api.ebisusbay.biz/",
@@ -173,9 +173,9 @@
       "metadata": {
         "description": "The Mad Meerkat is inspired by the cheeky nature of the loveable rogues, who loves nothing more than cavorting together in the sun. An expansion from our OG Ethereum collection, these 10000 Next Gen Cro Meerkats will traverse the novel Cronos chain. Guided by the M.A.D values, we will embark on an adventure to explore and unlock all that lies within Cronos. With each Mad Meerkat sharing and learning from one another regardless the chain, it is our next step forward as one Burrow.",
         "verified": true,
-        "avatar": "/img/collections/meerkats/avatar.png",
-        "banner": "/img/collections/meerkats/banner.jpg",
-        "card": "/img/collections/meerkats/card.jpg",
+        "avatar": "/img/collections/meerkats/avatar.webp",
+        "banner": "/img/collections/meerkats/banner.webp",
+        "card": "/img/collections/meerkats/card.webp",
         "rarity": "rarity_sniper",
         "raritySniperSlug": "mad-meerkat",
         "maxSupply": 10000,
@@ -1766,9 +1766,9 @@
       "metadata": {
         "description": "The official NFT of Cronodes",
         "verified": true,
-        "avatar": "https://files.ebisusbay.com/img/collections/cronodes/avatar.gif",
-        "card": "/img/collections/cronodes/card.png",
-        "banner": "/img/collections/cronodes/banner.png",
+        "avatar": "/img/collections/cronodes/avatar.webp",
+        "card": "/img/collections/cronodes/card.webp",
+        "banner": "/img/collections/cronodes/banner.webp",
         "maxSupply": 3300,
         "twitter": "https://twitter.com/CronodesFinance",
         "website": "https://cronodes.app",
@@ -2237,9 +2237,9 @@
       "metadata": {
         "description": "The MM TreeHouse represents a celebration of inclusivity and empowerment amongst all. Connecting branches between all of Cronos, it is a shared space where innovation is created from discovering shared value between differences- To build a lush future for everyone to succeed in their unique ways. Welcome to Stage 2 of MM.",
         "verified": true,
-        "avatar": "/img/collections/meerkats/treehouse/avatar.png",
-        "card": "/img/collections/meerkats/treehouse/card.jpg",
-        "banner": "/img/collections/meerkats/treehouse/banner.jpg",
+        "avatar": "/img/collections/meerkats/treehouse/avatar.webp",
+        "card": "/img/collections/meerkats/treehouse/card.webp",
+        "banner": "/img/collections/meerkats/treehouse/banner.webp",
         "rarity": "rarity_sniper",
         "raritySniperSlug": "mm-treehouse",
         "maxSupply": 10000,
@@ -3910,11 +3910,16 @@
       "onChain": false,
       "listable": false,
       "metadata": {
-        "description": "",
+        "description": "CNS domains are unique decentralized domains for web3. CNS makes the blockchain ecosystem a bit simpler by allowing users to create a global username for their public addresses and decentralized dapps. Join our discord community to learn more about CNS.",
         "verified": true,
-        "avatar": "/img/collections/toughlions/avatar.png",
-        "card": "/img/collections/toughlions/card.png",
-        "banner": "/img/collections/toughlions/banner.png"
+        "avatar": "/img/collections/cronos-name-service/avatar.webp",
+        "card": "/img/collections/cronos-name-service/card.webp",
+        "banner": "/img/collections/cronos-name-service/banner.webp",
+        "website": "https://www.cronos.domains/",
+        "twitter": "https://twitter.com/Cronos_domains",
+        "discord": "https://bit.ly/3sXzV9l",
+        "medium": "https://bit.ly/3wl1PN2",
+        "telegram": "https://bit.ly/3LaM1Sx"
       }
     },
     {
@@ -4201,7 +4206,7 @@
       "listable": false,
       "metadata": {
         "description": "The AlienCRO genesis NFT drop consists of a total of 1060 unique NFTs with, hand drawn traits. Holding NFTs from the collection will grant access to the staking pool and random NFT airdrops. You can expect to earn native CRO rewards from the staking pools, while the NFTs are going to be from popular Cronos projects!",
-        "verified": true,
+        "verified": false,
         "avatar": "/img/collections/alien-cro/avatar.webp",
         "card": "/img/collections/alien-cro/card.webp",
         "banner": "/img/collections/alien-cro/banner.webp",
@@ -4211,6 +4216,181 @@
         "discord": "https://discord.gg/ux3kWhx7ww",
         "medium": "https://aliencro.medium.com/",
         "telegram": "https://t.me/AlienCRO"
+      }
+    },
+    {
+      "name": "RektApes",
+      "slug": "rekt-apes",
+      "multiToken": false,
+      "address": "0x6dc39efcaaf66dd9D46E95cBC69AfC12fdf1E728",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "Rekt Apes is a true-to-reality collection showcasing what happens to cute lil' apes when they stare at the moon too long.",
+        "verified": false,
+        "avatar": "/img/collections/rekt-apes/avatar.webp",
+        "card": "/img/collections/rekt-apes/card.webp",
+        "banner": "/img/collections/rekt-apes/banner.webp",
+        "maxSupply": 1000,
+        "website": "https://rektapes.co/",
+        "twitter": "https://twitter.com/RektApesNFT",
+        "discord": "https://discord.gg/hyzdMVe9bb",
+        "telegram": "https://t.me/cronexfinance"
+      }
+    },
+    {
+      "name": "Bankroll Bear Society",
+      "slug": "bankroll-bear-society",
+      "multiToken": false,
+      "address": "",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "The Bankroll Bear Society is an NFT project consisting of 5,000 Bears. Found on the Cronos chain. We are offering direct REAL-LIFE utilities. Our Bears are a VIP gateway into the Bankroll Universe and ecosystem.",
+        "verified": true,
+        "avatar": "/img/collections/bankroll-bear-society/avatar.webp",
+        "card": "/img/collections/bankroll-bear-society/card.webp",
+        "banner": "/img/collections/bankroll-bear-society/banner.webp",
+        "maxSupply": 5000,
+        "website": "http://www.bankrollbearsociety.com/",
+        "twitter": "https://twitter.com/Bankrollbears",
+        "discord": "http://discord.gg/bankrollbearsociety"
+      }
+    },
+    {
+      "name": "Degen Mad Meerkat",
+      "slug": "degen-mad-meerkat",
+      "multiToken": false,
+      "address": "0xA19bFcE9BaF34b92923b71D487db9D0D051a88F8",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "The Degen Mad Meerkat Collection is the symbol of True Madness within MM. Loving the thrill of celebrating highs and avenging lows, this is what it means to be on an Adventure like no other. MM has and will always be a movement for those who burn bright in the Madness no matter what happens. #MAD4LIFE.",
+        "verified": true,
+        "avatar": "/img/collections/meerkats/degen/avatar.webp",
+        "banner": "/img/collections/meerkats/degen/banner.webp",
+        "card": "/img/collections/meerkats/degen/card.webp",
+        "maxSupply": 10010,
+        "website": "https://madmeerkat.io/",
+        "twitter": "https://twitter.com/MadMeerkatNFT",
+        "discord": "https://discord.gg/madmeerkat",
+        "medium": "https://medium.com/@madmeerkat0"
+      }
+    },
+    {
+      "name": "Ghetto Doves: The Self Titled Drop - VIP",
+      "slug": "ghetto-doves-vip",
+      "multiToken": true,
+      "tokens": [{ "id": 1 }],
+      "address": "0x197a3bf1FC06e8446d7187572ca31E02940918ab",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "A special airdrop gifted to all EB-VIP members.",
+        "verified": true,
+        "avatar": "/img/collections/ghetto-doves/avatar.webp",
+        "card": "/img/collections/ghetto-doves/card.webp",
+        "banner": "/img/collections/ghetto-doves/banner.webp",
+        "twitter": "https://twitter.com/DovesGhetto",
+        "website": "https://ghettodoves.com/",
+        "discord": "https://discord.gg/ghetto-doves",
+        "medium": "https://medium.com/@gd_29360/welcome-to-the-city-of-new-york-d940fff215c1"
+      }
+    },
+    {
+      "name": "Gold CRN Booster",
+      "slug": "gold-crn-booster",
+      "multiToken": false,
+      "address": "0xC0D6459d5002A57534e631E204aE6CC87Bed261d",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "With this booster NFT, all earnings on CroNodes Finance will be boosted by 10%!",
+        "verified": false,
+        "avatar": "/img/collections/cronodes/gold/avatar.webp",
+        "card": "/img/collections/cronodes/gold/card.webp",
+        "banner": "/img/collections/cronodes/gold/banner.webp",
+        "maxSupply": 2000,
+        "twitter": "https://twitter.com/CronodesFinance",
+        "website": "https://cronodes.app",
+        "discord": "https://discord.gg/cronodesofficial"
+      }
+    },
+    {
+      "name": "Silver CRN Booster",
+      "slug": "silver-crn-booster",
+      "multiToken": false,
+      "address": "0x0CDA344D8B6D58C6682cdBfb914FA073492777fe",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "With this booster NFT, all earnings on CroNodes Finance will be boosted by 5%!",
+        "verified": false,
+        "avatar": "/img/collections/cronodes/silver/avatar.webp",
+        "card": "/img/collections/cronodes/silver/card.webp",
+        "banner": "/img/collections/cronodes/silver/banner.webp",
+        "maxSupply": 3000,
+        "twitter": "https://twitter.com/CronodesFinance",
+        "website": "https://cronodes.app",
+        "discord": "https://discord.gg/cronodesofficial"
+      }
+    },
+    {
+      "name": "Bronze CRN Booster",
+      "slug": "bronze-crn-booster",
+      "multiToken": false,
+      "address": "0x21F7C4E6E23b4Fa4a2ca7edE88A55C765e40931e",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "With this booster NFT, all earnings on CroNodes Finance will be boosted by 2%!",
+        "verified": false,
+        "avatar": "/img/collections/cronodes/bronze/avatar.webp",
+        "card": "/img/collections/cronodes/bronze/card.webp",
+        "banner": "/img/collections/cronodes/bronze/banner.webp",
+        "maxSupply": 5000,
+        "twitter": "https://twitter.com/CronodesFinance",
+        "website": "https://cronodes.app",
+        "discord": "https://discord.gg/cronodesofficial"
+      }
+    },
+    {
+      "name": "Cronos Chibis",
+      "slug": "cronos-chibis",
+      "multiToken": false,
+      "address": "0x84Fda8563E6556a7Fb1578E10e114dB56d64638d",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "On 14th May, 2222 Cronos Chibis will be warped into the Cronos universe! As they battle their way through different worlds, only the strongest and sharpest Chibis will reach their Ultimate Chibi form (limited to 50 total). Who knows what treasures may await throughout their adventures.  The community will also help design the first Cronos Chibis manga series as their NFTs can be chosen to star in a real manga storyline. Rewards will be flowing throughout our quests and games nights. Passive income via staking is just one of the numerous utilities Chibis will bring. Come join the Cronos Chibis and become family.",
+        "verified": false,
+        "avatar": "/img/collections/cronos-chibis/avatar.webp",
+        "card": "/img/collections/cronos-chibis/card.webp",
+        "banner": "/img/collections/cronos-chibis/banner.webp",
+        "maxSupply": 2222,
+        "twitter": "https://www.twitter.com/CronosChibis",
+        "website": "https://www.cronoschibis.com",
+        "discord": "https://discord.gg/Y6Pa5J8S66"
+      }
+    },
+    {
+      "name": "CroArmy Burns",
+      "slug": "cro-army-burns",
+      "multiToken": false,
+      "address": "0x68500e24a226b75ee603f4040a647db1faa8f0fe",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "Holding a Burn NFT grants you access to receive airdrops when the treasury profits. CroArmy Burns are a collection of NFT's that burns our $ARMY supply and grant access to airdrops. Tax on secondary will be used to buyback and burn $ARMY supply",
+        "verified": false,
+        "avatar": "/img/collections/cro-army-burns/avatar.webp",
+        "card": "/img/collections/cro-army-burns/card.webp",
+        "banner": "/img/collections/cro-army-soldier/banner.webp",
+        "maxSupply": 4000,
+        "website": "https://croarmy.io/",
+        "twitter": "https://twitter.com/croarmy_eth",
+        "discord": "https://discord.gg/croarmy",
+        "telegram": "https://t.me/CroArmy_ETH"
       }
     }
   ],
@@ -5959,7 +6139,14 @@
       "title": "Crowboys Genesis Crates",
       "subtitle": "The Genesis Crates is a collection of 5000 NFTs being the first NFTs in the Crowboys Online Ecosystem. These crates come in three rarities (Good, Bad and Ugly), but every crate has its own attributes! Thanks to them you can generate $West token, find wealthy treasure inside, get weapons airdropped, and much more! They also give the holder a variety of other benefits detailed in our whitepaper like royalties paid through staking, discounts in the metaverse saloon, and an automatic whitelist for the next NFT - Genesis Crowboy to name a few.",
       "description": "The Genesis Crates Collection and the first NFT for Crowboys Online. These crates come in three rarities (Good, Bad and Ugly), and allow the holder to generate passive income in the form of our $WEST token while staked. $WEST will be used in our First-Person Shooter video game and our metaverse ecosystem. With $WEST you can purchase and trade: weapons, skins, horses, wearables, properties, play mini-games or deposit it before playing the competitive mode(Compete 2 Earn).\n\n✮Passive Income\nGood 93%= 1x $WEST daily \nBad 6%= 1.5x $WEST daily + bad banner airdrop \nUgly 1%= 3.5x $WEST daily + ugly banner airdrop\n\n✮Crates will also have 2 weapons inside already, so whenever they come live, holders will get airdrops! They come in different conditions though!\n\n✮Crates will be able to open to get a random treasure (with wealth multiplier from 0 to 10).\n\nMore Benefits:\n\n✮80% of royalties go to holders through Staking.\n✮5% discount in the metaverse saloon!\n✮Automatic whitelist for the next NFT - Genesis Crowboy\n✮First of two genesis NFTs you need to hold to become a Genesis Member, which will be rewarded with special Events, Airdrops & possibility of Alpha/Beta testing of the game and metaverse.\n✮And much more!",
-      "author": { "name": "Crowboys", "link": "https://crowboys.online/" },
+      "author": {
+        "name": "Crowboys",
+        "website": "https://crowboys.online/",
+        "twitter": "https://twitter.com/CrowboysGameFi",
+        "discord": "https://discord.gg/crowboys",
+        "medium": "https://medium.com/@crowboysonline",
+        "telegram": "https://t.me/crowboys"
+      },
       "address": "0x46A417dD49C8e29637a27a371f19ad889767BC99",
       "maxMintPerTx": 8,
       "maxMintPerAddress": 100,
@@ -6134,6 +6321,37 @@
       "referral": false,
       "is1155": false,
       "published": false,
+      "complete": false
+    },
+    {
+      "id": 73,
+      "slug": "bankroll-bear-society",
+      "imgNft": "/img/drops/bankroll-bear-society/drop.webp",
+      "imgPreview": "/img/drops/bankroll-bear-society/drop.webp",
+      "imgAvatar": "/img/collections/bankroll-bear-society/avatar.webp",
+      "imgBanner": "/img/drops/bankroll-bear-society/banner.webp",
+      "title": "Bankroll Bear Society",
+      "subtitle": "The Bankroll Bear Society is an NFT project consisting of 5,000 Bears. Found on the Cronos chain. We are offering direct REAL-LIFE utilities. Our Bears are a VIP gateway into the Bankroll Universe and ecosystem.\n\nImmerse yourself into the Bankroll Bear Society today!!",
+      "description": "The Bankroll Bear Society - A 5,000 NFTs collection of bears with more than 75 attributes. The Bears are putting forward a project with real life utilities and benefits. The Forest ecosystem contains all the businesses the Founders have established partnerships with such as ETR Jewellery and BBS Clothing. All holders get discounts on all items in all forest establishments! We’ll have staking, our own token, airdrop giveaways; you name it, we got it! \n\nOur token will be usable in businesses within the forest ecosystem! Our giveaways will consist of both WEB3 and real-world items ranging from sterling silver rings to gold chains! We will be planting 5,000 trees to combat deforestation around the world. \n\nThis is only the beginning of our journey, come along for a ride and… Welcome to The Forest!",
+      "author": {
+        "name": "Bankroll Bear Society",
+        "website": "http://www.bankrollbearsociety.com/",
+        "twitter": "https://twitter.com/Bankrollbears",
+        "discord": "http://discord.gg/bankrollbearsociety"
+      },
+      "address": "",
+      "maxMintPerTx": 10,
+      "maxMintPerAddress": 100,
+      "totalSupply": 1060,
+      "cost": "499",
+      "memberCost": "449",
+      "whitelistCost": "399",
+      "foundersOnly": false,
+      "start": 1653076800000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
       "complete": false
     }
   ],

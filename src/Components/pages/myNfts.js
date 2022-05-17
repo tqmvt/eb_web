@@ -91,12 +91,6 @@ const MyNfts = ({ walletAddress, isLoading }) => {
                         here
                       </span>
                     </p>
-                    <div className="alert alert-warning" role="alert">
-                      <strong>Note</strong>: due to current issues with dropped transactions on the Cronos chain, some
-                      NFTs may show incorrectly below. This may include NFTs not appearing, or remaining even after they
-                      have been sold or staked. If you are experiencing this issue with any in your collection, try the
-                      full chain search above.
-                    </div>
                     <NftCardList useChain={showChainSearch} />
                   </>
                 )}

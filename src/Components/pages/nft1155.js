@@ -10,7 +10,7 @@ import Footer from '../components/Footer';
 import {
   findCollectionByAddress,
   humanize,
-  isCrosmocraftsPartsDrop,
+  isCrosmocraftsPartsDrop, mapAttributeString, millisecondTimestamp,
   relativePrecision,
   shortAddress,
   timeSince,
@@ -277,9 +277,9 @@ const Nft1155 = ({ address, id }) => {
                                               {data.value !== undefined ? (
                                                 <>
                                                   {data?.display_type === 'date' ? (
-                                                    <>{(new Date(data.value * 1000)).toDateString()}</>
+                                                    <>{(new Date(millisecondTimestamp(data.value))).toDateString()}</>
                                                   ) : (
-                                                    <>{humanize(data.value)}</>
+                                                    <>{mapAttributeString(data.value, address, true)}</>
                                                   )}
                                                 </>
                                               ) : (
@@ -306,9 +306,9 @@ const Nft1155 = ({ address, id }) => {
                                             {data.value !== undefined ? (
                                               <>
                                                 {data?.display_type === 'date' ? (
-                                                  <>{(new Date(data.value * 1000)).toDateString()}</>
+                                                  <>{(new Date(millisecondTimestamp(data.value))).toDateString()}</>
                                                 ) : (
-                                                  <>{humanize(isCrosmocraftsPartsDrop(address) ? data.Value : data.value)}</>
+                                                  <>{mapAttributeString((isCrosmocraftsPartsDrop(address) ? data.Value : data.value), address, true)}</>
                                                 )}
                                               </>
                                             ) : (
