@@ -94,7 +94,7 @@ const Jumbotron = {
   `,
 };
 
-export const ErrorPage = () => {
+const ErrorPage = () => {
   const dispatch = useDispatch();
 
   const userTheme = useSelector((state) => {
@@ -160,3 +160,5 @@ export const ErrorPage = () => {
     </div>
   );
 };
+
+export default ErrorPage;

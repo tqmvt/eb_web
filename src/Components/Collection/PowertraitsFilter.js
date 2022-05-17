@@ -12,7 +12,7 @@ const PowertraitsFilter = ({ address }) => {
   const collectionStats = useSelector((state) => state.collection.stats);
   const collectionCachedTraitsFilter = useSelector((state) => state.collection.cachedPowertraitsFilter);
 
-  const [hideAttributes, setHideAttributes] = useState(window.innerWidth < 768);
+  const [hideAttributes, setHideAttributes] = useState(typeof window !== 'undefined' && window.innerWidth < 768);
 
   const viewPowertraitsList = () => {
     if (!collectionStats || !collectionStats.powertraits) {

@@ -13,7 +13,7 @@ const TraitsFilter = ({ address }) => {
   const collectionStats = useSelector((state) => state.collection.stats);
   const collectionCachedTraitsFilter = useSelector((state) => state.collection.cachedTraitsFilter);
 
-  const [hideAttributes, setHideAttributes] = useState(window.innerWidth < 768);
+  const [hideAttributes, setHideAttributes] = useState(typeof window !== 'undefined' && window.innerWidth < 768);
 
   const viewTraitsList = () => {
     if (!collectionStats || !collectionStats.traits) {

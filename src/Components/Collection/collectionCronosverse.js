@@ -15,9 +15,6 @@ import { chainConnect, connectAccount } from '../../GlobalState/User';
 import MakeOfferDialog from '../Offer/MakeOfferDialog';
 
 const CollectionCronosverse = ({ collection }) => {
-  if (typeof window === 'undefined') {
-    return;
-  }
   const dispatch = useDispatch();
   const router = useRouter();
 
@@ -287,11 +284,11 @@ const CronosverseCollectionBoard = ({ onBuy, onOffer, listings = [], nfts = [] }
         className="bitpixel_back"
         ref={ref0}
         onMouseDown={(e) => {
-          if (window.innerWidth - e.clientX < 240) {
+          if (typeof window !== 'undefined' && window.innerWidth - e.clientX < 240) {
             sub = window.innerWidth - e.clientX;
             setSubDistanceX(sub);
           }
-          if (window.innerHeight - e.clientY < 175) {
+          if (typeof window !== 'undefined' && window.innerHeight - e.clientY < 175) {
             sub = window.innerHeight - e.clientY;
             setSubDistanceY(sub);
           }

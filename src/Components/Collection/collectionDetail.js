@@ -33,9 +33,6 @@ import { croSkullRedPotionImageHack } from '../../hacks';
 import NFTTabOffers from '../Offer/NFTTabOffers';
 
 const CollectionDetail = () => {
-  if (typeof window === 'undefined') {
-    return;
-  }
   const router = useRouter();
   const { id } = router.query;
   const dispatch = useDispatch();
@@ -123,6 +120,9 @@ const CollectionDetail = () => {
 
   const [openMenu, setOpenMenu] = React.useState(0);
   const handleBtnClick = (index) => (element) => {
+    if (typeof window === 'undefined') {
+      return;
+    }
     var elements = document.querySelectorAll('.tab');
     for (var i = 0; i < elements.length; i++) {
       elements[i].classList.remove('active');
@@ -222,7 +222,10 @@ const CollectionDetail = () => {
               {listing && listing.nft.original_image && (
                 <div className="nft__item_action mt-2" style={{ cursor: 'pointer' }}>
                   <span
-                    onClick={() => window.open(croSkullRedPotionImageHack(listing.nftAddress, fullImage()), '_blank')}
+                    onClick={() =>
+                      typeof window !== 'undefined' &&
+                      window.open(croSkullRedPotionImageHack(listing.nftAddress, fullImage()), '_blank')
+                    }
                   >
                     <span className="p-2">View Full Image</span>
                     <FontAwesomeIcon icon={faExternalLinkAlt} />

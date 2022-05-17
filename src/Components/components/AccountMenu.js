@@ -155,6 +155,9 @@ const AccountMenu = function () {
   }, []);
 
   useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
     let defiLink = localStorage.getItem('DeFiLink_session_storage_extension');
     if (defiLink) {
       try {

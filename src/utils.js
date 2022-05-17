@@ -23,21 +23,21 @@ export function debounce(func, wait, immediate) {
 }
 
 export function isMobile() {
-  if (window) {
+  if (typeof window !== 'undefined') {
     return window.matchMedia(`(max-width: 767px)`).matches;
   }
   return false;
 }
 
 export function isMdScreen() {
-  if (window) {
+  if (typeof window !== 'undefined') {
     return window.matchMedia(`(max-width: 1199px)`).matches;
   }
   return false;
 }
 
 function currentYPosition() {
-  if (!window) {
+  if (typeof window === 'undefined') {
     return;
   }
   // Firefox, Chrome, Opera, Safari
@@ -50,6 +50,9 @@ function currentYPosition() {
 }
 
 function elmYPosition(elm) {
+  if (typeof window === 'undefined') {
+    return;
+  }
   var y = elm.offsetTop;
   var node = elm;
   while (node.offsetParent && node.offsetParent !== document.body) {
@@ -60,6 +63,9 @@ function elmYPosition(elm) {
 }
 
 export function scrollTo(scrollableElement, elmID) {
+  if (typeof window === 'undefined') {
+    return;
+  }
   var elm = document.getElementById(elmID);
   if (!elmID || !elm) {
     return;
@@ -126,6 +132,9 @@ export function generateRandomId() {
 }
 
 export function getQueryParam(prop) {
+  if (typeof window === 'undefined') {
+    return;
+  }
   var params = {};
   var search = decodeURIComponent(window.location.href.slice(window.location.href.indexOf('?') + 1));
   var definitions = search.split('&');
@@ -236,6 +245,9 @@ export function getShortIdForView(id = '') {
  * @param transactionHash 0x000
  */
 export function openWithCronosExplorer(transactionHash = '') {
+  if (typeof window === 'undefined') {
+    return;
+  }
   window.open(`https://cronoscan.com/tx/${transactionHash}`, '_blank');
 }
 
