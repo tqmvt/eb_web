@@ -500,3 +500,17 @@ export const useInterval = (callback, delay) => {
     }
   }, [delay]);
 }
+
+/**
+ * Ensure that a timestamp is in milliseconds
+ * 
+ * @param timestamp
+ * @returns {number}
+ */
+export const millisecondTimestamp = (timestamp) => {
+  if (timestamp.toString().length < 13) {
+    return Number(`${timestamp}000`);
+  }
+
+  return Number(timestamp);
+}
