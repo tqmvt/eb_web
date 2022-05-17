@@ -7,14 +7,7 @@ const nextConfig = {
     styledComponents: true,
   },
   images: {
-    domains: [
-      'ipfs.io',
-      'app.ebisusbay.com',
-      'files.ebisusbay.com',
-      'gateway.ebisusbay.com',
-      'crohomes.mypinata.cloud',
-      'cdn.marbleverse.io',
-    ],
+    domains: ['res.cloudinary.com'],
   },
 };
 

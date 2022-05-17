@@ -1,4 +1,5 @@
 import { caseInsensitiveCompare } from './utils';
+import { cloudinaryUrl } from './Config';
 
 export function isCroSkullRedPotion(address) {
   return caseInsensitiveCompare(address, '0x508378E99F5527Acb6eB4f0fc22f954c5783e5F9');
@@ -11,6 +12,12 @@ export function croSkullRedPotionImage() {
 export function croSkullRedPotionImageHack(address, defaultImage) {
   if (isCroSkullRedPotion(address)) {
     return croSkullRedPotionImage();
+  }
+
+  if (!defaultImage) {
+    return '/img/nft-placeholder.webp';
+  } else if (defaultImage.includes('https://') || defaultImage.includes('http://')) {
+    return `${cloudinaryUrl}${defaultImage}`;
   }
 
   return defaultImage;
