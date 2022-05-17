@@ -1,6 +1,7 @@
 import React, { memo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import Image from 'next/image';
 import Link from 'next/link';
 import { ethers } from 'ethers';
 import MetaMaskOnboarding from '@metamask/onboarding';
@@ -94,11 +95,14 @@ const ListingCard = ({ listing, imgClass = 'marketplace', watermark, address, co
                 />
               </Watermarked>
             ) : (
-              <img
-                src={croSkullRedPotionImageHack(listing.nftAddress, listing.nft.image)}
-                className={`card-img-top ${imgClass}`}
-                alt={listing.nft.name}
-              />
+              <div className={'image-container'}>
+                <Image
+                  src={croSkullRedPotionImageHack(listing.nftAddress, listing.nft.image)}
+                  className={`card-img-top image ${imgClass}`}
+                  layout="fill"
+                  alt={listing.nft.name}
+                />
+              </div>
             )}
           </a>
         </Link>

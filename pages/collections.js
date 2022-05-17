@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createGlobalStyle } from 'styled-components';
+import Image from 'next/image';
 import Link from 'next/link';
 import { ethers } from 'ethers';
 import Blockies from 'react-blockies';
@@ -226,7 +227,12 @@ const Collections = () => {
                               <Link href={`/collection/${collection.slug}`}>
                                 <a>
                                   {collection.metadata?.avatar ? (
-                                    <img className="lazy" src={collection.metadata.avatar} alt={collection?.name} />
+                                    <Image
+                                      src={collection.metadata.avatar}
+                                      alt={collection?.name}
+                                      width="50"
+                                      height="50"
+                                    />
                                   ) : (
                                     <Blockies seed={collection.collection.toLowerCase()} size={10} scale={5} />
                                   )}

@@ -1,7 +1,6 @@
 import React, { memo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import Image from 'next/image';
 import Link from 'next/link';
 import { ethers } from 'ethers';
 import MetaMaskOnboarding from '@metamask/onboarding';
@@ -90,7 +89,6 @@ const ListingCardCollection = ({ listing, imgClass = 'marketplace', watermark, a
     return res;
   };
 
-  console.log('listing card', croSkullRedPotionImageHack(listing.nftAddress, listing.nft.image));
   return (
     <>
       <div className="card eb-nft__card h-100 shadow">
