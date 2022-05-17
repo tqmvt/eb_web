@@ -3471,11 +3471,6 @@ electron-to-chromium@^1.4.118:
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.137.tgz#186180a45617283f1c012284458510cd99d6787f"
   integrity sha512-0Rcpald12O11BUogJagX3HsCN3FE83DSqWjgXoHo5a72KUKMSfI39XBgJpgNNxS9fuGzytaFjE06kZkiVFy2qA==
 
-elegant-icons@0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/elegant-icons/-/elegant-icons-0.0.1.tgz#a9d565e904c62e6248ff92cdfdcc7700aff2a634"
-  integrity sha1-qdVl6QTGLmJI/5LN/cx3AK/ypjQ=
-
 elliptic@6.5.4, elliptic@^6.5.2, elliptic@^6.5.3, elliptic@^6.5.4:
   version "6.5.4"
   resolved "https://registry.yarnpkg.com/elliptic/-/elliptic-6.5.4.tgz#da37cebd31e79a1367e941b592ed1fbebd58abbb"
@@ -3646,11 +3641,6 @@ esutils@^2.0.2:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/esutils/-/esutils-2.0.3.tgz#74d2eb4de0b8da1293711910d50775b9b710ef64"
   integrity sha512-kVscqXk4OCp68SZ0dkgEKVi6/8ij300KBWTJq32P/dYeWTSwK41WyTxalN1eRmA5Z9UU/LX9D7FWSmV9SAYx6g==
-
-et-line@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/et-line/-/et-line-1.0.1.tgz#d325b5f30127c8ec9ba3ff19fb32ba8ff47795fc"
-  integrity sha1-0yW18wEnyOybo/8Z+zK6j/R3lfw=
 
 eth-block-tracker@^4.4.2:
   version "4.4.3"

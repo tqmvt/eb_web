@@ -6,8 +6,6 @@ import App from '../src/App';
 // import { SentryLoggingService } from '../src/services/sentry-logging.service';
 // import { Site24x7LoggingService } from '../src/services/site24x7-logging.service';
 
-import '../node_modules/elegant-icons/style.css';
-import '../node_modules/et-line/style.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 import '../src/Assets/styles/style.scss';
