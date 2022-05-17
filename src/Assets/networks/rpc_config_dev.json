@@ -1766,9 +1766,9 @@
       "metadata": {
         "description": "The official NFT of Cronodes",
         "verified": true,
-        "avatar": "https://files.ebisusbay.com/img/collections/cronodes/avatar.gif",
-        "card": "/img/collections/cronodes/card.png",
-        "banner": "/img/collections/cronodes/banner.png",
+        "avatar": "/img/collections/cronodes/avatar.webp",
+        "card": "/img/collections/cronodes/card.webp",
+        "banner": "/img/collections/cronodes/banner.webp",
         "maxSupply": 3300,
         "twitter": "https://twitter.com/CronodesFinance",
         "website": "https://cronodes.app",
@@ -4206,7 +4206,7 @@
       "listable": false,
       "metadata": {
         "description": "The AlienCRO genesis NFT drop consists of a total of 1060 unique NFTs with, hand drawn traits. Holding NFTs from the collection will grant access to the staking pool and random NFT airdrops. You can expect to earn native CRO rewards from the staking pools, while the NFTs are going to be from popular Cronos projects!",
-        "verified": true,
+        "verified": false,
         "avatar": "/img/collections/alien-cro/avatar.webp",
         "card": "/img/collections/alien-cro/card.webp",
         "banner": "/img/collections/alien-cro/banner.webp",
@@ -4295,6 +4295,63 @@
         "website": "https://ghettodoves.com/",
         "discord": "https://discord.gg/ghetto-doves",
         "medium": "https://medium.com/@gd_29360/welcome-to-the-city-of-new-york-d940fff215c1"
+      }
+    },
+    {
+      "name": "Gold CRN Booster",
+      "slug": "gold-crn-booster",
+      "multiToken": false,
+      "address": "0xC0D6459d5002A57534e631E204aE6CC87Bed261d",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "With this booster NFT, all earnings on CroNodes Finance will be boosted by 10%!",
+        "verified": false,
+        "avatar": "/img/collections/cronodes/gold/avatar.webp",
+        "card": "/img/collections/cronodes/gold/card.webp",
+        "banner": "/img/collections/cronodes/gold/banner.webp",
+        "maxSupply": 2000,
+        "twitter": "https://twitter.com/CronodesFinance",
+        "website": "https://cronodes.app",
+        "discord": "https://discord.gg/cronodesofficial"
+      }
+    },
+    {
+      "name": "Silver CRN Booster",
+      "slug": "silver-crn-booster",
+      "multiToken": false,
+      "address": "0x0CDA344D8B6D58C6682cdBfb914FA073492777fe",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "With this booster NFT, all earnings on CroNodes Finance will be boosted by 5%!",
+        "verified": false,
+        "avatar": "/img/collections/cronodes/silver/avatar.webp",
+        "card": "/img/collections/cronodes/silver/card.webp",
+        "banner": "/img/collections/cronodes/silver/banner.webp",
+        "maxSupply": 3000,
+        "twitter": "https://twitter.com/CronodesFinance",
+        "website": "https://cronodes.app",
+        "discord": "https://discord.gg/cronodesofficial"
+      }
+    },
+    {
+      "name": "Bronze CRN Booster",
+      "slug": "bronze-crn-booster",
+      "multiToken": false,
+      "address": "0x21F7C4E6E23b4Fa4a2ca7edE88A55C765e40931e",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "With this booster NFT, all earnings on CroNodes Finance will be boosted by 2%!",
+        "verified": false,
+        "avatar": "/img/collections/cronodes/bronze/avatar.webp",
+        "card": "/img/collections/cronodes/bronze/card.webp",
+        "banner": "/img/collections/cronodes/bronze/banner.webp",
+        "maxSupply": 5000,
+        "twitter": "https://twitter.com/CronodesFinance",
+        "website": "https://cronodes.app",
+        "discord": "https://discord.gg/cronodesofficial"
       }
     }
   ],
