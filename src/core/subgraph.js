@@ -139,7 +139,7 @@ export const getFilteredOffers = async (nftAddress, nftId, walletAddress) => {
 export const getOffersForSingleNFT = async (nftAddress, nftId) => {
   const nftOffersQuery = `
   query($first: Int) {
-    offers(first: 1000, where: { nftAddress: "${nftAddress}", nftId: ${nftId}}) {
+    offers(first: 1000, where: { nftAddress: "${nftAddress}", nftId: "${nftId}"}) {
       id
       hash
       offerIndex
