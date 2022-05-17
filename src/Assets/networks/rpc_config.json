@@ -4372,6 +4372,26 @@
         "website": "https://www.cronoschibis.com",
         "discord": "https://discord.gg/Y6Pa5J8S66"
       }
+    },
+    {
+      "name": "CroArmy Burns",
+      "slug": "cro-army-burns",
+      "multiToken": false,
+      "address": "0x68500e24a226b75ee603f4040a647db1faa8f0fe",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "Holding a Burn NFT grants you access to receive airdrops when the treasury profits. CroArmy Burns are a collection of NFT's that burns our $ARMY supply and grant access to airdrops. Tax on secondary will be used to buyback and burn $ARMY supply",
+        "verified": false,
+        "avatar": "/img/collections/cro-army-burns/avatar.webp",
+        "card": "/img/collections/cro-army-burns/card.webp",
+        "banner": "/img/collections/cro-army-soldier/banner.webp",
+        "maxSupply": 4000,
+        "website": "https://croarmy.io/",
+        "twitter": "https://twitter.com/croarmy_eth",
+        "discord": "https://discord.gg/croarmy",
+        "telegram": "https://t.me/CroArmy_ETH"
+      }
     }
   ],
   "drops": [
