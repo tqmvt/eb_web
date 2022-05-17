@@ -5385,7 +5385,7 @@ iframe.metaverse {
 
 .listing-tab {
   height: 400px;
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
 
   .listing-row {
