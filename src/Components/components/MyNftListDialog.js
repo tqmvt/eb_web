@@ -283,7 +283,7 @@ const MyNftListDialog = ({ walletAddress, marketContract, myNftPageListDialog })
                   <CardMediaContainer component="img" src={myNftPageListDialog.image} width="150" />
                 </Container>
               </Grid>
-              <Grid item xs={1} key="2">
+              <Grid item md={1} key="2">
                 <Stepper activeStep={listDialogActiveStep} orientation="vertical">
                   {listingSteps.map((step, index) => (
                     <Step key={step.label}>
