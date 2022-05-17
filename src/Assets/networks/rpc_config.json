@@ -3908,7 +3908,7 @@
       "multiToken": false,
       "address": "0x15F7A67075C8b0883c355814Aa4e6C1e19994Af3",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "CNS domains are unique decentralized domains for web3. CNS makes the blockchain ecosystem a bit simpler by allowing users to create a global username for their public addresses and decentralized dapps. Join our discord community to learn more about CNS.",
         "verified": true,
