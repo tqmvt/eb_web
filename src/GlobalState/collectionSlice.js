@@ -23,6 +23,8 @@ const collectionSlice = createSlice({
       traits: {},
       powertraits: {},
       filterListed: '',
+      minPrice: null,
+      maxPrice: null,
     },
     totalPages: 0,
     totalCount: 0,
@@ -33,6 +35,8 @@ const collectionSlice = createSlice({
     cachedPowertraitsFilter: {},
     cachedFilter: {},
     cachedSort: {},
+    cachedMinPrice: {},
+    cachedMaxPrice: {},
     isUsingListingsFallback: false,
   },
   reducers: {
@@ -59,12 +63,16 @@ const collectionSlice = createSlice({
       state.query.filter = {};
       state.query.sort = {};
       state.query.search = null;
+      state.query.minPrice = null;
+      state.query.maxPrice = null;
 
       if (hardClear) {
         state.cachedTraitsFilter = {};
         state.cachedPowertraitsFilter = {};
         state.cachedFilter = {};
         state.cachedSort = {};
+        state.cachedMinPrice = {};
+        state.cachedMaxPrice = {};
       }
     },
     onFilter: (state, action) => {
@@ -123,6 +131,20 @@ const collectionSlice = createSlice({
         state.cachedPowertraitsFilter[address] = powertraits;
       }
     },
+    onPriceFilter: (state, action) => {
+      const { address, minPrice, maxPrice } = action.payload;
+
+      state.listings = [];
+      state.totalPages = 0;
+      state.query.page = 0;
+      state.query.minPrice = minPrice;
+      state.query.maxPrice = maxPrice;
+
+      if (address) {
+        state.cachedMinPrice[address] = minPrice;
+        state.cachedMaxPrice[address] = maxPrice;
+      }
+    },
     onCollectionStatsLoaded: (state, action) => {
       state.stats = action.payload.stats;
       state.statsLoading = false;
@@ -142,6 +164,7 @@ export const {
   onSearch,
   onListedFilter,
   onTraitFilter,
+  onPriceFilter,
   clearSet,
   onCollectionStatsLoading,
   onCollectionStatsLoaded,
@@ -185,7 +208,9 @@ export const fetchListings =
         state.collection.query.filter,
         state.collection.query.traits,
         state.collection.query.powertraits,
-        state.collection.query.search
+        state.collection.query.search,
+        state.collection.query.minPrice,
+        state.collection.query.maxPrice,
       );
 
       if (!cancelled) {
@@ -203,6 +228,8 @@ export const fetchListings =
         state.collection.query.powertraits,
         state.collection.query.search,
         state.collection.query.filterListed,
+        state.collection.query.minPrice,
+        state.collection.query.maxPrice,
         pageSizeOverride
       );
 
@@ -241,6 +268,13 @@ export const filterListingsByTrait =
     dispatch(onTraitFilter({ traits, powertraits, address }));
     dispatch(fetchListings());
   };
+
+export const filterListingsByPrice =
+  ({ address, minPrice, maxPrice }) =>
+    async (dispatch) => {
+  dispatch(onPriceFilter({ minPrice, maxPrice, address }));
+  dispatch(fetchListings());
+};
 
 export const resetListings = () => async (dispatch) => {
   dispatch(clearSet());

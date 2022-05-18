@@ -46,7 +46,7 @@ export default api;
 //  just for sortAndFetchListings function
 let abortController = null;
 
-export async function sortAndFetchListings(page, sort, filter, traits, powertraits, search, state, filterListed, pagesize = limitSizeOptions.lg) {
+export async function sortAndFetchListings(page, sort, filter, traits, powertraits, search, minPrice, maxPrice, state, pagesize = limitSizeOptions.lg) {
   let query = {
     state: state ?? 0,
     page: page,
@@ -105,6 +105,8 @@ export async function sortAndFetchListings(page, sort, filter, traits, powertrai
   }
 
   if (search) query['search'] = search;
+  if (minPrice) query['minPrice'] = minPrice;
+  if (maxPrice) query['maxPrice'] = maxPrice;
 
   const queryString = new URLSearchParams(query);
 
@@ -240,6 +242,8 @@ export async function sortAndFetchCollectionDetails(
   powertraits,
   search,
   filterListed,
+  minPrice,
+  maxPrice,
   pageSize = 50
 ) {
   let query = {
@@ -293,6 +297,8 @@ export async function sortAndFetchCollectionDetails(
 
   if (search) query['search'] = search;
   if (filterListed) query['listed'] = filterListed;
+  if (minPrice) query['minPrice'] = minPrice;
+  if (maxPrice) query['maxPrice'] = maxPrice;
 
   const queryString = new URLSearchParams(query);
 
