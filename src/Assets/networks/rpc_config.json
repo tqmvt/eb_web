@@ -4412,6 +4412,25 @@
         "discord": "https://discord.gg/kmrZV97uvR",
         "medium": "https://medium.com/@CrokeNFT/"
       }
+    },
+    {
+      "name": "Viking Arc Labs Founders Card",
+      "slug": "viking-arc-labs-founders-card",
+      "multiToken": false,
+      "address": "0x44c64ca09fe913382d41551cead0dec9f08585a2",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "Viking Arc Labs is a utility card granting holders access to future pre-sale on  Braindead Monkey launches and other perks via partnerships with outside projects, including WL, Discounts etc. 50% of the royalties we are creating a Treasury for holders to benefit from long term.",
+        "verified": false,
+        "avatar": "/img/collections/varc/avatar.webp",
+        "card": "/img/collections/varc/card.webp",
+        "banner": "/img/collections/varc/banner.webp",
+        "maxSupply": 150,
+        "twitter": "https://twitter.com/VikingArcLabs",
+        "website": "https://www.braindeadmonkeys.com/varc",
+        "discord": "https://discord.gg/wRzqzVPx8R"
+      }
     }
   ],
   "drops": [
