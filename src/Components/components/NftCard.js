@@ -89,7 +89,7 @@ const NftCard = ({ royalty, listing, imgClass = 'marketplace', watermark, addres
   return (
     <>
       <div className="card eb-nft__card h-100 shadow">
-        <Link className="linkPointer" to={`/collection/${listing.address}/${listing.id}`}>
+        <Link className="linkPointer" to={`/collection/${collection.slug}/${listing.id}`}>
           {watermark ? (
             <Watermarked watermark={watermark}>
               <img
@@ -108,7 +108,7 @@ const NftCard = ({ royalty, listing, imgClass = 'marketplace', watermark, addres
         </Link>
         {listing.rank && <div className="badge bg-rarity text-wrap mt-1 mx-1">Rank: #{listing.rank}</div>}
         <div className="card-body d-flex flex-column justify-content-between">
-          <Link className="linkPointer" to={`/collection/${listing.address}/${listing.id}`}>
+          <Link className="linkPointer" to={`/collection/${collection.slug}/${listing.id}`}>
             <h6 className="card-title mt-auto">{listing.name}</h6>
           </Link>
           {getIsNftListed() && (
