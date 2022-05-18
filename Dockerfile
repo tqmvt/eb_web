@@ -14,7 +14,6 @@ COPY .husky ./.husky
 COPY pages ./pages
 COPY public ./public
 COPY src ./src
-COPY testing ./testing
 COPY next.config.js ./
 
 COPY package*.json ./

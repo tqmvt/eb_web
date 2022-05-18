@@ -21,7 +21,6 @@ COPY .husky ./.husky
 COPY pages ./pages
 COPY public ./public
 COPY src ./src
-COPY testing ./testing
 COPY next.config.js ./
 
 RUN npm run build
@@ -45,7 +44,6 @@ COPY --from=build /usr/src/app/.husky ./.husky
 COPY --from=build /usr/src/app/pages ./pages
 COPY --from=build /usr/src/app/public ./public
 COPY --from=build /usr/src/app/src ./src
-COPY --from=build /usr/src/app/testing ./testing
 COPY --from=build /usr/src/app/next.config.js ./
 
 COPY --from=build /usr/src/app/package*.json ./
