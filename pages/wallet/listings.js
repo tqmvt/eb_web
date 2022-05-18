@@ -1,20 +1,10 @@
 import React from 'react';
-import { useRouter } from 'next/router';
-import { useSelector } from 'react-redux';
 
 import Footer from '../../src/Components/components/Footer';
 import MyListingsCollection from '../../src/Components/components/MyListingsCollection';
+import withAuth from '../src/Components/withAuth';
 
 const MyListings = () => {
-  const router = useRouter();
-  const walletAddress = useSelector((state) => state.user.address);
-
-  if (!walletAddress) {
-    if (typeof window !== 'undefined') {
-      router.push('/marketplace');
-    }
-  }
-
   const Content = () => (
     <>
       <section className="jumbotron breadcumb no-bg tint">
@@ -44,4 +34,4 @@ const MyListings = () => {
   );
 };
 
-export default MyListings;
+export default withAuth(MyListings);

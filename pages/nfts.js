@@ -9,10 +9,12 @@ import MyNftCancelDialog from '../src/Components/components/MyNftCancelDialog';
 import MyNftListDialog from '../src/Components/components/MyNftListDialog';
 import MyListingsCollection from '../src/Components/components/MyListingsCollection';
 import MySoldNftCollection from '../src/Components/components/MySoldNftCollection';
+import withAuth from '../src/Components/withAuth';
 
 const mapStateToProps = (state) => ({
   walletAddress: state.user.address,
   isLoading: state.user.fetchingNfts,
+  authInitFinished: state.appInitialize.authInitFinished,
 });
 
 const MyNfts = ({ walletAddress, isLoading }) => {
@@ -38,10 +40,9 @@ const MyNfts = ({ walletAddress, isLoading }) => {
     setOpenTab(index);
   };
 
-  // if (!walletAddress) {
-  //   router.push('/marketplace');
-  //   return;
-  // }
+  if (!walletAddress) {
+    router.push('/marketplace');
+  }
 
   return (
     <div>
@@ -120,4 +121,4 @@ const MyNfts = ({ walletAddress, isLoading }) => {
     </div>
   );
 };
-export default connect(mapStateToProps)(memo(MyNfts));
+export default connect(mapStateToProps)(memo(withAuth(MyNfts)));

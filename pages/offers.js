@@ -13,6 +13,7 @@ import { initOffers, fetchMadeOffers, fetchAllOffers, fetchMyNFTs } from '../src
 import { getAllCollections, knownContracts } from '../src/GlobalState/collectionsSlice';
 import { caseInsensitiveCompare, isNftBlacklisted } from '../src/utils';
 import { offerState } from '../src/core/api/enums';
+import withAuth from '../src/Components/withAuth';
 
 const Tabs = styled.div`
   display: flex;
@@ -306,4 +307,4 @@ const MyOffers = () => {
   );
 };
 
-export default MyOffers;
+export default withAuth(MyOffers);
