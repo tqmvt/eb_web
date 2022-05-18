@@ -2,12 +2,11 @@ import React, { memo, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Slider from 'react-slick';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+
 import { settings } from '../components/constants';
 import CustomSlide from '../components/CustomSlide';
 import config from '../../Assets/networks/rpc_config.json';
-import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { drops } from './PastDrops';
 export const collections = config.known_contracts;
 
