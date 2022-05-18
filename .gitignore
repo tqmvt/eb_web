@@ -29,3 +29,8 @@ yarn-error.log*
 
 # next
 .next
+
+.env
+
+# Docker Compose volumes
+volumes/

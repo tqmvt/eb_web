@@ -1,0 +1,101 @@
+options:
+  docker: true
+
+definitions:
+  updateOS: &update
+    apt-get update
+  printVersion: &version
+    node --version && npm --version
+  confBuildx: &buildx
+    docker --version &&
+    docker pull docker/buildx-bin:latest &&
+    docker container create --name buildx docker/buildx-bin:latest docker buildx version &&
+    mkdir -p /usr/libexec/docker/cli-plugins/ &&
+    docker container cp buildx:/buildx /usr/libexec/docker/cli-plugins/docker-buildx &&
+    docker run --rm --privileged multiarch/qemu-user-static --reset -p yes &&
+    docker buildx create --use &&
+    docker buildx version
+  awsEcrLogin: &ecrlogin
+    aws ecr get-login-password | docker login --password-stdin --username AWS "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
+  buildApp: &appcontainer
+    docker buildx build --push --platform linux/arm64 --tag ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${APP_REPOSITORY}:${ENV} -f Dockerfile .
+  buildProxyCms: &proxywebcontainer
+    sed -i='' -e "s|<SERVER_NAME>|${SERVER_NAME_CMS}|" proxy/conf.d/web.conf &&
+    sed -i='' -e "s|<SERVER_NAME>|${SERVER_NAME_CMS}|" proxy/conf.d/default.conf &&
+    docker buildx build --push --platform linux/arm64 --tag ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${PROXY_REPOSITORY}:${ENV} -f proxy/Dockerfile ./proxy
+  steps:
+    - step: &test
+        name: Test
+        image: node:16
+        runs-on:
+          - 'self.hosted'
+          - 'linux'
+          - 'api'
+        size: 1x
+        script:
+          - *update
+          - *version
+          - npm install --no-audit
+          #- npm run test
+        artifacts:
+          - node_modules/**
+    # - step: &build
+    #     name: Build application
+    #     image: node:16
+    #     runs-on:
+    #       - 'self.hosted'
+    #       - 'linux'
+    #       - 'api'
+    #     size: 2x
+    #     script:
+    #       - *update
+    #       - *version
+    #       - export NODE_OPTIONS=--max_old_space_size=6144
+    #       - npm run build
+    #     artifacts:
+    #       - dist/**
+
+pipelines:
+  branches:
+    dev:
+      - step: *test
+      # - step: *build
+      - step:
+          name: Build containers
+          image: amazon/aws-cli
+          deployment: Development
+          services:
+            - docker
+          runs-on:
+            - 'self.hosted'
+            - 'linux'
+            - 'api'
+          size: 1x
+          script:
+            # Install and configure Docker Buildx
+            - *buildx
+            # Login to ECR
+            - *ecrlogin
+            # Build container images and push to ECR repositorys and push to ECR repository
+            - *appcontainer
+            - *proxywebcontainer
+      - step:
+         name: Deploy
+         image: alpine:latest
+         runs-on:
+           - 'self.hosted'
+           - 'linux'
+           - 'api'
+         size: 1x
+         clone:
+           enabled: false
+         script:
+           # deploy dev-ebisusbay-web-arm64-us-east-1 / app.ebisusbay.biz
+           - apk add --no-cache curl
+           - 'curl -X POST -is -H "Authorization: Basic ${BITBUCKET_API_KEY}" -H "Content-Type: application/json" -d "{\"target\":{\"ref_type\":\"branch\",\"type\":\"pipeline_ref_target\",\"ref_name\":\"dev\"}}" https://api.bitbucket.org/2.0/repositories/ebisusbay/eb_web_deploy/pipelines/'
+definitions:
+  services:
+    docker:
+      # default memory is 1024MB
+      memory: 3072
+      image: docker:dind
