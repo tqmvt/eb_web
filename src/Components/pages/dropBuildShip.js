@@ -52,6 +52,7 @@ const Drop = () => {
     } finally {
       setIsLoading(false);
     }
+    // eslint-disable-next-line
   }, [user.address, user.provider]);
 
   const refreshPartsBalance = async () => {
@@ -136,10 +137,10 @@ const Drop = () => {
                   <span>Need more parts? &nbsp;</span>
                   <div className="nft__item_action d-inline-block" style={{ fontSize: '16px' }}>
                     <span
-                      onClick={() => window.open('/drops/crosmocrafts-parts', '_self')}
+                      onClick={() => window.open('/collection/crosmocrafts-parts', '_self')}
                       style={{ cursor: 'pointer' }}
                     >
-                      Mint Crosmocrafts Parts
+                      Buy Crosmocraft Parts
                     </span>
                   </div>
                 </div>
@@ -232,6 +233,7 @@ const ShipBuilderCard = ({ type, shipAddress, key, mintCallback, quantityCollect
   useEffect(() => {
     const maxAvailable = Math.min(...quantityCollected);
     setQuantity(maxAvailable > 0 ? 1 : 0);
+    // eslint-disable-next-line
   }, []);
 
   return (

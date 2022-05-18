@@ -1,8 +1,8 @@
-import React, { memo } from 'react';
+import React, {memo, useEffect} from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Spinner } from 'react-bootstrap';
 
-import ListingCardCollection from './ListingCardCollection';
+// import ListingCardCollection from './ListingCardCollection';
 import NftCard from './NftCard';
 
 const CollectionNftsGroup = ({
@@ -12,7 +12,7 @@ const CollectionNftsGroup = ({
   canLoadMore = false,
   loadMore,
   address,
-  collectionMetadata,
+  collection,
 }) => {
   if (showLoadMore) {
     return (
@@ -51,7 +51,7 @@ const CollectionNftsGroup = ({
                   listing={listing}
                   imgClass="collection"
                   address={address}
-                  collectionMetadata={collectionMetadata}
+                  collection={collection}
                 />
               </div>
             ))}
@@ -70,7 +70,7 @@ const CollectionNftsGroup = ({
                   listing={listing}
                   imgClass="collection"
                   address={address}
-                  collectionMetadata={collectionMetadata}
+                  collection={collection}
                 />
               </div>
             ))}

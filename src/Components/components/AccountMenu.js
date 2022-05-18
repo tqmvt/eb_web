@@ -25,7 +25,8 @@ import HandHoldingCroIcon from 'src/Assets/images/hand-holding-cro.svg';
 import { getThemeInStorage, setThemeInStorage } from 'src/helpers/storage';
 import { getAllCollections } from '../../GlobalState/collectionsSlice';
 import { fetchMyNFTs } from '../../GlobalState/offerSlice';
-import { isUserBlacklisted, shortAddress } from '../../utils';
+import {isUserBlacklisted, round, shortAddress} from '../../utils';
+import {commify} from "ethers/lib.esm/utils";
 
 const BlockiesBadge = styled.div`
   position: absolute;
@@ -94,12 +95,14 @@ const AccountMenu = function () {
       dispatch(getAllCollections());
       dispatch(fetchMyNFTs(walletAddress));
     }
+    // eslint-disable-next-line
   }, [walletAddress]);
 
   useEffect(() => {
     if (collectionsStats && collectionsStats.length > 0 && myNFTs && myNFTs.length > 0) {
       dispatch(checkForOutstandingOffers());
     }
+    // eslint-disable-next-line
   }, [collectionsStats, myNFTs]);
 
   const connectWalletPressed = async () => {
@@ -126,7 +129,11 @@ const AccountMenu = function () {
   };
 
   const withdrawBalance = async () => {
-    dispatch(AccountMenuActions.withdrawBalance());
+    dispatch(AccountMenuActions.withdrawMarketBalance());
+  };
+
+  const harvestStakingRewards = async () => {
+    dispatch(AccountMenuActions.harvestStakingRewards());
   };
 
   // const registerCode = async () => {
@@ -146,6 +153,7 @@ const AccountMenu = function () {
     } else {
       setThemeInStorage('dark');
     }
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
@@ -190,9 +198,9 @@ const AccountMenu = function () {
     dispatch(chainConnect());
   };
 
-  const myUnfilteredListings = useSelector((state) => {
-    return state.user.myUnfilteredListings;
-  });
+  // const myUnfilteredListings = useSelector((state) => {
+  //   return state.user.myUnfilteredListings;
+  // });
 
   return (
     <div className="mainside d-flex">
@@ -233,7 +241,7 @@ const AccountMenu = function () {
                 <div className="d-flex justify-content-between">
                   {!user.connectingWallet ? (
                     <span className="d-wallet-value">
-                      {user.balance ? <>{Math.round(user.balance * 100) / 100} CRO</> : <>N/A</>}
+                      {user.balance ? <>{commify(round(user.balance, 2))} CRO</> : <>N/A</>}
                     </span>
                   ) : (
                     <span>
@@ -251,15 +259,23 @@ const AccountMenu = function () {
                     <>
                       {user.marketBalance ? (
                         <>
-                          <span className="d-wallet-value">{Math.round(user.marketBalance * 100) / 100} CRO</span>
+                          <span className="d-wallet-value">{commify(round(user.marketBalance, 2))} CRO</span>
                           {user.marketBalance !== '0.0' && (
                             <button className="btn_menu" title="Withdraw Balance" onClick={withdrawBalance}>
-                              Withdraw
+                              {user.withdrawingMarketBalance ? (
+                                <>
+                                  <Spinner animation="border" role="status" size="sm">
+                                    <span className="visually-hidden">Loading...</span>
+                                  </Spinner>
+                                </>
+                              ) : (
+                                <>Withdraw</>
+                              )}
                             </button>
                           )}
                         </>
                       ) : (
-                        <>N/A</>
+                        <span className="d-wallet-value">0.0 CRO</span>
                       )}
                     </>
                   ) : (
@@ -271,6 +287,48 @@ const AccountMenu = function () {
                   )}
                 </div>
               </div>
+              {(user.vipCount > 0 || user.stakeCount > 0) && (
+                <div className="d-wallet">
+                  <h4>Staking Rewards</h4>
+                  <div className="d-flex justify-content-between">
+                    {!user.connectingWallet ? (
+                      <>
+                        {user.stakingRewards ? (
+                          <>
+                            <span className="d-wallet-value">{commify(round(user.stakingRewards, 2))} CRO</span>
+
+                            {user.stakingRewards > 0 && (
+                              <button
+                                className="btn_menu"
+                                title="Harvest Staking Rewards"
+                                onClick={harvestStakingRewards}
+                              >
+                                {user.harvestingStakingRewards ? (
+                                  <>
+                                    <Spinner animation="border" role="status" size="sm">
+                                      <span className="visually-hidden">Loading...</span>
+                                    </Spinner>
+                                  </>
+                                ) : (
+                                  <>Harvest</>
+                                )}
+                              </button>
+                            )}
+                          </>
+                        ) : (
+                          <span className="d-wallet-value">0.0 CRO</span>
+                        )}
+                      </>
+                    ) : (
+                      <span>
+                        <Spinner animation="border" role="status" size={'sm'}>
+                          <span className="visually-hidden">Loading...</span>
+                        </Spinner>
+                      </span>
+                    )}
+                  </div>
+                </div>
+              )}
               {user.isMember && user.rewards !== '0.0' && (
                 <>
                   <div className="d-wallet">

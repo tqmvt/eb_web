@@ -79,11 +79,11 @@ export default function CollectionInfoBar({ collectionStats, royalty, type = 'le
   if (type === 'legacy') {
     return (
       <div className="d-item col-lg-8 col-sm-10 mb-4 mx-auto">
-        <a className="nft_attr">
+        <div className="nft_attr">
           <div className="row">
             <div className="col-md-2 col-xs-4">
               <h5>Floor</h5>
-              <h4>{floorPrice ? <>{siPrefixedNumber(Number(floorPrice).toFixed(0))} CRO</> : <>-</>}</h4>
+              <h4>{numberActive > 0 && floorPrice ? <>{siPrefixedNumber(Number(floorPrice).toFixed(0))} CRO</> : <>-</>}</h4>
             </div>
             <div className="col-md-2 col-xs-4">
               <h5>Volume</h5>
@@ -106,7 +106,7 @@ export default function CollectionInfoBar({ collectionStats, royalty, type = 'le
               <h4>{numberActive ? <>{siPrefixedNumber(numberActive)}</> : <>-</>}</h4>
             </div>
           </div>
-        </a>
+        </div>
       </div>
     );
   }

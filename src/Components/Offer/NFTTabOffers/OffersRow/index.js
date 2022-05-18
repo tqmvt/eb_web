@@ -6,9 +6,9 @@ import moment from 'moment';
 
 import Button from 'src/Components/components/Button';
 import { shortAddress } from 'src/utils';
-import {commify} from "ethers/lib.esm/utils";
-import {Link} from "react-router-dom";
-import {offerState} from "../../../../core/api/enums";
+import { commify } from 'ethers/lib.esm/utils';
+import { Link } from 'react-router-dom';
+import { offerState } from '../../../../core/api/enums';
 
 const TableRowContainer = styled.div`
   display: flex;

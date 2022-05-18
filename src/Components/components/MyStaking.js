@@ -1,14 +1,10 @@
-import React, { memo, useState, useEffect } from 'react';
+import React, {memo, useState, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setStakeCount, setVIPCount } from '../../GlobalState/User';
 import { Form, Spinner } from 'react-bootstrap';
 import { toast } from 'react-toastify';
-import { createSuccessfulTransactionToastContent, round } from '../../utils';
-import { Contract, ethers } from 'ethers';
-import { RewardsPoolAbi } from '../../Contracts/Abis';
-import config from '../../Assets/networks/rpc_config.json';
-import { commify } from 'ethers/lib.esm/utils';
-import Countdown from 'react-countdown';
+import {createSuccessfulTransactionToastContent, round, siPrefixedNumber, useInterval} from '../../utils';
+import { ethers } from 'ethers';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faBatteryEmpty,
@@ -17,11 +13,10 @@ import {
   faBatteryQuarter,
   faBatteryThreeQuarters,
   faBolt,
-  faChargingStation,
-  faExclamationTriangle,
   faExternalLinkAlt,
-  faTrophy,
 } from '@fortawesome/free-solid-svg-icons';
+import { getTheme } from '../../Theme/theme';
+import {commify} from "ethers/lib.esm/utils";
 
 const txExtras = {
   gasPrice: ethers.utils.parseUnits('5000', 'gwei'),
@@ -32,13 +27,9 @@ const MyStaking = () => {
   const user = useSelector((state) => state.user);
   const stakeCount = user.stakeCount;
   const vipCount = user.vipCount;
-  const [isStaking, setIsStaking] = useState(false);
-  const [isUnstaking, setIsUnstaking] = useState(false);
-  const [amount, setAmount] = useState(1);
   const [isApproved, setIsApproved] = useState(false);
   const [isApproving, setIsApproving] = useState(false);
   const [isInitializing, setIsInitializing] = useState(true);
-  const [currentPoolId, setCurrentPoolId] = useState(null);
 
   // Allow exception to be thrown for other functions to catch it
   const setApprovalForAll = async () => {
@@ -67,51 +58,38 @@ const MyStaking = () => {
     }
   };
 
-  const stake = async () => {
-    if (!user.stakeContract || amount === 0) return;
-    if (amount > vipCount) {
+  const stake = async (quantity) => {
+    if (!user.stakeContract || quantity === 0) return;
+    if (quantity > vipCount) {
       toast.error('You do not have enough available VIPs');
       return;
     }
     try {
-      setIsStaking(true);
       if (!isApproved) await approve();
-      const tx = await user.stakeContract.stake(amount, txExtras);
+      const tx = await user.stakeContract.stake(quantity, txExtras);
       const receipt = await tx.wait();
-      dispatch(setStakeCount(stakeCount + amount));
-      dispatch(setVIPCount(vipCount - amount));
+      dispatch(setStakeCount(stakeCount + quantity));
+      dispatch(setVIPCount(vipCount - quantity));
       toast.success(createSuccessfulTransactionToastContent(receipt.transactionHash));
     } catch (err) {
       toast.error(err.message);
-    } finally {
-      setIsStaking(false);
     }
   };
 
-  const unStake = async () => {
-    if (!user.stakeContract || amount <= 0) return;
-    if (amount > stakeCount) {
+  const unStake = async (quantity) => {
+    if (!user.stakeContract || quantity <= 0) return;
+    if (quantity > stakeCount) {
       toast.error('You do not have enough available VIPs');
       return;
     }
     try {
-      setIsUnstaking(true);
-      const tx = await user.stakeContract.unstake(amount, { gasPrice: 5000000000000 });
+      const tx = await user.stakeContract.unstake(quantity, { gasPrice: 5000000000000 });
       const receipt = await tx.wait();
-      dispatch(setStakeCount(stakeCount - amount));
-      dispatch(setVIPCount(vipCount + amount));
+      dispatch(setStakeCount(stakeCount - quantity));
+      dispatch(setVIPCount(vipCount + quantity));
       toast.success(createSuccessfulTransactionToastContent(receipt.transactionHash));
     } catch (err) {
       toast.error(err.message);
-    } finally {
-      setIsUnstaking(false);
-    }
-  };
-
-  const onAmountChange = (e) => {
-    const value = parseInt(e.target.value);
-    if (value > 0) {
-      setAmount(parseInt(e.target.value));
     }
   };
 
@@ -121,16 +99,13 @@ const MyStaking = () => {
       try {
         const isApproved = await user.membershipContract.isApprovedForAll(user.address, user.stakeContract.address);
         setIsApproved(isApproved);
-
-        const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
-        const curPoolAddress = await user.stakeContract.currentPoolId();
-        setCurrentPoolId(curPoolAddress);
       } catch (e) {
         console.log(e);
       } finally {
         setIsInitializing(false);
       }
     }
+    // eslint-disable-next-line
   }, [user.connectingWallet]);
 
   const PromptToPurchase = () => {
@@ -140,7 +115,6 @@ const MyStaking = () => {
         <a href="/collection/vip-founding-member" className="fw-bold">
           secondary marketplace
         </a>
-        .
       </p>
     );
   };
@@ -176,6 +150,7 @@ const MyStaking = () => {
                   href="https://blog.ebisusbay.com/founding-member-vip-staking-6f7405a68eed"
                   className="fw-bold"
                   target="_blank"
+                  rel="noreferrer"
                 >
                   Learn More <FontAwesomeIcon icon={faExternalLinkAlt} />
                 </a>
@@ -191,14 +166,6 @@ const MyStaking = () => {
                 </div>
               )}
 
-              <div className="alert alert-warning d-flex align-items-center" role="alert">
-                <FontAwesomeIcon size="md" icon={faExclamationTriangle} className="me-3" />
-                <div>
-                  Harvestable rewards must be harvested before the next epoch, otherwise they will be forefited back to
-                  the rewards pool!
-                </div>
-              </div>
-
               <div className="spacer-20"></div>
 
               {!isInitializing && isApproved && (
@@ -208,67 +175,22 @@ const MyStaking = () => {
                       <div className="row g-3">
                         <RewardsCard />
                         <div>
-                          <div className="card eb-nft__card h-100 shadow px-4">
-                            <div className="card-body d-flex flex-column">
-                              <h5>Stake</h5>
-
-                              {currentPoolId && (
-                                <p>
-                                  Stake additional VIPs to accumulate rewards during the next epoch{' '}
-                                  {currentPoolId ? `(${parseInt(currentPoolId) + 1})` : ''}.
-                                </p>
-                              )}
-                              <p>
-                                <strong>VIPs staked for the next epoch</strong>: {stakeCount}
-                              </p>
-
-                              <div className="row row-cols-1 g-3">
-                                <div>
-                                  <Form.Label>Quantity</Form.Label>
-                                  <Form.Control
-                                    type="number"
-                                    placeholder="Input the amount"
-                                    onChange={onAmountChange}
-                                    value={amount}
-                                    style={{ width: '80px', marginBottom: 0, appearance: 'none', margin: 0 }}
-                                  />
-                                </div>
-
-                                <div className="btn-group mt-4 flex-wrap">
-                                  <button
-                                    className="btn-main lead mx-1 mb-2"
-                                    onClick={stake}
-                                    disabled={amount === 0 || vipCount === 0}
-                                  >
-                                    {isStaking ? (
-                                      <>
-                                        Staking...
-                                        <Spinner animation="border" role="status" size="sm" className="ms-1">
-                                          <span className="visually-hidden">Loading...</span>
-                                        </Spinner>
-                                      </>
-                                    ) : (
-                                      <>Stake</>
-                                    )}
-                                  </button>
-                                  <button
-                                    className="btn-main lead mx-1 mb-2"
-                                    onClick={unStake}
-                                    disabled={amount === 0 || stakeCount === 0}
-                                  >
-                                    {isUnstaking ? (
-                                      <>
-                                        UnStaking...
-                                        <Spinner animation="border" role="status" size="sm" className="ms-1">
-                                          <span className="visually-hidden">Loading...</span>
-                                        </Spinner>
-                                      </>
-                                    ) : (
-                                      <>UnStake</>
-                                    )}
-                                  </button>
-                                </div>
-                              </div>
+                          <div className="row g-3">
+                            <div className="col-12 col-sm-6">
+                              <StakeCard
+                                buttonName="Stake"
+                                buttonActionName="Staking..."
+                                threshold={vipCount}
+                                stake={stake}
+                              />
+                            </div>
+                            <div className="col-12 col-sm-6">
+                              <StakeCard
+                                buttonName="Unstake"
+                                buttonActionName="Unstaking..."
+                                threshold={stakeCount}
+                                stake={unStake}
+                              />
                             </div>
                           </div>
                         </div>
@@ -318,83 +240,108 @@ const MyStaking = () => {
 
 export default memo(MyStaking);
 
-const StakeCard = ({}) => {
-  const [isLoading, setIsLoading] = useState(false);
-};
+const StakeCard = ({ stake, threshold, buttonName, buttonActionName }) => {
+  const [quantity, setQuantity] = useState(1);
+  const [isStaking, setIsStaking] = useState(false);
 
-const RewardsCard = ({}) => {
-  const user = useSelector((state) => state.user);
-  const [isHarvesting, setIsHarvesting] = useState(false);
-  const [inInitMode, setIsInInitMode] = useState(false);
-  const [isAwaitingRollover, setIsAwaitingRollover] = useState(false);
-  const [totalUserStaked, setTotalUserStaked] = useState(0);
-
-  // Current pool state
-  const [cupIsLoading, setCupIsLoading] = useState(false);
-  const [cupUserShares, setCupUserShares] = useState(0);
-  const [cupPoolRewards, setCupPoolRewards] = useState(0);
-  const [cupUserRewards, setCupUserRewards] = useState(0);
-  const [cupPeriodEnd, setCupPeriodEnd] = useState(0);
-  const [cupId, setCupId] = useState(0);
-
-  // Completed pool state
-  const [cmpIsLoading, setCmpIsLoading] = useState(false);
-  const [cmpUserShares, setCmpUserShares] = useState(0);
-  const [cmpUserRewards, setCmpUserRewards] = useState(0);
-  const [cmpHasHarvested, setCmpHasHarvested] = useState(false);
-
-  const getCompletedPoolInfo = async () => {
-    if (!user.stakeContract) return;
-
-    setCmpIsLoading(true);
-    try {
-      const completedPool = await user.stakeContract.completedPool();
-      if (completedPool !== ethers.constants.AddressZero) {
-        const rewardsContract = new Contract(completedPool, RewardsPoolAbi, user.provider.getSigner());
-        const finalBalance = await rewardsContract.finalBalance();
-        const share = await rewardsContract.shares(user.address);
-        const totalShares = await rewardsContract.totalShares();
-        const balance = finalBalance.mul(share).div(totalShares);
-        const released = await rewardsContract.released(user.address);
-
-        setCmpUserShares(share.toNumber());
-        setCmpHasHarvested(released.gt(0));
-        setCmpUserRewards(ethers.utils.formatEther(balance));
-      }
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setCmpIsLoading(false);
+  const onAmountChange = (e) => {
+    const value = parseInt(e.target.value);
+    if (value > 0 && value <= threshold) {
+      setQuantity(parseInt(e.target.value));
     }
   };
 
-  const getCurrentPoolInfo = async () => {
-    if (!user.stakeContract) return;
-    setCupIsLoading(true);
+  const execute = async () => {
     try {
-      const currentPool = await user.stakeContract.curPool();
-      if (currentPool === ethers.constants.AddressZero) {
-        setIsInInitMode(true);
-        return;
-      }
-      const end = await user.stakeContract.periodEnd();
-      const poolBalance = await user.provider.getBalance(currentPool);
-      const rewardsContract = new Contract(currentPool, RewardsPoolAbi, user.provider.getSigner());
-      const userShares = await rewardsContract.shares(user.address);
-      const curPoolId = await user.stakeContract.currentPoolId();
-      const poolShares = await rewardsContract.totalShares();
-      const balance = poolBalance.mul(userShares).div(poolShares);
+      setIsStaking(true);
+      await stake(quantity);
+    } finally {
+      setIsStaking(false);
+    }
+  };
 
-      setCupUserRewards(ethers.utils.formatEther(balance));
-      setCupId(curPoolId.toNumber());
-      setCupUserShares(userShares.toNumber());
-      setCupPoolRewards(ethers.utils.formatEther(poolBalance));
-      setCupPeriodEnd(end.toNumber() * 1000);
-      setIsAwaitingRollover(end.toNumber() * 1000 < Date.now());
+  useEffect(() => {
+    if (quantity > threshold) {
+      setQuantity(threshold);
+    } else if (quantity === 0 && threshold > 0) {
+      setQuantity(1);
+    }
+    // eslint-disable-next-line
+  }, [threshold]);
+
+  return (
+    <div className="card eb-nft__card h-100 shadow px-4">
+      <div className="card-body d-flex flex-column">
+        <h5>{buttonName}</h5>
+        <div className="row row-cols-1 g-3">
+          <div>
+            <Form.Label>Quantity</Form.Label>
+            <Form.Control
+              type="number"
+              placeholder="Input the amount"
+              onChange={onAmountChange}
+              value={quantity}
+              style={{ width: '80px', marginBottom: 0, appearance: 'none', margin: 0 }}
+            />
+          </div>
+
+          <div className="btn-group mt-4 flex-wrap">
+            <button className="btn-main lead mx-1 mb-2" onClick={execute} disabled={quantity === 0 || threshold === 0}>
+              {isStaking ? (
+                <>
+                  {buttonActionName}
+                  <Spinner animation="border" role="status" size="sm" className="ms-1">
+                    <span className="visually-hidden">Loading...</span>
+                  </Spinner>
+                </>
+              ) : (
+                <>{buttonName}</>
+              )}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const RewardsCard = () => {
+  const user = useSelector((state) => state.user);
+  const userTheme = useSelector((state) => {
+    return state.user.theme;
+  });
+
+  const [firstRunComplete, setFirstRunComplete] = useState(false);
+  const [isHarvesting, setIsHarvesting] = useState(false);
+  const [rewardsInfoLoading, setRewardsInfoLoading] = useState(false);
+  const [userPendingRewards, setUserPendingRewards] = useState(0);
+  const [userReleasedRewards, setUserReleasedRewards] = useState(0);
+  const [globalPaidRewards, setGlobalPaidRewards] = useState(0);
+  const [globalStakedTotal, setglobalStakedTotal] = useState(0);
+
+  const getRewardsInfo = async () => {
+    if (!user.stakeContract) return;
+
+    if (!firstRunComplete) {
+      setRewardsInfoLoading(true);
+    }
+
+    try {
+      const mGlobalStakedTotal = await user.stakeContract.totalStaked();
+      setglobalStakedTotal(parseInt(mGlobalStakedTotal));
+
+      const mUserPendingRewards = await user.stakeContract.getReward(user.address);
+      const mGlobalPaidRewards = await user.stakeContract.rewardsPaid();
+      const mUserReleasedRewards = await user.stakeContract.getReleasedReward(user.address);
+
+      setUserPendingRewards(ethers.utils.formatEther(mUserPendingRewards));
+      setUserReleasedRewards(ethers.utils.formatEther(mUserReleasedRewards));
+      setGlobalPaidRewards(ethers.utils.formatEther(mGlobalPaidRewards));
     } catch (error) {
       console.log(error);
     } finally {
-      setCupIsLoading(false);
+      setFirstRunComplete(true);
+      setRewardsInfoLoading(false);
     }
   };
 
@@ -403,36 +350,19 @@ const RewardsCard = ({}) => {
 
     try {
       setIsHarvesting(true);
-      const completedPool = await user.stakeContract.completedPool();
-      if (completedPool !== ethers.constants.AddressZero) {
-        const rewardsContract = new Contract(completedPool, RewardsPoolAbi, user.provider.getSigner());
+      const amountToHarvest = await user.stakeContract.getReward(user.address);
 
+      if (amountToHarvest.gt(0)) {
         try {
-          const released = await rewardsContract.released(user.address);
-
-          if (released > 0) {
-            toast.error('Already released');
-          } else {
-            const share = await rewardsContract.shares(user.address);
-
-            if (share > 0) {
-              try {
-                const tx = await user.stakeContract.harvest(user.address, txExtras);
-                const receipt = await tx.wait();
-                getCurrentPoolInfo();
-                getCompletedPoolInfo();
-                toast.success(createSuccessfulTransactionToastContent(receipt.transactionHash));
-              } catch (err) {
-                toast.error(err.message);
-              }
-            } else {
-              toast.error('No shares');
-            }
-          }
+          const tx = await user.stakeContract.harvest(user.address, txExtras);
+          const receipt = await tx.wait();
+          await getRewardsInfo();
+          toast.success(createSuccessfulTransactionToastContent(receipt.transactionHash));
         } catch (err) {
-          console.log({ err });
-          toast.error('No harvest available');
+          toast.error(err.message);
         }
+      } else {
+        toast.error('Amount to harvest is zero');
       }
     } catch (err) {
       toast.error(err.message);
@@ -442,134 +372,85 @@ const RewardsCard = ({}) => {
   };
 
   useEffect(() => {
-    getCurrentPoolInfo();
-    getCompletedPoolInfo();
+    async function func() {
+      await getRewardsInfo();
+    }
+    func();
   }, []);
 
-  const EpochCountdown = ({ timestamp }) => {
-    return <Countdown date={timestamp} />;
-  };
+  useInterval(() => {
+    async function func() {
+      if (!isHarvesting && !rewardsInfoLoading) {
+        await getRewardsInfo();
+      }
+    }
+    func();
+  }, 1000 * 60);
 
   return (
-    <div className="row row-cols-1 row-cols-xl-2 gx-2 gy-3 gy-xl-0">
-      <>
-        <div className="col">
-          <div className="card eb-nft__card h-100 shadow px-4">
-            <div className="card-body d-flex flex-column">
-              <h5>Rewards</h5>
-              {!inInitMode && (
-                <div className="item_info_counts">
-                  <div>
-                    <FontAwesomeIcon icon={faTrophy} /> VIPs Rewarded: {cmpUserShares}
+    <div className="col">
+      <div className="card eb-nft__card h-100 shadow px-4">
+        <div className="card-body d-flex flex-column">
+          <h5>Rewards</h5>
+          {rewardsInfoLoading ? (
+            <Spinner animation="border" role="status" size="sm" className="mx-auto">
+              <span className="visually-hidden">Loading...</span>
+            </Spinner>
+          ) : (
+            <>
+              <div className="row mb-4">
+                <div className="col-12 col-sm-4 text-center">
+                  <div>Total Staked</div>
+                  <div className="fw-bold" style={{ color: getTheme(userTheme).colors.textColor3 }}>
+                    {globalStakedTotal}
                   </div>
                 </div>
-              )}
-              {cmpIsLoading ? (
-                <Spinner animation="border" role="status" size="sm" className="ms-1">
-                  <span className="visually-hidden">Loading...</span>
-                </Spinner>
-              ) : (
-                <>
-                  {inInitMode ? (
-                    <p className="text-center my-auto">Rewards will start once the first epoch is complete</p>
-                  ) : (
-                    <>
-                      {isAwaitingRollover ? (
-                        <p className="text-center my-auto">Calculating rewards. Please wait...</p>
-                      ) : (
-                        <>
-                          {cupId > 1 ? (
-                            <p className="text-center my-xl-auto">
-                              You have <strong>{cmpHasHarvested ? 0 : commify(round(cmpUserRewards, 3))} CRO</strong>{' '}
-                              available for harvest from epoch {cupId - 1}.
-                            </p>
-                          ) : (
-                            <p className="text-center my-auto">
-                              Rewards will be harvestable once the first epoch is completed.
-                            </p>
-                          )}
-                          <button
-                            className="btn-main lead mx-1 mb-1 mt-auto"
-                            onClick={harvest}
-                            disabled={cmpHasHarvested || !(cmpUserShares > 0)}
-                            style={{ width: 'auto' }}
-                          >
-                            {isHarvesting ? (
-                              <>
-                                Harvesting...
-                                <Spinner animation="border" role="status" size="sm" className="ms-1">
-                                  <span className="visually-hidden">Loading...</span>
-                                </Spinner>
-                              </>
-                            ) : (
-                              <>
-                                {cmpHasHarvested ? (
-                                  <>
-                                    Harvest in <EpochCountdown timestamp={cupPeriodEnd} />
-                                  </>
-                                ) : (
-                                  <>Harvest</>
-                                )}
-                              </>
-                            )}
-                          </button>
-                        </>
-                      )}
-                    </>
-                  )}
-                </>
-              )}
-            </div>
-          </div>
-        </div>
-
-        <div className="col">
-          <div className="card eb-nft__card h-100 shadow px-4">
-            <div className="card-body d-flex flex-column">
-              <h5>Current Pool</h5>
-              {!inInitMode && (
-                <div className="item_info_counts">
-                  <div>
-                    <FontAwesomeIcon icon={faChargingStation} /> VIPs Eligible: {cupUserShares}
+                <div className="col-12 col-sm-4 text-center">
+                  <div>Total Harvested</div>
+                  <div className="fw-bold" style={{ color: getTheme(userTheme).colors.textColor3 }}>
+                    {siPrefixedNumber(round(Number(globalPaidRewards)))} CRO
                   </div>
                 </div>
-              )}
-              {cupIsLoading ? (
-                <Spinner animation="border" role="status" size="sm" className="ms-1">
-                  <span className="visually-hidden">Loading...</span>
-                </Spinner>
-              ) : (
+                <div className="col-12 col-sm-4 text-center">
+                  <div>My Harvest</div>
+                  <div className="fw-bold" style={{ color: getTheme(userTheme).colors.textColor3 }}>
+                    {siPrefixedNumber(round(Number(userReleasedRewards)))} CRO
+                  </div>
+                </div>
+              </div>
+              {userPendingRewards > 0 ? (
                 <>
-                  {inInitMode ? (
-                    <p className="text-center my-auto">Waiting for the first epoch to begin</p>
-                  ) : (
-                    <>
-                      {isAwaitingRollover ? (
-                        <p className="text-center my-auto">Epoch {cupId} has ended. The next epoch will start soon.</p>
-                      ) : (
-                        <>
-                          <p>
-                            <strong>Current Epoch</strong>: {cupId}
-                          </p>
-                          <p>
-                            <strong>Pool Balance</strong>: {round(cupPoolRewards, 3)} CRO
-                          </p>
-                          <p>
-                            <strong>My Balance</strong>: {round(cupUserRewards, 3)} CRO
-                          </p>
-                          <div className="eb-de_countdown text-center">
-                            Ends In: <EpochCountdown timestamp={cupPeriodEnd} />
-                          </div>
-                        </>
-                      )}
-                    </>
-                  )}
+                  <p className="text-center my-xl-auto fs-5" style={{color: getTheme(userTheme).colors.textColor3}}>
+                    You have <strong>{commify(round(userPendingRewards, 3))} CRO</strong>{' '}
+                    available for harvest!
+                  </p>
+                  <button
+                    className="btn-main lead mx-1 mb-1 mt-2"
+                    onClick={harvest}
+                    disabled={!(userPendingRewards > 0)}
+                    style={{ width: 'auto' }}
+                  >
+                    {isHarvesting ? (
+                      <>
+                        Harvesting...
+                        <Spinner animation="border" role="status" size="sm" className="ms-1">
+                          <span className="visually-hidden">Loading...</span>
+                        </Spinner>
+                      </>
+                    ) : (
+                      <>Harvest</>
+                    )}
+                  </button>
                 </>
+              ) : (
+                <p className="text-center my-auto">
+                  No harvestable rewards yet. Check back later!
+                </p>
               )}
-            </div>
-          </div>
+            </>
+          )}
         </div>
-      </>
+      </div>
     </div>
   );
 };

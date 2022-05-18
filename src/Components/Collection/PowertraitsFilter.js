@@ -3,7 +3,7 @@ import { Accordion, Form } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
-import { humanize } from '../../utils';
+import {humanize, mapAttributeString} from '../../utils';
 import { filterListingsByTrait } from '../../GlobalState/collectionSlice';
 
 const PowertraitsFilter = ({ address }) => {
@@ -30,7 +30,8 @@ const PowertraitsFilter = ({ address }) => {
   };
 
   const traitStatName = (name, stats) => {
-    let ret = humanize(name);
+    let ret = mapAttributeString(name, address, true);
+
     if (stats && stats.count > 0) {
       ret = ret.concat(` (${stats.count})`);
     }

@@ -162,7 +162,7 @@ const Collection1155 = ({ collection, tokenId = null, cacheName = 'collection', 
                   <h4>
                     {collectionName()}
                     <div className="clearfix" />
-                    <SocialsBar collection={collection} />
+                    <SocialsBar address={collection.address} collection={collection.metadata} />
                   </h4>
                 </div>
               </div>
@@ -234,7 +234,7 @@ const Collection1155 = ({ collection, tokenId = null, cacheName = 'collection', 
                         canLoadMore={canLoadMore}
                         loadMore={loadMore}
                         address={collection.address}
-                        collectionMetadata={collection.metadata}
+                        collection={collection}
                       />
                     )}
                   </div>

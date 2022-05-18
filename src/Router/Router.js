@@ -25,6 +25,7 @@ import Collections from '../Components/pages/collections';
 import MetaverseAuctions from '../Components/pages/metaverseAuctions';
 import { ErrorPage } from '../Components/pages/ErrorPage';
 import ManageAuctions from '../Components/pages/manageAuctions';
+import Application from '../Components/pages/application';
 
 const SentryEnhancedRoute = Sentry.withSentryRouting(Route);
 
@@ -100,6 +101,16 @@ const Component = ({ walletAddress, authInitFinished }) => {
           />
           <SentryEnhancedRoute
             exact
+            path="/collection/degen-mad-meerkat"
+            render={() => <Redirect to="/collection/mad-meerkat-degen" />}
+          />
+          <SentryEnhancedRoute
+            exact
+            path="/collection/degen-mad-meerkat/:id"
+            render={(props) => <Redirect to={`/collection/mad-meerkat-degen/${props.match.params.id}`} />}
+          />
+          <SentryEnhancedRoute
+            exact
             path="/collection/weird-apes-club-v2"
             render={() => <Redirect to="/collection/weird-apes-club" />}
           />
@@ -109,6 +120,7 @@ const Component = ({ walletAddress, authInitFinished }) => {
           <SentryEnhancedRoute exact path="/seller/:address" component={Seller} />
           <SentryEnhancedRoute exact path="/metaverse-auctions" component={MetaverseAuctions} />
           {/*<SentryEnhancedRoute exact path="/slothty-rugsurance" component={Rugsurance} />*/}
+          <SentryEnhancedRoute exact path="/apply" component={Application} />
           <SentryEnhancedRoute path="*" render={() => <Redirect to="/" />} />
         </Switch>
       </Sentry.ErrorBoundary>

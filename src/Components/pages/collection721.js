@@ -61,9 +61,9 @@ const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) 
     );
   });
 
-  const collectionMetadata = useSelector((state) => {
-    return knownContracts.find((c) => c.address.toLowerCase() === collection.address.toLowerCase())?.metadata;
-  });
+  // const collectionMetadata = useSelector((state) => {
+  //   return knownContracts.find((c) => c.address.toLowerCase() === collection.address.toLowerCase())?.metadata;
+  // });
   const isUsingListingsFallback = useSelector((state) => state.collection.isUsingListingsFallback);
 
   // const handleCopy = (code) => () => {
@@ -189,7 +189,8 @@ const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) 
                   {collection.metadata.description && <p>{collection.metadata.description}</p>}
                   <span className="fs-4">
                     <SocialsBar
-                      collection={knownContracts.find((c) => caseInsensitiveCompare(c.address, collection.address))}
+                      address={collection.address}
+                      collection={collection.metadata}
                     />
                   </span>
                 </div>
@@ -297,7 +298,7 @@ const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) 
                         canLoadMore={canLoadMore}
                         loadMore={loadMore}
                         address={address}
-                        collectionMetadata={collection.metadata}
+                        collection={collection}
                       />
                     )}
                     {isFirstLoaded !== 2 && collectionLoading && (

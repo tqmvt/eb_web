@@ -3,7 +3,7 @@ import config from '../Assets/networks/rpc_config.json';
 
 const APIURL = `${config.subgraph_base}${config.chain_id === '25' ? 'offers' : 'offers-testnet'}`;
 
-const FIRST = 100;
+const FIRST = 1000;
 
 const client = new ApolloClient({
   uri: APIURL,
@@ -139,7 +139,7 @@ export const getFilteredOffers = async (nftAddress, nftId, walletAddress) => {
 export const getOffersForSingleNFT = async (nftAddress, nftId) => {
   const nftOffersQuery = `
   query($first: Int) {
-    offers(first: 1000, where: { nftAddress: "${nftAddress}", nftId: ${nftId}}) {
+    offers(first: 1000, where: { nftAddress: "${nftAddress}", nftId: "${nftId}"}) {
       id
       hash
       offerIndex

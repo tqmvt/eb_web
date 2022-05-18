@@ -32,6 +32,8 @@ import {
 import { dropState as statuses } from '../../core/api/enums';
 import { EbisuDropAbi } from '../../Contracts/Abis';
 import { commify } from 'ethers/lib.esm/utils';
+import { getTheme } from '../../Theme/theme';
+import SocialsBar from "../Collection/SocialsBar";
 
 export const drops = config.drops;
 
@@ -65,7 +67,7 @@ const HeroSection = styled.section`
   padding: 0 0;
   background-size: cover;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   position: relative;
   display: flex;
   align-items: center;
@@ -100,7 +102,7 @@ const SingleDrop = () => {
   const [memberCost, setMemberCost] = useState(0);
   const [regularCost, setRegularCost] = useState(0);
   const [whitelistCost, setWhitelistCost] = useState(0);
-  const [specialWhitelistCost, setSpecialWhitelistCost] = useState(0);
+  const [specialWhitelist, setSpecialWhitelist] = useState(null);
   const [totalSupply, setTotalSupply] = useState(0);
   const [canMintQuantity, setCanMintQuantity] = useState(0);
 
@@ -135,6 +137,10 @@ const SingleDrop = () => {
 
   const cronies = useSelector((state) => {
     return state.cronies;
+  });
+
+  const userTheme = useSelector((state) => {
+    return state.user.theme;
   });
 
   useEffect(() => {
@@ -240,6 +246,9 @@ const SingleDrop = () => {
           setDropInfo(currentDrop, currentSupply);
           calculateStatus(currentDrop, currentSupply, currentDrop.totalSupply);
         }
+        if (drop.specialWhitelistCost) {
+          setSpecialWhitelist(drop.specialWhitelistCost);
+        }
       }
     } catch (error) {
       console.log(error);
@@ -257,7 +266,7 @@ const SingleDrop = () => {
     setRegularCost(drop.cost);
     setTotalSupply(supply);
     setWhitelistCost(drop.whitelistCost);
-    setSpecialWhitelistCost(drop.specialWhitelistCost);
+    setSpecialWhitelist(drop.specialWhitelistCost);
     setCanMintQuantity(drop.maxMintPerTx);
   };
 
@@ -480,27 +489,30 @@ const SingleDrop = () => {
         >
           <div className="container">
             <div className="row align-items-center">
-              <div className={`col-lg-6 ${drop.mediaPosition === 'left' ? 'order-1' : 'order-2'}`}>
+              <div className={`col-lg-6 mb-4 mb-sm-0 ${drop.mediaPosition === 'left' ? 'order-1' : 'order-2'}`}>
                 <Reveal className="onStep" keyframes={fadeInUp} delay={600} duration={900} triggerOnce>
                   <>
                     {drop.video && (
-                      <ReactPlayer
-                        controls
-                        url={drop.video}
-                        config={{
-                          file: {
-                            attributes: {
-                              onContextMenu: (e) => e.preventDefault(),
-                              controlsList: 'nodownload',
+                      <div className='player-wrapper'>
+                        <ReactPlayer
+                          className='react-player'
+                          controls
+                          url={drop.video}
+                          config={{
+                            file: {
+                              attributes: {
+                                onContextMenu: (e) => e.preventDefault(),
+                                controlsList: 'nodownload',
+                              },
                             },
-                          },
-                        }}
-                        muted={true}
-                        playing={true}
-                        loop={true}
-                        width="75%"
-                        height="75%"
-                      />
+                          }}
+                          muted={true}
+                          playing={true}
+                          loop={true}
+                          width="100%"
+                          height="100%"
+                        />
+                      </div>
                     )}
 
                     {drop.slug === 'psycho-golden-lady' || drop.slug === 'smash-stunts' ? (
@@ -510,9 +522,7 @@ const SingleDrop = () => {
                         )}
                       </>
                     ) : (
-                      <>
-                        {drop.embed && <div dangerouslySetInnerHTML={{ __html: drop.embed }} />}
-                      </>
+                      <>{drop.embed && <div dangerouslySetInnerHTML={{ __html: drop.embed }} />}</>
                     )}
                   </>
                 </Reveal>
@@ -573,12 +583,18 @@ const SingleDrop = () => {
                     <div className="profile_name">
                       <h4>
                         {drop.author.name}
-                        {drop.author.link && (
+                        {drop.author.link ? (
                           <span className="profile_username">
                             <a href={drop.author.link} target="_blank" rel="noreferrer">
                               View Website
                             </a>
                           </span>
+                        ) : (
+                          <SocialsBar
+                            address={drop.address}
+                            collection={drop.author}
+                            showCopy={false}
+                          />
                         )}
                       </h4>
                     </div>
@@ -617,7 +633,7 @@ const SingleDrop = () => {
                 <div className="mt-3">{newlineText(drop.description)}</div>
 
                 {drop.disclaimer && (
-                  <p className="fw-bold text-center my-4" style={{ color: 'black' }}>
+                  <p className="fw-bold text-center my-4" style={{ color: getTheme(userTheme).colors.textColor3 }}>
                     {drop.disclaimer}
                   </p>
                 )}
@@ -656,16 +672,16 @@ const SingleDrop = () => {
                       <h5>{whitelistCost} CRO</h5>
                     </div>
                   )}
-                  {specialWhitelistCost > 0 && (
+                  {specialWhitelist && (
                     <div className="me-4">
-                      <h6 className="mb-1">Special Whitelist</h6>
-                      <h5>{specialWhitelistCost} CRO</h5>
+                      <h6 className="mb-1">{specialWhitelist.name}</h6>
+                      <h5>{specialWhitelist.value} CRO</h5>
                     </div>
                   )}
                 </div>
 
                 {drop.priceDescription && (
-                  <p className="my-2" style={{ color: 'black' }}>
+                  <p className="my-2" style={{ color: getTheme(userTheme).colors.textColor3 }}>
                     *{drop.priceDescription}
                   </p>
                 )}

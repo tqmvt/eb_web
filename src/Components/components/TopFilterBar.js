@@ -5,8 +5,8 @@ import { useSelector } from 'react-redux';
 import { SortOption } from '../Models/sort-option.model';
 import { FilterOption } from '../Models/filter-option.model';
 import { getTheme } from '../../Theme/theme';
-import {Form} from "react-bootstrap";
-import styled from "styled-components";
+import { Form } from 'react-bootstrap';
+import styled from 'styled-components';
 
 const CollectionFilterBarContainer = styled.div`
   margin: 0 0 22px;
@@ -70,7 +70,7 @@ const TopFilterBar = ({
         value={filterValue}
         onChange={onFilterChange}
       />
-    )
+    );
   };
 
   const Sort = () => {
@@ -85,7 +85,7 @@ const TopFilterBar = ({
         value={sortValue}
         onChange={onSortChange}
       />
-    )
+    );
   };
 
   const Search = () => {
@@ -97,45 +97,27 @@ const TopFilterBar = ({
         style={{ marginBottom: 0, marginTop: 0 }}
         defaultValue={defaultSearchValue}
       />
-    )
+    );
   };
 
   return (
     <CollectionFilterBarContainer className="row align-items-center">
       <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12 px-2 mt-2">
         <div className="items_filter" style={{ marginBottom: 0, marginTop: 0 }}>
-          <div className="dropdownSelect two w-100 mr-0 mb-0">
-            {showFilter ? (
-              <Filter />
-            ) : (
-              <Sort />
-            )}
-          </div>
+          <div className="dropdownSelect two w-100 mr-0 mb-0">{showFilter ? <Filter /> : <Sort />}</div>
         </div>
       </div>
       <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12 px-2 mt-2">
         <div className="items_filter" style={{ marginBottom: 0, marginTop: 0 }}>
           <div className="dropdownSelect two w-100 mr-0 mb-0">
-            {showSort && (
-              <>
-                {showFilter ? (
-                  <Sort />
-                ) : (
-                  <Search />
-                )}
-              </>
-            )}
+            {showSort && <>{showFilter ? <Sort /> : <Search />}</>}
           </div>
         </div>
       </div>
-      <div className="col-xl-3 px-2 mt-2 col-md-6 col-sm-12 d-sm-flex d-lg-none d-xl-flex"/>
+      <div className="col-xl-3 px-2 mt-2 col-md-6 col-sm-12 d-sm-flex d-lg-none d-xl-flex" />
       <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12 px-2 mt-2">
         <div className="items_filter" style={{ marginBottom: 0, marginTop: 0 }}>
-          <div className="dropdownSelect two w-100 mr-0 mb-0">
-            {showSearch && showFilter && (
-              <Search />
-            )}
-          </div>
+          <div className="dropdownSelect two w-100 mr-0 mb-0">{showSearch && showFilter && <Search />}</div>
         </div>
       </div>
     </CollectionFilterBarContainer>

@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import moment from 'moment';
 import Blockies from 'react-blockies';
 
-import { caseInsensitiveCompare, shortAddress } from 'src/utils';
+import {caseInsensitiveCompare, findCollectionByAddress, shortAddress, shortString} from 'src/utils';
 import config from 'src/Assets/networks/rpc_config.json';
 import { getNftDetails } from 'src/GlobalState/nftSlice';
 import MakeOfferDialog from '../MakeOfferDialog';
@@ -119,11 +119,7 @@ export default function TableRow({ data, type }) {
     setOfferType(type);
   };
 
-  const collectionData = knownContracts.find((c) => {
-    const matchedAddress = caseInsensitiveCompare(c.address, nftAddress);
-    const matchedToken = !c.multiToken || parseInt(nftId) === c.id;
-    return matchedAddress && matchedToken;
-  });
+  const collectionData = findCollectionByAddress(nftAddress, nftId);
 
   const getCollectionName = () => {
     return collectionData ? collectionData?.name : '';
@@ -196,7 +192,7 @@ export default function TableRow({ data, type }) {
           <div className="collection-name">{getCollectionName()}</div>
         </div>
         <div className="table-row-item nft-title">
-          <a href={`/collection/${collectionData?.slug}/${nftId}`}>{nftId}</a>
+          <a href={`/collection/${collectionData?.slug}/${nftId}`}>{shortString(nftId)}</a>
         </div>
         <div className="table-row-item">{getState(state)}</div>
         <div className="table-row-item">{getOfferDate(timeCreated)}</div>

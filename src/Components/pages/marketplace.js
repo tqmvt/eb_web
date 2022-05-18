@@ -7,8 +7,8 @@ import TopFilterBar from '../components/TopFilterBar';
 import { sortOptions } from '../components/constants/sort-options';
 import { marketPlaceCollectionFilterOptions } from '../components/constants/filter-options';
 import SalesCollection from '../components/SalesCollection';
-import {filterListings, getMarketData, searchListings, sortListings} from '../../GlobalState/marketplaceSlice';
-import {debounce, siPrefixedNumber} from '../../utils';
+import { filterListings, getMarketData, searchListings, sortListings } from '../../GlobalState/marketplaceSlice';
+import { debounce, siPrefixedNumber } from '../../utils';
 import { SortOption } from '../Models/sort-option.model';
 import { ListingsFilterOption } from '../Models/listings-filter-option.model';
 

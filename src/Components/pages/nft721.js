@@ -1,7 +1,5 @@
 import React, { memo, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory, Link } from 'react-router-dom';
-import Blockies from 'react-blockies';
 import { Contract, ethers } from 'ethers';
 import { faCrow, faExternalLinkAlt, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -17,7 +15,7 @@ import {
   isCroCrowCollection,
   isCrognomidesCollection,
   isNftBlacklisted,
-  isUserBlacklisted,
+  isUserBlacklisted, mapAttributeString, millisecondTimestamp,
   relativePrecision,
   shortAddress,
   timeSince,
@@ -26,6 +24,7 @@ import { getNftDetails } from '../../GlobalState/nftSlice';
 import config from '../../Assets/networks/rpc_config.json';
 import { croSkullRedPotionImageHack } from '../../hacks';
 import NFTTabOffers from '../Offer/NFTTabOffers';
+import ListingItem from '../NftDetails/NFTTabListings/ListingItem';
 import PriceActionBar from '../NftDetails/PriceActionBar';
 import MakeOfferDialog from '../Offer/MakeOfferDialog';
 import { connectAccount, chainConnect } from 'src/GlobalState/User';
@@ -42,7 +41,6 @@ const knownContracts = config.known_contracts;
 
 const Nft721 = ({ address, id }) => {
   const dispatch = useDispatch();
-  const history = useHistory();
 
   const user = useSelector((state) => state.user);
 
@@ -161,10 +159,6 @@ const Nft721 = ({ address, id }) => {
 
     // eslint-disable-next-line
   }, [address]);
-
-  const viewSeller = (seller) => () => {
-    history.push(`/seller/${seller}`);
-  };
 
   const fullImage = () => {
     if (nft.original_image.startsWith('ipfs://')) {
@@ -354,11 +348,11 @@ const Nft721 = ({ address, id }) => {
                       <ProfilePreview
                         type="Rarity Rank"
                         title={nft.rank}
-                        avatar={collectionMetadata.rarity === 'rarity_sniper' ? '/img/logos/rarity-sniper.png' : null}
+                        avatar={collectionMetadata.rarity === 'rarity_sniper' ? '/img/logos/rarity-sniper.png' : '/img/logos/ebisu-technicolor.svg'}
                         hover={
                           collectionMetadata.rarity === 'rarity_sniper'
                             ? `Ranking provided by ${humanize(collectionMetadata.rarity)}`
-                            : null
+                            : 'Ranking provided by Ebisu\'s Bay'
                         }
                         to={
                           collectionMetadata.rarity === 'rarity_sniper'
@@ -373,7 +367,7 @@ const Nft721 = ({ address, id }) => {
                   <div className="spacer-40"></div>
 
                   <div className="de_tab">
-                    <ul className="de_nav">
+                    <ul className="de_nav nft_tabs_options">
                       <li id="Mainbtn0" className="tab active">
                         <span onClick={handleBtnClick(0)}>Details</span>
                       </li>
@@ -411,7 +405,19 @@ const Nft721 = ({ address, id }) => {
                                         <div key={i} className="col-lg-4 col-md-6 col-sm-6">
                                           <div className="nft_attr">
                                             <h5>{humanize(data.trait_type)}</h5>
-                                            <h4>{data.value ? humanize(data.value) : 'N/A'}</h4>
+                                            <h4>
+                                              {data.value !== undefined ? (
+                                                <>
+                                                  {data?.display_type === 'date' ? (
+                                                    <>{(new Date(millisecondTimestamp(data.value))).toDateString()}</>
+                                                  ) : (
+                                                    <>{mapAttributeString(data.value, address)}</>
+                                                  )}
+                                                </>
+                                              ) : (
+                                                <>N/A</>
+                                              )}
+                                            </h4>
                                             {data.occurrence ? (
                                               <span>{relativePrecision(data.occurrence)}% have this trait</span>
                                             ) : (
@@ -428,7 +434,19 @@ const Nft721 = ({ address, id }) => {
                                       <div key={i} className="col-lg-4 col-md-6 col-sm-6">
                                         <div className="nft_attr">
                                           <h5>{humanize(data.trait_type)}</h5>
-                                          <h4>{data.value ? humanize(data.value) : 'N/A'}</h4>
+                                          <h4>
+                                            {data.value !== undefined ? (
+                                              <>
+                                                {data?.display_type === 'date' ? (
+                                                  <>{(new Date(millisecondTimestamp(data.value))).toDateString()}</>
+                                                ) : (
+                                                  <>{mapAttributeString(data.value, address, true)}</>
+                                                )}
+                                              </>
+                                            ) : (
+                                              <>N/A</>
+                                            )}
+                                          </h4>
                                           {data.occurrence ? (
                                             <span>{Math.round(data.occurrence * 100)}% have this trait</span>
                                           ) : (
@@ -474,29 +492,19 @@ const Nft721 = ({ address, id }) => {
                         </div>
                       )}
                       {openMenu === 2 && (
-                        <div className="tab-3 onStep fadeIn">
+                        <div className="listing-tab tab-3 onStep fadeIn">
                           {listingHistory && listingHistory.length > 0 ? (
                             <>
                               {listingHistory.map((listing, index) => (
-                                <div className="p_list" key={index}>
-                                  <Link to={`/seller/${listing.purchaser}`}>
-                                    <div className="p_list_pp">
-                                      <span>
-                                        <span onClick={viewSeller(listing.purchaser)}>
-                                          <Blockies seed={listing.purchaser} size={10} scale={5} />
-                                        </span>
-                                      </span>
-                                    </div>
-                                  </Link>
-                                  <div className="p_list_info">
-                                    <span>{timeSince(listing.saleTime + '000')} ago</span>
-                                    Bought by{' '}
-                                    <b>
-                                      <Link to={`/seller/${listing.purchaser}`}>{shortAddress(listing.purchaser)}</Link>
-                                    </b>{' '}
-                                    for <b>{ethers.utils.commify(listing.price)} CRO</b>
-                                  </div>
-                                </div>
+                                <ListingItem
+                                  key={`sold-item-${index}`}
+                                  route='/seller'
+                                  primaryTitle='Bought by'
+                                  user={listing.purchaser}
+                                  time={timeSince(listing.saleTime + '000')}
+                                  price={ethers.utils.commify(listing.price)}
+                                  primaryText={shortAddress(listing.purchaser)}
+                                />
                               ))}
                             </>
                           ) : (

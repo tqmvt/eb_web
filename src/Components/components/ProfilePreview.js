@@ -60,7 +60,7 @@ const ProfilePreview = ({
     if (url) {
       if (url.startsWith('http')) {
         return (
-          <a href={url} target={pop ? '_blank' : '_self'}>
+          <a href={url} target={pop ? '_blank' : '_self'} rel="noreferrer">
             {' '}
             {AvatarElement}{' '}
           </a>

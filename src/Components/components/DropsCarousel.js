@@ -77,16 +77,14 @@ export default class Responsive extends Component {
     return drop.slug === 'founding-member';
   }
 
-  calculateStatus(drop) {
-    const sTime = new Date(drop.start);
-    const eTime = new Date(drop.end);
+  calculateStatus(startDate, endDate) {
+    const sTime = new Date(startDate);
+    const eTime = new Date(endDate);
     const now = new Date();
 
     if (sTime > now) return dropState.NOT_STARTED;
-    else if (drop.currentSupply >= drop.totalSupply && drop.slug !== 'founding-member' && drop.slug !== 'cronies')
-      return dropState.SOLD_OUT;
-    else if (!drop.end || eTime > now) return dropState.LIVE;
-    else if (drop.end && eTime < now) return dropState.EXPIRED;
+    else if (!endDate || eTime > now) return dropState.LIVE;
+    else if (endDate && eTime < now) return dropState.EXPIRED;
     else return dropState.NOT_STARTED;
   }
 
@@ -300,26 +298,66 @@ export default class Responsive extends Component {
                                 <h5>Whitelist: {ethers.utils.commify(drop.whitelistCost)} CRO</h5>
                               ))}
                             {drop.specialWhitelistCost && (
-                              <h5>Special Whitelist: {ethers.utils.commify(drop.specialWhitelistCost)} CRO</h5>
+                              <h5>{drop.specialWhitelistCost.name}: {ethers.utils.commify(drop.specialWhitelistCost.value)} CRO</h5>
                             )}
                           </div>
                           <div className="line my-auto"></div>
-                          <div className="col my-auto">
-                            {this.calculateStatus(drop) === dropState.NOT_STARTED && (
-                              <>
-                                <span className="d-title">Drop starts in</span>
-                                <div className="de_countdown">
-                                  <Clock deadline={drop.start} />
-                                </div>
-                                <h5>
-                                  {new Date(drop.start).toDateString()}, {new Date(drop.start).toTimeString()}
-                                </h5>
-                              </>
-                            )}
-                            {this.calculateStatus(drop) === dropState.LIVE && <h3>Drop is Live!</h3>}
-                            {this.calculateStatus(drop) === dropState.EXPIRED && <h3>Drop Ended</h3>}
-                            {this.calculateStatus(drop) === dropState.SOLD_OUT && <h3>Sold Out</h3>}
-                          </div>
+                          {drop.salePeriods ? (
+                            <div className="col my-auto">
+                              {this.calculateStatus(drop.salePeriods.public) > dropState.NOT_STARTED ? (
+                                <>
+                                  {this.calculateStatus(drop.salePeriods.public) === dropState.LIVE && (
+                                    <h3>Drop is Live!</h3>
+                                  )}
+                                  {this.calculateStatus(drop.salePeriods.public) === dropState.EXPIRED && (
+                                    <h3>Drop Ended</h3>
+                                  )}
+                                  {this.calculateStatus(drop.salePeriods.public) === dropState.SOLD_OUT && (
+                                    <h3>Sold Out</h3>
+                                  )}
+                                </>
+                              ) : (
+                                <>
+                                  {this.calculateStatus(drop.salePeriods.presale) === dropState.NOT_STARTED && (
+                                    <>
+                                      <span className="d-title">Presale starts in</span>
+                                      <div className="de_countdown">
+                                        <Clock deadline={drop.salePeriods.presale} />
+                                      </div>
+                                    </>
+                                  )}
+                                  {this.calculateStatus(drop.salePeriods.presale) === dropState.LIVE && (
+                                    <h3>Presale Live!</h3>
+                                  )}
+                                  {this.calculateStatus(drop.salePeriods.public) === dropState.NOT_STARTED && (
+                                    <>
+                                      <span className="d-title">Public Sale starts in</span>
+                                      <div className="de_countdown">
+                                        <Clock deadline={drop.salePeriods.public} />
+                                      </div>
+                                    </>
+                                  )}
+                                </>
+                              )}
+                            </div>
+                          ) : (
+                            <div className="col my-auto">
+                              {this.calculateStatus(drop.start) === dropState.NOT_STARTED && (
+                                <>
+                                  <span className="d-title">Drop starts in</span>
+                                  <div className="de_countdown">
+                                    <Clock deadline={drop.start} />
+                                  </div>
+                                  <h5>
+                                    {new Date(drop.start).toDateString()}, {new Date(drop.start).toTimeString()}
+                                  </h5>
+                                </>
+                              )}
+                              {this.calculateStatus(drop.start) === dropState.LIVE && <h3>Drop is Live!</h3>}
+                              {this.calculateStatus(drop.start) === dropState.EXPIRED && <h3>Drop Ended</h3>}
+                              {this.calculateStatus(drop.start) === dropState.SOLD_OUT && <h3>Sold Out</h3>}
+                            </div>
+                          )}
                         </div>
                         <div className="spacer-10"></div>
                         <div className="d-buttons">

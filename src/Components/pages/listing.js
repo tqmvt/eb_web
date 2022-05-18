@@ -389,7 +389,19 @@ const Listing = () => {
                                           <div key={i} className="col-lg-4 col-md-6 col-sm-6">
                                             <div className="nft_attr">
                                               <h5>{humanize(data.trait_type)}</h5>
-                                              <h4>{humanize(data.value)}</h4>
+                                              <h4>
+                                                {data.value !== undefined ? (
+                                                  <>
+                                                    {data?.display_type === 'date' ? (
+                                                      <>{(new Date(data.value * 1000)).toDateString()}</>
+                                                    ) : (
+                                                      <>{humanize(data.value)}</>
+                                                    )}
+                                                  </>
+                                                ) : (
+                                                  <>N/A</>
+                                                )}
+                                              </h4>
                                               {data.occurrence ? (
                                                 <span>{relativePrecision(data.occurrence)}% have this trait</span>
                                               ) : (
@@ -409,6 +421,23 @@ const Listing = () => {
                                             <h4>
                                               {humanize(
                                                 isCrosmocraftsPartsDrop(collection.address) ? data.Value : data.value
+                                              )}
+                                            </h4>
+                                            <h4>
+                                              {data.value !== undefined ? (
+                                                <>
+                                                  {data?.display_type === 'date' ? (
+                                                    <>{(new Date(data.value * 1000)).toDateString()}</>
+                                                  ) : (
+                                                    <>
+                                                      {humanize(
+                                                      isCrosmocraftsPartsDrop(collection.address) ? data.Value : data.value
+                                                      )}
+                                                    </>
+                                                  )}
+                                                </>
+                                              ) : (
+                                                <>N/A</>
                                               )}
                                             </h4>
                                             {data.occurrence ? (

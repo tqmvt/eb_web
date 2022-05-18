@@ -138,7 +138,9 @@ export const fetchListings =
       null,
       null,
       state.marketplace.curSearch,
-      isSales ? 1 : 0
+      isSales ? 1 : 0,
+      null,
+      state.marketplace.curFilter.limit
     );
 
     if (!cancelled) {
@@ -162,7 +164,7 @@ export const sortListings =
   };
 
 export const searchListings = (value, cacheName, isSales) => async (dispatch) => {
-  dispatch(onSearch({search: value, cacheName}));
+  dispatch(onSearch({ search: value, cacheName }));
   dispatch(fetchListings(isSales));
 };
 

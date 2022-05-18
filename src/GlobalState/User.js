@@ -23,7 +23,7 @@ import {
 import { toast } from 'react-toastify';
 import {
   caseInsensitiveCompare,
-  createSuccessfulTransactionToastContent,
+  createSuccessfulTransactionToastContent, findCollectionByAddress,
   isUserBlacklisted,
   sliceIntoChunks,
 } from '../utils';
@@ -35,6 +35,7 @@ import { setThemeInStorage } from 'src/helpers/storage';
 import { getAllOffers } from '../core/subgraph';
 import { offerState } from '../core/api/enums';
 import { CNS, TextRecords } from '@cnsdomains/core';
+import {txExtras} from "../core/constants";
 
 const knownContracts = config.known_contracts;
 
@@ -69,14 +70,18 @@ const userSlice = createSlice({
     showWrongChainModal: false,
 
     // Primary Balances
+    balance: null,
     rewards: null,
     marketBalance: null,
-    balance: null,
+    withdrawingMarketBalance: false,
+    stakingRewards: null,
+    harvestingStakingRewards: false,
 
     // My NFTs
     fetchingNfts: false,
     nftsInitialized: false,
     nfts: [],
+    nftsFullyFetched: false,
     myNftPageTransferDialog: null,
     myNftPageListDialog: null,
     myNftPageCancelDialog: null,
@@ -118,6 +123,7 @@ const userSlice = createSlice({
       state.stakeCount = action.payload.stakeCount;
       state.marketContract = action.payload.marketContract;
       state.marketBalance = action.payload.marketBalance;
+      state.stakingRewards = action.payload.stakingRewards;
       state.auctionContract = action.payload.auctionContract;
       state.offerContract = action.payload.offerContract;
       state.gettingContractData = false;
@@ -144,7 +150,9 @@ const userSlice = createSlice({
 
     fetchingNfts(state, action) {
       state.fetchingNfts = true;
-      state.nfts = [];
+      if (!action.payload?.persist) {
+        state.nfts = [];
+      }
     },
     onNftsAdded(state, action) {
       state.nfts.push(...action.payload);
@@ -158,6 +166,10 @@ const userSlice = createSlice({
       if (action.payload) {
         state.nfts = action.payload;
       }
+    },
+    nftsFullyFetched(state) {
+      state.fetchingNfts = false;
+      state.nftsFullyFetched = true;
     },
     setMyNftPageTransferDialog(state, action) {
       state.myNftPageTransferDialog = action.payload;
@@ -239,8 +251,23 @@ const userSlice = createSlice({
     withdrewRewards(state) {
       state.rewards = 0;
     },
-    withdrewPayments(state) {
-      state.marketBalance = 0;
+    withdrawingMarketBalance(state) {
+      state.withdrawingMarketBalance = true;
+    },
+    withdrewMarketBalance(state, action) {
+      state.withdrawingMarketBalance = false;
+      if (action.payload.success) {
+        state.marketBalance = 0;
+      }
+    },
+    harvestingStakingRewards(state) {
+      state.harvestingStakingRewards = true;
+    },
+    harvestedStakingRewards(state, action) {
+      state.harvestingStakingRewards = false;
+      if (action.payload.success) {
+        state.stakingRewards = 0;
+      }
     },
     transferedNFT(state, action) {
       const indexesToRemove = state.nfts
@@ -279,6 +306,7 @@ const userSlice = createSlice({
       state.balance = null;
       state.rewards = null;
       state.marketBalance = null;
+      state.stakingRewards = null;
       state.isMember = false;
       state.vipCount = 0;
       state.stakeCount = 0;
@@ -321,6 +349,7 @@ export const {
   onNftsAdded,
   onNftsReplace,
   nftsFetched,
+  nftsFullyFetched,
   onNftLoaded,
   myUnfilteredListingsFetching,
   myUnfilteredListingsFetched,
@@ -334,7 +363,10 @@ export const {
   onCorrectChain,
   registeredCode,
   withdrewRewards,
-  withdrewPayments,
+  withdrawingMarketBalance,
+  withdrewMarketBalance,
+  harvestingStakingRewards,
+  harvestedStakingRewards,
   listingUpdate,
   transferedNFT,
   setIsMember,
@@ -455,7 +487,8 @@ export const connectAccount =
       const signer = provider.getSigner();
 
       if (isUserBlacklisted(address)) {
-        throw 'Unable to connect';
+        const error = { err: 'Unable to connect' };
+        throw error;
       }
 
       if (!correctChain) {
@@ -516,6 +549,7 @@ export const connectAccount =
       let offer;
       let sales;
       let stakeCount = 0;
+      let stakingRewards = 0;
 
       dispatch(retrieveCnsProfile());
 
@@ -533,6 +567,7 @@ export const connectAccount =
         auction = new Contract(config.auction_contract, Auction.abi, signer);
         offer = new Contract(config.offer_contract, Offer.abi, signer);
         sales = ethers.utils.formatEther(await market.payments(address));
+        stakingRewards = ethers.utils.formatEther(await sc.getReward(address));
 
         try {
           balance = ethers.utils.formatEther(await provider.getBalance(address));
@@ -561,6 +596,7 @@ export const connectAccount =
           auctionContract: auction,
           offerContract: offer,
           marketBalance: sales,
+          stakingRewards: stakingRewards,
         })
       );
     } catch (error) {
@@ -677,15 +713,20 @@ export const chainConnect = (type) => async (dispatch) => {
   }
 };
 
-export const fetchNfts = () => async (dispatch, getState) => {
+export const fetchNfts = (page, persist = false) => async (dispatch, getState) => {
   const state = getState();
 
   const walletAddress = state.user.address;
   const walletProvider = state.user.provider;
 
-  dispatch(fetchingNfts());
-  const response = await getNftsForAddress2(walletAddress, walletProvider);
-  dispatch(nftsFetched(response));
+  dispatch(fetchingNfts({persist}));
+  const response = await getNftsForAddress2(walletAddress, walletProvider, page);
+  if (response.length > 0) {
+    dispatch(onNftsAdded(response));
+    dispatch(nftsFetched());
+  } else {
+    dispatch(nftsFullyFetched());
+  }
 };
 
 export const fetchChainNfts = (abortSignal) => async (dispatch, getState) => {
@@ -693,23 +734,6 @@ export const fetchChainNfts = (abortSignal) => async (dispatch, getState) => {
 
   const walletAddress = state.user.address;
   const walletProvider = state.user.provider;
-  const nftsInitialized = state.user.nftsInitialized;
-  if (!nftsInitialized) {
-    dispatch(fetchingNfts());
-    const response = await getNftsForAddress(
-      walletAddress,
-      walletProvider,
-      (nfts) => {
-        dispatch(onNftsAdded(nfts));
-      },
-      abortSignal
-    );
-    if (abortSignal.aborted) return;
-    dispatch(setIsMember(response.isMember));
-    await addRanksToNfts(dispatch, getState);
-    dispatch(nftsFetched());
-    return;
-  }
 
   dispatch(fetchingNfts());
   try {
@@ -817,20 +841,13 @@ export const checkForOutstandingOffers = () => async (dispatch, getState) => {
 
     return collectionStats ? collectionStats.floorPrice : null;
   };
-  const findKnownContract = (address, nftId) => {
-    return knownContracts.find((c) => {
-      const matchedAddress = caseInsensitiveCompare(c.address, address);
-      const matchedToken = !c.multiToken || parseInt(nftId) === c.id;
-      return matchedAddress && matchedToken;
-    });
-  };
 
   const receivedOffers = offers.data.filter((offer) => {
     const nft = nfts.find(
-      (c) => c.nftAddress.toLowerCase() === offer.nftAddress && c.edition?.toString() === offer.nftId
+      (c) => caseInsensitiveCompare(c.nftAddress, offer.nftAddress) && parseInt(c.nftId) === parseInt(offer.nftId)
     );
 
-    const knownContract = findKnownContract(offer.nftAddress, offer.nftId);
+    const knownContract = findCollectionByAddress(offer.nftAddress, offer.nftId);
     const floorPrice = findCollectionFloor(knownContract);
     const offerPrice = parseInt(offer.price);
     const isAboveOfferThreshold = floorPrice ? offerPrice >= floorPrice / 2 : true;
@@ -908,15 +925,40 @@ export class AccountMenuActions {
     }
   };
 
-  static withdrawBalance = () => async (dispatch, getState) => {
+  static withdrawMarketBalance = () => async (dispatch, getState) => {
     const { user } = getState();
     try {
+      dispatch(withdrawingMarketBalance());
       const tx = await user.marketContract.withdrawPayments(user.address);
       const receipt = await tx.wait();
       toast.success(createSuccessfulTransactionToastContent(receipt.transactionHash));
-      dispatch(withdrewPayments());
+      dispatch(withdrewMarketBalance({ success: true }));
       dispatch(updateBalance());
     } catch (error) {
+      dispatch(withdrewMarketBalance({ success: false }));
+      if (error.data) {
+        toast.error(error.data.message);
+      } else if (error.message) {
+        toast.error(error.message);
+      } else {
+        console.log(error);
+        toast.error('Unknown Error');
+      }
+    } finally {
+    }
+  };
+
+  static harvestStakingRewards = () => async (dispatch, getState) => {
+    const { user } = getState();
+    try {
+      dispatch(harvestingStakingRewards());
+      const tx = await user.stakeContract.harvest(user.address);
+      const receipt = await tx.wait();
+      toast.success(createSuccessfulTransactionToastContent(receipt.transactionHash));
+      dispatch(harvestedStakingRewards({ success: true }));
+      dispatch(updateBalance());
+    } catch (error) {
+      dispatch(harvestedStakingRewards({ success: false }));
       if (error.data) {
         toast.error(error.data.message);
       } else if (error.message) {
@@ -1024,7 +1066,7 @@ export class MyNftPageActions {
       try {
         const price = ethers.utils.parseEther(salePrice);
 
-        let tx = await marketContract.makeListing(contractAddress, nftId, price);
+        let tx = await marketContract.makeListing(contractAddress, nftId, price, txExtras);
 
         let receipt = await tx.wait();
 

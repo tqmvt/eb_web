@@ -15,6 +15,7 @@ const InvalidListingsPopup = (props) => {
     if (!userAcknowledgedWarning) {
       setOpenInvalidListingsAlertDialog(myListings.some((value) => !value.valid));
     }
+    // eslint-disable-next-line
   }, [myListings]);
 
   const invalidListingsWarningAcknowledged = () => {

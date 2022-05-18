@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from 'react';
+import React, { memo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { Link, useHistory } from 'react-router-dom';
@@ -9,7 +9,7 @@ import { croSkullRedPotionImageHack } from 'src/hacks';
 import Button from './Button';
 import MakeOfferDialog from '../Offer/MakeOfferDialog';
 import { connectAccount, chainConnect } from 'src/GlobalState/User';
-import { isNftBlacklisted } from '../../utils';
+import {isNftBlacklisted, round} from '../../utils';
 
 const Watermarked = styled.div`
   position: relative;
@@ -47,7 +47,7 @@ const MakeOffer = styled.div`
   }
 `;
 
-const NftCard = ({ royalty, listing, imgClass = 'marketplace', watermark, address, collectionMetadata }) => {
+const NftCard = ({ royalty, listing, imgClass = 'marketplace', watermark, address, collection }) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
@@ -89,7 +89,7 @@ const NftCard = ({ royalty, listing, imgClass = 'marketplace', watermark, addres
   return (
     <>
       <div className="card eb-nft__card h-100 shadow">
-        <Link className="linkPointer" to={`/collection/${listing.address}/${listing.id}`}>
+        <Link className="linkPointer" to={`/collection/${collection.slug}/${listing.id}`}>
           {watermark ? (
             <Watermarked watermark={watermark}>
               <img
@@ -108,12 +108,13 @@ const NftCard = ({ royalty, listing, imgClass = 'marketplace', watermark, addres
         </Link>
         {listing.rank && <div className="badge bg-rarity text-wrap mt-1 mx-1">Rank: #{listing.rank}</div>}
         <div className="card-body d-flex flex-column justify-content-between">
-          <Link className="linkPointer" to={`/collection/${listing.address}/${listing.id}`}>
+          <Link className="linkPointer" to={`/collection/${collection.slug}/${listing.id}`}>
             <h6 className="card-title mt-auto">{listing.name}</h6>
           </Link>
           {getIsNftListed() && (
             <MakeBuy>
-              <div>{ethers.utils.commify(listing.market?.price)} CRO</div>
+              {collection.multiToken && <div>Floor:</div>}
+              <div>{ethers.utils.commify(round(listing.market?.price))} CRO</div>
             </MakeBuy>
           )}
           <MakeOffer>
@@ -140,7 +141,6 @@ const NftCard = ({ royalty, listing, imgClass = 'marketplace', watermark, addres
           toggle={() => setOpenMakeOfferDialog(!openMakeOfferDialog)}
           nftData={listing}
           royalty={royalty}
-          collectionMetadata={collectionMetadata}
         />
       )}
     </>

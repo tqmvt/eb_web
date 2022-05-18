@@ -23,6 +23,7 @@ import { getAllCollections } from '../../../GlobalState/collectionsSlice';
 import { offerState } from '../../../core/api/enums';
 import { commify } from 'ethers/lib/utils';
 import { findCollectionByAddress } from 'src/utils';
+import {txExtras} from "../../../core/constants";
 const knownContracts = config.known_contracts;
 
 const DialogContainer = styled(Dialog)`
@@ -38,6 +39,7 @@ const DialogContainer = styled(Dialog)`
     border-radius: 8px;
     max-width: 734px;
     background-color: ${({ theme }) => theme.colors.bgColor1};
+    color: ${({ theme }) => theme.colors.textColor3};
 
     @media only screen and (max-width: ${({ theme }) => theme.breakpoints.md}) {
       width: 100%;
@@ -216,7 +218,7 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
 
   useEffect(() => {
     async function asyncFunc() {
-      const knownContract = findKnownContract(nftData.address, nftData.id);
+      const knownContract = findCollectionByAddress(nftData.address, nftData.id);
       const floorPrice = findCollectionFloor(knownContract);
       setFloorPrice(floorPrice);
     }
@@ -235,7 +237,9 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
     async function func() {
       setIsGettingOfferType(true);
       const filteredOffers = await getFilteredOffers(nftData.address, nftData.id, walletAddress);
-      const data = filteredOffers ? filteredOffers.data.filter((o) => o.state.toString() === offerState.ACTIVE.toString()) : [];
+      const data = filteredOffers
+        ? filteredOffers.data.filter((o) => o.state.toString() === offerState.ACTIVE.toString())
+        : [];
       if (data && data.length > 0) {
         setOfferDataNew(data);
         setOfferType(OFFER_TYPE.update);
@@ -280,8 +284,12 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
           return;
         }
         tx = await offerContract.makeOffer(nftData.address, nftData.id, {
-          value: ethers.utils.parseEther(offerPrice.toString()),
+            ...{
+                value: ethers.utils.parseEther(offerPrice.toString()),
+            },
+            ...txExtras
         });
+
         receipt = await tx.wait();
       } else if (actionType === OFFER_TYPE.update) {
         if (!offerPrice || offerPrice <= Number(offerDataNew.price) || !isAboveOfferThreshold) {
@@ -290,14 +298,17 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
           return;
         }
         tx = await offerContract.makeOffer(nftData.address, nftData.id, {
-          value: ethers.utils.parseEther((offerPrice - offerDataNew.price).toString()),
+          ...{
+            value: ethers.utils.parseEther((offerPrice - offerDataNew.price).toString()),
+          },
+          ...txExtras
         });
         receipt = await tx.wait();
       } else if (actionType === OFFER_TYPE.cancel) {
-        tx = await offerContract.cancelOffer(offerDataNew?.hash, offerDataNew?.offerIndex);
+        tx = await offerContract.cancelOffer(offerDataNew?.hash, offerDataNew?.offerIndex, txExtras);
         receipt = await tx.wait();
       } else if (actionType === OFFER_TYPE.reject) {
-        tx = await offerContract.rejectOffer(offerDataNew?.hash, offerDataNew?.offerIndex);
+        tx = await offerContract.rejectOffer(offerDataNew?.hash, offerDataNew?.offerIndex, txExtras);
         receipt = await tx.wait();
       }
 
@@ -318,14 +329,6 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
     return nftData.image;
   };
 
-  const findKnownContract = (address, nftId) => {
-    return knownContracts.find((c) => {
-      const matchedAddress = caseInsensitiveCompare(c.address, address);
-      const matchedToken = !c.multiToken || parseInt(nftId) === c.id;
-      return matchedAddress && matchedToken;
-    });
-  };
-
   const findCollectionFloor = (knownContract) => {
     const collectionStats = collectionsStats.find((o) => {
       if (knownContract.multiToken && o.collection.indexOf('-') !== -1) {
@@ -342,7 +345,7 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
     <DialogContainer onClose={() => toggle(OFFER_TYPE.none)} open={isOpen} maxWidth="md">
       <DialogContent>
         {!isGettingOfferType && <DialogTitleContainer>{offerType} Offer</DialogTitleContainer>}
-        {findKnownContract(nftData.address, nftData.id)?.multiToken && (
+        {findCollectionByAddress(nftData.address, nftData.id)?.multiToken && (
           <div className="mb-5">
             If you are trying to make multiple offers on the same ERC1155 token, this is not possible currently. It will
             instead update your current offer for this token.

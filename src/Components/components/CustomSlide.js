@@ -26,14 +26,14 @@ const CustomSlide = ({ index, avatar, banner, title, subtitle, collectionId, url
 
   return (
     <div className="itm" key={index}>
-      <div className="nft_coll">
+      <div className="nft_coll cursor-pointer" onClick={() => navigateTo(url)}>
         <div className="nft_wrap">
           <span>
             <img src={banner} className="lazy img-fluid" alt={title} />
           </span>
         </div>
         <div className="nft_coll_pp">
-          <span onClick={() => navigateTo(url)}>
+          <span>
             {avatar ? (
               <img className="lazy" src={avatar} alt={title} />
             ) : (
@@ -47,7 +47,7 @@ const CustomSlide = ({ index, avatar, banner, title, subtitle, collectionId, url
           </span>
         </div>
         <div className="nft_coll_info">
-          <span onClick={() => navigateTo(url)}>
+          <span>
             <h4>{title}</h4>
           </span>
           <span>{subtitle}</span>

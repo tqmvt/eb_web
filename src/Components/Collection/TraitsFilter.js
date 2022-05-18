@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 import { filterListingsByTrait } from '../../GlobalState/collectionSlice';
-import { humanize } from '../../utils';
+import {humanize, mapAttributeString} from '../../utils';
 import './Filters.css';
 
 const TraitsFilter = ({ address }) => {
@@ -32,7 +32,8 @@ const TraitsFilter = ({ address }) => {
   };
 
   const traitStatName = (name, stats) => {
-    let ret = humanize(name);
+    let ret = mapAttributeString(name, address, true);
+
     if (stats && stats.count > 0) {
       ret = ret.concat(` (${stats.count})`);
     }
