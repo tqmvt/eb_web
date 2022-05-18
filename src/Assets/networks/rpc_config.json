@@ -4431,6 +4431,25 @@
         "website": "https://www.braindeadmonkeys.com/varc",
         "discord": "https://discord.gg/wRzqzVPx8R"
       }
+    },
+    {
+      "name": "Chimpeez",
+      "slug": "chimpeez",
+      "multiToken": false,
+      "address": "0x9836a5b79fF3D7A071F5f1B2A947dFfA6f4A3566",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "Collection was inspired by a cartoon style character. A group mischievous chimps have arrived at the Cronos network full of utility.",
+        "verified": false,
+        "avatar": "/img/collections/chimpeez/avatar.webp",
+        "card": "/img/collections/chimpeez/card.webp",
+        "banner": "/img/collections/chimpeez/banner.webp",
+        "maxSupply": 1500,
+        "twitter": "https://twitter.com/chimpeeznft",
+        "website": "https://chimpeez.com",
+        "discord": "http://discord.gg/URpCpa7yem"
+      }
     }
   ],
   "drops": [
