@@ -1,45 +1,78 @@
-import React, { memo, useEffect, useState } from 'react';
+import React, { memo, useState } from 'react';
 import { Accordion, Form } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 
-import {filterListingsByPrice, filterListingsByTrait} from '../../GlobalState/collectionSlice';
-import { humanize } from '../../utils';
+import {filterListingsByPrice} from '../../GlobalState/collectionSlice';
 import './Filters.css';
 import Button from "../components/Button";
+import {commify} from "ethers/lib/utils";
 
 const PriceRangeFilter = ({ address, ...props }) => {
   const dispatch = useDispatch();
 
   const [minPrice, setMinPrice] = useState(null);
   const [maxPrice, setMaxPrice] = useState(null);
+  const cachedMinPriceFilter = useSelector((state) => state.collection.cachedMinPrice[address]);
+  const cachedMaxPriceFilter = useSelector((state) => state.collection.cachedMaxPrice[address]);
 
   const clearAttributeFilters = () => {
-    setMinPrice(null);
-    setMaxPrice(null);
-    // filterListingsByPrice({
-    //   null,
-    //   null,
-    //   address,
-    // })
+    setMinPrice('');
+    setMaxPrice('');
+
+    dispatch(
+      filterListingsByPrice({
+        address,
+        minPrice: null,
+        maxPrice: null
+      })
+    );
   };
 
   const onApply = () => {
-    console.log('clicked a thing...');
-    // filterListingsByPrice({
-    //   minPrice,
-    //   maxPrice,
-    //   address,
-    // })
+    dispatch(
+      filterListingsByPrice({
+        address,
+        minPrice: parseInt(minPrice),
+        maxPrice: parseInt(maxPrice)
+      })
+    );
   };
+
+  const onMinPriceChange = (e) => {
+    const re = /^[0-9\b]+$/;
+    if (e.target.value === '' || re.test(e.target.value)) {
+      setMinPrice(e.target.value)
+    }
+  }
+
+  const onMaxPriceChange = (e) => {
+    const re = /^[0-9\b]+$/;
+    if (e.target.value === '' || re.test(e.target.value)) {
+      setMaxPrice(e.target.value)
+    }
+  }
+
+  // useEffect(() => {
+  //   if (cachedMinPriceFilter) setMinPrice(cachedMinPriceFilter);
+  //   if (cachedMaxPriceFilter) setMaxPrice(cachedMaxPriceFilter);
+  // }, []);
 
   return (
     <div {...props}>
 
       {(minPrice > 0 || maxPrice > 0) && (
         <div className="d-flex justify-content-between align-middle">
-          <span>{minPrice} - {maxPrice} CRO</span>
+          <span>
+            {minPrice && maxPrice && (
+              <>{commify(minPrice)} - {commify(maxPrice)} CRO</>
+            )}
+            {minPrice && !maxPrice && (
+              <>At least {commify(minPrice)} CRO</>
+            )}
+            {!minPrice && maxPrice && (
+              <>Max {commify(maxPrice)} CRO</>
+            )}
+          </span>
           <div
             className="d-inline-block fst-italic my-auto"
             style={{ fontSize: '0.8em', cursor: 'pointer' }}
@@ -59,7 +92,8 @@ const PriceRangeFilter = ({ address, ...props }) => {
                 <Form.Control
                   type="text"
                   placeholder="Min Price"
-                  onChange={e => setMinPrice(e.target.value)}
+                  value={minPrice}
+                  onChange={onMinPriceChange}
                   style={{ marginBottom: 0, marginTop: 0 }}
                 />
               </div>
@@ -67,7 +101,8 @@ const PriceRangeFilter = ({ address, ...props }) => {
                 <Form.Control
                   type="text"
                   placeholder="Max Price"
-                  onChange={e => setMaxPrice(e.target.value)}
+                  value={maxPrice}
+                  onChange={onMaxPriceChange}
                   style={{ marginBottom: 0, marginTop: 0 }}
                 />
               </div>

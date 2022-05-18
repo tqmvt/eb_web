@@ -283,7 +283,10 @@ const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) 
                     //   <Skeleton count={5} type="rect" />
                     // </div>
                       <div className="col-md-3 mb-4">
-                        <PriceRangeFilter address={collection.address} className="mb-3" />
+                        <PriceRangeFilter
+                          className="mb-3"
+                          address={collection.address}
+                        />
                         {hasTraits() && <TraitsFilter address={collection.address} />}
                         {hasPowertraits() && <PowertraitsFilter address={collection.address} />}
                       </div>
