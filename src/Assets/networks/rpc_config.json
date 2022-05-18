@@ -2194,7 +2194,7 @@
       "multiToken": false,
       "address": "0xAECD843fC3677a2d3Fc142b9C165977D57fE4C40",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "",
         "verified": true,
@@ -4448,7 +4448,27 @@
         "maxSupply": 1500,
         "twitter": "https://twitter.com/chimpeeznft",
         "website": "https://chimpeez.com",
-        "discord": "http://discord.gg/URpCpa7yem"
+        "discord": "https://discord.gg/URpCpa7yem"
+      }
+    },
+    {
+      "name": "CyberClone",
+      "slug": "cyber-clone",
+      "multiToken": false,
+      "address": "",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "Cyberclone is a collection of 1000 uniquely generated NFTs stored on the Cronos channel. Each NFT Clone is inspired by the futuristic life of the year 2234! Where the world is falling apart under the control of the Cyberclones to conquer the earth!",
+        "verified": true,
+        "avatar": "/img/collections/cyber-clone/avatar.webp",
+        "card": "/img/collections/cyber-clone/card.webp",
+        "banner": "/img/collections/cyber-clone/banner.webp",
+        "maxSupply": 2000,
+        "twitter": "https://twitter.com/CyberCloneNFT",
+        "website": "https://cyber-clone.com/",
+        "discord": "https://discord.gg/rKnGgUDgYD",
+        "medium": "https://medium.com/cyber-clone"
       }
     }
   ],
@@ -6406,6 +6426,38 @@
       "whitelistCost": "399",
       "foundersOnly": false,
       "start": 1653076800000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false
+    },
+    {
+      "id": 74,
+      "slug": "cyber-clone",
+      "imgNft": "/img/drops/cyber-clone/drop.webp",
+      "imgPreview": "/img/drops/cyber-clone/drop.webp",
+      "imgAvatar": "/img/collections/cyber-clone/avatar.webp",
+      "imgBanner": "/img/collections/cyber-clone/banner.webp",
+      "title": "CyberClone",
+      "subtitle": "Cyberclone is a collection of 1000 uniquely generated NFTs stored on the Cronos channel. Each NFT Clone is inspired by the futuristic life of the year 2234! Where the world is falling apart under the control of the Cyberclones to conquer the earth!",
+      "description": "Cyberclone is a collection of 1000 uniquely generated NFTs stored on the Cronos channel. Each NFT Clone is inspired by the futuristic life of the year 2234! Where the world is falling apart under the control of the Cyberclones to conquer the earth! Who will take control of our clone-dominated world? We will be setting up a DAO to allow all members to participate in the future CyberClone! The CyberClone goal? We want to go even further with Cyberclone! We will create an exclusive IOS and Android application for all Cyberclone owners that will allow you to access a multitude of benefits and exchange!",
+      "author": {
+        "name": "CyberClone",
+        "twitter": "https://twitter.com/CyberCloneNFT",
+        "website": "https://cyber-clone.com/",
+        "discord": "https://discord.gg/rKnGgUDgYD",
+        "medium": "https://medium.com/cyber-clone"
+      },
+      "address": "",
+      "maxMintPerTx": 5,
+      "maxMintPerAddress": 100,
+      "totalSupply": 2000,
+      "cost": "390",
+      "memberCost": "350",
+      "whitelistCost": "300",
+      "foundersOnly": false,
+      "start": 1653249600000,
       "end": null,
       "referral": false,
       "is1155": false,
