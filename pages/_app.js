@@ -5,8 +5,8 @@ import * as Sentry from '@sentry/react';
 import { ErrorPage } from '../src/Components/ErrorPage';
 import store from '../src/Store/store';
 import App from '../src/App';
-// import { SentryLoggingService } from '../src/services/sentry-logging.service';
-// import { Site24x7LoggingService } from '../src/services/site24x7-logging.service';
+import { SentryLoggingService } from '../src/services/sentry-logging.service';
+import { Site24x7LoggingService } from '../src/services/site24x7-logging.service';
 
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
@@ -19,8 +19,8 @@ import '../src/Assets/styles/Everything.css';
 import '../src/Assets/styles/Filters.css';
 import '../src/Assets/styles/fire.css';
 
-// SentryLoggingService.init();
-// Site24x7LoggingService.init();
+SentryLoggingService.init();
+Site24x7LoggingService.init();
 
 export default function MyApp({ Component, pageProps }) {
   return (

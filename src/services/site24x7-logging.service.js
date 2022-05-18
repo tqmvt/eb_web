@@ -4,7 +4,7 @@ export class Site24x7LoggingService {
   }
 
   static site24x7ErrorHandler = function (error) {
-    if (window.s247r) {
+    if (typeof window !== 'undefined' && window.s247r) {
       window.s247r('captureException', error);
     }
   };
@@ -14,7 +14,13 @@ export class Site24x7LoggingService {
    * @param key
    */
   static enableSite24x7(key) {
-    if (window.performance && window.performance.timing && window.performance.navigation && key) {
+    if (
+      typeof window !== 'undefined' &&
+      window.performance &&
+      window.performance.timing &&
+      window.performance.navigation &&
+      key
+    ) {
       if (!window.s247r) {
         window.s247r = function () {
           if (!window.s247r.q) {
