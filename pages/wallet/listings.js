@@ -2,7 +2,7 @@ import React from 'react';
 
 import Footer from '../../src/Components/components/Footer';
 import MyListingsCollection from '../../src/Components/components/MyListingsCollection';
-import withAuth from '../src/Components/withAuth';
+import withAuth from '../../src/Components/withAuth';
 
 const MyListings = () => {
   const Content = () => (
