@@ -1,11 +1,12 @@
 import moment from 'moment';
 import config from './Assets/networks/rpc_config.json';
 import blacklist from './core/configs/blacklist.json';
+import dynamic from 'next/dynamic';
 // import IPFSGatewayTools from '@pinata/ipfs-gateway-tools/dist/browser';
 
 export const drops = config.drops;
 export const collections = config.known_contracts;
-let gatewayTools; // = new IPFSGatewayTools();
+
 const gateway = 'https://mygateway.mypinata.cloud';
 
 export function debounce(func, wait, immediate) {
@@ -421,7 +422,13 @@ export const round = (num, decimals) => {
 };
 
 export const convertIpfsResource = (resource, tooltip) => {
-  if (!resource) return;
+  if (!resource || typeof window === 'undefined') return;
+
+  const IPFSGatewayTools = dynamic(() => import('@pinata/ipfs-gateway-tools/dist/browser'), {
+    ssr: false,
+  });
+
+  let gatewayTools = new IPFSGatewayTools();
 
   let linkedResource;
   if (resource.startsWith('ipfs')) {
