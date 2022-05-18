@@ -65,6 +65,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "start-web": "next start",
     "format": "prettier --write \"**/*.+(js|jsx|json|md|mdx|css|scss)\""
   },
   "lint-staged": {

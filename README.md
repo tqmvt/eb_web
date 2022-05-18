@@ -1,76 +1,70 @@
-# EbisusBay Web
+# Ebisu's Bay Web
 
-## Run docker images locally
+## Run locally
+```
+TODO
+```
 
-Note: Instructions only for MacOS.
+## Run locally (docker compose)
 
 ```
 cd /<pathtorepository>/eb_web
 ```
 
-Build and run:
+### MacOS
+#### Build and run
 
 ```
-docker compose -f docker-compose.yml up --build --remove-orphans
+docker compose -f docker-compose.yml up --build
 ```
 
-Note: Use "-d" to run containers in the background
+Verify:
+```
+#curl -i http://localhost:8080/health
+```
 
-Verify stack:
-
+Check running containers:
 ```
 % docker ps
-CONTAINER ID   IMAGE                                   COMMAND                  CREATED         STATUS                   PORTS                  NAMES
-a3262fec588f   ebisusbay-frontend_ebisusbay-frontend   "/docker-entrypoint.…"   9 seconds ago   Up 8 seconds (healthy)   0.0.0.0:8080->80/tcp   ebisusbay-frontend
+CONTAINER ID   IMAGE                            COMMAND                  CREATED          STATUS                             PORTS                            NAMES
+54cc2059012e   eb_web_ebisusbay-web-nginx   "/entrypoint.sh"         11 seconds ago   Up 10 seconds (health: starting)   80/tcp, 0.0.0.0:8080->8080/tcp   ebisusbay-web-nginx
+1d715f5fa1c3   eb_web_ebisusbay-web         "docker-entrypoint.s…"   11 seconds ago   Up 10 seconds                      0.0.0.0:3000->3000/tcp           ebisusbay-web
 ```
 
-Delete stack:
-
+To shutdown stack:
 ```
-docker compose down
+CTRL+C
 ```
-
-### Connect to individual container via "SSH"
-
+or
 ```
-docker exec -it --user root ebisusbay-frontend /bin/bash
+docker compose -f docker-compose.yml down
 ```
 
-### Allow app to be accessed by external devices on the local network
-
-Open up package.json and edit the start script to include `--host 0.0.0.0`. e.g.:
-
+Logs:
 ```
-"start": "react-scripts start --host 0.0.0.0",
-```
-
-### Enable HTTPS on localhost
-
-Modify the start command to the following:
-
-```
-set HTTPS=true&&npm start
+tail -f ./volumes/ebisusbay-web-nginx_logs/access.log
+tail -f ./volumes/ebisusbay-web-nginx_logs/error.log
+tail -f ./volumes/ebisusbay-web_logs/nodejs.log
 ```
 
-Additional info can be found here: https://create-react-app.dev/docs/using-https-in-development/
+Connect to individual container via "SSH":
+```
+docker exec -it ebisusbay-web-nginx /bin/bash
+docker exec -it ebisusbay-web /bin/bash
+```
 
-### Useful commands
-
+Useful commands:
 Delete:
-
-- all stopped containers
-- all networks not used by at least one container
-- all dangling images
-- all dangling build cache
-
+  - all stopped containers
+  - all networks not used by at least one container
+  - all images without at least one container associated to them
+  - all build cache
 ```
-docker system prune
+docker system prune -a
 ```
 
 Delete:
-
-- Same as above + all volumes not used by at least one container
-
+  - Same as above + "all volumes not used by at least one container"
 ```
-docker system prune --volumes
+docker system prune -a --volumes
 ```
