@@ -34,10 +34,7 @@ const Drops = () => {
           </div>
         </div>
       </section>
-      <section
-        className="jumbotron breadcumb no-bg"
-        style={{ backgroundColor: getTheme(userTheme).colors.bgColor3 }}
-      >
+      <section className="jumbotron breadcumb no-bg" style={{ backgroundColor: getTheme(userTheme).colors.bgColor3 }}>
         <div className="container">
           <div className="row py-4">
             <DropsCarousel />
