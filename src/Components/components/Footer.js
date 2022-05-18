@@ -75,9 +75,18 @@ const Footer = () => {
               </a>
             </div>
 
-            <a href="/tos.html" target="_blank" rel="noreferrer" className="col-12 pt-3 text-center">
-              &nbsp;{'Terms of Service'}
-            </a>
+            <div className="d-flex justify-content-evenly mt-3 text-center">
+              <div>
+                <a href="/tos.html" target="_blank" rel="noreferrer">
+                  &nbsp;{'Terms of Service'}
+                </a>
+              </div>
+              <div>
+                <a href="/pp.html" target="_blank" rel="noreferrer">
+                  &nbsp;{'Privacy Policy'}
+                </a>
+              </div>
+            </div>
 
             <span className="col-12 pt-3 copy text-center" style={{ opacity: '0.6' }}>
               Copyright &copy; 2022 EbisusBay.com. All rights reserved
