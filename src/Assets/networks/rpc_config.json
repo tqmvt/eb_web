@@ -4301,9 +4301,9 @@
       "name": "Gold CRN Booster",
       "slug": "gold-crn-booster",
       "multiToken": false,
-      "address": "0xC0D6459d5002A57534e631E204aE6CC87Bed261d",
+      "address": "",
       "onChain": false,
-      "listable": true,
+      "listable": false,
       "metadata": {
         "description": "With this booster NFT, all earnings on CroNodes Finance will be boosted by 10%!",
         "verified": false,
@@ -4320,9 +4320,9 @@
       "name": "Silver CRN Booster",
       "slug": "silver-crn-booster",
       "multiToken": false,
-      "address": "0x0CDA344D8B6D58C6682cdBfb914FA073492777fe",
+      "address": "",
       "onChain": false,
-      "listable": true,
+      "listable": false,
       "metadata": {
         "description": "With this booster NFT, all earnings on CroNodes Finance will be boosted by 5%!",
         "verified": false,
@@ -4339,9 +4339,9 @@
       "name": "Bronze CRN Booster",
       "slug": "bronze-crn-booster",
       "multiToken": false,
-      "address": "0x21F7C4E6E23b4Fa4a2ca7edE88A55C765e40931e",
+      "address": "",
       "onChain": false,
-      "listable": true,
+      "listable": false,
       "metadata": {
         "description": "With this booster NFT, all earnings on CroNodes Finance will be boosted by 2%!",
         "verified": false,
@@ -4459,7 +4459,7 @@
       "onChain": false,
       "listable": false,
       "metadata": {
-        "description": "Cyberclone is a collection of 1000 uniquely generated NFTs stored on the Cronos channel. Each NFT Clone is inspired by the futuristic life of the year 2234! Where the world is falling apart under the control of the Cyberclones to conquer the earth!",
+        "description": "Cyberclone is a collection of 2000 uniquely generated NFTs stored on the Cronos blockchain. Each NFT Clone is inspired by the futuristic life of the year 2234, where the world is falling apart under the control of the Cyberclones, who are conquering earth!",
         "verified": true,
         "avatar": "/img/collections/cyber-clone/avatar.webp",
         "card": "/img/collections/cyber-clone/card.webp",
@@ -6410,7 +6410,7 @@
       "imgBanner": "/img/drops/bankroll-bear-society/banner.png",
       "title": "Bankroll Bear Society",
       "subtitle": "The Bankroll Bear Society is an NFT project consisting of 5,000 Bears. Found on the Cronos chain. We are offering direct REAL-LIFE utilities. Our Bears are a VIP gateway into the Bankroll Universe and ecosystem.\n\nImmerse yourself into the Bankroll Bear Society today!!",
-      "description": "The Bankroll Bear Society - A 5,000 NFTs collection of bears with more than 75 attributes. The Bears are putting forward a project with real life utilities and benefits. The Forest ecosystem contains all the businesses the Founders have established partnerships with such as ETR Jewellery and BBS Clothing. All holders get discounts on all items in all forest establishments! We’ll have staking, our own token, airdrop giveaways; you name it, we got it! \n\nOur token will be usable in businesses within the forest ecosystem! Our giveaways will consist of both WEB3 and real-world items ranging from sterling silver rings to gold chains! We will be planting 5,000 trees to combat deforestation around the world. \n\nThis is only the beginning of our journey, come along for a ride and… Welcome to The Forest!",
+      "description": "The Bankroll Bear Society - A 5,000 NFTs collection of bears with more than 75 attributes. The Bears are putting forward a project with real life utilities and benefits. The Forest ecosystem contains all the businesses the Founders have established partnerships with such as ETR Jewelry and BBS Clothing. All holders get discounts on all items in all forest establishments! We’ll have staking, our own token, airdrop giveaways; you name it, we got it! \n\nOur token will be usable in businesses within the forest ecosystem! Our giveaways will consist of both WEB3 and real-world items ranging from sterling silver rings to gold chains! We will be planting 5,000 trees to combat deforestation around the world. \n\nThis is only the beginning of our journey, come along for a ride and… Welcome to The Forest!",
       "author": {
         "name": "Bankroll Bear Society",
         "website": "http://www.bankrollbearsociety.com/",
@@ -6440,8 +6440,8 @@
       "imgAvatar": "/img/collections/cyber-clone/avatar.webp",
       "imgBanner": "/img/collections/cyber-clone/banner.webp",
       "title": "CyberClone",
-      "subtitle": "Cyberclone is a collection of 1000 uniquely generated NFTs stored on the Cronos channel. Each NFT Clone is inspired by the futuristic life of the year 2234! Where the world is falling apart under the control of the Cyberclones to conquer the earth!",
-      "description": "Cyberclone is a collection of 1000 uniquely generated NFTs stored on the Cronos channel. Each NFT Clone is inspired by the futuristic life of the year 2234! Where the world is falling apart under the control of the Cyberclones to conquer the earth! Who will take control of our clone-dominated world? We will be setting up a DAO to allow all members to participate in the future CyberClone! The CyberClone goal? We want to go even further with Cyberclone! We will create an exclusive IOS and Android application for all Cyberclone owners that will allow you to access a multitude of benefits and exchange!",
+      "subtitle": "Cyberclone is a collection of 2000 uniquely generated NFTs stored on the Cronos blockchain. Each NFT Clone is inspired by the futuristic life of the year 2234, where the world is falling apart under the control of the Cyberclones, who are conquering earth!",
+      "description": "Cyberclone is a collection of 2000 uniquely generated NFTs stored on the Cronos blockchain. Each NFT Clone is inspired by the futuristic life of the year 2234, where the world is falling apart under the control of the Cyberclones, who are conquering earth! Who will take control of our clone-dominated world? \n\nWe will be setting up a DAO to allow all members to participate in the future CyberClone! The CyberClone goal? We want to go even further with Cyberclone, by creating exclusive IOS and Android applications for all Cyberclone owners that will allow you to access multitudes of benefits and exchanges!",
       "author": {
         "name": "CyberClone",
         "twitter": "https://twitter.com/CyberCloneNFT",
@@ -6462,7 +6462,8 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false
+      "complete": false,
+      "priceDescription": "Whitelist presale for the first hour. Whitelist pricing applicable only during presale and limited to 5 per wallet. Public sale will begin after the presale completes"
     }
   ],
   "auctions": [

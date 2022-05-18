@@ -145,15 +145,15 @@ const MyStaking = () => {
             <div className="item_info">
               <h2>VIP Founding Member Staking</h2>
               <div className="my-2">
-                Earn rewards generated through platform sales.{' '}
-                <a
-                  href="https://blog.ebisusbay.com/founding-member-vip-staking-6f7405a68eed"
-                  className="fw-bold"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Learn More <FontAwesomeIcon icon={faExternalLinkAlt} />
-                </a>
+                Earn rewards generated through platform sales &#128640;{' '}
+                {/*<a*/}
+                {/*  href="https://blog.ebisusbay.com/founding-member-vip-staking-6f7405a68eed"*/}
+                {/*  className="fw-bold"*/}
+                {/*  target="_blank"*/}
+                {/*  rel="noreferrer"*/}
+                {/*>*/}
+                {/*  Learn More <FontAwesomeIcon icon={faExternalLinkAlt} />*/}
+                {/*</a>*/}
               </div>
               {isApproved && (
                 <div className="item_info_counts">
@@ -271,7 +271,7 @@ const StakeCard = ({ stake, threshold, buttonName, buttonActionName }) => {
 
   return (
     <div className="card eb-nft__card h-100 shadow px-4">
-      <div className="card-body d-flex flex-column">
+      <div className="card-body d-flex flex-column text-center">
         <h5>{buttonName}</h5>
         <div className="row row-cols-1 g-3">
           <div>
@@ -279,14 +279,15 @@ const StakeCard = ({ stake, threshold, buttonName, buttonActionName }) => {
             <Form.Control
               type="number"
               placeholder="Input the amount"
+              className="mx-auto"
               onChange={onAmountChange}
               value={quantity}
-              style={{ width: '80px', marginBottom: 0, appearance: 'none', margin: 0 }}
+              style={{ width: '80px', marginBottom: 0, appearance: 'none' }}
             />
           </div>
 
           <div className="btn-group mt-4 flex-wrap">
-            <button className="btn-main lead mx-1 mb-2" onClick={execute} disabled={quantity === 0 || threshold === 0}>
+            <button className="btn-main lead mx-1 mb-2 mx-auto" onClick={execute} disabled={quantity === 0 || threshold === 0}>
               {isStaking ? (
                 <>
                   {buttonActionName}
@@ -405,13 +406,13 @@ const RewardsCard = () => {
                     {globalStakedTotal}
                   </div>
                 </div>
-                <div className="col-12 col-sm-4 text-center">
+                <div className="col-12 col-sm-4 mt-1 mt-sm-0 text-center">
                   <div>Total Harvested</div>
                   <div className="fw-bold" style={{ color: getTheme(userTheme).colors.textColor3 }}>
                     {siPrefixedNumber(round(Number(globalPaidRewards)))} CRO
                   </div>
                 </div>
-                <div className="col-12 col-sm-4 text-center">
+                <div className="col-12 col-sm-4 mt-1 mt-sm-0 text-center">
                   <div>My Harvest</div>
                   <div className="fw-bold" style={{ color: getTheme(userTheme).colors.textColor3 }}>
                     {siPrefixedNumber(round(Number(userReleasedRewards)))} CRO
