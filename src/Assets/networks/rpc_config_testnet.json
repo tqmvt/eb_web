@@ -1076,6 +1076,25 @@
         "discord": "https://discord.gg/rKnGgUDgYD",
         "medium": "https://medium.com/cyber-clone"
       }
+    },
+    {
+      "name": "Bankroll Bear Society",
+      "slug": "bankroll-bear-society",
+      "multiToken": false,
+      "address": "0x9CD90D8Efa6D7302b5d1E720E31aA98C014A4c2b",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "The Bankroll Bear Society is an NFT project consisting of 5,000 Bears. Found on the Cronos chain. We are offering direct REAL-LIFE utilities. Our Bears are a VIP gateway into the Bankroll Universe and ecosystem.",
+        "verified": true,
+        "avatar": "/img/collections/bankroll-bear-society/avatar.webp",
+        "card": "/img/collections/bankroll-bear-society/card.webp",
+        "banner": "/img/collections/bankroll-bear-society/banner.webp",
+        "maxSupply": 5000,
+        "website": "http://www.bankrollbearsociety.com/",
+        "twitter": "https://twitter.com/Bankrollbears",
+        "discord": "http://discord.gg/bankrollbearsociety"
+      }
     }
   ],
   "drops": [
@@ -2331,6 +2350,37 @@
       "whitelistCost": "300",
       "foundersOnly": false,
       "start": 1652891669000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false
+    },
+    {
+      "id": 73,
+      "slug": "bankroll-bear-society",
+      "imgNft": "/img/drops/bankroll-bear-society/drop.webp",
+      "imgPreview": "/img/drops/bankroll-bear-society/drop.webp",
+      "imgAvatar": "/img/collections/bankroll-bear-society/avatar.webp",
+      "imgBanner": "/img/drops/bankroll-bear-society/banner.png",
+      "title": "Bankroll Bear Society",
+      "subtitle": "The Bankroll Bear Society is an NFT project consisting of 5,000 Bears. Found on the Cronos chain. We are offering direct REAL-LIFE utilities. Our Bears are a VIP gateway into the Bankroll Universe and ecosystem.\n\nImmerse yourself into the Bankroll Bear Society today!!",
+      "description": "The Bankroll Bear Society - A 5,000 NFTs collection of bears with more than 75 attributes. The Bears are putting forward a project with real life utilities and benefits. The Forest ecosystem contains all the businesses the Founders have established partnerships with such as ETR Jewellery and BBS Clothing. All holders get discounts on all items in all forest establishments! We’ll have staking, our own token, airdrop giveaways; you name it, we got it! \n\nOur token will be usable in businesses within the forest ecosystem! Our giveaways will consist of both WEB3 and real-world items ranging from sterling silver rings to gold chains! We will be planting 5,000 trees to combat deforestation around the world. \n\nThis is only the beginning of our journey, come along for a ride and… Welcome to The Forest!",
+      "author": {
+        "name": "Bankroll Bear Society",
+        "website": "http://www.bankrollbearsociety.com/",
+        "twitter": "https://twitter.com/Bankrollbears",
+        "discord": "http://discord.gg/bankrollbearsociety"
+      },
+      "address": "0x9CD90D8Efa6D7302b5d1E720E31aA98C014A4c2b",
+      "maxMintPerTx": 10,
+      "maxMintPerAddress": 100,
+      "totalSupply": 5000,
+      "cost": "499",
+      "memberCost": "449",
+      "whitelistCost": "399",
+      "foundersOnly": false,
+      "start": 1652891670000,
       "end": null,
       "referral": false,
       "is1155": false,
