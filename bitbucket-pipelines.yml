@@ -58,7 +58,31 @@ pipelines:
   branches:
     nextjs:
       - step: *test
-      - step: *build
+      - step:
+          name: Build
+          image: node:16
+          runs-on:
+            - 'self.hosted'
+            - 'linux'
+            - 'web'
+          size: 2x
+          script:
+            - *update
+            - *version
+            # RPC config
+            - cp -p ./src/Assets/networks/rpc_config_dev.json ./src/Assets/networks/rpc_config.json
+            # Build frontend
+            - *build
+      # - step:
+      #     name: Upload to S3
+      #     image: amazon/aws-cli
+      #     runs-on:
+      #       - 'self.hosted'
+      #       - 'linux'
+      #       - 'web'
+      #     # Copy RPC config to Admin S3 Bucket
+      #     script:
+      #       - aws s3 cp ./src/Assets/networks/rpc_config_dev.json s3://dev-ebisusbay-admin-storage/rpc_config.json
       - step:
           name: Build containers
           image: amazon/aws-cli
