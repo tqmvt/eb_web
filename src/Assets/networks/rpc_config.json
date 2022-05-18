@@ -4412,6 +4412,44 @@
         "discord": "https://discord.gg/kmrZV97uvR",
         "medium": "https://medium.com/@CrokeNFT/"
       }
+    },
+    {
+      "name": "Viking Arc Labs Founders Card",
+      "slug": "viking-arc-labs-founders-card",
+      "multiToken": false,
+      "address": "0x44c64ca09fe913382d41551cead0dec9f08585a2",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "Viking Arc Labs is a utility card granting holders access to future pre-sale on  Braindead Monkey launches and other perks via partnerships with outside projects, including WL, Discounts etc. 50% of the royalties we are creating a Treasury for holders to benefit from long term.",
+        "verified": false,
+        "avatar": "/img/collections/varc/avatar.webp",
+        "card": "/img/collections/varc/card.webp",
+        "banner": "/img/collections/varc/banner.webp",
+        "maxSupply": 150,
+        "twitter": "https://twitter.com/VikingArcLabs",
+        "website": "https://www.braindeadmonkeys.com/varc",
+        "discord": "https://discord.gg/wRzqzVPx8R"
+      }
+    },
+    {
+      "name": "Chimpeez",
+      "slug": "chimpeez",
+      "multiToken": false,
+      "address": "0x9836a5b79fF3D7A071F5f1B2A947dFfA6f4A3566",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "Collection was inspired by a cartoon style character. A group mischievous chimps have arrived at the Cronos network full of utility.",
+        "verified": false,
+        "avatar": "/img/collections/chimpeez/avatar.webp",
+        "card": "/img/collections/chimpeez/card.webp",
+        "banner": "/img/collections/chimpeez/banner.webp",
+        "maxSupply": 1500,
+        "twitter": "https://twitter.com/chimpeeznft",
+        "website": "https://chimpeez.com",
+        "discord": "http://discord.gg/URpCpa7yem"
+      }
     }
   ],
   "drops": [

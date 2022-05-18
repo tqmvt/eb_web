@@ -28,6 +28,7 @@ import CollectionNftsGroup from '../components/CollectionNftsGroup';
 import CollectionListingsGroup from '../components/CollectionListingsGroup';
 import CollectionCronosverse from './collectionCronosverse';
 import styled from 'styled-components';
+import PriceRangeFilter from "../Collection/PriceRangeFilter";
 
 const knownContracts = config.known_contracts;
 
@@ -281,14 +282,16 @@ const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) 
                     // <div className="col-md-3 mb-4">
                     //   <Skeleton count={5} type="rect" />
                     // </div>
-                    (hasTraits() || hasPowertraits()) && (
                       <div className="col-md-3 mb-4">
+                        <PriceRangeFilter
+                          className="mb-3"
+                          address={collection.address}
+                        />
                         {hasTraits() && <TraitsFilter address={collection.address} />}
                         {hasPowertraits() && <PowertraitsFilter address={collection.address} />}
                       </div>
-                    )
                   )}
-                  <div className={hasTraits() || hasPowertraits() ? 'col-md-9' : 'col-md-12'}>
+                  <div className="col-md-9">
                     {isUsingListingsFallback ? (
                       <CollectionListingsGroup listings={listings} canLoadMore={canLoadMore} loadMore={loadMore} />
                     ) : (
