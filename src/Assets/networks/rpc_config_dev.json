@@ -4301,7 +4301,7 @@
       "name": "Gold CRN Booster",
       "slug": "gold-crn-booster",
       "multiToken": false,
-      "address": "",
+      "address": "0xC0D6459d5002A57534e631E204aE6CC87Bed261d",
       "onChain": false,
       "listable": false,
       "metadata": {
@@ -4320,7 +4320,7 @@
       "name": "Silver CRN Booster",
       "slug": "silver-crn-booster",
       "multiToken": false,
-      "address": "",
+      "address": "0x0CDA344D8B6D58C6682cdBfb914FA073492777fe",
       "onChain": false,
       "listable": false,
       "metadata": {
@@ -4339,7 +4339,7 @@
       "name": "Bronze CRN Booster",
       "slug": "bronze-crn-booster",
       "multiToken": false,
-      "address": "",
+      "address": "0x21F7C4E6E23b4Fa4a2ca7edE88A55C765e40931e",
       "onChain": false,
       "listable": false,
       "metadata": {
