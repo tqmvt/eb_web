@@ -68,6 +68,15 @@ const ListingCard = ({ listing, imgClass = 'marketplace', watermark, address, co
     }
   };
 
+  const getCorrectPrice = (price) => {
+    try {
+      let newPrice = ethers.utils.commify(round(price));
+      return newPrice;
+    } catch(error) {
+      return ethers.utils.commify(price);
+    }
+  }
+
   const convertListingData = (listingData) => {
     const res = {
       address: listingData.nftAddress,
@@ -118,7 +127,7 @@ const ListingCard = ({ listing, imgClass = 'marketplace', watermark, address, co
             <h6 className="card-title mt-auto">{listing.nft.name}</h6>
           </Link>
           <MakeBuy>
-            <div>{ethers.utils.commify(round(listing.price))} CRO</div>
+            <div>{ getCorrectPrice(listing.price)} CRO</div>
           </MakeBuy>
           <MakeOffer>
             <Link className="linkPointer" to={`/collection/${listing.nftAddress}/${listing.nftId}`}>
