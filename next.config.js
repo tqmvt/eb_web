@@ -5,7 +5,17 @@ const nextConfig = {
     styledComponents: true,
   },
   images: {
-    domains: ['ipfs.io', 'app.ebisusbay.com', 'files.ebisusbay.com', 'gateway.ebisusbay.com', 'res.cloudinary.com'],
+    dangerouslyAllowSVG: true,
+    domains: [
+      'ipfs.io',
+      'app.ebisusbay.com',
+      'files.ebisusbay.com',
+      'gateway.ebisusbay.com',
+      'ebisusbay.mypinata.cloud',
+      'res.cloudinary.com',
+      'ebisusbay.imgix.net',
+      'metadata.cronos.domains',
+    ],
   },
   async redirects() {
     return [

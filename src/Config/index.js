@@ -15,7 +15,10 @@ export const imageDomains = [
   'app.ebisusbay.com',
   'files.ebisusbay.com',
   'gateway.ebisusbay.com',
+  'ebisusbay.mypinata.cloud',
   'res.cloudinary.com',
+  'ebisusbay.imgix.net',
+  'metadata.cronos.domains',
 ];
 
 export const cloudinaryUrl = 'https://res.cloudinary.com/ebisusbay/image/fetch/';

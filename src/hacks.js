@@ -1,5 +1,5 @@
 import { caseInsensitiveCompare } from './utils';
-import { cloudinaryUrl } from './Config';
+import { cloudinaryUrl, imageDomains } from './Config';
 
 export function isCroSkullRedPotion(address) {
   return caseInsensitiveCompare(address, '0x508378E99F5527Acb6eB4f0fc22f954c5783e5F9');
@@ -16,7 +16,14 @@ export function croSkullRedPotionImageHack(address, defaultImage) {
 
   if (!defaultImage) {
     return '/img/nft-placeholder.webp';
-  } else if (defaultImage.includes('https://') || defaultImage.includes('http://')) {
+  }
+
+  const filteredDomains = imageDomains.filter((domain) => defaultImage.includes(domain));
+  if (filteredDomains.length) {
+    return defaultImage;
+  }
+
+  if (defaultImage.includes('https://') || defaultImage.includes('http://')) {
     return `${cloudinaryUrl}${defaultImage}`;
   }
 
