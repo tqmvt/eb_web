@@ -62,7 +62,7 @@ const SellerActionBar = () => {
     if (user.address) {
       try {
         let writeContract = await new ethers.Contract(
-          config.auction_contract,
+          config.mm_auction_contract,
           AuctionContract.abi,
           user.provider.getSigner()
         );
