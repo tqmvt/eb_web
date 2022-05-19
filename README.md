@@ -26,9 +26,9 @@ Verify:
 Check running containers:
 ```
 % docker ps
-CONTAINER ID   IMAGE                            COMMAND                  CREATED          STATUS                             PORTS                            NAMES
-54cc2059012e   eb_web_ebisusbay-web-nginx   "/entrypoint.sh"         11 seconds ago   Up 10 seconds (health: starting)   80/tcp, 0.0.0.0:8080->8080/tcp   ebisusbay-web-nginx
-1d715f5fa1c3   eb_web_ebisusbay-web         "docker-entrypoint.s…"   11 seconds ago   Up 10 seconds                      0.0.0.0:3000->3000/tcp           ebisusbay-web
+CONTAINER ID   IMAGE                        COMMAND                  CREATED         STATUS                   PORTS                            NAMES
+d5f8c8b9d4f0   eb_web_ebisusbay-web-nginx   "/entrypoint.sh"         7 minutes ago   Up 7 minutes (healthy)   80/tcp, 0.0.0.0:8080->8080/tcp   ebisusbay-web-nginx
+e9e130ef19bc   eb_web_ebisusbay-web         "docker-entrypoint.s…"   7 minutes ago   Up 7 minutes (healthy)   0.0.0.0:3000->3000/tcp           ebisusbay-web
 ```
 
 To shutdown stack:
