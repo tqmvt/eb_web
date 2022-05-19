@@ -4470,6 +4470,27 @@
         "discord": "https://discord.gg/rKnGgUDgYD",
         "medium": "https://medium.com/cyber-clone"
       }
+    },
+    {
+      "name": "MAD CROW",
+      "slug": "mad-crow",
+      "multiToken": false,
+      "address": "0x65AB0251d29c9C473c8d01BFfa2966F891fB1181",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "A cross-over collection of the original CRO CROWs and the Mad Meerkat ecosystem.",
+        "verified": true,
+        "avatar": "/img/collections/mad-crow/avatar.webp",
+        "card": "/img/collections/mad-crow/card.webp",
+        "banner": "/img/collections/mad-crow/banner.webp",
+        "maxSupply": 3334,
+        "website": "https://crocrow.com",
+        "twitter": "https://twitter.com/cronoscrocrow",
+        "discord": "https://discord.gg/8a8Xm4wwR9",
+        "telegram": "https://t.me/crocrownft",
+        "medium": "https://medium.com/@cronoscrocrow"
+      }
     }
   ],
   "drops": [
