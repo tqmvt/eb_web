@@ -23,6 +23,11 @@
       "name": "LOOT",
       "symbol": "LOOT",
       "address": "0x2074D6a15c5F908707196C5ce982bd0598A666f9"
+    },
+    "mad": {
+      "name": "MAD",
+      "symbol": "MAD",
+      "address": "0x4DEdeea250d2cbf54F0e156f0e9b55927094867E"
     }
   },
   "known_contracts": [
