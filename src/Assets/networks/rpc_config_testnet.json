@@ -1061,7 +1061,7 @@
       "name": "CyberClone",
       "slug": "cyber-clone",
       "multiToken": false,
-      "address": "0x63d1935Cb8CF1EFD9F3EBc68e43081ddcf3e1F31",
+      "address": "0x2D803AC436d7F86d52070Bc5eB72F72358dA150b",
       "onChain": false,
       "listable": false,
       "metadata": {
@@ -2372,7 +2372,7 @@
         "discord": "https://discord.gg/rKnGgUDgYD",
         "medium": "https://medium.com/cyber-clone"
       },
-      "address": "0x63d1935Cb8CF1EFD9F3EBc68e43081ddcf3e1F31",
+      "address": "0x2D803AC436d7F86d52070Bc5eB72F72358dA150b",
       "maxMintPerTx": 5,
       "maxMintPerAddress": 100,
       "totalSupply": 1000,
