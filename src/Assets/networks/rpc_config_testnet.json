@@ -17,6 +17,7 @@
   "ebisu_contract": "0x65A422AB9c95fc94208E010B8d4ab50F7E79af19",
   "offer_contract": "0x8Dd84fb5d7f8A504BA2398243D768C604f8Daf5E",
   "slothy_rugsurance_contract": "0x99F3960E8219384BF0624D388cAD698d5A54AE6C",
+  "mm_auction_contract": "0x056A13Bef3d956ae079a6e75f9b79F62aC48EA2B",
   "known_tokens": {
     "loot": {
       "name": "LOOT",
