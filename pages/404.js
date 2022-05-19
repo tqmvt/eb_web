@@ -8,5 +8,5 @@ export default function Custom404() {
     router.replace('/');
   });
 
-  return null;
+  return <></>;
 }

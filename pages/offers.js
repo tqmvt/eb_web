@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Spinner } from 'react-bootstrap';
-import { useRouter } from 'next/router';
 
 import Footer from '../src/Components/components/Footer';
 import MadeOffers from '../src/Components/Offer/MadeOffers';
@@ -55,7 +54,6 @@ const OFFERS_TAB = {
 };
 
 const MyOffers = () => {
-  const router = useRouter();
   const walletAddress = useSelector((state) => state.user.address);
 
   const lastId = useSelector((state) => state.offer.lastId);
@@ -178,11 +176,6 @@ const MyOffers = () => {
       dispatch(fetchAllOffers(collectionAddresses, filterChecked));
     }
   };
-
-  // if (!walletAddress) {
-  //   router.push('/marketplace');
-  //   return;
-  // }
 
   const Content = () => (
     <>
