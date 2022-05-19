@@ -4477,7 +4477,7 @@
       "multiToken": false,
       "address": "0x65AB0251d29c9C473c8d01BFfa2966F891fB1181",
       "onChain": false,
-      "listable": true,
+      "listable": false,
       "metadata": {
         "description": "A cross-over collection of the original CRO CROWs and the Mad Meerkat ecosystem.",
         "verified": true,
