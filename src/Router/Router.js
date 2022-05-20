@@ -121,6 +121,11 @@ const Component = ({ walletAddress, authInitFinished }) => {
           <SentryEnhancedRoute exact path="/metaverse-auctions" component={MetaverseAuctions} />
           {/*<SentryEnhancedRoute exact path="/slothty-rugsurance" component={Rugsurance} />*/}
           <SentryEnhancedRoute exact path="/apply" component={Application} />
+          <SentryEnhancedRoute exact path="/sales_bot" component={() => {
+            window.location.href = 'https://discord.com/api/oauth2/authorize?client_id=976699886890254356&permissions=268453904&scope=bot%20applications.commands';
+            return null;
+          }}
+          />
           <SentryEnhancedRoute path="*" render={() => <Redirect to="/" />} />
         </Switch>
       </Sentry.ErrorBoundary>

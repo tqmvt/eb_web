@@ -8,7 +8,7 @@ import Countdown from 'react-countdown';
 
 import config from '../../Assets/networks/rpc_config.json';
 import AuctionContract from '../../Contracts/DegenAuction.json';
-import { caseInsensitiveCompare, createSuccessfulTransactionToastContent } from '../../utils';
+import {caseInsensitiveCompare, createSuccessfulTransactionToastContent, isEventValidNumber} from '../../utils';
 import { auctionState } from '../../core/api/enums';
 import { getAuctionDetails } from '../../GlobalState/auctionSlice';
 import { chainConnect, connectAccount } from '../../GlobalState/User';
@@ -147,6 +147,12 @@ const BuyerActionBar = () => {
 
   const handleChangeBidAmount = (event) => {
     const { value } = event.target;
+
+    if (!isEventValidNumber(value)) {
+      event.preventDefault();
+      return;
+    }
+
     const newBid = parseFloat(value);
     setBidAmount(newBid);
 
@@ -159,6 +165,12 @@ const BuyerActionBar = () => {
 
   const handleChangeRebidAmount = (event) => {
     const { value } = event.target;
+
+    if (!isEventValidNumber(value)) {
+      event.preventDefault();
+      return;
+    }
+
     const newBid = parseFloat(value);
     setRebidAmount(newBid);
     const minRebid = minBid - myBid();
@@ -304,7 +316,17 @@ const BuyerActionBar = () => {
             <div className="heading mt-3">
               <p>Your bid (MAD)</p>
               <div className="subtotal">
-                <Form.Control className="mb-0" type="text" placeholder="Enter Bid" onChange={handleChangeBidAmount} />
+                <Form.Control
+                  className="mb-0"
+                  type="text"
+                  placeholder="Enter Bid"
+                  onChange={handleChangeBidAmount}
+                  onKeyDown={(e) => {
+                    if (!isEventValidNumber(e)) {
+                      e.preventDefault();
+                    }
+                  }}
+                />
               </div>
             </div>
             {bidError && (
@@ -352,7 +374,16 @@ const BuyerActionBar = () => {
             <div className="heading mt-3">
               <p>Increase Bid By (MAD)</p>
               <div className="subtotal">
-                <Form.Control type="text" placeholder="Enter Bid" onChange={handleChangeRebidAmount} />
+                <Form.Control
+                  type="text"
+                  placeholder="Enter Bid"
+                  onChange={handleChangeRebidAmount}
+                  onKeyDown={(e) => {
+                    if (!isEventValidNumber(e)) {
+                      e.preventDefault();
+                    }
+                  }}
+                />
               </div>
             </div>
             {bidError && (
