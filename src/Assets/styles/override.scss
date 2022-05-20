@@ -448,14 +448,14 @@ canvas {
 .eb-de_countdown {
   font-size: 0.8rem;
   right: 20px;
-  background: #ffffff;
+  background: $bgColor1;
   padding: 6px 10px;
   border-radius: 30px;
   -moz-border-radius: 30px;
   -webkit-border-radius: 30px;
   border: solid 2px $blue;
   z-index: 1;
-  color: #0d0c22;
+  color: $textColor1;
   margin: 4px 4px;
   .Clock-days {
     font-weight: bold;

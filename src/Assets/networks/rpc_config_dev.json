@@ -17,11 +17,17 @@
   "ebisu_contract": "0xd036b2223bcc2A96164B023022D6b78CD71A1a12",
   "slothy_rugsurance_contract": "0xE9A540CBb2247f9bD86e98d1121aBDD084Ca0e89",
   "offer_contract": "0x016b347aeb70cc45e3bbaf324feb3c7c464e18b0",
+  "mm_auction_contract": "0x0B93df0b823E8B1b62d0a753c6F115Cad4e89dD1",
   "known_tokens": {
     "loot": {
       "name": "LOOT",
       "symbol": "LOOT",
       "address": "0xEd34211cDD2cf76C3cceE162761A72d7b6601E2B"
+    },
+    "mad": {
+      "name": "MAD",
+      "symbol": "MAD",
+      "address": "0xD6464BdB57e9eD610692635b64fd47B763345032"
     }
   },
   "known_contracts": [
@@ -4242,7 +4248,7 @@
       "name": "Bankroll Bear Society",
       "slug": "bankroll-bear-society",
       "multiToken": false,
-      "address": "",
+      "address": "0x954AbeA0471A04A26F5A953056Ea0Ae57f2395cB",
       "onChain": false,
       "listable": false,
       "metadata": {
@@ -4490,6 +4496,25 @@
         "discord": "https://discord.gg/8a8Xm4wwR9",
         "telegram": "https://t.me/crocrownft",
         "medium": "https://medium.com/@cronoscrocrow"
+      }
+    },
+    {
+      "name": "Looneycorns",
+      "slug": "looneycorns",
+      "multiToken": false,
+      "address": "",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "Looneycorns is the first of 5 unique toys/NFTs from the Lost Toy collection. Each toy character represents a childhood favourite that has been lost over time and needs a new home. \n\nEach of the 2,200 Looneycorns NFT have a different rarity level and to ensure that each one is totally unique, we have also gone the “extra-mile” and created over 120 traits which would easily make up a collection of 5,000 NFTs!",
+        "verified": true,
+        "avatar": "/img/collections/looneycorns/avatar.webp",
+        "card": "/img/collections/looneycorns/card.webp",
+        "banner": "/img/collections/looneycorns/banner.webp",
+        "maxSupply": 2200,
+        "website": "http://www.losttoys.io/",
+        "twitter": "http://www.twitter.com/looneycornsnft",
+        "discord": "https://discord.gg/Tdd9TZRMxn"
       }
     }
   ],
@@ -6438,7 +6463,7 @@
         "twitter": "https://twitter.com/Bankrollbears",
         "discord": "http://discord.gg/bankrollbearsociety"
       },
-      "address": "",
+      "address": "0x954AbeA0471A04A26F5A953056Ea0Ae57f2395cB",
       "maxMintPerTx": 10,
       "maxMintPerAddress": 100,
       "totalSupply": 5000,
@@ -6485,6 +6510,37 @@
       "published": true,
       "complete": false,
       "priceDescription": "Whitelist presale for the first hour. Whitelist pricing applicable only during presale and limited to 5 per wallet. Public sale will begin after the presale completes"
+    },
+    {
+      "id": 75,
+      "slug": "looneycorns",
+      "imgNft": "/img/drops/looneycorns/drop.webp",
+      "imgPreview": "/img/drops/looneycorns/drop.webp",
+      "imgAvatar": "/img/collections/looneycorns/avatar.webp",
+      "imgBanner": "/img/collections/looneycorns/banner.webp",
+      "title": "Looneycorns",
+      "subtitle": "Looneycorns, is the first of 5 unique toys/NFTs from the Lost Toy collection. Each toy character represents a childhood favourite that has been lost over time and needs a new home. \n\nEach of the 2,200 Looneycorns NFT have a different rarity level and to ensure that each one is totally unique, we have also gone the “extra-mile” and created over 120 traits which would easily make up a collection of 5,000 NFTs!",
+      "description": "Looneycorns, is the first of 5 unique toys from the Lost Toy collection. Each toy character represents a childhood favourite that has been lost over time and needs a new home.\n\nThose who look after their toys/NFTs will have the opportunity to receive amazing weekly prizes from our ToyBox and earn tokens. This could be to win a night's stay at the Hilton for two, limited edition trainers or even sought after NFTs! You, our community will decide!\n\nIn addition, holders of our NFT’s will have exclusive access to our platform SnipeHub designed to help manage your ever-growing NFT portfolio with ease and “snipe” better deals! \n\nFinally, at Lost Toys we believe that every child deserves a toy to build memories with and for that reason, we plan to also support those in need with toy donations. \n\nUTILITIES\n\nPLATFORM ACCESS- Exclusive free access to our platform SnipeHub and future applications\n\nTOYBOX REWARDS- Holders will be entered into a weekly raffle, to win IRL rewards\n\nCHARITY DONATIONS- We will be donating toys to the Toy Project charity on a monthly basis \n\nAIRDROPS- Collectors of our NFTs will receive multiple airdrops\n\nDAO- Holders of our airdropped NFT will be able to vote the next toys and future SnipeHub platform functionality\n\nNON MONETIZED TOKENIZATION- Holders will be able to stake our NFTs to earn tokens to make raffle purchases \n\nREAL LIFE TOYS- We will be sending to NFT holders of all 5 of toy characters (these will be minted throughout the phases) a real life collectable toy\n\nAUTO WHITELIST TO FUTURE MINTS- Holders of our toys will get discounts on future mints\n\nTHE ARTIST\n\nThe design of our NFT collection is extremely important to us, as it is often the first thing people see when exploring collections and we wanted people to own something truly special.\n\nFor this reason, we have spared no expense and commissioned the services of renowned 3D artist Felipe Rui, whose fame comes from his famous collection of “dark Disney” art designs which have been presented in in many galleries.",
+      "author": {
+        "name": "Looneycorns",
+        "website": "http://www.losttoys.io/",
+        "twitter": "http://www.twitter.com/looneycornsnft",
+        "discord": "https://discord.gg/Tdd9TZRMxn"
+      },
+      "address": "",
+      "maxMintPerTx": 10,
+      "maxMintPerAddress": 100,
+      "totalSupply": 2200,
+      "cost": "475",
+      "memberCost": "425",
+      "whitelistCost": "425",
+      "foundersOnly": false,
+      "start": 1653595200000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false
     }
   ],
   "auctions": [
