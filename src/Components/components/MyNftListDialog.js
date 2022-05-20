@@ -24,6 +24,7 @@ import styled from 'styled-components';
 
 import { MyNftPageActions } from '../../GlobalState/User';
 import { getCollectionMetadata } from '../../core/api';
+import {isEventValidNumber} from "../../utils";
 // import { numberToWords } from 'number-to-words';
 
 const StyledTypography = styled(Typography)`
@@ -302,7 +303,7 @@ const MyNftListDialog = ({ walletAddress, marketContract, myNftPageListDialog })
                               label="Price"
                               variant="outlined"
                               onKeyDown={(e) => {
-                                if (e.code === 'Period') {
+                                if (!isEventValidNumber(e)) {
                                   e.preventDefault();
                                 }
                               }}
