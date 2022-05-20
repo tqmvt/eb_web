@@ -17,11 +17,17 @@
   "ebisu_contract": "0x65A422AB9c95fc94208E010B8d4ab50F7E79af19",
   "offer_contract": "0x8Dd84fb5d7f8A504BA2398243D768C604f8Daf5E",
   "slothy_rugsurance_contract": "0x99F3960E8219384BF0624D388cAD698d5A54AE6C",
+  "mm_auction_contract": "0x84356061d598A7bCE028dB6a37b14F84cf4A5905",
   "known_tokens": {
     "loot": {
       "name": "LOOT",
       "symbol": "LOOT",
       "address": "0x2074D6a15c5F908707196C5ce982bd0598A666f9"
+    },
+    "mad": {
+      "name": "MAD",
+      "symbol": "MAD",
+      "address": "0x4DEdeea250d2cbf54F0e156f0e9b55927094867E"
     }
   },
   "known_contracts": [
@@ -1061,7 +1067,7 @@
       "name": "CyberClone",
       "slug": "cyber-clone",
       "multiToken": false,
-      "address": "0x63d1935Cb8CF1EFD9F3EBc68e43081ddcf3e1F31",
+      "address": "0x2D803AC436d7F86d52070Bc5eB72F72358dA150b",
       "onChain": false,
       "listable": false,
       "metadata": {
@@ -2325,39 +2331,6 @@
       "disclaimer": "**Assets and characters from other Ghetto-Doves™ collections do not apply in the 7 character collection."
     },
     {
-      "id": 74,
-      "slug": "cyber-clone",
-      "imgNft": "/img/drops/cyber-clone/drop.webp",
-      "imgPreview": "/img/drops/cyber-clone/drop.webp",
-      "imgAvatar": "/img/collections/cyber-clone/avatar.webp",
-      "imgBanner": "/img/collections/cyber-clone/banner.webp",
-      "title": "CyberClone",
-      "subtitle": "Cyberclone is a collection of 2000 uniquely generated NFTs stored on the Cronos blockchain. Each NFT Clone is inspired by the futuristic life of the year 2234, where the world is falling apart under the control of the Cyberclones, who are conquering earth!",
-      "description": "Cyberclone is a collection of 2000 uniquely generated NFTs stored on the Cronos blockchain. Each NFT Clone is inspired by the futuristic life of the year 2234, where the world is falling apart under the control of the Cyberclones, who are conquering earth! Who will take control of our clone-dominated world? \n\nWe will be setting up a DAO to allow all members to participate in the future CyberClone! The CyberClone goal? We want to go even further with Cyberclone, by creating exclusive IOS and Android applications for all Cyberclone owners that will allow you to access multitudes of benefits and exchanges!",
-      "author": {
-        "name": "CyberClone",
-        "twitter": "https://twitter.com/CyberCloneNFT",
-        "website": "https://cyber-clone.com/",
-        "discord": "https://discord.gg/rKnGgUDgYD",
-        "medium": "https://medium.com/cyber-clone"
-      },
-      "address": "0x63d1935Cb8CF1EFD9F3EBc68e43081ddcf3e1F31",
-      "maxMintPerTx": 5,
-      "maxMintPerAddress": 100,
-      "totalSupply": 2000,
-      "cost": "390",
-      "memberCost": "350",
-      "whitelistCost": "300",
-      "foundersOnly": false,
-      "start": 1652891669000,
-      "end": null,
-      "referral": false,
-      "is1155": false,
-      "published": true,
-      "complete": false,
-      "priceDescription": "Whitelist presale for the first hour. Whitelist pricing applicable only during presale and limited to 5 per wallet. Public sale will begin after the presale completes"
-    },
-    {
       "id": 73,
       "slug": "bankroll-bear-society",
       "imgNft": "/img/drops/bankroll-bear-society/drop.webp",
@@ -2387,6 +2360,39 @@
       "is1155": false,
       "published": true,
       "complete": false
+    },
+    {
+      "id": 74,
+      "slug": "cyber-clone",
+      "imgNft": "/img/drops/cyber-clone/drop.webp",
+      "imgPreview": "/img/drops/cyber-clone/drop.webp",
+      "imgAvatar": "/img/collections/cyber-clone/avatar.webp",
+      "imgBanner": "/img/collections/cyber-clone/banner.webp",
+      "title": "CyberClone",
+      "subtitle": "Cyberclone is a collection of 1000 uniquely generated NFTs stored on the Cronos blockchain. Each NFT Clone is inspired by the futuristic life of the year 2234, where the world is falling apart under the control of the Cyberclones, who are conquering earth!",
+      "description": "Cyberclone is a collection of 1000 uniquely generated NFTs stored on the Cronos blockchain. Each NFT Clone is inspired by the futuristic life of the year 2234, where the world is falling apart under the control of the Cyberclones, who are conquering earth! Who will take control of our clone-dominated world? \n\nWe will be setting up a DAO to allow all members to participate in the future CyberClone! The CyberClone goal? We want to go even further with Cyberclone, by creating exclusive IOS and Android applications for all Cyberclone owners that will allow you to access multitudes of benefits and exchanges!",
+      "author": {
+        "name": "CyberClone",
+        "twitter": "https://twitter.com/CyberCloneNFT",
+        "website": "https://cyber-clone.com/",
+        "discord": "https://discord.gg/rKnGgUDgYD",
+        "medium": "https://medium.com/cyber-clone"
+      },
+      "address": "0x2D803AC436d7F86d52070Bc5eB72F72358dA150b",
+      "maxMintPerTx": 5,
+      "maxMintPerAddress": 100,
+      "totalSupply": 1000,
+      "cost": "390",
+      "memberCost": "350",
+      "whitelistCost": "300",
+      "foundersOnly": false,
+      "start": 1652891669000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false,
+      "priceDescription": "Whitelist presale for the first hour. Whitelist pricing applicable only during presale and limited to 5 per wallet. Public sale will begin after the presale completes"
     }
   ],
   "auctions": [

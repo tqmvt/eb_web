@@ -99,7 +99,7 @@ const AuctionCollection = ({ showLoadMore = true, collectionId = null, sellerId 
                   ))}
               </div>
             ) : (
-              <div className="text-center">Charity auctions will be available soon!</div>
+              <div className="text-center">Degen auctions will be available soon!</div>
             )}
           </>
         )}
@@ -118,7 +118,7 @@ const AuctionCollection = ({ showLoadMore = true, collectionId = null, sellerId 
               ))}
           </div>
         ) : (
-          <span>Charity auctions will be available soon!</span>
+          <span>Degen auctions will be available soon!</span>
         )}
       </div>
     );

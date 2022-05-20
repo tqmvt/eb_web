@@ -17,11 +17,17 @@
   "ebisu_contract": "0xd036b2223bcc2A96164B023022D6b78CD71A1a12",
   "slothy_rugsurance_contract": "0xE9A540CBb2247f9bD86e98d1121aBDD084Ca0e89",
   "offer_contract": "0x016b347aeb70cc45e3bbaf324feb3c7c464e18b0",
+  "mm_auction_contract": "",
   "known_tokens": {
     "loot": {
       "name": "LOOT",
       "symbol": "LOOT",
       "address": "0xEd34211cDD2cf76C3cceE162761A72d7b6601E2B"
+    },
+    "mad": {
+      "name": "MAD",
+      "symbol": "MAD",
+      "address": "0x212331e1435A8df230715dB4C02B2a3A0abF8c61"
     }
   },
   "known_contracts": [
@@ -4242,7 +4248,7 @@
       "name": "Bankroll Bear Society",
       "slug": "bankroll-bear-society",
       "multiToken": false,
-      "address": "",
+      "address": "0x954AbeA0471A04A26F5A953056Ea0Ae57f2395cB",
       "onChain": false,
       "listable": false,
       "metadata": {
@@ -4469,6 +4475,27 @@
         "website": "https://cyber-clone.com/",
         "discord": "https://discord.gg/rKnGgUDgYD",
         "medium": "https://medium.com/cyber-clone"
+      }
+    },
+    {
+      "name": "MAD CROW",
+      "slug": "mad-crow",
+      "multiToken": false,
+      "address": "0x65AB0251d29c9C473c8d01BFfa2966F891fB1181",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "A cross-over collection of the original CRO CROWs and the Mad Meerkat ecosystem.",
+        "verified": true,
+        "avatar": "/img/collections/mad-crow/avatar.webp",
+        "card": "/img/collections/mad-crow/card.webp",
+        "banner": "/img/collections/mad-crow/banner.webp",
+        "maxSupply": 3334,
+        "website": "https://crocrow.com",
+        "twitter": "https://twitter.com/cronoscrocrow",
+        "discord": "https://discord.gg/8a8Xm4wwR9",
+        "telegram": "https://t.me/crocrownft",
+        "medium": "https://medium.com/@cronoscrocrow"
       }
     }
   ],
@@ -6417,7 +6444,7 @@
         "twitter": "https://twitter.com/Bankrollbears",
         "discord": "http://discord.gg/bankrollbearsociety"
       },
-      "address": "",
+      "address": "0x954AbeA0471A04A26F5A953056Ea0Ae57f2395cB",
       "maxMintPerTx": 10,
       "maxMintPerAddress": 100,
       "totalSupply": 5000,
@@ -6440,8 +6467,8 @@
       "imgAvatar": "/img/collections/cyber-clone/avatar.webp",
       "imgBanner": "/img/collections/cyber-clone/banner.webp",
       "title": "CyberClone",
-      "subtitle": "Cyberclone is a collection of 2000 uniquely generated NFTs stored on the Cronos blockchain. Each NFT Clone is inspired by the futuristic life of the year 2234, where the world is falling apart under the control of the Cyberclones, who are conquering earth!",
-      "description": "Cyberclone is a collection of 2000 uniquely generated NFTs stored on the Cronos blockchain. Each NFT Clone is inspired by the futuristic life of the year 2234, where the world is falling apart under the control of the Cyberclones, who are conquering earth! Who will take control of our clone-dominated world? \n\nWe will be setting up a DAO to allow all members to participate in the future CyberClone! The CyberClone goal? We want to go even further with Cyberclone, by creating exclusive IOS and Android applications for all Cyberclone owners that will allow you to access multitudes of benefits and exchanges!",
+      "subtitle": "Cyberclone is a collection of 1000 uniquely generated NFTs stored on the Cronos blockchain. Each NFT Clone is inspired by the futuristic life of the year 2234, where the world is falling apart under the control of the Cyberclones, who are conquering earth!",
+      "description": "Cyberclone is a collection of 1000 uniquely generated NFTs stored on the Cronos blockchain. Each NFT Clone is inspired by the futuristic life of the year 2234, where the world is falling apart under the control of the Cyberclones, who are conquering earth! Who will take control of our clone-dominated world? \n\nWe will be setting up a DAO to allow all members to participate in the future CyberClone! The CyberClone goal? We want to go even further with Cyberclone, by creating exclusive IOS and Android applications for all Cyberclone owners that will allow you to access multitudes of benefits and exchanges!",
       "author": {
         "name": "CyberClone",
         "twitter": "https://twitter.com/CyberCloneNFT",
@@ -6452,7 +6479,7 @@
       "address": "",
       "maxMintPerTx": 5,
       "maxMintPerAddress": 100,
-      "totalSupply": 2000,
+      "totalSupply": 1000,
       "cost": "390",
       "memberCost": "350",
       "whitelistCost": "300",
