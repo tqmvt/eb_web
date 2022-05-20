@@ -228,11 +228,13 @@ const Nft721 = ({ address, id }) => {
         <title>{nft?.name || 'NFT'} | Ebisu's Bay Marketplace</title>
         <meta name="description" content={`${nft?.name || 'NFT'} for Ebisu's Bay Marketplace`} />
         <meta name="title" content={`${nft?.name || 'NFT'} | Ebisu's Bay Marketplace`} />
-        <meta property="og:title" content={`${nft?.name || 'NFT'} | Ebisu's Bay Marketplace`} />
-        <meta property="og:url" content={`https://app.ebisusbay.com/nft/${address}`} />
-        <meta property="og:image" content={nft?.image} />
-        <meta name="twitter:title" content={`${nft?.name || 'NFT'} | Ebisu's Bay Marketplace`} />
-        <meta name="twitter:image" content={nft?.image} />
+        <meta property="og:type" content="website" key="og_type" />
+        <meta property="og:title" content={`${nft?.name || 'NFT'} | Ebisu's Bay Marketplace`} key="title" />
+        <meta property="og:url" content={`https://app.ebisusbay.com/nft/${address}`} key="og_url" />
+        <meta property="og:image" content={nft?.image} key="image" />
+        <meta name="twitter:title" content={`${nft?.name || 'NFT'} | Ebisu's Bay Marketplace`} key="twitter_title" />
+        <meta name="twitter:image" content={nft?.image} key="twitter_image" />
+        <meta name="twitter:card" content="summary_large_image" key="misc-card" />
       </Head>
       {isLoading ? (
         <section className="container">

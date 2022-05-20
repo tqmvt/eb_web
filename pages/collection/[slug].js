@@ -41,16 +41,18 @@ const Collection = () => {
       if (col) {
         setCollection(col);
         setRedirect(col.slug);
+        router.push(`/collection/${col.slug}`);
       }
     }
     setInitialized(true);
   }, [slug]);
 
-  // if (redirect) {
-  //   if (typeof window !== 'undefined') {
-  //     router.push(`/collection/${redirect}`);
-  //   }
-  // }
+  if (redirect) {
+    if (typeof window !== 'undefined') {
+      router.push(`/collection/${redirect}`);
+      return <></>;
+    }
+  }
 
   return (
     <>

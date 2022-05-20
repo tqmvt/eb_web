@@ -28,14 +28,16 @@ const Nft = () => {
       if (col) {
         setCollection(col);
         setRedirect(col.slug);
+        router.push(`/collection/${col.slug}/${id}`);
       }
     }
     setInitialized(true);
   }, [slug, id]);
 
-  // if (redirect) {
-  //   router.push(`/collection/${redirect}/${id}`);
-  // }
+  if (redirect) {
+    router.push(`/collection/${redirect}/${id}`);
+    return <></>;
+  }
 
   return (
     <>
