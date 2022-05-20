@@ -1059,9 +1059,15 @@ export async function sortAndFetchAuctions(page) {
   return await (await fetch(url)).json();
 }
 
-export async function getAuction(auctionId) {
+export async function getAuction(hash, index) {
   try {
-    const uri = `${api.baseUrl}${api.auctions}?auctionId=${auctionId}`;
+    let queryString = new URLSearchParams({
+      auctionHash: hash,
+      auctionIndex: index
+    });
+
+    const url = new URL(api.auctions, `${api.baseUrl}`);
+    const uri = `${url}?${queryString}`;
     var rawListing = await (await fetch(uri)).json();
 
     return rawListing['auctions'][0];

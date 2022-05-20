@@ -8,6 +8,10 @@ export class Auction {
   }
 
   get getAuctionId() {
+    return this.id;
+  }
+
+  get getAuctionIndex() {
     return this.index;
   }
 
