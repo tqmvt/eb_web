@@ -16,8 +16,8 @@ export class Auction {
   }
 
   get getHighestBid() {
-    if (this.highestBid ?? this.highest_bid) {
-
+    if (this.highestBid || this.highest_bid) {
+      return this.highestBid ?? this.highest_bid ?? 0;
     } else {
       return ethers.utils.formatEther(this.getHighestBidWei);
     }

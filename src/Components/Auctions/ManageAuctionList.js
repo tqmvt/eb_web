@@ -64,7 +64,7 @@ const ManageAuctionList = () => {
       case auctionState.NOT_STARTED:
         return 'Not Started';
       case auctionState.ACTIVE:
-        return listing.endAt < Date.now() ? 'Awaiting Acceptance' : 'Active';
+        return listing.getEndAt < Date.now() ? 'Awaiting Acceptance' : 'Active';
       case auctionState.CANCELLED:
         return 'Cancelled';
       case auctionState.SOLD:
@@ -112,7 +112,7 @@ const ManageAuctionList = () => {
                 <div className="eb-de_countdown text-center">
                   Ends In:
                   {auction.state !== auctionState.NOT_STARTED ? (
-                    <Clock deadline={auction.endAt} />
+                    <Clock deadline={auction.getEndAt} />
                   ) : (
                     <div className="fw-bold">Not Started</div>
                   )}

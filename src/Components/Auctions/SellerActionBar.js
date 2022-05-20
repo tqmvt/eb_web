@@ -92,7 +92,7 @@ const SellerActionBar = () => {
   };
 
   useEffect(() => {
-    setAwaitingAcceptace(listing.state === auctionState.ACTIVE && listing.endAt < Date.now());
+    setAwaitingAcceptace(listing.state === auctionState.ACTIVE && listing.getEndAt < Date.now());
     setIsComplete(listing.state === auctionState.SOLD || listing.state === auctionState.CANCELLED);
   }, [listing]);
 
