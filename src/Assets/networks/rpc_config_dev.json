@@ -4248,7 +4248,7 @@
       "name": "Bankroll Bear Society",
       "slug": "bankroll-bear-society",
       "multiToken": false,
-      "address": "",
+      "address": "0x954AbeA0471A04A26F5A953056Ea0Ae57f2395cB",
       "onChain": false,
       "listable": false,
       "metadata": {
@@ -6423,7 +6423,7 @@
         "twitter": "https://twitter.com/Bankrollbears",
         "discord": "http://discord.gg/bankrollbearsociety"
       },
-      "address": "",
+      "address": "0x954AbeA0471A04A26F5A953056Ea0Ae57f2395cB",
       "maxMintPerTx": 10,
       "maxMintPerAddress": 100,
       "totalSupply": 5000,
