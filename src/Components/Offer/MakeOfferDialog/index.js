@@ -11,7 +11,7 @@ import Button from 'src/Components/components/Button';
 import Input from 'src/Components/components/common/Input';
 import ProfilePreview from 'src/Components/components/ProfilePreview';
 import { croSkullRedPotionImageHack } from 'src/hacks';
-import { caseInsensitiveCompare, humanize, shortAddress } from 'src/utils';
+import {caseInsensitiveCompare, humanize, isEventValidNumber, shortAddress} from 'src/utils';
 import { OFFER_TYPE } from '../MadeOffersRow';
 import CloseIcon from 'src/Assets/images/close-icon-blue.svg';
 import { updateOfferSuccess, updateOfferFailed } from 'src/GlobalState/offerSlice';
@@ -415,7 +415,7 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
                         type="number"
                         className={`mx-2${offerPriceError ? ' is-error' : ''}`}
                         onKeyDown={(e) => {
-                          if (e.code === 'Period' || e.code === 'Minus') {
+                          if (!isEventValidNumber(e)) {
                             e.preventDefault();
                           }
                         }}
