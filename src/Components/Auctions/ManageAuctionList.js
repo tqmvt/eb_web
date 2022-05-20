@@ -12,6 +12,8 @@ import Clock from '../components/Clock';
 // import { chainConnect, connectAccount } from '../../GlobalState/User';
 import { Link } from 'react-router-dom';
 import { auctionState } from '../../core/api/enums';
+import {Auction} from "../../core/models/auction";
+import {commify} from "ethers/lib/utils";
 
 const ManageAuctionList = () => {
   // const dispatch = useDispatch();
@@ -23,7 +25,10 @@ const ManageAuctionList = () => {
     async function fetchData() {
       const response = await sortAndFetchAuctions();
       if (response.auctions === undefined) response.auctions = [];
-      setAuctions(response.auctions.filter((a) => [auctionState.NOT_STARTED, auctionState.ACTIVE].includes(a.state)));
+      const auctions = response.auctions
+        .filter((a) => [auctionState.NOT_STARTED, auctionState.ACTIVE].includes(a.state))
+        .map(o => new Auction(o));
+      setAuctions(auctions);
     }
     fetchData();
   }, []);
@@ -115,12 +120,12 @@ const ManageAuctionList = () => {
                 <div className="card-body d-flex flex-column">
                   <h6 className="card-title mt-auto">{auction.nft.name}</h6>
                   <p className="card-text">
-                    {ethers.utils.commify(auction.highestBid)} CRO <br />
+                    {commify(auction.getHighestBid)} CRO <br />
                     State: {mapStateToHumanReadable(auction)}
                   </p>
                 </div>
                 <div className="card-footer d-flex justify-content-between">
-                  <Link to={`/auctions/${auction.auctionId}`}>View</Link>
+                  <Link to={`/auctions/${auction.getAuctionId}`}>View</Link>
                 </div>
               </div>
             </div>

@@ -113,7 +113,7 @@ const BuyerActionBar = () => {
 
   useEffect(() => {
     // @todo set minimum bid
-    setAwaitingAcceptance(listing.state === auctionState.ACTIVE && listing.endAt < Date.now());
+    setAwaitingAcceptance(listing.state === auctionState.ACTIVE && listing.getEndAt < Date.now());
     setIsComplete(listing.state === auctionState.SOLD || listing.state === auctionState.CANCELLED);
     setIsAuctionOwner(caseInsensitiveCompare(listing.seller, user.address));
   }, [listing, user]);
@@ -202,14 +202,14 @@ const BuyerActionBar = () => {
   };
 
   return (
-    <div>
-      <Card className="mb-4 border-1 shadow" style={{ color: '#141619', borderColor: '#cdcfcf' }}>
+    <div className="price-action-bar">
+      <Card className="mb-4 border-1 shadow pab-card">
         {listing.state === auctionState.ACTIVE && !awaitingAcceptance && !isComplete && (
           <div
             className="text-center badge m-1 fs-6"
             style={{ backgroundImage: 'linear-gradient(to right, #35669e, #218cff)' }}
           >
-            Ends in: <Countdown date={listing.endAt} />
+            Ends in: <Countdown date={listing.getEndAt} />
           </div>
         )}
         <Card.Body>
@@ -218,29 +218,28 @@ const BuyerActionBar = () => {
               className={`my-auto fw-bold ${
                 !(myBid() > 0 && !isHighestBidder) && (awaitingAcceptance || isComplete) ? 'mx-auto' : ''
               }`}
-              style={{ color: '#000' }}
             >
               {listing.state === auctionState.NOT_STARTED && (
                 <>
                   <h6>Starting Bid:</h6>{' '}
-                  <span className="fs-3 ms-1">{ethers.utils.commify(listing.highestBid)} CRO</span>
+                  <span className="fs-3 ms-1">{ethers.utils.commify(listing.getHighestBid)} CRO</span>
                 </>
               )}
               {listing.state === auctionState.ACTIVE && bidHistory.length === 0 && !awaitingAcceptance && (
                 <>
                   <h6>Starting Bid:</h6>{' '}
-                  <span className="fs-3 ms-1">{ethers.utils.commify(listing.highestBid)} CRO</span>
+                  <span className="fs-3 ms-1">{ethers.utils.commify(listing.getHighestBid)} CRO</span>
                 </>
               )}
               {listing.state === auctionState.ACTIVE && bidHistory.length > 0 && !awaitingAcceptance && (
                 <>
                   <h6>Current Bid:</h6>{' '}
-                  <span className="fs-3 ms-1">{ethers.utils.commify(listing.highestBid)} CRO</span>
+                  <span className="fs-3 ms-1">{ethers.utils.commify(listing.getHighestBid)} CRO</span>
                 </>
               )}
               {listing.state === auctionState.ACTIVE && awaitingAcceptance && <>AUCTION HAS ENDED</>}
               {listing.state === auctionState.SOLD && (
-                <>AUCTION HAS BEEN SOLD FOR {ethers.utils.commify(listing.highestBid)} CRO</>
+                <>AUCTION HAS BEEN SOLD FOR {ethers.utils.commify(listing.getHighestBid)} CRO</>
               )}
               {listing.state === auctionState.CANCELLED && <>AUCTION HAS BEEN CANCELLED</>}
             </div>
