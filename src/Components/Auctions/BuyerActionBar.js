@@ -65,7 +65,7 @@ const BuyerActionBar = () => {
     setExecutingWithdraw(true);
     await runFunction(async (writeContract) => {
       console.log('withdrawing bid...', listing.getAuctionId, listing.getAuctionHash);
-      return (await writeContract.withdraw(listing.getAuctionHash)).wait();
+      return (await writeContract.withdraw(listing.getAuctionHash, listing.getAuctionId)).wait();
     });
     setExecutingWithdraw(false);
   };
@@ -74,7 +74,7 @@ const BuyerActionBar = () => {
     setExecutingAcceptBid(true);
     await runFunction(async (writeContract) => {
       console.log('accepting highest bid...', listing.getAuctionId, listing.getAuctionHash, listing.getHighestBidder);
-      return (await writeContract.accept(listing.getAuctionHash)).wait();
+      return (await writeContract.accept(listing.getAuctionHash, listing.getAuctionId)).wait();
     });
     setExecutingAcceptBid(false);
   };
