@@ -8,7 +8,7 @@ export class Auction {
   }
 
   get getAuctionId() {
-    return this.index;
+    return this.id;
   }
 
   get getAuctionHash() {

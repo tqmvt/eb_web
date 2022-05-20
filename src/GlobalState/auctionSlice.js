@@ -42,7 +42,9 @@ export default auctionSlice.reducer;
 
 export const getAuctionDetails = (auctionId) => async (dispatch) => {
   dispatch(auctionLoading());
-  const auctionJson = await getAuction(auctionId);
+  const [ hash, index ] = auctionId.split('-');
+
+  const auctionJson = await getAuction(hash, index);
   const listing = new Auction(auctionJson);
   const nft = await getNft(listing.nftAddress, listing.nftId, false);
   const history = nft?.listings ?? [];
