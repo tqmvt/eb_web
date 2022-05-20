@@ -86,11 +86,11 @@ const CreateAuction = () => {
             placeholder="e.g. 1"
             onChange={(event) => setNftId(event.target.value)}
           />
-          <h2>Starting Bid (CRO): </h2>
+          <h2>Starting Bid (MAD): </h2>
           <input
             className="form-control"
             type="text"
-            placeholder="e.g. 10 CRO"
+            placeholder="e.g. 10 MAD"
             onChange={(event) => setStartingBid(event.target.value)}
           />
         </form>

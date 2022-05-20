@@ -17,11 +17,17 @@
   "ebisu_contract": "0x65A422AB9c95fc94208E010B8d4ab50F7E79af19",
   "offer_contract": "0x8Dd84fb5d7f8A504BA2398243D768C604f8Daf5E",
   "slothy_rugsurance_contract": "0x99F3960E8219384BF0624D388cAD698d5A54AE6C",
+  "mm_auction_contract": "0x84356061d598A7bCE028dB6a37b14F84cf4A5905",
   "known_tokens": {
     "loot": {
       "name": "LOOT",
       "symbol": "LOOT",
       "address": "0x2074D6a15c5F908707196C5ce982bd0598A666f9"
+    },
+    "mad": {
+      "name": "MAD",
+      "symbol": "MAD",
+      "address": "0x4DEdeea250d2cbf54F0e156f0e9b55927094867E"
     }
   },
   "known_contracts": [
