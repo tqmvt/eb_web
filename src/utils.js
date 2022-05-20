@@ -519,3 +519,9 @@ export const millisecondTimestamp = (timestamp) => {
 
   return Number(timestamp);
 }
+
+export const isEventValidNumber = (e) => {
+  const re = /^[0-9\b]+$/;
+  const validChars = e.key === '' || re.test(e.key) || e.code === 'Backspace';
+  return validChars;
+}
