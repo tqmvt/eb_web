@@ -27,7 +27,7 @@ const SellerActionBar = () => {
   const executeStartAuction = () => async () => {
     setExecutingStart(true);
     await runFunction(async (writeContract) => {
-      console.log('starting auction...', listing.auctionId, listing.auctionHash);
+      console.log('starting auction...', listing.getAuctionId, listing.auctionHash);
       return (await writeContract.start(listing.auctionHash)).wait();
     });
     setExecutingStart(false);
@@ -36,7 +36,7 @@ const SellerActionBar = () => {
   const executeCancelAuction = () => async () => {
     setExecutingCancel(true);
     await runFunction(async (writeContract) => {
-      console.log('cancelling auction...', listing.auctionId, listing.auctionHash);
+      console.log('cancelling auction...', listing.getAuctionId, listing.auctionHash);
       return (await writeContract.cancel(listing.auctionHash)).wait();
     });
     setExecutingCancel(false);
@@ -45,7 +45,7 @@ const SellerActionBar = () => {
   const executeAcceptBid = () => async () => {
     setExecutingAcceptBid(true);
     await runFunction(async (writeContract) => {
-      console.log('accepting highest bid...', listing.auctionId, listing.auctionHash, listing.highestBidder);
+      console.log('accepting highest bid...', listing.getAuctionId, listing.auctionHash, listing.getHighestBidder);
       return (await writeContract.accept(listing.auctionHash)).wait();
     });
     setExecutingAcceptBid(false);
@@ -53,7 +53,7 @@ const SellerActionBar = () => {
 
   const executeIncreaseAuctionTime = (minutes) => async () => {
     await runFunction(async (writeContract) => {
-      console.log(`adding ${minutes}m to the auction time...`, listing.auctionId, listing.auctionHash);
+      console.log(`adding ${minutes}m to the auction time...`, listing.getAuctionId, listing.auctionHash);
       return (await writeContract.updateRuntime(listing.auctionHash, minutes)).wait();
     });
   };
@@ -68,7 +68,7 @@ const SellerActionBar = () => {
         );
         const receipt = await fn(writeContract);
         toast.success(createSuccessfulTransactionToastContent(receipt.transactionHash));
-        dispatch(getAuctionDetails(listing.auctionId));
+        dispatch(getAuctionDetails(listing.getAuctionId));
       } catch (error) {
         if (error.data) {
           toast.error(error.data.message);

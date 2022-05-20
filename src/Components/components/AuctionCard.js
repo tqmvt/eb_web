@@ -28,7 +28,7 @@ const AuctionCard = ({ listing, imgClass = 'marketplace' }) => {
         </div>
         <div className="card-body d-flex flex-column">
           <h6 className="card-title mt-auto">{listing.nft.name}</h6>
-          <p className="card-text">{ethers.utils.commify(listing.highestBid)} CRO</p>
+          <p className="card-text">{ethers.utils.commify(listing.getHighestBid)} CRO</p>
         </div>
       </div>
     </Link>

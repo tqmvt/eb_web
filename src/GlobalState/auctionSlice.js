@@ -3,6 +3,7 @@ import { getAuction, getNft } from '../core/api';
 import { Contract, ethers } from 'ethers';
 import config from '../Assets/networks/rpc_config.json';
 import {Auction} from "../core/models/auction";
+import AuctionContract from '../Contracts/DegenAuction.json';
 const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
 
 const auctionSlice = createSlice({
@@ -25,7 +26,7 @@ const auctionSlice = createSlice({
       state.loading = false;
       state.auction = action.payload.listing;
       state.history = action.payload.history ?? [];
-      state.bidHistory = action.payload.listing.bidHistory ?? [];
+      state.bidHistory = action.payload.listing.getBidHistory ?? [];
       state.powertraits = action.payload.powertraits ?? [];
       state.minBid = action.payload.minBid;
     },
@@ -46,15 +47,15 @@ export const getAuctionDetails = (auctionId) => async (dispatch) => {
   const nft = await getNft(listing.nftAddress, listing.nftId, false);
   const history = nft?.listings ?? [];
   const powertraits = nft.nft?.powertraits ?? [];
-  const minBid = listing.getMinimumBid;
-  // let minBid;
-  // try {
-  //   const readContract = new Contract(config.mm_auction_contract, Auction.abi, readProvider);
-  //   minBid = await readContract.minimumBid(listing.auctionHash);
-  //   minBid = ethers.utils.formatEther(minBid);
-  // } catch (error) {
-  //   minBid = listing.minimumBid;
-  //   console.log('Failed to retrieve minimum bid. Falling back to api value', listing.auctionId);
-  // }
+
+  let minBid;
+  try {
+    const readContract = new Contract(config.mm_auction_contract, AuctionContract.abi, readProvider);
+    minBid = await readContract.minimumBid(listing.getAuctionHash, listing.getAuctionId);
+    minBid = ethers.utils.formatEther(minBid);
+  } catch (error) {
+    minBid = listing.getMinimumBid;
+    console.log('Failed to retrieve minimum bid. Falling back to api value', error);
+  }
   dispatch(auctionReceived({ listing, history, powertraits, minBid }));
 };
