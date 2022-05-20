@@ -53,9 +53,9 @@ const BuyerActionBar = () => {
     setExecutingBid(true);
     await runFunction(async (writeContract) => {
       let bid = ethers.utils.parseUnits(amount.toString());
-      console.log('placing bid...', listing.getAuctionId, listing.getAuctionHash, bid.toString());
+      console.log('placing bid...', listing.getAuctionIndex, listing.getAuctionHash, bid.toString());
       return (
-        await writeContract.bid(listing.getAuctionHash, listing.getAuctionId, bid)
+        await writeContract.bid(listing.getAuctionHash, listing.getAuctionIndex, bid)
       ).wait();
     });
     setExecutingBid(false);
@@ -64,8 +64,8 @@ const BuyerActionBar = () => {
   const executeWithdrawBid = () => async () => {
     setExecutingWithdraw(true);
     await runFunction(async (writeContract) => {
-      console.log('withdrawing bid...', listing.getAuctionId, listing.getAuctionHash);
-      return (await writeContract.withdraw(listing.getAuctionHash, listing.getAuctionId)).wait();
+      console.log('withdrawing bid...', listing.getAuctionIndex, listing.getAuctionHash);
+      return (await writeContract.withdraw(listing.getAuctionHash, listing.getAuctionIndex)).wait();
     });
     setExecutingWithdraw(false);
   };
@@ -73,8 +73,8 @@ const BuyerActionBar = () => {
   const executeAcceptBid = () => async () => {
     setExecutingAcceptBid(true);
     await runFunction(async (writeContract) => {
-      console.log('accepting highest bid...', listing.getAuctionId, listing.getAuctionHash, listing.getHighestBidder);
-      return (await writeContract.accept(listing.getAuctionHash, listing.getAuctionId)).wait();
+      console.log('accepting highest bid...', listing.getAuctionIndex, listing.getAuctionHash, listing.getHighestBidder);
+      return (await writeContract.accept(listing.getAuctionHash, listing.getAuctionIndex)).wait();
     });
     setExecutingAcceptBid(false);
   };
@@ -304,7 +304,7 @@ const BuyerActionBar = () => {
             <div className="heading mt-3">
               <p>Your bid (MAD)</p>
               <div className="subtotal">
-                <Form.Control type="text" placeholder="Enter Bid" onChange={handleChangeBidAmount} />
+                <Form.Control className="mb-0" type="text" placeholder="Enter Bid" onChange={handleChangeBidAmount} />
               </div>
             </div>
             {bidError && (
