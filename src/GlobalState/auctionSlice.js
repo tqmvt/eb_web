@@ -1,8 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { getAuction, getNft } from '../core/api';
 import { Contract, ethers } from 'ethers';
-import Auction from '../Contracts/Auction.json';
 import config from '../Assets/networks/rpc_config.json';
+import {Auction} from "../core/models/auction";
+import AuctionContract from '../Contracts/DegenAuction.json';
 const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
 
 const auctionSlice = createSlice({
@@ -25,7 +26,7 @@ const auctionSlice = createSlice({
       state.loading = false;
       state.auction = action.payload.listing;
       state.history = action.payload.history ?? [];
-      state.bidHistory = action.payload.listing.bidHistory ?? [];
+      state.bidHistory = action.payload.listing.getBidHistory ?? [];
       state.powertraits = action.payload.powertraits ?? [];
       state.minBid = action.payload.minBid;
     },
@@ -41,19 +42,20 @@ export default auctionSlice.reducer;
 
 export const getAuctionDetails = (auctionId) => async (dispatch) => {
   dispatch(auctionLoading());
-  const listing = await getAuction(auctionId);
+  const auctionJson = await getAuction(auctionId);
+  const listing = new Auction(auctionJson);
   const nft = await getNft(listing.nftAddress, listing.nftId, false);
   const history = nft?.listings ?? [];
   const powertraits = nft.nft?.powertraits ?? [];
 
   let minBid;
   try {
-    const readContract = new Contract(config.auction_contract, Auction.abi, readProvider);
-    minBid = await readContract.minimumBid(listing.auctionHash);
+    const readContract = new Contract(config.mm_auction_contract, AuctionContract.abi, readProvider);
+    minBid = await readContract.minimumBid(listing.getAuctionHash, listing.getAuctionId);
     minBid = ethers.utils.formatEther(minBid);
   } catch (error) {
-    minBid = listing.minimumBid;
-    console.log('Failed to retrieve minimum bid. Falling back to api value', listing.auctionId);
+    minBid = listing.getMinimumBid;
+    console.log('Failed to retrieve minimum bid. Falling back to api value', error);
   }
   dispatch(auctionReceived({ listing, history, powertraits, minBid }));
 };

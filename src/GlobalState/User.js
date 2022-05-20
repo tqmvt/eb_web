@@ -5,7 +5,7 @@ import Membership from '../Contracts/EbisusBayMembership.json';
 import Cronies from '../Contracts/CronosToken.json';
 import StakeABI from '../Contracts/Stake.json';
 import Market from '../Contracts/Marketplace.json';
-import Auction from '../Contracts/Auction.json';
+import Auction from '../Contracts/DegenAuction.json';
 import Offer from '../Contracts/Offer.json';
 import Web3Modal from 'web3modal';
 
@@ -564,7 +564,7 @@ export const connectAccount =
         ownedVip = await mc.balanceOf(address, 2);
         stakeCount = await sc.amountStaked(address);
         market = new Contract(config.market_contract, Market.abi, signer);
-        auction = new Contract(config.auction_contract, Auction.abi, signer);
+        auction = new Contract(config.mm_auction_contract, Auction.abi, signer);
         offer = new Contract(config.offer_contract, Offer.abi, signer);
         sales = ethers.utils.formatEther(await market.payments(address));
         stakingRewards = ethers.utils.formatEther(await sc.getReward(address));
