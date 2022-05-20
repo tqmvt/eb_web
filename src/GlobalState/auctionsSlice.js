@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { /*sortAndFetchListings, */ getCollectionMetadata, getMarketMetadata, sortAndFetchAuctions } from '../core/api';
 import config from '../Assets/networks/rpc_config.json';
+import {Auction} from "../core/models/auction";
 export const knownContracts = config.known_contracts;
 
 const auctionsSlice = createSlice({
@@ -118,13 +119,16 @@ export const fetchListings = () => async (dispatch, getState) => {
   const state = getState();
 
   dispatch(auctionsLoading());
-  const response = await sortAndFetchAuctions(
+  let response = await sortAndFetchAuctions(
     state.marketplace.curPage + 1,
     state.marketplace.curSort,
     state.marketplace.curFilter.type,
     state.marketplace.curFilter.address
   );
   response.hasRank = response.auctions.length > 0 && typeof response.auctions[0].nft.rank !== 'undefined';
+
+  const mappedAuctions = response.auctions.map(o => new Auction(o));
+  response = {...response, ...{ auctions: mappedAuctions }};
 
   dispatch(auctionsReceived(response));
 };

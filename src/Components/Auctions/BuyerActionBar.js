@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { ethers } from 'ethers';
+import {constants, ethers} from 'ethers';
 import { Card, Form, Spinner } from 'react-bootstrap';
 import MetaMaskOnboarding from '@metamask/onboarding';
 import { toast } from 'react-toastify';
 import Countdown from 'react-countdown';
 
 import config from '../../Assets/networks/rpc_config.json';
-import AuctionContract from '../../Contracts/Auction.json';
+import AuctionContract from '../../Contracts/DegenAuction.json';
 import { caseInsensitiveCompare, createSuccessfulTransactionToastContent } from '../../utils';
 import { auctionState } from '../../core/api/enums';
 import { getAuctionDetails } from '../../GlobalState/auctionSlice';
 import { chainConnect, connectAccount } from '../../GlobalState/User';
+import {ERC20, ERC721} from "../../Contracts/Abis";
+import {formatEther, parseEther} from "ethers/lib/utils";
 
 const BuyerActionBar = () => {
   const dispatch = useDispatch();
@@ -27,6 +29,7 @@ const BuyerActionBar = () => {
   // const [executingIncreaseBid, setExecutingIncreaseBid] = useState(false);
   const [executingWithdraw, setExecutingWithdraw] = useState(false);
   const [executingAcceptBid, setExecutingAcceptBid] = useState(false);
+  const [executingApproveContract, setExecutingApproveContract] = useState(false);
 
   const user = useSelector((state) => state.user);
   const bidHistory = useSelector((state) => state.auction.bidHistory.filter((i) => !i.withdrawn));
@@ -34,7 +37,7 @@ const BuyerActionBar = () => {
   const minBid = useSelector((state) => state.auction.minBid);
 
   const isHighestBidder = useSelector((state) => {
-    return listing.highestBidder && caseInsensitiveCompare(user.address, listing.highestBidder);
+    return listing.getHighestBidder && caseInsensitiveCompare(user.address, listing.getHighestBidder);
   });
   const [openBidDialog, setOpenBidDialog] = useState(false);
   const [openRebidDialog, setOpenRebidDialog] = useState(false);
@@ -50,11 +53,9 @@ const BuyerActionBar = () => {
     setExecutingBid(true);
     await runFunction(async (writeContract) => {
       let bid = ethers.utils.parseUnits(amount.toString());
-      console.log('placing bid...', listing.auctionId, listing.auctionHash, bid.toString());
+      console.log('placing bid...', listing.getAuctionId, listing.getAuctionHash, bid.toString());
       return (
-        await writeContract.bid(listing.auctionHash, {
-          value: bid,
-        })
+        await writeContract.bid(listing.getAuctionHash, listing.getAuctionId, bid)
       ).wait();
     });
     setExecutingBid(false);
@@ -63,8 +64,8 @@ const BuyerActionBar = () => {
   const executeWithdrawBid = () => async () => {
     setExecutingWithdraw(true);
     await runFunction(async (writeContract) => {
-      console.log('withdrawing bid...', listing.auctionId, listing.auctionHash);
-      return (await writeContract.withdraw(listing.auctionHash)).wait();
+      console.log('withdrawing bid...', listing.getAuctionId, listing.getAuctionHash);
+      return (await writeContract.withdraw(listing.getAuctionHash, listing.getAuctionId)).wait();
     });
     setExecutingWithdraw(false);
   };
@@ -72,23 +73,45 @@ const BuyerActionBar = () => {
   const executeAcceptBid = () => async () => {
     setExecutingAcceptBid(true);
     await runFunction(async (writeContract) => {
-      console.log('accepting highest bid...', listing.auctionId, listing.auctionHash, listing.highestBidder);
-      return (await writeContract.accept(listing.auctionHash)).wait();
+      console.log('accepting highest bid...', listing.getAuctionId, listing.getAuctionHash, listing.getHighestBidder);
+      return (await writeContract.accept(listing.getAuctionHash, listing.getAuctionId)).wait();
     });
     setExecutingAcceptBid(false);
   };
 
+  const executeApproveContract = () => async () => {
+    setExecutingApproveContract(true);
+    await runFunction(async (auctionContract) => {
+      await ensureApproved(auctionContract);
+    });
+    setExecutingApproveContract(false);
+  };
+
+  const ensureApproved = async (auctionContract) => {
+    const tokenAddress = config.known_tokens.mad.address;
+    let tokenContract = await new ethers.Contract(tokenAddress, ERC20, user.provider.getSigner());
+
+    console.log('approving contract...', user.address, auctionContract.address, parseEther('1000000000000000000'));
+    const allowance = await tokenContract.allowance(user.address, auctionContract.address);
+    if (!allowance.gt(0)) {
+      let tx = await tokenContract.approve(auctionContract.address, constants.MaxUint256);
+      return tx.wait();
+    }
+  };
+
   const runFunction = async (fn) => {
     if (user.address) {
+
       try {
         let writeContract = await new ethers.Contract(
-          config.auction_contract,
+          config.mm_auction_contract,
           AuctionContract.abi,
           user.provider.getSigner()
         );
+        await ensureApproved(writeContract);
         const receipt = await fn(writeContract);
         toast.success(createSuccessfulTransactionToastContent(receipt.transactionHash));
-        dispatch(getAuctionDetails(listing.auctionId));
+        dispatch(getAuctionDetails(listing.getAuctionId));
       } catch (error) {
         if (error.data) {
           toast.error(error.data.message);
@@ -113,7 +136,7 @@ const BuyerActionBar = () => {
 
   useEffect(() => {
     // @todo set minimum bid
-    setAwaitingAcceptance(listing.state === auctionState.ACTIVE && listing.endAt < Date.now());
+    setAwaitingAcceptance(listing.state === auctionState.ACTIVE && listing.getEndAt < Date.now());
     setIsComplete(listing.state === auctionState.SOLD || listing.state === auctionState.CANCELLED);
     setIsAuctionOwner(caseInsensitiveCompare(listing.seller, user.address));
   }, [listing, user]);
@@ -128,7 +151,7 @@ const BuyerActionBar = () => {
     setBidAmount(newBid);
 
     if (newBid < minBid) {
-      setBidError(`Bid must be at least ${minBid} CRO`);
+      setBidError(`Bid must be at least ${minBid} MAD`);
     } else {
       setBidError(false);
     }
@@ -141,7 +164,7 @@ const BuyerActionBar = () => {
     const minRebid = minBid - myBid();
 
     if (newBid < minRebid) {
-      setBidError(`Bid must be increased by at least ${minRebid} CRO`);
+      setBidError(`Bid must be increased by at least ${minRebid} MAD`);
     } else {
       setBidError(false);
     }
@@ -202,14 +225,14 @@ const BuyerActionBar = () => {
   };
 
   return (
-    <div>
-      <Card className="mb-4 border-1 shadow" style={{ color: '#141619', borderColor: '#cdcfcf' }}>
+    <div className="price-action-bar">
+      <Card className="mb-4 border-1 shadow pab-card">
         {listing.state === auctionState.ACTIVE && !awaitingAcceptance && !isComplete && (
           <div
             className="text-center badge m-1 fs-6"
             style={{ backgroundImage: 'linear-gradient(to right, #35669e, #218cff)' }}
           >
-            Ends in: <Countdown date={listing.endAt} />
+            Ends in: <Countdown date={listing.getEndAt} />
           </div>
         )}
         <Card.Body>
@@ -218,29 +241,28 @@ const BuyerActionBar = () => {
               className={`my-auto fw-bold ${
                 !(myBid() > 0 && !isHighestBidder) && (awaitingAcceptance || isComplete) ? 'mx-auto' : ''
               }`}
-              style={{ color: '#000' }}
             >
               {listing.state === auctionState.NOT_STARTED && (
                 <>
                   <h6>Starting Bid:</h6>{' '}
-                  <span className="fs-3 ms-1">{ethers.utils.commify(listing.highestBid)} CRO</span>
+                  <span className="fs-3 ms-1">{ethers.utils.commify(listing.getHighestBid)} MAD</span>
                 </>
               )}
               {listing.state === auctionState.ACTIVE && bidHistory.length === 0 && !awaitingAcceptance && (
                 <>
                   <h6>Starting Bid:</h6>{' '}
-                  <span className="fs-3 ms-1">{ethers.utils.commify(listing.highestBid)} CRO</span>
+                  <span className="fs-3 ms-1">{ethers.utils.commify(listing.getHighestBid)} MAD</span>
                 </>
               )}
               {listing.state === auctionState.ACTIVE && bidHistory.length > 0 && !awaitingAcceptance && (
                 <>
                   <h6>Current Bid:</h6>{' '}
-                  <span className="fs-3 ms-1">{ethers.utils.commify(listing.highestBid)} CRO</span>
+                  <span className="fs-3 ms-1">{ethers.utils.commify(listing.getHighestBid)} MAD</span>
                 </>
               )}
               {listing.state === auctionState.ACTIVE && awaitingAcceptance && <>AUCTION HAS ENDED</>}
               {listing.state === auctionState.SOLD && (
-                <>AUCTION HAS BEEN SOLD FOR {ethers.utils.commify(listing.highestBid)} CRO</>
+                <>AUCTION HAS BEEN SOLD FOR {ethers.utils.commify(listing.getHighestBid)} MAD</>
               )}
               {listing.state === auctionState.CANCELLED && <>AUCTION HAS BEEN CANCELLED</>}
             </div>
@@ -278,9 +300,9 @@ const BuyerActionBar = () => {
             <div className="heading">
               <h3>Place Bid</h3>
             </div>
-            <p>Your bid must be at least {minBid} CRO</p>
+            <p>Your bid must be at least {minBid} MAD</p>
             <div className="heading mt-3">
-              <p>Your bid (CRO)</p>
+              <p>Your bid (MAD)</p>
               <div className="subtotal">
                 <Form.Control type="text" placeholder="Enter Bid" onChange={handleChangeBidAmount} />
               </div>
@@ -326,9 +348,9 @@ const BuyerActionBar = () => {
             <div className="heading">
               <h3>Increase Bid</h3>
             </div>
-            <p>You must increase your bid by at least {minBid - myBid()} CRO</p>
+            <p>You must increase your bid by at least {minBid - myBid()} MAD</p>
             <div className="heading mt-3">
-              <p>Increase Bid By (CRO)</p>
+              <p>Increase Bid By (MAD)</p>
               <div className="subtotal">
                 <Form.Control type="text" placeholder="Enter Bid" onChange={handleChangeRebidAmount} />
               </div>
@@ -347,7 +369,7 @@ const BuyerActionBar = () => {
 
             <div className="heading">
               <p>Total Bid</p>
-              <div className="subtotal">{parseFloat(myBid()) + parseFloat(rebidAmount)} CRO</div>
+              <div className="subtotal">{parseFloat(myBid()) + parseFloat(rebidAmount)} MAD</div>
             </div>
 
             <button

@@ -57,7 +57,7 @@ const AuctionComponent = (props) => {
   };
 
   useEffect(() => {
-    if (listing) setCharityMetadata(config.auctions.find((a) => caseInsensitiveCompare(a.hash, listing.auctionHash)));
+    if (listing) setCharityMetadata(config.auctions.find((a) => caseInsensitiveCompare(a.hash, listing.getAuctionHash)));
   }, [listing]);
 
   return (
@@ -222,7 +222,7 @@ const AuctionComponent = (props) => {
                                         <b>
                                           <Link to={`/seller/${item.bidder}`}>{shortAddress(item.bidder)}</Link>
                                         </b>{' '}
-                                        bid <b>{ethers.utils.commify(item.price)} CRO</b>
+                                        bid <b>{ethers.utils.commify(item.price)} MAD</b>
                                       </div>
                                     </div>
                                   ))}
@@ -255,7 +255,7 @@ const AuctionComponent = (props) => {
                                         <b>
                                           <Link to={`/seller/${item.purchaser}`}>{shortAddress(item.purchaser)}</Link>
                                         </b>{' '}
-                                        for <b>{ethers.utils.commify(item.price)} CRO</b>
+                                        for <b>{ethers.utils.commify(item.price)} MAD</b>
                                       </div>
                                     </div>
                                   ))}
