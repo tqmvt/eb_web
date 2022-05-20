@@ -11,6 +11,10 @@ export class Auction {
     return this.id;
   }
 
+  get getAuctionIndex() {
+    return this.index;
+  }
+
   get getAuctionHash() {
     return this.hash;
   }
