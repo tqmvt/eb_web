@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createGlobalStyle } from 'styled-components';
 import { ethers } from 'ethers';
 import config from '../../Assets/networks/rpc_config.json';
-import AuctionContract from '../../Contracts/Auction.json';
+import AuctionContract from '../../Contracts/DegenAuction.json';
 import { toast } from 'react-toastify';
 import { caseInsensitiveCompare, createSuccessfulTransactionToastContent } from '../../utils';
 import { ERC721 } from '../../Contracts/Abis';
@@ -62,7 +62,7 @@ const SellerActionBar = () => {
     if (user.address) {
       try {
         let writeContract = await new ethers.Contract(
-          config.auction_contract,
+          config.mm_auction_contract,
           AuctionContract.abi,
           user.provider.getSigner()
         );

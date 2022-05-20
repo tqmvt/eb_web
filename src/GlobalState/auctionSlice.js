@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { getAuction, getNft } from '../core/api';
 import { Contract, ethers } from 'ethers';
-import Auction from '../Contracts/Auction.json';
+import Auction from '../Contracts/DegenAuction.json';
 import config from '../Assets/networks/rpc_config.json';
 const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
 
@@ -48,7 +48,7 @@ export const getAuctionDetails = (auctionId) => async (dispatch) => {
 
   let minBid;
   try {
-    const readContract = new Contract(config.auction_contract, Auction.abi, readProvider);
+    const readContract = new Contract(config.mm_auction_contract, Auction.abi, readProvider);
     minBid = await readContract.minimumBid(listing.auctionHash);
     minBid = ethers.utils.formatEther(minBid);
   } catch (error) {

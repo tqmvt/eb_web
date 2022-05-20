@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 import Countdown from 'react-countdown';
 
 import config from '../../Assets/networks/rpc_config.json';
-import AuctionContract from '../../Contracts/Auction.json';
+import AuctionContract from '../../Contracts/DegenAuction.json';
 import { caseInsensitiveCompare, createSuccessfulTransactionToastContent } from '../../utils';
 import { auctionState } from '../../core/api/enums';
 import { getAuctionDetails } from '../../GlobalState/auctionSlice';
@@ -82,7 +82,7 @@ const BuyerActionBar = () => {
     if (user.address) {
       try {
         let writeContract = await new ethers.Contract(
-          config.auction_contract,
+          config.mm_auction_contract,
           AuctionContract.abi,
           user.provider.getSigner()
         );
