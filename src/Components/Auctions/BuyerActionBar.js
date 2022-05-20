@@ -148,11 +148,6 @@ const BuyerActionBar = () => {
   const handleChangeBidAmount = (event) => {
     const { value } = event.target;
 
-    if (!isEventValidNumber(value)) {
-      event.preventDefault();
-      return;
-    }
-
     const newBid = parseFloat(value);
     setBidAmount(newBid);
 
@@ -165,11 +160,6 @@ const BuyerActionBar = () => {
 
   const handleChangeRebidAmount = (event) => {
     const { value } = event.target;
-
-    if (!isEventValidNumber(value)) {
-      event.preventDefault();
-      return;
-    }
 
     const newBid = parseFloat(value);
     setRebidAmount(newBid);
