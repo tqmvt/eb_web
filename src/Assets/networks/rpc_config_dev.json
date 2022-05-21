@@ -4512,9 +4512,29 @@
         "card": "/img/collections/looneycorns/card.webp",
         "banner": "/img/collections/looneycorns/banner.webp",
         "maxSupply": 2200,
-        "website": "http://www.losttoys.io/",
-        "twitter": "http://www.twitter.com/looneycornsnft",
+        "website": "https://www.losttoys.io/",
+        "twitter": "https://www.twitter.com/looneycornsnft",
         "discord": "https://discord.gg/Tdd9TZRMxn"
+      }
+    },
+    {
+      "name": "We Are Soldier",
+      "slug": "we-are-soldier",
+      "multiToken": false,
+      "address": "0x668358e45C31CE1218DcE073C6e3ac157E93E9F1",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "The \"We Are Soldiers\" NFTs are just the tip of the iceberg.  We are building an entire ecosystem for the soldiers through metaverse/gaming as well as bringing great additions to your new PFP.  Imagine owning multiple soldiers, super soldiers, weapons, artillery and land",
+        "verified": false,
+        "avatar": "/img/collections/we-are-soldier/avatar.webp",
+        "card": "/img/collections/we-are-soldier/card.webp",
+        "banner": "/img/collections/we-are-soldier/banner.webp",
+        "maxSupply": 10000,
+        "website": "https://nft.poorquack.com/soldier-pfp-presale",
+        "twitter": "https://twitter.com/poorquack",
+        "discord": "https://discord.gg/poorquack",
+        "telegram": "https://t.me/poorquack"
       }
     }
   ],
@@ -6523,8 +6543,8 @@
       "description": "Looneycorns, is the first of 5 unique toys from the Lost Toy collection. Each toy character represents a childhood favourite that has been lost over time and needs a new home.\n\nThose who look after their toys/NFTs will have the opportunity to receive amazing weekly prizes from our ToyBox and earn tokens. This could be to win a night's stay at the Hilton for two, limited edition trainers or even sought after NFTs! You, our community will decide!\n\nIn addition, holders of our NFT’s will have exclusive access to our platform SnipeHub designed to help manage your ever-growing NFT portfolio with ease and “snipe” better deals! \n\nFinally, at Lost Toys we believe that every child deserves a toy to build memories with and for that reason, we plan to also support those in need with toy donations. \n\nUTILITIES\n\nPLATFORM ACCESS- Exclusive free access to our platform SnipeHub and future applications\n\nTOYBOX REWARDS- Holders will be entered into a weekly raffle, to win IRL rewards\n\nCHARITY DONATIONS- We will be donating toys to the Toy Project charity on a monthly basis \n\nAIRDROPS- Collectors of our NFTs will receive multiple airdrops\n\nDAO- Holders of our airdropped NFT will be able to vote the next toys and future SnipeHub platform functionality\n\nNON MONETIZED TOKENIZATION- Holders will be able to stake our NFTs to earn tokens to make raffle purchases \n\nREAL LIFE TOYS- We will be sending to NFT holders of all 5 of toy characters (these will be minted throughout the phases) a real life collectable toy\n\nAUTO WHITELIST TO FUTURE MINTS- Holders of our toys will get discounts on future mints\n\nTHE ARTIST\n\nThe design of our NFT collection is extremely important to us, as it is often the first thing people see when exploring collections and we wanted people to own something truly special.\n\nFor this reason, we have spared no expense and commissioned the services of renowned 3D artist Felipe Rui, whose fame comes from his famous collection of “dark Disney” art designs which have been presented in in many galleries.",
       "author": {
         "name": "Looneycorns",
-        "website": "http://www.losttoys.io/",
-        "twitter": "http://www.twitter.com/looneycornsnft",
+        "website": "https://www.losttoys.io/",
+        "twitter": "https://www.twitter.com/looneycornsnft",
         "discord": "https://discord.gg/Tdd9TZRMxn"
       },
       "address": "",
