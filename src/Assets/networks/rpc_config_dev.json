@@ -4536,6 +4536,42 @@
         "discord": "https://discord.gg/poorquack",
         "telegram": "https://t.me/poorquack"
       }
+    },
+    {
+      "name": "Cro Houses",
+      "slug": "cro-houses",
+      "multiToken": false,
+      "address": "0xceafd95f505E20E1637D37A089C74887b22fe06B",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "The Highest Auto Reward & Upgradeable Collection on Cronos backed with tons of Utilities",
+        "verified": false,
+        "maxSupply": 3333,
+        "website": "https://crohouses.com",
+        "twitter": "https://twitter.com/HousesCro",
+        "discord": "https://discord.gg/tc9wS5hU"
+      }
+    },
+    {
+      "name": "Red Saint",
+      "slug": "red-saint",
+      "multiToken": false,
+      "address": "0x5143748612D92023954fD2Df0cEaF69B1d3434b2",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "Red Saint is collection of 3,578 scarf ninjas. Mint and collect the one and only Red Saint.",
+        "verified": false,
+        "avatar": "/img/collections/red-saint/avatar.webp",
+        "card": "/img/collections/red-saint/card.webp",
+        "banner": "/img/collections/red-saint/banner.webp",
+        "maxSupply": 3578,
+        "website": "https://redsaint.io",
+        "twitter": "https://twitter.com/RedSaintNFT",
+        "discord": "https://discord.gg/Ekz27dFKwR",
+        "telegram": "https://t.me/redsaintnft"
+      }
     }
   ],
   "drops": [
