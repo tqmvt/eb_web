@@ -4577,6 +4577,24 @@
         "discord": "https://discord.gg/Ekz27dFKwR",
         "telegram": "https://t.me/redsaintnft"
       }
+    },
+    {
+      "name": "Hidden Fish Founding Member VIP",
+      "slug": "hidden-fish-fm-vip",
+      "multiToken": false,
+      "address": "0x90665eEd780C027CDef63C31C8dFa296aE168E5A",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "The purpose of the DAO is to accelerate the growth of Ebisu’s Bay platform and the entire Cronos ecosystem.",
+        "verified": true,
+        "avatar": "/img/collections/hidden-fish/avatar.webp",
+        "card": "/img/collections/hidden-fish/card.webp",
+        "banner": "/img/collections/hidden-fish/banner.webp",
+        "maxSupply": 1000,
+        "website": "https://hidethefish.com",
+        "medium": "https://blog.hidethefish.com"
+      }
     }
   ],
   "drops": [
