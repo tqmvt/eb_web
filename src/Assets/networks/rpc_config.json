@@ -4520,8 +4520,8 @@
       }
     },
     {
-      "name": "We Are Soldier",
-      "slug": "we-are-soldier",
+      "name": "We Are Soldiers",
+      "slug": "we-are-soldiers",
       "multiToken": false,
       "address": "0x668358e45C31CE1218DcE073C6e3ac157E93E9F1",
       "onChain": false,
