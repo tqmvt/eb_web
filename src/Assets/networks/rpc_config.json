@@ -3954,7 +3954,7 @@
       "multiToken": false,
       "address": "0xb650279e3d726B0c75C984cAA55341cB87A7F501",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "",
         "verified": true,
@@ -4545,7 +4545,7 @@
       "multiToken": false,
       "address": "0xceafd95f505E20E1637D37A089C74887b22fe06B",
       "onChain": false,
-      "listable": true,
+      "listable": false,
       "metadata": {
         "description": "The Highest Auto Reward & Upgradeable Collection on Cronos backed with tons of Utilities",
         "verified": false,
