@@ -10,6 +10,7 @@ import Button from './Button';
 import MakeOfferDialog from '../Offer/MakeOfferDialog';
 import { connectAccount, chainConnect } from 'src/GlobalState/User';
 import {isNftBlacklisted, round} from '../../utils';
+import {AnyMedia} from "./AnyMedia";
 
 const Watermarked = styled.div`
   position: relative;
@@ -89,23 +90,23 @@ const NftCard = ({ royalty, listing, imgClass = 'marketplace', watermark, addres
   return (
     <>
       <div className="card eb-nft__card h-100 shadow">
-        <Link className="linkPointer" to={`/collection/${collection.slug}/${listing.id}`}>
-          {watermark ? (
-            <Watermarked watermark={watermark}>
-              <img
-                src={croSkullRedPotionImageHack(listing.address, listing.image)}
-                className={`card-img-top ${imgClass}`}
-                alt={listing.name}
-              />
-            </Watermarked>
-          ) : (
-            <img
-              src={croSkullRedPotionImageHack(listing.address, listing.image)}
+        {watermark ? (
+          <Watermarked watermark={watermark}>
+            <AnyMedia
+              image={croSkullRedPotionImageHack(listing.address, listing.image)}
               className={`card-img-top ${imgClass}`}
-              alt={listing.name}
+              title={listing.name}
+              url={`/collection/${collection.slug}/${listing.id}`}
             />
-          )}
-        </Link>
+          </Watermarked>
+        ) : (
+          <AnyMedia
+            image={croSkullRedPotionImageHack(listing.address, listing.image)}
+            className={`card-img-top ${imgClass}`}
+            title={listing.name}
+            url={`/collection/${collection.slug}/${listing.id}`}
+          />
+        )}
         {listing.rank && <div className="badge bg-rarity text-wrap mt-1 mx-1">Rank: #{listing.rank}</div>}
         <div className="card-body d-flex flex-column justify-content-between">
           <Link className="linkPointer" to={`/collection/${collection.slug}/${listing.id}`}>
