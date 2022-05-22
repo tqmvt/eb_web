@@ -4595,6 +4595,26 @@
         "website": "https://hidethefish.com",
         "medium": "https://blog.hidethefish.com"
       }
+    },
+    {
+      "name": "Lovely Lifeforms",
+      "slug": "lovely-lifeforms",
+      "multiToken": false,
+      "address": "0x7F69fbC66D7C448fa119cf1451eE5a773B38eEC3",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "ALIENFT Gen 2 ",
+        "verified": true,
+        "avatar": "/img/collections/lovely-lifeforms/avatar.webp",
+        "card": "/img/collections/lovely-lifeforms/card.webp",
+        "banner": "/img/collections/lovely-lifeforms/banner.webp",
+        "maxSupply": 2500,
+        "website": "https://www.aliennft.ca/",
+        "twitter": "https://twitter.com/AlienftCronos",
+        "discord": "https://discord.gg/PDvW2D3g8X",
+        "medium": "https://medium.com/@CronosALIENFT"
+      }
     }
   ],
   "drops": [
