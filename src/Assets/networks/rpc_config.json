@@ -4604,7 +4604,7 @@
       "onChain": false,
       "listable": false,
       "metadata": {
-        "description": "ALIENFT Gen 2 ",
+        "description": "ALIENFT Gen 2",
         "verified": true,
         "avatar": "/img/collections/lovely-lifeforms/avatar.webp",
         "card": "/img/collections/lovely-lifeforms/card.webp",
@@ -4614,6 +4614,26 @@
         "twitter": "https://twitter.com/AlienftCronos",
         "discord": "https://discord.gg/PDvW2D3g8X",
         "medium": "https://medium.com/@CronosALIENFT"
+      }
+    },
+    {
+      "name": "NautsDogs Club",
+      "slug": "nauts-dogs-club",
+      "multiToken": false,
+      "address": "0x7d193735f6bbf3ac9d2b7c452520d856b9ac6c36",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "NautsDogs is a collection of 555 randomly generated animals that will be revealed when the collection is sold out. The project aims to be a DAO and broaden the concept of decentralization. The team behind it comes from Cronosnauts",
+        "verified": false,
+        "avatar": "/img/collections/nauts-dogs-club/avatar.webp",
+        "card": "/img/collections/nauts-dogs-club/card.webp",
+        "banner": "/img/collections/nauts-dogs-club/banner.webp",
+        "maxSupply": 555,
+        "website": "https://nautsdogsclub.space",
+        "twitter": "https://twitter.com/NautsDogsClub",
+        "discord": "https://discord.gg/4nqS9VJU7W",
+        "medium": "https://medium.com/@cryptofamilynftofficial"
       }
     }
   ],
