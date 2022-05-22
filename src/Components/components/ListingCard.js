@@ -11,6 +11,7 @@ import MakeOfferDialog from '../Offer/MakeOfferDialog';
 import { connectAccount, chainConnect } from 'src/GlobalState/User';
 import {round} from "../../utils";
 import {getTheme} from "../../Theme/theme";
+import {AnyMedia} from "./AnyMedia";
 
 const Watermarked = styled.div`
   position: relative;
@@ -93,23 +94,23 @@ const ListingCard = ({ listing, imgClass = 'marketplace', watermark, address, co
   return (
     <>
       <div className="card eb-nft__card h-100 shadow">
-        <Link className="linkPointer" to={`/collection/${listing.nftAddress}/${listing.nftId}`}>
-          {watermark ? (
-            <Watermarked watermark={watermark}>
-              <img
-                src={croSkullRedPotionImageHack(listing.nftAddress, listing.nft.image)}
-                className={`card-img-top ${imgClass}`}
-                alt={listing.nft.name}
-              />
-            </Watermarked>
-          ) : (
-            <img
-              src={croSkullRedPotionImageHack(listing.nftAddress, listing.nft.image)}
+        {watermark ? (
+          <Watermarked watermark={watermark}>
+            <AnyMedia
+              image={croSkullRedPotionImageHack(listing.nftAddress, listing.nft.image)}
               className={`card-img-top ${imgClass}`}
-              alt={listing.nft.name}
+              title={listing.nft.name}
+              url={`/collection/${listing.nftAddress}/${listing.nftId}`}
             />
-          )}
-        </Link>
+          </Watermarked>
+        ) : (
+          <AnyMedia
+            image={croSkullRedPotionImageHack(listing.nftAddress, listing.nft.image)}
+            className={`card-img-top ${imgClass}`}
+            title={listing.nft.name}
+            url={`/collection/${listing.nftAddress}/${listing.nftId}`}
+          />
+        )}
         {listing.nft.rank ?
           <div className="badge bg-rarity text-wrap mt-1 mx-1">
             Rank: #{listing.nft.rank}
