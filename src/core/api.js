@@ -747,7 +747,7 @@ export async function getUnfilteredListingsForAddress(walletAddress, walletProvi
     //  array of {id, address} wallet nfts
     const quickWallet = await getQuickWallet(walletAddress);
     const walletNfts = quickWallet.data.map((nft) => {
-      return {id:nft.nfdId, address:nft.nftAddress}
+      return {id:nft.nftId, address:nft.nftAddress}
     });
 
     const filteredListings = listings
