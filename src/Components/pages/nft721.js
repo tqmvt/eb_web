@@ -248,10 +248,10 @@ const Nft721 = ({ address, id }) => {
                     <AnyMedia
                       image={croSkullRedPotionImageHack(address, nft.image)}
                       video={nft.video ?? nft.animation_url}
-                      className="img-fluid img-rounded mb-sm-30"
+                      videoProps={{height:'auto', autoPlay: true}}
                       title={nft.name}
                       usePlaceholder={false}
-                      videoProps={{height:'auto'}}
+                      className="img-fluid img-rounded mb-sm-30"
                     />
                   </>
                 )
