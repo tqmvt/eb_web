@@ -4616,6 +4616,25 @@
         "discord": "https://discord.gg/4nqS9VJU7W",
         "medium": "https://medium.com/@cryptofamilynftofficial"
       }
+    },
+    {
+      "name": "Lazy Gophers",
+      "slug": "lazy-gophers",
+      "multiToken": false,
+      "address": "0x9B1702011c498fB6b61e308e8D74553f413F7291",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "Lazy Gopher is an NFT collection of the 6,100 most philogopherical creatures living on the Cronos blockchain.  Get ready to hit the Lazy Links with your gopher in a first of its kind P2E game!!",
+        "verified": false,
+        "avatar": "/img/collections/lazy-gophers/avatar.webp",
+        "card": "/img/collections/lazy-gophers/card.webp",
+        "banner": "/img/collections/lazy-gophers/banner.webp",
+        "maxSupply": 6100,
+        "website": "https://lazygopher.com",
+        "twitter": "https://twitter.com/lazy_gopher",
+        "discord": "https://discord.gg/6pxQhn6K"
+      }
     }
   ],
   "drops": [
