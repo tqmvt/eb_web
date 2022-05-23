@@ -1,10 +1,9 @@
 import React, {memo, useEffect, useState} from 'react';
 import ReactPlayer from "react-player";
 import {fallbackImageUrl} from "../../core/constants";
-import {Link, useHistory} from "react-router-dom";
+import {Link} from "react-router-dom";
 
-export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = true, videoProps, ...props }) => {
-  const history = useHistory();
+export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = true, videoProps, className }) => {
   const [dynamicType, setDynamicType] = useState(null);
 
   const mediaTypes = {
@@ -16,15 +15,6 @@ export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = tr
   useEffect(() => {
     determineMediaType();
   }, []);
-
-
-  const navigateTo = (link) => {
-    if (newTab) {
-      window.open(link, '_blank');
-    } else {
-      history.push(link);
-    }
-  };
 
   const determineMediaType = () => {
     const xhr = new XMLHttpRequest();
@@ -39,43 +29,6 @@ export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = tr
     xhr.send();
   }
 
-  const Image = ({image, title, url}) => {
-    return (
-      <img
-        src={image}
-        alt={title}
-        onError={({ currentTarget }) => {
-          currentTarget.onerror = null;
-          currentTarget.src = fallbackImageUrl;
-        }}
-        {...props}
-      />
-    )
-  }
-
-  const Video = ({video, image, title}) => {
-    return (
-      <ReactPlayer
-        controls={true}
-        url={video}
-        config={{
-          file: {
-            attributes: {
-              onContextMenu: (e) => e.preventDefault(),
-              controlsList: 'nodownload',
-            },
-          },
-        }}
-        muted={true}
-        playing={true}
-        loop={true}
-        light={usePlaceholder ? image : undefined}
-        width="100%"
-        height={videoProps?.height ?? '100%'}
-      />
-    );
-  }
-
   return (
     <>
       {dynamicType && (
@@ -85,13 +38,19 @@ export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = tr
               video={video ?? image}
               image={dynamicType !== mediaTypes.video ? image : null}
               title={title}
+              usePlaceholder={usePlaceholder}
+              height={videoProps?.height}
+              autoPlay={videoProps?.autoPlay}
+              controls={videoProps?.controls}
+              className={className}
             />
           ) : (
-            <Link to={url}>
+            <Link to={url} target={newTab ? '_blank' : '_self'}>
               <Image
                 image={image}
                 title={title}
                 url={url}
+                className={className}
               />
             </Link>
           )}
@@ -102,3 +61,52 @@ export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = tr
 }
 
 export default memo(AnyMedia);
+
+const Image = memo(({image, title, url, className}) => {
+  return (
+    <img
+      src={image}
+      alt={title}
+      onError={({ currentTarget }) => {
+        currentTarget.onerror = null;
+        currentTarget.src = fallbackImageUrl;
+      }}
+      className={className}
+    />
+  )
+});
+
+const Video = memo((
+  {
+    video,
+    image,
+    title,
+    usePlaceholder,
+    height = '100%',
+    autoPlay = false,
+    controls = true,
+    className
+  }) => {
+
+  return (
+    <ReactPlayer
+      controls={controls}
+      url={video}
+      config={{
+        file: {
+          attributes: {
+            onContextMenu: (e) => e.preventDefault(),
+            controlsList: 'nodownload',
+          },
+        },
+      }}
+      muted={true}
+      playing={usePlaceholder && image ? true : autoPlay}
+      loop={true}
+      light={usePlaceholder ? image : undefined}
+      width="100%"
+      height={height}
+      className={className}
+    />
+  );
+});
