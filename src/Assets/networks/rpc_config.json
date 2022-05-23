@@ -4092,7 +4092,7 @@
       "multiToken": false,
       "address": "0xbabdFDD5f88035C9FbA58Be1b5c76DcFC6A847f3",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "8200 miCRObes have landing to infect the Trooprz - Collect 4 miCRObes to spawn an ultra rare Mutantz NFT from an original Trooprz NFT.",
         "verified": true,
