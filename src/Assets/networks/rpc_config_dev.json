@@ -4092,7 +4092,7 @@
       "multiToken": false,
       "address": "0xbabdFDD5f88035C9FbA58Be1b5c76DcFC6A847f3",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "8200 miCRObes have landing to infect the Trooprz - Collect 4 miCRObes to spawn an ultra rare Mutantz NFT from an original Trooprz NFT.",
         "verified": true,
@@ -4634,6 +4634,23 @@
         "website": "https://lazygopher.com",
         "twitter": "https://twitter.com/lazy_gopher",
         "discord": "https://discord.gg/6pxQhn6K"
+      }
+    },
+    {
+      "name": "Positive Bricks",
+      "slug": "positive-bricks",
+      "address": "0x6bbcc5735f108bc3b205188d52fd3b7d7ba57254",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "A symbolic collection engaged with passive income for holders. Each holder generates 1 NFT per week, simple as that. Note: no matter how many NFT you hold, still will generate you just 1 NFT.",
+        "verified": false,
+        "avatar": "/img/collections/positive-bricks/avatar.webp",
+        "card": "/img/collections/positive-bricks/card.webp",
+        "banner": "/img/collections/positive-bricks/banner.webp",
+        "website": "https://www.facebook.com/Simple-Things-105686745102700",
+        "twitter": "https://twitter.com/@svilkobe",
+        "discord": "https://discord.gg/YDv4NVbS"
       }
     }
   ],
