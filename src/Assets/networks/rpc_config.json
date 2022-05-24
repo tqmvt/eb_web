@@ -5843,7 +5843,7 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false,
+      "complete": true,
       "featured": false,
       "redirect": "https://pixelcity.art/"
     },
@@ -6517,7 +6517,7 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false,
+      "complete": true,
       "featured": false,
       "redirect": "https://www.boomersquad.io/selectmint"
     },
