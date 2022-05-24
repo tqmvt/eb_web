@@ -4407,7 +4407,7 @@
       "multiToken": false,
       "address": "0x9e43a04211aB4e53a21adC54eC0e5030F48C0Bc8",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "Raising awareness on the dangers of drug addiction through unique evolving NFTs!",
         "verified": false,
