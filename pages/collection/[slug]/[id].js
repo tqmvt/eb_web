@@ -41,28 +41,28 @@ const Nft = ({ slug, id }) => {
       (anNFT?.attributes && Array.isArray(anNFT.attributes) && anNFT.attributes.length > 0) ||
       (anNFT?.properties && Array.isArray(anNFT.properties) && anNFT.properties.length > 0)
     ) {
+      let traits = '';
       if (anNFT?.attributes && Array.isArray(anNFT.attributes)) {
-        const traits = anNFT.attributes
+        traits = anNFT.attributes
           .filter((a) => a.value !== 'None')
           .reduce(
             (previousValue, currentValue) =>
-              `${previousValue}, ${humanize(currentValue.trait_type)}:${
+              `${previousValue ? `${previousValue}, ` : ''}${humanize(currentValue.trait_type)}: ${
                 currentValue.value ? humanize(currentValue.value) : 'N/A'
               }`,
             ''
           );
-        return traits;
       }
       if (anNFT?.properties && Array.isArray(anNFT.properties)) {
-        const properties = anNFT.properties.reduce(
+        traits = anNFT.properties.reduce(
           (previousValue, currentValue) =>
-            `${previousValue}, ${humanize(currentValue.trait_type)}:${
+            `${previousValue ? `${previousValue}, ` : ''}${humanize(currentValue.trait_type)}: ${
               currentValue.value ? humanize(currentValue.value) : 'N/A'
             }`,
           ''
         );
-        return properties;
       }
+      return `${anNFT?.description ? anNFT?.description : ''}${traits}`;
     }
     return anNFT?.description;
   };
