@@ -86,7 +86,6 @@ const MyNftCard = ({
     <div className="card eb-nft__card h-100 shadow">
       <AnyMedia
         image={nft.image}
-        video={nft.video}
         title={nft.name}
         url={nftUrl()}
         newTab={true}
