@@ -4652,6 +4652,46 @@
         "twitter": "https://twitter.com/@svilkobe",
         "discord": "https://discord.gg/YDv4NVbS"
       }
+    },
+    {
+      "name": "EvoSkull",
+      "slug": "evo-skull",
+      "multiToken": false,
+      "address": "0xbf4E430cD0ce8b93d4760958fe4ae66cDaCDB6c6",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "EvoSkulls are a collection of Unique, Animated, 1/1 NFTs on the Cronos blockchain. The collection consists of 333 Super-rare Skulls, all 1/1. Each EvoSkull has a custom made unique animation, body, hat, face and outfit.",
+        "verified": true,
+        "avatar": "/img/collections/croskull/evo-skulls/avatar.webp",
+        "card": "/img/collections/croskull/evo-skulls/card.webp",
+        "banner": "/img/collections/croskull/evo-skulls/banner.webp",
+        "maxSupply": 333,
+        "website": "https://app.croskull.com/",
+        "twitter": "https://twitter.com/CroskullNFT",
+        "discord": "https://discord.gg/croskull",
+        "medium": "https://medium.com/@croskullnft"
+      }
+    },
+    {
+      "name": "D.G.P. Unlimited",
+      "slug": "dg-pals-unlimited",
+      "multiToken": false,
+      "address": "0x86aabe05e885108a8797314e817488c26f0601a1",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "D.G.P: New World Beta LIVE 23rd May & D.G.P: Legends Beta LIVE 31st May! D.G.Pals is the first Gamefi Project going LIVE (May 2022) on Cronos chain, backed by Crypto.com Capital, featuring a vast metaverse filled with not one but MANY games for holders of the NFTs to explore, earn and socialize. D.G.Pal NFTs are the first interoperable NFTs that function uniquely across multiple game projects and plenty more game titles in the roadmap.",
+        "verified": true,
+        "avatar": "/img/collections/dg-pals-unlimited/avatar.webp",
+        "card": "/img/collections/dg-pals-unlimited/card.webp",
+        "banner": "/img/collections/dg-pals-unlimited/banner.webp",
+        "maxSupply": 50000,
+        "website": "https://dgpals.io/",
+        "twitter": "https://twitter.com/officialdgpals",
+        "discord": "https://discord.gg/dgpals",
+        "medium": "https://medium.com/officialdgpals"
+      }
     }
   ],
   "drops": [
@@ -5803,7 +5843,7 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false,
+      "complete": true,
       "featured": false,
       "redirect": "https://pixelcity.art/"
     },
@@ -6477,7 +6517,7 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false,
+      "complete": true,
       "featured": false,
       "redirect": "https://www.boomersquad.io/selectmint"
     },
