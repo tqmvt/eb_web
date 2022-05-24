@@ -8,6 +8,7 @@ import MakeOfferDialog from '../Offer/MakeOfferDialog';
 import MetaMaskOnboarding from '@metamask/onboarding';
 import { chainConnect, connectAccount } from '../../GlobalState/User';
 import { useDispatch, useSelector } from 'react-redux';
+import {AnyMedia} from "./AnyMedia";
 
 const Watermarked = styled.div`
   position: relative;
@@ -92,23 +93,23 @@ const ListingCardCollection = ({ listing, imgClass = 'marketplace', watermark, a
   return (
     <>
       <div className="card eb-nft__card h-100 shadow">
-        <Link className="linkPointer" to={`/collection/${listing.nftAddress}/${listing.nftId}`}>
-          {watermark ? (
-            <Watermarked watermark={watermark}>
-              <img
-                src={croSkullRedPotionImageHack(listing.nftAddress, listing.nft.image)}
-                className={`card-img-top ${imgClass}`}
-                alt={listing.nft.name}
-              />
-            </Watermarked>
-          ) : (
-            <img
-              src={croSkullRedPotionImageHack(listing.nftAddress, listing.nft.image)}
+        {watermark ? (
+          <Watermarked watermark={watermark}>
+            <AnyMedia
+              image={croSkullRedPotionImageHack(listing.nftAddress, listing.nft.image)}
               className={`card-img-top ${imgClass}`}
-              alt={listing.nft.name}
+              title={listing.nft.name}
+              url={`/collection/${listing.nftAddress}/${listing.nftId}`}
             />
-          )}
-        </Link>
+          </Watermarked>
+        ) : (
+          <AnyMedia
+            image={croSkullRedPotionImageHack(listing.nftAddress, listing.nft.image)}
+            className={`card-img-top ${imgClass}`}
+            title={listing.nft.name}
+            url={`/collection/${listing.nftAddress}/${listing.nftId}`}
+          />
+        )}
         {listing.nft.rank && <div className="badge bg-rarity text-wrap mt-1 mx-1">Rank: #{listing.nft.rank}</div>}
         <div className="card-body d-flex flex-column justify-content-between">
           <Link className="linkPointer" to={`/collection/${listing.nftAddress}/${listing.nftId}`}>

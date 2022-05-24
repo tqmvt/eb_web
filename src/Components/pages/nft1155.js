@@ -30,6 +30,7 @@ import { listingState, offerState } from '../../core/api/enums';
 import { getFilteredOffers } from '../../core/subgraph';
 import { OFFER_TYPE } from '../Offer/MadeOffersRow';
 import NFTTabOffers from "../Offer/NFTTabOffers";
+import {AnyMedia} from "../components/AnyMedia";
 
 const Nft1155 = ({ address, id }) => {
   const dispatch = useDispatch();
@@ -150,31 +151,14 @@ const Nft1155 = ({ address, id }) => {
                   <iframe width="100%" height="636" src={nft.iframeSource} title="nft" />
                 ) : (
                   <>
-                    {nft.video ? (
-                      <ReactPlayer
-                        controls={true}
-                        url={nft.video}
-                        config={{
-                          file: {
-                            attributes: {
-                              onContextMenu: (e) => e.preventDefault(),
-                              controlsList: 'nodownload',
-                            },
-                          },
-                        }}
-                        muted={true}
-                        playing={true}
-                        loop={true}
-                        width="100%"
-                        height="auto"
-                      />
-                    ) : (
-                      <img
-                        src={croSkullRedPotionImageHack(address, nft.image)}
-                        className="img-fluid img-rounded mb-sm-30"
-                        alt={nft.name}
-                      />
-                    )}
+                    <AnyMedia
+                      image={croSkullRedPotionImageHack(address, nft.image)}
+                      video={nft.video ?? nft.animation_url}
+                      videoProps={{height:'auto', autoPlay: true}}
+                      title={nft.name}
+                      usePlaceholder={false}
+                      className="img-fluid img-rounded mb-sm-30"
+                    />
                   </>
                 )
               ) : (

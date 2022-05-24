@@ -5,10 +5,8 @@ import { toast } from 'react-toastify';
 import { faLink, faEllipsisH, faExchangeAlt, faTag, faTimes, faPen } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import config from '../../Assets/networks/rpc_config.json';
-import { croSkullRedPotionImageHack } from '../../hacks';
-import ReactPlayer from 'react-player';
-import { fallbackImageUrl } from '../../core/constants';
 import PopupMen from './PopupMenu';
+import AnyMedia from "./AnyMedia";
 
 const MyNftCard = ({
   nft,
@@ -86,38 +84,14 @@ const MyNftCard = ({
 
   return (
     <div className="card eb-nft__card h-100 shadow">
-      {nft.video ? (
-        <ReactPlayer
-          controls={true}
-          url={nft.video}
-          config={{
-            file: {
-              attributes: {
-                onContextMenu: (e) => e.preventDefault(),
-                controlsList: 'nodownload',
-              },
-            },
-          }}
-          muted={true}
-          playing={true}
-          loop={true}
-          light={nft.image}
-          width="100%"
-          height="100%"
-        />
-      ) : (
-        <img
-          onClick={() => navigateTo(nftUrl())}
-          src={croSkullRedPotionImageHack(nft.address, nft.image)}
-          className="card-img-top marketplace"
-          style={{ cursor: 'pointer' }}
-          alt={nft.name}
-          onError={({ currentTarget }) => {
-            currentTarget.onerror = null;
-            currentTarget.src = fallbackImageUrl;
-          }}
-        />
-      )}
+      <AnyMedia
+        image={nft.image}
+        video={nft.video}
+        title={nft.name}
+        url={nftUrl()}
+        newTab={true}
+        className="card-img-top marketplace"
+      />
       {nft.rank && typeof nft.rank === 'number' && (
         <div className="badge bg-rarity text-wrap mt-1 mx-1">Rank: #{nft.rank}</div>
       )}

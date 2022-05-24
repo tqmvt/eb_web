@@ -3954,7 +3954,7 @@
       "multiToken": false,
       "address": "0xb650279e3d726B0c75C984cAA55341cB87A7F501",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "",
         "verified": true,
@@ -4092,7 +4092,7 @@
       "multiToken": false,
       "address": "0xbabdFDD5f88035C9FbA58Be1b5c76DcFC6A847f3",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "8200 miCRObes have landing to infect the Trooprz - Collect 4 miCRObes to spawn an ultra rare Mutantz NFT from an original Trooprz NFT.",
         "verified": true,
@@ -4280,7 +4280,9 @@
         "website": "https://madmeerkat.io/",
         "twitter": "https://twitter.com/MadMeerkatNFT",
         "discord": "https://discord.gg/madmeerkat",
-        "medium": "https://medium.com/@madmeerkat0"
+        "medium": "https://medium.com/@madmeerkat0",
+        "rarity": "rarity_sniper",
+        "raritySniperSlug": "mad-meerkat-degen"
       }
     },
     {
@@ -4405,7 +4407,7 @@
       "multiToken": false,
       "address": "0x9e43a04211aB4e53a21adC54eC0e5030F48C0Bc8",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "Raising awareness on the dangers of drug addiction through unique evolving NFTs!",
         "verified": false,
@@ -4461,7 +4463,7 @@
       "name": "CyberClone",
       "slug": "cyber-clone",
       "multiToken": false,
-      "address": "",
+      "address": "0xa9C5A884b012A0B1528012d7EaEF38512DA12b2B",
       "onChain": false,
       "listable": false,
       "metadata": {
@@ -4483,7 +4485,7 @@
       "multiToken": false,
       "address": "0x65AB0251d29c9C473c8d01BFfa2966F891fB1181",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "A cross-over collection of the original CRO CROWs and the Mad Meerkat ecosystem.",
         "verified": true,
@@ -4512,9 +4514,143 @@
         "card": "/img/collections/looneycorns/card.webp",
         "banner": "/img/collections/looneycorns/banner.webp",
         "maxSupply": 2200,
-        "website": "http://www.losttoys.io/",
-        "twitter": "http://www.twitter.com/looneycornsnft",
+        "website": "https://www.losttoys.io/",
+        "twitter": "https://www.twitter.com/looneycornsnft",
         "discord": "https://discord.gg/Tdd9TZRMxn"
+      }
+    },
+    {
+      "name": "We Are Soldiers",
+      "slug": "we-are-soldiers",
+      "multiToken": false,
+      "address": "0x668358e45C31CE1218DcE073C6e3ac157E93E9F1",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "The \"We Are Soldiers\" NFTs are just the tip of the iceberg.  We are building an entire ecosystem for the soldiers through metaverse/gaming as well as bringing great additions to your new PFP.  Imagine owning multiple soldiers, super soldiers, weapons, artillery and land",
+        "verified": false,
+        "avatar": "/img/collections/we-are-soldier/avatar.webp",
+        "card": "/img/collections/we-are-soldier/card.webp",
+        "banner": "/img/collections/we-are-soldier/banner.webp",
+        "maxSupply": 10000,
+        "website": "https://nft.poorquack.com/soldier-pfp-presale",
+        "twitter": "https://twitter.com/poorquack",
+        "discord": "https://discord.gg/poorquack",
+        "telegram": "https://t.me/poorquack"
+      }
+    },
+    {
+      "name": "Red Saint",
+      "slug": "red-saint",
+      "multiToken": false,
+      "address": "0x5143748612D92023954fD2Df0cEaF69B1d3434b2",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "Red Saint is collection of 3,578 scarf ninjas. Mint and collect the one and only Red Saint.",
+        "verified": false,
+        "avatar": "/img/collections/red-saint/avatar.webp",
+        "card": "/img/collections/red-saint/card.webp",
+        "banner": "/img/collections/red-saint/banner.webp",
+        "maxSupply": 3578,
+        "website": "https://redsaint.io",
+        "twitter": "https://twitter.com/RedSaintNFT",
+        "discord": "https://discord.gg/Ekz27dFKwR",
+        "telegram": "https://t.me/redsaintnft"
+      }
+    },
+    {
+      "name": "Hidden Fish Founding Member VIP",
+      "slug": "hidden-fish-fm-vip",
+      "multiToken": false,
+      "address": "0x90665eEd780C027CDef63C31C8dFa296aE168E5A",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "The purpose of the DAO is to accelerate the growth of Ebisu’s Bay platform and the entire Cronos ecosystem.",
+        "verified": true,
+        "avatar": "/img/collections/hidden-fish/avatar.webp",
+        "card": "/img/collections/hidden-fish/card.webp",
+        "banner": "/img/collections/hidden-fish/banner.webp",
+        "maxSupply": 1000,
+        "website": "https://hidethefish.com",
+        "medium": "https://blog.hidethefish.com"
+      }
+    },
+    {
+      "name": "Lovely Lifeforms",
+      "slug": "lovely-lifeforms",
+      "multiToken": false,
+      "address": "0x7F69fbC66D7C448fa119cf1451eE5a773B38eEC3",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "ALIENFT Gen 2",
+        "verified": true,
+        "avatar": "/img/collections/lovely-lifeforms/avatar.webp",
+        "card": "/img/collections/lovely-lifeforms/card.webp",
+        "banner": "/img/collections/lovely-lifeforms/banner.webp",
+        "maxSupply": 2500,
+        "website": "https://www.aliennft.ca/",
+        "twitter": "https://twitter.com/AlienftCronos",
+        "discord": "https://discord.gg/PDvW2D3g8X",
+        "medium": "https://medium.com/@CronosALIENFT"
+      }
+    },
+    {
+      "name": "NautsDogs Club",
+      "slug": "nauts-dogs-club",
+      "multiToken": false,
+      "address": "0x7d193735f6bbf3ac9d2b7c452520d856b9ac6c36",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "NautsDogs is a collection of 555 randomly generated animals that will be revealed when the collection is sold out. The project aims to be a DAO and broaden the concept of decentralization. The team behind it comes from Cronosnauts",
+        "verified": false,
+        "avatar": "/img/collections/nauts-dogs-club/avatar.webp",
+        "card": "/img/collections/nauts-dogs-club/card.webp",
+        "banner": "/img/collections/nauts-dogs-club/banner.webp",
+        "maxSupply": 555,
+        "website": "https://nautsdogsclub.space",
+        "twitter": "https://twitter.com/NautsDogsClub",
+        "discord": "https://discord.gg/4nqS9VJU7W",
+        "medium": "https://medium.com/@cryptofamilynftofficial"
+      }
+    },
+    {
+      "name": "Lazy Gophers",
+      "slug": "lazy-gophers",
+      "multiToken": false,
+      "address": "0x9B1702011c498fB6b61e308e8D74553f413F7291",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "Lazy Gopher is an NFT collection of the 6,100 most philogopherical creatures living on the Cronos blockchain.  Get ready to hit the Lazy Links with your gopher in a first of its kind P2E game!!",
+        "verified": false,
+        "avatar": "/img/collections/lazy-gophers/avatar.webp",
+        "card": "/img/collections/lazy-gophers/card.webp",
+        "banner": "/img/collections/lazy-gophers/banner.webp",
+        "maxSupply": 6100,
+        "website": "https://lazygopher.com",
+        "twitter": "https://twitter.com/lazy_gopher",
+        "discord": "https://discord.gg/6pxQhn6K"
+      }
+    },
+    {
+      "name": "Positive Bricks",
+      "slug": "positive-bricks",
+      "address": "0x6bbcc5735f108bc3b205188d52fd3b7d7ba57254",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "A symbolic collection engaged with passive income for holders. Each holder generates 1 NFT per week, simple as that. Note: no matter how many NFT you hold, still will generate you just 1 NFT.",
+        "verified": false,
+        "avatar": "/img/collections/positive-bricks/avatar.webp",
+        "card": "/img/collections/positive-bricks/card.webp",
+        "banner": "/img/collections/positive-bricks/banner.webp",
+        "website": "https://www.facebook.com/Simple-Things-105686745102700",
+        "twitter": "https://twitter.com/@svilkobe",
+        "discord": "https://discord.gg/YDv4NVbS"
       }
     }
   ],
@@ -6495,7 +6631,7 @@
         "discord": "https://discord.gg/rKnGgUDgYD",
         "medium": "https://medium.com/cyber-clone"
       },
-      "address": "",
+      "address": "0xa9C5A884b012A0B1528012d7EaEF38512DA12b2B",
       "maxMintPerTx": 5,
       "maxMintPerAddress": 100,
       "totalSupply": 1000,
@@ -6523,8 +6659,8 @@
       "description": "Looneycorns, is the first of 5 unique toys from the Lost Toy collection. Each toy character represents a childhood favourite that has been lost over time and needs a new home.\n\nThose who look after their toys/NFTs will have the opportunity to receive amazing weekly prizes from our ToyBox and earn tokens. This could be to win a night's stay at the Hilton for two, limited edition trainers or even sought after NFTs! You, our community will decide!\n\nIn addition, holders of our NFT’s will have exclusive access to our platform SnipeHub designed to help manage your ever-growing NFT portfolio with ease and “snipe” better deals! \n\nFinally, at Lost Toys we believe that every child deserves a toy to build memories with and for that reason, we plan to also support those in need with toy donations. \n\nUTILITIES\n\nPLATFORM ACCESS- Exclusive free access to our platform SnipeHub and future applications\n\nTOYBOX REWARDS- Holders will be entered into a weekly raffle, to win IRL rewards\n\nCHARITY DONATIONS- We will be donating toys to the Toy Project charity on a monthly basis \n\nAIRDROPS- Collectors of our NFTs will receive multiple airdrops\n\nDAO- Holders of our airdropped NFT will be able to vote the next toys and future SnipeHub platform functionality\n\nNON MONETIZED TOKENIZATION- Holders will be able to stake our NFTs to earn tokens to make raffle purchases \n\nREAL LIFE TOYS- We will be sending to NFT holders of all 5 of toy characters (these will be minted throughout the phases) a real life collectable toy\n\nAUTO WHITELIST TO FUTURE MINTS- Holders of our toys will get discounts on future mints\n\nTHE ARTIST\n\nThe design of our NFT collection is extremely important to us, as it is often the first thing people see when exploring collections and we wanted people to own something truly special.\n\nFor this reason, we have spared no expense and commissioned the services of renowned 3D artist Felipe Rui, whose fame comes from his famous collection of “dark Disney” art designs which have been presented in in many galleries.",
       "author": {
         "name": "Looneycorns",
-        "website": "http://www.losttoys.io/",
-        "twitter": "http://www.twitter.com/looneycornsnft",
+        "website": "https://www.losttoys.io/",
+        "twitter": "https://www.twitter.com/looneycornsnft",
         "discord": "https://discord.gg/Tdd9TZRMxn"
       },
       "address": "",

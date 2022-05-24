@@ -22,7 +22,7 @@ import {
   createSuccessfulTransactionToastContent,
   isCreaturesDrop,
   isCrognomesDrop,
-  isCrosmocraftsPartsDrop,
+  isCrosmocraftsPartsDrop, isCyberCloneDrop,
   isFounderDrop,
   isFounderVipDrop,
   isMagBrewVikingsDrop,
@@ -206,12 +206,6 @@ const SingleDrop = () => {
       } else if (isFounderVipDrop(currentDrop.address)) {
         setDropInfo(currentDrop, membership.vips.count);
         calculateStatus(currentDrop, membership.vips.count, currentDrop.totalSupply);
-      } else if (isCrognomesDrop(currentDrop.address)) {
-        let readContract = await new ethers.Contract(currentDrop.address, currentDrop.abi, readProvider);
-        const supply = await readContract.totalSupply();
-        const offsetSupply = supply.add(901);
-        setDropInfo(currentDrop, offsetSupply.toString());
-        calculateStatus(currentDrop, offsetSupply, currentDrop.totalSupply);
       } else if (isMagBrewVikingsDrop(currentDrop.address)) {
         let readContract = await new ethers.Contract(currentDrop.address, abi, readProvider);
         const supply = await readContract.totalSupply();
@@ -219,26 +213,19 @@ const SingleDrop = () => {
         const canMint = user.address ? await readContract.canMint(user.address) : 0;
         setCanMintQuantity(canMint);
         calculateStatus(currentDrop, supply, currentDrop.totalSupply);
-      } else if (isCreaturesDrop(drop.address)) {
+      } else if (isCyberCloneDrop(drop.address)) {
         let readContract = await new ethers.Contract(currentDrop.address, abi, readProvider);
         const infos = await readContract.getInfo();
         const canMint = user.address ? await readContract.canMint(user.address) : 0;
-        setDropInfo(currentDrop, infos.totalSupply);
-        setCanMintQuantity(canMint);
+        setDropInfoFromContract(infos, canMint);
+        setMaxSupply(1000);
         calculateStatus(currentDrop, infos.totalSupply, currentDrop.totalSupply);
       } else {
         if (currentDrop.address && (isUsingDefaultDropAbi(currentDrop.abi) || isUsingAbiFile(currentDrop.abi))) {
           let readContract = await new ethers.Contract(currentDrop.address, abi, readProvider);
           const infos = await readContract.getInfo();
           const canMint = user.address ? await readContract.canMint(user.address) : 0;
-          // setMaxMintPerAddress(infos.maxMintPerAddress);
-          setMaxMintPerTx(infos.maxMintPerTx);
-          setMaxSupply(infos.maxSupply);
-          setMemberCost(ethers.utils.formatEther(infos.memberCost));
-          setRegularCost(ethers.utils.formatEther(infos.regularCost));
-          setTotalSupply(infos.totalSupply);
-          if (infos.whitelistCost) setWhitelistCost(ethers.utils.formatEther(infos.whitelistCost));
-          setCanMintQuantity(Math.min(canMint, infos.maxMintPerTx));
+          setDropInfoFromContract(infos, canMint);
           calculateStatus(currentDrop, infos.totalSupply, infos.maxSupply);
         } else {
           let readContract = await new ethers.Contract(currentDrop.address, abi, readProvider);
@@ -268,6 +255,17 @@ const SingleDrop = () => {
     setWhitelistCost(drop.whitelistCost);
     setSpecialWhitelist(drop.specialWhitelistCost);
     setCanMintQuantity(drop.maxMintPerTx);
+  };
+
+  const setDropInfoFromContract = (infos, canMint) => {
+    // setMaxMintPerAddress(infos.maxMintPerAddress);
+    setMaxMintPerTx(infos.maxMintPerTx);
+    setMaxSupply(infos.maxSupply);
+    setMemberCost(ethers.utils.formatEther(infos.memberCost));
+    setRegularCost(ethers.utils.formatEther(infos.regularCost));
+    setTotalSupply(infos.totalSupply);
+    if (infos.whitelistCost) setWhitelistCost(ethers.utils.formatEther(infos.whitelistCost));
+    setCanMintQuantity(Math.min(canMint, infos.maxMintPerTx));
   };
 
   const calculateStatus = (drop, totalSupply, maxSupply) => {
