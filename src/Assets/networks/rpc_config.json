@@ -4652,6 +4652,26 @@
         "twitter": "https://twitter.com/@svilkobe",
         "discord": "https://discord.gg/YDv4NVbS"
       }
+    },
+    {
+      "name": "EvoSkull",
+      "slug": "evo-skull",
+      "multiToken": false,
+      "address": "0xbf4E430cD0ce8b93d4760958fe4ae66cDaCDB6c6",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "EvoSkulls are a collection of Unique, Animated, 1/1 NFTs on the Cronos blockchain. The collection consists of 333 Super-rare Skulls, all 1/1. Each EvoSkull has a custom made unique animation, body, hat, face and outfit.",
+        "verified": true,
+        "avatar": "/img/collections/croskull/evo-skulls/avatar.webp",
+        "card": "/img/collections/croskull/evo-skulls/card.webp",
+        "banner": "/img/collections/croskull/evo-skulls/banner.webp",
+        "maxSupply": 333,
+        "website": "https://app.croskull.com/",
+        "twitter": "https://twitter.com/CroskullNFT",
+        "discord": "https://discord.gg/croskull",
+        "medium": "https://medium.com/@croskullnft"
+      }
     }
   ],
   "drops": [
