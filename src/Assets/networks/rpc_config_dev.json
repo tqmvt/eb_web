@@ -4692,6 +4692,25 @@
         "discord": "https://discord.gg/dgpals",
         "medium": "https://medium.com/officialdgpals"
       }
+    },
+    {
+      "name": "Mutantz by Trooprz",
+      "slug": "trooprz-mutantz",
+      "multiToken": false,
+      "address": "0x96628048830a499b156aBdC04cC169C18c3A17f2",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "2222 rare Mutantz have spawned from infected Trooprz.....hunt them all!!",
+        "verified": true,
+        "avatar": "/img/collections/trooprz/mutantz/avatar.webp",
+        "card": "/img/collections/trooprz/mutantz/card.webp",
+        "banner": "/img/collections/trooprz/mutantz/banner.webp",
+        "maxSupply": 2222,
+        "twitter": "https://twitter.com/trooprzarmy",
+        "website": "https://trooprz.army/",
+        "discord": "https://discord.gg/trooprz"
+      }
     }
   ],
   "drops": [
