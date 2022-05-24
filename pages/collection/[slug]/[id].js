@@ -36,13 +36,13 @@ const Nft = ({ slug, id }) => {
     setInitialized(true);
   }, [slug, id]);
 
-  const getTraits = () => {
+  const getTraits = (anNFT) => {
     if (
-      (nft.attributes && Array.isArray(nft.attributes) && nft.attributes.length > 0) ||
-      (nft.properties && Array.isArray(nft.properties) && nft.properties.length > 0)
+      (anNFT?.attributes && Array.isArray(anNFT.attributes) && anNFT.attributes.length > 0) ||
+      (anNFT?.properties && Array.isArray(anNFT.properties) && anNFT.properties.length > 0)
     ) {
-      if (nft.attributes && Array.isArray(nft.attributes)) {
-        const traits = nft.attributes
+      if (anNFT?.attributes && Array.isArray(anNFT.attributes)) {
+        const traits = anNFT.attributes
           .filter((a) => a.value !== 'None')
           .reduce(
             (previousValue, currentValue) =>
@@ -53,8 +53,8 @@ const Nft = ({ slug, id }) => {
           );
         return traits;
       }
-      if (nft.properties && Array.isArray(nft.properties)) {
-        const properties = nft.properties.reduce(
+      if (anNFT?.properties && Array.isArray(anNFT.properties)) {
+        const properties = anNFT.properties.reduce(
           (previousValue, currentValue) =>
             `${previousValue}, ${humanize(currentValue.trait_type)}:${
               currentValue.value ? humanize(currentValue.value) : 'N/A'
@@ -64,15 +64,13 @@ const Nft = ({ slug, id }) => {
         return properties;
       }
     }
-    return nft?.description;
+    return anNFT?.description;
   };
 
   if (redirect) {
     router.push(`/collection/${redirect}/${id}`);
     return <></>;
   }
-
-  console.log(nft);
 
   return (
     <>
@@ -84,7 +82,7 @@ const Nft = ({ slug, id }) => {
         <meta property="og:title" content={`${nft?.name || 'NFT'} | Ebisu's Bay Marketplace`} key="title" />
         <meta property="og:url" content={`https://app.ebisusbay.com/nft/${collection?.address}`} key="og_url" />
         <meta property="og:image" content={nft?.image} key="image" />
-        <meta property="og:description" content={getTraits()} />
+        <meta property="og:description" content={getTraits(nft)} />
         <meta name="twitter:title" content={`${nft?.name || 'NFT'} | Ebisu's Bay Marketplace`} key="twitter_title" />
         <meta name="twitter:image" content={nft?.image} key="twitter_image" />
         <meta name="twitter:card" content="summary_large_image" key="misc-card" />
