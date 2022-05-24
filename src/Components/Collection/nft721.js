@@ -1,6 +1,5 @@
 import React, { memo, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Blockies from 'react-blockies';
@@ -224,18 +223,6 @@ const Nft721 = ({ address, id }) => {
 
   return (
     <div>
-      <Head>
-        <title>{nft?.name || 'NFT'} | Ebisu's Bay Marketplace</title>
-        <meta name="description" content={`${nft?.name || 'NFT'} for Ebisu's Bay Marketplace`} />
-        <meta name="title" content={`${nft?.name || 'NFT'} | Ebisu's Bay Marketplace`} />
-        <meta property="og:type" content="website" key="og_type" />
-        <meta property="og:title" content={`${nft?.name || 'NFT'} | Ebisu's Bay Marketplace`} key="title" />
-        <meta property="og:url" content={`https://app.ebisusbay.com/nft/${address}`} key="og_url" />
-        <meta property="og:image" content={nft?.image} key="image" />
-        <meta name="twitter:title" content={`${nft?.name || 'NFT'} | Ebisu's Bay Marketplace`} key="twitter_title" />
-        <meta name="twitter:image" content={nft?.image} key="twitter_image" />
-        <meta name="twitter:card" content="summary_large_image" key="misc-card" />
-      </Head>
       {isLoading ? (
         <section className="container">
           <div className="row mt-4">

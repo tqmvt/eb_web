@@ -471,3 +471,18 @@ export const devLog = (...params) => {
     console.log(params);
   }
 };
+
+export const getSlugFromAddress = (address) => {
+  const collection = collections.find((c) => c.address.toLowerCase() === address.toLowerCase());
+  return collection?.slug;
+};
+
+export const getAddressFromSlug = (slug) => {
+  const collection = collections.find((c) => c.slug.toLowerCase() === slug.toLowerCase());
+  return collection?.address;
+};
+
+// can use web3.utils.isAddress tho
+export const validateInputAddresses = (address) => {
+  return /^(0x){1}[0-9a-fA-F]{40}$/i.test(address);
+};
