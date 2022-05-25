@@ -4,7 +4,7 @@ import Head from 'next/head';
 
 import store from '../../../src/Store/store';
 import { getNftDetails } from '../../../src/GlobalState/nftSlice';
-import { findCollectionByAddress, humanize } from '../../../src/utils';
+import { findCollectionByAddress, humanize, relativePrecision } from '../../../src/utils';
 import config from '../../../src/Assets/networks/rpc_config.json';
 import Nft1155 from '../../../src/Components/Collection/nft1155';
 import Nft721 from '../../../src/Components/Collection/nft721';
@@ -41,51 +41,70 @@ const Nft = ({ slug, id }) => {
       (anNFT?.attributes && Array.isArray(anNFT.attributes) && anNFT.attributes.length > 0) ||
       (anNFT?.properties && Array.isArray(anNFT.properties) && anNFT.properties.length > 0)
     ) {
-      let traits = '';
+      let traits = [];
       if (anNFT?.attributes && Array.isArray(anNFT.attributes)) {
-        traits = anNFT.attributes
-          .filter((a) => a.value !== 'None')
-          .reduce(
-            (previousValue, currentValue) => {
-              if (previousValue?.occurrence) {
-                if (relativePrecision(previousValue.occurrence) > relativePrecision(currentValue.occurrence)) {
-                  return currentValue;
-                }
-              } else if (previousValue?.percent) {
-                if (previousValue.percent > currentValue.percent) {
-                  return currentValue;
-                }
-              }
-            },
-            // `${previousValue ? `${previousValue}, ` : ''}${humanize(currentValue.trait_type)}: ${
-            //   currentValue.value ? humanize(currentValue.value) : 'N/A'
-            // }`,
-            ''
-          );
+        traits = anNFT.attributes.filter((a) => a.value !== 'None');
+
+        traits.sort((a, b) => {
+          if (a?.occurrence) {
+            return a.occurrence - b.occurrence;
+          } else if (a?.percent) {
+            return a.percent - b.percent;
+          }
+        });
+
+        // .reduce(
+        //   (previousValue, currentValue) => {
+        //     if (previousValue?.occurrence) {
+        //       if (relativePrecision(previousValue.occurrence) > relativePrecision(currentValue.occurrence)) {
+        //         return currentValue;
+        //       }
+        //     } else if (previousValue?.percent) {
+        //       if (previousValue.percent > currentValue.percent) {
+        //         return currentValue;
+        //       }
+        //     }
+        //   },
+        //   // `${previousValue ? `${previousValue}, ` : ''}${humanize(currentValue.trait_type)}: ${
+        //   //   currentValue.value ? humanize(currentValue.value) : 'N/A'
+        //   // }`,
+        //   anNFT.attributes[0]
+        // );
       }
       if (anNFT?.properties && Array.isArray(anNFT.properties)) {
-        traits = anNFT.properties.reduce(
-          (previousValue, currentValue) => {
-            if (previousValue?.occurrence) {
-              if (relativePrecision(previousValue.occurrence) > relativePrecision(currentValue.occurrence)) {
-                return currentValue;
-              }
-            } else if (previousValue?.percent) {
-              if (previousValue.percent > currentValue.percent) {
-                return currentValue;
-              }
-            }
-          },
-          // `${previousValue ? `${previousValue}, ` : ''}${humanize(currentValue.trait_type)}: ${
-          //   currentValue.value ? humanize(currentValue.value) : 'N/A'
-          // }`,
-          ''
-        );
+        traits = anNFT.properties;
+        traits.sort((a, b) => {
+          if (a?.occurrence) {
+            return a.occurrence - b.occurrence;
+          } else if (a?.percent) {
+            return a.percent - b.percent;
+          }
+        });
+        // .reduce(
+        //   (previousValue, currentValue) => {
+        //     if (previousValue?.occurrence) {
+        //       if (relativePrecision(previousValue.occurrence) > relativePrecision(currentValue.occurrence)) {
+        //         return currentValue;
+        //       }
+        //     } else if (previousValue?.percent) {
+        //       if (previousValue.percent > currentValue.percent) {
+        //         return currentValue;
+        //       }
+        //     }
+        //   },
+        //   // `${previousValue ? `${previousValue}, ` : ''}${humanize(currentValue.trait_type)}: ${
+        //   //   currentValue.value ? humanize(currentValue.value) : 'N/A'
+        //   // }`,
+        //   anNFT.properties[0]
+        // );
       }
-      if (traits) {
-        return `${anNFT?.description ? anNFT.description.slice(0, 250) : ''} ... Top Trait: ${
-          traits?.value ? humanize(traits.value) : 'N/A'
-        }, ${traits?.occurrence || traits?.percent}`;
+      if (traits.length) {
+        const traitsTop = traits[0];
+        const res = `${anNFT?.description ? anNFT.description.slice(0, 250) : ''} ... Top Trait: ${
+          traitsTop?.value ? humanize(traitsTop.value) : 'N/A'
+        }, ${traitsTop?.occurrence || traitsTop?.percent}%`;
+
+        return res;
       }
     }
     return anNFT?.description;
