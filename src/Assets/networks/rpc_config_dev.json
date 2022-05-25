@@ -4659,7 +4659,7 @@
       "multiToken": false,
       "address": "0xbf4E430cD0ce8b93d4760958fe4ae66cDaCDB6c6",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "EvoSkulls are a collection of Unique, Animated, 1/1 NFTs on the Cronos blockchain. The collection consists of 333 Super-rare Skulls, all 1/1. Each EvoSkull has a custom made unique animation, body, hat, face and outfit.",
         "verified": true,
