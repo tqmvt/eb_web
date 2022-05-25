@@ -1109,8 +1109,9 @@
         "banner": "/img/collections/deplone/banner.webp",
         "card": "/img/collections/deplone/card.jpg",
         "maxSupply": 22,
-        "website": "https://linktr.ee/deplone",
+        "website": "https://instagram.com/deplone_",
         "twitter": "https://twitter.com/deplone3",
+        "discord": "https://discord.gg/MYE5hnC9mq",
         "cdc": "https://crypto.com/nft/profile/deplone"
       }
     },
@@ -3514,10 +3515,10 @@
         "banner": "/img/collections/eotm/banner.webp",
         "card": "/img/collections/eotm/card.webp",
         "maxSupply": 62,
-        "website": "http://instagram.com/deplone_",
-        "twitter": "http://twitter.com/deplone3",
+        "website": "https://instagram.com/deplone_",
+        "twitter": "https://twitter.com/deplone3",
         "discord": "https://discord.gg/MYE5hnC9mq",
-        "medium": "https://medium.com/@deplone3"
+        "cdc": "https://crypto.com/nft/profile/deplone"
       }
     },
     {
@@ -4509,7 +4510,7 @@
       "onChain": false,
       "listable": false,
       "metadata": {
-        "description": "Looneycorns is the first of 5 unique toys/NFTs from the Lost Toy collection. Each toy character represents a childhood favourite that has been lost over time and needs a new home. \n\nEach of the 2,200 Looneycorns NFT have a different rarity level and to ensure that each one is totally unique, we have also gone the “extra-mile” and created over 120 traits which would easily make up a collection of 5,000 NFTs!",
+        "description": "Looneycorns is the first of 5 unique toys/NFTs from the Lost Toy collection. Each toy character represents a childhood favourite that has been lost over time and needs a new home.\n\nEach of the 2,200 Looneycorns NFTs have a different rarity level and to ensure that each one is totally unique, we have also gone the \"extra-mile\" and created over 120 traits which would easily make up a collection of 5,000 NFTs!",
         "verified": true,
         "avatar": "/img/collections/looneycorns/avatar.webp",
         "card": "/img/collections/looneycorns/card.webp",
@@ -6305,8 +6306,9 @@
       "description": "Employee of the Month is a collection that reflects on the topic of the hard, day to day corporate work. The employees are portrayed by the artist, as plain, green smileys, which is a symbol of how the society formed them to be more or less the same. It highlights (sometimes in a funny way) daily struggles, challenges and disappointments of the everyday office life.",
       "author": {
         "name": "Deplone",
-        "website": "http://instagram.com/deplone_",
-        "twitter": "http://twitter.com/deplone3"
+        "website": "https://instagram.com/deplone_",
+        "twitter": "https://twitter.com/deplone3",
+        "cdc": "https://crypto.com/nft/profile/deplone"
       },
       "address": "",
       "maxMintPerTx": 3,
@@ -6719,8 +6721,8 @@
       "imgAvatar": "/img/collections/looneycorns/avatar.webp",
       "imgBanner": "/img/collections/looneycorns/banner.webp",
       "title": "Looneycorns",
-      "subtitle": "Looneycorns, is the first of 5 unique toys/NFTs from the Lost Toy collection. Each toy character represents a childhood favourite that has been lost over time and needs a new home. \n\nEach of the 2,200 Looneycorns NFT have a different rarity level and to ensure that each one is totally unique, we have also gone the “extra-mile” and created over 120 traits which would easily make up a collection of 5,000 NFTs!",
-      "description": "Looneycorns, is the first of 5 unique toys from the Lost Toy collection. Each toy character represents a childhood favourite that has been lost over time and needs a new home.\n\nThose who look after their toys/NFTs will have the opportunity to receive amazing weekly prizes from our ToyBox and earn tokens. This could be to win a night's stay at the Hilton for two, limited edition trainers or even sought after NFTs! You, our community will decide!\n\nIn addition, holders of our NFT’s will have exclusive access to our platform SnipeHub designed to help manage your ever-growing NFT portfolio with ease and “snipe” better deals! \n\nFinally, at Lost Toys we believe that every child deserves a toy to build memories with and for that reason, we plan to also support those in need with toy donations. \n\nUTILITIES\n\nPLATFORM ACCESS- Exclusive free access to our platform SnipeHub and future applications\n\nTOYBOX REWARDS- Holders will be entered into a weekly raffle, to win IRL rewards\n\nCHARITY DONATIONS- We will be donating toys to the Toy Project charity on a monthly basis \n\nAIRDROPS- Collectors of our NFTs will receive multiple airdrops\n\nDAO- Holders of our airdropped NFT will be able to vote the next toys and future SnipeHub platform functionality\n\nNON MONETIZED TOKENIZATION- Holders will be able to stake our NFTs to earn tokens to make raffle purchases \n\nREAL LIFE TOYS- We will be sending to NFT holders of all 5 of toy characters (these will be minted throughout the phases) a real life collectable toy\n\nAUTO WHITELIST TO FUTURE MINTS- Holders of our toys will get discounts on future mints\n\nTHE ARTIST\n\nThe design of our NFT collection is extremely important to us, as it is often the first thing people see when exploring collections and we wanted people to own something truly special.\n\nFor this reason, we have spared no expense and commissioned the services of renowned 3D artist Felipe Rui, whose fame comes from his famous collection of “dark Disney” art designs which have been presented in in many galleries.",
+      "subtitle": "Looneycorns is the first of 5 unique toys/NFTs from the Lost Toy collection. Each toy character represents a childhood favourite that has been lost over time and needs a new home.\n\nEach of the 2,200 Looneycorns NFTs have a different rarity level and to ensure that each one is totally unique, we have also gone the \"extra-mile\" and created over 120 traits which would easily make up a collection of 5,000 NFTs!",
+      "description": "Looneycorns is the first of 5 unique toys from the Lost Toy collection. Each toy character represents a childhood favourite that has been lost over time and needs a new home.\n\nThose who look after their toys/NFTs will have the opportunity to receive amazing weekly prizes from our ToyBox and earn tokens. This could be to win a night's stay at the Hilton for two, limited edition trainers, or even sought after NFTs! You, our community, will decide!\n\nIn addition, holders of our NFTs will have exclusive access to our platform SnipeHub designed to help manage your ever-growing NFT portfolio with ease and “snipe” better deals!\n\nFinally, at Lost Toys we believe that every child deserves a toy to build memories with and for that reason, we plan to also support those in need with toy donations.\n\nUTILITIES\n\nPLATFORM ACCESS - Exclusive free access to our platform SnipeHub and future applications\n\nTOYBOX REWARDS - Holders will be entered into a weekly raffle, to win IRL rewards\n\nCHARITY DONATIONS - We will be donating toys to the Toy Project charity on a monthly basis\n\nAIRDROPS - Collectors of our NFTs will receive multiple airdrops\n\nDAO - Holders of our airdropped NFTs will be able to vote on the next toys and future SnipeHub platform functionality\n\nNON-MONETIZED TOKENIZATION - Holders will be able to stake our NFTs to earn tokens to make raffle purchases\n\nREAL LIFE TOYS - We will be sending to NFT holders of all 5 toy characters (these will be minted throughout the phases) a real life collectable toy\n\nAUTO WHITELIST TO FUTURE MINTS - Holders of our toys will get discounts on future mints\n\nTHE ARTIST\n\nThe design of our NFT collection is extremely important to us, as it is often the first thing people see when exploring collections and we wanted people to own something truly special.\n\nFor this reason, we have spared no expense and commissioned the services of renowned 3D artist Felipe Rui, whose fame comes from his famous collection of “dark Disney” art designs, which have been presented in in many galleries.",
       "author": {
         "name": "Looneycorns",
         "website": "https://www.losttoys.io/",
