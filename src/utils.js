@@ -483,6 +483,6 @@ export const getAddressFromSlug = (slug) => {
 };
 
 // can use web3.utils.isAddress tho
-export const validateInputAddresses = (address) => {
+export const isAddress = (address) => {
   return /^(0x){1}[0-9a-fA-F]{40}$/i.test(address);
 };

@@ -4,7 +4,7 @@ import Head from 'next/head';
 
 import store from '../../../src/Store/store';
 import { getNftDetails } from '../../../src/GlobalState/nftSlice';
-import { findCollectionByAddress, humanize, relativePrecision } from '../../../src/utils';
+import { findCollectionByAddress, humanize, isAddress } from '../../../src/utils';
 import config from '../../../src/Assets/networks/rpc_config.json';
 import Nft1155 from '../../../src/Components/Collection/nft1155';
 import Nft721 from '../../../src/Components/Collection/nft721';
@@ -146,9 +146,29 @@ const Nft = ({ slug, id }) => {
 export const getServerSideProps = async ({ params }) => {
   const slug = params?.slug;
   const tokenId = params?.id;
-  const collection = knownContracts.find((c) => c?.slug.toLowerCase() === slug.toLowerCase());
+  let collection;
+  if (isAddress(slug)) {
+    collection = knownContracts.find((c) => c?.address.toLowerCase() === slug.toLowerCase());
+  } else {
+    collection = knownContracts.find((c) => c?.slug.toLowerCase() === slug.toLowerCase());
+  }
+
   if (collection?.address) {
     await store.dispatch(getNftDetails(collection.address, tokenId));
+  }
+
+  if (isAddress(slug)) {
+    return {
+      redirect: {
+        destination: `/collection/${collection.slug}/${tokenId}`,
+        permanent: false,
+      },
+      props: {
+        slug: collection?.slug,
+        id: tokenId,
+        collection,
+      },
+    };
   }
 
   return {

@@ -77,9 +77,10 @@ const NftCard = ({ royalty, listing, imgClass = 'marketplace', watermark, addres
     // if (listing.market?.id) {
     //   history.push(`/listing/${listing.market?.id}`);
     // } else {
-    if (listing?.address && listing?.id) {
-      history.push(`/collection/${getSlugFromAddress(listing.address)}/${listing.id}`);
-    }
+    history.push(`/collection/${listing.address}/${listing.id}`);
+    // if (listing?.address && listing?.id) {
+    //   history.push(`/collection/${getSlugFromAddress(listing.address)}/${listing.id}`);
+    // }
     // }
   };
 
@@ -93,7 +94,7 @@ const NftCard = ({ royalty, listing, imgClass = 'marketplace', watermark, addres
   return (
     <>
       <div className="card eb-nft__card h-100 shadow">
-        <Link className="linkPointer" href={`/collection/${getSlugFromAddress(listing.address)}/${listing.id}`}>
+        <Link className="linkPointer" href={`/collection/${listing.address}/${listing.id}`}>
           <a>
             {watermark ? (
               <Watermarked watermark={watermark}>
