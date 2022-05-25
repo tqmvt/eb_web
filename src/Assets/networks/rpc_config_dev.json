@@ -1110,7 +1110,8 @@
         "card": "/img/collections/deplone/card.jpg",
         "maxSupply": 22,
         "website": "https://linktr.ee/deplone",
-        "twitter": "https://twitter.com/deplone3"
+        "twitter": "https://twitter.com/deplone3",
+        "cdc": "https://crypto.com/nft/profile/deplone"
       }
     },
     {
@@ -3513,7 +3514,7 @@
         "banner": "/img/collections/eotm/banner.webp",
         "card": "/img/collections/eotm/card.webp",
         "maxSupply": 62,
-        "website": "http://instagram.com/deplone-",
+        "website": "http://instagram.com/deplone_",
         "twitter": "http://twitter.com/deplone3",
         "discord": "https://discord.gg/MYE5hnC9mq",
         "medium": "https://medium.com/@deplone3"
@@ -6302,7 +6303,11 @@
       "title": "Employee of the Month",
       "subtitle": "Employee of the Month is a collection that reflects on the topic of the hard, day to day corporate work in a humoristic manner.",
       "description": "Employee of the Month is a collection that reflects on the topic of the hard, day to day corporate work. The employees are portrayed by the artist, as plain, green smileys, which is a symbol of how the society formed them to be more or less the same. It highlights (sometimes in a funny way) daily struggles, challenges and disappointments of the everyday office life.",
-      "author": { "name": "Deplone", "link": "http://instagram.com/deplone" },
+      "author": {
+        "name": "Deplone",
+        "website": "http://instagram.com/deplone_",
+        "twitter": "http://twitter.com/deplone3"
+      },
       "address": "",
       "maxMintPerTx": 3,
       "maxMintPerAddress": 100,
