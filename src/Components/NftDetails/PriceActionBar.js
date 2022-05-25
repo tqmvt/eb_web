@@ -9,8 +9,10 @@ import MetaMaskOnboarding from '@metamask/onboarding';
 import { chainConnect, connectAccount } from '../../GlobalState/User';
 import { listingUpdated } from '../../GlobalState/listingSlice';
 import { listingState } from '../../core/api/enums';
+import {OFFER_TYPE} from "../Offer/MadeOffersRow";
+import Button from "../components/Button";
 
-const PriceActionBar = () => {
+const PriceActionBar = ({offerType, onOfferSelected, label}) => {
   const dispatch = useDispatch();
 
   const user = useSelector((state) => state.user);
@@ -75,27 +77,36 @@ const PriceActionBar = () => {
             <div className="d-flex flex-row justify-content-between">
               <div className={`my-auto fw-bold`}>
                 <>
-                  <h5>Listing Price:</h5> <span className="fs-3 ms-1">{ethers.utils.commify(listing.price)} CRO</span>
+                  <h5>{label ?? 'Listing Price'}:</h5> <span className="fs-3 ms-1">{ethers.utils.commify(listing.price)} CRO</span>
                 </>
               </div>
-              <span className="my-auto">
-                {listing.state === listingState.ACTIVE && (
-                  <button className="btn-main" onClick={executeBuy(listing.price)} disabled={executingBuy}>
-                    {executingBuy ? (
-                      <>
-                        Buy Now...
-                        <Spinner animation="border" role="status" size="sm" className="ms-1">
-                          <span className="visually-hidden">Loading...</span>
-                        </Spinner>
-                      </>
-                    ) : (
-                      <>Buy Now</>
-                    )}
-                  </button>
-                )}
-                {listing.state === listingState.SOLD && <p>SOLD</p>}
-                {listing.state === listingState.CANCELLED && <p>CANCELLED</p>}
-              </span>
+            </div>
+            <div className="row mt-2">
+              <div className="col-6">
+                <div className="d-flex flex-column">
+                  {listing.state === listingState.ACTIVE && (
+                    <Button type="legacy" style={{ width: 'auto' }} onClick={executeBuy(listing.price)} disabled={executingBuy}>
+                      {executingBuy ? (
+                        <>
+                          Buy Now...
+                          <Spinner animation="border" role="status" size="sm" className="ms-1">
+                            <span className="visually-hidden">Loading...</span>
+                          </Spinner>
+                        </>
+                      ) : (
+                        <>Buy Now</>
+                      )}
+                    </Button>
+                  )}
+                </div>
+              </div>
+              <div className="col-6">
+                <div className="d-flex flex-column">
+                    <Button type="legacy-outlined" style={{ width: 'auto' }} onClick={onOfferSelected}>
+                      {offerType === OFFER_TYPE.update ? 'Update' : 'Make'} Offer
+                    </Button>
+                </div>
+              </div>
             </div>
           </Card.Body>
         </Card>
