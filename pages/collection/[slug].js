@@ -16,7 +16,7 @@ const collectionTypes = {
   CRONOSVERSE: 2,
 };
 
-const Collection = () => {
+const Collection = ({ ssrCollection }) => {
   const router = useRouter();
   const { slug } = router.query;
 
@@ -56,6 +56,23 @@ const Collection = () => {
 
   return (
     <>
+      <Head>
+        <title>{ssrCollection?.name || 'NFT'} | Ebisu's Bay Marketplace</title>
+        <meta name="description" content={`${ssrCollection?.name || 'NFT'} for Ebisu's Bay Marketplace`} />
+        <meta name="title" content={`${ssrCollection?.name || 'NFT'} | Ebisu's Bay Marketplace`} />
+        <meta property="og:type" content="website" key="og_type" />
+        <meta property="og:title" content={`${ssrCollection?.name || 'NFT'} | Ebisu's Bay Marketplace`} key="title" />
+        <meta property="og:url" content={`https://app.ebisusbay.com/collection/${collection?.slug}`} key="og_url" />
+        <meta property="og:image" content={ssrCollection?.metadata?.banner} key="image" />
+        <meta property="og:description" content={ssrCollection?.metadata?.description} />
+        <meta
+          name="twitter:title"
+          content={`${ssrCollection?.name || 'NFT'} | Ebisu's Bay Marketplace`}
+          key="twitter_title"
+        />
+        <meta name="twitter:image" content={ssrCollection?.metadata?.banner} key="twitter_image" />
+        <meta name="twitter:card" content="summary_large_image" key="misc-card" />
+      </Head>
       {initialized && collection && (
         <>
           {type === collectionTypes.CRONOSVERSE ? (
@@ -75,6 +92,36 @@ const Collection = () => {
       )}
     </>
   );
+};
+
+export const getServerSideProps = async ({ params }) => {
+  const slug = params?.slug;
+  let collection;
+  if (isAddress(slug)) {
+    collection = knownContracts.find((c) => c?.address.toLowerCase() === slug.toLowerCase());
+  } else {
+    collection = knownContracts.find((c) => c?.slug.toLowerCase() === slug.toLowerCase());
+  }
+
+  if (isAddress(slug)) {
+    return {
+      redirect: {
+        destination: `/collection/${collection.slug}`,
+        permanent: false,
+      },
+      props: {
+        slug: collection?.slug,
+        ssrCollection: collection,
+      },
+    };
+  }
+
+  return {
+    props: {
+      slug: collection?.slug,
+      ssrCollection: collection,
+    },
+  };
 };
 
 export default Collection;
