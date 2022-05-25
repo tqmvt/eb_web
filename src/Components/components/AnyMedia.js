@@ -107,6 +107,7 @@ const Video = memo((
       width="100%"
       height={height}
       className={className}
+      playsinline={true}
     />
   );
 });

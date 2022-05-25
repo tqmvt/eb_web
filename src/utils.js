@@ -386,6 +386,10 @@ export const isCronosVerseCollection = (address) => {
   return isCollection(address, 'cronosverse');
 };
 
+export const isEvoSkullCollection = (address) => {
+  return isCollection(address, 'evo-skull');
+};
+
 export const percentage = (partialValue, totalValue) => {
   if (!totalValue || totalValue === 0) return 0;
   return Math.floor((100 * partialValue) / totalValue);

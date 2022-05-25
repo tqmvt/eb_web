@@ -119,7 +119,7 @@ const Component = ({ walletAddress, authInitFinished }) => {
           {/* <SentryEnhancedRoute exact path="/collection-detail/:id" component={CollectionDetail} /> */}
           <SentryEnhancedRoute exact path="/seller/:address" component={Seller} />
           <SentryEnhancedRoute exact path="/metaverse-auctions" component={MetaverseAuctions} />
-          <SentryEnhancedRoute exact path="/mad-auctions" component={MetaverseAuctions} />
+          <SentryEnhancedRoute exact path="/mad-auction" component={MetaverseAuctions} />
           {/*<SentryEnhancedRoute exact path="/slothty-rugsurance" component={Rugsurance} />*/}
           <SentryEnhancedRoute exact path="/apply" component={Application} />
           <SentryEnhancedRoute exact path="/sales_bot" component={() => {
