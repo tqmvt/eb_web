@@ -13,7 +13,7 @@ import {
   humanize,
   isBabyWeirdApesCollection,
   isCroCrowCollection,
-  isCrognomidesCollection,
+  isCrognomidesCollection, isEvoSkullCollection,
   isNftBlacklisted,
   isUserBlacklisted, mapAttributeString, millisecondTimestamp,
   relativePrecision,
@@ -37,6 +37,7 @@ import { getFilteredOffers } from 'src/core/subgraph';
 import { OFFER_TYPE } from '../Offer/MadeOffersRow';
 import { offerState } from '../../core/api/enums';
 import {AnyMedia} from "../components/AnyMedia";
+import {commify} from "ethers/lib.esm/utils";
 
 const knownContracts = config.known_contracts;
 
@@ -71,6 +72,7 @@ const Nft721 = ({ address, id }) => {
   const [croCrowBreed, setCroCrowBreed] = useState(null);
   const [crognomideBreed, setCrognomideBreed] = useState(null);
   const [babyWeirdApeBreed, setBabyWeirdApeBreed] = useState(null);
+  const [evoSkullTraits, setEvoSkullTraits] = useState([]);
 
   useEffect(() => {
     dispatch(getNftDetails(address, id));
@@ -157,6 +159,41 @@ const Nft721 = ({ address, id }) => {
       }
     }
     getApeInfo();
+
+    // eslint-disable-next-line
+  }, [address]);
+
+  useEffect(() => {
+    async function getEvoSkullAttributes() {
+      if (isEvoSkullCollection(address)) {
+        const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
+        const abiFile = require(`../../Assets/abis/evo-skull.json`);
+        const contract = new Contract(address, abiFile, readProvider);
+        try {
+          const traits = await contract.getToken(id);
+          const keyedTraits = Object.entries(traits.currentToken).filter(([key]) => {
+            return !/[^a-zA-Z]/.test(key)
+          }).map(([key, value], i) => {
+            let type = 'string';
+            if (typeof value == "boolean") {
+              type = 'boolean'
+              value = value ? 'yes' : 'no'
+            } else if (key === 'lastClaimTimestamp') {
+              type = 'date';
+            } else if (key === 'lastActionBlock') {
+              value = commify(value);
+            }
+            return {key, value, type};
+          });
+          setEvoSkullTraits(keyedTraits);
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        setEvoSkullTraits(null);
+      }
+    }
+    getEvoSkullAttributes();
 
     // eslint-disable-next-line
   }, [address]);
@@ -355,7 +392,8 @@ const Nft721 = ({ address, id }) => {
                       <li id="Mainbtn0" className="tab active">
                         <span onClick={handleBtnClick(0)}>Details</span>
                       </li>
-                      {powertraits && powertraits.length > 0 && (
+                      {((powertraits && powertraits.length > 0) ||
+                      (evoSkullTraits && evoSkullTraits.length > 0)) && (
                         <li id="Mainbtn1" className="tab">
                           <span onClick={handleBtnClick(1)}>In-Game Attributes</span>
                         </li>
@@ -386,58 +424,30 @@ const Nft721 = ({ address, id }) => {
                                     .filter((a) => a.value !== 'None')
                                     .map((data, i) => {
                                       return (
-                                        <div key={i} className="col-lg-4 col-md-6 col-sm-6">
-                                          <div className="nft_attr">
-                                            <h5>{humanize(data.trait_type)}</h5>
-                                            <h4>
-                                              {data.value !== undefined ? (
-                                                <>
-                                                  {data?.display_type === 'date' ? (
-                                                    <>{(new Date(millisecondTimestamp(data.value))).toDateString()}</>
-                                                  ) : (
-                                                    <>{mapAttributeString(data.value, address)}</>
-                                                  )}
-                                                </>
-                                              ) : (
-                                                <>N/A</>
-                                              )}
-                                            </h4>
-                                            {data.occurrence ? (
-                                              <span>{relativePrecision(data.occurrence)}% have this trait</span>
-                                            ) : (
-                                              data.percent && <span>{data.percent}% have this trait</span>
-                                            )}
-                                          </div>
-                                        </div>
+                                        <Trait
+                                          key={i}
+                                          title={data.trait_type}
+                                          value={data.value}
+                                          percent={data.percent}
+                                          occurrence={data.occurrence}
+                                          type={data.display_type}
+                                          collectionAddress={address}
+                                        />
                                       );
                                     })}
                                 {nft.properties &&
                                   Array.isArray(nft.properties) &&
                                   nft.properties.map((data, i) => {
                                     return (
-                                      <div key={i} className="col-lg-4 col-md-6 col-sm-6">
-                                        <div className="nft_attr">
-                                          <h5>{humanize(data.trait_type)}</h5>
-                                          <h4>
-                                            {data.value !== undefined ? (
-                                              <>
-                                                {data?.display_type === 'date' ? (
-                                                  <>{(new Date(millisecondTimestamp(data.value))).toDateString()}</>
-                                                ) : (
-                                                  <>{mapAttributeString(data.value, address, true)}</>
-                                                )}
-                                              </>
-                                            ) : (
-                                              <>N/A</>
-                                            )}
-                                          </h4>
-                                          {data.occurrence ? (
-                                            <span>{Math.round(data.occurrence * 100)}% have this trait</span>
-                                          ) : (
-                                            data.percent && <span>{data.percent}% have this trait</span>
-                                          )}
-                                        </div>
-                                      </div>
+                                      <Trait
+                                        key={i}
+                                        title={data.trait_type}
+                                        value={data.value}
+                                        percent={data.percent}
+                                        occurrence={data.occurrence}
+                                        type={data.display_type}
+                                        collectionAddress={address}
+                                      />
                                     );
                                   })}
                               </div>
@@ -451,11 +461,12 @@ const Nft721 = ({ address, id }) => {
                       )}
                       {openMenu === 1 && (
                         <div className="tab-2 onStep fadeIn">
-                          {powertraits && powertraits.length > 0 ? (
+                          {((powertraits && powertraits.length > 0) ||
+                          (evoSkullTraits && evoSkullTraits.length > 0)) ? (
                             <>
                               <div className="d-block mb-3">
                                 <div className="row mt-5 gx-3 gy-2">
-                                  {powertraits.map((data, i) => {
+                                  {powertraits && powertraits.length > 0 && powertraits.map((data, i) => {
                                     return (
                                       <div key={i} className="col-lg-4 col-md-6 col-sm-6">
                                         <div className="nft_attr">
@@ -463,6 +474,19 @@ const Nft721 = ({ address, id }) => {
                                           <h4>{data.value > 0 ? <>+ {data.value}</> : <>{data.value}</>}</h4>
                                         </div>
                                       </div>
+                                    );
+                                  })}
+                                  {evoSkullTraits &&
+                                  Array.isArray(evoSkullTraits) &&
+                                  evoSkullTraits.map((data, i) => {
+                                    return (
+                                      <Trait
+                                        key={i}
+                                        title={data.key}
+                                        value={data.value}
+                                        type={data.type}
+                                        collectionAddress={address}
+                                      />
                                     );
                                   })}
                                 </div>
@@ -570,3 +594,31 @@ const Nft721 = ({ address, id }) => {
 };
 
 export default memo(Nft721);
+
+const Trait = ({title, value, percent, occurrence, type, collectionAddress}) => {
+  return (
+    <div className="col-lg-4 col-md-6 col-sm-6">
+      <div className="nft_attr">
+        <h5>{humanize(title)}</h5>
+        <h4>
+          {value !== undefined ? (
+            <>
+              {type === 'date' ? (
+                <>{(new Date(millisecondTimestamp(value))).toDateString()}</>
+              ) : (
+                <>{mapAttributeString(value, collectionAddress, true)}</>
+              )}
+            </>
+          ) : (
+            <>N/A</>
+          )}
+        </h4>
+        {occurrence ? (
+          <span>{Math.round(occurrence * 100)}% have this trait</span>
+        ) : (
+          percent && <span>{percent}% have this trait</span>
+        )}
+      </div>
+    </div>
+  );
+}
