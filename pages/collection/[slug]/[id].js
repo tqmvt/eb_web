@@ -46,23 +46,47 @@ const Nft = ({ slug, id }) => {
         traits = anNFT.attributes
           .filter((a) => a.value !== 'None')
           .reduce(
-            (previousValue, currentValue) =>
-              `${previousValue ? `${previousValue}, ` : ''}${humanize(currentValue.trait_type)}: ${
-                currentValue.value ? humanize(currentValue.value) : 'N/A'
-              }`,
+            (previousValue, currentValue) => {
+              if (previousValue?.occurrence) {
+                if (relativePrecision(previousValue.occurrence) > relativePrecision(currentValue.occurrence)) {
+                  return currentValue;
+                }
+              } else if (previousValue?.percent) {
+                if (previousValue.percent > currentValue.percent) {
+                  return currentValue;
+                }
+              }
+            },
+            // `${previousValue ? `${previousValue}, ` : ''}${humanize(currentValue.trait_type)}: ${
+            //   currentValue.value ? humanize(currentValue.value) : 'N/A'
+            // }`,
             ''
           );
       }
       if (anNFT?.properties && Array.isArray(anNFT.properties)) {
         traits = anNFT.properties.reduce(
-          (previousValue, currentValue) =>
-            `${previousValue ? `${previousValue}, ` : ''}${humanize(currentValue.trait_type)}: ${
-              currentValue.value ? humanize(currentValue.value) : 'N/A'
-            }`,
+          (previousValue, currentValue) => {
+            if (previousValue?.occurrence) {
+              if (relativePrecision(previousValue.occurrence) > relativePrecision(currentValue.occurrence)) {
+                return currentValue;
+              }
+            } else if (previousValue?.percent) {
+              if (previousValue.percent > currentValue.percent) {
+                return currentValue;
+              }
+            }
+          },
+          // `${previousValue ? `${previousValue}, ` : ''}${humanize(currentValue.trait_type)}: ${
+          //   currentValue.value ? humanize(currentValue.value) : 'N/A'
+          // }`,
           ''
         );
       }
-      return `${anNFT?.description ? anNFT?.description : ''}${traits}`;
+      if (traits) {
+        return `${anNFT?.description ? anNFT.description.slice(0, 250) : ''} ... Top Trait: ${
+          traits?.value ? humanize(traits.value) : 'N/A'
+        }, ${traits?.occurrence || traits?.percent}`;
+      }
     }
     return anNFT?.description;
   };
