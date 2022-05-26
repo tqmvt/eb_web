@@ -194,12 +194,11 @@ const Nft1155 = ({ address, id }) => {
                   <p>{nft.description}</p>
                   {collection.listable && (
                     <>
-                      <PriceActionBar />
-                      <div className="row">
-                        <button className="btn-main mx-auto mb-5" onClick={() => handleMakeOffer()}>
-                          {offerType === OFFER_TYPE.update ? 'Update' : 'Make'} Offer
-                        </button>
-                      </div>
+                      <PriceActionBar
+                        offerType={offerType}
+                        onOfferSelected={() => handleMakeOffer()}
+                        label="Floor Price"
+                      />
                     </>
                   )}
                   <div className="row" style={{ gap: '2rem 0' }}>

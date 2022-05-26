@@ -342,12 +342,10 @@ const Nft721 = ({ address, id }) => {
                     (!currentListing || !isUserBlacklisted(currentListing.seller)) &&
                     !isNftBlacklisted(address, id) && (
                       <>
-                        <PriceActionBar />
-                        <div className="row">
-                          <button className="btn-main mx-auto mb-5" onClick={() => handleMakeOffer()}>
-                            {offerType === OFFER_TYPE.update ? 'Update' : 'Make'} Offer
-                          </button>
-                        </div>
+                        <PriceActionBar
+                          offerType={offerType}
+                          onOfferSelected={() => handleMakeOffer()}
+                        />
                       </>
                     )}
 
