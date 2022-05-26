@@ -5,6 +5,7 @@ import { showBidDialog } from '../../GlobalState/metaverseSlice';
 import store from '../../Store/store';
 
 function getMetaverseUrl() {
+  if (typeof window === 'undefined') return;
   if (window.location.host === 'localhost:3000') {
     return 'https://localhost:8080/hub.html?hub_id=QWSxfEv&embed_token=null';
   }
@@ -55,6 +56,7 @@ const MetaverseModal = (props) => {
 };
 
 function addIFrameEventListener() {
+  if (typeof window === 'undefined') return;
   // Here "addEventListener" is for standards-compliant web browsers and "attachEvent" is for IE Browsers.
   const eventMethod = window.addEventListener ? 'addEventListener' : 'attachEvent';
   const eventFunction = window[eventMethod];

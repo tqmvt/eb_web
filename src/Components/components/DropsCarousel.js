@@ -5,8 +5,6 @@ import { ethers } from 'ethers';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faChevronLeft, faChevronRight, faCircle } from '@fortawesome/free-solid-svg-icons';
 import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 
 import Clock from './Clock';
 import LayeredIcon from './LayeredIcon';
@@ -140,6 +138,7 @@ export default class Responsive extends Component {
   }
 
   navigateToDrop(drop) {
+    if (typeof window === 'undefined') return;
     if (drop.redirect) {
       window.open(drop.redirect, '_blank');
     } else {
@@ -298,7 +297,10 @@ export default class Responsive extends Component {
                                 <h5>Whitelist: {ethers.utils.commify(drop.whitelistCost)} CRO</h5>
                               ))}
                             {drop.specialWhitelistCost && (
-                              <h5>{drop.specialWhitelistCost.name}: {ethers.utils.commify(drop.specialWhitelistCost.value)} CRO</h5>
+                              <h5>
+                                {drop.specialWhitelistCost.name}:{' '}
+                                {ethers.utils.commify(drop.specialWhitelistCost.value)} CRO
+                              </h5>
                             )}
                           </div>
                           <div className="line my-auto"></div>

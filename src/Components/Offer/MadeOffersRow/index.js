@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import Button from 'src/Components/components/Button';
 import styled from 'styled-components';
 import moment from 'moment';
 import Blockies from 'react-blockies';
+import { commify } from 'ethers/lib/utils';
+import Link from 'next/link';
 
-import {caseInsensitiveCompare, findCollectionByAddress, shortAddress, shortString} from 'src/utils';
-import config from 'src/Assets/networks/rpc_config.json';
-import { getNftDetails } from 'src/GlobalState/nftSlice';
+import Button from '../../../Components/components/Button';
+import { caseInsensitiveCompare, findCollectionByAddress, shortAddress, shortString } from '../../../utils';
+import config from '../../../Assets/networks/rpc_config.json';
+import { getNftDetails } from '../../../GlobalState/nftSlice';
 import MakeOfferDialog from '../MakeOfferDialog';
 import AcceptOfferDialog from '../AcceptOfferDialog';
-import { Link } from 'react-router-dom';
-import { commify } from 'ethers/lib.esm/utils';
 
 const knownContracts = config.known_contracts;
 
@@ -172,21 +172,23 @@ export default function TableRow({ data, type }) {
       <TableRowContainer>
         <div className="table-row-item">
           <div className="coll_list_pp" style={{ cursor: 'pointer' }}>
-            <Link to={`/collection/${collectionData?.slug}`}>
-              {getCollectionAvatar() ? (
-                <img
-                  className="lazy"
-                  src={getCollectionAvatar()}
-                  alt={getCollectionName()}
-                  width="50"
-                  height="50"
-                  style={{ marginRight: '10px', borderRadius: '100px' }}
-                />
-              ) : (
-                <span style={{ marginRight: '10px', borderRadius: '100px' }}>
-                  <Blockies seed={nftAddress} size={10} scale={5} />
-                </span>
-              )}
+            <Link href={`/collection/${collectionData?.slug}`}>
+              <a>
+                {getCollectionAvatar() ? (
+                  <img
+                    className="lazy"
+                    src={getCollectionAvatar()}
+                    alt={getCollectionName()}
+                    width="50"
+                    height="50"
+                    style={{ marginRight: '10px', borderRadius: '100px' }}
+                  />
+                ) : (
+                  <span style={{ marginRight: '10px', borderRadius: '100px' }}>
+                    <Blockies seed={nftAddress} size={10} scale={5} />
+                  </span>
+                )}
+              </a>
             </Link>
           </div>
           <div className="collection-name">{getCollectionName()}</div>

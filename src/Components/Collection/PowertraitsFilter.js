@@ -3,7 +3,7 @@ import { Accordion, Form } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
-import {humanize, mapAttributeString} from '../../utils';
+import { humanize, mapAttributeString } from '../../utils';
 import { filterListingsByTrait } from '../../GlobalState/collectionSlice';
 
 const PowertraitsFilter = ({ address }) => {
@@ -12,7 +12,7 @@ const PowertraitsFilter = ({ address }) => {
   const collectionStats = useSelector((state) => state.collection.stats);
   const collectionCachedTraitsFilter = useSelector((state) => state.collection.cachedPowertraitsFilter);
 
-  const [hideAttributes, setHideAttributes] = useState(window.innerWidth < 768);
+  const [hideAttributes, setHideAttributes] = useState(typeof window !== 'undefined' && window.innerWidth < 768);
 
   const viewPowertraitsList = () => {
     if (!collectionStats || !collectionStats.powertraits) {

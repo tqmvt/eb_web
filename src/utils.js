@@ -2,12 +2,13 @@ import moment from 'moment';
 import config from './Assets/networks/rpc_config.json';
 import blacklist from './core/configs/blacklist.json';
 import attributes from './core/configs/attributes.json';
-import IPFSGatewayTools from '@pinata/ipfs-gateway-tools/dist/browser';
-import {useEffect, useRef} from "react";
+import { useEffect, useRef } from 'react';
+import dynamic from 'next/dynamic';
+// import IPFSGatewayTools from '@pinata/ipfs-gateway-tools/dist/browser';
 
 export const drops = config.drops;
 export const collections = config.known_contracts;
-const gatewayTools = new IPFSGatewayTools();
+
 const gateway = 'https://mygateway.mypinata.cloud';
 
 export function debounce(func, wait, immediate) {
@@ -25,21 +26,21 @@ export function debounce(func, wait, immediate) {
 }
 
 export function isMobile() {
-  if (window) {
+  if (typeof window !== 'undefined') {
     return window.matchMedia(`(max-width: 767px)`).matches;
   }
   return false;
 }
 
 export function isMdScreen() {
-  if (window) {
+  if (typeof window !== 'undefined') {
     return window.matchMedia(`(max-width: 1199px)`).matches;
   }
   return false;
 }
 
 function currentYPosition() {
-  if (!window) {
+  if (typeof window === 'undefined') {
     return;
   }
   // Firefox, Chrome, Opera, Safari
@@ -52,6 +53,9 @@ function currentYPosition() {
 }
 
 function elmYPosition(elm) {
+  if (typeof window === 'undefined') {
+    return;
+  }
   var y = elm.offsetTop;
   var node = elm;
   while (node.offsetParent && node.offsetParent !== document.body) {
@@ -62,6 +66,9 @@ function elmYPosition(elm) {
 }
 
 export function scrollTo(scrollableElement, elmID) {
+  if (typeof window === 'undefined') {
+    return;
+  }
   var elm = document.getElementById(elmID);
   if (!elmID || !elm) {
     return;
@@ -128,6 +135,9 @@ export function generateRandomId() {
 }
 
 export function getQueryParam(prop) {
+  if (typeof window === 'undefined') {
+    return;
+  }
   var params = {};
   var search = decodeURIComponent(window.location.href.slice(window.location.href.indexOf('?') + 1));
   var definitions = search.split('&');
@@ -192,7 +202,7 @@ export function mapAttributeString(str, address, makeHuman = false) {
  * @param num
  * @returns {string|number}
  */
-export function siPrefixedNumber(num, ) {
+export function siPrefixedNumber(num) {
   // Nine Zeroes for Billions
   return Math.abs(Number(num)) >= 1.0e9
     ? (Math.abs(Number(num)) / 1.0e9).toFixed(2) + 'B'
@@ -211,7 +221,7 @@ export function shortAddress(address) {
 
 export function shortString(str, leftChars = 3, rightChars = 3) {
   if (!str) return '';
-  if (str.length <= (leftChars + rightChars)) return str;
+  if (str.length <= leftChars + rightChars) return str;
 
   return `${str.substring(0, leftChars)}...${str.substring(str.length - rightChars, str.length)}`;
 }
@@ -257,6 +267,9 @@ export function getShortIdForView(id = '') {
  * @param transactionHash 0x000
  */
 export function openWithCronosExplorer(transactionHash = '') {
+  if (typeof window === 'undefined') {
+    return;
+  }
   window.open(`https://cronoscan.com/tx/${transactionHash}`, '_blank');
 }
 
@@ -426,7 +439,7 @@ export const findCollectionByAddress = (address, tokenId) => {
     if (!tokenId) return matchesAddress;
 
     if (c.multiToken) {
-      const ids = c.tokens?.map(t => t.id) ?? [c.id];
+      const ids = c.tokens?.map((t) => t.id) ?? [c.id];
       const matchesToken = ids.includes(parseInt(tokenId));
       return matchesAddress && matchesToken;
     }
@@ -443,7 +456,13 @@ export const round = (num, decimals) => {
 };
 
 export const convertIpfsResource = (resource, tooltip) => {
-  if (!resource) return;
+  if (!resource || typeof window === 'undefined') return;
+
+  const IPFSGatewayTools = dynamic(() => import('@pinata/ipfs-gateway-tools/dist/browser'), {
+    ssr: false,
+  });
+
+  let gatewayTools = new IPFSGatewayTools();
 
   let linkedResource;
   if (resource.startsWith('ipfs')) {
@@ -512,11 +531,11 @@ export const useInterval = (callback, delay) => {
       return () => clearInterval(id);
     }
   }, [delay]);
-}
+};
 
 /**
  * Ensure that a timestamp is in milliseconds
- * 
+ *
  * @param timestamp
  * @returns {number}
  */
@@ -526,13 +545,25 @@ export const millisecondTimestamp = (timestamp) => {
   }
 
   return Number(timestamp);
-}
+};
 
 export const isEventValidNumber = (e) => {
   const re = /^[0-9\b]+$/;
-  const validKeys = [
-    'Backspace',
-    'Delete'
-  ];
+  const validKeys = ['Backspace', 'Delete'];
   return e.key === '' || re.test(e.key) || validKeys.includes(e.key);
-}
+};
+
+export const getSlugFromAddress = (address) => {
+  const collection = collections.find((c) => c.address.toLowerCase() === address.toLowerCase());
+  return collection?.slug;
+};
+
+export const getAddressFromSlug = (slug) => {
+  const collection = collections.find((c) => c.slug.toLowerCase() === slug.toLowerCase());
+  return collection?.address;
+};
+
+// can use web3.utils.isAddress tho
+export const isAddress = (address) => {
+  return /^(0x){1}[0-9a-fA-F]{40}$/i.test(address);
+};

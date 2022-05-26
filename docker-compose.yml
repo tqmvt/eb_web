@@ -1,18 +1,62 @@
 version: '3'
 
 services:
-  ebisusbay-frontend:
-    container_name: ebisusbay-frontend
+  ebisusbay-web-nginx:
+    container_name: ebisusbay-web-nginx
+    restart: always
+    read_only: true
     build:
       context: .
-      dockerfile: ./proxy/Dockerfile
+      dockerfile: ./proxy/Dockerfile_local
     environment:
-      PORT: 8080
+      ## NGINX Amplify Agent
+      AMPLIFY_API_KEY: 9eb5c56d5bdd811ea6d0bdb78009cb6f
+      AMPLIFY_ENABLED: false
     healthcheck:
-      test: ["CMD-SHELL", "curl -f -s http://localhost:80 || exit 1"]
+      test: ["CMD-SHELL", "curl -f -s http://localhost:8080 || exit 1"]
       interval: 5s
       timeout: 2s
       retries: 3
       start_period: 10s
+    tmpfs:
+      - /var/cache/nginx
+      - /var/run
+      - /var/lib/nginx
+      - /etc/amplify-agent/custom
+      - /tmp
+    volumes:
+      - ./volumes/ebisusbay-web-nginx_logs:/var/log/nginx:rw
+      - ./volumes/ebisusbay-web-nginx_amplify_logs:/var/log/amplify-agent:rw"
     ports:
-      - 8080:80
+      - 8080:8080
+    depends_on:
+      - ebisusbay-web
+    links:
+      - ebisusbay-web
+
+  ebisusbay-web:
+    container_name: ebisusbay-web
+    restart: always
+    read_only: true
+    command: bash -c "start_web.sh"
+    build:
+      context: .
+      dockerfile: Dockerfile_local
+    environment:
+      PORT: '3000'
+      # APMINSIGHT_ENABLED: 'false'
+      # APMINSIGHT_LICENSE_KEY: us_25e4846c624d0af156763484be1e7e31
+      # APMINSIGHT_APP_NAME: local-ebisusbay-web-arm64-us-east-1
+      # APMINSIGHT_APP_PORT: '3000'
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f -s http://localhost:3000 || exit 1"]
+      interval: 5s
+      timeout: 2s
+      retries: 3
+      start_period: 10s
+    volumes:
+      - ./volumes/ebisusbay-web_logs:/var/log/nodejs:rw
+      - ./volumes/ebisusbay-web_cache:/usr/src/app/.next/cache:rw
+      # - ./volumes/ebisusbay-web_apminsight:/usr/src/app/apminsightdata:rw
+    ports:
+      - 3000:3000

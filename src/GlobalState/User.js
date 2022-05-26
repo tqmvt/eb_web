@@ -23,7 +23,8 @@ import {
 import { toast } from 'react-toastify';
 import {
   caseInsensitiveCompare,
-  createSuccessfulTransactionToastContent, findCollectionByAddress,
+  createSuccessfulTransactionToastContent,
+  findCollectionByAddress,
   isUserBlacklisted,
   sliceIntoChunks,
 } from '../utils';
@@ -31,11 +32,11 @@ import { FilterOption } from '../Components/Models/filter-option.model';
 import { nanoid } from 'nanoid';
 import { appAuthInitFinished } from './InitSlice';
 import { captureException } from '@sentry/react';
-import { setThemeInStorage } from 'src/helpers/storage';
+import { setThemeInStorage } from '../helpers/storage';
 import { getAllOffers } from '../core/subgraph';
 import { offerState } from '../core/api/enums';
 import { CNS, TextRecords } from '@cnsdomains/core';
-import {txExtras} from "../core/constants";
+import { txExtras } from '../core/constants';
 
 const knownContracts = config.known_contracts;
 
@@ -713,21 +714,23 @@ export const chainConnect = (type) => async (dispatch) => {
   }
 };
 
-export const fetchNfts = (page, persist = false) => async (dispatch, getState) => {
-  const state = getState();
+export const fetchNfts =
+  (page, persist = false) =>
+  async (dispatch, getState) => {
+    const state = getState();
 
-  const walletAddress = state.user.address;
-  const walletProvider = state.user.provider;
+    const walletAddress = state.user.address;
+    const walletProvider = state.user.provider;
 
-  dispatch(fetchingNfts({persist}));
-  const response = await getNftsForAddress2(walletAddress, walletProvider, page);
-  if (response.length > 0) {
-    dispatch(onNftsAdded(response));
-    dispatch(nftsFetched());
-  } else {
-    dispatch(nftsFullyFetched());
-  }
-};
+    dispatch(fetchingNfts({ persist }));
+    const response = await getNftsForAddress2(walletAddress, walletProvider, page);
+    if (response.length > 0) {
+      dispatch(onNftsAdded(response));
+      dispatch(nftsFetched());
+    } else {
+      dispatch(nftsFullyFetched());
+    }
+  };
 
 export const fetchChainNfts = (abortSignal) => async (dispatch, getState) => {
   const state = getState();

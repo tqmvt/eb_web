@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import Blockies from 'react-blockies';
 import { faCheck, faCircle } from '@fortawesome/free-solid-svg-icons';
 
@@ -66,7 +66,11 @@ const ProfilePreview = ({
           </a>
         );
       } else {
-        return <Link to={url}> {AvatarElement} </Link>;
+        return (
+          <Link href={url}>
+            <a>{AvatarElement}</a>
+          </Link>
+        );
       }
     } else {
       return <div> {AvatarElement} </div>;

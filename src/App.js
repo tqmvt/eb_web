@@ -1,16 +1,17 @@
-import React, { useEffect, useLayoutEffect } from 'react';
+import React, { useEffect } from 'react';
+import Head from 'next/head';
 import { useDispatch, useSelector } from 'react-redux';
-import ScrollToTopBtn from './Components/menu/ScrollToTop';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
-import { AppRouter } from './Router/Router';
-import { getTheme } from './Theme/theme';
 import { toast, ToastContainer } from 'react-toastify';
-
 import { initializeApp } from 'firebase/app';
-import firebaseConfig from './Firebase/firebase_config';
 import { initializeAnalytics } from 'firebase/analytics';
+
+import ScrollToTopBtn from './Components/menu/ScrollToTop';
+import Header from './Components/menu/header';
+import firebaseConfig from './Firebase/firebase_config';
 import { initProvider } from './GlobalState/User';
 import { appInitializer } from './GlobalState/InitSlice';
+import { getTheme } from './Theme/theme';
 
 const GlobalStyles = createGlobalStyle`
   :root {
@@ -45,29 +46,40 @@ const GlobalStyles = createGlobalStyle`
   }
 `;
 
-function App() {
+function App({ Component, pageProps }) {
   const dispatch = useDispatch();
 
   const userTheme = useSelector((state) => {
     return state.user.theme;
   });
-  document.documentElement.setAttribute('data-theme', userTheme);
+
+  if (typeof window !== 'undefined') {
+    document.documentElement.setAttribute('data-theme', userTheme);
+  }
 
   useEffect(() => {
     dispatch(appInitializer());
   }, [dispatch]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const firebase = initializeApp(firebaseConfig);
-    initializeAnalytics(firebase);
-    dispatch(initProvider());
+    if (typeof window !== 'undefined') {
+      initializeAnalytics(firebase);
+      dispatch(initProvider());
+    }
   }, [dispatch]);
 
   return (
     <ThemeProvider theme={getTheme(userTheme)}>
+      <Head>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <title>Ebisu's Bay Marketplace</title>
+      </Head>
       <div className="wraper">
         <GlobalStyles isDark={userTheme === 'dark'} />
-        <AppRouter firebase />
+        <Header />
+        <Component {...pageProps} />
         <ScrollToTopBtn />
         <ToastContainer position={toast.POSITION.BOTTOM_LEFT} hideProgressBar={true} />
       </div>

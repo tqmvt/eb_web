@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import Breakpoint, { BreakpointProvider, setDefaultBreakpoints } from 'react-socks';
-import { NavLink } from 'react-router-dom';
+import Link from 'next/link';
 import { createGlobalStyle } from 'styled-components';
 
 import AccountMenu from '../components/AccountMenu';
@@ -44,22 +44,24 @@ const Header = function () {
   // };
 
   useEffect(() => {
-    const header = document.getElementById('myHeader');
-    const totop = document.getElementById('eb-scroll-to-top');
-    const sticky = header.offsetTop;
-    const scrollCallBack = window.addEventListener('scroll', () => {
-      btn_icon(false);
-      if (window.pageYOffset > sticky) {
-        header.classList.add('sticky');
-        totop.classList.add('show');
-      } else {
-        header.classList.remove('sticky');
-        totop.classList.remove('show');
-      }
-    });
-    return () => {
-      window.removeEventListener('scroll', scrollCallBack);
-    };
+    if (typeof window !== 'undefined') {
+      const header = document.getElementById('myHeader');
+      const totop = document.getElementById('eb-scroll-to-top');
+      const sticky = header.offsetTop;
+      const scrollCallBack = window.addEventListener('scroll', () => {
+        btn_icon(false);
+        if (window.pageYOffset > sticky) {
+          header.classList.add('sticky');
+          totop.classList.add('show');
+        } else {
+          header.classList.remove('sticky');
+          totop.classList.remove('show');
+        }
+      });
+      return () => {
+        window.removeEventListener('scroll', scrollCallBack);
+      };
+    }
   }, []);
 
   return (
@@ -69,13 +71,15 @@ const Header = function () {
         <div className="row w-100-nav">
           <div className="logo px-0">
             <div className="navbar-title navbar-item">
-              <NavLink to="/">
-                <img
-                  src={theme === 'light' ? '/img/logo-light.svg' : '/img/logo-dark-prod.svg'}
-                  alt="ebisus bay logo"
-                  style={{ width: '44px', height: '40px' }}
-                />
-              </NavLink>
+              <Link href="/">
+                <a>
+                  <img
+                    src={theme === 'light' ? '/img/logo-light.svg' : '/img/logo-dark-prod.svg'}
+                    alt="ebisus bay logo"
+                    style={{ width: '44px', height: '40px' }}
+                  />
+                </a>
+              </Link>
             </div>
           </div>
 
@@ -85,28 +89,36 @@ const Header = function () {
                 <div className="menu">
                   <div className="menu">
                     <div className="navbar-item">
-                      <NavLink to="/home">
-                        Home
-                        <span className="lines"></span>
-                      </NavLink>
+                      <Link href="/">
+                        <a>
+                          Home
+                          <span className="lines"></span>
+                        </a>
+                      </Link>
                     </div>
                     <div className="navbar-item">
-                      <NavLink to="/marketplace">
-                        Marketplace
-                        <span className="lines"></span>
-                      </NavLink>
+                      <Link href="/marketplace">
+                        <a>
+                          Marketplace
+                          <span className="lines"></span>
+                        </a>
+                      </Link>
                     </div>
                     <div className="navbar-item">
-                      <NavLink to="/collections">
-                        Collections
-                        <span className="lines"></span>
-                      </NavLink>
+                      <Link href="/collections">
+                        <a>
+                          Collections
+                          <span className="lines"></span>
+                        </a>
+                      </Link>
                     </div>
                     <div className="navbar-item">
-                      <NavLink to="/drops">
-                        Drops
-                        <span className="lines"></span>
-                      </NavLink>
+                      <Link href="/drops">
+                        <a>
+                          Drops
+                          <span className="lines"></span>
+                        </a>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -116,28 +128,36 @@ const Header = function () {
             <Breakpoint xl>
               <div className="menu">
                 <div className="navbar-item">
-                  <NavLink to="/home">
-                    Home
-                    <span className="lines"></span>
-                  </NavLink>
+                  <Link href="/">
+                    <a>
+                      Home
+                      <span className="lines"></span>
+                    </a>
+                  </Link>
                 </div>
                 <div className="navbar-item">
-                  <NavLink to="/marketplace">
-                    Marketplace
-                    <span className="lines"></span>
-                  </NavLink>
+                  <Link href="/marketplace">
+                    <a>
+                      Marketplace
+                      <span className="lines"></span>
+                    </a>
+                  </Link>
                 </div>
                 <div className="navbar-item">
-                  <NavLink to="/collections">
-                    Collections
-                    <span className="lines"></span>
-                  </NavLink>
+                  <Link href="/collections">
+                    <a>
+                      Collections
+                      <span className="lines"></span>
+                    </a>
+                  </Link>
                 </div>
                 <div className="navbar-item">
-                  <NavLink to="/drops">
-                    Drops
-                    <span className="lines"></span>
-                  </NavLink>
+                  <Link href="/drops">
+                    <a>
+                      Drops
+                      <span className="lines"></span>
+                    </a>
+                  </Link>
                 </div>
               </div>
             </Breakpoint>

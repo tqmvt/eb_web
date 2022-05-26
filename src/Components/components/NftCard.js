@@ -1,16 +1,18 @@
 import React, { memo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { Link, useHistory } from 'react-router-dom';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
+import Image from 'next/image';
 import { ethers } from 'ethers';
 import MetaMaskOnboarding from '@metamask/onboarding';
 
-import { croSkullRedPotionImageHack } from 'src/hacks';
+import { croSkullRedPotionImageHack } from '../../hacks';
 import Button from './Button';
 import MakeOfferDialog from '../Offer/MakeOfferDialog';
-import { connectAccount, chainConnect } from 'src/GlobalState/User';
-import {isNftBlacklisted, round} from '../../utils';
-import {AnyMedia} from "./AnyMedia";
+import { connectAccount, chainConnect } from '../../GlobalState/User';
+import { isNftBlacklisted, round, getSlugFromAddress } from '../../utils';
+import { AnyMedia } from './AnyMedia';
 
 const Watermarked = styled.div`
   position: relative;
@@ -49,7 +51,7 @@ const MakeOffer = styled.div`
 `;
 
 const NftCard = ({ royalty, listing, imgClass = 'marketplace', watermark, address, collection }) => {
-  const history = useHistory();
+  const history = useRouter();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const [openMakeOfferDialog, setOpenMakeOfferDialog] = useState(false);
@@ -77,6 +79,9 @@ const NftCard = ({ royalty, listing, imgClass = 'marketplace', watermark, addres
     //   history.push(`/listing/${listing.market?.id}`);
     // } else {
     history.push(`/collection/${listing.address}/${listing.id}`);
+    // if (listing?.address && listing?.id) {
+    //   history.push(`/collection/${getSlugFromAddress(listing.address)}/${listing.id}`);
+    // }
     // }
   };
 
@@ -109,7 +114,7 @@ const NftCard = ({ royalty, listing, imgClass = 'marketplace', watermark, addres
         )}
         {listing.rank && <div className="badge bg-rarity text-wrap mt-1 mx-1">Rank: #{listing.rank}</div>}
         <div className="card-body d-flex flex-column justify-content-between">
-          <Link className="linkPointer" to={`/collection/${collection.slug}/${listing.id}`}>
+          <Link className="linkPointer" href={`/collection/${collection.slug}/${listing.id}`}>
             <h6 className="card-title mt-auto">{listing.name}</h6>
           </Link>
           {getIsNftListed() && (

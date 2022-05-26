@@ -19,7 +19,7 @@ const VerifiedIcon = styled.span`
 
 const CustomSlide = ({ index, avatar, banner, title, subtitle, collectionId, url, verified, externalPage = false }) => {
   const navigateTo = (url) => {
-    if (url) {
+    if (url && typeof window !== 'undefined') {
       window.open(url, externalPage ? '_blank' : '_self');
     }
   };

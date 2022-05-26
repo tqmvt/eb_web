@@ -1,6 +1,6 @@
 .bitpixel_back {
   text-align: center;
-  background-image: url('../cronosverse/Bit-back.png');
+  background-image: url('/public/img/cronosverse/Bit-back.png');
   background-size: 100% 100%;
   background-repeat: no-repeat;
   display: flex;

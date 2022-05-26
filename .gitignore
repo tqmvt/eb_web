@@ -26,3 +26,11 @@ yarn-error.log*
 
 # IDE
 /.idea
+
+# next
+.next
+
+.env
+
+# Docker Compose volumes
+volumes/

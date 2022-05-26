@@ -10,10 +10,10 @@ import { sortAndFetchAuctions } from '../../core/api';
 import Clock from '../components/Clock';
 // import MetaMaskOnboarding from '@metamask/onboarding';
 // import { chainConnect, connectAccount } from '../../GlobalState/User';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { auctionState } from '../../core/api/enums';
-import {Auction} from "../../core/models/auction";
-import {commify} from "ethers/lib/utils";
+import { Auction } from '../../core/models/auction';
+import { commify } from 'ethers/lib/utils';
 
 const ManageAuctionList = () => {
   // const dispatch = useDispatch();
@@ -27,7 +27,7 @@ const ManageAuctionList = () => {
       if (response.auctions === undefined) response.auctions = [];
       const auctions = response.auctions
         .filter((a) => [auctionState.NOT_STARTED, auctionState.ACTIVE].includes(a.state))
-        .map(o => new Auction(o));
+        .map((o) => new Auction(o));
       setAuctions(auctions);
     }
     fetchData();
@@ -125,7 +125,9 @@ const ManageAuctionList = () => {
                   </p>
                 </div>
                 <div className="card-footer d-flex justify-content-between">
-                  <Link to={`/auctions/${auction.getAuctionId}`}>View</Link>
+                  <Link href={`/auctions/${auction.auctionId}`}>
+                    <a>View</a>
+                  </Link>
                 </div>
               </div>
             </div>

@@ -7,23 +7,22 @@ import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Spinner } from 'react-bootstrap';
 
-import Button from 'src/Components/components/Button';
-import Input from 'src/Components/components/common/Input';
-import ProfilePreview from 'src/Components/components/ProfilePreview';
-import { croSkullRedPotionImageHack } from 'src/hacks';
-import {caseInsensitiveCompare, humanize, isEventValidNumber, shortAddress} from 'src/utils';
+import Button from '../../../Components/components/Button';
+import Input from '../../../Components/components/common/Input';
+import ProfilePreview from '../../../Components/components/ProfilePreview';
+import { croSkullRedPotionImageHack } from '../../../hacks';
+import { caseInsensitiveCompare, humanize, isEventValidNumber, shortAddress } from '../../../utils';
 import { OFFER_TYPE } from '../MadeOffersRow';
-import CloseIcon from 'src/Assets/images/close-icon-blue.svg';
-import { updateOfferSuccess, updateOfferFailed } from 'src/GlobalState/offerSlice';
+import { updateOfferSuccess, updateOfferFailed } from '../../../GlobalState/offerSlice';
 import EmptyData from '../EmptyData';
-import config from 'src/Assets/networks/rpc_config.json';
-import Market from 'src/Contracts/Marketplace.json';
-import { getFilteredOffers } from 'src/core/subgraph';
+import config from '../../../Assets/networks/rpc_config.json';
+import Market from '../../../Contracts/Marketplace.json';
+import { getFilteredOffers } from '../../../core/subgraph';
 import { getAllCollections } from '../../../GlobalState/collectionsSlice';
 import { offerState } from '../../../core/api/enums';
 import { commify } from 'ethers/lib/utils';
-import { findCollectionByAddress } from 'src/utils';
-import {txExtras} from "../../../core/constants";
+import { txExtras } from '../../../core/constants';
+import { findCollectionByAddress } from '../../../utils';
 const knownContracts = config.known_contracts;
 
 const DialogContainer = styled(Dialog)`
@@ -284,10 +283,10 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
           return;
         }
         tx = await offerContract.makeOffer(nftData.address, nftData.id, {
-            ...{
-                value: ethers.utils.parseEther(offerPrice.toString()),
-            },
-            ...txExtras
+          ...{
+            value: ethers.utils.parseEther(offerPrice.toString()),
+          },
+          ...txExtras,
         });
 
         receipt = await tx.wait();
@@ -301,7 +300,7 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
           ...{
             value: ethers.utils.parseEther((offerPrice - offerDataNew.price).toString()),
           },
-          ...txExtras
+          ...txExtras,
         });
         receipt = await tx.wait();
       } else if (actionType === OFFER_TYPE.cancel) {
@@ -404,7 +403,7 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
               </FlexRow>
               <FlexRow>
                 <FloorPrice>Floor Price</FloorPrice>
-                <FloorPrice>{floorPrice ? `${commify(floorPrice)} CRO` : '-'}</FloorPrice>
+                <FloorPrice>{floorPrice ? `${ethers.utils.commify(floorPrice)} CRO` : '-'}</FloorPrice>
               </FlexRow>
               {(offerType === OFFER_TYPE.make || offerType === OFFER_TYPE.update) && (
                 <>
@@ -463,7 +462,7 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
           </EmptyData>
         )}
         <CloseIconContainer onClick={() => toggle(OFFER_TYPE.none)}>
-          <img src={CloseIcon} alt="close" />
+          <img src="/img/icons/close-icon-blue.svg" alt="close" width="40" height="40" />
         </CloseIconContainer>
       </DialogContent>
     </DialogContainer>

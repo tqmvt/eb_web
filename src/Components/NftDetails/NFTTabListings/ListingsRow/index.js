@@ -1,17 +1,21 @@
 import React, { useState } from 'react';
-
-import { createSuccessfulTransactionToastContent, shortAddress, timeSince } from 'src/utils';
-
+import Blockies from 'react-blockies';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { ethers } from 'ethers';
 import { toast } from 'react-toastify';
 import MetaMaskOnboarding from '@metamask/onboarding';
-import { chainConnect, connectAccount } from '../../../../GlobalState/User';
 import { useDispatch, useSelector } from 'react-redux';
+import { Spinner } from 'react-bootstrap';
+
+import { createSuccessfulTransactionToastContent, shortAddress, timeSince } from '../../../../utils';
+import { chainConnect, connectAccount } from '../../../../GlobalState/User';
 import { getNftDetails } from '../../../../GlobalState/nftSlice';
-import ListingItem from '../ListingItem'
+import ListingItem from '../ListingItem';
 
 export default function ListingsRow({ listing }) {
   const dispatch = useDispatch();
+  const history = useRouter();
 
   const user = useSelector((state) => state.user);
 
@@ -60,9 +64,9 @@ export default function ListingsRow({ listing }) {
 
   return (
     <ListingItem
-      route='/seller'
-      buttonText='Buy Now'
-      primaryTitle='Listed by'
+      route="/seller"
+      buttonText="Buy Now"
+      primaryTitle="Listed by"
       user={listing.seller}
       time={timeSince(listing.listingTime + '000')}
       price={ethers.utils.commify(listing.price)}

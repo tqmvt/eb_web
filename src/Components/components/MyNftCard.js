@@ -1,12 +1,12 @@
 import React, { memo } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useRouter } from 'next/router';
 import { ethers } from 'ethers';
 import { toast } from 'react-toastify';
 import { faLink, faEllipsisH, faExchangeAlt, faTag, faTimes, faPen } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import config from '../../Assets/networks/rpc_config.json';
 import PopupMen from './PopupMenu';
-import AnyMedia from "./AnyMedia";
+import AnyMedia from './AnyMedia';
 
 const MyNftCard = ({
   nft,
@@ -22,7 +22,7 @@ const MyNftCard = ({
   newTab = false,
   imgClass = 'marketplace',
 }) => {
-  const history = useHistory();
+  const history = useRouter();
 
   const navigateTo = (link) => {
     if (newTab) {
@@ -44,53 +44,47 @@ const MyNftCard = ({
   const getOptions = () => {
     const options = [];
 
-    if(canSell){
-      options.push({ 
-        icon: faTag, 
+    if (canSell) {
+      options.push({
+        icon: faTag,
         label: 'Sell',
-        handleClick: onSellButtonPressed
+        handleClick: onSellButtonPressed,
       });
     }
-    if(canTransfer){
-      options.push({ 
-        icon: faExchangeAlt, 
+    if (canTransfer) {
+      options.push({
+        icon: faExchangeAlt,
         label: 'Transfer',
-        handleClick: onTransferButtonPressed 
+        handleClick: onTransferButtonPressed,
       });
     }
-    if(canUpdate){
-      options.push({ 
-        icon: faPen, 
+    if (canUpdate) {
+      options.push({
+        icon: faPen,
         label: 'Update',
-        handleClick: onUpdateButtonPressed
+        handleClick: onUpdateButtonPressed,
       });
     }
-    if(canCancel){
-      options.push({ 
-        icon: faTimes, 
+    if (canCancel) {
+      options.push({
+        icon: faTimes,
         label: 'Cancel',
-        handleClick: onCancelButtonPressed 
+        handleClick: onCancelButtonPressed,
       });
     }
 
-    options.push({ icon: faLink, 
-      label: 'Copy link', 
-      handleClick: onCopyLinkButtonPressed(new URL(nftUrl(), config.app_base)
-    )});
+    options.push({
+      icon: faLink,
+      label: 'Copy link',
+      handleClick: onCopyLinkButtonPressed(new URL(nftUrl(), config.app_base)),
+    });
 
     return options;
-
-  }
+  };
 
   return (
     <div className="card eb-nft__card h-100 shadow">
-      <AnyMedia
-        image={nft.image}
-        title={nft.name}
-        url={nftUrl()}
-        newTab={true}
-        className="card-img-top marketplace"
-      />
+      <AnyMedia image={nft.image} title={nft.name} url={nftUrl()} newTab={true} className="card-img-top marketplace" />
       {nft.rank && typeof nft.rank === 'number' && (
         <div className="badge bg-rarity text-wrap mt-1 mx-1">Rank: #{nft.rank}</div>
       )}
@@ -110,7 +104,7 @@ const MyNftCard = ({
           {nft.listed && nft.price ? <>{ethers.utils.commify(nft.price)} CRO</> : <>&nbsp;</>}
         </p>
       </div>
-      <div className="card-footer mynft-card-footer" >
+      <div className="card-footer mynft-card-footer">
         <div>
           {isStaked && (
             <span className="mx-1">
@@ -119,7 +113,7 @@ const MyNftCard = ({
           )}
         </div>
         <PopupMen icon={faEllipsisH} options={getOptions()}>
-          <FontAwesomeIcon icon={faEllipsisH} style={{ cursor: 'pointer' }}/>
+          <FontAwesomeIcon icon={faEllipsisH} style={{ cursor: 'pointer' }} />
         </PopupMen>
       </div>
     </div>

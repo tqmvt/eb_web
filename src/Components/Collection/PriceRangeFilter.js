@@ -2,10 +2,9 @@ import React, { memo, useState } from 'react';
 import { Accordion, Form } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 
-import {filterListingsByPrice} from '../../GlobalState/collectionSlice';
-import './Filters.css';
-import Button from "../components/Button";
-import {commify} from "ethers/lib/utils";
+import { filterListingsByPrice } from '../../GlobalState/collectionSlice';
+import Button from '../components/Button';
+import { commify } from 'ethers/lib/utils';
 
 const PriceRangeFilter = ({ address, ...props }) => {
   const dispatch = useDispatch();
@@ -23,7 +22,7 @@ const PriceRangeFilter = ({ address, ...props }) => {
       filterListingsByPrice({
         address,
         minPrice: null,
-        maxPrice: null
+        maxPrice: null,
       })
     );
   };
@@ -33,7 +32,7 @@ const PriceRangeFilter = ({ address, ...props }) => {
       filterListingsByPrice({
         address,
         minPrice: parseInt(minPrice),
-        maxPrice: parseInt(maxPrice)
+        maxPrice: parseInt(maxPrice),
       })
     );
   };
@@ -41,16 +40,16 @@ const PriceRangeFilter = ({ address, ...props }) => {
   const onMinPriceChange = (e) => {
     const re = /^[0-9\b]+$/;
     if (e.target.value === '' || re.test(e.target.value)) {
-      setMinPrice(e.target.value)
+      setMinPrice(e.target.value);
     }
-  }
+  };
 
   const onMaxPriceChange = (e) => {
     const re = /^[0-9\b]+$/;
     if (e.target.value === '' || re.test(e.target.value)) {
-      setMaxPrice(e.target.value)
+      setMaxPrice(e.target.value);
     }
-  }
+  };
 
   // useEffect(() => {
   //   if (cachedMinPriceFilter) setMinPrice(cachedMinPriceFilter);
@@ -59,19 +58,16 @@ const PriceRangeFilter = ({ address, ...props }) => {
 
   return (
     <div {...props}>
-
       {(minPrice > 0 || maxPrice > 0) && (
         <div className="d-flex justify-content-between align-middle">
           <span>
             {minPrice && maxPrice && (
-              <>{commify(minPrice)} - {commify(maxPrice)} CRO</>
+              <>
+                {commify(minPrice)} - {commify(maxPrice)} CRO
+              </>
             )}
-            {minPrice && !maxPrice && (
-              <>At least {commify(minPrice)} CRO</>
-            )}
-            {!minPrice && maxPrice && (
-              <>Max {commify(maxPrice)} CRO</>
-            )}
+            {minPrice && !maxPrice && <>At least {commify(minPrice)} CRO</>}
+            {!minPrice && maxPrice && <>Max {commify(maxPrice)} CRO</>}
           </span>
           <div
             className="d-inline-block fst-italic my-auto"
@@ -85,7 +81,9 @@ const PriceRangeFilter = ({ address, ...props }) => {
 
       <Accordion>
         <Accordion.Item eventKey="price">
-          <Accordion.Header><h3 className="my-1">Price Range</h3></Accordion.Header>
+          <Accordion.Header>
+            <h3 className="my-1">Price Range</h3>
+          </Accordion.Header>
           <Accordion.Body>
             <div className="row">
               <div className="col-xl-6 col-lg-12 px-2 mt-2">

@@ -3,11 +3,11 @@ import styled from 'styled-components';
 import Blockies from 'react-blockies';
 import { Dropdown } from 'react-bootstrap';
 import moment from 'moment';
+import Link from 'next/link';
+import { commify } from 'ethers/lib/utils';
 
-import Button from 'src/Components/components/Button';
-import { shortAddress } from 'src/utils';
-import { commify } from 'ethers/lib.esm/utils';
-import { Link } from 'react-router-dom';
+import Button from '../../../../Components/components/Button';
+import { shortAddress } from '../../../../utils';
 import { offerState } from '../../../../core/api/enums';
 
 const TableRowContainer = styled.div`
@@ -123,9 +123,11 @@ export default function OffersRow({ data, type }) {
     <>
       <TableRowContainer>
         <div className="table-row-item address">
-          <Link to={`/seller/${data.buyer}`}>
-            <Blockies seed={data.buyer} size={6} scale={5} className="blockies" />
-            <span className="my-auto">{shortAddress(data.buyer)}</span>
+          <Link href={`/seller/${data.buyer}`}>
+            <a>
+              <Blockies seed={data.buyer} size={6} scale={5} className="blockies" />
+              <span className="my-auto">{shortAddress(data.buyer)}</span>
+            </a>
           </Link>
         </div>
         <div className="table-row-item">{getOfferDate(data.timeCreated)}</div>

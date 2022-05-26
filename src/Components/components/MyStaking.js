@@ -1,9 +1,9 @@
-import React, {memo, useState, useEffect} from 'react';
+import React, { memo, useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setStakeCount, setVIPCount } from '../../GlobalState/User';
 import { Form, Spinner } from 'react-bootstrap';
 import { toast } from 'react-toastify';
-import {createSuccessfulTransactionToastContent, round, siPrefixedNumber, useInterval} from '../../utils';
+import { createSuccessfulTransactionToastContent, round, siPrefixedNumber, useInterval } from '../../utils';
 import { ethers } from 'ethers';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -16,7 +16,6 @@ import {
   faExternalLinkAlt,
 } from '@fortawesome/free-solid-svg-icons';
 import { getTheme } from '../../Theme/theme';
-import {commify} from "ethers/lib.esm/utils";
 
 const txExtras = {
   gasPrice: ethers.utils.parseUnits('5000', 'gwei'),
@@ -145,8 +144,7 @@ const MyStaking = () => {
             <div className="item_info">
               <h2>VIP Founding Member Staking</h2>
               <div className="my-2">
-                Earn rewards generated through platform sales &#128640;{' '}
-                {/*<a*/}
+                Earn rewards generated through platform sales &#128640; {/*<a*/}
                 {/*  href="https://blog.ebisusbay.com/founding-member-vip-staking-6f7405a68eed"*/}
                 {/*  className="fw-bold"*/}
                 {/*  target="_blank"*/}
@@ -287,7 +285,11 @@ const StakeCard = ({ stake, threshold, buttonName, buttonActionName }) => {
           </div>
 
           <div className="btn-group mt-4 flex-wrap">
-            <button className="btn-main lead mx-1 mb-2 mx-auto" onClick={execute} disabled={quantity === 0 || threshold === 0}>
+            <button
+              className="btn-main lead mx-1 mb-2 mx-auto"
+              onClick={execute}
+              disabled={quantity === 0 || threshold === 0}
+            >
               {isStaking ? (
                 <>
                   {buttonActionName}
@@ -421,9 +423,9 @@ const RewardsCard = () => {
               </div>
               {userPendingRewards > 0 ? (
                 <>
-                  <p className="text-center my-xl-auto fs-5" style={{color: getTheme(userTheme).colors.textColor3}}>
-                    You have <strong>{commify(round(userPendingRewards, 3))} CRO</strong>{' '}
-                    available for harvest!
+                  <p className="text-center my-xl-auto fs-5" style={{ color: getTheme(userTheme).colors.textColor3 }}>
+                    You have <strong>{ethers.utils.commify(round(userPendingRewards, 3))} CRO</strong> available for
+                    harvest!
                   </p>
                   <button
                     className="btn-main lead mx-1 mb-1 mt-2"
@@ -444,9 +446,7 @@ const RewardsCard = () => {
                   </button>
                 </>
               ) : (
-                <p className="text-center my-auto">
-                  No harvestable rewards yet. Check back later!
-                </p>
+                <p className="text-center my-auto">No harvestable rewards yet. Check back later!</p>
               )}
             </>
           )}

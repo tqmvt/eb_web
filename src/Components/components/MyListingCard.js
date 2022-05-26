@@ -1,6 +1,5 @@
 import React, { memo } from 'react';
 // import styled from 'styled-components';
-// import { useHistory } from 'react-router-dom';
 import { Card } from 'react-bootstrap';
 import { faLink } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -29,8 +28,6 @@ const MyListingCard = ({
   onCancelButtonPressed,
   onUpdateButtonPressed,
 }) => {
-  // const history = useHistory();
-
   // const navigateTo = (link) => {
   //   console.log(canUpdate);
   //   history.push(link);

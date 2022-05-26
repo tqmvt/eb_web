@@ -5,7 +5,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { Spinner, Table } from 'react-bootstrap';
 import { SortOption } from '../Models/sort-option.model';
 import { debounce, shortAddress, timeSince } from '../../utils';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { ethers } from 'ethers';
 import TopFilterBar from './TopFilterBar';
 import { marketPlaceCollectionFilterOptions } from './constants/filter-options';
@@ -191,25 +191,33 @@ const SalesCollection = ({
               listings.map((listing, index) => (
                 <tr key={index}>
                   <td style={{ minWidth: '50px' }}>
-                    <Link to={`/listing/${listing.listingId}`}>
-                      <img
-                        className="lazy rounded"
-                        src={listing.nft.image}
-                        alt={listing.nft.name}
-                        style={{ maxHeight: '75px' }}
-                      />
+                    <Link href={`/listing/${listing.listingId}`}>
+                      <a>
+                        <img
+                          className="lazy rounded"
+                          src={listing.nft.image}
+                          alt={listing.nft.name}
+                          style={{ maxHeight: '75px' }}
+                        />
+                      </a>
                     </Link>
                   </td>
                   <th style={{ minWidth: '115px' }}>
-                    <Link to={`/listing/${listing.listingId}`}>{listing.nft.name ?? 'Unknown'}</Link>
+                    <Link href={`/listing/${listing.listingId}`}>
+                      <a>{listing.nft.name ?? 'Unknown'}</a>
+                    </Link>
                   </th>
                   <td>{listing.nft.rank ?? '-'}</td>
                   <td style={{ minWidth: '100px' }}>{ethers.utils.commify(Math.round(listing.price))} CRO</td>
                   <td>
-                    <Link to={`/seller/${listing.seller}`}>{shortAddress(listing.seller)}</Link>
+                    <Link href={`/seller/${listing.seller}`}>
+                      <a>{shortAddress(listing.seller)}</a>
+                    </Link>
                   </td>
                   <td>
-                    <Link to={`/seller/${listing.purchaser}`}>{shortAddress(listing.purchaser)}</Link>
+                    <Link href={`/seller/${listing.purchaser}`}>
+                      <a>{shortAddress(listing.purchaser)}</a>
+                    </Link>
                   </td>
                   <td className="px-2" style={{ minWidth: '115px' }}>
                     {timeSince(listing.saleTime + '000')} ago

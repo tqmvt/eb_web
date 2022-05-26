@@ -1,14 +1,15 @@
 import React, { memo, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { ethers } from 'ethers';
-import { croSkullRedPotionImageHack } from '../../hacks';
+import MetaMaskOnboarding from '@metamask/onboarding';
+
 import Button from './Button';
 import MakeOfferDialog from '../Offer/MakeOfferDialog';
-import MetaMaskOnboarding from '@metamask/onboarding';
 import { chainConnect, connectAccount } from '../../GlobalState/User';
-import { useDispatch, useSelector } from 'react-redux';
-import {AnyMedia} from "./AnyMedia";
+import { AnyMedia } from './AnyMedia';
+import { croSkullRedPotionImageHack } from '../../hacks';
 
 const Watermarked = styled.div`
   position: relative;
@@ -47,7 +48,6 @@ const MakeOffer = styled.div`
 `;
 
 const ListingCardCollection = ({ listing, imgClass = 'marketplace', watermark, address, collectionMetadata }) => {
-  // const history = useHistory();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const [openMakeOfferDialog, setOpenMakeOfferDialog] = useState(false);
@@ -112,14 +112,16 @@ const ListingCardCollection = ({ listing, imgClass = 'marketplace', watermark, a
         )}
         {listing.nft.rank && <div className="badge bg-rarity text-wrap mt-1 mx-1">Rank: #{listing.nft.rank}</div>}
         <div className="card-body d-flex flex-column justify-content-between">
-          <Link className="linkPointer" to={`/collection/${listing.nftAddress}/${listing.nftId}`}>
-            <h6 className="card-title mt-auto">{listing.nft.name}</h6>
+          <Link className="linkPointer" href={`/collection/${listing.nftAddress}/${listing.nftId}`}>
+            <a>
+              <h6 className="card-title mt-auto">{listing.nft.name}</h6>
+            </a>
           </Link>
           <MakeBuy>
             <div>{ethers.utils.commify(listing.price)} CRO</div>
           </MakeBuy>
           <MakeOffer>
-            <Link className="linkPointer" to={`/collection/${listing.nftAddress}/${listing.nftId}`}>
+            <Link className="linkPointer" href={`/collection/${listing.nftAddress}/${listing.nftId}`}>
               <Button type="legacy">Buy</Button>
             </Link>
             <div>

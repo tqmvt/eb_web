@@ -1,6 +1,6 @@
 import React, { memo, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useRouter } from 'next/router';
 import { Modal } from 'react-bootstrap';
 import { /* fetchUnfilteredListings, */ MyListingsCollectionPageActions } from '../../GlobalState/User';
 
@@ -9,7 +9,7 @@ const InvalidListingsPopup = (props) => {
   const myListings = useSelector((state) => state.user.myUnfilteredListings);
   const dispatch = useDispatch();
   const [userAcknowledgedWarning, setUserAcknowledgedWarning] = useState(false);
-  const history = useHistory();
+  const history = useRouter();
 
   useEffect(() => {
     if (!userAcknowledgedWarning) {

@@ -1,17 +1,18 @@
 import React, { memo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import Image from 'next/image';
+import Link from 'next/link';
 import { ethers } from 'ethers';
 import MetaMaskOnboarding from '@metamask/onboarding';
 
-import { croSkullRedPotionImageHack } from 'src/hacks';
+import { croSkullRedPotionImageHack } from '../../hacks';
 import Button from './Button';
 import MakeOfferDialog from '../Offer/MakeOfferDialog';
-import { connectAccount, chainConnect } from 'src/GlobalState/User';
-import {round} from "../../utils";
-import {getTheme} from "../../Theme/theme";
-import {AnyMedia} from "./AnyMedia";
+import { getTheme } from '../../Theme/theme';
+import { AnyMedia } from './AnyMedia';
+import { connectAccount, chainConnect } from '../../GlobalState/User';
+import { round } from '../../utils';
 
 const Watermarked = styled.div`
   position: relative;
@@ -73,10 +74,10 @@ const ListingCard = ({ listing, imgClass = 'marketplace', watermark, address, co
     try {
       let newPrice = ethers.utils.commify(round(price));
       return newPrice;
-    } catch(error) {
+    } catch (error) {
       return ethers.utils.commify(price);
     }
-  }
+  };
 
   const convertListingData = (listingData) => {
     const res = {
@@ -111,27 +112,30 @@ const ListingCard = ({ listing, imgClass = 'marketplace', watermark, address, co
             url={`/collection/${listing.nftAddress}/${listing.nftId}`}
           />
         )}
-        {listing.nft.rank ?
-          <div className="badge bg-rarity text-wrap mt-1 mx-1">
-            Rank: #{listing.nft.rank}
-          </div>
-          :
+        {listing.nft.rank ? (
+          <div className="badge bg-rarity text-wrap mt-1 mx-1">Rank: #{listing.nft.rank}</div>
+        ) : (
           <div>&nbsp;</div>
-        }
+        )}
         <div className="card-body d-flex flex-column justify-content-between">
           {collection && (
-            <Link className="linkPointer" to={`/collection/${collection.slug}`}>
-              <h6 className="card-title mt-auto fw-normal" style={{fontSize: '12px', color: getTheme(user.theme).colors.textColor4}}>{collection.name}</h6>
+            <Link className="linkPointer" href={`/collection/${collection.slug}`}>
+              <h6
+                className="card-title mt-auto fw-normal"
+                style={{ fontSize: '12px', color: getTheme(user.theme).colors.textColor4 }}
+              >
+                {collection.name}
+              </h6>
             </Link>
           )}
-          <Link className="linkPointer" to={`/collection/${listing.nftAddress}/${listing.nftId}`}>
+          <Link className="linkPointer" href={`/collection/${listing.nftAddress}/${listing.nftId}`}>
             <h6 className="card-title mt-auto">{listing.nft.name}</h6>
           </Link>
           <MakeBuy>
-            <div>{ getCorrectPrice(listing.price)} CRO</div>
+            <div>{getCorrectPrice(listing.price)} CRO</div>
           </MakeBuy>
           <MakeOffer>
-            <Link className="linkPointer" to={`/collection/${listing.nftAddress}/${listing.nftId}`}>
+            <Link className="linkPointer" href={`/collection/${listing.nftAddress}/${listing.nftId}`}>
               <Button type="legacy">Buy</Button>
             </Link>
             <div>

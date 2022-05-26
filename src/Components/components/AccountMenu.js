@@ -2,13 +2,14 @@ import React, { memo, useEffect, useState } from 'react';
 import Blockies from 'react-blockies';
 import { useDispatch, useSelector } from 'react-redux';
 import useOnclickOutside from 'react-cool-onclickoutside';
-import { useHistory } from 'react-router-dom';
+import { useRouter } from 'next/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBolt, faImage, faSignOutAlt, faShoppingBag, faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import { toast } from 'react-toastify';
 import MetaMaskOnboarding from '@metamask/onboarding';
 import { Modal, NavLink, Spinner, ModalTitle } from 'react-bootstrap';
 import styled from 'styled-components';
+import ethers from 'ethers';
 
 import {
   connectAccount,
@@ -21,12 +22,10 @@ import {
 } from '../../GlobalState/User';
 import rpcConfig from '../../Assets/networks/rpc_config.json';
 
-import HandHoldingCroIcon from 'src/Assets/images/hand-holding-cro.svg';
-import { getThemeInStorage, setThemeInStorage } from 'src/helpers/storage';
+import { getThemeInStorage, setThemeInStorage } from '../../helpers/storage';
 import { getAllCollections } from '../../GlobalState/collectionsSlice';
 import { fetchMyNFTs } from '../../GlobalState/offerSlice';
-import {isUserBlacklisted, round, shortAddress} from '../../utils';
-import {commify} from "ethers/lib.esm/utils";
+import { isUserBlacklisted, round, shortAddress } from '../../utils';
 
 const BlockiesBadge = styled.div`
   position: absolute;
@@ -50,7 +49,7 @@ const StyledModalTitle = styled(ModalTitle)`
 
 const AccountMenu = function () {
   const dispatch = useDispatch();
-  const history = useHistory();
+  const history = useRouter();
 
   const [showpop, btn_icon_pop] = useState(false);
 
@@ -157,6 +156,9 @@ const AccountMenu = function () {
   }, []);
 
   useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
     let defiLink = localStorage.getItem('DeFiLink_session_storage_extension');
     if (defiLink) {
       try {
@@ -241,7 +243,7 @@ const AccountMenu = function () {
                 <div className="d-flex justify-content-between">
                   {!user.connectingWallet ? (
                     <span className="d-wallet-value">
-                      {user.balance ? <>{commify(round(user.balance, 2))} CRO</> : <>N/A</>}
+                      {user.balance ? <>{ethers.utils.commify(round(user.balance, 2))} CRO</> : <>N/A</>}
                     </span>
                   ) : (
                     <span>
@@ -259,7 +261,9 @@ const AccountMenu = function () {
                     <>
                       {user.marketBalance ? (
                         <>
-                          <span className="d-wallet-value">{commify(round(user.marketBalance, 2))} CRO</span>
+                          <span className="d-wallet-value">
+                            {ethers.utils.commify(round(user.marketBalance, 2))} CRO
+                          </span>
                           {user.marketBalance !== '0.0' && (
                             <button className="btn_menu" title="Withdraw Balance" onClick={withdrawBalance}>
                               {user.withdrawingMarketBalance ? (
@@ -295,7 +299,9 @@ const AccountMenu = function () {
                       <>
                         {user.stakingRewards ? (
                           <>
-                            <span className="d-wallet-value">{commify(round(user.stakingRewards, 2))} CRO</span>
+                            <span className="d-wallet-value">
+                              {ethers.utils.commify(round(user.stakingRewards, 2))} CRO
+                            </span>
 
                             {user.stakingRewards > 0 && (
                               <button
@@ -377,7 +383,7 @@ const AccountMenu = function () {
                 <li className="my-offers-menu-item">
                   <span onClick={() => navigateTo(`/offers`)}>
                     <span>
-                      <img src={HandHoldingCroIcon} alt="handholding-cro" width="14" height="14" />
+                      <img src={'/img/icons/hand-holding-cro.svg'} alt="handholding-cro" width="14" height="14" />
                     </span>
                     <span>My Offers</span>
                   </span>

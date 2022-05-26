@@ -4,7 +4,7 @@ import moment from 'moment';
 
 import config from '../Assets/networks/rpc_config.json';
 import { ERC1155, ERC721, MetaPixelsAbi, SouthSideAntsReadAbi } from '../Contracts/Abis';
-import IPFSGatewayTools from '@pinata/ipfs-gateway-tools/dist/browser';
+// import IPFSGatewayTools from '@pinata/ipfs-gateway-tools/dist/browser';
 import { dataURItoBlob } from '../Store/utils';
 import { SortOption } from '../Components/Models/sort-option.model';
 import { CollectionSortOption } from '../Components/Models/collection-sort-option.model';
@@ -12,7 +12,8 @@ import { FilterOption } from '../Components/Models/filter-option.model';
 import { limitSizeOptions } from '../Components/components/constants/filter-options';
 import {
   caseInsensitiveCompare,
-  convertIpfsResource, findCollectionByAddress,
+  convertIpfsResource,
+  findCollectionByAddress,
   isAntMintPassCollection,
   isMetapixelsCollection,
   isNftBlacklisted,
@@ -23,7 +24,7 @@ import {
 import { getAntMintPassMetadata, getWeirdApesStakingStatus } from './api/chain';
 import { fallbackImageUrl } from './constants';
 
-const gatewayTools = new IPFSGatewayTools();
+let gatewayTools; // = new IPFSGatewayTools();
 const gateway = 'https://mygateway.mypinata.cloud';
 const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
 const knownContracts = config.known_contracts;
@@ -46,7 +47,18 @@ export default api;
 //  just for sortAndFetchListings function
 let abortController = null;
 
-export async function sortAndFetchListings(page, sort, filter, traits, powertraits, search, minPrice, maxPrice, state, pagesize = limitSizeOptions.lg) {
+export async function sortAndFetchListings(
+  page,
+  sort,
+  filter,
+  traits,
+  powertraits,
+  search,
+  minPrice,
+  maxPrice,
+  state,
+  pagesize = limitSizeOptions.lg
+) {
   let query = {
     state: state ?? 0,
     page: page,
@@ -405,8 +417,8 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
           const isSouthSideAnts = isSouthSideAntsCollection(address);
 
           if (knownContract.multiToken) {
-            const ids = knownContract.tokens?.map(t => t.id) ?? [knownContract.id];
-            
+            const ids = knownContract.tokens?.map((t) => t.id) ?? [knownContract.id];
+
             for (const id of ids) {
               let canTransfer = true;
               let canSell = true;
@@ -747,7 +759,7 @@ export async function getUnfilteredListingsForAddress(walletAddress, walletProvi
     //  array of {id, address} wallet nfts
     const quickWallet = await getQuickWallet(walletAddress);
     const walletNfts = quickWallet.data.map((nft) => {
-      return {id:nft.nftId, address:nft.nftAddress}
+      return { id: nft.nftId, address: nft.nftAddress };
     });
 
     const filteredListings = listings
@@ -1063,7 +1075,7 @@ export async function getAuction(hash, index) {
   try {
     let queryString = new URLSearchParams({
       auctionHash: hash,
-      auctionIndex: index
+      auctionIndex: index,
     });
 
     const url = new URL(api.auctions, `${api.baseUrl}`);
@@ -1082,14 +1094,14 @@ export async function getQuickWallet(walletAddress, queryParams = {}) {
 
   const defaultParams = {
     wallet: walletAddress,
-    pageSize: 1000
-  }
+    pageSize: 1000,
+  };
 
   let queryString = new URLSearchParams(defaultParams);
   if (pagingSupported) {
     queryString = new URLSearchParams({
       ...defaultParams,
-      ...queryParams
+      ...queryParams,
     });
   }
 
@@ -1129,7 +1141,7 @@ async function getAllListingsForUser(walletAddress) {
 }
 
 export async function getNftsForAddress2(walletAddress, walletProvider, page) {
-  const quickWallet = await getQuickWallet(walletAddress, {page});
+  const quickWallet = await getQuickWallet(walletAddress, { page });
   if (!quickWallet.data) return [];
 
   const results = quickWallet.data;
@@ -1217,7 +1229,7 @@ export async function getNftsForAddress2(walletAddress, walletProvider, page) {
           console.log(e);
         }
         if (!image) image = fallbackImageUrl;
-        
+
         const video = nft.animation_url ?? (image.split('.').pop() === 'mp4' ? image : null);
 
         let isStaked = false;

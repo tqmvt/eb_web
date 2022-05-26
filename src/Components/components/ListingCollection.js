@@ -1,16 +1,23 @@
 import React, { memo, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import ListingCard from './ListingCard';
-import { init, fetchListings } from '../../GlobalState/marketplaceSlice';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Spinner } from 'react-bootstrap';
+
+import ListingCard from './ListingCard';
+import { init, fetchListings } from '../../GlobalState/marketplaceSlice';
 import { SortOption } from '../Models/sort-option.model';
 
 import HiddenCard from './HiddenCard';
-import {findCollectionByAddress, isMetapixelsCollection} from '../../utils';
+import { findCollectionByAddress, isMetapixelsCollection } from '../../utils';
 import { ListingsFilterOption } from '../Models/listings-filter-option.model';
 
-const ListingCollection = ({ limitSize, showLoadMore = true, collectionId = null, sellerId = null, cacheName = null }) => {
+const ListingCollection = ({
+  limitSize,
+  showLoadMore = true,
+  collectionId = null,
+  sellerId = null,
+  cacheName = null,
+}) => {
   const dispatch = useDispatch();
   const listings = useSelector((state) => state.marketplace.listings);
 
@@ -57,10 +64,9 @@ const ListingCollection = ({ limitSize, showLoadMore = true, collectionId = null
       return;
     }
 
-    dispatch(init(
-      marketplace.cachedSort[cacheName] ?? sortOption,
-      marketplace.cachedFilter[cacheName] ?? filterOption
-    ));
+    dispatch(
+      init(marketplace.cachedSort[cacheName] ?? sortOption, marketplace.cachedFilter[cacheName] ?? filterOption)
+    );
     dispatch(fetchListings());
     // eslint-disable-next-line
   }, [dispatch]);

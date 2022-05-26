@@ -4,7 +4,7 @@ import { Spinner } from 'react-bootstrap';
 
 import OffersRow from './OffersRow';
 import EmptyData from '../EmptyData';
-import { fetchOffersForSingleNFT } from 'src/GlobalState/offerSlice';
+import { fetchOffersForSingleNFT } from '../../../GlobalState/offerSlice';
 
 export const ROW_TYPE = {
   made: 'Made',
@@ -25,7 +25,7 @@ export default function NFTTabOffers({ nftAddress, nftId }) {
   }, []);
 
   return (
-    <div className='listing-tab'>
+    <div className="listing-tab">
       {nftOffers.length > 0 ? (
         nftOffers.map((offer, index) => <OffersRow key={index} data={offer} type={ROW_TYPE.observer} />)
       ) : nftOffersLoading ? (

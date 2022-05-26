@@ -15,7 +15,7 @@ import nftReducer from '../GlobalState/nftSlice';
 import collectionsReducer from '../GlobalState/collectionsSlice';
 import collectionReducer from '../GlobalState/collectionSlice';
 import { appInitializeStateReducer } from '../GlobalState/InitSlice';
-import offerReducer from 'src/GlobalState/offerSlice';
+import offerReducer from '../GlobalState/offerSlice';
 import { user } from '../GlobalState/User';
 
 const rootReducer = combineReducers({
@@ -34,7 +34,8 @@ const rootReducer = combineReducers({
   metaverse: metaverseReducer,
 });
 
-const reduxDevToolsComposeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const reduxDevToolsComposeEnhancers =
+  (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
 
 const sentryEnhancedMiddlewares = applyMiddleware(thunk, createSentryMiddleware(Sentry, {}));
 

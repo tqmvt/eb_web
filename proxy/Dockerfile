@@ -1,45 +1,32 @@
-###################
-### Build image ###
-###################
+FROM ubuntu/nginx:1.18-20.04_beta
 
-FROM node:16 as build
-
-# Install build dependencies for underlying OS
-RUN apt-get update && apt-get install -y g++ build-essential
-
-# Print Node.js & npm versions
-RUN node --version
-RUN npm --version
-
-# Install the dependencies
-WORKDIR /usr/src/app
-COPY package.json ./
-RUN npm install --no-audit
-
-# Build the project
-COPY public ./public
-COPY src ./src
-RUN npm run build
-
-#####################
-### Runtime image ###
-#####################
-
-FROM nginx:latest
-EXPOSE 80
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY conf.d/default.conf /etc/nginx/conf.d/default.conf
+COPY conf.d/web.conf /etc/nginx/conf.d/web.conf
+COPY conf.d/security_headers.conf /etc/nginx/conf.d/security_headers.conf
 
 # Install tools
 RUN apt-get update && apt-get install -y curl procps htop
 
-# Overwrite default NGINX configuration
-RUN rm /etc/nginx/conf.d/default.conf
-COPY proxy/conf.d/frontend.conf /etc/nginx/conf.d/frontend.conf
-COPY proxy/nginx.conf /etc/nginx/nginx.conf
+# Install the NGINX Amplify Agent
+RUN apt-get update \
+    && apt-get install -qqy curl gnupg2 \
+    && echo 'deb https://packages.amplify.nginx.com/py3/ubuntu focal amplify-agent' > /etc/apt/sources.list.d/nginx-amplify.list \
+    && curl -fs https://nginx.org/keys/nginx_signing.key | apt-key add - > /dev/null 2>&1 \
+    && apt-get update \
+    && apt-get install -qqy nginx-amplify-agent \
+    && apt-get purge -qqy gnupg2 \
+    && rm -rf /etc/apt/sources.list.d/nginx-amplify.list \
+    && rm -rf /var/lib/apt/lists/*
 
-# Custom error pages
-COPY proxy/custom_403.html /usr/share/nginx/html
-COPY proxy/custom_404.html /usr/share/nginx/html
-COPY proxy/custom_50x.html /usr/share/nginx/html
+COPY nginx-amplify/agent.conf /etc/amplify-agent/agent.conf
+RUN sed -i='' -e "s|CONFFILE=/etc/amplify-agent/agent.conf|CONFFILE=/etc/amplify-agent/custom/agent.conf|" /etc/init.d/amplify-agent
 
-# Copy required frontend files
-COPY --from=build /usr/src/app/build /usr/share/nginx/html
+# The /entrypoint.sh script will launch nginx and the Amplify Agent.
+# The script honors AMPLIFY_API_KEY and AMPLIFY_IMAGENAME environment
+# variables, and updates /etc/amplify-agent/agent.conf accordingly.
+
+COPY ./entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
