@@ -37,13 +37,13 @@ const MetaverseModal = (props) => {
       </button>
 
       <Modal show={show} fullscreen onHide={handleClose}>
-        <Modal.Header closeButton>
+        <Modal.Header className="modal-background" closeButton>
           <Modal.Title>Metaverse</Modal.Title>
         </Modal.Header>
-        <Modal.Body className="pt-0 pb-0 px-0">
-          <iframe src={metaverseUrl} className="metaverse" allow="microphone; camera; vr; speaker;" title="metaverse" />
+        <Modal.Body className="pt-0 pb-0 px-0 modal-background">
+          <iframe src={metaverseUrl} className="metaverse modal-background" allow="microphone; camera; vr; speaker;" title="metaverse" />
         </Modal.Body>
-        <Modal.Footer>
+        <Modal.Footer className="modal-background">
           <span className="btn-main" onClick={handleClose}>
             Close
           </span>

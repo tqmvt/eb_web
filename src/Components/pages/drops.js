@@ -15,7 +15,7 @@ const Drops = () => {
   });
   return (
     <div>
-      <section style={{ paddingTop: '90px', paddingBottom: '8px', background: 'transparent' }}>
+      <section className="no-top mt-2 pb-2 bg-transparent">
         <div className="d-flex justify-content-center px-5">
           <p className="my-auto me-5">
             Enjoy amazing discounts on drops and 50% off service fees while holding an Ebisu's Bay Founding Member NFT.
