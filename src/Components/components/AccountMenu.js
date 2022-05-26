@@ -9,7 +9,7 @@ import { toast } from 'react-toastify';
 import MetaMaskOnboarding from '@metamask/onboarding';
 import { Modal, NavLink, Spinner, ModalTitle } from 'react-bootstrap';
 import styled from 'styled-components';
-import ethers from 'ethers';
+import { ethers } from 'ethers';
 
 import {
   connectAccount,

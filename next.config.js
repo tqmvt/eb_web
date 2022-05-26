@@ -41,6 +41,23 @@ const nextConfig = {
         destination: '/collection/weird-apes-club',
         permanent: true,
       },
+      {
+        source: '/collection/degen-mad-meerkat',
+        destination: '/collection/mad-meerkat-degen',
+        permanent: true,
+      },
+      {
+        source: '/collection/degen-mad-meerkat/:id',
+        destination: '/collection/mad-meerkat-degen/:id',
+        permanent: true,
+      },
+      {
+        source: '/sales_bot',
+        destination:
+          'https://discord.com/api/oauth2/authorize?client_id=976699886890254356&permissions=269503504&scope=bot%20applications.commands',
+        permanent: false,
+        basePath: false,
+      },
     ];
   },
 };
