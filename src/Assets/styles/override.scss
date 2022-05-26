@@ -490,6 +490,7 @@ canvas {
 }
 
 .navbar {
+  position: relative;
   @media only screen and (max-width: 1199px) {
     &.navbar {
       position: relative;
