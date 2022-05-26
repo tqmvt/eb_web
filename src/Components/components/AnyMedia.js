@@ -44,12 +44,14 @@ export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = tr
               controls={videoProps?.controls}
               className={className}
             />
-          ) : (
+          ) : url ? (
             <Link href={url} target={newTab ? '_blank' : '_self'}>
               <a>
                 <Image image={image} title={title} url={url} className={className} />
               </a>
             </Link>
+          ) : (
+            <Image image={image} title={title} url={url} className={className} />
           )}
         </>
       )}
