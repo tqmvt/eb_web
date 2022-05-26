@@ -4311,7 +4311,7 @@
       "name": "Gold CRN Booster",
       "slug": "gold-crn-booster",
       "multiToken": false,
-      "address": "0xC0D6459d5002A57534e631E204aE6CC87Bed261d",
+      "address": "0x5FA7266A51784ab5C6dC061b4BfdE52541EeC5Ef",
       "onChain": false,
       "listable": false,
       "metadata": {
@@ -4330,7 +4330,7 @@
       "name": "Silver CRN Booster",
       "slug": "silver-crn-booster",
       "multiToken": false,
-      "address": "0x0CDA344D8B6D58C6682cdBfb914FA073492777fe",
+      "address": "0x11A6b2869505031522AFD010398F6e9b8B46c712",
       "onChain": false,
       "listable": false,
       "metadata": {
@@ -4349,7 +4349,7 @@
       "name": "Bronze CRN Booster",
       "slug": "bronze-crn-booster",
       "multiToken": false,
-      "address": "0x21F7C4E6E23b4Fa4a2ca7edE88A55C765e40931e",
+      "address": "0xb8d9584bd690282c1b5940356Add46C8F707F08D",
       "onChain": false,
       "listable": false,
       "metadata": {
@@ -4531,7 +4531,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "The \"We Are Soldiers\" NFTs are just the tip of the iceberg.  We are building an entire ecosystem for the soldiers through metaverse/gaming as well as bringing great additions to your new PFP.  Imagine owning multiple soldiers, super soldiers, weapons, artillery and land",
+        "description": "The \"We Are Soldiers\" NFTs are just the tip of the iceberg.  We are building an entire ecosystem for the soldiers through metaverse/gaming as well as bringing great additions to your new PFP.  Imagine owning multiple soldiers, super soldiers, weapons, artillery and land.",
         "verified": false,
         "avatar": "/img/collections/we-are-soldier/avatar.webp",
         "card": "/img/collections/we-are-soldier/card.webp",
