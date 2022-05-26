@@ -4508,7 +4508,7 @@
       "name": "Looneycorns",
       "slug": "looneycorns",
       "multiToken": false,
-      "address": "",
+      "address": "0xEB850b8F7d00B4FaF242888Bef7EfbF229eb1e41",
       "onChain": false,
       "listable": false,
       "metadata": {
@@ -6731,7 +6731,7 @@
         "twitter": "https://www.twitter.com/looneycornsnft",
         "discord": "https://discord.gg/Tdd9TZRMxn"
       },
-      "address": "",
+      "address": "0xEB850b8F7d00B4FaF242888Bef7EfbF229eb1e41",
       "maxMintPerTx": 10,
       "maxMintPerAddress": 100,
       "totalSupply": 2200,
@@ -6744,7 +6744,8 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false
+      "complete": false,
+      "priceDescription": "Whitelist-only presale for the first hour (limit 3 per address). Public sale after presale ends."
     }
   ],
   "auctions": [
