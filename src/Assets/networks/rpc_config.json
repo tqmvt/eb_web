@@ -4510,7 +4510,7 @@
       "multiToken": false,
       "address": "0xEB850b8F7d00B4FaF242888Bef7EfbF229eb1e41",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "Looneycorns is the first of 5 unique toys/NFTs from the Lost Toy collection. Each toy character represents a childhood favourite that has been lost over time and needs a new home.\n\nEach of the 2,200 Looneycorns NFTs have a different rarity level and to ensure that each one is totally unique, we have also gone the \"extra-mile\" and created over 120 traits which would easily make up a collection of 5,000 NFTs!",
         "verified": true,
