@@ -4175,7 +4175,7 @@ img.img-rounded {
         letter-spacing: normal;
       }
       .subtotal {
-        color: $black;
+        color: $textColor2;
         font-size: 15px;
       }
     }
@@ -5457,4 +5457,8 @@ iframe.metaverse {
 
 .modal-background {
   background: $bgColor1 !important;
+}
+
+.bid-modal-content {
+  display: flex !important;
 }

@@ -6,7 +6,7 @@ import store from '../../Store/store';
 
 function getMetaverseUrl() {
   if (window.location.host === 'localhost:3000') {
-    return 'https://localhost:8080/hub.html?hub_id=QWSxfEv&embed_token=null';
+    return 'https://localhost:8080/hub.html?hub_id=4QPThWJ&embed_token=null';
   }
   if (window.location.host === 'app.ebisusbay.biz') {
     return 'https://metaverse.ebisusbay.biz/?assignRoom=true';
