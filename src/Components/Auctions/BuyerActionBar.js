@@ -198,7 +198,7 @@ const BuyerActionBar = () => {
       ) {
         devLog(`[AUCTIONS] Caught Bid event for Auction:     ${auctionHash}-${auctionIndex}`, bidIndex, sender, amount);
         try {
-          let price: string = ethers.utils.formatEther(amount);
+          let price = ethers.utils.formatEther(amount);
           let bidder = sender;
           dispatch(updateAuctionFromBidEvent(price));
         } catch (error) {
