@@ -426,7 +426,7 @@ const BuyerActionBar = () => {
           </div>
         </Card.Body>
         {user.address && !isAuctionOwner && !awaitingAcceptance && ![auctionState.SOLD, auctionState.CANCELLED].includes(listing.state) && (
-          <Card.Footer className="text-center mx-auto">
+          <Card.Footer className="text-center mx-auto border-0 bg-transparent">
             <div className="row auction-box-footer" style={{fontSize:'12px'}}>
               Available MAD to spend: {tokenBalance ?? 0} MAD
             </div>
