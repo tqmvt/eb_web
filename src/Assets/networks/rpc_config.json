@@ -2749,7 +2749,7 @@
       "multiToken": false,
       "address": "0x1fE73D4Cc73ea313056E41fe82E58d59D29c6592",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "verified": true,
         "avatar": "/img/collections/nobuddies/avatar.webp",
