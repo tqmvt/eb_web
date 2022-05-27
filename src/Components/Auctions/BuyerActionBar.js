@@ -134,6 +134,7 @@ const BuyerActionBar = () => {
         const receipt = await fn(writeContract);
         toast.success(createSuccessfulTransactionToastContent(receipt.transactionHash));
         //dispatch(getAuctionDetails(listing.getAuctionId));
+        await refreshMadBalance();
       } catch (error) {
         if (error.data) {
           toast.error(error.data.message);
@@ -156,6 +157,15 @@ const BuyerActionBar = () => {
     }
   };
 
+  const refreshMadBalance = async () => {
+    if (user.provider) {
+      const tokenAddress = config.known_tokens.mad.address;
+      let tokenContract = await new ethers.Contract(tokenAddress, ERC20, user.provider.getSigner());
+      const balance = await tokenContract.balanceOf(user.address);
+      setTokenBalance(ethers.utils.formatEther(balance));
+    }
+  }
+
   useEffect(() => {
     setAwaitingAcceptance(listing.state === auctionState.ACTIVE && listing.getEndAt < Date.now());
     setIsComplete(listing.state === auctionState.SOLD || listing.state === auctionState.CANCELLED);
@@ -171,15 +181,7 @@ const BuyerActionBar = () => {
   }, [user.provider]);
 
   useEffect(() => {
-    async function func() {
-      if (user.provider) {
-        const tokenAddress = config.known_tokens.mad.address;
-        let tokenContract = await new ethers.Contract(tokenAddress, ERC20, user.provider.getSigner());
-        const balance = await tokenContract.balanceOf(user.address);
-        setTokenBalance(ethers.utils.formatEther(balance));
-      }
-    }
-    func();
+    refreshMadBalance();
   }, [user.provider])
 
   useEffect(() => {
@@ -396,10 +398,12 @@ const BuyerActionBar = () => {
               </>
             )}
           </div>
-          <div className="row auction-box-footer">
+        </Card.Body>
+        <Card.Footer className="text-center mx-auto">
+          <div className="row auction-box-footer" style={{fontSize:'12px'}}>
             Available MAD to spend: {tokenBalance} MAD
           </div>
-        </Card.Body>
+        </Card.Footer>
       </Card>
 
       {openBidDialog && user && (
