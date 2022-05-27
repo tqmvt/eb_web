@@ -15,7 +15,7 @@ const MetaverseBidModal = () => {
 
   return (
     <>
-      <Modal show={bidDialogVisible} fullscreen onHide={handleClose} contentClassName="wraper">
+      <Modal show={bidDialogVisible} fullscreen onHide={handleClose} contentClassName="wraper bid-modal-content">
         <Modal.Header closeButton>
           <Modal.Title>Make Auction</Modal.Title>
         </Modal.Header>
