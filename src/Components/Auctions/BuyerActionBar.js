@@ -29,6 +29,7 @@ const BuyerActionBar = () => {
   // const [executingIncreaseBid, setExecutingIncreaseBid] = useState(false);
   const [executingWithdraw, setExecutingWithdraw] = useState(false);
   const [executingAcceptBid, setExecutingAcceptBid] = useState(false);
+  const [executingCancelBid, setExecutingCancelBid] = useState(false);
   const [executingApproveContract, setExecutingApproveContract] = useState(false);
 
   const user = useSelector((state) => state.user);
@@ -90,6 +91,15 @@ const BuyerActionBar = () => {
       return (await writeContract.accept(listing.getAuctionHash, listing.getAuctionIndex)).wait();
     });
     setExecutingAcceptBid(false);
+  };
+
+  const executeCancelBid = () => async () => {
+    setExecutingCancelBid(true);
+    await runFunction(async (writeContract) => {
+      console.log('cancelling auction...', listing.getAuctionIndex, listing.getAuctionHash);
+      return (await writeContract.cancel(listing.getAuctionHash, listing.getAuctionIndex)).wait();
+    });
+    setExecutingCancelBid(false);
   };
 
   const executeApproveContract = async () => {
@@ -253,18 +263,38 @@ const BuyerActionBar = () => {
       <div className="d-flex">
         {inAcceptanceState && (
           <div className="flex-fill mx-1">
-            <Button type="legacy" className="w-100" onClick={executeAcceptBid()} disabled={executingAcceptBid}>
-              {executingAcceptBid ? (
-                <>
-                  Accepting
-                  <Spinner animation="border" role="status" size="sm" className="ms-1">
-                    <span className="visually-hidden">Loading...</span>
-                  </Spinner>
-                </>
-              ) : (
-                <>Accept Auction</>
-              )}
-            </Button>
+            {bidHistory.length > 0 ? (
+              <Button type="legacy" className="w-100" onClick={executeAcceptBid()} disabled={executingAcceptBid}>
+                {executingAcceptBid ? (
+                  <>
+                    Accepting
+                    <Spinner animation="border" role="status" size="sm" className="ms-1">
+                      <span className="visually-hidden">Loading...</span>
+                    </Spinner>
+                  </>
+                ) : (
+                  <>Accept Auction</>
+                )}
+              </Button>
+            ) : (
+              <>
+                <Button type="legacy" className="w-100" onClick={executeCancelBid()} disabled={executingCancelBid}>
+                  {executingCancelBid ? (
+                    <>
+                      Cancelling
+                      <Spinner animation="border" role="status" size="sm" className="ms-1">
+                        <span className="visually-hidden">Loading...</span>
+                      </Spinner>
+                    </>
+                  ) : (
+                    <>Cancel Auction</>
+                  )}
+                </Button>
+                <div className="text-center mx-auto auction-box-footer mt-2" style={{fontSize:'12px'}}>
+                  No bids were made
+                </div>
+              </>
+            )}
           </div>
         )}
         {listing.state === auctionState.ACTIVE && !isHighestBidder && !hasBeenOutbid && !awaitingAcceptance && !isAuctionOwner && (
@@ -396,7 +426,7 @@ const BuyerActionBar = () => {
           </div>
         </Card.Body>
         {user.address && !isAuctionOwner && !awaitingAcceptance && ![auctionState.SOLD, auctionState.CANCELLED].includes(listing.state) && (
-          <Card.Footer className="text-center mx-auto">
+          <Card.Footer className="text-center mx-auto border-0 bg-transparent">
             <div className="row auction-box-footer" style={{fontSize:'12px'}}>
               Available MAD to spend: {tokenBalance ?? 0} MAD
             </div>
