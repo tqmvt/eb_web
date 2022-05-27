@@ -207,10 +207,12 @@ const BuyerActionBar = () => {
   const handleChangeBidAmount = (event) => {
     const { value } = event.target;
 
-    const newBid = parseFloat(value);
+    const newBid = !isNaN(parseFloat(value)) ? parseFloat(value) : 0;
     setBidAmount(newBid);
 
-    if (newBid < minBid) {
+    if (tokenBalance < newBid) {
+      setBidError(`Not enough MAD`);
+    } else if (newBid < minBid) {
       setBidError(`Bid must be at least ${minBid} MAD`);
     } else {
       setBidError(false);
@@ -220,11 +222,13 @@ const BuyerActionBar = () => {
   const handleChangeRebidAmount = (event) => {
     const { value } = event.target;
 
-    const newBid = parseFloat(value);
+    const newBid = !isNaN(parseFloat(value)) ? parseFloat(value) : 0;
     setRebidAmount(newBid);
     const minRebid = minBid - myBid();
 
-    if (newBid < minRebid) {
+    if (tokenBalance < newBid) {
+      setBidError(`Not enough MAD`);
+    } else if (newBid < minRebid) {
       setBidError(`Bid must be increased by at least ${minRebid} MAD`);
     } else {
       setBidError(false);
