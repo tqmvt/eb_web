@@ -3505,7 +3505,7 @@
       "name": "Employee of the Month",
       "slug": "employee-of-the-month",
       "multiToken": false,
-      "address": "",
+      "address": "0x37ad79E6FE8FF2ef992191f1D16cbE170C5f9921",
       "onChain": false,
       "listable": true,
       "metadata": {
@@ -6312,7 +6312,7 @@
         "twitter": "https://twitter.com/deplone3",
         "cdc": "https://crypto.com/nft/profile/deplone"
       },
-      "address": "",
+      "address": "0x37ad79E6FE8FF2ef992191f1D16cbE170C5f9921",
       "maxMintPerTx": 3,
       "maxMintPerAddress": 100,
       "totalSupply": 62,
