@@ -3,8 +3,10 @@ import { Accordion, Form } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
-import { humanize, mapAttributeString } from '../../utils';
-import { filterListingsByTrait } from '../../GlobalState/collectionSlice';
+
+import { humanize, mapAttributeString } from '../../../utils';
+import { filterListingsByTrait } from '../../../GlobalState/collectionSlice';
+import styles from './filters.module.scss';
 
 const PowertraitsFilter = ({ address }) => {
   const dispatch = useDispatch();
@@ -117,7 +119,7 @@ const PowertraitsFilter = ({ address }) => {
           </div>
         )}
       </div>
-      <Accordion id="powertraits" className={hideAttributes ? 'd-none' : ''}>
+      <Accordion id="powertraits" className={`${hideAttributes ? 'd-none' : ''} ${styles.powertraits}`}>
         {viewPowertraitsList()
           .sort((a, b) => (a[0].toLowerCase() > b[0].toLowerCase() ? 1 : -1))
           .map(([traitCategoryName, traitCategoryValues], key) => (

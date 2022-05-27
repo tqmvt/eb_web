@@ -1,15 +1,15 @@
-#traits {
+.traits {
   display: block;
 }
-#powertraits {
+.powertraits {
   display: block;
 }
 
 @media only screen and (max-width: 768px) {
-  #traits {
+  .traits {
     display: none;
   }
-  #powertraits {
+  .powertraits {
     display: none;
   }
 }

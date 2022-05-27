@@ -6,6 +6,7 @@ import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 import { filterListingsByTrait } from '../../GlobalState/collectionSlice';
 import { humanize, mapAttributeString } from '../../utils';
+import styles from './PowertraitsFilter/filters.module.scss';
 
 const TraitsFilter = ({ address }) => {
   const dispatch = useDispatch();
@@ -118,7 +119,7 @@ const TraitsFilter = ({ address }) => {
           </div>
         )}
       </div>
-      <Accordion id="traits" className={hideAttributes ? 'd-none' : ''}>
+      <Accordion id="traits" className={`${hideAttributes ? 'd-none' : ''} ${styles.traits}`}>
         {viewTraitsList()
           .sort((a, b) => (a[0].toLowerCase() > b[0].toLowerCase() ? 1 : -1))
           .map(([traitCategoryName, traitCategoryValues], key) => (
