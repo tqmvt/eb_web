@@ -3,7 +3,9 @@ import {CloseButton, Modal} from 'react-bootstrap';
 import MetaverseBidModal from './MetaverseBidModal';
 import { showBidDialog } from '../../GlobalState/metaverseSlice';
 import store from '../../Store/store';
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {connectAccount, onLogout} from "../../GlobalState/User";
+import Button from "./Button";
 
 function getMetaverseUrl() {
   if (window.location.host === 'localhost:3000') {
@@ -23,13 +25,19 @@ function getMetaverseUrl() {
 
 const MetaverseModal = (props) => {
   const { id } = props;
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
   const userTheme = useSelector((state) => state.user.theme);
+
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const handleLogout = () => dispatch(onLogout());
+  const handleLogin = () => dispatch(connectAccount());
 
   const metaverseUrl = getMetaverseUrl();
+
 
   return (
     <>
@@ -46,9 +54,9 @@ const MetaverseModal = (props) => {
           <iframe src={metaverseUrl} className="metaverse modal-background" allow="microphone; camera; vr; speaker;" title="metaverse" />
         </Modal.Body>
         <Modal.Footer className="modal-background">
-          <span className="btn-main" onClick={handleClose}>
+          <Button type="legacy" onClick={handleClose}>
             Close
-          </span>
+          </Button>
           <MetaverseBidModal id={id} />
         </Modal.Footer>
       </Modal>
