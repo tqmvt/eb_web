@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {constants, ethers} from 'ethers';
+import {constants, Contract, ethers} from 'ethers';
 import { Card, Form, Spinner } from 'react-bootstrap';
 import MetaMaskOnboarding from '@metamask/onboarding';
 import { toast } from 'react-toastify';
@@ -8,9 +8,9 @@ import Countdown from 'react-countdown';
 
 import config from '../../Assets/networks/rpc_config.json';
 import AuctionContract from '../../Contracts/DegenAuction.json';
-import {caseInsensitiveCompare, createSuccessfulTransactionToastContent, isEventValidNumber} from '../../utils';
+import {caseInsensitiveCompare, createSuccessfulTransactionToastContent, devLog, isEventValidNumber} from '../../utils';
 import { auctionState } from '../../core/api/enums';
-import { getAuctionDetails } from '../../GlobalState/auctionSlice';
+import {getAuctionDetails, updateAuctionFromBidEvent} from '../../GlobalState/auctionSlice';
 import { chainConnect, connectAccount } from '../../GlobalState/User';
 import {ERC20, ERC721} from "../../Contracts/Abis";
 import {formatEther, parseEther} from "ethers/lib/utils";
@@ -42,11 +42,17 @@ const BuyerActionBar = () => {
   const [openBidDialog, setOpenBidDialog] = useState(false);
   const [openRebidDialog, setOpenRebidDialog] = useState(false);
 
-  const showBidDialog = () => async () => {
+  const showBidDialog = () => {
     setOpenBidDialog(true);
   };
-  const showIncreaseBidDialog = () => async () => {
+  const hideBidDialog = () => {
+    setOpenBidDialog(false);
+  };
+  const showIncreaseBidDialog = () => {
     setOpenRebidDialog(true);
+  };
+  const hideIncreaseBidDialog = () => {
+    setOpenRebidDialog(false);
   };
 
   const executeBid = (amount) => async () => {
@@ -59,6 +65,8 @@ const BuyerActionBar = () => {
       ).wait();
     });
     setExecutingBid(false);
+    hideBidDialog();
+    hideIncreaseBidDialog();
   };
 
   const executeWithdrawBid = () => async () => {
@@ -111,7 +119,7 @@ const BuyerActionBar = () => {
         await ensureApproved(writeContract);
         const receipt = await fn(writeContract);
         toast.success(createSuccessfulTransactionToastContent(receipt.transactionHash));
-        dispatch(getAuctionDetails(listing.getAuctionId));
+        //dispatch(getAuctionDetails(listing.getAuctionId));
       } catch (error) {
         if (error.data) {
           toast.error(error.data.message);
@@ -140,6 +148,24 @@ const BuyerActionBar = () => {
     setIsComplete(listing.state === auctionState.SOLD || listing.state === auctionState.CANCELLED);
     setIsAuctionOwner(caseInsensitiveCompare(listing.seller, user.address));
   }, [listing, user]);
+
+  const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
+  const contract = new Contract(config.mm_auction_contract, AuctionContract.abi, readProvider);
+  useEffect(() => {
+    contract.on('Bid', async (auctionHash, auctionIndex, bidIndex, sender, amount) => {
+      devLog('checking', listing.getAuctionIndex, auctionIndex);
+      if (caseInsensitiveCompare(listing.getAuctionHash, auctionHash) && auctionIndex.toString() === listing.getAuctionIndex.toString()) {
+        devLog(`[AUCTIONS] Caught Bid event for Auction:     ${auctionHash}-${auctionIndex}`, bidIndex, sender, amount);
+        try {
+          let price: string = ethers.utils.formatEther(amount);
+          let bidder = sender;
+          dispatch(updateAuctionFromBidEvent(price));
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    })
+  }, []);
 
   const myBid = () => {
     return bidHistory.find((b) => caseInsensitiveCompare(b.bidder, user.address))?.price ?? 0;
@@ -178,7 +204,7 @@ const BuyerActionBar = () => {
       <>
         {listing.state === auctionState.ACTIVE && !isHighestBidder && !hasBeenOutbid && !awaitingAcceptance && (
           <span className="my-auto">
-            <button className="btn-main lead mr15" onClick={showBidDialog()} disabled={executingBid}>
+            <button className="btn-main lead mr15" onClick={showBidDialog} disabled={executingBid}>
               Place Bid
             </button>
           </span>
@@ -201,12 +227,12 @@ const BuyerActionBar = () => {
         )}
         {listing.state === auctionState.ACTIVE && hasBeenOutbid && !awaitingAcceptance && (
           <span className="my-auto ms-2">
-            <button className="btn-main lead mr15" onClick={showIncreaseBidDialog()} disabled={executingBid}>
+            <button className="btn-main lead mr15" onClick={showIncreaseBidDialog} disabled={executingBid}>
               Increase Bid
             </button>
           </span>
         )}
-        {listing.state === auctionState.ACTIVE && awaitingAcceptance && isHighestBidder && (
+        {listing.state === auctionState.ACTIVE && awaitingAcceptance && (isHighestBidder || isAuctionOwner) && (
           <span className="my-auto">
             <button className="btn-main lead mr15" onClick={executeAcceptBid()} disabled={executingAcceptBid}>
               {executingAcceptBid ? (
@@ -296,7 +322,7 @@ const BuyerActionBar = () => {
       {openBidDialog && user && (
         <div className="checkout">
           <div className="maincheckout">
-            <button className="btn-close" onClick={() => setOpenBidDialog(false)}>
+            <button className="btn-close" onClick={hideBidDialog}>
               x
             </button>
             <div className="heading">
@@ -354,7 +380,7 @@ const BuyerActionBar = () => {
       {openRebidDialog && user && (
         <div className="checkout">
           <div className="maincheckout">
-            <button className="btn-close" onClick={() => setOpenRebidDialog(false)}>
+            <button className="btn-close" onClick={hideIncreaseBidDialog}>
               x
             </button>
             <div className="heading">
