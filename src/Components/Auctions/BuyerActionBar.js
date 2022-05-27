@@ -267,21 +267,21 @@ const BuyerActionBar = () => {
             </Button>
           </div>
         )}
-        {listing.state === auctionState.ACTIVE && !isHighestBidder && !hasBeenOutbid && !awaitingAcceptance && (
+        {listing.state === auctionState.ACTIVE && !isHighestBidder && !hasBeenOutbid && !awaitingAcceptance && !isAuctionOwner && (
           <div className="flex-fill mx-1">
             <Button type="legacy" className="w-100" onClick={showBidDialog} disabled={executingBid}>
               Place Bid
             </Button>
           </div>
         )}
-        {listing.state === auctionState.ACTIVE && hasBeenOutbid && !awaitingAcceptance && (
+        {listing.state === auctionState.ACTIVE && hasBeenOutbid && !awaitingAcceptance && !isAuctionOwner && (
           <div className="flex-fill mx-1">
             <Button type="legacy" className="w-100" onClick={showIncreaseBidDialog} disabled={executingBid}>
               Increase Bid
             </Button>
           </div>
         )}
-        {hasBeenOutbid && (
+        {hasBeenOutbid && !isAuctionOwner && (
           <div className="flex-fill mx-1">
             <Button type="legacy-outlined" className="w-100" onClick={executeWithdrawBid()} disabled={executingWithdraw}>
               {executingWithdraw ? (
@@ -341,7 +341,7 @@ const BuyerActionBar = () => {
             </div>
           </div>
           <div className="row mt-2">
-            {((!isAuctionOwner && !isComplete) ||
+            {((!isComplete) ||
               (awaitingAcceptance && isHighestBidder) ||
               (myBid() > 0 && !isHighestBidder)) && (
               <>
@@ -395,7 +395,7 @@ const BuyerActionBar = () => {
             )}
           </div>
         </Card.Body>
-        {user.address && (
+        {user.address && !isAuctionOwner && !awaitingAcceptance && ![auctionState.SOLD, auctionState.CANCELLED].includes(listing.state) && (
           <Card.Footer className="text-center mx-auto">
             <div className="row auction-box-footer" style={{fontSize:'12px'}}>
               Available MAD to spend: {tokenBalance ?? 0} MAD
