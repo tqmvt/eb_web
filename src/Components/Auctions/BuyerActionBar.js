@@ -14,6 +14,7 @@ import {getAuctionDetails, updateAuctionFromBidEvent} from '../../GlobalState/au
 import { chainConnect, connectAccount } from '../../GlobalState/User';
 import {ERC20, ERC721} from "../../Contracts/Abis";
 import {formatEther, parseEther} from "ethers/lib/utils";
+import Button from "../components/Button";
 
 const BuyerActionBar = () => {
   const dispatch = useDispatch();
@@ -198,6 +199,17 @@ const BuyerActionBar = () => {
     }
   };
 
+  const connectWalletPressed = () => {
+    if (user.needsOnboard) {
+      const onboarding = new MetaMaskOnboarding();
+      onboarding.startOnboarding();
+    } else if (!user.address) {
+      dispatch(connectAccount());
+    } else if (!user.correctChain) {
+      dispatch(chainConnect());
+    }
+  };
+
   const ActionButtons = () => {
     const hasBeenOutbid = myBid() > 0 && !isHighestBidder;
     return (
@@ -294,6 +306,8 @@ const BuyerActionBar = () => {
               )}
               {listing.state === auctionState.CANCELLED && <>AUCTION HAS BEEN CANCELLED</>}
             </div>
+          </div>
+          <div className="row mt-2">
             {((!isAuctionOwner && !isComplete) ||
               (awaitingAcceptance && isHighestBidder) ||
               (myBid() > 0 && !isHighestBidder)) && (
@@ -305,7 +319,13 @@ const BuyerActionBar = () => {
                         {user.correctChain ? <ActionButtons /> : <span className="my-auto">Switch network to bid</span>}
                       </>
                     ) : (
-                      <span className="my-auto">Connect wallet above to place bid</span>
+                      <div className="col">
+                        <div className="d-flex flex-column">
+                          <Button type="legacy" style={{ width: 'auto' }} onClick={connectWalletPressed}>
+                            Connect to bid
+                          </Button>
+                        </div>
+                      </div>
                     )}
                   </>
                 ) : (
