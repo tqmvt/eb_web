@@ -246,62 +246,54 @@ const BuyerActionBar = () => {
     const hasBeenOutbid = myBid() > 0 && !isHighestBidder;
     const inAcceptanceState = listing.state === auctionState.ACTIVE && awaitingAcceptance && (isHighestBidder || isAuctionOwner);
     return (
-      <>
-        {inAcceptanceState ? (
-          <div className="col">
-            <div className="d-flex flex-column">
-              <Button type="legacy" style={{ width: 'auto' }} onClick={executeAcceptBid()} disabled={executingAcceptBid}>
-                {executingAcceptBid ? (
-                  <>
-                    Accepting
-                    <Spinner animation="border" role="status" size="sm" className="ms-1">
-                      <span className="visually-hidden">Loading...</span>
-                    </Spinner>
-                  </>
-                ) : (
-                  <>Accept Auction</>
-                )}
-              </Button>
-            </div>
+      <div className="d-flex">
+        {inAcceptanceState && (
+          <div className="flex-fill mx-1">
+            <Button type="legacy" className="w-100" onClick={executeAcceptBid()} disabled={executingAcceptBid}>
+              {executingAcceptBid ? (
+                <>
+                  Accepting
+                  <Spinner animation="border" role="status" size="sm" className="ms-1">
+                    <span className="visually-hidden">Loading...</span>
+                  </Spinner>
+                </>
+              ) : (
+                <>Accept Auction</>
+              )}
+            </Button>
           </div>
-        ) : (
-          <>
-            <div className="col-12 col-sm-6">
-              <div className="d-flex flex-column">
-                {listing.state === auctionState.ACTIVE && !isHighestBidder && !hasBeenOutbid && !awaitingAcceptance && (
-                  <Button type="legacy" style={{ width: 'auto' }} onClick={showBidDialog} disabled={executingBid}>
-                    Place Bid
-                  </Button>
-                )}
-
-                {listing.state === auctionState.ACTIVE && hasBeenOutbid && !awaitingAcceptance && (
-                  <Button type="legacy" style={{ width: 'auto' }} onClick={showIncreaseBidDialog} disabled={executingBid}>
-                    Increase Bid
-                  </Button>
-                )}
-              </div>
-            </div>
-            <div className="col-12 col-sm-6 mt-3 mt-sm-0">
-              <div className="d-flex flex-column">
-                {hasBeenOutbid && (
-                  <Button type="legacy-outlined" style={{ width: 'auto' }} onClick={executeWithdrawBid()} disabled={executingWithdraw}>
-                    {executingWithdraw ? (
-                      <>
-                        Withdrawing
-                        <Spinner animation="border" role="status" size="sm" className="ms-1">
-                          <span className="visually-hidden">Loading...</span>
-                        </Spinner>
-                      </>
-                    ) : (
-                      <>Withdraw Bid</>
-                    )}
-                  </Button>
-                )}
-              </div>
-            </div>
-          </>
         )}
-      </>
+        {listing.state === auctionState.ACTIVE && !isHighestBidder && !hasBeenOutbid && !awaitingAcceptance && (
+          <div className="flex-fill mx-1">
+            <Button type="legacy" className="w-100" onClick={showBidDialog} disabled={executingBid}>
+              Place Bid
+            </Button>
+          </div>
+        )}
+        {listing.state === auctionState.ACTIVE && hasBeenOutbid && !awaitingAcceptance && (
+          <div className="flex-fill mx-1">
+            <Button type="legacy" className="w-100" onClick={showIncreaseBidDialog} disabled={executingBid}>
+              Increase Bid
+            </Button>
+          </div>
+        )}
+        {hasBeenOutbid && (
+          <div className="flex-fill mx-1">
+            <Button type="legacy-outlined" className="w-100" onClick={executeWithdrawBid()} disabled={executingWithdraw}>
+              {executingWithdraw ? (
+                <>
+                  Withdrawing
+                  <Spinner animation="border" role="status" size="sm" className="ms-1">
+                    <span className="visually-hidden">Loading...</span>
+                  </Spinner>
+                </>
+              ) : (
+                <>Withdraw Bid</>
+              )}
+            </Button>
+          </div>
+        )}
+      </div>
     );
   };
 
@@ -358,9 +350,9 @@ const BuyerActionBar = () => {
                             {isApproved ? (
                               <ActionButtons />
                             ) : (
-                              <div className="col">
-                                <div className="d-flex flex-column">
-                                  <Button type="legacy" style={{ width: 'auto' }} onClick={executeApproveContract} disabled={executingApproveContract}>
+                              <div className="d-flex">
+                                <div className="flex-fill">
+                                  <Button type="legacy" className="w-100" onClick={executeApproveContract} disabled={executingApproveContract}>
                                     {executingApproveContract ? (
                                       <>
                                         Approving...
@@ -381,9 +373,9 @@ const BuyerActionBar = () => {
                         )}
                       </>
                     ) : (
-                      <div className="col">
-                        <div className="d-flex flex-column">
-                          <Button type="legacy" style={{ width: 'auto' }} onClick={connectWalletPressed}>
+                      <div className="d-flex">
+                        <div className="flex-fill">
+                          <Button type="legacy" className="w-100" onClick={connectWalletPressed}>
                             Connect to bid
                           </Button>
                         </div>
