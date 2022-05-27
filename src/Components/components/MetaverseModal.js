@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Modal } from 'react-bootstrap';
+import {CloseButton, Modal} from 'react-bootstrap';
 import MetaverseBidModal from './MetaverseBidModal';
 import { showBidDialog } from '../../GlobalState/metaverseSlice';
 import store from '../../Store/store';
+import {useSelector} from "react-redux";
 
 function getMetaverseUrl() {
   if (window.location.host === 'localhost:3000') {
@@ -22,7 +23,7 @@ function getMetaverseUrl() {
 
 const MetaverseModal = (props) => {
   const { id } = props;
-
+  const userTheme = useSelector((state) => state.user.theme);
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -37,8 +38,9 @@ const MetaverseModal = (props) => {
       </button>
 
       <Modal show={show} fullscreen onHide={handleClose}>
-        <Modal.Header className="modal-background" closeButton>
+        <Modal.Header className="modal-background">
           <Modal.Title>Mad Meerkat Metaverse Auction</Modal.Title>
+          <CloseButton variant={userTheme === 'dark' ? 'white' : ''} onClick={handleClose} />
         </Modal.Header>
         <Modal.Body className="pt-0 pb-0 px-0 modal-background">
           <iframe src={metaverseUrl} className="metaverse modal-background" allow="microphone; camera; vr; speaker;" title="metaverse" />
