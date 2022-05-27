@@ -2749,7 +2749,7 @@
       "multiToken": false,
       "address": "0x1fE73D4Cc73ea313056E41fe82E58d59D29c6592",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "verified": true,
         "avatar": "/img/collections/nobuddies/avatar.webp",
@@ -6319,7 +6319,7 @@
       "cost": "350",
       "memberCost": "250",
       "foundersOnly": false,
-      "start": null,
+      "start": 1653940800000,
       "end": null,
       "referral": false,
       "is1155": false,
@@ -6744,7 +6744,7 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false,
+      "complete": true,
       "priceDescription": "Whitelist-only presale for the first hour (limit 3 per address). Public sale after presale ends."
     }
   ],
