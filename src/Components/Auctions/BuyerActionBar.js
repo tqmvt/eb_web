@@ -391,11 +391,13 @@ const BuyerActionBar = () => {
             )}
           </div>
         </Card.Body>
-        <Card.Footer className="text-center mx-auto">
-          <div className="row auction-box-footer" style={{fontSize:'12px'}}>
-            Available MAD to spend: {tokenBalance} MAD
-          </div>
-        </Card.Footer>
+        {user.address && (
+          <Card.Footer className="text-center mx-auto">
+            <div className="row auction-box-footer" style={{fontSize:'12px'}}>
+              Available MAD to spend: {tokenBalance ?? 0} MAD
+            </div>
+          </Card.Footer>
+        )}
       </Card>
 
       {openBidDialog && user && (
