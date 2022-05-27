@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {constants, ethers} from 'ethers';
+import { constants, Contract, ethers } from 'ethers';
 import { Card, Form, Spinner } from 'react-bootstrap';
 import MetaMaskOnboarding from '@metamask/onboarding';
 import { toast } from 'react-toastify';
@@ -8,12 +8,17 @@ import Countdown from 'react-countdown';
 
 import config from '../../Assets/networks/rpc_config.json';
 import AuctionContract from '../../Contracts/DegenAuction.json';
-import {caseInsensitiveCompare, createSuccessfulTransactionToastContent, isEventValidNumber} from '../../utils';
+import {
+  caseInsensitiveCompare,
+  createSuccessfulTransactionToastContent,
+  devLog,
+  isEventValidNumber,
+} from '../../utils';
 import { auctionState } from '../../core/api/enums';
-import { getAuctionDetails } from '../../GlobalState/auctionSlice';
+import { updateAuctionFromBidEvent } from '../../GlobalState/auctionSlice';
 import { chainConnect, connectAccount } from '../../GlobalState/User';
-import {ERC20, ERC721} from "../../Contracts/Abis";
-import {formatEther, parseEther} from "ethers/lib/utils";
+import { ERC20 } from '../../Contracts/Abis';
+import Button from '../components/Button';
 
 const BuyerActionBar = () => {
   const dispatch = useDispatch();
@@ -41,12 +46,23 @@ const BuyerActionBar = () => {
   });
   const [openBidDialog, setOpenBidDialog] = useState(false);
   const [openRebidDialog, setOpenRebidDialog] = useState(false);
+  const [isApproved, setIsApproved] = useState(false);
+  const [tokenBalance, setTokenBalance] = useState(null);
 
-  const showBidDialog = () => async () => {
+  const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
+  const readContract = new Contract(config.mm_auction_contract, AuctionContract.abi, readProvider);
+
+  const showBidDialog = () => {
     setOpenBidDialog(true);
   };
-  const showIncreaseBidDialog = () => async () => {
+  const hideBidDialog = () => {
+    setOpenBidDialog(false);
+  };
+  const showIncreaseBidDialog = () => {
     setOpenRebidDialog(true);
+  };
+  const hideIncreaseBidDialog = () => {
+    setOpenRebidDialog(false);
   };
 
   const executeBid = (amount) => async () => {
@@ -54,11 +70,11 @@ const BuyerActionBar = () => {
     await runFunction(async (writeContract) => {
       let bid = ethers.utils.parseUnits(amount.toString());
       console.log('placing bid...', listing.getAuctionIndex, listing.getAuctionHash, bid.toString());
-      return (
-        await writeContract.bid(listing.getAuctionHash, listing.getAuctionIndex, bid)
-      ).wait();
+      return (await writeContract.bid(listing.getAuctionHash, listing.getAuctionIndex, bid)).wait();
     });
     setExecutingBid(false);
+    hideBidDialog();
+    hideIncreaseBidDialog();
   };
 
   const executeWithdrawBid = () => async () => {
@@ -73,35 +89,48 @@ const BuyerActionBar = () => {
   const executeAcceptBid = () => async () => {
     setExecutingAcceptBid(true);
     await runFunction(async (writeContract) => {
-      console.log('accepting highest bid...', listing.getAuctionIndex, listing.getAuctionHash, listing.getHighestBidder);
+      console.log(
+        'accepting highest bid...',
+        listing.getAuctionIndex,
+        listing.getAuctionHash,
+        listing.getHighestBidder
+      );
       return (await writeContract.accept(listing.getAuctionHash, listing.getAuctionIndex)).wait();
     });
     setExecutingAcceptBid(false);
   };
 
-  const executeApproveContract = () => async () => {
+  const executeApproveContract = async () => {
     setExecutingApproveContract(true);
     await runFunction(async (auctionContract) => {
-      await ensureApproved(auctionContract);
+      setIsApproved(true);
+      return { transactionHash: '' };
     });
     setExecutingApproveContract(false);
   };
 
   const ensureApproved = async (auctionContract) => {
-    const tokenAddress = config.known_tokens.mad.address;
-    let tokenContract = await new ethers.Contract(tokenAddress, ERC20, user.provider.getSigner());
-
-    console.log('approving contract...', user.address, auctionContract.address, parseEther('1000000000000000000'));
-    const allowance = await tokenContract.allowance(user.address, auctionContract.address);
-    if (!allowance.gt(0)) {
+    if (!isApproved) {
+      console.log('approving contract...', user.address, auctionContract.address);
+      const tokenAddress = config.known_tokens.mad.address;
+      let tokenContract = await new ethers.Contract(tokenAddress, ERC20, user.provider.getSigner());
       let tx = await tokenContract.approve(auctionContract.address, constants.MaxUint256);
       return tx.wait();
     }
   };
 
+  const checkApproval = async (auctionContract) => {
+    if (!user.provider) return false;
+
+    const tokenAddress = config.known_tokens.mad.address;
+    let tokenContract = await new ethers.Contract(tokenAddress, ERC20, user.provider.getSigner());
+    const allowance = await tokenContract.allowance(user.address, auctionContract.address);
+
+    return allowance.gt(0);
+  };
+
   const runFunction = async (fn) => {
     if (user.address) {
-
       try {
         let writeContract = await new ethers.Contract(
           config.mm_auction_contract,
@@ -111,7 +140,7 @@ const BuyerActionBar = () => {
         await ensureApproved(writeContract);
         const receipt = await fn(writeContract);
         toast.success(createSuccessfulTransactionToastContent(receipt.transactionHash));
-        dispatch(getAuctionDetails(listing.getAuctionId));
+        //dispatch(getAuctionDetails(listing.getAuctionId));
       } catch (error) {
         if (error.data) {
           toast.error(error.data.message);
@@ -135,11 +164,49 @@ const BuyerActionBar = () => {
   };
 
   useEffect(() => {
-    // @todo set minimum bid
     setAwaitingAcceptance(listing.state === auctionState.ACTIVE && listing.getEndAt < Date.now());
     setIsComplete(listing.state === auctionState.SOLD || listing.state === auctionState.CANCELLED);
     setIsAuctionOwner(caseInsensitiveCompare(listing.seller, user.address));
   }, [listing, user]);
+
+  useEffect(() => {
+    async function func() {
+      const approved = await checkApproval(readContract);
+      setIsApproved(approved);
+    }
+    func();
+  }, [user.provider]);
+
+  useEffect(() => {
+    async function func() {
+      if (user.provider) {
+        const tokenAddress = config.known_tokens.mad.address;
+        let tokenContract = await new ethers.Contract(tokenAddress, ERC20, user.provider.getSigner());
+        const balance = await tokenContract.balanceOf(user.address);
+        setTokenBalance(ethers.utils.formatEther(balance));
+      }
+    }
+    func();
+  }, [user.provider]);
+
+  useEffect(() => {
+    readContract.on('Bid', async (auctionHash, auctionIndex, bidIndex, sender, amount) => {
+      devLog('checking', listing.getAuctionIndex, auctionIndex);
+      if (
+        caseInsensitiveCompare(listing.getAuctionHash, auctionHash) &&
+        auctionIndex.toString() === listing.getAuctionIndex.toString()
+      ) {
+        devLog(`[AUCTIONS] Caught Bid event for Auction:     ${auctionHash}-${auctionIndex}`, bidIndex, sender, amount);
+        try {
+          let price: string = ethers.utils.formatEther(amount);
+          let bidder = sender;
+          dispatch(updateAuctionFromBidEvent(price));
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    });
+  }, []);
 
   const myBid = () => {
     return bidHistory.find((b) => caseInsensitiveCompare(b.bidder, user.address))?.price ?? 0;
@@ -172,55 +239,91 @@ const BuyerActionBar = () => {
     }
   };
 
+  const connectWalletPressed = () => {
+    if (user.needsOnboard) {
+      const onboarding = new MetaMaskOnboarding();
+      onboarding.startOnboarding();
+    } else if (!user.address) {
+      dispatch(connectAccount());
+    } else if (!user.correctChain) {
+      dispatch(chainConnect());
+    }
+  };
+
   const ActionButtons = () => {
     const hasBeenOutbid = myBid() > 0 && !isHighestBidder;
+    const inAcceptanceState =
+      listing.state === auctionState.ACTIVE && awaitingAcceptance && (isHighestBidder || isAuctionOwner);
     return (
       <>
-        {listing.state === auctionState.ACTIVE && !isHighestBidder && !hasBeenOutbid && !awaitingAcceptance && (
-          <span className="my-auto">
-            <button className="btn-main lead mr15" onClick={showBidDialog()} disabled={executingBid}>
-              Place Bid
-            </button>
-          </span>
-        )}
-        {hasBeenOutbid && (
-          <span className="my-auto">
-            <button className="btn-main lead mr15" onClick={executeWithdrawBid()} disabled={executingWithdraw}>
-              {executingWithdraw ? (
-                <>
-                  Withdrawing
-                  <Spinner animation="border" role="status" size="sm" className="ms-1">
-                    <span className="visually-hidden">Loading...</span>
-                  </Spinner>
-                </>
-              ) : (
-                <>Withdraw Bid</>
-              )}
-            </button>
-          </span>
-        )}
-        {listing.state === auctionState.ACTIVE && hasBeenOutbid && !awaitingAcceptance && (
-          <span className="my-auto ms-2">
-            <button className="btn-main lead mr15" onClick={showIncreaseBidDialog()} disabled={executingBid}>
-              Increase Bid
-            </button>
-          </span>
-        )}
-        {listing.state === auctionState.ACTIVE && awaitingAcceptance && isHighestBidder && (
-          <span className="my-auto">
-            <button className="btn-main lead mr15" onClick={executeAcceptBid()} disabled={executingAcceptBid}>
-              {executingAcceptBid ? (
-                <>
-                  Accepting
-                  <Spinner animation="border" role="status" size="sm" className="ms-1">
-                    <span className="visually-hidden">Loading...</span>
-                  </Spinner>
-                </>
-              ) : (
-                <>Accept Auction</>
-              )}
-            </button>
-          </span>
+        {inAcceptanceState ? (
+          <div className="col">
+            <div className="d-flex flex-column">
+              <Button
+                type="legacy"
+                style={{ width: 'auto' }}
+                onClick={executeAcceptBid()}
+                disabled={executingAcceptBid}
+              >
+                {executingAcceptBid ? (
+                  <>
+                    Accepting
+                    <Spinner animation="border" role="status" size="sm" className="ms-1">
+                      <span className="visually-hidden">Loading...</span>
+                    </Spinner>
+                  </>
+                ) : (
+                  <>Accept Auction</>
+                )}
+              </Button>
+            </div>
+          </div>
+        ) : (
+          <>
+            <div className="col-12 col-sm-6">
+              <div className="d-flex flex-column">
+                {listing.state === auctionState.ACTIVE && !isHighestBidder && !hasBeenOutbid && !awaitingAcceptance && (
+                  <Button type="legacy" style={{ width: 'auto' }} onClick={showBidDialog} disabled={executingBid}>
+                    Place Bid
+                  </Button>
+                )}
+
+                {listing.state === auctionState.ACTIVE && hasBeenOutbid && !awaitingAcceptance && (
+                  <Button
+                    type="legacy"
+                    style={{ width: 'auto' }}
+                    onClick={showIncreaseBidDialog}
+                    disabled={executingBid}
+                  >
+                    Increase Bid
+                  </Button>
+                )}
+              </div>
+            </div>
+            <div className="col-12 col-sm-6 mt-3 mt-sm-0">
+              <div className="d-flex flex-column">
+                {hasBeenOutbid && (
+                  <Button
+                    type="legacy-outlined"
+                    style={{ width: 'auto' }}
+                    onClick={executeWithdrawBid()}
+                    disabled={executingWithdraw}
+                  >
+                    {executingWithdraw ? (
+                      <>
+                        Withdrawing
+                        <Spinner animation="border" role="status" size="sm" className="ms-1">
+                          <span className="visually-hidden">Loading...</span>
+                        </Spinner>
+                      </>
+                    ) : (
+                      <>Withdraw Bid</>
+                    )}
+                  </Button>
+                )}
+              </div>
+            </div>
+          </>
         )}
       </>
     );
@@ -238,12 +341,8 @@ const BuyerActionBar = () => {
           </div>
         )}
         <Card.Body>
-          <div className="d-flex flex-row justify-content-between">
-            <div
-              className={`my-auto fw-bold ${
-                !(myBid() > 0 && !isHighestBidder) && (awaitingAcceptance || isComplete) ? 'mx-auto' : ''
-              }`}
-            >
+          <div>
+            <div className="my-auto fw-bold">
               {listing.state === auctionState.NOT_STARTED && (
                 <>
                   <h6>Starting Bid:</h6>{' '}
@@ -262,12 +361,20 @@ const BuyerActionBar = () => {
                   <span className="fs-3 ms-1">{ethers.utils.commify(listing.getHighestBid)} MAD</span>
                 </>
               )}
-              {listing.state === auctionState.ACTIVE && awaitingAcceptance && <>AUCTION HAS ENDED</>}
-              {listing.state === auctionState.SOLD && (
-                <>AUCTION HAS BEEN SOLD FOR {ethers.utils.commify(listing.getHighestBid)} MAD</>
+              {listing.state === auctionState.ACTIVE && awaitingAcceptance && (
+                <div className="text-center">AUCTION HAS ENDED</div>
               )}
-              {listing.state === auctionState.CANCELLED && <>AUCTION HAS BEEN CANCELLED</>}
+              {listing.state === auctionState.SOLD && (
+                <div className="text-center">
+                  AUCTION HAS BEEN SOLD FOR {ethers.utils.commify(listing.getHighestBid)} MAD
+                </div>
+              )}
+              {listing.state === auctionState.CANCELLED && (
+                <div className="text-center">AUCTION HAS BEEN CANCELLED</div>
+              )}
             </div>
+          </div>
+          <div className="row mt-2">
             {((!isAuctionOwner && !isComplete) ||
               (awaitingAcceptance && isHighestBidder) ||
               (myBid() > 0 && !isHighestBidder)) && (
@@ -276,10 +383,46 @@ const BuyerActionBar = () => {
                   <>
                     {user.address ? (
                       <>
-                        {user.correctChain ? <ActionButtons /> : <span className="my-auto">Switch network to bid</span>}
+                        {user.correctChain ? (
+                          <>
+                            {isApproved ? (
+                              <ActionButtons />
+                            ) : (
+                              <div className="col">
+                                <div className="d-flex flex-column">
+                                  <Button
+                                    type="legacy"
+                                    style={{ width: 'auto' }}
+                                    onClick={executeApproveContract}
+                                    disabled={executingApproveContract}
+                                  >
+                                    {executingApproveContract ? (
+                                      <>
+                                        Approving...
+                                        <Spinner animation="border" role="status" size="sm" className="ms-1">
+                                          <span className="visually-hidden">Loading...</span>
+                                        </Spinner>
+                                      </>
+                                    ) : (
+                                      <>Approve MAD</>
+                                    )}
+                                  </Button>
+                                </div>
+                              </div>
+                            )}
+                          </>
+                        ) : (
+                          <span className="my-auto">Switch network to bid</span>
+                        )}
                       </>
                     ) : (
-                      <span className="my-auto">Connect wallet above to place bid</span>
+                      <div className="col">
+                        <div className="d-flex flex-column">
+                          <Button type="legacy" style={{ width: 'auto' }} onClick={connectWalletPressed}>
+                            Connect to bid
+                          </Button>
+                        </div>
+                      </div>
                     )}
                   </>
                 ) : (
@@ -290,13 +433,14 @@ const BuyerActionBar = () => {
               </>
             )}
           </div>
+          <div className="row auction-box-footer">Available MAD to spend: {tokenBalance} MAD</div>
         </Card.Body>
       </Card>
 
       {openBidDialog && user && (
         <div className="checkout">
           <div className="maincheckout">
-            <button className="btn-close" onClick={() => setOpenBidDialog(false)}>
+            <button className="btn-close" onClick={hideBidDialog}>
               x
             </button>
             <div className="heading">
@@ -354,7 +498,7 @@ const BuyerActionBar = () => {
       {openRebidDialog && user && (
         <div className="checkout">
           <div className="maincheckout">
-            <button className="btn-close" onClick={() => setOpenRebidDialog(false)}>
+            <button className="btn-close" onClick={hideIncreaseBidDialog}>
               x
             </button>
             <div className="heading">

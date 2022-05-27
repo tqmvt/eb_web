@@ -29,12 +29,6 @@ const GlobalStyles = createGlobalStyle`
     background-size: cover;
     background-position: bottom;
   }
-
-  @media only screen and (min-width: 1200px) {
-    .jumbotron.breadcumb.no-bg.tint {
-      margin-top: 84px;
-    }
-  }
     
   @media only screen and (max-width: 768px) {
     .jumbotron.breadcumb.no-bg.tint {

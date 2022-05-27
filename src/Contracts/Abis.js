@@ -23,8 +23,9 @@ export const ERC1155 = [
 ];
 
 export const ERC20 = [
-  "function approve(address, uint256) public",
-  "function allowance(address owner, address spender) external view returns (uint256)"
+  'function approve(address, uint256) public',
+  'function allowance(address owner, address spender) external view returns (uint256)',
+  'function balanceOf(address owner) public view returns (uint256)',
 ];
 
 export const Elon = ['function mint(uint256 count) public payable'];

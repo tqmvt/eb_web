@@ -7,7 +7,7 @@ import store from '../../Store/store';
 function getMetaverseUrl() {
   if (typeof window === 'undefined') return;
   if (window.location.host === 'localhost:3000') {
-    return 'https://localhost:8080/hub.html?hub_id=QWSxfEv&embed_token=null';
+    return 'https://localhost:8080/hub.html?hub_id=4QPThWJ&embed_token=null';
   }
   if (window.location.host === 'app.ebisusbay.biz') {
     return 'https://metaverse.ebisusbay.biz/?assignRoom=true';
@@ -38,13 +38,18 @@ const MetaverseModal = (props) => {
       </button>
 
       <Modal show={show} fullscreen onHide={handleClose}>
-        <Modal.Header closeButton>
+        <Modal.Header className="modal-background" closeButton>
           <Modal.Title>Metaverse</Modal.Title>
         </Modal.Header>
-        <Modal.Body className="pt-0 pb-0 px-0">
-          <iframe src={metaverseUrl} className="metaverse" allow="microphone; camera; vr; speaker;" title="metaverse" />
+        <Modal.Body className="pt-0 pb-0 px-0 modal-background">
+          <iframe
+            src={metaverseUrl}
+            className="metaverse modal-background"
+            allow="microphone; camera; vr; speaker;"
+            title="metaverse"
+          />
         </Modal.Body>
-        <Modal.Footer>
+        <Modal.Footer className="modal-background">
           <span className="btn-main" onClick={handleClose}>
             Close
           </span>

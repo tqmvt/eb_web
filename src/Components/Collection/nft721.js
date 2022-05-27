@@ -274,7 +274,7 @@ const Nft721 = ({ address, id }) => {
         </section>
       ) : (
         <section className="container">
-          <div className="row mt-md-5 pt-md-4">
+          <div className="row">
             <div className="col-md-6 text-center">
               {nft ? (
                 nft.useIframe ? (
@@ -342,10 +342,7 @@ const Nft721 = ({ address, id }) => {
                     (!currentListing || !isUserBlacklisted(currentListing.seller)) &&
                     !isNftBlacklisted(address, id) && (
                       <>
-                        <PriceActionBar
-                          offerType={offerType}
-                          onOfferSelected={() => handleMakeOffer()}
-                        />
+                        <PriceActionBar offerType={offerType} onOfferSelected={() => handleMakeOffer()} />
                       </>
                     )}
 
