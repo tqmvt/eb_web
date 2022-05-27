@@ -42,6 +42,7 @@ const BuyerActionBar = () => {
   const [openBidDialog, setOpenBidDialog] = useState(false);
   const [openRebidDialog, setOpenRebidDialog] = useState(false);
   const [isApproved, setIsApproved] = useState(false);
+  const [tokenBalance, setTokenBalance] = useState(null);
 
   const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
   const readContract = new Contract(config.mm_auction_contract, AuctionContract.abi, readProvider);
@@ -165,6 +166,18 @@ const BuyerActionBar = () => {
     async function func() {
       const approved = await checkApproval(readContract);
       setIsApproved(approved);
+    }
+    func();
+  }, [user.provider]);
+
+  useEffect(() => {
+    async function func() {
+      if (user.provider) {
+        const tokenAddress = config.known_tokens.mad.address;
+        let tokenContract = await new ethers.Contract(tokenAddress, ERC20, user.provider.getSigner());
+        const balance = await tokenContract.balanceOf(user.address);
+        setTokenBalance(ethers.utils.formatEther(balance));
+      }
     }
     func();
   }, [user.provider])
@@ -382,6 +395,9 @@ const BuyerActionBar = () => {
                 )}
               </>
             )}
+          </div>
+          <div className="row auction-box-footer">
+            Available MAD to spend: {tokenBalance} MAD
           </div>
         </Card.Body>
       </Card>
