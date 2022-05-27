@@ -6754,7 +6754,7 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false,
+      "complete": true,
       "priceDescription": "Whitelist-only presale for the first hour (limit 3 per address). Public sale after presale ends."
     }
   ],
