@@ -1,3 +1,5 @@
+@import '../../../Assets/styles/vars';
+
 .bitpixel_back {
   text-align: center;
   background-image: url('/public/img/cronosverse/Bit-back.png');
@@ -19,11 +21,11 @@
   position: relative;
 }
 
-.canvasBack {
-  left: 0px;
-  top: 0px;
-  z-index: 0;
-}
+// .canvasBack {
+//   left: 0px;
+//   top: 0px;
+//   z-index: 0;
+// }
 
 .canvasFront {
   z-index: 1;
@@ -39,11 +41,14 @@
   z-index: 1;
 
   min-width: 206px;
+
+  background: $bgColor1 !important;
 }
 
 .tip_modal .modal_content {
   display: flex;
   justify-content: flex-start;
+  background: $bgColor1 !important;
 }
 
 .tip_modal .modal_content .tile_img {
@@ -69,7 +74,8 @@
   display: flex;
   align-items: center;
   cursor: pointer;
-}
-.cross:hover {
-  color: black;
+
+  &:hover {
+    color: black;
+  }
 }

@@ -21,6 +21,8 @@ import { createSuccessfulTransactionToastContent, isFounderDrop, newlineText } f
 import { dropState as statuses } from '../../core/api/enums';
 import { EbisuDropAbi } from '../../Contracts/Abis';
 
+import styles from '../Collection/collectionCronosverse/CollectionCronosverse.module.scss';
+
 const tiles = [
   '/img/cronosverse/Plain-tile.png',
   '/img/cronosverse/Suburban-tile.png',
@@ -685,7 +687,7 @@ const CronosverseMintBoard = ({ mintNow, minting, mintedIds, prices }) => {
   return (
     <div>
       <div
-        className="bitpixel_back"
+        className={`${styles.bitpixel_back}`}
         ref={ref0}
         onMouseDown={(e) => {
           if (typeof window !== 'undefined' && window.innerWidth - e.clientX < 240) {
@@ -699,7 +701,7 @@ const CronosverseMintBoard = ({ mintNow, minting, mintedIds, prices }) => {
           }
         }}
       >
-        <div className="canvas">
+        <div className={`${styles.canvas}`}>
           <TransformWrapper
             onZoom={changeCanvasState}
             onPinching={changeCanvasState}
@@ -714,16 +716,16 @@ const CronosverseMintBoard = ({ mintNow, minting, mintedIds, prices }) => {
                 width={`${tempWidth}px`}
                 height={`${tempHeight}px`}
               />
-              <canvas className="canvasFront" ref={ref2} onClick={handleClick}></canvas>
+              <canvas className={`${styles.canvasFront}`} ref={ref2} onClick={handleClick}></canvas>
             </TransformComponent>
 
             <div
-              className="tip_modal"
+              className={styles.tip_modal}
               style={{ display: modalFlag, left: `${tileInfo.globalX + 15}px`, top: `${tileInfo.globalY + 15}px` }}
             >
               <div className="modal_content">
                 <div
-                  className="cross"
+                  className={styles.cross}
                   onClick={() => {
                     if (!isMintingFlag) {
                       setModalFlag('none');

@@ -6,13 +6,15 @@ import MetaMaskOnboarding from '@metamask/onboarding';
 import { commify } from 'ethers/lib/utils';
 import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
 
-import { init, fetchListings } from '../../GlobalState/collectionSlice';
-import { devLog } from '../../utils';
-import { CollectionSortOption } from '../Models/collection-sort-option.model';
-import { FilterOption } from '../Models/filter-option.model';
-import Button from '../components/Button';
-import { chainConnect, connectAccount } from '../../GlobalState/User';
-import MakeOfferDialog from '../Offer/MakeOfferDialog';
+import { init, fetchListings } from '../../../GlobalState/collectionSlice';
+import { devLog } from '../../../utils';
+import { CollectionSortOption } from '../../Models/collection-sort-option.model';
+import { FilterOption } from '../../Models/filter-option.model';
+import Button from '../../components/Button';
+import { chainConnect, connectAccount } from '../../../GlobalState/User';
+import MakeOfferDialog from '../../Offer/MakeOfferDialog';
+
+import styles from './CollectionCronosverse.module.scss';
 
 const CollectionCronosverse = ({ collection }) => {
   const dispatch = useDispatch();
@@ -281,7 +283,7 @@ const CronosverseCollectionBoard = ({ onBuy, onOffer, listings = [], nfts = [] }
   return (
     <div>
       <div
-        className="bitpixel_back"
+        className={`${styles.bitpixel_back}`}
         ref={ref0}
         onMouseDown={(e) => {
           if (typeof window !== 'undefined' && window.innerWidth - e.clientX < 240) {
@@ -294,7 +296,7 @@ const CronosverseCollectionBoard = ({ onBuy, onOffer, listings = [], nfts = [] }
           }
         }}
       >
-        <div className="canvas">
+        <div className={`${styles.canvas}`}>
           <TransformWrapper
             onZoom={changeCanvasState}
             onPinching={changeCanvasState}
@@ -308,11 +310,11 @@ const CronosverseCollectionBoard = ({ onBuy, onOffer, listings = [], nfts = [] }
                 alt="boardboard"
                 style={{ width: `${tempWidth}px`, height: `${tempHeight}px` }}
               />
-              <canvas className="canvasFront" ref={ref2} onClick={handleClick}></canvas>
+              <canvas className={`${styles.canvasFront}`} ref={ref2} onClick={handleClick}></canvas>
             </TransformComponent>
 
             <div
-              className="tip_modal"
+              className={`${styles.tip_modal}`}
               style={{
                 display: modalFlag,
                 left: `${tileInfo.modalPosition?.x}px`,
@@ -321,7 +323,7 @@ const CronosverseCollectionBoard = ({ onBuy, onOffer, listings = [], nfts = [] }
             >
               <div className="modal_content">
                 <div
-                  className="cross"
+                  className={`${styles.cross}`}
                   onClick={() => {
                     setModalFlag('none');
                   }}

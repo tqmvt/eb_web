@@ -1,0 +1,29 @@
+// vars
+$white: var(--color-white);
+$gray: var(--color-gray);
+$black: var(--color-black);
+$general: var(--color-general);
+$black_soft: var(--color-black_soft);
+$black_col: var(--color-black_col);
+$black_more: var(--color-black_more);
+$blue: var(--color-blue);
+$darkBlue: var(--color-dark-blue);
+
+$textColor1: var(--color-textColor1);
+$textColor2: var(--color-textColor2);
+$textColor3: var(--color-textColor3);
+
+$bgColor1: var(--color-bgColor1);
+$bgColor2: var(--color-bgColor2);
+$bgColor3: var(--color-bgColor3);
+
+$borderColor1: var(--color-borderColor1);
+$borderColor2: var(--color-borderColor2);
+
+$colorBoxShadow1: var(--color-boxShadow1);
+
+// colors variables can be used in js
+// @link: https://nextjs.org/docs/basic-features/built-in-css-support#sass-variables
+:export {
+  bgColor1: $bgColor1;
+}
