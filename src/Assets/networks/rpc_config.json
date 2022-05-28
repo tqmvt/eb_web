@@ -4715,6 +4715,26 @@
         "website": "https://trooprz.army/",
         "discord": "https://discord.gg/trooprz"
       }
+    },
+    {
+      "name": "Cronos Live Ticket",
+      "slug": "cronos-live-ticket",
+      "multiToken": false,
+      "address": "0xf551A3F1221d4558184bf5e0B6c3662FE9cA8bed",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "The first lottery has tickets in the form of NFTs to the random draw on Cronos.",
+        "verified": false,
+        "avatar": "/img/collections/cronos-live-ticket/avatar.webp",
+        "card": "/img/collections/cronos-live-ticket/card.webp",
+        "banner": "/img/collections/cronos-live-ticket/banner.webp",
+        "maxSupply": 100,
+        "website": "https://www.cllottery.online/",
+        "twitter": "https://twitter.com/Cro_LiveLottery",
+        "telegram": "https://t.me/CLLottery",
+        "gitbook": "https://young-builder.gitbook.io/cronos-live-lottery/"
+      }
     }
   ],
   "drops": [
