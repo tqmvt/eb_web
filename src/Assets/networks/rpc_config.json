@@ -4735,6 +4735,26 @@
         "telegram": "https://t.me/CLLottery",
         "gitbook": "https://young-builder.gitbook.io/cronos-live-lottery/"
       }
+    },
+    {
+      "name": "DR BOO'S GHOSTS",
+      "slug": "dr-boos-ghosts",
+      "multiToken": false,
+      "address": "0x6f19E31154454364780310465BE27e8e86797a2E",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "Welcome to Manor H, where Dr. Boo's ghosts were born. These ghosts come in 2111 appearances, divided into 3 categories: COMMON, RARE & EPIC. In addition to the staking and the numerous perks offered by these categories, each Boo NFT acquired will receive a Poison NFT, with a different color depending on the category (yellow, green or black). A Boo NFT + Poison NFT pair will allow access to the Manor in the metaverse, to retrieve multiple items daily to build a new NFT Boo FRK!",
+        "verified": true,
+        "avatar": "/img/collections/dr-boos-ghosts/avatar.webp",
+        "card": "/img/collections/dr-boos-ghosts/card.webp",
+        "banner": "/img/collections/dr-boos-ghosts/banner.webp",
+        "maxSupply": 2111,
+        "website": "https://drbghosts.com/",
+        "twitter": "https://twitter.com/drbghosts",
+        "discord": "https://discord.gg/EFW8bAZW3J",
+        "medium": "https://medium.com/@drbooghosts"
+      }
     }
   ],
   "drops": [
@@ -6766,6 +6786,38 @@
       "published": true,
       "complete": true,
       "priceDescription": "Whitelist-only presale for the first hour (limit 3 per address). Public sale after presale ends."
+    },
+    {
+      "id": 76,
+      "slug": "dr-boos-ghosts",
+      "imgNft": "/img/drops/dr-boos-ghosts/drop.webp",
+      "imgPreview": "/img/drops/dr-boos-ghosts/drop.webp",
+      "imgAvatar": "/img/collections/dr-boos-ghosts/avatar.webp",
+      "imgBanner": "/img/collections/dr-boos-ghosts/banner.webp",
+      "title": "DR BOO'S GHOSTS",
+      "subtitle": "Welcome to Manor H, where Dr. Boo's ghosts were born. These ghosts come in 2111 appearances, divided into 3 categories: COMMON, RARE & EPIC. In addition to the staking and the numerous perks offered by these categories, each Boo NFT acquired will receive a Poison NFT, with a different color depending on the category (yellow, green or black). A Boo NFT + Poison NFT pair will allow access to the Manor in the metaverse, to retrieve multiple items daily to build a new NFT Boo FRK!",
+      "description": "Welcome to Manor H, where Dr. Boo's ghosts were born. These ghosts come in 2111 appearances, divided into 3 associated categories: \n\n    COMMON : Cute ghost, with common characteristics\n\n    RARE : Transforming and rare ghost, with limited characteristics\n\n    EPIC : Terrifying ghost, the darkest appearance of Boo, with unique characteristics\n\nEach NFT can be composed of 10 traits (background, eyes, mouth, eyeswear, headwear, hand accessory, jewelry, outfit, wings, last layers)\n\nMany perks will benefit Boo NFT holders: \n\n    NFT staking\n\n    Automatic registration on the WL of our next collection\n\n    Drop of 1 NFT Dr Boo's Poison (yellow, green or black depending on the category)\n\n    Random drop of the crazy series of 111 NFT\n\n    DAO to decide on the use of Ebisu's Bay royalties\n\n    Access to a secret Discord channel allowing access to exclusive info and specific giveways\n\n    2% of the project divided between EPIC holders\n\nA pair of NFT Boo + NFT Poison will allow access to the Manor in the metaverse, in order to collect several items daily to build a new NFT Boo FRK!",
+      "author": {
+        "name": "DR BOO'S GHOSTS",
+        "website": "https://drbghosts.com/",
+        "twitter": "https://twitter.com/drbghosts",
+        "discord": "https://discord.gg/EFW8bAZW3J",
+        "medium": "https://medium.com/@drbooghosts"
+      },
+      "address": "0x6f19E31154454364780310465BE27e8e86797a2E",
+      "maxMintPerTx": 25,
+      "maxMintPerAddress": 100,
+      "totalSupply": 2111,
+      "cost": "390",
+      "memberCost": "340",
+      "whitelistCost": "290",
+      "foundersOnly": false,
+      "start": 1653847200000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false
     }
   ],
   "auctions": [
