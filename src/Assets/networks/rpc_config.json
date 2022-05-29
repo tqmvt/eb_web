@@ -4755,6 +4755,26 @@
         "discord": "https://discord.gg/EFW8bAZW3J",
         "medium": "https://medium.com/@drbooghosts"
       }
+    },
+    {
+      "name": "ETH Stones",
+      "slug": "eth-stones",
+      "multiToken": false,
+      "address": "0xA3a4104B2A429b3A33Ac1304371E2eEf6E6aF44B",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/babyaliendivision/eth-stones/avatar.webp",
+        "banner": "/img/collections/babyaliendivision/eth-stones/banner.webp",
+        "card": "/img/collections/babyaliendivision/eth-stones/card.webp",
+        "maxSupply": 350,
+        "website": "https://badaliens.io/",
+        "twitter": "https://twitter.com/BAD_Cronos",
+        "discord": "https://discord.gg/qKBy2azf69",
+        "medium": "https://medium.com/@babyaliendivision"
+      }
     }
   ],
   "drops": [
