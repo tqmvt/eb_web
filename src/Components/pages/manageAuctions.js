@@ -75,9 +75,7 @@ const ManageAuctions = () => {
 
           <div className="de_tab_content mt-3">
             {openMenu === 0 && <ManageAuctionList />}
-            {!caseInsensitiveCompare(config.mm_auction_contract, '0x0B93df0b823E8B1b62d0a753c6F115Cad4e89dD1') && (
-              <>{openMenu === 1 && <CreateAuction />}</>
-            )}
+            {openMenu === 1 && <CreateAuction />}
           </div>
         </div>
       </section>
