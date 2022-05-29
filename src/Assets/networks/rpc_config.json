@@ -27,7 +27,7 @@
     "mad": {
       "name": "MAD",
       "symbol": "MAD",
-      "address": "0xD6464BdB57e9eD610692635b64fd47B763345032"
+      "address": "0x212331e1435a8df230715db4c02b2a3a0abf8c61"
     }
   },
   "known_contracts": [
@@ -4754,6 +4754,26 @@
         "twitter": "https://twitter.com/drbghosts",
         "discord": "https://discord.gg/EFW8bAZW3J",
         "medium": "https://medium.com/@drbooghosts"
+      }
+    },
+    {
+      "name": "ETH Stones",
+      "slug": "eth-stones",
+      "multiToken": false,
+      "address": "0xA3a4104B2A429b3A33Ac1304371E2eEf6E6aF44B",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/babyaliendivision/eth-stones/avatar.webp",
+        "banner": "/img/collections/babyaliendivision/eth-stones/banner.webp",
+        "card": "/img/collections/babyaliendivision/eth-stones/card.webp",
+        "maxSupply": 350,
+        "website": "https://badaliens.io/",
+        "twitter": "https://twitter.com/BAD_Cronos",
+        "discord": "https://discord.gg/qKBy2azf69",
+        "medium": "https://medium.com/@babyaliendivision"
       }
     }
   ],

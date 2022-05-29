@@ -10,7 +10,7 @@ import config from '../../Assets/networks/rpc_config.json';
 import AuctionContract from '../../Contracts/DegenAuction.json';
 import {caseInsensitiveCompare, createSuccessfulTransactionToastContent, devLog, isEventValidNumber} from '../../utils';
 import {auctionState} from '../../core/api/enums';
-import {updateAuctionFromBidEvent} from '../../GlobalState/auctionSlice';
+import {getAuctionDetails, updateAuctionFromBidEvent} from '../../GlobalState/auctionSlice';
 import {chainConnect, connectAccount} from '../../GlobalState/User';
 import {ERC20} from "../../Contracts/Abis";
 import Button from "../components/Button";
@@ -81,6 +81,7 @@ const BuyerActionBar = () => {
       console.log('withdrawing bid...', listing.getAuctionIndex, listing.getAuctionHash);
       return (await writeContract.withdraw(listing.getAuctionHash, listing.getAuctionIndex)).wait();
     });
+    dispatch(getAuctionDetails(listing.getAuctionId));
     setExecutingWithdraw(false);
   };
 
@@ -90,6 +91,7 @@ const BuyerActionBar = () => {
       console.log('accepting highest bid...', listing.getAuctionIndex, listing.getAuctionHash, listing.getHighestBidder);
       return (await writeContract.accept(listing.getAuctionHash, listing.getAuctionIndex)).wait();
     });
+    dispatch(getAuctionDetails(listing.getAuctionId));
     setExecutingAcceptBid(false);
   };
 
@@ -99,6 +101,7 @@ const BuyerActionBar = () => {
       console.log('cancelling auction...', listing.getAuctionIndex, listing.getAuctionHash);
       return (await writeContract.cancel(listing.getAuctionHash, listing.getAuctionIndex)).wait();
     });
+    dispatch(getAuctionDetails(listing.getAuctionId));
     setExecutingCancelBid(false);
   };
 
@@ -278,6 +281,9 @@ const BuyerActionBar = () => {
               </Button>
             ) : (
               <>
+                <div className="text-center mx-auto auction-box-footer mb-2" style={{fontSize:'12px'}}>
+                  No bids were made
+                </div>
                 <Button type="legacy" className="w-100" onClick={executeCancelBid()} disabled={executingCancelBid}>
                   {executingCancelBid ? (
                     <>
@@ -290,9 +296,6 @@ const BuyerActionBar = () => {
                     <>Cancel Auction</>
                   )}
                 </Button>
-                <div className="text-center mx-auto auction-box-footer mt-2" style={{fontSize:'12px'}}>
-                  No bids were made
-                </div>
               </>
             )}
           </div>
