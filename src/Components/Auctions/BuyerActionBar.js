@@ -281,6 +281,9 @@ const BuyerActionBar = () => {
               </Button>
             ) : (
               <>
+                <div className="text-center mx-auto auction-box-footer mb-2" style={{fontSize:'12px'}}>
+                  No bids were made
+                </div>
                 <Button type="legacy" className="w-100" onClick={executeCancelBid()} disabled={executingCancelBid}>
                   {executingCancelBid ? (
                     <>
@@ -293,9 +296,6 @@ const BuyerActionBar = () => {
                     <>Cancel Auction</>
                   )}
                 </Button>
-                <div className="text-center mx-auto auction-box-footer mt-2" style={{fontSize:'12px'}}>
-                  No bids were made
-                </div>
               </>
             )}
           </div>
