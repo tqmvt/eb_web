@@ -10,7 +10,7 @@ import config from '../../Assets/networks/rpc_config.json';
 import AuctionContract from '../../Contracts/DegenAuction.json';
 import {caseInsensitiveCompare, createSuccessfulTransactionToastContent, devLog, isEventValidNumber} from '../../utils';
 import {auctionState} from '../../core/api/enums';
-import {updateAuctionFromBidEvent} from '../../GlobalState/auctionSlice';
+import {getAuctionDetails, updateAuctionFromBidEvent} from '../../GlobalState/auctionSlice';
 import {chainConnect, connectAccount} from '../../GlobalState/User';
 import {ERC20} from "../../Contracts/Abis";
 import Button from "../components/Button";
@@ -81,6 +81,7 @@ const BuyerActionBar = () => {
       console.log('withdrawing bid...', listing.getAuctionIndex, listing.getAuctionHash);
       return (await writeContract.withdraw(listing.getAuctionHash, listing.getAuctionIndex)).wait();
     });
+    dispatch(getAuctionDetails(listing.getAuctionId));
     setExecutingWithdraw(false);
   };
 
@@ -90,6 +91,7 @@ const BuyerActionBar = () => {
       console.log('accepting highest bid...', listing.getAuctionIndex, listing.getAuctionHash, listing.getHighestBidder);
       return (await writeContract.accept(listing.getAuctionHash, listing.getAuctionIndex)).wait();
     });
+    dispatch(getAuctionDetails(listing.getAuctionId));
     setExecutingAcceptBid(false);
   };
 
@@ -99,6 +101,7 @@ const BuyerActionBar = () => {
       console.log('cancelling auction...', listing.getAuctionIndex, listing.getAuctionHash);
       return (await writeContract.cancel(listing.getAuctionHash, listing.getAuctionIndex)).wait();
     });
+    dispatch(getAuctionDetails(listing.getAuctionId));
     setExecutingCancelBid(false);
   };
 
