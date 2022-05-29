@@ -417,15 +417,17 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "Collection of 2720 algorithmically generated punks on the Cronos Chain",
-        "verified": false,
-        "avatar": "/img/collections/wrappedcronospunk/avatar.jpg",
+        "description": "Collection of 2720 algorithmically generated punks on the Cronos Chain. Adopted by the CRO CROW team.",
+        "verified": true,
+        "avatar": "/img/collections/wrappedcronospunk/avatar.webp",
         "banner": "/img/collections/wrappedcronospunk/banner.webp",
-        "card": "/img/collections/wrappedcronospunk/card.jpg",
+        "card": "/img/collections/wrappedcronospunk/card.webp",
         "maxSupply": 2720,
-        "website": "https://www.crocrow.com/wrapcronospunk",
-        "twitter": "https://twitter.com/CronosPunk_Fam",
-        "discord": "https://discord.gg/SYEH7pKX2N"
+        "website": "https://crocrow.com",
+        "twitter": "https://twitter.com/cronoscrocrow",
+        "discord": "https://discord.gg/8a8Xm4wwR9",
+        "telegram": "https://t.me/crocrownft",
+        "medium": "https://medium.com/@cronoscrocrow"
       }
     },
     {
