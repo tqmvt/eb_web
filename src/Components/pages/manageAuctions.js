@@ -6,7 +6,8 @@ import React from 'react';
 // import { createSuccessfulTransactionToastContent } from '../../utils';
 import CreateAuction from '../Auctions/CreateAuction';
 import ManageAuctionList from '../Auctions/ManageAuctionList';
-// import config from '../../Assets/networks/rpc_config.json';
+import config from '../../Assets/networks/rpc_config.json';
+import {caseInsensitiveCompare} from "../../utils";
 // import AuctionContract from '../../Contracts/Auction.json';
 
 const ManageAuctions = () => {
@@ -74,7 +75,9 @@ const ManageAuctions = () => {
 
           <div className="de_tab_content mt-3">
             {openMenu === 0 && <ManageAuctionList />}
-            {openMenu === 1 && <CreateAuction />}
+            {!caseInsensitiveCompare(config.mm_auction_contract, '0x0B93df0b823E8B1b62d0a753c6F115Cad4e89dD1') && (
+              <>{openMenu === 1 && <CreateAuction />}</>
+            )}
           </div>
         </div>
       </section>
