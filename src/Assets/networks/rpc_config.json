@@ -4722,7 +4722,7 @@
       "multiToken": false,
       "address": "0xf551A3F1221d4558184bf5e0B6c3662FE9cA8bed",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "The first lottery has tickets in the form of NFTs to the random draw on Cronos.",
         "verified": false,
