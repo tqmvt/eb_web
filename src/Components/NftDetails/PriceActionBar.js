@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { ethers } from 'ethers';
 import { toast } from 'react-toastify';
-import { createSuccessfulTransactionToastContent } from '../../utils';
+import {createSuccessfulTransactionToastContent, isNftBlacklisted, isUserBlacklisted} from '../../utils';
 import { Card, Spinner } from 'react-bootstrap';
 import MetaMaskOnboarding from '@metamask/onboarding';
 import { chainConnect, connectAccount } from '../../GlobalState/User';
@@ -18,7 +18,7 @@ const PriceActionBar = ({offerType, onOfferSelected, label}) => {
   const user = useSelector((state) => state.user);
   const listing = useSelector((state) => state.nft.currentListing);
   const [executingBuy, setExecutingBuy] = useState(false);
-  // const [buyError, setBuyError] = useState('');
+  const [canBuy, setCanBuy] = useState(false);
 
   const executeBuy = (amount) => async () => {
     setExecutingBuy(true);
@@ -69,48 +69,51 @@ const PriceActionBar = ({offerType, onOfferSelected, label}) => {
     }
   };
 
+  useEffect(() => {
+    setCanBuy(listing && !isUserBlacklisted(listing.seller) && !isNftBlacklisted(listing.nftAddress, listing.nftId));
+  }, [listing]);
+
   return (
     <div className="row price-action-bar">
-      {listing && (
-        <Card id={`lid-${listing.listingId}`} className="mb-4 border-1 shadow pab-card">
-          <Card.Body>
+      <Card className="mb-4 border-1 shadow pab-card">
+        <Card.Body>
+          <div id={`lid-${listing?.listingId}`}>
             <div className="d-flex flex-row justify-content-between">
               <div className={`my-auto fw-bold`}>
                 <>
-                  <h5>{label ?? 'Listing Price'}:</h5> <span className="fs-3 ms-1">{ethers.utils.commify(listing.price)} CRO</span>
+                  <h5>{label ?? 'Listing Price'}:</h5> <span className="fs-3 ms-1">{listing ? ethers.utils.commify(listing.price) : '-'} CRO</span>
                 </>
               </div>
             </div>
-            <div className="row mt-2">
-              <div className="col-6">
-                <div className="d-flex flex-column">
-                  {listing.state === listingState.ACTIVE && (
-                    <Button type="legacy" style={{ width: 'auto' }} onClick={executeBuy(listing.price)} disabled={executingBuy}>
-                      {executingBuy ? (
-                        <>
-                          Buy Now...
-                          <Spinner animation="border" role="status" size="sm" className="ms-1">
-                            <span className="visually-hidden">Loading...</span>
-                          </Spinner>
-                        </>
-                      ) : (
-                        <>Buy Now</>
-                      )}
-                    </Button>
-                  )}
-                </div>
+          </div>
+
+          <div className="d-flex">
+            {canBuy && (
+              <div className="flex-fill mx-1">
+                {listing.state === listingState.ACTIVE && (
+                  <Button type="legacy" className="w-100" onClick={executeBuy(listing.price)} disabled={executingBuy}>
+                    {executingBuy ? (
+                      <>
+                        Buy Now...
+                        <Spinner animation="border" role="status" size="sm" className="ms-1">
+                          <span className="visually-hidden">Loading...</span>
+                        </Spinner>
+                      </>
+                    ) : (
+                      <>Buy Now</>
+                    )}
+                  </Button>
+                )}
               </div>
-              <div className="col-6">
-                <div className="d-flex flex-column">
-                    <Button type="legacy-outlined" style={{ width: 'auto' }} onClick={onOfferSelected}>
-                      {offerType === OFFER_TYPE.update ? 'Update' : 'Make'} Offer
-                    </Button>
-                </div>
-              </div>
+            )}
+            <div className="flex-fill mx-1">
+                <Button type="legacy-outlined" className="w-100" onClick={onOfferSelected}>
+                  {offerType === OFFER_TYPE.update ? 'Update' : 'Make'} Offer
+                </Button>
             </div>
-          </Card.Body>
-        </Card>
-      )}
+          </div>
+        </Card.Body>
+      </Card>
     </div>
   );
 };
