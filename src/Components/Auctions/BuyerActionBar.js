@@ -302,6 +302,11 @@ const BuyerActionBar = () => {
             )}
           </div>
         )}
+        {listing.state === auctionState.ACTIVE && isHighestBidder && !awaitingAcceptance && (
+          <div className="flex-fill mx-1">
+            You are the highest bidder!
+          </div>
+        )}
         {listing.state === auctionState.ACTIVE && !isHighestBidder && !hasBeenOutbid && !awaitingAcceptance && !isAuctionOwner && (
           <div className="flex-fill mx-1">
             <Button type="legacy" className="w-100" onClick={showBidDialog} disabled={executingBid}>
