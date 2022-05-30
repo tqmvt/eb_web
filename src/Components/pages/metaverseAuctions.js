@@ -13,7 +13,7 @@ const MetaverseAuctions = () => {
         <div className="row">
           <div className="col-lg-12">
             <div className="text-center pt-5">
-              <h2>Mad Meerkat Metaverse Auction</h2>
+              <h2>Mad Meerkat Legendary Auction</h2>
             </div>
           </div>
           <div className="col-lg-6 pt-3">

@@ -20,7 +20,7 @@ const AuctionCard = ({ listing, imgClass = 'marketplace' }) => {
       <div className="card eb-nft__card h-100 shadow">
         <img src={listing.nft.image} className={`card-img-top ${imgClass}`} alt={listing.nft.name} />
         <div className="eb-de_countdown text-center">
-          Ends In:
+          {listing.state === auctionState.ACTIVE && <>Ends In:</>}
           {listing.state === auctionState.NOT_STARTED && <div className="fw-bold">Not Started</div>}
           {listing.state === auctionState.ACTIVE && <Clock deadline={listing.getEndAt} />}
           {listing.state === auctionState.CANCELLED && <div className="fw-bold">Cancelled</div>}

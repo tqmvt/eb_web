@@ -48,13 +48,15 @@ const BuyerActionBar = () => {
   const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
   const readContract = new Contract(config.mm_auction_contract, AuctionContract.abi, readProvider);
 
-  const showBidDialog = () => {
+  const showBidDialog = async () => {
+    await refreshMadBalance();
     setOpenBidDialog(true);
   };
   const hideBidDialog = () => {
     setOpenBidDialog(false);
   };
-  const showIncreaseBidDialog = () => {
+  const showIncreaseBidDialog = async () => {
+    await refreshMadBalance();
     setOpenRebidDialog(true);
   };
   const hideIncreaseBidDialog = () => {
@@ -298,6 +300,11 @@ const BuyerActionBar = () => {
                 </Button>
               </>
             )}
+          </div>
+        )}
+        {listing.state === auctionState.ACTIVE && isHighestBidder && !awaitingAcceptance && (
+          <div className="flex-fill mx-1">
+            You are the highest bidder!
           </div>
         )}
         {listing.state === auctionState.ACTIVE && !isHighestBidder && !hasBeenOutbid && !awaitingAcceptance && !isAuctionOwner && (
