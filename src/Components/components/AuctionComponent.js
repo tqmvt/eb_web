@@ -130,7 +130,7 @@ const AuctionComponent = (props) => {
                             <span onClick={handleBtnClick(2)}>Bids</span>
                           </li>
                           <li id="Mainbtn3" className="tab">
-                            <span onClick={handleBtnClick(3)}>History</span>
+                            <span onClick={handleBtnClick(3)}>How to Bid</span>
                           </li>
                         </ul>
 
@@ -236,35 +236,20 @@ const AuctionComponent = (props) => {
                           )}
                           {openMenu === 3 && (
                             <div className="tab-4 onStep fadeIn">
-                              {history && history.length > 0 ? (
-                                <>
-                                  {history.map((item, index) => (
-                                    <div className="p_list" key={index}>
-                                      <Link to={`/seller/${item.purchaser}`}>
-                                        <div className="p_list_pp">
-                                          <span>
-                                            <span>
-                                              <Blockies seed={item.purchaser} size={10} scale={5} />
-                                            </span>
-                                          </span>
-                                        </div>
-                                      </Link>
-                                      <div className="p_list_info">
-                                        <span>{timeSince(item.saleTime + '000')} ago</span>
-                                        Bought by{' '}
-                                        <b>
-                                          <Link to={`/seller/${item.purchaser}`}>{shortAddress(item.purchaser)}</Link>
-                                        </b>{' '}
-                                        for <b>{ethers.utils.commify(item.price)} MAD</b>
-                                      </div>
-                                    </div>
-                                  ))}
-                                </>
-                              ) : (
-                                <>
-                                  <span>No history found for this item</span>
-                                </>
-                              )}
+                              <h4>How it works:</h4>
+                              <ol>
+                                <li>Connect your wallet and place a bid. Minimum bid will change depending on the current price</li>
+                                <ul>
+                                  <li>Starting bid is <span className="fw-bold">55 $MAD</span></li>
+                                  <li>When current price is 0-99 $MAD, minimum increment is <span className="fw-bold">5 $MAD</span></li>
+                                  <li>When current price is 100-499 $MAD, minimum increment is <span className="fw-bold">10 $MAD</span></li>
+                                  <li>When current price is 500-999 $MAD, minimum increment is <span className="fw-bold">50 $MAD</span></li>
+                                  <li>When current price is 1000+ $MAD, minimum increment is <span className="fw-bold">100 $MAD</span></li>
+                                </ul>
+                                <li>If you are outbid, you can either big higher, or cancel your current bid</li>
+                                <li>If a bid is received 15 minutes from the end of the auction, the bidding time will be extended by 15 minutes</li>
+                                <li>When auction closes, the NFT will belong to the highest bidder. Please claim the NFT by pressing the "Accept Auction" button</li>
+                              </ol>
                             </div>
                           )}
                         </div>
