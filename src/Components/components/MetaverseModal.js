@@ -6,6 +6,7 @@ import store from '../../Store/store';
 import {useDispatch, useSelector} from "react-redux";
 import {connectAccount, onLogout} from "../../GlobalState/User";
 import Button from "./Button";
+import {Link} from "react-router-dom";
 
 function getMetaverseUrl() {
   if (window.location.host === 'localhost:3000') {
@@ -24,7 +25,7 @@ function getMetaverseUrl() {
 }
 
 const MetaverseModal = (props) => {
-  const { id } = props;
+  const { id, showAuctionPageLink } = props;
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const userTheme = useSelector((state) => state.user.theme);
@@ -41,9 +42,22 @@ const MetaverseModal = (props) => {
 
   return (
     <>
-      <button className="btn-main lead mr15 mx-auto" onClick={handleShow}>
-        Enter Metaverse
-      </button>
+      <div className="d-flex justify-content-between">
+        <div className="flex-fill mx-1">
+          <Button type="legacy" className="w-100" onClick={handleShow}>
+            Enter Metaverse
+          </Button>
+        </div>
+        {showAuctionPageLink && (
+          <div className="flex-fill mx-1">
+            <Link to="/mad-auction">
+              <Button type="legacy-outlined" className="w-100">
+                View Auctions
+              </Button>
+            </Link>
+          </div>
+        )}
+      </div>
 
       <Modal show={show} fullscreen onHide={handleClose}>
         <Modal.Header className="modal-background">

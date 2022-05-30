@@ -261,7 +261,7 @@ const Home = () => {
             <div className="card eb-nft__card h-100 shadow">
               <img className="card-img-top" src="/img/metaverse_gallery.png" alt="metaverse gallery" />
               <div className="card-body d-flex flex-column align-middle">
-                <MetaverseModal />
+                <MetaverseModal showAuctionPageLink={true} />
               </div>
             </div>
           </div>
