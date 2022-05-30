@@ -4818,8 +4818,8 @@
       }
     },
     {
-      "name": "Northern Hippo Society",
-      "slug": "northern-hippo-society",
+      "name": "Northern Hippo Syndicate",
+      "slug": "northern-hippo-syndicate",
       "multiToken": false,
       "address": "",
       "onChain": false,
@@ -4827,13 +4827,33 @@
       "metadata": {
         "description": "The Northern Hippo Syndicate brings the artistic and creative stylings of Little Sloth from Open Sea to the Cronos chain. This crazy collection of 5000 unique PFP grants you access to so much more than amazing art. Hold a minimum of 3 to receive a plot of metaverse land.",
         "verified": true,
-        "avatar": "/img/collections/northern-hippo-society/avatar.webp",
-        "card": "/img/collections/northern-hippo-society/card.webp",
-        "banner": "/img/collections/northern-hippo-society/banner.webp",
+        "avatar": "/img/collections/northern-hippo-syndicate/avatar.webp",
+        "card": "/img/collections/northern-hippo-syndicate/card.webp",
+        "banner": "/img/collections/northern-hippo-syndicate/banner.webp",
         "maxSupply": 5000,
         "website": "https://www.hipposyndicate.com/",
         "twitter": "https://twitter.com/HippoSyndicate",
         "discord": "https://discord.gg/9j7ryEgX3K"
+      }
+    },
+    {
+      "name": "CroArmy Jackals",
+      "slug": "cro-army-jackals",
+      "multiToken": false,
+      "address": "0xE4a36Aa88d8380DB252558104dbe0D71505aF7a5",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "CroArmy is a collection of 1000 NFT's that pair with our $ARMY Token. The NFT's act as a membership to our treasury fund and will receive airdrops as the treasury profits.",
+        "verified": false,
+        "avatar": "/img/collections/cro-army-soldier/avatar.webp",
+        "card": "/img/collections/cro-army-soldier/card.webp",
+        "banner": "/img/collections/cro-army-soldier/banner.webp",
+        "maxSupply": 1000,
+        "website": "https://croarmy.io/",
+        "twitter": "https://twitter.com/croarmy_eth",
+        "discord": "https://discord.gg/croarmy",
+        "telegram": "https://t.me/CroArmy_ETH"
       }
     }
   ],
@@ -6901,16 +6921,16 @@
     },
     {
       "id": 77,
-      "slug": "northern-hippo-society",
-      "imgNft": "/img/drops/northern-hippo-society/drop.webp",
-      "imgPreview": "/img/drops/northern-hippo-society/drop.webp",
-      "imgAvatar": "/img/collections/northern-hippo-society/avatar.webp",
-      "imgBanner": "/img/collections/northern-hippo-society/banner.webp",
-      "title": "Northern Hippo Society",
+      "slug": "northern-hippo-syndicate",
+      "imgNft": "/img/drops/northern-hippo-syndicate/drop.webp",
+      "imgPreview": "/img/drops/northern-hippo-syndicate/drop.webp",
+      "imgAvatar": "/img/collections/northern-hippo-syndicate/avatar.webp",
+      "imgBanner": "/img/collections/northern-hippo-syndicate/banner.webp",
+      "title": "Northern Hippo Syndicate",
       "subtitle": "The Northern Hippo Syndicate brings the artistic and creative stylings of Little Sloth from Open Sea to the Cronos chain. This crazy collection of 5000 unique PFP grants you access to so much more than amazing art. Hold a minimum of 3 to receive a plot of metaverse land.",
       "description": "The Northern Hippo Syndicate is a wicked and intimidating collection of 5000 PFPs plucked from the imagination of the Thai artist behind Little Sloth and Crip-Toe. \nOwning a Hippo grants you membership to a very exclusive club, with access to poker tournaments, fantasy leagues, metaverse games, alpha calls and so much more. \nHold a minimum of 3 to receive a plot of metaverse land. The more you hold, the larger the plot.",
       "author": {
-        "name": "Northern Hippo Society",
+        "name": "Northern Hippo Syndicate",
         "website": "https://www.hipposyndicate.com/",
         "twitter": "https://twitter.com/HippoSyndicate",
         "discord": "https://discord.gg/9j7ryEgX3K"
