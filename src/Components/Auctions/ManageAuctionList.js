@@ -176,7 +176,7 @@ const ManageAuctionList = () => {
                 <div className="card-body d-flex flex-column">
                   <h6 className="card-title mt-auto">{auction.nft.name}</h6>
                   <p className="card-text">
-                    {commify(auction.getHighestBid)} CRO <br />
+                    {commify(auction.getHighestBid)} MAD <br />
                     State: {mapStateToHumanReadable(auction)}
                   </p>
                 </div>

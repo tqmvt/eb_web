@@ -61,9 +61,6 @@ const Drops = () => {
             <div className="text-center">
               <h2>
                 Upcoming Drops
-                <a href="https://lootpad.io/collection/luckyspookies" target="_blank" rel="noreferrer">
-                  <img src="/img/lootpad-ghost.gif" alt="lootpad" />
-                </a>
               </h2>
               <div className="small-border"></div>
             </div>
