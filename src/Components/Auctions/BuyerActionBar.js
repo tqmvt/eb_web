@@ -48,13 +48,15 @@ const BuyerActionBar = () => {
   const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
   const readContract = new Contract(config.mm_auction_contract, AuctionContract.abi, readProvider);
 
-  const showBidDialog = () => {
+  const showBidDialog = async () => {
+    await refreshMadBalance();
     setOpenBidDialog(true);
   };
   const hideBidDialog = () => {
     setOpenBidDialog(false);
   };
-  const showIncreaseBidDialog = () => {
+  const showIncreaseBidDialog = async () => {
+    await refreshMadBalance();
     setOpenRebidDialog(true);
   };
   const hideIncreaseBidDialog = () => {
