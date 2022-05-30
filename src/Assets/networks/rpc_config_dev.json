@@ -4795,8 +4795,26 @@
         "website": "https://crougar.com/",
         "twitter": "https://twitter.com/CROugarNFT",
         "discord": "https://discord.gg/G8Puur6Qea",
-        "medium": "https://medium.com/@crougar",
-        "staking": "crodex"
+        "medium": "https://medium.com/@crougar"
+      }
+    },
+    {
+      "name": "Rumble Roos by HopSwap",
+      "slug": "rumble-roos",
+      "multiToken": false,
+      "address": "0xb67596828aC3cB4E65C170C0d66806Ac7bEB00C0",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "Step into the Rumble Ring and become the undisputed champion of Lazy World!  The Rumble Roo is your access to the ring where you can play to earn HOP,  the native token for the HopSwap decentralized exchange.  As HopSwap's first NFT project, these Roos are considered founders and exclusive members of the exchange.",
+        "verified": true,
+        "avatar": "/img/collections/rumble-roos/avatar.webp",
+        "card": "/img/collections/rumble-roos/card.webp",
+        "banner": "/img/collections/rumble-roos/banner.webp",
+        "maxSupply": 2000,
+        "website": "https://www.rumbleroos.io",
+        "twitter": "https://twitter.com/HopSwapFinance",
+        "discord": "https://discord.gg/HopSwap"
       }
     }
   ],
