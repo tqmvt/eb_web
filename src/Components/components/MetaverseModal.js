@@ -47,7 +47,7 @@ const MetaverseModal = (props) => {
 
       <Modal show={show} fullscreen onHide={handleClose}>
         <Modal.Header className="modal-background">
-          <Modal.Title>Mad Meerkat Metaverse Auction</Modal.Title>
+          <Modal.Title>Mad Meerkat Legendary Auction</Modal.Title>
           <CloseButton variant={userTheme === 'dark' ? 'white' : ''} onClick={handleClose} />
         </Modal.Header>
         <Modal.Body className="pt-0 pb-0 px-0 modal-background">
