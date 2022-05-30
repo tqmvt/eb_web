@@ -4816,6 +4816,25 @@
         "twitter": "https://twitter.com/HopSwapFinance",
         "discord": "https://discord.gg/HopSwap"
       }
+    },
+    {
+      "name": "Northern Hippo Society",
+      "slug": "northern-hippo-society",
+      "multiToken": false,
+      "address": "",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "The Northern Hippo Syndicate brings the artistic and creative stylings of Little Sloth from Open Sea to the Cronos chain. This crazy collection of 5000 unique PFP grants you access to so much more than amazing art. Hold a minimum of 3 to receive a plot of metaverse land.",
+        "verified": true,
+        "avatar": "/img/collections/northern-hippo-society/avatar.webp",
+        "card": "/img/collections/northern-hippo-society/card.webp",
+        "banner": "/img/collections/northern-hippo-society/banner.webp",
+        "maxSupply": 5000,
+        "website": "https://www.hipposyndicate.com/",
+        "twitter": "https://twitter.com/HippoSyndicate",
+        "discord": "https://discord.gg/9j7ryEgX3K"
+      }
     }
   ],
   "drops": [
@@ -6874,6 +6893,37 @@
       "whitelistCost": "290",
       "foundersOnly": false,
       "start": 1653847200000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false
+    },
+    {
+      "id": 77,
+      "slug": "northern-hippo-society",
+      "imgNft": "/img/drops/northern-hippo-society/drop.webp",
+      "imgPreview": "/img/drops/northern-hippo-society/drop.webp",
+      "imgAvatar": "/img/collections/northern-hippo-society/avatar.webp",
+      "imgBanner": "/img/collections/northern-hippo-society/banner.webp",
+      "title": "Northern Hippo Society",
+      "subtitle": "The Northern Hippo Syndicate brings the artistic and creative stylings of Little Sloth from Open Sea to the Cronos chain. This crazy collection of 5000 unique PFP grants you access to so much more than amazing art. Hold a minimum of 3 to receive a plot of metaverse land.",
+      "description": "The Northern Hippo Syndicate is a wicked and intimidating collection of 5000 PFPs plucked from the imagination of the Thai artist behind Little Sloth and Crip-Toe. \nOwning a Hippo grants you membership to a very exclusive club, with access to poker tournaments, fantasy leagues, metaverse games, alpha calls and so much more. \nHold a minimum of 3 to receive a plot of metaverse land. The more you hold, the larger the plot.",
+      "author": {
+        "name": "Northern Hippo Society",
+        "website": "https://www.hipposyndicate.com/",
+        "twitter": "https://twitter.com/HippoSyndicate",
+        "discord": "https://discord.gg/9j7ryEgX3K"
+      },
+      "address": "",
+      "maxMintPerTx": 10,
+      "maxMintPerAddress": 100,
+      "totalSupply": 5000,
+      "cost": "575",
+      "memberCost": "555",
+      "whitelistCost": "525",
+      "foundersOnly": false,
+      "start": 1654261200000,
       "end": null,
       "referral": false,
       "is1155": false,
