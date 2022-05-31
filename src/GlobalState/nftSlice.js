@@ -42,4 +42,5 @@ export const getNftDetails = (collectionAddress, nftId) => async (dispatch, getS
   response.currentListing = currentListing;
 
   dispatch(nftReceived(response));
+  return response.nft;
 };

@@ -1,7 +1,7 @@
 import React, { memo, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 import Blockies from 'react-blockies';
 import { Contract, ethers } from 'ethers';
 import { faCrow, faExternalLinkAlt, faHeart } from '@fortawesome/free-solid-svg-icons';
@@ -44,9 +44,9 @@ import { AnyMedia } from '../components/AnyMedia';
 
 const knownContracts = config.known_contracts;
 
-const Nft721 = ({ address, id }) => {
+const Nft721 = ({ address, id, nft }) => {
   const dispatch = useDispatch();
-  const history = useRouter();
+  // const history = useRouter();
 
   const user = useSelector((state) => state.user);
 
@@ -54,7 +54,7 @@ const Nft721 = ({ address, id }) => {
   const [offerType, setOfferType] = useState(OFFER_TYPE.none);
   const [offerData, setOfferData] = useState();
 
-  const nft = useSelector((state) => state.nft.nft);
+  // const nft = useSelector((state) => state.nft.nft);
   const currentListing = useSelector((state) => state.nft.currentListing);
   const listingHistory = useSelector((state) =>
     state.nft.history.filter((i) => i.state === 1).sort((a, b) => (a.saleTime < b.saleTime ? 1 : -1))
@@ -78,9 +78,9 @@ const Nft721 = ({ address, id }) => {
   const [babyWeirdApeBreed, setBabyWeirdApeBreed] = useState(null);
   const [evoSkullTraits, setEvoSkullTraits] = useState([]);
 
-  useEffect(() => {
-    dispatch(getNftDetails(address, id));
-  }, [dispatch, address, id]);
+  // useEffect(() => {
+  //   dispatch(getNftDetails(address, id));
+  // }, [dispatch, address, id]);
 
   useEffect(() => {
     async function asyncFunc() {
@@ -301,9 +301,12 @@ const Nft721 = ({ address, id }) => {
                       typeof window !== 'undefined' &&
                       window.open(croSkullRedPotionImageHack(address, fullImage()), '_blank')
                     }
+                    className="d-flex align-items-center justify-content-center"
                   >
                     <span className="p-2">View Full Image</span>
-                    <FontAwesomeIcon icon={faExternalLinkAlt} />
+                    <div style={{ width: '14px' }}>
+                      <FontAwesomeIcon icon={faExternalLinkAlt} size="md" />
+                    </div>
                   </span>
                 </div>
               )}

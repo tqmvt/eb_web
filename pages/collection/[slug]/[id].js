@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 import Head from 'next/head';
 
 import store from '../../../src/Store/store';
@@ -10,16 +10,16 @@ import Nft1155 from '../../../src/Components/Collection/nft1155';
 import Nft721 from '../../../src/Components/Collection/nft721';
 const knownContracts = config.known_contracts;
 
-const Nft = ({ slug, id }) => {
+const Nft = ({ slug, id, nft }) => {
   const [type, setType] = useState('721');
   const [collection, setCollection] = useState(null);
-  const [redirect, setRedirect] = useState(false);
+  // const [redirect, setRedirect] = useState(false);
   const [initialized, setInitialized] = useState(false);
 
-  const nft = useSelector((state) => state.nft.nft);
+  // const nft = useSelector((state) => state.nft.nft);
 
   useEffect(() => {
-    setRedirect(null);
+    // setRedirect(null);
     let col = knownContracts.find((c) => c.slug === slug);
     if (col) {
       setCollection(col);
@@ -29,7 +29,7 @@ const Nft = ({ slug, id }) => {
       col = findCollectionByAddress(slug, id);
       if (col) {
         setCollection(col);
-        setRedirect(col.slug);
+        // setRedirect(col.slug);
         router.push(`/collection/${col.slug}/${id}`);
       }
     }
@@ -52,24 +52,6 @@ const Nft = ({ slug, id }) => {
             return a.percent - b.percent;
           }
         });
-
-        // .reduce(
-        //   (previousValue, currentValue) => {
-        //     if (previousValue?.occurrence) {
-        //       if (relativePrecision(previousValue.occurrence) > relativePrecision(currentValue.occurrence)) {
-        //         return currentValue;
-        //       }
-        //     } else if (previousValue?.percent) {
-        //       if (previousValue.percent > currentValue.percent) {
-        //         return currentValue;
-        //       }
-        //     }
-        //   },
-        //   // `${previousValue ? `${previousValue}, ` : ''}${humanize(currentValue.trait_type)}: ${
-        //   //   currentValue.value ? humanize(currentValue.value) : 'N/A'
-        //   // }`,
-        //   anNFT.attributes[0]
-        // );
       }
       if (anNFT?.properties && Array.isArray(anNFT.properties)) {
         traits = anNFT.properties;
@@ -80,23 +62,6 @@ const Nft = ({ slug, id }) => {
             return a.percent - b.percent;
           }
         });
-        // .reduce(
-        //   (previousValue, currentValue) => {
-        //     if (previousValue?.occurrence) {
-        //       if (relativePrecision(previousValue.occurrence) > relativePrecision(currentValue.occurrence)) {
-        //         return currentValue;
-        //       }
-        //     } else if (previousValue?.percent) {
-        //       if (previousValue.percent > currentValue.percent) {
-        //         return currentValue;
-        //       }
-        //     }
-        //   },
-        //   // `${previousValue ? `${previousValue}, ` : ''}${humanize(currentValue.trait_type)}: ${
-        //   //   currentValue.value ? humanize(currentValue.value) : 'N/A'
-        //   // }`,
-        //   anNFT.properties[0]
-        // );
       }
       if (traits.length) {
         const traitsTop = traits[0];
@@ -110,15 +75,19 @@ const Nft = ({ slug, id }) => {
     return anNFT?.description;
   };
 
-  if (redirect) {
-    router.push(`/collection/${redirect}/${id}`);
-    return <></>;
-  }
+  // if (redirect) {
+  //   router.push(`/collection/${redirect}/${id}`);
+  //   return <></>;
+  // }
 
   return (
     <>
       <Head>
         <title>{nft?.name || 'NFT'} | Ebisu's Bay Marketplace</title>
+        <link
+          href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@200;300;400;500;600;700;800&display=swap"
+          rel="stylesheet"
+        />
         <meta name="description" content={`${nft?.name || 'NFT'} for Ebisu's Bay Marketplace`} />
         <meta name="title" content={`${nft?.name || 'NFT'} | Ebisu's Bay Marketplace`} />
         <meta property="og:type" content="website" key="og_type" />
@@ -135,7 +104,7 @@ const Nft = ({ slug, id }) => {
           {type === '1155' ? (
             <Nft1155 address={collection.address} id={id} />
           ) : (
-            <Nft721 address={collection.address} id={id} />
+            <Nft721 address={collection.address} id={id} nft={nft} />
           )}
         </>
       )}
@@ -153,8 +122,9 @@ export const getServerSideProps = async ({ params }) => {
     collection = knownContracts.find((c) => c?.slug.toLowerCase() === slug.toLowerCase());
   }
 
+  let nft;
   if (collection?.address) {
-    await store.dispatch(getNftDetails(collection.address, tokenId));
+    nft = await store.dispatch(getNftDetails(collection.address, tokenId));
   }
 
   if (isAddress(slug)) {
@@ -167,6 +137,7 @@ export const getServerSideProps = async ({ params }) => {
         slug: collection?.slug,
         id: tokenId,
         collection,
+        nft,
       },
     };
   }
@@ -176,6 +147,7 @@ export const getServerSideProps = async ({ params }) => {
       slug: collection?.slug,
       id: tokenId,
       collection,
+      nft,
     },
   };
 };
