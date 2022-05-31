@@ -16,7 +16,7 @@ import { auctionState } from '../../core/api/enums';
 
 const AuctionCard = ({ listing, imgClass = 'marketplace' }) => {
   return (
-    <Link className="linkPointer" to={`/auctions/${listing.getAuctionId}`}>
+    <Link className="linkPointer" href={`/auctions/${listing.getAuctionId}`}>
       <div className="card eb-nft__card h-100 shadow">
         <img src={listing.nft.image} className={`card-img-top ${imgClass}`} alt={listing.nft.name} />
         <div className="eb-de_countdown text-center">

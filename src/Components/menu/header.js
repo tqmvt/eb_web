@@ -122,8 +122,10 @@ const Header = function () {
                     </div>
                     <div className="navbar-item">
                       <Link href="/mad-auction">
-                        MAD Auction
-                        <span className="lines"></span>
+                        <a>
+                          MAD Auction
+                          <span className="lines"></span>
+                        </a>
                       </Link>
                     </div>
                   </div>
@@ -167,8 +169,10 @@ const Header = function () {
                 </div>
                 <div className="navbar-item">
                   <Link href="/mad-auction">
-                    MAD Auction
-                    <span className="lines"></span>
+                    <a>
+                      MAD Auction
+                      <span className="lines"></span>
+                    </a>
                   </Link>
                 </div>
               </div>
