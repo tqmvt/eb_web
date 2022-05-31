@@ -4896,6 +4896,26 @@
         "discord": "https://discord.gg/croarmy",
         "telegram": "https://t.me/CroArmy_ETH"
       }
+    },
+    {
+      "name": "Tacky Tortoise x FoC",
+      "slug": "tacky-tortoise-foc",
+      "multiToken": false,
+      "address": "0x97413F46aecB910062Ee7eFD7fcefEA8D11F750D",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "A collaboration between Future of Color, and the Tacky Tortoise.",
+        "verified": false,
+        "avatar": "/img/collections/tacky-tortoise-foc/avatar.webp",
+        "card": "/img/collections/tacky-tortoise-foc/card.webp",
+        "banner": "/img/collections/tacky-tortoise-foc/banner.webp",
+        "maxSupply": 14,
+        "website": "https://www.tackytortoise.com/",
+        "twitter": "https://twitter.com/NFTtackyTortois",
+        "discord": "https://discord.gg/JkVmwW2bhu",
+        "medium": "https://medium.com/@JLizler"
+      }
     }
   ],
   "drops": [
