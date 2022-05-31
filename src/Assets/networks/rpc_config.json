@@ -4856,6 +4856,26 @@
         "discord": "https://discord.gg/croarmy",
         "telegram": "https://t.me/CroArmy_ETH"
       }
+    },
+    {
+      "name": "D.G.Pals Limited and Special Edition",
+      "slug": "dg-pals-limited-se",
+      "multiToken": false,
+      "address": "0xa072bB6F648a4271ba9CbaF1319Fc373eF907f29",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "D.G.P: New World Beta LIVE 23rd May & D.G.P: Legends Beta LIVE 31st May! Welcome to the D.G.Verse! Backed by Crypto.com Capital and Spartan Group, D.G.Pals is one of the first Gamefi project to redefine Web3 gaming with the first Interoperable NFT on the Cronos chain. 1 NFT, 2 Tokens, multiple games (4 titles in 2022). Unlock the gates to Panterra with our first game, D.G.P: New World, hatch, grow and mint D.G.Pal NFTs and earn tokens while exploring the D.G.Verse.",
+        "verified": true,
+        "avatar": "/img/collections/dg-pals-limited-se/avatar.webp",
+        "card": "/img/collections/dg-pals-limited-se/card.webp",
+        "banner": "/img/collections/dg-pals-limited-se/banner.webp",
+        "maxSupply": 50000,
+        "website": "https://dgpals.io/",
+        "twitter": "https://twitter.com/officialdgpals",
+        "discord": "https://discord.gg/dgpals",
+        "medium": "https://medium.com/officialdgpals"
+      }
     }
   ],
   "drops": [
