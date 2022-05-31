@@ -246,7 +246,7 @@ const AuctionComponent = (props) => {
                                   <li>When current price is 500-999 $MAD, minimum increment is <span className="fw-bold">50 $MAD</span></li>
                                   <li>When current price is 1000+ $MAD, minimum increment is <span className="fw-bold">100 $MAD</span></li>
                                 </ul>
-                                <li>If you are outbid, you can either big higher, or cancel your current bid</li>
+                                <li>If you are outbid, you can either bid higher, or cancel your current bid</li>
                                 <li>If a bid is received 15 minutes from the end of the auction, the bidding time will be extended by 15 minutes</li>
                                 <li>When auction closes, the NFT will belong to the highest bidder. Please claim the NFT by pressing the "Accept Auction" button</li>
                               </ol>
