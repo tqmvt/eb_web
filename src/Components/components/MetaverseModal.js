@@ -6,7 +6,7 @@ import store from '../../Store/store';
 import {useDispatch, useSelector} from "react-redux";
 import {connectAccount, onLogout} from "../../GlobalState/User";
 import Button from "./Button";
-import {Link} from "react-router-dom";
+import Link from 'next/link';
 
 function getMetaverseUrl() {
   if (typeof window === 'undefined') return;
@@ -51,7 +51,7 @@ const MetaverseModal = (props) => {
         </div>
         {showAuctionPageLink && (
           <div className="flex-fill mx-1">
-            <Link to="/mad-auction">
+            <Link href="/mad-auction">
               <Button type="legacy-outlined" className="w-100">
                 View Auctions
               </Button>
