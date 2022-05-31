@@ -1145,7 +1145,7 @@
       "name": "Northern Hippo Society",
       "slug": "northern-hippo-society",
       "multiToken": false,
-      "address": "",
+      "address": "0x2f8b1f9d70A7727842391beB9dB14B1f7D1DB6ed",
       "onChain": false,
       "listable": false,
       "metadata": {
@@ -2531,7 +2531,7 @@
         "twitter": "https://twitter.com/HippoSyndicate",
         "discord": "https://discord.gg/9j7ryEgX3K"
       },
-      "address": "",
+      "address": "0x2f8b1f9d70A7727842391beB9dB14B1f7D1DB6ed",
       "maxMintPerTx": 10,
       "maxMintPerAddress": 100,
       "totalSupply": 5000,
