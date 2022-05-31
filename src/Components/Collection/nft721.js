@@ -338,13 +338,12 @@ const Nft721 = ({ address, id }) => {
                     </div>
                   )}
 
-                  {collection.listable &&
-                    (!currentListing || !isUserBlacklisted(currentListing.seller)) &&
-                    !isNftBlacklisted(address, id) && (
-                      <>
-                        <PriceActionBar offerType={offerType} onOfferSelected={() => handleMakeOffer()} />
-                      </>
-                    )}
+                  {collection.listable && (
+                    <PriceActionBar
+                      offerType={offerType}
+                      onOfferSelected={() => handleMakeOffer()}
+                    />
+                  )}
 
                   <div className="row" style={{ gap: '2rem 0' }}>
                     {currentListing && (

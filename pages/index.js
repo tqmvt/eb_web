@@ -14,9 +14,10 @@ import HotCollections from '../src/Components/components/HotCollections';
 import CurrentDrops from '../src/Components/components/CurrentDrops';
 import { getMarketData } from '../src/GlobalState/marketplaceSlice';
 import { siPrefixedNumber } from '../src/utils';
-import { theme } from '../src/Theme/theme';
+import {getTheme, theme} from '../src/Theme/theme';
 import { limitSizeOptions } from '../src/Components/components/constants/filter-options';
 import Button from '../src/Components/components/Button';
+import MetaverseModal from "../src/Components/components/MetaverseModal";
 
 const fadeInUp = keyframes`
   0% {
@@ -241,6 +242,28 @@ const Home = () => {
         {!mobile && <div className="container">{JumbotronData()}</div>}
       </Jumbotron.Host>
       {mobile && JumbotronData()}
+
+      <section className="container no-bottom no-top">
+        <div className="row">
+          <div className="col-lg-12">
+            <div className="text-center pt-5">
+              <h2>Mad Meerkat Legendary Auction</h2>
+              <div className="small-border"></div>
+            </div>
+          </div>
+          <div className="col-lg-6 text-center align-middle d-flex align-items-center">
+            <div className="fs-3 mt-3" style={{color:getTheme(userTheme).colors.textColor3}}>8 Legendary Mad Meerkat Degens being auctioned over the next 16 days. Join our auction in the metaverse!</div>
+          </div>
+          <div className="col-lg-6 pt-3">
+            <div className="card eb-nft__card h-100 shadow">
+              <img className="card-img-top" src="/img/metaverse_gallery.png" alt="metaverse gallery" />
+              <div className="card-body d-flex flex-column align-middle">
+                <MetaverseModal showAuctionPageLink={true} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <section className="container no-bottom">
         <div className="row">
