@@ -6,7 +6,8 @@ import React from 'react';
 // import { createSuccessfulTransactionToastContent } from '../../utils';
 import CreateAuction from '../../src/Components/Auctions/CreateAuction';
 import ManageAuctionList from '../../src/Components/Auctions/ManageAuctionList';
-// import config from '../../Assets/networks/rpc_config.json';
+import config from '../../src/Assets/networks/rpc_config.json';
+import {caseInsensitiveCompare} from "../../src/utils";
 // import AuctionContract from '../../Contracts/Auction.json';
 
 const ManageAuctions = () => {

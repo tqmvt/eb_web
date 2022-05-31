@@ -100,6 +100,8 @@ const MyOffers = () => {
           );
 
           const knownContract = findCollectionByAddress(offer.nftAddress, offer.nftId);
+          if (!knownContract) return false;
+
           const floorPrice = findCollectionFloor(knownContract);
           const offerPrice = parseInt(offer.price);
           const isAboveOfferThreshold = floorPrice ? offerPrice >= floorPrice / 2 : true;
@@ -116,6 +118,8 @@ const MyOffers = () => {
           );
 
           const knownContract = findCollectionByAddress(offer.nftAddress, offer.nftId);
+          if (!knownContract) return false;
+          
           const floorPrice = findCollectionFloor(knownContract);
           const offerPrice = parseInt(offer.price);
           const isAboveOfferThreshold = floorPrice ? offerPrice >= floorPrice / 2 : true;

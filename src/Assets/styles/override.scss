@@ -606,3 +606,7 @@ canvas {
 .auction-box-footer {
   color: $textColor2;
 }
+
+.web3modal-modal-lightbox {
+  z-index:2000 !important;
+}

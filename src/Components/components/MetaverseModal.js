@@ -3,7 +3,10 @@ import { CloseButton, Modal } from 'react-bootstrap';
 import MetaverseBidModal from './MetaverseBidModal';
 import { showBidDialog } from '../../GlobalState/metaverseSlice';
 import store from '../../Store/store';
-import { useSelector } from 'react-redux';
+import {useDispatch, useSelector} from "react-redux";
+import {connectAccount, onLogout} from "../../GlobalState/User";
+import Button from "./Button";
+import Link from 'next/link';
 
 function getMetaverseUrl() {
   if (typeof window === 'undefined') return;
@@ -23,24 +26,43 @@ function getMetaverseUrl() {
 }
 
 const MetaverseModal = (props) => {
-  const { id } = props;
+  const { id, showAuctionPageLink } = props;
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
   const userTheme = useSelector((state) => state.user.theme);
+
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const handleLogout = () => dispatch(onLogout());
+  const handleLogin = () => dispatch(connectAccount());
 
   const metaverseUrl = getMetaverseUrl();
 
+
   return (
     <>
-      <button className="btn-main lead mr15 mx-auto" onClick={handleShow}>
-        Enter Metaverse
-      </button>
+      <div className="d-flex justify-content-between">
+        <div className="flex-fill mx-1">
+          <Button type="legacy" className="w-100" onClick={handleShow}>
+            Enter Metaverse
+          </Button>
+        </div>
+        {showAuctionPageLink && (
+          <div className="flex-fill mx-1">
+            <Link href="/mad-auction">
+              <Button type="legacy-outlined" className="w-100">
+                View Auctions
+              </Button>
+            </Link>
+          </div>
+        )}
+      </div>
 
       <Modal show={show} fullscreen onHide={handleClose}>
         <Modal.Header className="modal-background">
-          <Modal.Title>Mad Meerkat Metaverse Auction</Modal.Title>
+          <Modal.Title>Mad Meerkat Legendary Auction</Modal.Title>
           <CloseButton variant={userTheme === 'dark' ? 'white' : ''} onClick={handleClose} />
         </Modal.Header>
         <Modal.Body className="pt-0 pb-0 px-0 modal-background">
@@ -52,9 +74,9 @@ const MetaverseModal = (props) => {
           />
         </Modal.Body>
         <Modal.Footer className="modal-background">
-          <span className="btn-main" onClick={handleClose}>
+          <Button type="legacy" onClick={handleClose}>
             Close
-          </span>
+          </Button>
           <MetaverseBidModal id={id} />
         </Modal.Footer>
       </Modal>

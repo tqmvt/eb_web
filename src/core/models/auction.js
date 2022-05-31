@@ -40,7 +40,8 @@ export class Auction {
   }
 
   get getBidHistory() {
-    return this.bidHistory ?? this.bid_history ?? [];
+    const history = this.bidHistory ?? this.bid_history ?? [];
+    return history.sort((a, b) => (parseInt(a.price) < parseInt(b.price) ? 1 : -1))
   }
 
   get getEndAt() {

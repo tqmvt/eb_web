@@ -8,17 +8,12 @@ import Countdown from 'react-countdown';
 
 import config from '../../Assets/networks/rpc_config.json';
 import AuctionContract from '../../Contracts/DegenAuction.json';
-import {
-  caseInsensitiveCompare,
-  createSuccessfulTransactionToastContent,
-  devLog,
-  isEventValidNumber,
-} from '../../utils';
-import { auctionState } from '../../core/api/enums';
-import { updateAuctionFromBidEvent } from '../../GlobalState/auctionSlice';
-import { chainConnect, connectAccount } from '../../GlobalState/User';
-import { ERC20 } from '../../Contracts/Abis';
-import Button from '../components/Button';
+import {caseInsensitiveCompare, createSuccessfulTransactionToastContent, devLog, isEventValidNumber} from '../../utils';
+import {auctionState} from '../../core/api/enums';
+import {getAuctionDetails, updateAuctionFromBidEvent} from '../../GlobalState/auctionSlice';
+import {chainConnect, connectAccount} from '../../GlobalState/User';
+import {ERC20} from "../../Contracts/Abis";
+import Button from "../components/Button";
 
 const BuyerActionBar = () => {
   const dispatch = useDispatch();
@@ -53,13 +48,15 @@ const BuyerActionBar = () => {
   const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
   const readContract = new Contract(config.mm_auction_contract, AuctionContract.abi, readProvider);
 
-  const showBidDialog = () => {
+  const showBidDialog = async () => {
+    await refreshMadBalance();
     setOpenBidDialog(true);
   };
   const hideBidDialog = () => {
     setOpenBidDialog(false);
   };
-  const showIncreaseBidDialog = () => {
+  const showIncreaseBidDialog = async () => {
+    await refreshMadBalance();
     setOpenRebidDialog(true);
   };
   const hideIncreaseBidDialog = () => {
@@ -84,6 +81,7 @@ const BuyerActionBar = () => {
       console.log('withdrawing bid...', listing.getAuctionIndex, listing.getAuctionHash);
       return (await writeContract.withdraw(listing.getAuctionHash, listing.getAuctionIndex)).wait();
     });
+    dispatch(getAuctionDetails(listing.getAuctionId));
     setExecutingWithdraw(false);
   };
 
@@ -98,6 +96,7 @@ const BuyerActionBar = () => {
       );
       return (await writeContract.accept(listing.getAuctionHash, listing.getAuctionIndex)).wait();
     });
+    dispatch(getAuctionDetails(listing.getAuctionId));
     setExecutingAcceptBid(false);
   };
 
@@ -107,6 +106,7 @@ const BuyerActionBar = () => {
       console.log('cancelling auction...', listing.getAuctionIndex, listing.getAuctionHash);
       return (await writeContract.cancel(listing.getAuctionHash, listing.getAuctionIndex)).wait();
     });
+    dispatch(getAuctionDetails(listing.getAuctionId));
     setExecutingCancelBid(false);
   };
 
@@ -289,6 +289,9 @@ const BuyerActionBar = () => {
               </Button>
             ) : (
               <>
+                <div className="text-center mx-auto auction-box-footer mb-2" style={{fontSize:'12px'}}>
+                  No bids were made
+                </div>
                 <Button type="legacy" className="w-100" onClick={executeCancelBid()} disabled={executingCancelBid}>
                   {executingCancelBid ? (
                     <>
@@ -301,24 +304,22 @@ const BuyerActionBar = () => {
                     <>Cancel Auction</>
                   )}
                 </Button>
-                <div className="text-center mx-auto auction-box-footer mt-2" style={{ fontSize: '12px' }}>
-                  No bids were made
-                </div>
               </>
             )}
           </div>
         )}
-        {listing.state === auctionState.ACTIVE &&
-          !isHighestBidder &&
-          !hasBeenOutbid &&
-          !awaitingAcceptance &&
-          !isAuctionOwner && (
-            <div className="flex-fill mx-1">
-              <Button type="legacy" className="w-100" onClick={showBidDialog} disabled={executingBid}>
-                Place Bid
-              </Button>
-            </div>
-          )}
+        {listing.state === auctionState.ACTIVE && isHighestBidder && !awaitingAcceptance && (
+          <div className="flex-fill mx-1">
+            You are the highest bidder!
+          </div>
+        )}
+        {listing.state === auctionState.ACTIVE && !isHighestBidder && !hasBeenOutbid && !awaitingAcceptance && !isAuctionOwner && (
+          <div className="flex-fill mx-1">
+            <Button type="legacy" className="w-100" onClick={showBidDialog} disabled={executingBid}>
+              Place Bid
+            </Button>
+          </div>
+        )}
         {listing.state === auctionState.ACTIVE && hasBeenOutbid && !awaitingAcceptance && !isAuctionOwner && (
           <div className="flex-fill mx-1">
             <Button type="legacy" className="w-100" onClick={showIncreaseBidDialog} disabled={executingBid}>

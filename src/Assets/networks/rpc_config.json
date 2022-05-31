@@ -17,7 +17,7 @@
   "ebisu_contract": "0xd036b2223bcc2A96164B023022D6b78CD71A1a12",
   "slothy_rugsurance_contract": "0xE9A540CBb2247f9bD86e98d1121aBDD084Ca0e89",
   "offer_contract": "0x016b347aeb70cc45e3bbaf324feb3c7c464e18b0",
-  "mm_auction_contract": "0x0B93df0b823E8B1b62d0a753c6F115Cad4e89dD1",
+  "mm_auction_contract": "0x47E79264A9d1343C04F4A56922bE7e6177aE03a0",
   "known_tokens": {
     "loot": {
       "name": "LOOT",
@@ -27,7 +27,7 @@
     "mad": {
       "name": "MAD",
       "symbol": "MAD",
-      "address": "0xD6464BdB57e9eD610692635b64fd47B763345032"
+      "address": "0x212331e1435a8df230715db4c02b2a3a0abf8c61"
     }
   },
   "known_contracts": [
@@ -417,15 +417,17 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "Collection of 2720 algorithmically generated punks on the Cronos Chain",
-        "verified": false,
-        "avatar": "/img/collections/wrappedcronospunk/avatar.jpg",
+        "description": "Collection of 2720 algorithmically generated punks on the Cronos Chain. Adopted by the CRO CROW team.",
+        "verified": true,
+        "avatar": "/img/collections/wrappedcronospunk/avatar.webp",
         "banner": "/img/collections/wrappedcronospunk/banner.webp",
-        "card": "/img/collections/wrappedcronospunk/card.jpg",
+        "card": "/img/collections/wrappedcronospunk/card.webp",
         "maxSupply": 2720,
-        "website": "https://www.crocrow.com/wrapcronospunk",
-        "twitter": "https://twitter.com/CronosPunk_Fam",
-        "discord": "https://discord.gg/SYEH7pKX2N"
+        "website": "https://crocrow.com",
+        "twitter": "https://twitter.com/cronoscrocrow",
+        "discord": "https://discord.gg/8a8Xm4wwR9",
+        "telegram": "https://t.me/crocrownft",
+        "medium": "https://medium.com/@cronoscrocrow"
       }
     },
     {
@@ -1125,8 +1127,8 @@
       "metadata": {
         "description": "CROugars is a limited collection of 2,222 cougar NFTs with concrete utility. Deployed on the Cronos Chain.",
         "verified": true,
-        "avatar": "/img/collections/crougars/avatar.png",
-        "card": "/img/collections/crougars/card.png",
+        "avatar": "/img/collections/crougars/avatar.webp",
+        "card": "/img/collections/crougars/card.webp",
         "banner": "/img/collections/crougars/banner.webp",
         "maxSupply": 2222,
         "website": "https://crougar.com/",
@@ -2506,7 +2508,7 @@
       "multiToken": false,
       "address": "0xD0BD375a43B58Fd8329980898802667a64623F60",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "",
         "verified": false,
@@ -4520,7 +4522,7 @@
       "multiToken": false,
       "address": "0xEB850b8F7d00B4FaF242888Bef7EfbF229eb1e41",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "Looneycorns is the first of 5 unique toys/NFTs from the Lost Toy collection. Each toy character represents a childhood favourite that has been lost over time and needs a new home.\n\nEach of the 2,200 Looneycorns NFTs have a different rarity level and to ensure that each one is totally unique, we have also gone the \"extra-mile\" and created over 120 traits which would easily make up a collection of 5,000 NFTs!",
         "verified": true,
@@ -4725,6 +4727,144 @@
         "website": "https://trooprz.army/",
         "discord": "https://discord.gg/trooprz"
       }
+    },
+    {
+      "name": "Cronos Live Ticket",
+      "slug": "cronos-live-ticket",
+      "multiToken": false,
+      "address": "0xf551A3F1221d4558184bf5e0B6c3662FE9cA8bed",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "The first lottery has tickets in the form of NFTs to the random draw on Cronos.",
+        "verified": false,
+        "avatar": "/img/collections/cronos-live-ticket/avatar.webp",
+        "card": "/img/collections/cronos-live-ticket/card.webp",
+        "banner": "/img/collections/cronos-live-ticket/banner.webp",
+        "maxSupply": 100,
+        "website": "https://www.cllottery.online/",
+        "twitter": "https://twitter.com/Cro_LiveLottery",
+        "telegram": "https://t.me/CLLottery",
+        "gitbook": "https://young-builder.gitbook.io/cronos-live-lottery/"
+      }
+    },
+    {
+      "name": "DR BOO'S GHOSTS",
+      "slug": "dr-boos-ghosts",
+      "multiToken": false,
+      "address": "0x6f19E31154454364780310465BE27e8e86797a2E",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "Welcome to Manor H, where Dr. Boo's ghosts were born. These ghosts come in 2111 appearances, divided into 3 categories: COMMON, RARE & EPIC. In addition to the staking and the numerous perks offered by these categories, each Boo NFT acquired will receive a Poison NFT, with a different color depending on the category (yellow, green or black). A Boo NFT + Poison NFT pair will allow access to the Manor in the metaverse, to retrieve multiple items daily to build a new NFT Boo FRK!",
+        "verified": true,
+        "avatar": "/img/collections/dr-boos-ghosts/avatar.webp",
+        "card": "/img/collections/dr-boos-ghosts/card.webp",
+        "banner": "/img/collections/dr-boos-ghosts/banner.webp",
+        "maxSupply": 2111,
+        "website": "https://drbghosts.com/",
+        "twitter": "https://twitter.com/drbghosts",
+        "discord": "https://discord.gg/EFW8bAZW3J",
+        "medium": "https://medium.com/@drbooghosts"
+      }
+    },
+    {
+      "name": "ETH Stones",
+      "slug": "eth-stones",
+      "multiToken": false,
+      "address": "0xA3a4104B2A429b3A33Ac1304371E2eEf6E6aF44B",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/collections/babyaliendivision/eth-stones/avatar.webp",
+        "banner": "/img/collections/babyaliendivision/eth-stones/banner.webp",
+        "card": "/img/collections/babyaliendivision/eth-stones/card.webp",
+        "maxSupply": 350,
+        "website": "https://badaliens.io/",
+        "twitter": "https://twitter.com/BAD_Cronos",
+        "discord": "https://discord.gg/qKBy2azf69",
+        "medium": "https://medium.com/@babyaliendivision"
+      }
+    },
+    {
+      "name": "CROugarX",
+      "slug": "crougar-x",
+      "multiToken": false,
+      "address": "0x45958Cb5ede8dc9E1a797C1526D4523db1471F15",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "CrougarX is the 2nd Generation of the Crougar NFT project. It is intended to have a higher scarcity, as well as unique utilities and benefits to holders of CrougarX and Gen 1 NFTs.   CrougarX is a very limited collection of 1,111 NFTs. Derived from the first Crougar collection, with several exciting aesthetic differences! Such as a redesigned pixel art style, a variety of completely new traits, as well as the introduction of animated backgrounds.   The CrougarX collection has dual utility: with benefits to CrougarX holders and also Gen 1 Holders. Additional benefits for holding both!",
+        "verified": true,
+        "avatar": "/img/collections/crougars/crougar-x/avatar.webp",
+        "card": "/img/collections/crougars/crougar-x/card.webp",
+        "banner": "/img/collections/crougars/crougar-x/banner.webp",
+        "maxSupply": 2222,
+        "website": "https://crougar.com/",
+        "twitter": "https://twitter.com/CROugarNFT",
+        "discord": "https://discord.gg/G8Puur6Qea",
+        "medium": "https://medium.com/@crougar"
+      }
+    },
+    {
+      "name": "Rumble Roos by HopSwap",
+      "slug": "rumble-roos",
+      "multiToken": false,
+      "address": "0xb67596828aC3cB4E65C170C0d66806Ac7bEB00C0",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "Step into the Rumble Ring and become the undisputed champion of Lazy World!  The Rumble Roo is your access to the ring where you can play to earn HOP,  the native token for the HopSwap decentralized exchange.  As HopSwap's first NFT project, these Roos are considered founders and exclusive members of the exchange.",
+        "verified": true,
+        "avatar": "/img/collections/rumble-roos/avatar.webp",
+        "card": "/img/collections/rumble-roos/card.webp",
+        "banner": "/img/collections/rumble-roos/banner.webp",
+        "maxSupply": 2000,
+        "website": "https://www.rumbleroos.io",
+        "twitter": "https://twitter.com/HopSwapFinance",
+        "discord": "https://discord.gg/HopSwap"
+      }
+    },
+    {
+      "name": "Northern Hippo Syndicate",
+      "slug": "northern-hippo-syndicate",
+      "multiToken": false,
+      "address": "",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "The Northern Hippo Syndicate brings the artistic and creative stylings of Little Sloth from Open Sea to the Cronos chain. This crazy collection of 5000 unique PFP grants you access to so much more than amazing art. Hold a minimum of 3 to receive a plot of metaverse land.",
+        "verified": true,
+        "avatar": "/img/collections/northern-hippo-syndicate/avatar.webp",
+        "card": "/img/collections/northern-hippo-syndicate/card.webp",
+        "banner": "/img/collections/northern-hippo-syndicate/banner.webp",
+        "maxSupply": 5000,
+        "website": "https://www.hipposyndicate.com/",
+        "twitter": "https://twitter.com/HippoSyndicate",
+        "discord": "https://discord.gg/9j7ryEgX3K"
+      }
+    },
+    {
+      "name": "CroArmy Jackals",
+      "slug": "cro-army-jackals",
+      "multiToken": false,
+      "address": "0xE4a36Aa88d8380DB252558104dbe0D71505aF7a5",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "CroArmy is a collection of 1000 NFT's that pair with our $ARMY Token. The NFT's act as a membership to our treasury fund and will receive airdrops as the treasury profits.",
+        "verified": false,
+        "avatar": "/img/collections/cro-army-soldier/avatar.webp",
+        "card": "/img/collections/cro-army-soldier/card.webp",
+        "banner": "/img/collections/cro-army-soldier/banner.webp",
+        "maxSupply": 1000,
+        "website": "https://croarmy.io/",
+        "twitter": "https://twitter.com/croarmy_eth",
+        "discord": "https://discord.gg/croarmy",
+        "telegram": "https://t.me/CroArmy_ETH"
+      }
     }
   ],
   "drops": [
@@ -4925,7 +5065,7 @@
       "slug": "crougars",
       "imgNft": "/img/drops/crougars/drop.gif",
       "imgPreview": "/img/drops/crougars/drop.gif",
-      "imgAvatar": "/img/collections/crougars/avatar.png",
+      "imgAvatar": "/img/collections/crougars/avatar.webp",
       "imgBanner": "/img/collections/crougars/banner.webp",
       "title": "CROugars",
       "subtitle": "A limited collection of 2,222 NFTs with a variety of hand-drawn attributes. Deployed on the Cronos Chain.",
@@ -6334,7 +6474,7 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false
+      "complete": true
     },
     {
       "id": 62,
@@ -6412,7 +6552,7 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false,
+      "complete": true,
       "embed": "<div style=\"padding:56.25% 0 0 0;position:relative;\"><iframe\nid=\"r-embed-player-iframe\"\nsrc=\"https://player.restream.io/?token=4ba6d209ca9d4adc927ecc54ace56547&vwrs=1\"\nallow=\"autoplay\" allowfullscreen frameborder=\"0\"\nstyle=\"position:absolute;top:0;left:0;width:100%;height:100%;\"/></iframe></div>"
     },
     {
@@ -6756,6 +6896,69 @@
       "published": true,
       "complete": true,
       "priceDescription": "Whitelist-only presale for the first hour (limit 3 per address). Public sale after presale ends."
+    },
+    {
+      "id": 76,
+      "slug": "dr-boos-ghosts",
+      "imgNft": "/img/drops/dr-boos-ghosts/drop.webp",
+      "imgPreview": "/img/drops/dr-boos-ghosts/drop.webp",
+      "imgAvatar": "/img/collections/dr-boos-ghosts/avatar.webp",
+      "imgBanner": "/img/collections/dr-boos-ghosts/banner.webp",
+      "title": "DR BOO'S GHOSTS",
+      "subtitle": "Welcome to Manor H, where Dr. Boo's ghosts were born. These ghosts come in 2111 appearances, divided into 3 categories: COMMON, RARE & EPIC. In addition to the staking and the numerous perks offered by these categories, each Boo NFT acquired will receive a Poison NFT, with a different color depending on the category (yellow, green or black). A Boo NFT + Poison NFT pair will allow access to the Manor in the metaverse, to retrieve multiple items daily to build a new NFT Boo FRK!",
+      "description": "Welcome to Manor H, where Dr. Boo's ghosts were born. These ghosts come in 2111 appearances, divided into 3 associated categories: \n\n    COMMON : Cute ghost, with common characteristics\n\n    RARE : Transforming and rare ghost, with limited characteristics\n\n    EPIC : Terrifying ghost, the darkest appearance of Boo, with unique characteristics\n\nEach NFT can be composed of 10 traits (background, eyes, mouth, eyeswear, headwear, hand accessory, jewelry, outfit, wings, last layers)\n\nMany perks will benefit Boo NFT holders: \n\n    NFT staking\n\n    Automatic registration on the WL of our next collection\n\n    Drop of 1 NFT Dr Boo's Poison (yellow, green or black depending on the category)\n\n    Random drop of the crazy series of 111 NFT\n\n    DAO to decide on the use of Ebisu's Bay royalties\n\n    Access to a secret Discord channel allowing access to exclusive info and specific giveways\n\n    2% of the project divided between EPIC holders\n\nA pair of NFT Boo + NFT Poison will allow access to the Manor in the metaverse, in order to collect several items daily to build a new NFT Boo FRK!",
+      "author": {
+        "name": "DR BOO'S GHOSTS",
+        "website": "https://drbghosts.com/",
+        "twitter": "https://twitter.com/drbghosts",
+        "discord": "https://discord.gg/EFW8bAZW3J",
+        "medium": "https://medium.com/@drbooghosts"
+      },
+      "address": "0x6f19E31154454364780310465BE27e8e86797a2E",
+      "maxMintPerTx": 25,
+      "maxMintPerAddress": 100,
+      "totalSupply": 2111,
+      "cost": "390",
+      "memberCost": "340",
+      "whitelistCost": "290",
+      "foundersOnly": false,
+      "start": 1653847200000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false
+    },
+    {
+      "id": 77,
+      "slug": "northern-hippo-syndicate",
+      "imgNft": "/img/drops/northern-hippo-syndicate/drop.webp",
+      "imgPreview": "/img/drops/northern-hippo-syndicate/drop.webp",
+      "imgAvatar": "/img/collections/northern-hippo-syndicate/avatar.webp",
+      "imgBanner": "/img/collections/northern-hippo-syndicate/banner.webp",
+      "title": "Northern Hippo Syndicate",
+      "subtitle": "The Northern Hippo Syndicate brings the artistic and creative stylings of Little Sloth from Open Sea to the Cronos chain. This crazy collection of 5000 unique PFP grants you access to so much more than amazing art. Hold a minimum of 3 to receive a plot of metaverse land.",
+      "description": "The Northern Hippo Syndicate is a wicked and intimidating collection of 5000 PFPs plucked from the imagination of the Thai artist behind Little Sloth and Crip-Toe. \nOwning a Hippo grants you membership to a very exclusive club, with access to poker tournaments, fantasy leagues, metaverse games, alpha calls and so much more. \nHold a minimum of 3 to receive a plot of metaverse land. The more you hold, the larger the plot.",
+      "author": {
+        "name": "Northern Hippo Syndicate",
+        "website": "https://www.hipposyndicate.com/",
+        "twitter": "https://twitter.com/HippoSyndicate",
+        "discord": "https://discord.gg/9j7ryEgX3K"
+      },
+      "address": "",
+      "maxMintPerTx": 10,
+      "maxMintPerAddress": 100,
+      "totalSupply": 5000,
+      "cost": "575",
+      "memberCost": "555",
+      "whitelistCost": "525",
+      "foundersOnly": false,
+      "start": 1654261200000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false
     }
   ],
   "auctions": [
