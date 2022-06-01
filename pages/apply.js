@@ -4,9 +4,14 @@ import styled, { createGlobalStyle } from 'styled-components';
 import { useSelector } from 'react-redux';
 import Reveal from 'react-awesome-reveal';
 import { keyframes } from '@emotion/react';
-// import NativeForms from 'native-forms-react';
-
+import dynamic from 'next/dynamic'
 import Footer from '../src/Components/components/Footer';
+import {faLightbulb, faTags} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+const NativeForms = dynamic(
+  () => import('native-forms-react'),
+  { ssr: false }
+)
 
 const fadeInUp = keyframes`
   0% {
@@ -112,8 +117,8 @@ const Application = () => {
                 style={{ cursor: 'pointer' }}
                 onClick={handleBtnClick(0)}
               >
-                <Reveal className="onStep" keyframes={fadeInUp} delay={0} duration={600} triggerOnce>
-                  <i className="bg-color-2 i-boxed icon_tags_alt"></i>
+                <Reveal className="onStep mb-3" keyframes={fadeInUp} delay={0} duration={600} triggerOnce>
+                  <FontAwesomeIcon className="bg-color-2" icon={faTags} />
                 </Reveal>
                 <div className="text">
                   <Reveal className="onStep" keyframes={fadeInUp} delay={100} duration={600} triggerOnce>
@@ -123,7 +128,6 @@ const Application = () => {
                     <p className="">For established projects that would like to be added to the marketplace.</p>
                   </Reveal>
                 </div>
-                <i className="wm icon_tags_alt"></i>
               </ChoiceBox>
             </a>
           </div>
@@ -135,8 +139,8 @@ const Application = () => {
                 style={{ cursor: 'pointer' }}
                 onClick={handleBtnClick(1)}
               >
-                <Reveal className="onStep" keyframes={fadeInUp} delay={0} duration={600} triggerOnce>
-                  <i className="bg-color-2 i-boxed icon_lightbulb_alt"></i>
+                <Reveal className="onStep mb-3" keyframes={fadeInUp} delay={0} duration={600} triggerOnce>
+                  <FontAwesomeIcon className="bg-color-2" icon={faLightbulb} />
                 </Reveal>
                 <div className="text">
                   <Reveal className="onStep" keyframes={fadeInUp} delay={100} duration={600} triggerOnce>
@@ -146,7 +150,6 @@ const Application = () => {
                     <p className="">For projects that would like to launch on the Ebisu's Bay launchpad</p>
                   </Reveal>
                 </div>
-                <i className="wm icon_lightbulb_alt"></i>
               </ChoiceBox>
             </a>
           </div>
@@ -157,17 +160,17 @@ const Application = () => {
               {openTab === 0 && (
                 <>
                   <h3 className="text-center">Listing Request</h3>
-                  {/* <StyledForm isDark={userTheme === 'dark'}>
+                  <StyledForm isDark={userTheme === 'dark'}>
                     <NativeForms form="https://form.nativeforms.com/iNHbm1jZmoWRPBXaK1Db" />
-                  </StyledForm> */}
+                  </StyledForm>
                 </>
               )}
               {openTab === 1 && (
                 <>
                   <h3 className="text-center">Launchpad Request</h3>
-                  {/* <StyledForm isDark={userTheme === 'dark'}>
+                  <StyledForm isDark={userTheme === 'dark'}>
                     <NativeForms form="https://form.nativeforms.com/AM0YjZ50jZmoWRPBXaK1Db" />
-                  </StyledForm> */}
+                  </StyledForm>
                 </>
               )}
             </div>
