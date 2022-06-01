@@ -181,7 +181,7 @@ const ManageAuctionList = () => {
                   </p>
                 </div>
                 <div className="card-footer d-flex justify-content-between">
-                  <Link href={`/auctions/${auction.auctionId}`}>
+                  <Link href={`/auctions/${auction.getAuctionId}`}>
                     <a>View</a>
                   </Link>
                   {auction.state === auctionState.NOT_STARTED && (
