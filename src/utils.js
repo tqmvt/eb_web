@@ -4,6 +4,7 @@ import blacklist from './core/configs/blacklist.json';
 import attributes from './core/configs/attributes.json';
 import IPFSGatewayTools from '@pinata/ipfs-gateway-tools/dist/browser';
 import {useEffect, useRef} from "react";
+import {getCnsName} from "./helpers/cns";
 
 export const drops = config.drops;
 export const collections = config.known_contracts;
@@ -255,15 +256,6 @@ export function secondsToDhms(seconds) {
   var mDisplay = m > 0 ? m + (m == 1 ? " m " : " m ") : "";
   var sDisplay = s > 0 ? s + (s == 1 ? " s" : " s") : "";
   return dDisplay + hDisplay + mDisplay + sDisplay;
-}
-
-/**
- * @description returns a 7 character from start and end of id to print.
- * @param id  0x0000000000000000000000000000000000000000
- * @returns {string} 0x00...000
- */
-export function getShortIdForView(id = '') {
-  return `${id.substring(0, 4)}...${id.substring(id.length - 3, id.length)}`;
 }
 
 /**
@@ -549,4 +541,11 @@ export const isEventValidNumber = (e) => {
     'Delete'
   ];
   return e.key === '' || re.test(e.key) || validKeys.includes(e.key);
+}
+
+export const getUserDisplayName = async (address) => {
+  let cnsName = await getCnsName(address);
+  if (Array.isArray(cnsName)) cnsName = cnsName[0];
+
+  return cnsName ?? shortAddress(address);
 }

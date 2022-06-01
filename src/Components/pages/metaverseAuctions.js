@@ -31,11 +31,6 @@ const MetaverseAuctions = () => {
       </section>
       <section className="container pt-5">
         <div className="row">
-          <div className="col-lg-12">
-            <div className="text-center">
-              <h2>Auction List</h2>
-            </div>
-          </div>
           <div className="col-lg-12 pt-3">
             <AuctionCollection />
           </div>
