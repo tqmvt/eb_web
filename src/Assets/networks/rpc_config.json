@@ -4896,6 +4896,25 @@
         "discord": "https://discord.gg/JkVmwW2bhu",
         "medium": "https://medium.com/@JLizler"
       }
+    },
+    {
+      "name": "Fortune Tigers",
+      "slug": "fortune-tigers",
+      "multiToken": false,
+      "address": "0x619d6bAe09bDF1Fdc2692eE560fcBAdaB98Dfb08",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "Fortune Tigers is a collection of 5886 uniquely generated NFTs on the Cronos chain. 2022 is the year of the Tiger in Chinese zodiac, and it stands for good fortune.",
+        "verified": false,
+        "avatar": "/img/collections/fortune-tigers/avatar.webp",
+        "card": "/img/collections/fortune-tigers/card.webp",
+        "banner": "/img/collections/fortune-tigers/banner.webp",
+        "maxSupply": 5886,
+        "website": "https://fortunetigers.club/",
+        "twitter": "https://twitter.com/fortunetigers88",
+        "discord": "https://discord.gg/NvTWwCASaj"
+      }
     }
   ],
   "drops": [
