@@ -26,6 +26,10 @@ const AuctionCard = ({ listing, imgClass = 'marketplace' }) => {
           {listing.state === auctionState.CANCELLED && <div className="fw-bold">Cancelled</div>}
           {listing.state === auctionState.SOLD && <div className="fw-bold">Sold</div>}
         </div>
+        <div className="card-body d-flex flex-column">
+          <h6 className="card-title mt-auto">{listing.nft.name}</h6>
+          <p className="card-text">{ethers.utils.commify(listing.getHighestBid)} MAD</p>
+        </div>
       </div>
     </Link>
   );

@@ -27,11 +27,6 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: '/manage/auctions', // todo: remove
-        destination: '/auctions',
-        permanent: true,
-      },
-      {
         source: '/collection/mad-treehouse',
         destination: '/collection/mm-treehouse',
         permanent: true,
@@ -50,6 +45,11 @@ const nextConfig = {
         source: '/collection/degen-mad-meerkat/:id',
         destination: '/collection/mad-meerkat-degen/:id',
         permanent: true,
+      },
+      {
+        source: '/metaverse-auctions',
+        destination: '/mad-auction',
+        permanent: false,
       },
       {
         source: '/sales_bot',
