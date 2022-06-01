@@ -95,16 +95,16 @@ pipelines:
             - *build
           artifacts:
             - .next/**
-      # - step:
-      #     name: Upload to S3
-      #     image: amazon/aws-cli
-      #     runs-on:
-      #       - 'self.hosted'
-      #       - 'linux'
-      #       - 'web'
-      #     # Copy RPC config to Admin S3 Bucket
-      #     script:
-      #       - aws s3 cp ./src/Assets/networks/rpc_config_dev.json s3://dev-ebisusbay-admin-storage/rpc_config.json
+      - step:
+          name: Upload to S3
+          image: amazon/aws-cli
+          runs-on:
+            - 'self.hosted'
+            - 'linux'
+            - 'web'
+          # Copy RPC config to Admin S3 Bucket
+          script:
+            - aws s3 cp ./src/Assets/networks/rpc_config_dev.json s3://dev-ebisusbay-admin-storage/rpc_config.json
       - step:
           name: Build containers
           image: amazon/aws-cli
