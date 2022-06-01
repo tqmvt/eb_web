@@ -34,10 +34,10 @@ COPY start_web.sh /usr/local/bin/start_web.sh
 RUN chmod +x /usr/local/bin/start_web.sh && ln -s /usr/local/bin/start_web.sh /
 
 # Harden Image
-COPY ./harden.sh .
-RUN chmod +x harden.sh && \
-    sh harden.sh && \
-    rm -f harden.sh
+# COPY ./harden.sh .
+# RUN chmod +x harden.sh && \
+#     sh harden.sh && \
+#     rm -f harden.sh
 
 # Force container to run as a non-root user
 USER node

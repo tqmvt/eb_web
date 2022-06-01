@@ -73,10 +73,10 @@ definitions:
               AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
               AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
               DISTRIBUTION_ID: $CF_DIST_ID
-              PATHS: '/img/* /static/* /3dslothty-refunds.csv /404.html /android-chrome-192x192.png /android-chrome-512x512.png /apple-touch-icon.png /asset-manifest.json /browserconfig.xml /favicon-16x16.png /favicon-32x32.png /favicon.ico /favicon.png /index.html /manifest.json /mstile-150x150.png /robots.txt /safari-pinned-tab.svg /site.webmanifest /sitemap.xml /tos.html'
+              PATHS: '/*'
 pipelines:
   branches:
-    nextjs:
+    dev:
       - step: *test
       - step:
           name: Build
@@ -108,7 +108,7 @@ pipelines:
       - step:
           name: Build containers
           image: amazon/aws-cli
-          deployment: DevelopmentNext
+          deployment: Development
           services:
             - docker
           runs-on:
@@ -135,7 +135,7 @@ pipelines:
          clone:
            enabled: false
          script:
-           # deploy next-ebisusbay-web-arm64-us-east-1 / next.ebisusbay.biz
+           # deploy dev-ebisusbay-web-arm64-us-east-1 / app.ebisusbay.biz
            - apk add --no-cache curl
            - 'curl -X POST -is -H "Authorization: Basic ${BITBUCKET_API_KEY}" -H "Content-Type: application/json" -d "{\"target\":{\"ref_type\":\"branch\",\"type\":\"pipeline_ref_target\",\"ref_name\":\"dev\"}}" https://api.bitbucket.org/2.0/repositories/ebisusbay/eb_web_deploy/pipelines/'
 definitions:
