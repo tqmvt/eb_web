@@ -232,34 +232,34 @@ const AuctionComponent = (props) => {
                                       </b>{' '}
                                       bid <b>{ethers.utils.commify(item.price)} MAD</b>
                                     </div>
-                                  </div>
-                                ))}
-                              </>
-                            ) : (
-                              <>
-                                <span>No bids have been placed yet</span>
-                              </>
-                            )}
-                          </div>
-                        )}
-                        {openMenu === 3 && (
-                          <div className="tab-4 onStep fadeIn">
-                            <h4>How it works:</h4>
-                            <ol>
-                              <li>Connect your wallet and place a bid. Minimum bid will change depending on the current price</li>
-                              <ul>
-                                <li>Starting bid is <span className="fw-bold">55 $MAD</span></li>
-                                <li>When current price is 0-99 $MAD, minimum increment is <span className="fw-bold">5 $MAD</span></li>
-                                <li>When current price is 100-499 $MAD, minimum increment is <span className="fw-bold">10 $MAD</span></li>
-                                <li>When current price is 500-999 $MAD, minimum increment is <span className="fw-bold">50 $MAD</span></li>
-                                <li>When current price is 1000+ $MAD, minimum increment is <span className="fw-bold">100 $MAD</span></li>
-                              </ul>
-                              <li>If you are outbid, you can either bid higher, or cancel your current bid</li>
-                              <li>If a bid is received 15 minutes from the end of the auction, the bidding time will be extended by 15 minutes</li>
-                              <li>When auction closes, the NFT will belong to the highest bidder. Please claim the NFT by pressing the "Accept Auction" button</li>
-                            </ol>
-                          </div>
-                        )}
+                                  ))}
+                                </>
+                              ) : (
+                                <>
+                                  <span>No bids have been placed yet</span>
+                                </>
+                              )}
+                            </div>
+                          )}
+                          {openMenu === 3 && (
+                            <div className="tab-4 onStep fadeIn">
+                              <h4>How it works:</h4>
+                              <ol>
+                                <li>Connect your wallet and place a bid. Minimum bid will change depending on the current price</li>
+                                <ul>
+                                  <li>Starting bid is <span className="fw-bold">55 $MAD</span></li>
+                                  <li>When current price is 0-99 $MAD, minimum increment is <span className="fw-bold">5 $MAD</span></li>
+                                  <li>When current price is 100-499 $MAD, minimum increment is <span className="fw-bold">10 $MAD</span></li>
+                                  <li>When current price is 500-999 $MAD, minimum increment is <span className="fw-bold">50 $MAD</span></li>
+                                  <li>When current price is 1000+ $MAD, minimum increment is <span className="fw-bold">100 $MAD</span></li>
+                                </ul>
+                                <li>If you are outbid, you can either bid higher, or cancel your current bid</li>
+                                <li>If a bid is received 15 minutes from the end of the auction, the bidding time will be extended by 15 minutes</li>
+                                <li>When auction closes, the NFT will belong to the highest bidder. Please claim the NFT by pressing the "Accept Auction" button</li>
+                              </ol>
+                            </div>
+                          )}
+                        </div>
                       </div>
                     </div>
                   </div>

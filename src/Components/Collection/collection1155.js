@@ -164,10 +164,16 @@ const Collection1155 = ({ collection, tokenId = null, cacheName = 'collection', 
 
                 <div className="profile_name">
                   <h4>
-                    {collectionName()}
+                    {collection.name}
                     <div className="clearfix" />
-                    <SocialsBar address={collection.address} collection={collection.metadata} />
                   </h4>
+                  {collection.metadata.description && <p>{collection.metadata.description}</p>}
+                  <span className="fs-4">
+                  <SocialsBar
+                    address={collection.address}
+                    collection={collection.metadata}
+                  />
+                </span>
                 </div>
               </div>
             </div>

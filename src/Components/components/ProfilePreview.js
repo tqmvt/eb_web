@@ -1,11 +1,11 @@
-import React, { memo } from 'react';
+import React, {memo, useEffect, useState} from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
 import Blockies from 'react-blockies';
 import { faCheck, faCircle } from '@fortawesome/free-solid-svg-icons';
 
 import LayeredIcon from './LayeredIcon';
-import { getShortIdForView } from '../../utils';
+import {getUserDisplayName, shortAddress} from '../../utils';
 
 const VerifiedIcon = styled.span`
   font-size: 8px;
@@ -29,7 +29,22 @@ const ProfilePreview = ({
   verified = false,
   hover = '',
   pop = false,
+  useCnsLookup = false
 }) => {
+
+  const [name, setName] = useState('');
+  useEffect(() =>{
+    async function func() {
+      const n = await getUserDisplayName(address);
+      setName(n);
+    }
+    if (address && useCnsLookup) {
+      func();
+    } else if (address) {
+      setName(shortAddress(address))
+    }
+  }, [address]);
+
   const AvatarElement = (
     <>
       {(avatar || address) && (
@@ -51,7 +66,7 @@ const ProfilePreview = ({
         </div>
       )}
       <div className="author_list_info">
-        <span>{title || getShortIdForView(address)}</span>
+        <span>{title || name}</span>
       </div>
     </>
   );

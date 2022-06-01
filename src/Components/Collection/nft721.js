@@ -354,6 +354,7 @@ const Nft721 = ({ address, id, nft }) => {
                         type="Seller"
                         address={currentListing.seller}
                         to={`/seller/${currentListing.seller}`}
+                        useCnsLookup={true}
                       />
                     )}
 

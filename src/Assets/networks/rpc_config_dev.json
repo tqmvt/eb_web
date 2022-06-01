@@ -132,7 +132,7 @@
       "id": 1,
       "listable": true,
       "metadata": {
-        "description": "Holding this NFT grants reduced service fees, discounts on drops and early access to features",
+        "description": "Holding this NFT grants reduced service fees, discounts on drops and early access to features.",
         "verified": true,
         "avatar": "/img/avatar.jpg",
         "card": "/img/collections/ebisu/card.webp",
@@ -4416,26 +4416,6 @@
       }
     },
     {
-      "name": "CROKE",
-      "slug": "croke",
-      "multiToken": false,
-      "address": "0x9e43a04211aB4e53a21adC54eC0e5030F48C0Bc8",
-      "onChain": false,
-      "listable": true,
-      "metadata": {
-        "description": "Raising awareness on the dangers of drug addiction through unique evolving NFTs!",
-        "verified": false,
-        "avatar": "/img/collections/croke/avatar.webp",
-        "card": "/img/collections/croke/card.webp",
-        "banner": "/img/collections/croke/banner.webp",
-        "maxSupply": 4200,
-        "website": "https://www.croke.io/",
-        "twitter": "https://twitter.com/CrokeNfts",
-        "discord": "https://discord.gg/kmrZV97uvR",
-        "medium": "https://medium.com/@CrokeNFT/"
-      }
-    },
-    {
       "name": "Viking Arc Labs Founders Card",
       "slug": "viking-arc-labs-founders-card",
       "multiToken": false,
@@ -4590,6 +4570,7 @@
         "banner": "/img/collections/hidden-fish/banner.webp",
         "maxSupply": 1000,
         "website": "https://hidethefish.com",
+        "twitter": "https://twitter.com/HiddenFishDAO",
         "medium": "https://blog.hidethefish.com"
       }
     },
@@ -4850,20 +4831,80 @@
       "name": "CroArmy Jackals",
       "slug": "cro-army-jackals",
       "multiToken": false,
-      "address": "0xE4a36Aa88d8380DB252558104dbe0D71505aF7a5",
+      "address": "0x5e1d8835B9fB1c074b99E09BE29B906ebcA48e99",
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "CroArmy is a collection of 1000 NFT's that pair with our $ARMY Token. The NFT's act as a membership to our treasury fund and will receive airdrops as the treasury profits.",
+        "description": "CroArmy Jackals is a collection of 4,200 NFT's that pair with our $ARMY Token. The NFT's act as a membership to the CroArmy to participate in staking, community voting, and other exclusive rewards.",
         "verified": false,
-        "avatar": "/img/collections/cro-army-soldier/avatar.webp",
+        "avatar": "/img/collections/cro-army-jackals/avatar.webp",
         "card": "/img/collections/cro-army-soldier/card.webp",
         "banner": "/img/collections/cro-army-soldier/banner.webp",
-        "maxSupply": 1000,
+        "maxSupply": 4200,
         "website": "https://croarmy.io/",
         "twitter": "https://twitter.com/croarmy_eth",
         "discord": "https://discord.gg/croarmy",
         "telegram": "https://t.me/CroArmy_ETH"
+      }
+    },
+    {
+      "name": "D.G.Pals Limited and Special Edition",
+      "slug": "dg-pals-limited-se",
+      "multiToken": false,
+      "address": "0xa072bB6F648a4271ba9CbaF1319Fc373eF907f29",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "D.G.P: New World Beta LIVE 23rd May & D.G.P: Legends Beta LIVE 31st May! Welcome to the D.G.Verse! Backed by Crypto.com Capital and Spartan Group, D.G.Pals is one of the first Gamefi project to redefine Web3 gaming with the first Interoperable NFT on the Cronos chain. 1 NFT, 2 Tokens, multiple games (4 titles in 2022). Unlock the gates to Panterra with our first game, D.G.P: New World, hatch, grow and mint D.G.Pal NFTs and earn tokens while exploring the D.G.Verse.",
+        "verified": true,
+        "avatar": "/img/collections/dg-pals-limited-se/avatar.webp",
+        "card": "/img/collections/dg-pals-limited-se/card.webp",
+        "banner": "/img/collections/dg-pals-limited-se/banner.webp",
+        "maxSupply": 50000,
+        "website": "https://dgpals.io/",
+        "twitter": "https://twitter.com/officialdgpals",
+        "discord": "https://discord.gg/dgpals",
+        "medium": "https://medium.com/officialdgpals"
+      }
+    },
+    {
+      "name": "CroArmy Diamond Hand",
+      "slug": "cro-army-diamond-hand",
+      "multiToken": false,
+      "address": "0xd301F02e44b1eEa1ff925B90755E16d6CCF7C6Dd",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "Hold up your Diamond Hand proudly, and show others you do not sell when the market trembles. This NFT will grant you royalties from 2 different collections.",
+        "verified": false,
+        "avatar": "/img/collections/cro-army-diamond-hand/avatar.webp",
+        "card": "/img/collections/cro-army-diamond-hand/card.webp",
+        "banner": "/img/collections/cro-army-diamond-hand/banner.webp",
+        "maxSupply": 100,
+        "website": "https://croarmy.io/",
+        "twitter": "https://twitter.com/croarmy_eth",
+        "discord": "https://discord.gg/croarmy",
+        "telegram": "https://t.me/CroArmy_ETH"
+      }
+    },
+    {
+      "name": "Tacky Tortoise x FoC",
+      "slug": "tacky-tortoise-foc",
+      "multiToken": false,
+      "address": "0x97413F46aecB910062Ee7eFD7fcefEA8D11F750D",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "A collaboration between Future of Color, and the Tacky Tortoise.",
+        "verified": false,
+        "avatar": "/img/collections/tacky-tortoise-foc/avatar.webp",
+        "card": "/img/collections/tacky-tortoise-foc/card.webp",
+        "banner": "/img/collections/tacky-tortoise-foc/banner.webp",
+        "maxSupply": 14,
+        "website": "https://www.tackytortoise.com/",
+        "twitter": "https://twitter.com/NFTtackyTortois",
+        "discord": "https://discord.gg/JkVmwW2bhu",
+        "medium": "https://medium.com/@JLizler"
       }
     }
   ],
@@ -6190,7 +6231,7 @@
       "maxMintPerTx": 3,
       "maxMintPerAddress": 50,
       "totalSupply": 2100,
-      "priceDescription": "Whitelist-only presale for the first 12 hours (limit 1 per address). Public sale after presale ends (limit 3 per transaction).",
+      "disclaimer": "VIPs must have a regular Founding Member NFT to receive the Founding Member Price!",
       "cost": "5000",
       "memberCost": "4000",
       "whitelistCost": "4000",

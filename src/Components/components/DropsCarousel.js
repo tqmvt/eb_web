@@ -246,9 +246,9 @@ export default class Responsive extends Component {
                           <div className="author_list_info">
                             <div className="title">{drop.author.name}</div>
                             <div className="subtitle">
-                              {drop.author.link && (
+                              {drop.author.link || drop.author.website && (
                                 <span className="profile_username">
-                                  <a href={drop.author.link} target="_blank" rel="noreferrer">
+                                  <a href={drop.author.link ?? drop.author.website} target="_blank" rel="noreferrer">
                                     View Website
                                   </a>
                                 </span>

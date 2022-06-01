@@ -5,6 +5,7 @@ import attributes from './core/configs/attributes.json';
 import { useEffect, useRef } from 'react';
 import dynamic from 'next/dynamic';
 // import IPFSGatewayTools from '@pinata/ipfs-gateway-tools/dist/browser';
+import {getCnsName} from "./helpers/cns";
 
 export const drops = config.drops;
 export const collections = config.known_contracts;
@@ -265,15 +266,6 @@ export function secondsToDhms(seconds) {
   var mDisplay = m > 0 ? m + (m == 1 ? " m " : " m ") : "";
   var sDisplay = s > 0 ? s + (s == 1 ? " s" : " s") : "";
   return dDisplay + hDisplay + mDisplay + sDisplay;
-}
-
-/**
- * @description returns a 7 character from start and end of id to print.
- * @param id  0x0000000000000000000000000000000000000000
- * @returns {string} 0x00...000
- */
-export function getShortIdForView(id = '') {
-  return `${id.substring(0, 4)}...${id.substring(id.length - 3, id.length)}`;
 }
 
 /**
@@ -581,3 +573,10 @@ export const getAddressFromSlug = (slug) => {
 export const isAddress = (address) => {
   return /^(0x){1}[0-9a-fA-F]{40}$/i.test(address);
 };
+
+export const getUserDisplayName = async (address) => {
+  let cnsName = await getCnsName(address);
+  if (Array.isArray(cnsName)) cnsName = cnsName[0];
+
+  return cnsName ?? shortAddress(address);
+}
