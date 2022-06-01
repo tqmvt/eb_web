@@ -27,11 +27,6 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: '/manage/auctions', // todo: remove
-        destination: '/auctions',
-        permanent: true,
-      },
-      {
         source: '/collection/mad-treehouse',
         destination: '/collection/mm-treehouse',
         permanent: true,
