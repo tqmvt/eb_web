@@ -4,9 +4,12 @@ import styled, { createGlobalStyle } from 'styled-components';
 import { useSelector } from 'react-redux';
 import Reveal from 'react-awesome-reveal';
 import { keyframes } from '@emotion/react';
-// import NativeForms from 'native-forms-react';
-
+import dynamic from 'next/dynamic'
 import Footer from '../src/Components/components/Footer';
+const NativeForms = dynamic(
+  () => import('native-forms-react'),
+  { ssr: false }
+)
 
 const fadeInUp = keyframes`
   0% {
@@ -157,17 +160,17 @@ const Application = () => {
               {openTab === 0 && (
                 <>
                   <h3 className="text-center">Listing Request</h3>
-                  {/* <StyledForm isDark={userTheme === 'dark'}>
+                  <StyledForm isDark={userTheme === 'dark'}>
                     <NativeForms form="https://form.nativeforms.com/iNHbm1jZmoWRPBXaK1Db" />
-                  </StyledForm> */}
+                  </StyledForm>
                 </>
               )}
               {openTab === 1 && (
                 <>
                   <h3 className="text-center">Launchpad Request</h3>
-                  {/* <StyledForm isDark={userTheme === 'dark'}>
+                  <StyledForm isDark={userTheme === 'dark'}>
                     <NativeForms form="https://form.nativeforms.com/AM0YjZ50jZmoWRPBXaK1Db" />
-                  </StyledForm> */}
+                  </StyledForm>
                 </>
               )}
             </div>

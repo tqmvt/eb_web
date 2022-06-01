@@ -5420,10 +5420,10 @@
   "resolved" "https://registry.npmjs.org/native-fetch/-/native-fetch-3.0.0.tgz"
   "version" "3.0.0"
 
-"native-forms-react@^1.9.52":
-  "integrity" "sha512-UKwXvgQcBEG0RdkniWSsYDvhFZzKSQpuqAHGZKwzamF4Bg3s8C5/QgHCvOIIBpCBsqxrx/PeZwQ3l8vW1s+LDA=="
-  "resolved" "https://registry.npmjs.org/native-forms-react/-/native-forms-react-1.9.52.tgz"
-  "version" "1.9.52"
+"native-forms-react@^1.9.54":
+  "integrity" "sha512-M0Y4mRkrrgL/O/aHQGGIrvQDDr4eMuwaqAr0U1lseBTekDU/JpO03dCnxBGO+M3JIZKY1unlLZLJirtxl0D9QQ=="
+  "resolved" "https://registry.npmjs.org/native-forms-react/-/native-forms-react-1.9.54.tgz"
+  "version" "1.9.54"
 
 "natural-compare@^1.4.0":
   "integrity" "sha1-Sr6/7tdUHywnrPspvbvRXI1bpPc="
