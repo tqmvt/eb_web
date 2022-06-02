@@ -132,8 +132,6 @@ const Collections = () => {
   const collectionFloorPriceValue = ({ floorPrice }) => ethers.utils.commify(Math.round(floorPrice));
   const collectionNumberActiveValue = ({ numberActive }) => numberActive;
 
-  console.log(collections);
-
   return (
     <div>
       <GlobalStyles />
@@ -229,7 +227,7 @@ const Collections = () => {
                               <Link href={`/collection/${collection.slug}`}>
                                 <a>
                                   {collection.metadata?.avatar ? (
-                                    <Image
+                                    <img
                                       src={collection.metadata.avatar}
                                       alt={collection?.name}
                                       width="50"
