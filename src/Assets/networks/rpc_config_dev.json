@@ -3250,13 +3250,13 @@
       "metadata": {
         "description": "",
         "verified": false,
-        "avatar": "/img/collections/blockchainbingo/avatar.png",
-        "card": "/img/collections/blockchainbingo/card.png",
-        "banner": "/img/collections/blockchainbingo/banner.png",
+        "avatar": "/img/collections/blockchainbingo/avatar.webp",
+        "card": "/img/collections/blockchainbingo/card.webp",
+        "banner": "/img/collections/blockchainbingo/banner.webp",
         "maxSupply": 75,
         "twitter": "https://twitter.com/BlockBingoBall",
         "website": "https://www.blockchainbingoballs.com",
-        "discord": "https://discord.gg/madjz2tNu4",
+        "discord": "https://discord.gg/blockchainbingoballs",
         "medium": "https://medium.com/@BlockchainBingoBalls"
       }
     },
@@ -3447,7 +3447,7 @@
       "onChain": false,
       "listable": false,
       "metadata": {
-        "description": "",
+        "description": "Cryptoback Gorillas - An enriched and exclusive collection of 10,000 NFTs on the Cronos Chain. Each Cryptoback Gorilla is unique and programmatically generated from 170 possible traits. The Cryptobacks are stored as CRC-721 tokens on the cronos blockchain and hosted on IPFS.",
         "verified": false,
         "avatar": "/img/collections/cryptobackgorillas/avatar.webp",
         "banner": "/img/collections/cryptobackgorillas/banner.webp",
@@ -3455,7 +3455,8 @@
         "maxSupply": 10000,
         "website": "https://cryptobackgorillas.com/",
         "twitter": "https://twitter.com/cryptobacks",
-        "discord": "https://discord.gg/v4A7m6cngN"
+        "discord": "https://discord.gg/v4A7m6cngN",
+        "medium": "https://medium.com/@CryptobackGorillas"
       }
     },
     {
@@ -4905,6 +4906,65 @@
         "twitter": "https://twitter.com/NFTtackyTortois",
         "discord": "https://discord.gg/JkVmwW2bhu",
         "medium": "https://medium.com/@JLizler"
+      }
+    },
+    {
+      "name": "Fortune Tigers",
+      "slug": "fortune-tigers",
+      "multiToken": false,
+      "address": "0x619d6bAe09bDF1Fdc2692eE560fcBAdaB98Dfb08",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "Fortune Tigers is a collection of 5886 uniquely generated NFTs on the Cronos chain. 2022 is the year of the Tiger in Chinese zodiac, and it stands for good fortune.",
+        "verified": false,
+        "avatar": "/img/collections/fortune-tigers/avatar.webp",
+        "card": "/img/collections/fortune-tigers/card.webp",
+        "banner": "/img/collections/fortune-tigers/banner.webp",
+        "maxSupply": 5886,
+        "website": "https://fortunetigers.club/",
+        "twitter": "https://twitter.com/fortunetigers88",
+        "discord": "https://discord.gg/NvTWwCASaj"
+      }
+    },
+    {
+      "name": "Blockchain Bingo Balls Main Hall PFPs",
+      "slug": "blockchain-bingo-balls-main-hall",
+      "multiToken": false,
+      "address": "0x377c98dbF280407e0344A9C30b38c5DdB5467E28",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": false,
+        "avatar": "/img/collections/blockchainbingo/main-hall/avatar.webp",
+        "card": "/img/collections/blockchainbingo/main-hall/card.webp",
+        "banner": "/img/collections/blockchainbingo/main-hall/banner.webp",
+        "maxSupply": 1000,
+        "twitter": "https://twitter.com/BlockBingoBall",
+        "website": "https://www.blockchainbingoballs.com",
+        "discord": "https://discord.gg/blockchainbingoballs",
+        "medium": "https://medium.com/@BlockchainBingoBalls"
+      }
+    },
+    {
+      "name": "Cryptoback Gorillas Honorary NFT Collection",
+      "slug": "cryptoback-gorillas-honorary-nft-collection",
+      "multiToken": false,
+      "address": "0xf8165fa4cc9dc10525e13c69ad6d29b9fafe1035",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "The Cryptoback Gorillas Honorary NFT series is a limited collection of unique, custom designed NFTs made exclusive to Cryptoback Gorilla NFT holders. All Honorary NFTs are initially airdropped exclusively to Cryptoback Gorilla NFT holders.",
+        "verified": false,
+        "avatar": "/img/collections/cryptobackgorillas/avatar.webp",
+        "banner": "/img/collections/cryptobackgorillas/honorary-nft-collection/banner.webp",
+        "card": "/img/collections/cryptobackgorillas/card.webp",
+        "maxSupply": 10000,
+        "website": "https://cryptobackgorillas.com/",
+        "twitter": "https://twitter.com/cryptobacks",
+        "discord": "https://discord.gg/v4A7m6cngN",
+        "medium": "https://medium.com/@CryptobackGorillas"
       }
     }
   ],
