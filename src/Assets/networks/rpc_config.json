@@ -3240,13 +3240,13 @@
       "metadata": {
         "description": "",
         "verified": false,
-        "avatar": "/img/collections/blockchainbingo/avatar.png",
-        "card": "/img/collections/blockchainbingo/card.png",
-        "banner": "/img/collections/blockchainbingo/banner.png",
+        "avatar": "/img/collections/blockchainbingo/avatar.webp",
+        "card": "/img/collections/blockchainbingo/card.webp",
+        "banner": "/img/collections/blockchainbingo/banner.webp",
         "maxSupply": 75,
         "twitter": "https://twitter.com/BlockBingoBall",
         "website": "https://www.blockchainbingoballs.com",
-        "discord": "https://discord.gg/madjz2tNu4",
+        "discord": "https://discord.gg/blockchainbingoballs",
         "medium": "https://medium.com/@BlockchainBingoBalls"
       }
     },
@@ -4914,6 +4914,26 @@
         "website": "https://fortunetigers.club/",
         "twitter": "https://twitter.com/fortunetigers88",
         "discord": "https://discord.gg/NvTWwCASaj"
+      }
+    },
+    {
+      "name": "Blockchain Bingo Balls Main Hall PFPs",
+      "slug": "blockchain-bingo-balls-main-hall",
+      "multiToken": false,
+      "address": "0x377c98dbF280407e0344A9C30b38c5DdB5467E28",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": false,
+        "avatar": "/img/collections/blockchainbingo/main-hall/avatar.webp",
+        "card": "/img/collections/blockchainbingo/main-hall/card.webp",
+        "banner": "/img/collections/blockchainbingo/main-hall/banner.webp",
+        "maxSupply": 1000,
+        "twitter": "https://twitter.com/BlockBingoBall",
+        "website": "https://www.blockchainbingoballs.com",
+        "discord": "https://discord.gg/blockchainbingoballs",
+        "medium": "https://medium.com/@BlockchainBingoBalls"
       }
     }
   ],
