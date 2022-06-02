@@ -86,9 +86,11 @@ const Nft = ({ slug, id, nft }) => {
         <meta property="og:url" content={`https://app.ebisusbay.com/nft/${collection?.address}`} key="og_url" />
         <meta property="og:image" content={nft?.image} key="image" />
         <meta property="og:description" content={getTraits(nft)} />
+        <meta property="og:site_name" content="Ebisu's Bay Marketplace" />
         <meta name="twitter:title" content={`${nft?.name || 'NFT'} | Ebisu's Bay Marketplace`} key="twitter_title" />
         <meta name="twitter:image" content={nft?.image} key="twitter_image" />
         <meta name="twitter:card" content="summary_large_image" key="misc-card" />
+        <meta name="twitter:site" content="Ebisu's Bay Marketplace" key="twitter_site" />
       </Head>
       {initialized && collection && (
         <>
