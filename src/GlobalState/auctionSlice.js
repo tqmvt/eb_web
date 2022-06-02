@@ -75,8 +75,10 @@ export const updateAuctionFromBidEvent = (bidAmount) => async (dispatch, getStat
   devLog('updateAuctionFromBidEvent', currentAuction.hash, currentAuction.index);
   try {
     const readContract = new Contract(config.mm_auction_contract, AuctionContract.abi, readProvider);
+    const chainAuction = await readContract.getAuction(currentAuction.hash, currentAuction.index);
     const minBid = await readContract.minimumBid(currentAuction.hash, currentAuction.index);
     devLog('minBid', minBid.toString());
+    devLog('chainAuction', chainAuction, parseInt(chainAuction.endAt));
 
     const allBids = await readContract.getAllBids(currentAuction.hash, currentAuction.index);
     const apiMappedAllBids = allBids.map((bid) => {
@@ -98,7 +100,8 @@ export const updateAuctionFromBidEvent = (bidAmount) => async (dispatch, getStat
         highestBidWei: ethers.utils.parseEther(highestBid.price).toString(),
         highestBidder: highestBid.bidder,
         minimumBid: minBid.toString(),
-        bidHistory: apiMappedAllBids
+        bidHistory: apiMappedAllBids,
+        endAt: parseInt(chainAuction.endAt)
     }});
     devLog('auction', state.auction.auction, auction);
 
