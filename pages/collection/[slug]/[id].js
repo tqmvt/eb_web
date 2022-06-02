@@ -75,19 +75,10 @@ const Nft = ({ slug, id, nft }) => {
     return anNFT?.description;
   };
 
-  // if (redirect) {
-  //   router.push(`/collection/${redirect}/${id}`);
-  //   return <></>;
-  // }
-
   return (
     <>
       <Head>
         <title>{nft?.name || 'NFT'} | Ebisu's Bay Marketplace</title>
-        <link
-          href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@200;300;400;500;600;700;800&display=swap"
-          rel="stylesheet"
-        />
         <meta name="description" content={`${nft?.name || 'NFT'} for Ebisu's Bay Marketplace`} />
         <meta name="title" content={`${nft?.name || 'NFT'} | Ebisu's Bay Marketplace`} />
         <meta property="og:type" content="website" key="og_type" />
