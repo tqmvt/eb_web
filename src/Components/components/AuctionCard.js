@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { ethers } from 'ethers';
 import Clock from './Clock';
 import { auctionState } from '../../core/api/enums';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faGem} from "@fortawesome/free-solid-svg-icons";
 
 // const Outer = styled.div`
 //   display: flex;
@@ -15,9 +17,13 @@ import { auctionState } from '../../core/api/enums';
 // `;
 
 const AuctionCard = ({ listing, imgClass = 'marketplace' }) => {
+  const isLegendary = parseInt(listing.nftId) > 10000;
+  const borderColor = isLegendary ? '2px solid #FFD700' : '1px solid #ddd';
+  const boxShadowColor = isLegendary ? '0 0 .5rem #FFD700' : '0 .5rem 1rem #000';
+
   return (
-    <Link className="linkPointer" to={`/auctions/${listing.getAuctionId}`}>
-      <div className="card eb-nft__card h-100 shadow">
+    <Link className="linkPointer" href={`/auctions/${listing.getAuctionId}`}>
+      <div className="card eb-nft__card h-100" style={{border:borderColor, boxShadow:boxShadowColor}}>
         <img src={listing.nft.image} className={`card-img-top ${imgClass}`} alt={listing.nft.name} />
         <div className="eb-de_countdown text-center">
           {listing.state === auctionState.ACTIVE && <>Ends In:</>}
@@ -27,7 +33,7 @@ const AuctionCard = ({ listing, imgClass = 'marketplace' }) => {
           {listing.state === auctionState.SOLD && <div className="fw-bold">Sold</div>}
         </div>
         <div className="card-body d-flex flex-column">
-          <h6 className="card-title mt-auto">{listing.nft.name}</h6>
+          <h6 className="card-title mt-auto">{listing.nft.name}{isLegendary && <span title="Legendary!">&#128142;</span>}</h6>
           <p className="card-text">{ethers.utils.commify(listing.getHighestBid)} MAD</p>
         </div>
       </div>
