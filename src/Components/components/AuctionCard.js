@@ -22,7 +22,7 @@ const AuctionCard = ({ listing, imgClass = 'marketplace' }) => {
   const boxShadowColor = isLegendary ? '0 0 .5rem #FFD700' : '0 .5rem 1rem #000';
 
   return (
-    <Link className="linkPointer" href={`/auctions/${listing.getAuctionId}`}>
+    <Link className="linkPointer" to={`/auctions/${listing.getAuctionId}`}>
       <div className="card eb-nft__card h-100" style={{border:borderColor, boxShadow:boxShadowColor}}>
         <img src={listing.nft.image} className={`card-img-top ${imgClass}`} alt={listing.nft.name} />
         <div className="eb-de_countdown text-center">
