@@ -63,11 +63,12 @@ const Nft = ({ slug, id, nft }) => {
           }
         });
       }
-      if (traits.length) {
+      
+      if (traits.length > 0 && traits[0].occurrence) {
         const traitsTop = traits[0];
         const res = `${anNFT?.description ? anNFT.description.slice(0, 250) : ''} ... Top Trait: ${
-          traitsTop?.value ? humanize(traitsTop.value) : 'N/A'
-        }, ${traitsTop?.occurrence || traitsTop?.percent}%`;
+          traitsTop.value ? humanize(traitsTop.value) : 'N/A'
+        }, ${traitsTop.occurrence}%`;
 
         return res;
       }
