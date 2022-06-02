@@ -3445,7 +3445,8 @@
         "maxSupply": 10000,
         "website": "https://cryptobackgorillas.com/",
         "twitter": "https://twitter.com/cryptobacks",
-        "discord": "https://discord.gg/v4A7m6cngN"
+        "discord": "https://discord.gg/v4A7m6cngN",
+        "medium": "https://medium.com/@CryptobackGorillas"
       }
     },
     {
@@ -4934,6 +4935,26 @@
         "website": "https://www.blockchainbingoballs.com",
         "discord": "https://discord.gg/blockchainbingoballs",
         "medium": "https://medium.com/@BlockchainBingoBalls"
+      }
+    },
+    {
+      "name": "Cryptoback Gorillas Honorary NFT Collection",
+      "slug": "cryptoback-gorillas-honorary-nft-collection",
+      "multiToken": false,
+      "address": "0xf8165fa4cc9dc10525e13c69ad6d29b9fafe1035",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "The Cryptoback Gorillas Honorary NFT series is a limited collection of unique, custom designed NFTs made exclusive to Cryptoback Gorilla NFT holders. All Honorary NFTs are initially airdropped exclusively to Cryptoback Gorilla NFT holders.",
+        "verified": false,
+        "avatar": "/img/collections/cryptobackgorillas/avatar.webp",
+        "banner": "/img/collections/cryptobackgorillas/honorary-nft-collection/banner.webp",
+        "card": "/img/collections/cryptobackgorillas/card.webp",
+        "maxSupply": 10000,
+        "website": "https://cryptobackgorillas.com/",
+        "twitter": "https://twitter.com/cryptobacks",
+        "discord": "https://discord.gg/v4A7m6cngN",
+        "medium": "https://medium.com/@CryptobackGorillas"
       }
     }
   ],
