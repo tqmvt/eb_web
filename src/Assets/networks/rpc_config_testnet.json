@@ -1159,6 +1159,27 @@
         "twitter": "https://twitter.com/HippoSyndicate",
         "discord": "https://discord.gg/9j7ryEgX3K"
       }
+    },
+    {
+      "name": "Flaming Phenix Club",
+      "slug": "flaming-phenix-club",
+      "multiToken": false,
+      "address": "0x3279F28dC59783d204D9cD66a965cF4AA120706F",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "The Flaming Phenix Club is a prestigious collection of 6,666 stunningly beautiful, fiery, and unique creatures apart of the Phenix Finance Ecosystem.",
+        "verified": true,
+        "avatar": "/img/collections/flaming-phenix-club/avatar.webp",
+        "banner": "/img/collections/flaming-phenix-club/banner.webp",
+        "card": "/img/collections/flaming-phenix-club/card.webp",
+        "maxSupply": 6666,
+        "website": "https://phenix.finance/",
+        "twitter": "https://twitter.com/phenixfinance",
+        "discord": "https://discord.gg/phenix",
+        "medium": "https://medium.com/@phenixfinance.marketing",
+        "telegram": "https://t.me/phenixfinance"
+      }
     }
   ],
   "drops": [
@@ -2540,6 +2561,39 @@
       "whitelistCost": "525",
       "foundersOnly": false,
       "start": 1653965109000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false
+    },
+    {
+      "id": 78,
+      "slug": "flaming-phenix-club",
+      "imgNft": "/img/drops/flaming-phenix-club/drop.webp",
+      "imgPreview": "/img/drops/flaming-phenix-club/drop.webp",
+      "imgAvatar": "/img/collections/flaming-phenix-club/avatar.webp",
+      "imgBanner": "/img/collections/flaming-phenix-club/banner.webp",
+      "title": "Flaming Phenix Club",
+      "subtitle": "The Flaming Phenix Club is a prestigious collection of 6,666 stunningly beautiful, fiery, and unique creatures apart of the Phenix Finance Ecosystem.",
+      "description": "The Phenix NFT Series (Flaming Phenix Club) is an ecosystem-based, Non-fungible token collection on the CRONOS chain that aims to provide powerful utility within the Phenix Finance Ecosystem.\n\nOther than being highly rewarding and valuable assets in the Phenix Finance Exosystem, the Phenix NFT Series will illustrate a powerful collection of 6,666 stunningly beautiful, fiery, and unique creatures that will make its mark within the CRONOS NFT Space.\n\nThe Phenix NFTs will be an aspect of our ecosystem that will live on forever with a multitude of utilities that will increase as our ecosystem continuously expands. Here are some of the benefits we have set out for our Phenix NFT holders.\n\n\uD83D\uDC49 One-of-a-kind Phenix NFT\n\uD83D\uDC49 Premium NFT Staking Pool that NFT holders\n\uD83D\uDC49 Phenix Lotto Pool Chance Multiplier\n\uD83D\uDC49 Early Access during Phenix Events\n\uD83D\uDC49 Reduced Fees on all Phenix Finance DApps services for project owners (multi-sign service, contract service and more)\n\uD83D\uDC49 Growing benefits during the time.",
+      "author": {
+        "name": "Phenix Finance",
+        "website": "https://phenix.finance/",
+        "twitter": "https://twitter.com/phenixfinance",
+        "discord": "https://discord.gg/phenix",
+        "medium": "https://medium.com/@phenixfinance.marketing",
+        "telegram": "https://t.me/phenixfinance"
+      },
+      "address": "0x3279F28dC59783d204D9cD66a965cF4AA120706F",
+      "maxMintPerTx": 10,
+      "maxMintPerAddress": 100,
+      "totalSupply": 5000,
+      "cost": "290",
+      "memberCost": "260",
+      "whitelistCost": "240",
+      "foundersOnly": false,
+      "start": 1654292573000,
       "end": null,
       "referral": false,
       "is1155": false,
