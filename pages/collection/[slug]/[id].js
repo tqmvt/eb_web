@@ -1,5 +1,4 @@
 import React, { memo, useEffect, useState } from 'react';
-// import { useSelector } from 'react-redux';
 import Head from 'next/head';
 
 import store from '../../../src/Store/store';
@@ -13,13 +12,9 @@ const knownContracts = config.known_contracts;
 const Nft = ({ slug, id, nft }) => {
   const [type, setType] = useState('721');
   const [collection, setCollection] = useState(null);
-  // const [redirect, setRedirect] = useState(false);
   const [initialized, setInitialized] = useState(false);
 
-  // const nft = useSelector((state) => state.nft.nft);
-
   useEffect(() => {
-    // setRedirect(null);
     let col = knownContracts.find((c) => c.slug === slug);
     if (col) {
       setCollection(col);
@@ -29,7 +24,6 @@ const Nft = ({ slug, id, nft }) => {
       col = findCollectionByAddress(slug, id);
       if (col) {
         setCollection(col);
-        // setRedirect(col.slug);
         router.push(`/collection/${col.slug}/${id}`);
       }
     }
@@ -63,7 +57,7 @@ const Nft = ({ slug, id, nft }) => {
           }
         });
       }
-      
+
       if (traits.length > 0 && traits[0].occurrence) {
         const traitsTop = traits[0];
         const res = `${anNFT?.description ? anNFT.description.slice(0, 250) : ''} ... Top Trait: ${

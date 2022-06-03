@@ -4,14 +4,11 @@ import styled, { createGlobalStyle } from 'styled-components';
 import { useSelector } from 'react-redux';
 import Reveal from 'react-awesome-reveal';
 import { keyframes } from '@emotion/react';
-import dynamic from 'next/dynamic'
+import dynamic from 'next/dynamic';
+import { faLightbulb, faTags } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Footer from '../src/Components/components/Footer';
-import {faLightbulb, faTags} from "@fortawesome/free-solid-svg-icons";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-const NativeForms = dynamic(
-  () => import('native-forms-react'),
-  { ssr: false }
-)
+const NativeForms = dynamic(() => import('native-forms-react'), { ssr: false });
 
 const fadeInUp = keyframes`
   0% {
@@ -75,8 +72,6 @@ const StyledForm = styled.div`
 `;
 
 const Application = () => {
-  // const dispatch = useDispatch();
-
   const userTheme = useSelector((state) => {
     return state.user.theme;
   });

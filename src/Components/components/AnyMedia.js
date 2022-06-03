@@ -47,11 +47,11 @@ export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = tr
           ) : url ? (
             <Link href={url} target={newTab ? '_blank' : '_self'}>
               <a>
-                <Image image={image} title={title} url={url} className={className} />
+                <Image image={image} title={title} className={className} />
               </a>
             </Link>
           ) : (
-            <Image image={image} title={title} url={url} className={className} />
+            <Image image={image} title={title} className={className} />
           )}
         </>
       )}
@@ -61,7 +61,7 @@ export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = tr
 
 export default memo(AnyMedia);
 
-const Image = memo(({ image, title, url, className }) => {
+const Image = memo(({ image, title, className }) => {
   return (
     <img
       src={image}
@@ -71,6 +71,7 @@ const Image = memo(({ image, title, url, className }) => {
         currentTarget.src = fallbackImageUrl;
       }}
       className={className}
+      style={{ maxWidth: '450px' }}
     />
   );
 });

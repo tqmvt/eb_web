@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createGlobalStyle } from 'styled-components';
-import Image from 'next/image';
 import Link from 'next/link';
 import { ethers } from 'ethers';
 import Blockies from 'react-blockies';
