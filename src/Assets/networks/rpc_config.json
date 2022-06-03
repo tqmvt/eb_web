@@ -4803,7 +4803,7 @@
       "name": "Northern Hippo Syndicate",
       "slug": "northern-hippo-syndicate",
       "multiToken": false,
-      "address": "",
+      "address": "0xd9C2Aa899c031F565071e1b966C3c1710b3c6D63",
       "onChain": false,
       "listable": false,
       "metadata": {
@@ -7036,7 +7036,7 @@
         "twitter": "https://twitter.com/HippoSyndicate",
         "discord": "https://discord.gg/9j7ryEgX3K"
       },
-      "address": "",
+      "address": "0xd9C2Aa899c031F565071e1b966C3c1710b3c6D63",
       "maxMintPerTx": 10,
       "maxMintPerAddress": 100,
       "totalSupply": 5000,
