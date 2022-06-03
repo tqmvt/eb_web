@@ -32,7 +32,7 @@ const GlobalStyles = createGlobalStyle`
 `;
 
 const Header = function () {
-  const [showmenu, btn_icon] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
   const theme = useSelector((state) => {
     return state.user.theme;
   });
@@ -49,9 +49,8 @@ const Header = function () {
       const totop = document.getElementById('eb-scroll-to-top');
       const sticky = header.offsetTop;
       const scrollCallBack = window.addEventListener('scroll', () => {
-        btn_icon(false);
+        setShowMenu(false);
         if (window.pageYOffset > sticky) {
-          header.classList.add('sticky');
           totop.classList.add('show');
         } else {
           header.classList.remove('sticky');
@@ -85,7 +84,7 @@ const Header = function () {
 
           <BreakpointProvider>
             <Breakpoint l down>
-              {showmenu && (
+              {showMenu && (
                 <div className="menu">
                   <div className="menu">
                     <div className="navbar-item">
@@ -183,7 +182,7 @@ const Header = function () {
           <InvalidListingWarning size={'2x'} />
         </div>
 
-        <button className="nav-icon" onClick={() => btn_icon(!showmenu)}>
+        <button className="nav-icon" onClick={() => setShowMenu(!showMenu)}>
           <div className="menu-line white"></div>
           <div className="menu-line1 white"></div>
           <div className="menu-line2 white"></div>
