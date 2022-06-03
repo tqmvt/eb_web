@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import Breakpoint, { BreakpointProvider, setDefaultBreakpoints } from 'react-socks';
 import Link from 'next/link';
 import { createGlobalStyle } from 'styled-components';
-
+import useBreakpoint from 'use-breakpoint';
 import AccountMenu from '../components/AccountMenu';
 import InvalidListingWarning from '../components/InvalidListingWarning';
 // import { setTheme } from '../../GlobalState/User';
 
-setDefaultBreakpoints([{ xs: 0 }, { l: 1199 }, { xl: 1200 }]);
+const BREAKPOINTS = { xs: 0, m: 768, l: 1199, xl: 1200 }
 
 const GlobalStyles = createGlobalStyle`
   header#myHeader.navbar.white {
@@ -36,12 +35,18 @@ const Header = function () {
   const theme = useSelector((state) => {
     return state.user.theme;
   });
+  const { breakpoint, maxWidth, minWidth } = useBreakpoint(BREAKPOINTS);
+  const [useMobileMenu, setUseMobileMenu] = useState(false);
 
   // const dispatch = useDispatch();
   // const toggleTheme = () => {
   //   const newTheme = theme === 'light' ? 'dark' : 'light';
   //   dispatch(setTheme(newTheme));
   // };
+
+  useEffect(() =>{
+    setUseMobileMenu(minWidth < BREAKPOINTS.l);
+  }, [breakpoint]);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -82,8 +87,8 @@ const Header = function () {
             </div>
           </div>
 
-          <BreakpointProvider>
-            <Breakpoint l down>
+          {useMobileMenu ? (
+            <div className="breakpoint__l-down">
               {showMenu && (
                 <div className="menu">
                   <div className="menu">
@@ -130,9 +135,9 @@ const Header = function () {
                   </div>
                 </div>
               )}
-            </Breakpoint>
-
-            <Breakpoint xl>
+            </div>
+          ) : (
+            <div className="breakpoint__xl-only ">
               <div className="menu">
                 <div className="navbar-item">
                   <Link href="/">
@@ -175,8 +180,9 @@ const Header = function () {
                   </Link>
                 </div>
               </div>
-            </Breakpoint>
-          </BreakpointProvider>
+            </div>
+          )}
+
 
           <AccountMenu />
           <InvalidListingWarning size={'2x'} />
