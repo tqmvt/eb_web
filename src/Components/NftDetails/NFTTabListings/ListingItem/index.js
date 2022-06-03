@@ -36,7 +36,7 @@ const ListingItem = ({
           <span>{time} ago</span>
           {`${primaryTitle} `}
           <b>
-            <Link href={link}>{primaryText}</Link>
+            <Link href={link}><a>{primaryText}</a></Link>
           </b>{' '}
           for <b>{price} CRO</b>
         </div>

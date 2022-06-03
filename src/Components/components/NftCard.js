@@ -114,8 +114,10 @@ const NftCard = ({ royalty, listing, imgClass = 'marketplace', watermark, addres
         )}
         {listing.rank && <div className="badge bg-rarity text-wrap mt-1 mx-1">Rank: #{listing.rank}</div>}
         <div className="card-body d-flex flex-column justify-content-between">
-          <Link className="linkPointer" href={`/collection/${collection.slug}/${listing.id}`}>
-            <h6 className="card-title mt-auto">{listing.name}</h6>
+          <Link href={`/collection/${collection.slug}/${listing.id}`}>
+            <a>
+              <h6 className="card-title mt-auto">{listing.name}</h6>
+            </a>
           </Link>
           {getIsNftListed() && (
             <MakeBuy>

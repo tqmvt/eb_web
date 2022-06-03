@@ -119,24 +119,30 @@ const ListingCard = ({ listing, imgClass = 'marketplace', watermark, address, co
         )}
         <div className="card-body d-flex flex-column justify-content-between">
           {collection && (
-            <Link className="linkPointer" href={`/collection/${collection.slug}`}>
-              <h6
-                className="card-title mt-auto fw-normal"
-                style={{ fontSize: '12px', color: getTheme(user.theme).colors.textColor4 }}
-              >
-                {collection.name}
-              </h6>
+            <Link href={`/collection/${collection.slug}`}>
+              <a>
+                <h6
+                  className="card-title mt-auto fw-normal"
+                  style={{ fontSize: '12px', color: getTheme(user.theme).colors.textColor4 }}
+                >
+                  {collection.name}
+                </h6>
+              </a>
             </Link>
           )}
-          <Link className="linkPointer" href={`/collection/${listing.nftAddress}/${listing.nftId}`}>
-            <h6 className="card-title mt-auto">{listing.nft.name}</h6>
+          <Link href={`/collection/${listing.nftAddress}/${listing.nftId}`}>
+            <a>
+              <h6 className="card-title mt-auto">{listing.nft.name}</h6>
+            </a>
           </Link>
           <MakeBuy>
             <div>{getCorrectPrice(listing.price)} CRO</div>
           </MakeBuy>
           <MakeOffer>
-            <Link className="linkPointer" href={`/collection/${listing.nftAddress}/${listing.nftId}`}>
-              <Button type="legacy">Buy</Button>
+            <Link href={`/collection/${listing.nftAddress}/${listing.nftId}`}>
+              <a>
+                <Button type="legacy">Buy</Button>
+              </a>
             </Link>
             <div>
               <Button type="legacy-outlined" onClick={() => handleMakeOffer('Make')}>
