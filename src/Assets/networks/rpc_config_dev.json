@@ -7115,7 +7115,7 @@
       "address": "",
       "maxMintPerTx": 10,
       "maxMintPerAddress": 100,
-      "totalSupply": 5000,
+      "totalSupply": 6666,
       "cost": "290",
       "memberCost": "260",
       "whitelistCost": "240",
