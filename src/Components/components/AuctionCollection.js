@@ -37,6 +37,7 @@ const AuctionCollection = ({ showLoadMore = true, collectionId = null, sellerId 
       caseInsensitiveCompare(a.nftAddress, degenAddress) &&
       !testAuctions.includes(a.id)
     )
+      .sort((a, b) => a.endAt < b.endAt ? 1 : -1)
   );
   const isLoading = useSelector((state) => state.auctions.loading);
 

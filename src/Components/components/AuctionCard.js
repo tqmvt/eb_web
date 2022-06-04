@@ -5,7 +5,7 @@ import { ethers } from 'ethers';
 import Clock from './Clock';
 import { auctionState } from '../../core/api/enums';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faGem} from "@fortawesome/free-solid-svg-icons";
+import {faGavel, faGem} from "@fortawesome/free-solid-svg-icons";
 
 // const Outer = styled.div`
 //   display: flex;
@@ -30,7 +30,7 @@ const AuctionCard = ({ listing, imgClass = 'marketplace' }) => {
           {listing.state === auctionState.NOT_STARTED && <div className="fw-bold">Not Started</div>}
           {listing.state === auctionState.ACTIVE && <Clock deadline={listing.getEndAt} />}
           {listing.state === auctionState.CANCELLED && <div className="fw-bold">Cancelled</div>}
-          {listing.state === auctionState.SOLD && <div className="fw-bold">Sold</div>}
+          {listing.state === auctionState.SOLD && <div className="fw-bold"><FontAwesomeIcon icon={faGavel} /> Sold</div>}
         </div>
         <div className="card-body d-flex flex-column">
           <h6 className="card-title mt-auto">{listing.nft.name}{isLegendary && <span title="Legendary!">&#128142;</span>}</h6>
