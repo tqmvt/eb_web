@@ -1661,13 +1661,15 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Project Genesis is the first NFT project from web3 artist, 0xLuckless. This project was started to break the cycle of low resolution AI generated artwork. 0xLuckless was the first artist to release 8K resolution AI assisted art as an NFT collection.",
         "verified": true,
-        "avatar": "/img/collections/emergence/avatar.png",
-        "card": "/img/collections/emergence/card.png",
-        "banner": "/img/collections/emergence/banner.png",
+        "avatar": "/img/collections/0xluckless/avatar.webp",
+        "card": "/img/collections/0xluckless/card.webp",
+        "banner": "/img/collections/0xluckless/banner.webp",
         "website": "https://0xluckless.com",
-        "discord": "https://discord.gg/BpAVk2Za2c"
+        "twitter": "https://twitter.com/0xLuckless",
+        "discord": "https://discord.gg/REbVZ9rACc",
+        "medium": "https://medium.com/@0xLuckless"
       }
     },
     {
@@ -4966,6 +4968,47 @@
         "discord": "https://discord.gg/v4A7m6cngN",
         "medium": "https://medium.com/@CryptobackGorillas"
       }
+    },
+    {
+      "name": "Flaming Phenix Club",
+      "slug": "flaming-phenix-club",
+      "multiToken": false,
+      "address": "",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "The Flaming Phenix Club is a prestigious collection of 6,666 stunningly beautiful, fiery, and unique creatures apart of the Phenix Finance Ecosystem.",
+        "verified": true,
+        "avatar": "/img/collections/flaming-phenix-club/avatar.webp",
+        "banner": "/img/collections/flaming-phenix-club/banner.webp",
+        "card": "/img/collections/flaming-phenix-club/card.webp",
+        "maxSupply": 6666,
+        "website": "https://phenix.finance/",
+        "twitter": "https://twitter.com/phenixfinance",
+        "discord": "https://discord.gg/phenix",
+        "medium": "https://medium.com/@phenixfinance.marketing",
+        "telegram": "https://t.me/phenixfinance"
+      }
+    },
+    {
+      "name": "0xLuckless v1.5",
+      "slug": "0xluckless-v1-5",
+      "multiToken": false,
+      "address": "0xad350404b1564c732f3ed6673cfd8bdf93206a97",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "Version 1.5 secret collection for 0xLuckless Project Genesis holders. This collection also includes all airdropped NFTs from the 0xLuckless project.",
+        "verified": true,
+        "avatar": "/img/collections/0xluckless/v1-5/avatar.webp",
+        "card": "/img/collections/0xluckless/v1-5/card.webp",
+        "banner": "/img/collections/0xluckless/v1-5/banner.webp",
+        "maxSupply": 40,
+        "website": "https://0xluckless.com",
+        "twitter": "https://twitter.com/0xLuckless",
+        "discord": "https://discord.gg/REbVZ9rACc",
+        "medium": "https://medium.com/@0xLuckless"
+      }
     }
   ],
   "drops": [
@@ -5521,10 +5564,10 @@
     {
       "id": 18,
       "slug": "0xluckless",
-      "imgNft": "/img/drops/emergence/drop.png",
-      "imgPreview": "/img/drops/emergence/drop.png",
-      "imgAvatar": "/img/collections/emergence/avatar.png",
-      "imgBanner": "/img/collections/emergence/banner.png",
+      "imgNft": "/img/drops/0xluckless/drop.webp",
+      "imgPreview": "/img/drops/0xluckless/drop.webp",
+      "imgAvatar": "/img/collections/0xluckless/avatar.webp",
+      "imgBanner": "/img/collections/0xluckless/banner.webp",
       "title": "0xLuckless",
       "subtitle": "Welcome to Project: Emergence. This high-resolution A.I. assisted art project features 8K Ultra HD artwork, a first in the NFT space, using a text prompt guidance system along with a massive array of physical and cloud-based graphics cards to generate one-of-a-kind pieces for your personal enjoyment.",
       "description": "Welcome to Project: Emergence. This high-resolution A.I. assisted art project features 8K Ultra HD artwork, a first in the NFT space, using a text prompt guidance system along with a massive array of physical and cloud-based graphics cards to generate one-of-a-kind pieces for your personal enjoyment. This is the genesis project for 0xLuckless, a veteran artist who is somewhat new to the NFT space. Join us on this journey into the mind of man and machine artistry that seeks to breach the bounds of human comprehension and accelerate the evolution of generative art and artistic vision.",
@@ -7055,6 +7098,39 @@
       "whitelistCost": "525",
       "foundersOnly": false,
       "start": 1654261200000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false
+    },
+    {
+      "id": 78,
+      "slug": "flaming-phenix-club",
+      "imgNft": "/img/drops/flaming-phenix-club/drop.webp",
+      "imgPreview": "/img/drops/flaming-phenix-club/drop.webp",
+      "imgAvatar": "/img/collections/flaming-phenix-club/avatar.webp",
+      "imgBanner": "/img/collections/flaming-phenix-club/banner.webp",
+      "title": "Flaming Phenix Club",
+      "subtitle": "The Flaming Phenix Club is a prestigious collection of 6,666 stunningly beautiful, fiery, and unique creatures apart of the Phenix Finance Ecosystem.",
+      "description": "The Phenix NFT Series (Flaming Phenix Club) is an ecosystem-based, Non-fungible token collection on the CRONOS chain that aims to provide powerful utility within the Phenix Finance Ecosystem.\n\nOther than being highly rewarding and valuable assets in the Phenix Finance Exosystem, the Phenix NFT Series will illustrate a powerful collection of 6,666 stunningly beautiful, fiery, and unique creatures that will make its mark within the CRONOS NFT Space.\n\nThe Phenix NFTs will be an aspect of our ecosystem that will live on forever with a multitude of utilities that will increase as our ecosystem continuously expands. Here are some of the benefits we have set out for our Phenix NFT holders.\n\n\uD83D\uDC49 One-of-a-kind Phenix NFT\n\uD83D\uDC49 Premium NFT Staking Pool that NFT holders\n\uD83D\uDC49 Phenix Lotto Pool Chance Multiplier\n\uD83D\uDC49 Early Access during Phenix Events\n\uD83D\uDC49 Reduced Fees on all Phenix Finance DApps services for project owners (multi-sign service, contract service and more)\n\uD83D\uDC49 Growing benefits during the time.",
+      "author": {
+        "name": "Phenix Finance",
+        "website": "https://phenix.finance/",
+        "twitter": "https://twitter.com/phenixfinance",
+        "discord": "https://discord.gg/phenix",
+        "medium": "https://medium.com/@phenixfinance.marketing",
+        "telegram": "https://t.me/phenixfinance"
+      },
+      "address": "",
+      "maxMintPerTx": 10,
+      "maxMintPerAddress": 100,
+      "totalSupply": 5000,
+      "cost": "290",
+      "memberCost": "260",
+      "whitelistCost": "240",
+      "foundersOnly": false,
+      "start": 1654808400000,
       "end": null,
       "referral": false,
       "is1155": false,
