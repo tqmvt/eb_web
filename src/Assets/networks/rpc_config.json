@@ -1661,13 +1661,15 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Project Genesis is the first NFT project from web3 artist, 0xLuckless. This project was started to break the cycle of low resolution AI generated artwork. 0xLuckless was the first artist to release 8K resolution AI assisted art as an NFT collection.",
         "verified": true,
-        "avatar": "/img/collections/emergence/avatar.png",
-        "card": "/img/collections/emergence/card.png",
-        "banner": "/img/collections/emergence/banner.png",
+        "avatar": "/img/collections/0xluckless/avatar.webp",
+        "card": "/img/collections/0xluckless/card.webp",
+        "banner": "/img/collections/0xluckless/banner.webp",
         "website": "https://0xluckless.com",
-        "discord": "https://discord.gg/BpAVk2Za2c"
+        "twitter": "https://twitter.com/0xLuckless",
+        "discord": "https://discord.gg/REbVZ9rACc",
+        "medium": "https://medium.com/@0xLuckless"
       }
     },
     {
@@ -4977,6 +4979,26 @@
         "medium": "https://medium.com/@phenixfinance.marketing",
         "telegram": "https://t.me/phenixfinance"
       }
+    },
+    {
+      "name": "0xLuckless v1.5",
+      "slug": "0xluckless-v1-5",
+      "multiToken": false,
+      "address": "0xad350404b1564c732f3ed6673cfd8bdf93206a97",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "Version 1.5 secret collection for 0xLuckless Project Genesis holders. This collection also includes all airdropped NFTs from the 0xLuckless project.",
+        "verified": true,
+        "avatar": "/img/collections/0xluckless/v1-5/avatar.webp",
+        "card": "/img/collections/0xluckless/v1-5/card.webp",
+        "banner": "/img/collections/0xluckless/v1-5/banner.webp",
+        "maxSupply": 40,
+        "website": "https://0xluckless.com",
+        "twitter": "https://twitter.com/0xLuckless",
+        "discord": "https://discord.gg/REbVZ9rACc",
+        "medium": "https://medium.com/@0xLuckless"
+      }
     }
   ],
   "drops": [
@@ -5532,10 +5554,10 @@
     {
       "id": 18,
       "slug": "0xluckless",
-      "imgNft": "/img/drops/emergence/drop.png",
-      "imgPreview": "/img/drops/emergence/drop.png",
-      "imgAvatar": "/img/collections/emergence/avatar.png",
-      "imgBanner": "/img/collections/emergence/banner.png",
+      "imgNft": "/img/drops/0xluckless/drop.webp",
+      "imgPreview": "/img/drops/0xluckless/drop.webp",
+      "imgAvatar": "/img/collections/0xluckless/avatar.webp",
+      "imgBanner": "/img/collections/0xluckless/banner.webp",
       "title": "0xLuckless",
       "subtitle": "Welcome to Project: Emergence. This high-resolution A.I. assisted art project features 8K Ultra HD artwork, a first in the NFT space, using a text prompt guidance system along with a massive array of physical and cloud-based graphics cards to generate one-of-a-kind pieces for your personal enjoyment.",
       "description": "Welcome to Project: Emergence. This high-resolution A.I. assisted art project features 8K Ultra HD artwork, a first in the NFT space, using a text prompt guidance system along with a massive array of physical and cloud-based graphics cards to generate one-of-a-kind pieces for your personal enjoyment. This is the genesis project for 0xLuckless, a veteran artist who is somewhat new to the NFT space. Join us on this journey into the mind of man and machine artistry that seeks to breach the bounds of human comprehension and accelerate the evolution of generative art and artistic vision.",
