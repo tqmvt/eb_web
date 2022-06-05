@@ -4999,6 +4999,25 @@
         "discord": "https://discord.gg/REbVZ9rACc",
         "medium": "https://medium.com/@0xLuckless"
       }
+    },
+    {
+      "name": "Meow Meow Society",
+      "slug": "meow-meow-society",
+      "multiToken": false,
+      "address": "0x10970Bf2d222234bb740Ee19DCE621dF894fb123",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "Meow Meow are family cats, having variety of characters, they are waiting for you to get adopted. Let’s meet them at #Cronos. Staking, Breeding, 3D Meow & Metaverse MeowHomes.",
+        "verified": false,
+        "avatar": "/img/collections/meow-meow-society/avatar.webp",
+        "card": "/img/collections/meow-meow-society/card.webp",
+        "banner": "/img/collections/meow-meow-society/banner.webp",
+        "maxSupply": 555,
+        "website": "https://www.meowcatsmeow.com/",
+        "twitter": "https://twitter.com/meowofficialcat",
+        "discord": "https://discord.gg/SSAGbR2FDM"
+      }
     }
   ],
   "drops": [
