@@ -172,7 +172,6 @@ const Nft721 = ({ address, id }) => {
         return Object.entries(traits.currentToken).filter(([key]) => {
           return !/[^a-zA-Z]/.test(key)
         }).map(([key, value], i) => {
-          console.log(key, value.toString());
           let type = 'string';
           if (typeof value == "boolean") {
             type = 'boolean'
