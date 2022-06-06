@@ -21,4 +21,4 @@ export const imageDomains = [
   'metadata.cronos.domains',
 ];
 
-export const cloudinaryUrl = 'https://res.cloudinary.com/ebisusbay/image/fetch/';
+// export const cloudinaryUrl = 'https://res.cloudinary.com/ebisusbay/image/fetch/';
