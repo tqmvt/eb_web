@@ -4963,7 +4963,7 @@
       "name": "Flaming Phenix Club",
       "slug": "flaming-phenix-club",
       "multiToken": false,
-      "address": "",
+      "address": "0xCf185Cb08c62Ff969D258FBA18F92dabb278A8A9",
       "onChain": false,
       "listable": false,
       "metadata": {
@@ -7151,7 +7151,7 @@
         "medium": "https://medium.com/@phenixfinance.marketing",
         "telegram": "https://t.me/phenixfinance"
       },
-      "address": "",
+      "address": "0xCf185Cb08c62Ff969D258FBA18F92dabb278A8A9",
       "maxMintPerTx": 10,
       "maxMintPerAddress": 100,
       "totalSupply": 6666,
