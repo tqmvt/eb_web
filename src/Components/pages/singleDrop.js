@@ -34,6 +34,7 @@ import { EbisuDropAbi } from '../../Contracts/Abis';
 import { commify } from 'ethers/lib.esm/utils';
 import { getTheme } from '../../Theme/theme';
 import SocialsBar from "../Collection/SocialsBar";
+import {hostedImage} from "../../hacks";
 
 export const drops = config.drops;
 
@@ -483,7 +484,7 @@ const SingleDrop = () => {
         </Helmet>
         <HeroSection
           className={`jumbotron h-vh tint`}
-          style={{ backgroundImage: `url(${drop.imgBanner ? drop.imgBanner : '/img/background/Ebisus-bg-1_L.webp'})` }}
+          style={{ backgroundImage: `url(${drop.imgBanner ? hostedImage(drop.imgBanner) : hostedImage('/img/background/Ebisus-bg-1_L.webp')})` }}
         >
           <div className="container">
             <div className="row align-items-center">
@@ -577,7 +578,7 @@ const SingleDrop = () => {
               <div className="d_profile de-flex">
                 <div className="de-flex-col">
                   <div className="profile_avatar">
-                    {drop.imgAvatar && <img src={drop.imgAvatar} alt={drop.author.name} />}
+                    {drop.imgAvatar && <img src={hostedImage(drop.imgAvatar)} alt={drop.author.name} />}
                     <div className="profile_name">
                       <h4>
                         {drop.author.name}
@@ -606,7 +607,7 @@ const SingleDrop = () => {
         <section className="container no-top">
           <div className="row mt-md-5 pt-md-4">
             <div className="col-md-6 text-center">
-              <img src={drop.imgNft} className="img-fluid img-rounded mb-sm-30" alt={drop.title} />
+              <img src={hostedImage(drop.imgNft)} className="img-fluid img-rounded mb-sm-30" alt={drop.title} />
             </div>
             <div className="col-md-6">
               <div className="item_info">

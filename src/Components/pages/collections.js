@@ -9,6 +9,7 @@ import { Form, Spinner } from 'react-bootstrap';
 import Footer from '../components/Footer';
 import { getAllCollections } from '../../GlobalState/collectionsSlice';
 import { debounce, siPrefixedNumber } from '../../utils';
+import {hostedImage} from "../../hacks";
 
 const GlobalStyles = createGlobalStyle`
   .mobile-view-list-item {
@@ -225,7 +226,7 @@ const Collections = () => {
                             <div className="coll_list_pp" style={{ cursor: 'pointer' }}>
                               <Link to={`/collection/${collection.slug}`}>
                                 {collection.metadata?.avatar ? (
-                                  <img className="lazy" src={collection.metadata.avatar} alt={collection?.name} />
+                                  <img className="lazy" src={hostedImage(collection.metadata.avatar)} alt={collection?.name} />
                                 ) : (
                                   <Blockies seed={collection.collection.toLowerCase()} size={10} scale={5} />
                                 )}

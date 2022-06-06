@@ -17,6 +17,7 @@ import {getTheme, theme} from '../../Theme/theme';
 import { limitSizeOptions } from '../components/constants/filter-options';
 import Button from '../components/Button';
 import MetaverseModal from "../components/MetaverseModal";
+import {hostedImage} from "../../hacks";
 
 const fadeInUp = keyframes`
   0% {
@@ -88,7 +89,7 @@ const Jumbotron = {
     className: '',
   }))`
     background-image: url(${({ isDark }) =>
-      isDark ? '/img/background/banner-dark.webp' : '/img/background/Ebisus-bg-1_L.webp'});
+      isDark ? hostedImage('/img/background/banner-dark.webp') : hostedImage('/img/background/Ebisus-bg-1_L.webp')});
     background-size: cover;
     background-repeat: no-repeat;
     height: max(100vh, 800px);
