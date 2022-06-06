@@ -92,7 +92,7 @@ const Nft = ({ slug, id, nft }) => {
           {type === '1155' ? (
             <Nft1155 address={collection.address} id={id} />
           ) : (
-            <Nft721 address={collection.address} id={id} nft={nft} />
+            <Nft721 address={collection.address} id={id} />
           )}
         </>
       )}

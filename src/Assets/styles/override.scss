@@ -111,7 +111,8 @@ canvas {
 }
 
 /* NFT Details Avatar for Blockies */
-.p_list_pp canvas {
+.p_list_pp canvas,
+.blockies canvas {
   width: 100%;
   border-radius: 100% !important;
   cursor: pointer;
@@ -608,5 +609,5 @@ canvas {
 }
 
 .web3modal-modal-lightbox {
-  z-index:2000 !important;
+  z-index: 2000 !important;
 }

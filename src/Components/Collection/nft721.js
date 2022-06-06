@@ -22,6 +22,7 @@ import {
   shortAddress,
   timeSince,
 } from '../../utils';
+import { getNftDetails } from '../../GlobalState/nftSlice';
 import { connectAccount, chainConnect } from '../../GlobalState/User';
 import { croSkullRedPotionImageHack } from '../../hacks';
 import ListingItem from '../NftDetails/NFTTabListings/ListingItem';
@@ -36,10 +37,11 @@ import config from '../../Assets/networks/rpc_config.json';
 
 const knownContracts = config.known_contracts;
 
-const Nft721 = ({ address, id, nft }) => {
+const Nft721 = ({ address, id }) => {
   const dispatch = useDispatch();
 
   const user = useSelector((state) => state.user);
+  const nft = useSelector((state) => state.nft.nft);
 
   const [openMakeOfferDialog, setOpenMakeOfferDialog] = useState(false);
   const [offerType, setOfferType] = useState(OFFER_TYPE.none);
@@ -67,6 +69,10 @@ const Nft721 = ({ address, id, nft }) => {
   const [crognomideBreed, setCrognomideBreed] = useState(null);
   const [babyWeirdApeBreed, setBabyWeirdApeBreed] = useState(null);
   const [evoSkullTraits, setEvoSkullTraits] = useState([]);
+
+  useEffect(() => {
+    dispatch(getNftDetails(address, id));
+  }, [dispatch, address, id]);
 
   useEffect(() => {
     async function asyncFunc() {
