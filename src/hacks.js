@@ -10,14 +10,10 @@ export function croSkullRedPotionImage() {
 
 export function croSkullRedPotionImageHack(address, defaultImage) {
   if (isCroSkullRedPotion(address)) {
-    return proxiedImage(croSkullRedPotionImage());
+    return croSkullRedPotionImage();
   }
 
-  return proxiedImage(defaultImage);
-}
-
-export const proxiedImage = (imgPath) => {
-  return `https://ik.imagekit.io/ebisusbay/proxy/${imgPath}`;
+  return defaultImage;
 }
 
 export const hostedImage = (imgPath) => {
