@@ -17,6 +17,7 @@ import {
   isCroCrowCollection,
   isCrognomidesCollection,
   isEvoSkullCollection,
+  isCroSkullPetsCollection,
   mapAttributeString,
   millisecondTimestamp,
   shortAddress,
@@ -34,6 +35,7 @@ import NFTTabOffers from '../Offer/NFTTabOffers';
 import { OFFER_TYPE } from '../Offer/MadeOffersRow';
 import { offerState } from '../../core/api/enums';
 import config from '../../Assets/networks/rpc_config.json';
+import {commify} from "ethers/lib/utils";
 
 const knownContracts = config.known_contracts;
 
@@ -160,38 +162,50 @@ const Nft721 = ({ address, id }) => {
   }, [address]);
 
   useEffect(() => {
+    async function getAttributes(abi) {
+      const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
+      const contract = new Contract(address, abi, readProvider);
+      try {
+        const traits = await contract.getToken(id);
+        return Object.entries(traits.currentToken).filter(([key]) => {
+          return !/[^a-zA-Z]/.test(key)
+        }).map(([key, value], i) => {
+          console.log(key, value.toString());
+          let type = 'string';
+          if (typeof value == "boolean") {
+            type = 'boolean'
+            value = value ? 'yes' : 'no'
+          } else if (key === 'lastClaimTimestamp') {
+            type = 'date';
+          } else if (key === 'lastActionBlock') {
+            value = commify(value);
+          }
+          return {key, value, type};
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    }
     async function getEvoSkullAttributes() {
       if (isEvoSkullCollection(address)) {
-        const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
         const abiFile = require(`../../Assets/abis/evo-skull.json`);
-        const contract = new Contract(address, abiFile, readProvider);
-        try {
-          const traits = await contract.getToken(id);
-          const keyedTraits = Object.entries(traits.currentToken)
-            .filter(([key]) => {
-              return !/[^a-zA-Z]/.test(key);
-            })
-            .map(([key, value], i) => {
-              let type = 'string';
-              if (typeof value == 'boolean') {
-                type = 'boolean';
-                value = value ? 'yes' : 'no';
-              } else if (key === 'lastClaimTimestamp') {
-                type = 'date';
-              } else if (key === 'lastActionBlock') {
-                value = ethers.utils.commify(value);
-              }
-              return { key, value, type };
-            });
-          setEvoSkullTraits(keyedTraits);
-        } catch (error) {
-          console.log(error);
-        }
+        const attributes = await getAttributes(abiFile);
+        setEvoSkullTraits(attributes);
+      } else {
+        setEvoSkullTraits(null);
+      }
+    }
+    async function getCroSkullPetsAttributes() {
+      if (isCroSkullPetsCollection(address)) {
+        const abiFile = require(`../../Assets/abis/croskull-pets.json`);
+        const attributes = await getAttributes(abiFile.abi);
+        setEvoSkullTraits(attributes);
       } else {
         setEvoSkullTraits(null);
       }
     }
     getEvoSkullAttributes();
+    getCroSkullPetsAttributes();
 
     // eslint-disable-next-line
   }, [address]);

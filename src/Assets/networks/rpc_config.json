@@ -2303,9 +2303,9 @@
       "multiToken": false,
       "address": "0x14e9ef197C0bfaf7C1328ebed7151f53616Af3C5",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
-        "description": "",
+        "description": "A Mysterious Egg found by a CroSkull during his adventure! \"I.... never seen an egg like that, it may hatch in a some mysterious creature.\" Hatching Available on https://app.croskull.com/ ",
         "verified": true,
         "avatar": "/img/collections/croskull/eggs/avatar.webp",
         "card": "/img/collections/croskull/eggs/card.webp",
@@ -3913,7 +3913,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "A potion generated in the DR Jiko Labotary, it's rumored to have the powers to summon Ancient CroSkull (EvoSkull). Available for performing summoning on  https://app.croskull.com/",
         "verified": true,
         "avatar": "/img/collections/croskull/purplepotions/avatar.webp",
         "card": "/img/collections/croskull/purplepotions/card.webp",
@@ -4621,7 +4621,7 @@
       "name": "Lazy Gophers",
       "slug": "lazy-gophers",
       "multiToken": false,
-      "address": "0x9B1702011c498fB6b61e308e8D74553f413F7291",
+      "address": "0x20Ec66Dd5b6255604a8730c217391f8820707CCA",
       "onChain": false,
       "listable": false,
       "metadata": {
@@ -5008,6 +5008,45 @@
         "twitter": "https://twitter.com/0xLuckless",
         "discord": "https://discord.gg/REbVZ9rACc",
         "medium": "https://medium.com/@0xLuckless"
+      }
+    },
+    {
+      "name": "Meow Meow Society",
+      "slug": "meow-meow-society",
+      "multiToken": false,
+      "address": "0x10970Bf2d222234bb740Ee19DCE621dF894fb123",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "Meow Meow are family cats, having variety of characters, they are waiting for you to get adopted. Let’s meet them at #Cronos. Staking, Breeding, 3D Meow & Metaverse MeowHomes.",
+        "verified": false,
+        "avatar": "/img/collections/meow-meow-society/avatar.webp",
+        "card": "/img/collections/meow-meow-society/card.webp",
+        "banner": "/img/collections/meow-meow-society/banner.webp",
+        "maxSupply": 555,
+        "website": "https://www.meowcatsmeow.com/",
+        "twitter": "https://twitter.com/meowofficialcat",
+        "discord": "https://discord.gg/SSAGbR2FDM"
+      }
+    },
+    {
+      "name": "CroSkull Pets",
+      "slug": "croskull-pets",
+      "multiToken": false,
+      "address": "0xB77959DC7a12F7549ACC084Af01259Fc48813c89",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "The Underworld is full of all kinds of creatures. During the CroSkulls adventures to the different regions of the Underworld, the CroSkulls often find regional eggs. Each season of CroSkulls explore new regions of the Underworld. Each season will have different seasonal pets. Once the eggs hatch, you will acquire a seasonal pet from that egg’s region of the Underworld.",
+        "verified": true,
+        "avatar": "/img/collections/croskull/pets/avatar.webp",
+        "card": "/img/collections/croskull/pets/card.webp",
+        "banner": "/img/collections/croskull/pets/banner.webp",
+        "maxSupply": 2200,
+        "website": "https://app.croskull.com/",
+        "twitter": "https://twitter.com/CroskullNFT",
+        "discord": "https://discord.gg/croskull",
+        "medium": "https://medium.com/@croskullnft"
       }
     }
   ],
@@ -7125,12 +7164,12 @@
       "address": "",
       "maxMintPerTx": 10,
       "maxMintPerAddress": 100,
-      "totalSupply": 5000,
+      "totalSupply": 6666,
       "cost": "290",
       "memberCost": "260",
       "whitelistCost": "240",
       "foundersOnly": false,
-      "start": 1654808400000,
+      "start": 1654894800000,
       "end": null,
       "referral": false,
       "is1155": false,
