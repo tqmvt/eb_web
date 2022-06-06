@@ -396,6 +396,10 @@ export const isEvoSkullCollection = (address) => {
   return isCollection(address, 'evo-skull');
 };
 
+export const isCroSkullPetsCollection = (address) => {
+  return isCollection(address, 'croskull-pets');
+};
+
 export const percentage = (partialValue, totalValue) => {
   if (!totalValue || totalValue === 0) return 0;
   return Math.floor((100 * partialValue) / totalValue);

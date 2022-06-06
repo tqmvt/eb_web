@@ -2305,7 +2305,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "A Mysterious Egg found by a CroSkull during his adventure! \"I.... never seen an egg like that, it may hatch in a some mysterious creature.\" Hatching Available on https://app.croskull.com/ ",
         "verified": true,
         "avatar": "/img/collections/croskull/eggs/avatar.webp",
         "card": "/img/collections/croskull/eggs/card.webp",
@@ -3903,7 +3903,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "A potion generated in the DR Jiko Labotary, it's rumored to have the powers to summon Ancient CroSkull (EvoSkull). Available for performing summoning on  https://app.croskull.com/",
         "verified": true,
         "avatar": "/img/collections/croskull/purplepotions/avatar.webp",
         "card": "/img/collections/croskull/purplepotions/card.webp",
@@ -5017,6 +5017,26 @@
         "website": "https://www.meowcatsmeow.com/",
         "twitter": "https://twitter.com/meowofficialcat",
         "discord": "https://discord.gg/SSAGbR2FDM"
+      }
+    },
+    {
+      "name": "CroSkull Pets",
+      "slug": "croskull-pets",
+      "multiToken": false,
+      "address": "0xB77959DC7a12F7549ACC084Af01259Fc48813c89",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "The Underworld is full of all kinds of creatures. During the CroSkulls adventures to the different regions of the Underworld, the CroSkulls often find regional eggs. Each season of CroSkulls explore new regions of the Underworld. Each season will have different seasonal pets. Once the eggs hatch, you will acquire a seasonal pet from that egg’s region of the Underworld.",
+        "verified": true,
+        "avatar": "/img/collections/croskull/pets/avatar.webp",
+        "card": "/img/collections/croskull/pets/card.webp",
+        "banner": "/img/collections/croskull/pets/banner.webp",
+        "maxSupply": 2200,
+        "website": "https://app.croskull.com/",
+        "twitter": "https://twitter.com/CroskullNFT",
+        "discord": "https://discord.gg/croskull",
+        "medium": "https://medium.com/@croskullnft"
       }
     }
   ],
