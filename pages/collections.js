@@ -9,7 +9,7 @@ import { Form, Spinner } from 'react-bootstrap';
 import Footer from '../src/Components/components/Footer';
 import { getAllCollections } from '../src/GlobalState/collectionsSlice';
 import { debounce, siPrefixedNumber } from '../src/utils';
-import {hostedImage} from "../../hacks";
+import {hostedImage} from "../src/hacks";
 
 const GlobalStyles = createGlobalStyle`
   .mobile-view-list-item {
