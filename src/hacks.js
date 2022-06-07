@@ -1,4 +1,5 @@
 import { caseInsensitiveCompare } from './utils';
+import config from './Assets/networks/rpc_config.json';
 
 export function isCroSkullRedPotion(address) {
   return caseInsensitiveCompare(address, '0x508378E99F5527Acb6eB4f0fc22f954c5783e5F9');
@@ -18,5 +19,6 @@ export function croSkullRedPotionImageHack(address, defaultImage) {
 
 export const hostedImage = (imgPath) => {
   imgPath = imgPath ? imgPath.replace(/^\/+/g, '') : '';
-  return `https://ik.imagekit.io/ebisusbay/${imgPath}`;
+  const cdn = config.cdn_base;
+  return `${cdn}${imgPath}`;
 }
