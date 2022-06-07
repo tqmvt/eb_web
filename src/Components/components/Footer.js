@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 import { faDiscord, faTwitter, faMedium, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { faSquare, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import LayeredIcon from './LayeredIcon';
+import {hostedImage} from "../../hacks";
 
 const Footer = () => {
   const location = useLocation();
@@ -19,7 +20,7 @@ const Footer = () => {
           <div className="col">
             <a href="https://nebkas.ro" target="_blank" rel="noreferrer">
               <img
-                src={userTheme === 'light' ? '/img/logos/nebkas-logo.png' : '/img/logos/nebkas-logo.png'}
+                src={hostedImage(userTheme === 'light' ? '/img/logos/nebkas-logo.png' : '/img/logos/nebkas-logo.png')}
                 alt="nebkas.co"
                 width="128px"
               />
@@ -28,7 +29,7 @@ const Footer = () => {
           <div className="col">
             <a href="https://weare.fi/en/" target="_blank" rel="noreferrer">
               <img
-                src={userTheme === 'light' ? '/img/logos/wearefi-logo.png' : '/img/logos/wearefi-white.png'}
+                src={hostedImage(userTheme === 'light' ? '/img/logos/wearefi-logo.png' : '/img/logos/wearefi-white.png')}
                 alt="WeAre Solutions"
                 width={userTheme === 'light' ? '64px' : '160px'}
               />
@@ -37,7 +38,7 @@ const Footer = () => {
           <div className="col">
             <a href="https://crodex.app/" target="_blank" rel="noreferrer">
               <img
-                src={userTheme === 'light' ? '/img/logos/crodex.png' : '/img/logos/crodex-white.png'}
+                src={hostedImage(userTheme === 'light' ? '/img/logos/crodex.png' : '/img/logos/crodex-white.png')}
                 alt="CRODEX"
                 width="150px"
               />
@@ -52,7 +53,7 @@ const Footer = () => {
             <div className="col-2">
               <img
                 height="40px"
-                src={userTheme === 'light' ? '/img/logo-light.svg' : '/img/logo-dark-prod.svg'}
+                src={hostedImage(userTheme === 'light' ? '/img/logo-light.svg' : '/img/logo-dark-prod.svg')}
                 alt="ebisus bay logo"
               />
             </div>

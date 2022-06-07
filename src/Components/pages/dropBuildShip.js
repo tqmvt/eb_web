@@ -10,6 +10,7 @@ import { createSuccessfulTransactionToastContent, humanize, percentage } from '.
 import ShipABI from '../../Contracts/Ship.json';
 import ShipItemABI from '../../Contracts/ShipItem.json';
 import styled from 'styled-components';
+import {hostedImage} from "../../hacks";
 
 const Drop = () => {
   const [ships, setShips] = useState([]);
@@ -125,7 +126,7 @@ const Drop = () => {
             <div className="d_profile">
               <div className="profile_avatar">
                 <div className="d_profile_img">
-                  <img src="img/collections/crosmonauts/ship/avatar.webp" alt="Crosmonauts" />
+                  <img src={hostedImage('/img/collections/crosmonauts/ship/avatar.webp')} alt="Crosmonauts" />
                 </div>
                 <p>Combine ship parts to build a Crosmocraft!</p>
                 <p>

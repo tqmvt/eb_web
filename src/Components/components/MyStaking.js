@@ -17,6 +17,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { getTheme } from '../../Theme/theme';
 import {commify} from "ethers/lib.esm/utils";
+import {hostedImage} from "../../hacks";
 
 const txExtras = {
   gasPrice: ethers.utils.parseUnits('5000', 'gwei'),
@@ -136,7 +137,7 @@ const MyStaking = () => {
         <div className="row mt-md-5 pt-md-4">
           <div className="col-md-4 text-center">
             <img
-              src="/img/drops/vip/drop.webp"
+              src={hostedImage('/img/drops/vip/drop.webp')}
               className="img-fluid img-rounded mb-sm-30"
               alt="VIP Founding Member Staking"
             />

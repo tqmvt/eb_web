@@ -17,5 +17,6 @@ export function croSkullRedPotionImageHack(address, defaultImage) {
 }
 
 export const hostedImage = (imgPath) => {
+  imgPath = imgPath ? imgPath.replace(/^\/+/g, '') : '';
   return `https://ik.imagekit.io/ebisusbay/${imgPath}`;
 }

@@ -4,6 +4,7 @@ import Footer from '../components/Footer';
 import AuctionCollection from '../components/AuctionCollection';
 import config from '../../Assets/networks/rpc_config.json';
 import MetaverseModal from '../components/MetaverseModal';
+import {hostedImage} from "../../hacks";
 export const drops = config.drops;
 
 const MetaverseAuctions = () => {
@@ -18,7 +19,7 @@ const MetaverseAuctions = () => {
           </div>
           <div className="col-lg-6 pt-3">
             <div className="card eb-nft__card h-100 shadow">
-              <img className="card-img-top" src="/img/metaverse_gallery.png" alt="metaverse gallery" />
+              <img className="card-img-top" src={hostedImage('/img/metaverse_gallery.png')} alt="metaverse gallery" />
               <div className="card-body d-flex flex-column align-middle">
                 <MetaverseModal />
               </div>
