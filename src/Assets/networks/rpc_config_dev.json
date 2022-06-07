@@ -5057,6 +5057,26 @@
         "twitter": "https://twitter.com/CronoGoddess",
         "discord": "https://discord.gg/xECQDMZANw"
       }
+    },
+    {
+      "name": "Icy Valkyries",
+      "slug": "icy-valkyries",
+      "multiToken": false,
+      "address": "",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "Icy Valkyries is a collection of 1000 NFTs who live in the darkest corner of Valhalla. Owning a Valkyrie allows you to fight in the monthly Icy Squid Game for huge jackpots, build a farm, start a family and establish your own clan.",
+        "verified": true,
+        "avatar": "/img/collections/icy-valkyries/avatar.png",
+        "card": "/img/collections/icy-valkyries/card.png",
+        "banner": "/img/collections/icy-valkyries/banner.png",
+        "maxSupply": 1000,
+        "website": "https://www.icysquidgame.com/",
+        "twitter": "https://twitter.com/IcySquidGame",
+        "discord": "https://discord.gg/jFX4RNrFGu",
+        "medium": "https://medium.com/@icysquidgame"
+      }
     }
   ],
   "drops": [
@@ -7184,6 +7204,39 @@
       "is1155": false,
       "published": true,
       "complete": false
+    },
+    {
+      "id": 79,
+      "slug": "icy-valkyries",
+      "imgNft": "/img/drops/icy-valkyries/drop.png",
+      "imgPreview": "/img/drops/icy-valkyries/drop.png",
+      "imgAvatar": "/img/collections/icy-valkyries/avatar.png",
+      "imgBanner": "/img/collections/icy-valkyries/banner.png",
+      "title": "Icy Valkyries",
+      "subtitle": "Icy Valkyries is a collection of 1000 NFTs who live in the darkest corner of Valhalla. \n\nThis is the only NFT project in Cronos who owns an actual CRO validator and controls 1% of the whole network. Fees earned from the validator are used for the game prizes. \n\nOwning a Valkyrie allows you to fight in the monthly Icy Squid Game for huge jackpots, build a farm, start a family and establish your own clan.\n\nWill your clan rule Valhalla one day?",
+      "description": "Icy Valkyries is a collection of 1000 NFTs who live in the darkest corner of Valhalla. \n\nThis is the only NFT project in Cronos who owns an actual CRO validator and controls 1% of the whole network. Fees earned from the validator are used for the game prizes. \n\nOwning a Valkyrie may allow you to fight in the monthly Icy Squid Game for huge jackpots, build a farm, start a family and establish your own clan.\n\nValhalla's economy runs on ICY token, which was launched in November 2021. Valkyries can earn ICY when working on farms or mines and they can also win some ICY from the monthly games.\n\nMint your own valkyrie and one day you may rule this corner of Valhalla!",
+      "author": {
+        "name": "Icy Squid Games",
+        "website": "https://www.icysquidgame.com/",
+        "twitter": "https://twitter.com/IcySquidGame",
+        "discord": "https://discord.gg/jFX4RNrFGu",
+        "medium": "https://medium.com/@icysquidgame"
+      },
+      "address": "",
+      "maxMintPerTx": 8,
+      "maxMintPerAddress": 100,
+      "totalSupply": 1000,
+      "cost": "420",
+      "memberCost": "350",
+      "whitelistCost": "350",
+      "foundersOnly": false,
+      "start": 1654804800000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false,
+      "priceDescription": "Whitelist-only presale for the first 12 hours (limit 8 per address). Public sale after presale ends."
     }
   ],
   "auctions": [
