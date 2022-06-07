@@ -5462,3 +5462,272 @@ iframe.metaverse {
 .bid-modal-content {
   display: flex !important;
 }
+
+.nftSaleForm {
+
+  h2 {
+    color: $textColor1;
+    font-weight: bold;
+    font-size: 30px;
+    margin-bottom: 48px;
+  }
+
+  h3 {
+    color: $textColor1;
+    font-weight: 500;
+    font-size: 18px;
+    margin-bottom: 16px;
+  }
+
+  hr{
+    margin: 0px;
+  }
+
+  .spinner-span{
+    width: 100%; 
+    justify-content: center ;
+  }
+
+  .feeTitle{
+    margin-bottom: 8px;
+  }
+
+  .buttonGroup {
+    display: flex; 
+    flex-direction: row; 
+    flex-wrap: wrap; 
+    margin-bottom: 28px; 
+  }
+  
+  .formContainer{
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: space-between; 
+    max-width: 880px; 
+  }
+
+  .saleForm{
+    display: flex; 
+    flex-direction: column;
+    min-width: 320px;
+    margin-bottom: 40px;
+  }
+
+  .left-column{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .dot_icon {
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    background-color: #17b61d;
+    position: absolute;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    top: 8px;
+    right: 8px;
+
+    .icon-check{
+      width: 6px; 
+      height: 6px; 
+      color: black;
+    }
+  }
+
+  .form_icon_button {
+    border: solid 1px #ddd;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    background: $cardColor2;
+    transition: 0.7s;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    width: 205px;
+    height: 78px;
+    cursor: pointer;
+
+    p {
+      color: $textColor1;
+      margin-bottom: 0px;
+      font-size: 1px;
+      margin-bottom: 0px; 
+      font-size: 12px;
+    }
+
+  }
+
+  .textError{
+    color: #E85B5B;
+  }
+
+  .cardTitle{
+    text-align: center; 
+  }
+
+  .input {
+    height: 40px;
+    background-color: $cardColor2;
+    border-radius: 2px;
+    &::placeholder {color: $textColor1;}
+    margin-bottom: 0px;
+  }  
+
+  
+
+  .formLabel{
+    font-weight: bold;
+    color: $textColor1;
+  }
+
+  .form_icon_button.active {
+    border-color: #185a9d;
+  }
+
+  .icon {
+
+    width: 23px;
+    height: 23px;
+    margin-Bottom: 5px;
+    color: $textColor1;
+
+  }
+
+  .btn-main {
+    margin-right: 10px;
+    margin-bottom: 10px;
+    width: 205px;
+    height: 36px;
+  }
+
+  .btn-main-outlined {
+    width: 205px;
+    height: 36px;
+    background: $bgColor1  !important;
+    color: $blue  !important;
+    border: 1px solid $blue;
+    border-radius: 6px;
+    letter-spacing: normal;
+    outline: 0;
+    font-weight: 800;
+    text-decoration: none;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 2px 2px 20px 0px rgba(131, 100, 226, 0);
+    transition: all 0.3s ease;
+  }
+
+  .fee {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .label {
+      color: $textColor1;
+      font-weight: bold;
+    }
+  }
+}
+
+.dialogAlertContainer{
+  position: fixed;
+  inset: 25% 10% 20%;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .dialogAlert {
+    background: $cardColor1;
+    position: relative;
+    max-width: 748px;
+    border-radius: 16px;
+  
+    padding: 96px;
+    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.3);
+  
+    @media (max-width: 680px) { 
+      padding: 40px 14px;
+    }
+    
+    .container {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+  
+      .content {
+        padding: 36px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+  
+        @media (max-width: 420px) { 
+          padding: 36px 0px;
+        }
+      }
+    
+      .popup-icon {
+        position: absolute;
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+        top: 16px;
+        right: 16px;
+        cursor: pointer;
+    
+        .icon-close{
+          width: 30px; 
+          height: 30px; 
+          color: $textColor1;
+        }
+    
+      }
+    
+      h2 {
+        font-size: 48px;
+      }
+    
+      span{
+        font-weight: bold;
+        font-size: 24px;
+        text-align: center;
+        justify-content: center;
+      }
+    
+      .btn-popup {
+        background-color: $blue;
+        color: $white;
+        border-width: 0px;
+        border-radius: 8px;
+        font-weight: bold;
+        font-size: 23px;
+        min-width: 100%;
+        padding: 32px;
+        text-align: center;
+  
+        @media (max-width: 420px) { 
+          padding: 16px;
+        }
+      }
+    
+      .warningMessage {
+        margin-top: 16px;
+        text-align: center;
+        color: $warningColor1;
+      }
+    }
+  }
+}
+

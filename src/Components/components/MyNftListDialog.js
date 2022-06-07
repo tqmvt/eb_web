@@ -179,7 +179,6 @@ const MyNftListDialog = ({ walletAddress, marketContract, myNftPageListDialog })
 
       setFee((fees / 10000) * 100);
       setRoyalty((royalties[1] / 10000) * 100);
-
       const transferEnabled = await contract.isApprovedForAll(walletAddress, marketContractAddress);
 
       if (transferEnabled) {
@@ -204,7 +203,7 @@ const MyNftListDialog = ({ walletAddress, marketContract, myNftPageListDialog })
     try {
       const marketContractAddress = marketContract.address;
       const { contract } = myNftPageListDialog;
-
+      
       const tx = await contract.setApprovalForAll(marketContractAddress, true);
       await tx.wait();
 

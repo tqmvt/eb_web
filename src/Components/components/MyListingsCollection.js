@@ -10,7 +10,6 @@ import {
 import { Form, Spinner } from 'react-bootstrap';
 import { getAnalytics, logEvent } from '@firebase/analytics';
 import MyListingCard from './MyListingCard';
-import MyNftListDialog from './MyNftListDialog';
 import MyNftCancelDialog from './MyNftCancelDialog';
 import InvalidListingsPopup from './InvalidListingsPopup';
 
@@ -154,7 +153,6 @@ const MyListingsCollection = ({ walletAddress = null }) => {
         </div>
       )}
 
-      <MyNftListDialog />
       <MyNftCancelDialog />
       <InvalidListingsPopup navigateTo={false} />
     </>
