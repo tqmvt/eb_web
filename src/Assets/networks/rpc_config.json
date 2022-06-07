@@ -5038,6 +5038,25 @@
         "discord": "https://discord.gg/croskull",
         "medium": "https://medium.com/@croskullnft"
       }
+    },
+    {
+      "name": "CronoGods Kids",
+      "slug": "cronogods-kids",
+      "multiToken": false,
+      "address": "0x9F4a2Ac102d006caDFa54cb592d5658A08BEed5B",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "When a God and Goddess get together...",
+        "verified": true,
+        "avatar": "/img/collections/cronogods/avatar.gif",
+        "card": "/img/collections/cronogods/card.png",
+        "banner": "/img/collections/cronogods/banner.png",
+        "maxSupply": 2000,
+        "website": "https://www.cronogods.com/cronogoddess",
+        "twitter": "https://twitter.com/CronoGoddess",
+        "discord": "https://discord.gg/xECQDMZANw"
+      }
     }
   ],
   "drops": [
