@@ -7,6 +7,7 @@
   "explorer": "https://cronoscan.com/",
   "api_base": "https://api.ebisusbay.biz/",
   "app_base": "https://app.ebisusbay.biz/",
+  "cdn_base": "https://cdn.ebisusbay.biz/",
   "subgraph_base": "https://graph.ebisusbay.com:8000/subgraphs/name/ebisusbay/",
   "membership_contract": "0x8d9232Ebc4f06B7b8005CCff0ca401675ceb25F5",
   "auction_contract": "0xd488b38d19d5708cbda224c041a24c3e3149bc93",
@@ -5048,6 +5049,45 @@
         "discord": "https://discord.gg/croskull",
         "medium": "https://medium.com/@croskullnft"
       }
+    },
+    {
+      "name": "CronoGods Kids",
+      "slug": "cronogods-kids",
+      "multiToken": false,
+      "address": "0x9F4a2Ac102d006caDFa54cb592d5658A08BEed5B",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "When a God and Goddess get together...",
+        "verified": true,
+        "avatar": "/img/collections/cronogods/avatar.gif",
+        "card": "/img/collections/cronogods/card.png",
+        "banner": "/img/collections/cronogods/banner.png",
+        "maxSupply": 2000,
+        "website": "https://www.cronogods.com/cronogoddess",
+        "twitter": "https://twitter.com/CronoGoddess",
+        "discord": "https://discord.gg/xECQDMZANw"
+      }
+    },
+    {
+      "name": "Icy Valkyries",
+      "slug": "icy-valkyries",
+      "multiToken": false,
+      "address": "",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "Icy Valkyries is a collection of 1000 NFTs who live in the darkest corner of Valhalla. Owning a Valkyrie allows you to fight in the monthly Icy Squid Game for huge jackpots, build a farm, start a family and establish your own clan.",
+        "verified": true,
+        "avatar": "/img/collections/icy-valkyries/avatar.png",
+        "card": "/img/collections/icy-valkyries/card.png",
+        "banner": "/img/collections/icy-valkyries/banner.png",
+        "maxSupply": 1000,
+        "website": "https://www.icysquidgame.com/",
+        "twitter": "https://twitter.com/IcySquidGame",
+        "discord": "https://discord.gg/jFX4RNrFGu",
+        "medium": "https://medium.com/@icysquidgame"
+      }
     }
   ],
   "drops": [
@@ -7175,6 +7215,39 @@
       "is1155": false,
       "published": true,
       "complete": false
+    },
+    {
+      "id": 79,
+      "slug": "icy-valkyries",
+      "imgNft": "/img/drops/icy-valkyries/drop.png",
+      "imgPreview": "/img/drops/icy-valkyries/drop.png",
+      "imgAvatar": "/img/collections/icy-valkyries/avatar.png",
+      "imgBanner": "/img/collections/icy-valkyries/banner.png",
+      "title": "Icy Valkyries",
+      "subtitle": "Icy Valkyries is a collection of 1000 NFTs who live in the darkest corner of Valhalla. \n\nThis is the only NFT project in Cronos who owns an actual CRO validator and controls 1% of the whole network. Fees earned from the validator are used for the game prizes. \n\nOwning a Valkyrie allows you to fight in the monthly Icy Squid Game for huge jackpots, build a farm, start a family and establish your own clan.\n\nWill your clan rule Valhalla one day?",
+      "description": "Icy Valkyries is a collection of 1000 NFTs who live in the darkest corner of Valhalla. \n\nThis is the only NFT project in Cronos who owns an actual CRO validator and controls 1% of the whole network. Fees earned from the validator are used for the game prizes. \n\nOwning a Valkyrie may allow you to fight in the monthly Icy Squid Game for huge jackpots, build a farm, start a family and establish your own clan.\n\nValhalla's economy runs on ICY token, which was launched in November 2021. Valkyries can earn ICY when working on farms or mines and they can also win some ICY from the monthly games.\n\nMint your own valkyrie and one day you may rule this corner of Valhalla!",
+      "author": {
+        "name": "Icy Squid Games",
+        "website": "https://www.icysquidgame.com/",
+        "twitter": "https://twitter.com/IcySquidGame",
+        "discord": "https://discord.gg/jFX4RNrFGu",
+        "medium": "https://medium.com/@icysquidgame"
+      },
+      "address": "",
+      "maxMintPerTx": 8,
+      "maxMintPerAddress": 100,
+      "totalSupply": 1000,
+      "cost": "420",
+      "memberCost": "350",
+      "whitelistCost": "350",
+      "foundersOnly": false,
+      "start": 1654804800000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false,
+      "priceDescription": "Whitelist-only presale for the first 12 hours (limit 8 per address). Public sale after presale ends."
     }
   ],
   "auctions": [

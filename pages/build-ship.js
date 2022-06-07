@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import { Form, ProgressBar, Spinner } from 'react-bootstrap';
 import * as Sentry from '@sentry/react';
 import styled from 'styled-components';
+import {hostedImage} from "../../hacks";
 
 import Footer from '../src/Components/components/Footer';
 import config from '../src/Assets/networks/rpc_config.json';
@@ -126,7 +127,7 @@ const Drop = () => {
             <div className="d_profile">
               <div className="profile_avatar">
                 <div className="d_profile_img">
-                  <img src="img/collections/crosmonauts/ship/avatar.webp" alt="Crosmonauts" />
+                  <img src={hostedImage('/img/collections/crosmonauts/ship/avatar.webp')} alt="Crosmonauts" />
                 </div>
                 <p>Combine ship parts to build a Crosmocraft!</p>
                 <p>
