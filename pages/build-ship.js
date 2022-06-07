@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import { Form, ProgressBar, Spinner } from 'react-bootstrap';
 import * as Sentry from '@sentry/react';
 import styled from 'styled-components';
-import {hostedImage} from "../../hacks";
+import {hostedImage} from "../src/hacks";
 
 import Footer from '../src/Components/components/Footer';
 import config from '../src/Assets/networks/rpc_config.json';
