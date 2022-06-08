@@ -2,6 +2,7 @@ import React, { memo, useEffect, useState } from 'react';
 import ReactPlayer from 'react-player';
 import { fallbackImageUrl } from '../../core/constants';
 import Link from 'next/link';
+import {CdnImage} from "./CdnImage";
 
 export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = true, videoProps, className }) => {
   const [dynamicType, setDynamicType] = useState(null);
@@ -63,15 +64,17 @@ export default memo(AnyMedia);
 
 const Image = memo(({ image, title, className }) => {
   return (
-    <img
+    <CdnImage
       src={image}
       alt={title}
+      width={306}
+      height={306}
+      layout="responsive"
       onError={({ currentTarget }) => {
         currentTarget.onerror = null;
         currentTarget.src = fallbackImageUrl;
       }}
       className={className}
-      style={{ maxWidth: '450px' }}
     />
   );
 });
