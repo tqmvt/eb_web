@@ -141,6 +141,7 @@ export const imageDomains = [
 export const appConfig = (key) => {
   const env = environments[process.env.NEXT_PUBLIC_ENV ?? process.env.NODE_ENV];
   if (!key) return env ? configData[env] : configData[environments.development];
+  console.log('retrieving app config', key, env, process.env.NEXT_PUBLIC_ENV, process.env.NODE_ENV)
 
   const keys = key.split('.');
 
