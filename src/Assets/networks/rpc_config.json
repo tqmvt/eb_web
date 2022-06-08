@@ -3336,7 +3336,7 @@
       "multiToken": false,
       "address": "0x2ea93ef899a28d6049146b98c7CFCA4C7f541a8d",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "Kardia is a unique multi-tier gaming NFT project on the KCC and CRO blockchain, starting with the founder's deck of 11,051 playable cards. Using our play-to-earn mechanics, you can play against other players, earn valuable resources, win NFTs, stake for cryptocurrencies, and compete for crypto-related prizes. A crypto-currency prize pool will be generated from secondary sale royalties and will be used to buy NFTs, other cryptocurrencies, and other prizes that can be won as a result of tournaments, special triggers, loot boxes, and more!",
         "verified": true,
