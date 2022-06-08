@@ -128,7 +128,8 @@ export const imageDomains = [
   'ebisusbay.imgix.net',
   'metadata.cronos.domains',
   'ik.imagekit.io',
-  'cdn.ebisusbay.com'
+  'cdn.ebisusbay.com',
+  'cdn.ebisusbay.biz'
 ];
 
 /**

@@ -67,9 +67,8 @@ const Image = memo(({ image, title, className }) => {
     <CdnImage
       src={image}
       alt={title}
-      width={306}
-      height={306}
-      layout="responsive"
+      width={384}
+      height={384}
       onError={({ currentTarget }) => {
         currentTarget.onerror = null;
         currentTarget.src = fallbackImageUrl;

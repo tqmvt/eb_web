@@ -19,7 +19,8 @@ const nextConfig = {
       'ebisusbay.imgix.net',
       'metadata.cronos.domains',
       'ik.imagekit.io',
-      'cdn.ebisusbay.com'
+      'cdn.ebisusbay.com',
+      'cdn.ebisusbay.biz'
     ],
   },
   async redirects() {
