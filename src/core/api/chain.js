@@ -1,10 +1,10 @@
 import { BigNumber, Contract, ethers } from 'ethers';
 import { ERC721 } from '../../Contracts/Abis';
 import config from '../../Assets/networks/rpc_config.json';
-// import IPFSGatewayTools from '@pinata/ipfs-gateway-tools/dist/browser';
+import IPFSGatewayTools from '@pinata/ipfs-gateway-tools/dist/node';
 
 const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
-let gatewayTools; // = new IPFSGatewayTools();
+let gatewayTools = new IPFSGatewayTools();
 const gateway = 'https://mygateway.mypinata.cloud';
 
 export const getSlothty721NftsFromWallet = async (collectionAddress, walletAddress) => {

@@ -4,7 +4,7 @@ import blacklist from './core/configs/blacklist.json';
 import attributes from './core/configs/attributes.json';
 import { useEffect, useRef } from 'react';
 import dynamic from 'next/dynamic';
-// import IPFSGatewayTools from '@pinata/ipfs-gateway-tools/dist/browser';
+import IPFSGatewayTools from '@pinata/ipfs-gateway-tools/dist/node';
 import {getCnsName} from "./helpers/cns";
 
 export const drops = config.drops;
@@ -467,10 +467,6 @@ export const round = (num, decimals) => {
 
 export const convertIpfsResource = (resource, tooltip) => {
   if (!resource || typeof window === 'undefined') return;
-
-  const IPFSGatewayTools = dynamic(() => import('@pinata/ipfs-gateway-tools/dist/browser'), {
-    ssr: false,
-  });
 
   let gatewayTools = new IPFSGatewayTools();
 

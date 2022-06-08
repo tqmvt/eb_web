@@ -4,7 +4,7 @@ import moment from 'moment';
 
 import config from '../Assets/networks/rpc_config.json';
 import { ERC1155, ERC721, MetaPixelsAbi, SouthSideAntsReadAbi } from '../Contracts/Abis';
-// import IPFSGatewayTools from '@pinata/ipfs-gateway-tools/dist/browser';
+import IPFSGatewayTools from '@pinata/ipfs-gateway-tools/dist/node';
 import { dataURItoBlob } from '../Store/utils';
 import { SortOption } from '../Components/Models/sort-option.model';
 import { CollectionSortOption } from '../Components/Models/collection-sort-option.model';
@@ -24,7 +24,7 @@ import {
 import { getAntMintPassMetadata, getWeirdApesStakingStatus } from './api/chain';
 import { fallbackImageUrl } from './constants';
 
-let gatewayTools; // = new IPFSGatewayTools();
+let gatewayTools = new IPFSGatewayTools();
 const gateway = 'https://mygateway.mypinata.cloud';
 const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
 const knownContracts = config.known_contracts;
