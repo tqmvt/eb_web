@@ -64,11 +64,9 @@ export default memo(AnyMedia);
 
 const Image = memo(({ image, title, className }) => {
   return (
-    <CdnImage
+    <img
       src={image}
       alt={title}
-      width={384}
-      height={384}
       onError={({ currentTarget }) => {
         currentTarget.onerror = null;
         currentTarget.src = fallbackImageUrl;
