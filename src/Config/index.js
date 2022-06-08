@@ -86,8 +86,8 @@ export const configData = {
       symbol: 'tCRO'
     },
     urls: {
-      api: 'https://api.ebisusbay.com/',
-      app: 'https://app.ebisusbay.com/',
+      api: 'https://testapi.ebisusbay.biz/',
+      app: 'https://testapp.ebisusbay.biz/',
       cdn: 'https://cdn.ebisusbay.biz/',
       subgraph: 'https://testgraph.ebisusbay.biz:8000/subgraphs/name/ebisusbay/'
     },

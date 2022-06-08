@@ -1,9 +1,9 @@
 import { BigNumber, Contract, ethers } from 'ethers';
 import { ERC721 } from '../../Contracts/Abis';
-import config from '../../Assets/networks/rpc_config.json';
 import IPFSGatewayTools from '@pinata/ipfs-gateway-tools/dist/node';
+import {appConfig} from "../../Config";
 
-const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
+const readProvider = new ethers.providers.JsonRpcProvider(appConfig('rpc.read'));
 let gatewayTools = new IPFSGatewayTools();
 const gateway = 'https://mygateway.mypinata.cloud';
 

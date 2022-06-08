@@ -32,9 +32,11 @@ import {
   isUserBlacklisted,
   isNftBlacklisted,
 } from '../../src/utils';
-import config from '../../src/Assets/networks/rpc_config.json';
 import { croSkullRedPotionImageHack } from '../../src/hacks';
 import NFTTabOffers from '../../src/Components/Offer/NFTTabOffers';
+import {appConfig} from "../../src/Config";
+
+const config = appConfig();
 
 const Listing = () => {
   const router = useRouter();
@@ -63,13 +65,15 @@ const Listing = () => {
   const [babyWeirdApeBreed, setBabyWeirdApeBreed] = useState(null);
 
   useEffect(() => {
-    dispatch(getListingDetails(id));
+    if (router.isReady) {
+      dispatch(getListingDetails(id));
+    }
   }, [dispatch, id]);
 
   useEffect(() => {
     async function asyncFunc() {
       if (listing && isCroCrowCollection(listing.nftAddress) && croCrowBreed === null) {
-        const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
+        const readProvider = new ethers.providers.JsonRpcProvider(config.rpc.read);
         const contract = new Contract(
           '0x0f1439a290e86a38157831fe27a3dcd302904055',
           [
@@ -105,7 +109,7 @@ const Listing = () => {
   useEffect(() => {
     async function asyncFunc() {
       if (listing && isCrognomidesCollection(listing.nftAddress) && crognomideBreed === null) {
-        const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
+        const readProvider = new ethers.providers.JsonRpcProvider(config.rpc.read);
         const contract = new Contract(
           '0xE57742748f98ab8e08b565160D3A9A32BFEF7352',
           ['function crognomidUsed(uint256) public view returns (bool)'],
@@ -128,7 +132,7 @@ const Listing = () => {
   useEffect(() => {
     async function asyncFunc() {
       if (listing && isBabyWeirdApesCollection(listing.nftAddress)) {
-        const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
+        const readProvider = new ethers.providers.JsonRpcProvider(config.rpc.read);
         const abiFile = require(`../../src/Assets/abis/baby-weird-apes.json`);
         const contract = new Contract(listing.nftAddress, abiFile.abi, readProvider);
         try {
