@@ -6,6 +6,11 @@ export const environments = {
 
 export const configData = {
   [environments.production]: {
+    chain: {
+      name: 'Cronos Mainnet Beta',
+      id: '25',
+      symbol: 'CRO'
+    },
     urls: {
       api: 'https://api.ebisusbay.com/',
       app: 'https://app.ebisusbay.com/',
@@ -38,6 +43,11 @@ export const configData = {
     }
   },
   [environments.development]: {
+    chain: {
+      name: 'Cronos Mainnet Beta',
+      id: '25',
+      symbol: 'CRO'
+    },
     urls: {
       api: 'https://api.ebisusbay.biz/',
       app: 'https://app.ebisusbay.biz/',
@@ -70,6 +80,11 @@ export const configData = {
     }
   },
   [environments.testnet]: {
+    chain: {
+      name: 'Cronos Testnet',
+      id: '338',
+      symbol: 'tCRO'
+    },
     urls: {
       api: 'https://api.ebisusbay.com/',
       app: 'https://app.ebisusbay.com/',
@@ -117,15 +132,17 @@ export const imageDomains = [
 ];
 
 /**
- * Retrieve a config value using "dot" notation
+ * Retrieve a config value using "dot" notation.
+ * Passing no key will return the entire config.
  *
  * @param key
  * @returns {null|*}
  */
-export const config = (key) => {
-  if (!key) return null;
-  const keys = key.split('.');
+export const appConfig = (key) => {
   const env = environments[process.env.NEXT_PUBLIC_ENV ?? process.env.NODE_ENV];
+  if (!key) return env ? configData[env] : configData[environments.development];
+
+  const keys = key.split('.');
 
   return keys.reduce((o,i)=> o[i], env ? configData[env] : configData[environments.development]);
 }

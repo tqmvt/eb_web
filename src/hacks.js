@@ -1,6 +1,5 @@
 import { caseInsensitiveCompare } from './utils';
-import { imageDomains } from './Config';
-import config from './Assets/networks/rpc_config.json';
+import {appConfig, imageDomains} from './Config';
 
 export function isCroSkullRedPotion(address) {
   return caseInsensitiveCompare(address, '0x508378E99F5527Acb6eB4f0fc22f954c5783e5F9');
@@ -33,6 +32,6 @@ export function croSkullRedPotionImageHack(address, defaultImage) {
 
 export const hostedImage = (imgPath) => {
   imgPath = imgPath ? imgPath.replace(/^\/+/g, '') : '';
-  const cdn = config.cdn_base;
+  const cdn = appConfig('urls.cdn');
   return `${cdn}${imgPath}`;
 }
