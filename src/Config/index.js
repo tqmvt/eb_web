@@ -19,7 +19,8 @@ export const imageDomains = [
   'res.cloudinary.com',
   'ebisusbay.imgix.net',
   'metadata.cronos.domains',
-  'ik.imagekit.io'
+  'ik.imagekit.io',
+  'cdn.ebisusbay.com'
 ];
 
 // export const cloudinaryUrl = 'https://res.cloudinary.com/ebisusbay/image/fetch/';

@@ -18,6 +18,8 @@ const nextConfig = {
       'res.cloudinary.com',
       'ebisusbay.imgix.net',
       'metadata.cronos.domains',
+      'ik.imagekit.io',
+      'cdn.ebisusbay.com'
     ],
   },
   async redirects() {
