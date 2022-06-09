@@ -5098,6 +5098,25 @@
         "discord": "https://discord.gg/qKBy2azf69",
         "medium": "https://medium.com/@babyaliendivision"
       }
+    },
+    {
+      "name": "Wacky Wurmz",
+      "slug": "wacky-wurmz",
+      "multiToken": false,
+      "address": "0xe362fA5211d6aefa803f0DDA4a7169BC361b0927",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "The Wacky Wurmz is an interdimensional worm species that lived on a planet called The Mother Apple, aka Land of the Giving. This NFT Project consists of 2000 uniquely hand-drawn Wurmz and is managed by Migi. With most of the projects on the cronos chain making finance and investments as a primary part of their goal, the Wacky Wurmz have a different take on that, focusing mainly on fun, wackiness and community.",
+        "verified": false,
+        "avatar": "/img/collections/wacky-wurmz/avatar.gif",
+        "banner": "/img/collections/wacky-wurmz/banner.jpg",
+        "card": "/img/collections/wacky-wurmz/card.jpg",
+        "maxSupply": 2000,
+        "website": "https://wackywurmz.com/",
+        "twitter": "https://twitter.com/WackyWurmz",
+        "discord": "https://discord.gg/WackyWurmz"
+      }
     }
   ],
   "drops": [
