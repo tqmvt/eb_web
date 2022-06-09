@@ -32,7 +32,7 @@ if ([ "$AMPLIFY_ENABLED" != true ]); then
   echo "NGINX master process has stopped, exiting."
 else
   # Application name
-  AMPLIFY_IMAGENAME=api-nginx
+  AMPLIFY_IMAGENAME=web-nginx
 
   # Get Docker Host instance id
   INSTANCE_ID=`cat /etc/amplify-agent/custom/instance_id`
