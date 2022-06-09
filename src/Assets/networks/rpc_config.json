@@ -5063,7 +5063,7 @@
       "name": "Icy Valkyries",
       "slug": "icy-valkyries",
       "multiToken": false,
-      "address": "",
+      "address": "0x07174D2B657b2243E5C11Df2Cd3D4afD1E45DBBb",
       "onChain": false,
       "listable": false,
       "metadata": {
@@ -7223,7 +7223,7 @@
         "discord": "https://discord.gg/jFX4RNrFGu",
         "medium": "https://medium.com/@icysquidgame"
       },
-      "address": "",
+      "address": "0x07174D2B657b2243E5C11Df2Cd3D4afD1E45DBBb",
       "maxMintPerTx": 8,
       "maxMintPerAddress": 100,
       "totalSupply": 1000,
