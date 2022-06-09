@@ -5078,6 +5078,26 @@
         "discord": "https://discord.gg/jFX4RNrFGu",
         "medium": "https://medium.com/@icysquidgame"
       }
+    },
+    {
+      "name": "B.A.D. - Founders Passport",
+      "slug": "bad-founders-passport",
+      "multiToken": false,
+      "address": "0x4E6795D725e26E340865140a870C25d1e413A118",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "The B.A.D Founders Passport gives you ownership in Baby Alien Division's current and future growth. Receive a lifetime of free NFTs, airdrops, mint royalties, and whitelists.",
+        "verified": true,
+        "avatar": "/img/collections/babyaliendivision/founders-passport/avatar.png",
+        "banner": "/img/collections/babyaliendivision/founders-passport/banner.png",
+        "card": "/img/collections/babyaliendivision/founders-passport/card.png",
+        "maxSupply": 550,
+        "website": "https://badaliens.io/",
+        "twitter": "https://twitter.com/BAD_Cronos",
+        "discord": "https://discord.gg/qKBy2azf69",
+        "medium": "https://medium.com/@babyaliendivision"
+      }
     }
   ],
   "drops": [
