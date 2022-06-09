@@ -24,8 +24,7 @@ definitions:
     sed -i='' -e "s|<SERVER_NAME>|${SERVER_NAME_WEB}|" proxy/conf.d/default.conf &&
     docker buildx build --push --platform linux/arm64 --tag ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${PROXY_REPOSITORY}:${ENV} -f proxy/Dockerfile ./proxy
   build: &build
-    #CI=false REACT_APP_DEVTOOLS=$REACT_APP_DEVTOOLS REACT_APP_SITE24X7_KEY=$REACT_APP_SITE24X7_KEY REACT_APP_SENTRY_DSN=$REACT_APP_SENTRY_DSN npm run build
-    CI=false npm run build
+    CI=false REACT_APP_SITE24X7_KEY=$REACT_APP_SITE24X7_KEY REACT_APP_SENTRY_DSN=$REACT_APP_SENTRY_DSN npm run build
   steps:
     - step: &test
         name: Test
