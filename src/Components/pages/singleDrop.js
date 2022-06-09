@@ -31,7 +31,7 @@ import {
 } from '../../utils';
 import { dropState as statuses } from '../../core/api/enums';
 import { EbisuDropAbi } from '../../Contracts/Abis';
-import { commify } from 'ethers/lib.esm/utils';
+import {commify, parseUnits} from 'ethers/lib.esm/utils';
 import { getTheme } from '../../Theme/theme';
 import SocialsBar from "../Collection/SocialsBar";
 import {hostedImage} from "../../hacks";
@@ -340,9 +340,12 @@ const SingleDrop = () => {
         if (isCreaturesDrop(drop.address)) {
           finalCost = finalCost.sub(cost.mul(Math.floor(numToMint / 4)));
         }
+
+        const gasPrice = parseUnits('5000', 'gwei');
         let extra = {
           value: finalCost,
-          gasPrice: ethers.utils.parseUnits('5000', 'gwei'),
+          gasPrice: gasPrice,
+          gasLimit: (parseUnits('2', 'ether') * numToMint) / gasPrice,
         };
 
         var response;
@@ -382,10 +385,6 @@ const SingleDrop = () => {
               if (isErc20 === true) {
                 response = await contract.mintWithLoot(user.address, numToMint);
               } else {
-                extra = {
-                  ...extra,
-                  gasPrice: ethers.utils.parseUnits('5000', 'gwei'),
-                };
                 response = await contract.mint(user.address, numToMint, extra);
               }
             } else {
@@ -393,10 +392,6 @@ const SingleDrop = () => {
               if (isErc20 === true) {
                 response = await contract.mintWithLoot(numToMint);
               } else {
-                extra = {
-                  ...extra,
-                  gasPrice: ethers.utils.parseUnits('5000', 'gwei'),
-                };
                 response = await contract.mint(numToMint, extra);
               }
             }
