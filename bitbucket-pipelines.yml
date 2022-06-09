@@ -48,6 +48,7 @@ pipelines:
       - step:
           name: Build
           image: node:16
+          deployment: DevelopmentBuildStep
           runs-on:
             - 'self.hosted'
             - 'linux'
@@ -105,6 +106,67 @@ pipelines:
            # deploy dev-ebisusbay-web-arm64-us-east-1 / app.ebisusbay.biz
            - apk add --no-cache curl
            - 'curl -X POST -is -H "Authorization: Basic ${BITBUCKET_API_KEY}" -H "Content-Type: application/json" -d "{\"target\":{\"ref_type\":\"branch\",\"type\":\"pipeline_ref_target\",\"ref_name\":\"dev\"}}" https://api.bitbucket.org/2.0/repositories/ebisusbay/eb_web_deploy/pipelines/'
+    release-2022-06-06:
+      - step: *test
+      - step:
+          name: Build
+          image: node:16
+          deployment: Production2BuildStep
+          runs-on:
+            - 'self.hosted'
+            - 'linux'
+            - 'web'
+          size: 2x
+          script:
+            - *update
+            - *version
+            # Build frontend
+            - *build
+          artifacts:
+            - .next/**
+      # - step:
+      #     name: Upload to S3
+      #     image: amazon/aws-cli
+      #     runs-on:
+      #       - 'self.hosted'
+      #       - 'linux'
+      #       - 'web'
+      #     # Copy RPC config to Admin S3 Bucket
+      #     script:
+      #       - aws s3 cp ./src/Assets/networks/rpc_config.json s3://prod-ebisusbay-admin-storage/rpc_config.json
+      - step:
+          name: Build containers
+          image: amazon/aws-cli
+          deployment: Production2
+          services:
+            - docker
+          runs-on:
+            - 'self.hosted'
+            - 'linux'
+            - 'web'
+          size: 1x
+          script:
+            # Install and configure Docker Buildx
+            - *buildx
+            # Login to ECR
+            - *ecrlogin
+            # Build container images and push to ECR repositorys and push to ECR repository
+            - *appcontainer
+            - *proxywebcontainer
+      - step:
+         name: Deploy
+         image: alpine:latest
+         runs-on:
+           - 'self.hosted'
+           - 'linux'
+           - 'web'
+         size: 1x
+         clone:
+           enabled: false
+         script:
+           # deploy prod-ebisusbay-web-arm64-us-east-1 / app2.ebisusbay.com
+           - apk add --no-cache curl
+           - 'curl -X POST -is -H "Authorization: Basic ${BITBUCKET_API_KEY}" -H "Content-Type: application/json" -d "{\"target\":{\"ref_type\":\"branch\",\"type\":\"pipeline_ref_target\",\"ref_name\":\"prod\"}}" https://api.bitbucket.org/2.0/repositories/ebisusbay/eb_web_deploy/pipelines/'
 definitions:
   services:
     docker:
