@@ -266,6 +266,7 @@ const Home = () => {
                 loop={true}
                 width="100%"
                 height="100%"
+                playsinline={true}
               />
             </div>
             <div className="card-body d-flex flex-column align-middle">
