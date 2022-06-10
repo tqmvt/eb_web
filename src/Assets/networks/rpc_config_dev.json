@@ -28,7 +28,7 @@
     "mad": {
       "name": "MAD",
       "symbol": "MAD",
-      "address": "0xD6464BdB57e9eD610692635b64fd47B763345032"
+      "address": "0x212331e1435a8df230715db4c02b2a3a0abf8c61"
     }
   },
   "known_contracts": [
@@ -5073,7 +5073,7 @@
       "name": "Icy Valkyries",
       "slug": "icy-valkyries",
       "multiToken": false,
-      "address": "",
+      "address": "0x07174D2B657b2243E5C11Df2Cd3D4afD1E45DBBb",
       "onChain": false,
       "listable": false,
       "metadata": {
@@ -5087,6 +5087,85 @@
         "twitter": "https://twitter.com/IcySquidGame",
         "discord": "https://discord.gg/jFX4RNrFGu",
         "medium": "https://medium.com/@icysquidgame"
+      }
+    },
+    {
+      "name": "B.A.D. - Founders Passport",
+      "slug": "bad-founders-passport",
+      "multiToken": false,
+      "address": "0x4E6795D725e26E340865140a870C25d1e413A118",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "The B.A.D Founders Passport gives you ownership in Baby Alien Division's current and future growth. Receive a lifetime of free NFTs, airdrops, mint royalties, and whitelists.",
+        "verified": true,
+        "avatar": "/img/collections/babyaliendivision/founders-passport/avatar.png",
+        "banner": "/img/collections/babyaliendivision/founders-passport/banner.png",
+        "card": "/img/collections/babyaliendivision/founders-passport/card.png",
+        "maxSupply": 550,
+        "website": "https://badaliens.io/",
+        "twitter": "https://twitter.com/BAD_Cronos",
+        "discord": "https://discord.gg/qKBy2azf69",
+        "medium": "https://medium.com/@babyaliendivision"
+      }
+    },
+    {
+      "name": "Wacky Wurmz",
+      "slug": "wacky-wurmz",
+      "multiToken": false,
+      "address": "0xe362fA5211d6aefa803f0DDA4a7169BC361b0927",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "The Wacky Wurmz is an interdimensional worm species that lived on a planet called The Mother Apple, aka Land of the Giving. This NFT Project consists of 2000 uniquely hand-drawn Wurmz and is managed by Migi. With most of the projects on the cronos chain making finance and investments as a primary part of their goal, the Wacky Wurmz have a different take on that, focusing mainly on fun, wackiness and community.",
+        "verified": false,
+        "avatar": "/img/collections/wacky-wurmz/avatar.gif",
+        "banner": "/img/collections/wacky-wurmz/banner.jpg",
+        "card": "/img/collections/wacky-wurmz/card.jpg",
+        "maxSupply": 2000,
+        "website": "https://wackywurmz.com/",
+        "twitter": "https://twitter.com/WackyWurmz",
+        "discord": "https://discord.gg/WackyWurmz"
+      }
+    },
+    {
+      "name": "Bullish Bees",
+      "slug": "bullish-bees",
+      "multiToken": false,
+      "address": "0xe41267f3288d08c9D4e104654A86eD238DC1524f",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "Discover the tale of a colony of bees and their quest for financial independence. Each NFT receives a revenue share from the CYCLONE platform by CRONEX.Finance.",
+        "verified": false,
+        "avatar": "/img/collections/bullish-bees/avatar.png",
+        "banner": "/img/collections/bullish-bees/banner.png",
+        "card": "/img/collections/bullish-bees/card.png",
+        "maxSupply": 500,
+        "website": "https://cronexfinance.github.io/bullishbees/",
+        "twitter": "https://twitter.com/Bullish_Bees",
+        "discord": "https://discord.gg/B6kHvT2dnV",
+        "medium": "https://medium.com/@cronexfinance",
+        "telegram": "https://t.me/cronexfinance"
+      }
+    },
+    {
+      "name": "Baby Space Lizards",
+      "slug": "baby-space-lizards",
+      "multiToken": false,
+      "address": "0x248aE5E4790421485109A6C55058993721ca061d",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "1500 Baby Space Lizards have hatched!",
+        "verified": false,
+        "avatar": "/img/collections//cronoslizards/baby-space-lizards/avatar.png",
+        "card": "/img/collections/cronoslizards/card.png",
+        "banner": "/img/collections/cronoslizards/banner.png",
+        "maxSupply": 1500,
+        "website": "https://cronoslizards.com/",
+        "twitter": "https://twitter.com/CronosLizards",
+        "discord": "https://discord.gg/BRDQhtDNsM"
       }
     }
   ],
@@ -7233,7 +7312,7 @@
         "discord": "https://discord.gg/jFX4RNrFGu",
         "medium": "https://medium.com/@icysquidgame"
       },
-      "address": "",
+      "address": "0x07174D2B657b2243E5C11Df2Cd3D4afD1E45DBBb",
       "maxMintPerTx": 8,
       "maxMintPerAddress": 100,
       "totalSupply": 1000,
