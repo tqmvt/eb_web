@@ -19,6 +19,7 @@ import { limitSizeOptions } from '../src/Components/components/constants/filter-
 import Button from '../src/Components/components/Button';
 import MetaverseModal from "../src/Components/components/MetaverseModal";
 import {hostedImage} from "../src/hacks";
+import ReactPlayer from "react-player";
 
 const fadeInUp = keyframes`
   0% {
@@ -248,18 +249,34 @@ const Home = () => {
         <div className="row">
           <div className="col-lg-12">
             <div className="text-center pt-5">
-              <h2>Mad Meerkat Legendary Auction</h2>
+              <h2>B.A.D. - Founders Passport</h2>
               <div className="small-border"></div>
             </div>
           </div>
           <div className="col-lg-6 text-center align-middle d-flex align-items-center">
-            <div className="fs-3 mt-3" style={{color:getTheme(userTheme).colors.textColor3}}>8 Legendary Mad Meerkat Degens being auctioned over the next 16 days. Join our auction in the metaverse!</div>
+            <div className="fs-4 mt-3" style={{color:getTheme(userTheme).colors.textColor3}}>The B.A.D Founders Passport gives you ownership in Baby Alien Division's current and future growth. Receive a lifetime of free NFTs, airdrops, mint royalties, and whitelists.</div>
           </div>
           <div className="col-lg-6 pt-3">
-            <div className="card eb-nft__card h-100 shadow">
-              <img className="card-img-top" src={hostedImage('/img/metaverse_gallery.png')} alt="metaverse gallery" />
-              <div className="card-body d-flex flex-column align-middle">
-                <MetaverseModal showAuctionPageLink={true} />
+            <div className='player-wrapper'>
+              <ReactPlayer
+                className='react-player'
+                url="https://cdn.ebisusbay.biz/BAD-FOUNDERS-PASSPORT_kCMVUdlGr.mp4?tr=f-auto,w-400"
+                muted={true}
+                playing={true}
+                loop={true}
+                width="100%"
+                height="100%"
+              />
+            </div>
+            <div className="card-body d-flex flex-column align-middle">
+              <div className="d-flex justify-content-between">
+                <div className="flex-fill mx-1">
+                  <a href="https://badaliens.io/founders-pass-mint/" target="_blank">
+                    <Button type="legacy" className="w-100">
+                      View Mint
+                    </Button>
+                  </a>
+                </div>
               </div>
             </div>
           </div>

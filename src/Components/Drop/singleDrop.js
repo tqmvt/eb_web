@@ -25,7 +25,7 @@ import {
   isCrosmocraftsPartsDrop,
   isCyberCloneDrop,
   isFounderDrop,
-  isFounderVipDrop,
+  isFounderVipDrop, isIcyValkyriesCollection,
   isMagBrewVikingsDrop,
   newlineText,
   percentage,
@@ -347,7 +347,7 @@ const SingleDrop = () => {
         let extra = {
           value: finalCost,
           gasPrice: gasPrice,
-          gasLimit: (parseUnits('2', 'ether') * numToMint) / gasPrice,
+          gasLimit: (parseUnits('2.5', 'ether') * numToMint) / gasPrice,
         };
 
         var response;
