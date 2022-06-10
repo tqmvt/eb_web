@@ -24,7 +24,7 @@ import {
   isCrognomesDrop,
   isCrosmocraftsPartsDrop, isCyberCloneDrop,
   isFounderDrop,
-  isFounderVipDrop,
+  isFounderVipDrop, isIcyValkyriesCollection,
   isMagBrewVikingsDrop,
   newlineText,
   percentage,
@@ -344,9 +344,14 @@ const SingleDrop = () => {
         const gasPrice = parseUnits('5000', 'gwei');
         let extra = {
           value: finalCost,
-          gasPrice: gasPrice,
-          gasLimit: (parseUnits('2', 'ether') * numToMint) / gasPrice,
+          gasPrice: gasPrice
         };
+        if (isIcyValkyriesCollection(dropObject.address)) {
+          extra = {
+            ...extra,
+            gasLimit: (parseUnits('2', 'ether') * numToMint) / gasPrice,
+          };
+        }
 
         var response;
         if (dropObject.is1155) {
