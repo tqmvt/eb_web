@@ -260,7 +260,16 @@ const Home = () => {
             <div className='player-wrapper'>
               <ReactPlayer
                 className='react-player'
+                controls
                 url="https://cdn.ebisusbay.biz/BAD-FOUNDERS-PASSPORT_kCMVUdlGr.mp4?tr=f-auto,w-400"
+                config={{
+                  file: {
+                    attributes: {
+                      onContextMenu: (e) => e.preventDefault(),
+                      controlsList: 'nodownload',
+                    },
+                  },
+                }}
                 muted={true}
                 playing={true}
                 loop={true}
