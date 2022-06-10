@@ -5117,6 +5117,46 @@
         "twitter": "https://twitter.com/WackyWurmz",
         "discord": "https://discord.gg/WackyWurmz"
       }
+    },
+    {
+      "name": "Bullish Bees",
+      "slug": "bullish-bees",
+      "multiToken": false,
+      "address": "0xe41267f3288d08c9D4e104654A86eD238DC1524f",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "Discover the tale of a colony of bees and their quest for financial independence. Each NFT receives a revenue share from the CYCLONE platform by CRONEX.Finance.",
+        "verified": false,
+        "avatar": "/img/collections/bullish-bees/avatar.png",
+        "banner": "/img/collections/bullish-bees/banner.png",
+        "card": "/img/collections/bullish-bees/card.png",
+        "maxSupply": 500,
+        "website": "https://cronexfinance.github.io/bullishbees/",
+        "twitter": "https://twitter.com/Bullish_Bees",
+        "discord": "https://discord.gg/B6kHvT2dnV",
+        "medium": "https://medium.com/@cronexfinance",
+        "telegram": "https://t.me/cronexfinance"
+      }
+    },
+    {
+      "name": "Baby Space Lizards",
+      "slug": "baby-space-lizards",
+      "multiToken": false,
+      "address": "0x248aE5E4790421485109A6C55058993721ca061d",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "1500 Baby Space Lizards have hatched!",
+        "verified": false,
+        "avatar": "/img/collections//cronoslizards/baby-space-lizards/avatar.png",
+        "card": "/img/collections/cronoslizards/card.png",
+        "banner": "/img/collections/cronoslizards/banner.png",
+        "maxSupply": 1500,
+        "website": "https://cronoslizards.com/",
+        "twitter": "https://twitter.com/CronosLizards",
+        "discord": "https://discord.gg/BRDQhtDNsM"
+      }
     }
   ],
   "drops": [
