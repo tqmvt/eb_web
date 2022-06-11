@@ -260,7 +260,7 @@ const Home = () => {
           <div className="col-lg-6 pt-3">
             <div className="mx-auto text-center">
               <Image
-                src="/img/collections/babyaliendivision/founders-passport/promo.webp"
+                src={hostedImage('/img/collections/babyaliendivision/founders-passport/promo.webp')}
                 width={350}
                 height={350}
               />
