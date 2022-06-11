@@ -20,6 +20,7 @@ import Button from '../src/Components/components/Button';
 import MetaverseModal from "../src/Components/components/MetaverseModal";
 import {hostedImage} from "../src/hacks";
 import ReactPlayer from "react-player";
+import Image from "next/image";
 
 const fadeInUp = keyframes`
   0% {
@@ -257,25 +258,11 @@ const Home = () => {
             <div className="fs-4 mt-3" style={{color:getTheme(userTheme).colors.textColor3}}>The B.A.D Founders Passport gives you ownership in Baby Alien Division's current and future growth. Receive a lifetime of free NFTs, airdrops, mint royalties, and whitelists.</div>
           </div>
           <div className="col-lg-6 pt-3">
-            <div className='player-wrapper'>
-              <ReactPlayer
-                className='react-player'
-                controls
-                url="https://cdn.ebisusbay.biz/BAD-FOUNDERS-PASSPORT_kCMVUdlGr.mp4?tr=f-auto,w-400"
-                config={{
-                  file: {
-                    attributes: {
-                      onContextMenu: (e) => e.preventDefault(),
-                      controlsList: 'nodownload',
-                    },
-                  },
-                }}
-                muted={true}
-                playing={true}
-                loop={true}
-                width="100%"
-                height="100%"
-                playsinline={true}
+            <div className="mx-auto text-center">
+              <Image
+                src="/img/collections/babyaliendivision/founders-passport/promo.webp"
+                width={350}
+                height={350}
               />
             </div>
             <div className="card-body d-flex flex-column align-middle">

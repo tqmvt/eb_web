@@ -7,6 +7,7 @@ import Reveal from 'react-awesome-reveal';
 import Footer from '../src/Components/components/Footer';
 import { getMarketData } from '../src/GlobalState/marketplaceSlice';
 import { theme } from '../src/Theme/theme';
+import {hostedImage} from "../src/hacks";
 
 const fadeInUp = keyframes`
   0% {
@@ -69,7 +70,7 @@ const Jumbotron = {
     className: '',
   }))`
     background-image: url(${({ isDark }) =>
-      isDark ? '/img/background/banner-dark.webp' : '/img/background/Ebisus-bg-1_L.webp'});
+      hostedImage(isDark ? '/img/background/banner-dark.webp' : '/img/background/Ebisus-bg-1_L.webp')});
     background-size: cover;
     height: max(100vh, 800px);
     display: flex;
