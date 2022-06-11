@@ -5159,13 +5159,32 @@
       "metadata": {
         "description": "1500 Baby Space Lizards have hatched!",
         "verified": false,
-        "avatar": "/img/collections//cronoslizards/baby-space-lizards/avatar.png",
+        "avatar": "/img/collections/cronoslizards/baby-space-lizards/avatar.png",
         "card": "/img/collections/cronoslizards/card.png",
         "banner": "/img/collections/cronoslizards/banner.png",
         "maxSupply": 1500,
         "website": "https://cronoslizards.com/",
         "twitter": "https://twitter.com/CronosLizards",
         "discord": "https://discord.gg/BRDQhtDNsM"
+      }
+    },
+    {
+      "name": "GoblinCroTown",
+      "slug": "goblin-cro-town",
+      "multiToken": false,
+      "address": "0x9652656deB47f2940A02203A1284F1781BBBc91D",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "Heartbreaking Crypto investors escape from the chaotic world into a deep cave. Slowly turning into Goblins. Since then, a livable and harmless GoblinCroTown has risen.",
+        "verified": false,
+        "avatar": "/img/collections/goblin-cro-town/avatar.gif",
+        "card": "/img/collections/goblin-cro-town/card.png",
+        "banner": "/img/collections/goblin-cro-town/banner.png",
+        "maxSupply": 1500,
+        "website": "https://goblincrotown.xyz/",
+        "twitter": "https://twitter.com/GoblinCroTown",
+        "discord": "https://discord.gg/QE2hr8xya4"
       }
     }
   ],
