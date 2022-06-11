@@ -5186,6 +5186,25 @@
         "twitter": "https://twitter.com/GoblinCroTown",
         "discord": "https://discord.gg/QE2hr8xya4"
       }
+    },
+    {
+      "name": "UniCROn Hunters",
+      "slug": "unicron-hunters",
+      "multiToken": false,
+      "address": "0xa5F9409305071BA228377Cd2Bc688C3619c69978",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "A 1111 strong team of uniCROn hunters is joining the NFT space on the CRONOS blockchain.",
+        "verified": false,
+        "avatar": "/img/collections/unicron-hunters/avatar.png",
+        "card": "/img/collections/unicron-hunters/card.png",
+        "banner": "/img/collections/unicron-hunters/banner.png",
+        "maxSupply": 1111,
+        "website": "https://unicronhunters.io/",
+        "twitter": "https://twitter.com/unicronhunters",
+        "discord": "https://discord.gg/unicron"
+      }
     }
   ],
   "drops": [
