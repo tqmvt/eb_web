@@ -43,7 +43,7 @@ const MyNftCard = ({
       imageUrl.searchParams = new URLSearchParams();
     }
     imageUrl.searchParams.delete('tr');
-    imageUrl.searchParams.set('tr', 'n-ik_ml_thumbnail');
+    imageUrl.searchParams.set('tr', 'n-ml_card');
     return imageUrl.toString();
   }
 
