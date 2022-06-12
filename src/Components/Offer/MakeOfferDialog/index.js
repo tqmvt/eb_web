@@ -10,7 +10,7 @@ import { Spinner } from 'react-bootstrap';
 import Button from '../../../Components/components/Button';
 import Input from '../../../Components/components/common/Input';
 import ProfilePreview from '../../../Components/components/ProfilePreview';
-import { croSkullRedPotionImageHack } from '../../../hacks';
+import { specialImageTransform } from '../../../hacks';
 import { caseInsensitiveCompare, humanize, isEventValidNumber, shortAddress } from '../../../utils';
 import { OFFER_TYPE } from '../MadeOffersRow';
 import { updateOfferSuccess, updateOfferFailed } from '../../../GlobalState/offerSlice';
@@ -353,10 +353,10 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
         {!isNftLoading && !isGettingOfferType ? (
           <DialogMainContent>
             <ImageContainer>
-              <img src={croSkullRedPotionImageHack(nftData.address, nftData.image)} alt={nftData.name} />
+              <img src={specialImageTransform(nftData.address, nftData.image)} alt={nftData.name} />
               {nftData && nftData.image && (
                 <div className="nft__item_action mt-2" style={{ cursor: 'pointer' }}>
-                  <span onClick={() => window.open(croSkullRedPotionImageHack(nftData.address, fullImage()), '_blank')}>
+                  <span onClick={() => window.open(specialImageTransform(nftData.address, fullImage()), '_blank')}>
                     <span className="p-2">View Full Image</span>
                     <FontAwesomeIcon icon={faExternalLinkAlt} />
                   </span>

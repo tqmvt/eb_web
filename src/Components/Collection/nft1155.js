@@ -24,7 +24,7 @@ import {
   timeSince,
 } from '../../utils';
 import { getNftDetails } from '../../GlobalState/nftSlice';
-import { croSkullRedPotionImageHack } from '../../hacks';
+import { specialImageTransform } from '../../hacks';
 import { chainConnect, connectAccount } from '../../GlobalState/User';
 
 import ListingItem from '../NftDetails/NFTTabListings/ListingItem';
@@ -161,7 +161,7 @@ const Nft1155 = ({ address, id }) => {
                 ) : (
                   <>
                     <AnyMedia
-                      image={croSkullRedPotionImageHack(address, nft.image)}
+                      image={specialImageTransform(address, nft.image)}
                       video={nft.video ?? nft.animation_url}
                       videoProps={{ height: 'auto', autoPlay: true }}
                       title={nft.name}
@@ -178,7 +178,7 @@ const Nft1155 = ({ address, id }) => {
                   <span
                     onClick={() =>
                       typeof window !== 'undefined' &&
-                      window.open(croSkullRedPotionImageHack(address, fullImage()), '_blank')
+                      window.open(specialImageTransform(address, fullImage()), '_blank')
                     }
                   >
                     <span className="p-2">View Full Image</span>

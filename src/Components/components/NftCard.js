@@ -7,7 +7,7 @@ import Image from 'next/image';
 import { ethers } from 'ethers';
 import MetaMaskOnboarding from '@metamask/onboarding';
 
-import { croSkullRedPotionImageHack } from '../../hacks';
+import { specialImageTransform } from '../../hacks';
 import Button from './Button';
 import MakeOfferDialog from '../Offer/MakeOfferDialog';
 import { connectAccount, chainConnect } from '../../GlobalState/User';
@@ -51,8 +51,8 @@ const MakeOffer = styled.div`
 `;
 
 const nftImageUrl = (listing) => {
-  const imageUrl = new URL(croSkullRedPotionImageHack(listing.address, listing.image));
-  if(listing.image.startsWith('data')) return nft.image;
+  const imageUrl = new URL(specialImageTransform(listing.address, listing.image));
+  if(listing.image.startsWith('data')) return listing.image;
   if(!imageUrl.searchParams){
     imageUrl.searchParams = new URLSearchParams();
   }
