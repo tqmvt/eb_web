@@ -50,6 +50,17 @@ const MakeOffer = styled.div`
   }
 `;
 
+const nftImageUrl = (listing) => {
+  const imageUrl = new URL(croSkullRedPotionImageHack(listing.address, listing.image));
+  if(!imageUrl.searchParams){
+    imageUrl.searchParams = new URLSearchParams();
+  }
+  imageUrl.searchParams.delete('tr');
+  imageUrl.searchParams.set('tr', 'n-ik_ml_thumbnail');
+
+  return imageUrl.toString();
+}
+
 const NftCard = ({ royalty, listing, imgClass = 'marketplace', watermark, address, collection }) => {
   const history = useRouter();
   const dispatch = useDispatch();
@@ -98,7 +109,7 @@ const NftCard = ({ royalty, listing, imgClass = 'marketplace', watermark, addres
         {watermark ? (
           <Watermarked watermark={watermark}>
             <AnyMedia
-              image={croSkullRedPotionImageHack(listing.address, listing.image)}
+              image={nftImageUrl(listing)}
               className={`card-img-top ${imgClass}`}
               title={listing.name}
               url={`/collection/${collection.slug}/${listing.id}`}
@@ -106,7 +117,7 @@ const NftCard = ({ royalty, listing, imgClass = 'marketplace', watermark, addres
           </Watermarked>
         ) : (
           <AnyMedia
-            image={croSkullRedPotionImageHack(listing.address, listing.image)}
+            image={nftImageUrl(listing)}
             className={`card-img-top ${imgClass}`}
             title={listing.name}
             url={`/collection/${collection.slug}/${listing.id}`}
