@@ -18,16 +18,29 @@ export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = tr
   }, []);
 
   const determineMediaType = () => {
-    const xhr = new XMLHttpRequest();
-    xhr.open('HEAD', image, true);
 
-    xhr.onload = function () {
-      const contentType = xhr.getResponseHeader('Content-Type');
-      const mediaType = contentType.split('/')[0];
-      setDynamicType(mediaTypes[mediaType] ?? mediaTypes.image);
-    };
+    //prefer mp4 over gif 
+    //currently ImageKit will only convert gif to mp4 if url ends in .gif 
+    //so no need to check HEAD (this should be fixed in future).
+    const imageURL = new URL(image);
+    if(imageURL.pathname && imageURL.pathname.endsWith('.gif')){
+      imageURL.pathname = `${imageURL.pathname}/ik-gif-video.mp4`;
+      image = imageURL.toString();
+      console.log(image);
+      setDynamicType(mediaTypes.video);
+    } else {
+      const xhr = new XMLHttpRequest();
+      xhr.open('HEAD', image, true);
+  
+      xhr.onload = function () {
+        const contentType = xhr.getResponseHeader('Content-Type');
+        const mediaType = contentType.split('/')[0];
+        setDynamicType(mediaTypes[mediaType] ?? mediaTypes.image);
+      };
+  
+      xhr.send();
+    }
 
-    xhr.send();
   };
 
   return (
