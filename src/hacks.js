@@ -14,16 +14,16 @@ export function specialImageTransform(address, defaultImage) {
     return croSkullRedPotionImage();
   }
 
+  if (!defaultImage) {
+    return hostedImage('/img/nft-placeholder.webp');
+  }
+
   const imageUrl = new URL(defaultImage);
   //Replace VIP GIF with MP4 can remove when image kit transforms gif without file exension
   //Or when metadata updated for image ;)
   if(caseInsensitiveCompare(imageUrl.pathname, '/QmTeJ3UYT6BG8v4Scy9E3W9cxEq6TCeg5SiuLKNFXbsW87')){
     imageUrl.pathname = `QmX97CwY2NcmPmdS6XtcqLFMV2JGEjnEWjxBQbj4Q6NC2i`;
     return imageUrl.toString();
-  } 
-
-  if (!defaultImage) {
-    return hostedImage('/img/nft-placeholder.webp');
   }
 
   const filteredDomains = imageDomains.filter((domain) => defaultImage.includes(domain));
