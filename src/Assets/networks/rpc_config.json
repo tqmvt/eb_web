@@ -5184,7 +5184,8 @@
         "maxSupply": 1500,
         "website": "https://goblincrotown.xyz/",
         "twitter": "https://twitter.com/GoblinCroTown",
-        "discord": "https://discord.gg/QE2hr8xya4"
+        "discord": "https://discord.gg/QE2hr8xya4",
+        "medium": "https://unicrons.gitbook.io/docs/"
       }
     },
     {
@@ -5204,6 +5205,47 @@
         "website": "https://unicronhunters.io/",
         "twitter": "https://twitter.com/unicronhunters",
         "discord": "https://discord.gg/unicron"
+      }
+    },
+    {
+      "name": "ScareCRO Fright Society",
+      "slug": "scarecro-fright-society",
+      "multiToken": false,
+      "address": "0x219Bd84e44bE4d08289bE20349D94F84B4185667",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "ScareCRO Fright Society is a unique collection of 420 ScareCRO themed avatars. With over 150 unique traits in the collection, each has it's own personality and charm. An exclusive collection with utility. Full digital rights granted to the NFT owner.",
+        "verified": false,
+        "avatar": "/img/collections/scarecro-fright-society/avatar.png",
+        "card": "/img/collections/scarecro-fright-society/card.png",
+        "banner": "/img/collections/scarecro-fright-society/banner.png",
+        "maxSupply": 420,
+        "website": "https://ScareCRO.online/",
+        "twitter": "https://twitter.com/ScareCROcoin",
+        "discord": "https://discord.gg/Uj4sp6F78j",
+        "medium": "https://medium.com/@ScareCROcoin",
+        "telegram": "https://t.me/ScareCROcoin"
+      }
+    },
+    {
+      "name": "Bulldog Bowlers",
+      "slug": "bulldog-bowlers",
+      "multiToken": false,
+      "address": "0x0D7a1eF798EcC733fc64A6c970B862c48a3C667B",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "Lazy Lanes is a bowling game and mental health space located in Lazy World. Bulldog Bowlers are the game pieces that give you access to the game and Lazy Lanes area. The game and artwork has been developed collectively between the Lazy Horse team and CronoGods with the goal of providing mental health support to our community.",
+        "verified": true,
+        "avatar": "/img/collections/bulldog-bowlers/avatar.jpg",
+        "card": "/img/collections/bulldog-bowlers/card.jpeg",
+        "banner": "/img/collections/bulldog-bowlers/banner.jpeg",
+        "maxSupply": 6000,
+        "website": "https://www.lazyhorseraceclub.com",
+        "twitter": "https://twitter.com/lazy_lanes",
+        "discord": "https://discord.gg/lhrc",
+        "medium": "https://medium.com/@lazyhorseraceclub"
       }
     }
   ],
