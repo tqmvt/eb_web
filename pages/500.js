@@ -5,7 +5,6 @@ import { keyframes } from '@emotion/react';
 import Reveal from 'react-awesome-reveal';
 
 import Footer from '../src/Components/components/Footer';
-import { getMarketData } from '../src/GlobalState/marketplaceSlice';
 import { theme } from '../src/Theme/theme';
 import {hostedImage} from "../src/hacks";
 
@@ -44,10 +43,19 @@ const GlobalStyles = createGlobalStyle`
     margin-bottom: 0px;
   }
   
+  .promo {
+    padding-bottom: 8px;
+    background: #ffee99;
+    color: #555;
+  }
+
   @media only screen and (max-width: 1199.98px) {
     .min-width-on-column > span {
       min-width: 200px;
     }  
+    .promo {
+      padding: 12px 0 !important;
+    } 
   }
   
   @media only screen and (max-width: 464px) {
@@ -66,12 +74,11 @@ const GlobalStyles = createGlobalStyle`
 `;
 
 const Jumbotron = {
-  Host: styled.div.attrs(({ theme }) => ({
-    className: '',
-  }))`
+  Host: styled.div`
     background-image: url(${({ isDark }) =>
-      hostedImage(isDark ? '/img/background/banner-dark.webp' : '/img/background/Ebisus-bg-1_L.webp')});
+    isDark ? hostedImage('/img/background/banner-dark.webp') : hostedImage('/img/background/Ebisus-bg-1_L.webp')});
     background-size: cover;
+    background-repeat: no-repeat;
     height: max(100vh, 800px);
     display: flex;
     align-items: center;
@@ -81,9 +88,7 @@ const Jumbotron = {
       height: 200px;
     }
   `,
-  Data: styled.div.attrs(({ theme }) => ({
-    className: '',
-  }))`
+  Data: styled.div`
     max-width: 700px;
 
     padding: 1.5rem !important;
@@ -105,26 +110,20 @@ const Custom500 = () => {
   const [mobile, setMobile] = useState(typeof window !== 'undefined' && window.innerWidth < theme.breakpointsNum.md);
 
   useEffect(() => {
-    if (typeof window === 'undefined') {
-      return;
+    if (typeof window !== 'undefined') {
+      const breakpointObserver = ({ target }) => {
+        const { innerWidth } = target;
+        const newValue = innerWidth < theme.breakpointsNum.md;
+        setMobile(newValue);
+      };
+
+      window.addEventListener('resize', breakpointObserver);
+
+      return () => {
+        window.removeEventListener('resize', breakpointObserver);
+      };
     }
-    const breakpointObserver = ({ target }) => {
-      const { innerWidth } = target;
-      const newValue = innerWidth < theme.breakpointsNum.md;
-      setMobile(newValue);
-    };
-
-    window.addEventListener('resize', breakpointObserver);
-
-    return () => {
-      window.removeEventListener('resize', breakpointObserver);
-    };
   }, [dispatch]);
-
-  useEffect(() => {
-    dispatch(getMarketData());
-    // eslint-disable-next-line
-  }, []);
 
   const JumbotronData = () => {
     return (
