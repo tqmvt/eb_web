@@ -61,8 +61,8 @@ const Nft = ({ slug, id, nft }) => {
       if (traits.length > 0 && traits[0].occurrence) {
         const traitsTop = traits[0];
         const res = `${anNFT?.description ? anNFT.description.slice(0, 250) : ''} ... Top Trait: ${
-          traitsTop.value ? humanize(traitsTop.value * 100) : 'N/A'
-        }, ${traitsTop.occurrence}%`;
+          traitsTop.value ? humanize(traitsTop.value) : 'N/A'
+        }, ${traitsTop.occurrence * 100}%`;
 
         return res;
       }
