@@ -6,6 +6,7 @@ import {CdnImage} from "./CdnImage";
 
 export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = true, videoProps, className }) => {
   const [dynamicType, setDynamicType] = useState(null);
+  const [transformedImage, setTransformedImage] = useState(image);
 
   const mediaTypes = {
     image: 1,
@@ -25,12 +26,11 @@ export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = tr
     const imageURL = new URL(image);
     if(imageURL.pathname && imageURL.pathname.endsWith('.gif')){
       imageURL.pathname = `${imageURL.pathname}/ik-gif-video.mp4`;
-      image = imageURL.toString();
-      console.log(image);
+      setTransformedImage(imageURL.toString());
       setDynamicType(mediaTypes.video);
     } else {
       const xhr = new XMLHttpRequest();
-      xhr.open('HEAD', image, true);
+      xhr.open('HEAD', transformedImage, true);
   
       xhr.onload = function () {
         const contentType = xhr.getResponseHeader('Content-Type');
@@ -49,8 +49,8 @@ export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = tr
         <>
           {video || dynamicType === mediaTypes.video ? (
             <Video
-              video={video ?? image}
-              image={dynamicType !== mediaTypes.video ? image : null}
+              video={video ?? transformedImage}
+              image={dynamicType !== mediaTypes.video ? transformedImage : null}
               title={title}
               usePlaceholder={usePlaceholder}
               height={videoProps?.height}
@@ -61,11 +61,11 @@ export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = tr
           ) : url ? (
             <Link href={url} target={newTab ? '_blank' : '_self'}>
               <a>
-                <Image image={image} title={title} className={className} />
+                <Image image={transformedImage} title={title} className={className} />
               </a>
             </Link>
           ) : (
-            <Image image={image} title={title} className={className} />
+            <Image image={transformedImage} title={title} className={className} />
           )}
         </>
       )}
