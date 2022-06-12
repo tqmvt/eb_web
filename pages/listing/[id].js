@@ -32,7 +32,7 @@ import {
   isUserBlacklisted,
   isNftBlacklisted,
 } from '../../src/utils';
-import { croSkullRedPotionImageHack } from '../../src/hacks';
+import { specialImageTransform } from '../../src/hacks';
 import NFTTabOffers from '../../src/Components/Offer/NFTTabOffers';
 import {appConfig} from "../../src/Config";
 
@@ -271,7 +271,7 @@ const Listing = () => {
                       />
                     ) : (
                       <img
-                        src={croSkullRedPotionImageHack(listing.nftAddress, listing.nft.image)}
+                        src={specialImageTransform(listing.nftAddress, listing.nft.image)}
                         className="img-fluid img-rounded mb-sm-30"
                         alt={listing.nft.name}
                       />
@@ -286,7 +286,7 @@ const Listing = () => {
                   <span
                     onClick={() =>
                       typeof window !== 'undefined' &&
-                      window.open(croSkullRedPotionImageHack(listing.nftAddress, fullImage()), '_blank')
+                      window.open(specialImageTransform(listing.nftAddress, fullImage()), '_blank')
                     }
                   >
                     <span className="p-2">View Full Image</span>

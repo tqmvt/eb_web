@@ -29,7 +29,7 @@ import {
   isCrognomidesCollection,
 } from '../../utils';
 import config from '../../Assets/networks/rpc_config.json';
-import { croSkullRedPotionImageHack } from '../../hacks';
+import { specialImageTransform } from '../../hacks';
 import NFTTabOffers from '../Offer/NFTTabOffers';
 
 const CollectionDetail = () => {
@@ -211,7 +211,7 @@ const CollectionDetail = () => {
                   <iframe width="100%" height="636" src={listing.iframeSource} />
                 ) : (
                   <img
-                    src={croSkullRedPotionImageHack(listing.nftAddress, listing.nft.image)}
+                    src={specialImageTransform(listing.nftAddress, listing.nft.image)}
                     className="img-fluid img-rounded mb-sm-30"
                     alt={listing.nft.name}
                   />
@@ -224,7 +224,7 @@ const CollectionDetail = () => {
                   <span
                     onClick={() =>
                       typeof window !== 'undefined' &&
-                      window.open(croSkullRedPotionImageHack(listing.nftAddress, fullImage()), '_blank')
+                      window.open(specialImageTransform(listing.nftAddress, fullImage()), '_blank')
                     }
                   >
                     <span className="p-2">View Full Image</span>

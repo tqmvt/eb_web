@@ -25,7 +25,7 @@ import {
 } from '../../utils';
 import { getNftDetails } from '../../GlobalState/nftSlice';
 import { connectAccount, chainConnect } from '../../GlobalState/User';
-import { croSkullRedPotionImageHack } from '../../hacks';
+import { specialImageTransform } from '../../hacks';
 import ListingItem from '../NftDetails/NFTTabListings/ListingItem';
 import PriceActionBar from '../NftDetails/PriceActionBar';
 import { ERC721 } from '../../Contracts/Abis';
@@ -287,7 +287,7 @@ const Nft721 = ({ address, id }) => {
                 ) : (
                   <>
                     <AnyMedia
-                      image={croSkullRedPotionImageHack(address, nft.image)}
+                      image={specialImageTransform(address, nft.image)}
                       video={nft.video ?? nft.animation_url}
                       videoProps={{ height: 'auto', autoPlay: true }}
                       title={nft.name}
@@ -304,7 +304,7 @@ const Nft721 = ({ address, id }) => {
                   <span
                     onClick={() =>
                       typeof window !== 'undefined' &&
-                      window.open(croSkullRedPotionImageHack(address, fullImage()), '_blank')
+                      window.open(specialImageTransform(address, fullImage()), '_blank')
                     }
                     className="d-flex align-items-center justify-content-center"
                   >
