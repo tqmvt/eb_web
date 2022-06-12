@@ -52,6 +52,7 @@ const MakeOffer = styled.div`
 
 const nftImageUrl = (listing) => {
   const imageUrl = new URL(croSkullRedPotionImageHack(listing.address, listing.image));
+  if(listing.image.startsWith('data')) return nft.image;
   if(!imageUrl.searchParams){
     imageUrl.searchParams = new URLSearchParams();
   }

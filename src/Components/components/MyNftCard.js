@@ -37,6 +37,7 @@ const MyNftCard = ({
   };
 
   const nftImageUrl = () => {
+    if(nft.image && nft.image.startsWith('data')) return nft.image;
     const imageUrl = new URL(nft.image);
     if(!imageUrl.searchParams){
       imageUrl.searchParams = new URLSearchParams();
