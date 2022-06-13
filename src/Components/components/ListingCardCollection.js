@@ -9,7 +9,7 @@ import Button from './Button';
 import MakeOfferDialog from '../Offer/MakeOfferDialog';
 import { chainConnect, connectAccount } from '../../GlobalState/User';
 import { AnyMedia } from './AnyMedia';
-import { specialImageTransform } from '../../hacks';
+import { nftCardUrl, specialImageTransform } from '../../hacks';
 
 const Watermarked = styled.div`
   position: relative;
@@ -96,18 +96,22 @@ const ListingCardCollection = ({ listing, imgClass = 'marketplace', watermark, a
         {watermark ? (
           <Watermarked watermark={watermark}>
             <AnyMedia
-              image={specialImageTransform(listing.nftAddress, listing.nft.image)}
+              image={nftCardUrl(listing.nftAddress, listing.nft.image)}
               className={`card-img-top ${imgClass}`}
               title={listing.nft.name}
               url={`/collection/${listing.nftAddress}/${listing.nftId}`}
+              width={440}
+              height={440}
             />
           </Watermarked>
         ) : (
           <AnyMedia
-            image={specialImageTransform(listing.nftAddress, listing.nft.image)}
+            image={nftCardUrl(listing.nftAddress, listing.nft.image)}
             className={`card-img-top ${imgClass}`}
             title={listing.nft.name}
             url={`/collection/${listing.nftAddress}/${listing.nftId}`}
+            width={440}
+            height={440}
           />
         )}
         {listing.nft.rank && <div className="badge bg-rarity text-wrap mt-1 mx-1">Rank: #{listing.nft.rank}</div>}

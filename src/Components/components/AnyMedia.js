@@ -4,9 +4,38 @@ import { fallbackImageUrl } from '../../core/constants';
 import Link from 'next/link';
 import {CdnImage} from "./CdnImage";
 
-export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = true, videoProps, className }) => {
+export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = true, videoProps, className, layout='responsive', width=1, height=1, sizes }) => {
   const [dynamicType, setDynamicType] = useState(null);
   const [transformedImage, setTransformedImage] = useState(image);
+  const [videoThumbnail, setVideoThumbNail] = useState(image);
+
+  const blurImageUrl = (img)  => {
+    if(img.startsWith('data')) return img;
+    const imageUrl = new URL(img);
+    
+    if(!imageUrl.searchParams){
+      imageUrl.searchParams = new URLSearchParams();
+    }
+    // imageUrl.searchParams.delete('tr');
+    if(imageUrl.searchParams.has('tr')){
+      imageUrl.searchParams.set('tr', imageUrl.searchParams.get('tr') + ',bl-30,q-10');
+    } else {
+      imageUrl.searchParams.set('tr', `w-${width},h-${height},bl-30,q-10`)
+    }
+    // imageUrl.searchParams.set('tr', 'n-blur_ml_card');
+  
+    return imageUrl.toString();
+  }
+
+  const makeThumb = (vid) => {
+    const vidUrl = new URL(vid);
+    if(vidUrl.pathname.includes('.')){
+      //try to use imagekit thumbnail (check for period it doesn't work if no exension)
+      vidUrl.pathname = vidUrl.pathname = '/ik-thumbnail.jpg'
+      return vidUrl.toString();
+    } 
+
+  }
 
   const mediaTypes = {
     image: 1,
@@ -27,6 +56,7 @@ export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = tr
     if(imageURL.pathname && imageURL.pathname.endsWith('.gif')){
       imageURL.pathname = `${imageURL.pathname}/ik-gif-video.mp4`;
       setTransformedImage(imageURL.toString());
+      setVideoThumbNail(null);
       setDynamicType(mediaTypes.video);
     } else {
       const xhr = new XMLHttpRequest();
@@ -35,7 +65,11 @@ export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = tr
       xhr.onload = function () {
         const contentType = xhr.getResponseHeader('Content-Type');
         const mediaType = contentType.split('/')[0];
-        setDynamicType(mediaTypes[mediaType] ?? mediaTypes.image);
+        const type = mediaTypes[mediaType] ?? mediaTypes.image;
+        if(type === mediaTypes.video){
+          setVideoThumbNail(makeThumb(transformedImage));
+        }
+        setDynamicType(type);
       };
   
       xhr.send();
@@ -50,7 +84,7 @@ export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = tr
           {video || dynamicType === mediaTypes.video ? (
             <Video
               video={video ?? transformedImage}
-              image={dynamicType !== mediaTypes.video ? transformedImage : null}
+              image={videoThumbnail}
               title={title}
               usePlaceholder={usePlaceholder}
               height={videoProps?.height}
@@ -61,11 +95,11 @@ export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = tr
           ) : url ? (
             <Link href={url} target={newTab ? '_blank' : '_self'}>
               <a>
-                <Image image={transformedImage} title={title} className={className} />
+                <Image image={transformedImage} title={title} className={className} blur={blurImageUrl(transformedImage)} sizes={sizes} layout={layout} width={width} height={height} />
               </a>
             </Link>
           ) : (
-            <Image image={transformedImage} title={title} className={className} />
+            <Image image={transformedImage} title={title} className={className} blur={blurImageUrl(transformedImage)} sizes={sizes} layout={layout} width={width} height={height}/>
           )}
         </>
       )}
@@ -75,9 +109,9 @@ export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = tr
 
 export default memo(AnyMedia);
 
-const Image = memo(({ image, title, className }) => {
+const Image = memo(({ image, title, className, blur, sizes, layout, width, height}) => {
   return (
-    <img
+    <CdnImage
       src={image}
       alt={title}
       onError={({ currentTarget }) => {
@@ -85,6 +119,14 @@ const Image = memo(({ image, title, className }) => {
         currentTarget.src = fallbackImageUrl;
       }}
       className={className}
+      placeholder={blur ? 'blur' : 'empty'}
+      blurDataURL={blur}
+      layout={layout}
+      sizes={sizes}
+      width={width}
+      height={height}
+      unoptimized='true'
+      objectFit="contain"
     />
   );
 });
