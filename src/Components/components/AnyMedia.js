@@ -27,6 +27,15 @@ export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = tr
     return imageUrl.toString();
   }
 
+  const makeThumb = (vid) => {
+    const vidUrl = new URL(vid);
+    if(vidUrl.pathname.includes('.')){
+      //try to use imagekit thumbnail (check for period it doesn't work if no exension)
+      vidUrl.pathname = vidUrl.pathname = '/ik-thumbnail.jpg'
+      return vidUrl.toString();
+    } 
+
+  }
 
   const mediaTypes = {
     image: 1,
@@ -57,8 +66,8 @@ export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = tr
         const contentType = xhr.getResponseHeader('Content-Type');
         const mediaType = contentType.split('/')[0];
         const type = mediaTypes[mediaType] ?? mediaTypes.image;
-        if(type === mediaTypes.video){
-          setVideoThumbNail(`${transformedImage}/ik-gif-video.mp4`)
+        if(type === mediaTypes.video && transformedImage.includes('.')){
+          setVideoThumbNail(makeThumb(transformedImage));
         }
         setDynamicType(type);
       };
@@ -76,7 +85,6 @@ export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = tr
             <Video
               video={video ?? transformedImage}
               image={videoThumbnail}
-              light='true'
               title={title}
               usePlaceholder={usePlaceholder}
               height={videoProps?.height}
