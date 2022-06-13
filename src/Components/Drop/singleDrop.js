@@ -109,13 +109,13 @@ const SingleDrop = () => {
   const [totalSupply, setTotalSupply] = useState(0);
   const [canMintQuantity, setCanMintQuantity] = useState(0);
 
-  useEffect(() => {
-    logEvent(getAnalytics(), 'screen_view', {
-      firebase_screen: 'drop',
-      drop_id: slug,
-    });
-    // eslint-disable-next-line
-  }, []);
+  // useEffect(() => {
+  //   logEvent(getAnalytics(), 'screen_view', {
+  //     firebase_screen: 'drop',
+  //     drop_id: slug,
+  //   });
+  //   // eslint-disable-next-line
+  // }, []);
 
   useEffect(() => {
     dispatch(fetchMemberInfo());
