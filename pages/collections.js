@@ -228,7 +228,7 @@ const Collections = () => {
                                 <a>
                                   {collection.metadata?.avatar ? (
                                     <img
-                                      src={hostedImage(collection.metadata.avatar)}
+                                      src={hostedImage(collection.metadata.avatar, true)}
                                       alt={collection?.name}
                                       width="50"
                                       height="50"

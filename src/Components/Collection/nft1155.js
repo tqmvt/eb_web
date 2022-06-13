@@ -24,7 +24,7 @@ import {
   timeSince,
 } from '../../utils';
 import { getNftDetails } from '../../GlobalState/nftSlice';
-import { specialImageTransform } from '../../hacks';
+import {hostedImage, specialImageTransform} from '../../hacks';
 import { chainConnect, connectAccount } from '../../GlobalState/User';
 
 import ListingItem from '../NftDetails/NFTTabListings/ListingItem';
@@ -205,7 +205,7 @@ const Nft1155 = ({ address, id }) => {
                     <ProfilePreview
                       type="Collection"
                       title={collectionName ?? 'View Collection'}
-                      avatar={collectionMetadata?.avatar}
+                      avatar={hostedImage(collectionMetadata?.avatar, true)}
                       address={address}
                       verified={collectionMetadata?.verified}
                       to={`/collection/${collectionSlug}`}
@@ -215,11 +215,12 @@ const Nft1155 = ({ address, id }) => {
                       <ProfilePreview
                         type="Rarity Rank"
                         title={nft.rank}
-                        avatar={
+                        avatar={hostedImage(
                           collectionMetadata.rarity === 'rarity_sniper'
                             ? '/img/logos/rarity-sniper.png'
-                            : '/img/logos/ebisu-technicolor.svg'
-                        }
+                            : '/img/logos/ebisu-technicolor.svg',
+                          true
+                        )}
                         hover={
                           collectionMetadata.rarity === 'rarity_sniper'
                             ? `Ranking provided by ${humanize(collectionMetadata.rarity)}`

@@ -32,7 +32,7 @@ import {
   isUserBlacklisted,
   isNftBlacklisted,
 } from '../../src/utils';
-import { specialImageTransform } from '../../src/hacks';
+import {hostedImage, specialImageTransform} from '../../src/hacks';
 import NFTTabOffers from '../../src/Components/Offer/NFTTabOffers';
 import {appConfig} from "../../src/Config";
 
@@ -330,7 +330,7 @@ const Listing = () => {
                     <ProfilePreview
                       type="Collection"
                       title={collection.name}
-                      avatar={collection.metadata.avatar}
+                      avatar={hostedImage(collection.metadata.avatar, true)}
                       address={listing.nftAddress}
                       verified={collection.metadata.verified}
                       to={`/collection/${collection.slug}`}
@@ -339,7 +339,12 @@ const Listing = () => {
                       <ProfilePreview
                         type="Rarity Rank"
                         title={listing.nft.rank}
-                        avatar={collection.metadata.rarity === 'rarity_sniper' ? '/img/logos/rarity-sniper.png' : null}
+                        avatar={hostedImage(
+                          collection.metadata.rarity === 'rarity_sniper'
+                            ? '/img/logos/rarity-sniper.png'
+                            : '/img/logos/ebisu-technicolor.svg',
+                          true
+                        )}
                         hover={
                           collection.metadata.rarity === 'rarity_sniper'
                             ? `Ranking provided by ${humanize(collection.metadata.rarity)}`

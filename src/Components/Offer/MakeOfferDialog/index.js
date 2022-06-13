@@ -10,7 +10,7 @@ import { Spinner } from 'react-bootstrap';
 import Button from '../../../Components/components/Button';
 import Input from '../../../Components/components/common/Input';
 import ProfilePreview from '../../../Components/components/ProfilePreview';
-import { specialImageTransform } from '../../../hacks';
+import {hostedImage, specialImageTransform} from '../../../hacks';
 import { caseInsensitiveCompare, humanize, isEventValidNumber, shortAddress } from '../../../utils';
 import { OFFER_TYPE } from '../MadeOffersRow';
 import { updateOfferSuccess, updateOfferFailed } from '../../../GlobalState/offerSlice';
@@ -373,7 +373,7 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
                       <ProfilePreview
                         type="Collection"
                         title={nftData.address && shortAddress(nftData.address)}
-                        avatar={collectionMetadata?.avatar}
+                        avatar={hostedImage(collectionMetadata?.avatar, true)}
                         address={nftData.address}
                         verified={collectionMetadata?.verified}
                         to={`/collection/${nftData.address}`}
@@ -383,9 +383,12 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
                         <ProfilePreview
                           type="Rarity Rank"
                           title={nftData.rank}
-                          avatar={
-                            collectionMetadata?.rarity === 'rarity_sniper' ? '/img/logos/rarity-sniper.png' : null
-                          }
+                          avatar={hostedImage(
+                            collectionMetadata?.rarity === 'rarity_sniper'
+                              ? '/img/logos/rarity-sniper.png'
+                              : '/img/logos/ebisu-technicolor.svg',
+                            true
+                          )}
                           hover={
                             collectionMetadata?.rarity === 'rarity_sniper'
                               ? `Ranking provided by ${humanize(collectionMetadata.rarity)}`
