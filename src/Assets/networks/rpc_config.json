@@ -5252,7 +5252,7 @@
       "name": "Carkayous",
       "slug": "carkayous",
       "multiToken": false,
-      "address": "0xD456af04E85d0c138d5382a18a78eFf3eBE4B9d6",
+      "address": "0x72af9c869a4759e6d50e9656c0741b395532c3dd",
       "onChain": false,
       "listable": false,
       "metadata": {
@@ -7443,7 +7443,7 @@
         "twitter": "https://twitter.com/carkayous",
         "discord": "https://discord.gg/carkayous"
       },
-      "address": "0xD456af04E85d0c138d5382a18a78eFf3eBE4B9d6",
+      "address": "0x72af9c869a4759e6d50e9656c0741b395532c3dd",
       "maxMintPerTx": 6,
       "maxMintPerAddress": 100,
       "totalSupply": 2222,
@@ -7461,7 +7461,7 @@
       "is1155": false,
       "published": true,
       "complete": false,
-      "priceDescription": "Presale for Whitelist and VIP members for the first 24 hours (limit 6 per address). Public sale after presale ends."
+      "priceDescription": "Presale for Whitelist and Founding Members for the first 24 hours (limit 6 per address). Public sale after presale ends."
     }
   ],
   "auctions": [
