@@ -66,7 +66,7 @@ export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = tr
         const contentType = xhr.getResponseHeader('Content-Type');
         const mediaType = contentType.split('/')[0];
         const type = mediaTypes[mediaType] ?? mediaTypes.image;
-        if(type === mediaTypes.video && transformedImage.includes('.')){
+        if(type === mediaTypes.video){
           setVideoThumbNail(makeThumb(transformedImage));
         }
         setDynamicType(type);
