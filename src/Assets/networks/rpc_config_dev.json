@@ -7415,7 +7415,7 @@
       "maxMintPerTx": 6,
       "maxMintPerAddress": 100,
       "totalSupply": 2222,
-      "cost": "427",
+      "cost": "475",
       "memberCost": "425",
       "whitelistCost": "425",
       "foundersOnly": false,
