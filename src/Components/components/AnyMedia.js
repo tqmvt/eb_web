@@ -4,9 +4,10 @@ import { fallbackImageUrl } from '../../core/constants';
 import Link from 'next/link';
 import {CdnImage} from "./CdnImage";
 
-export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = true, videoProps, className, layout='responsive', width=1, height=1, sizes, blur }) => {
+export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = true, videoProps, className, layout='responsive', width=1, height=1, sizes }) => {
   const [dynamicType, setDynamicType] = useState(null);
   const [transformedImage, setTransformedImage] = useState(image);
+  const [videoThumbnail, setVideoThumbNail] = useState(image);
 
   const blurImageUrl = (img)  => {
     if(img.startsWith('data')) return img;
@@ -25,6 +26,7 @@ export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = tr
   
     return imageUrl.toString();
   }
+
 
   const mediaTypes = {
     image: 1,
@@ -45,6 +47,7 @@ export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = tr
     if(imageURL.pathname && imageURL.pathname.endsWith('.gif')){
       imageURL.pathname = `${imageURL.pathname}/ik-gif-video.mp4`;
       setTransformedImage(imageURL.toString());
+      setVideoThumbNail(null);
       setDynamicType(mediaTypes.video);
     } else {
       const xhr = new XMLHttpRequest();
@@ -53,7 +56,11 @@ export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = tr
       xhr.onload = function () {
         const contentType = xhr.getResponseHeader('Content-Type');
         const mediaType = contentType.split('/')[0];
-        setDynamicType(mediaTypes[mediaType] ?? mediaTypes.image);
+        const type = mediaTypes[mediaType] ?? mediaTypes.image;
+        if(type === mediaTypes.video){
+          setVideoThumbNail(`${transformedImage}/ik-gif-video.mp4`)
+        }
+        setDynamicType(type);
       };
   
       xhr.send();
@@ -68,7 +75,8 @@ export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = tr
           {video || dynamicType === mediaTypes.video ? (
             <Video
               video={video ?? transformedImage}
-              image={dynamicType !== mediaTypes.video ? transformedImage : null}
+              image={videoThumbnail}
+              light='true'
               title={title}
               usePlaceholder={usePlaceholder}
               height={videoProps?.height}
