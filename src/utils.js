@@ -421,6 +421,11 @@ export const isIcyValkyriesCollection = (address) => {
   return isCollection(address, 'icy-valkyries');
 };
 
+export const isCarkayousCollection = (address) => {
+  return isCollection(address, 'carkayous');
+};
+
+
 export const percentage = (partialValue, totalValue) => {
   if (!totalValue || totalValue === 0) return 0;
   return Math.floor((100 * partialValue) / totalValue);

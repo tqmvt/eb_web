@@ -19,7 +19,7 @@ import { connectAccount } from '../../GlobalState/User';
 import { fetchMemberInfo, fetchVipInfo } from '../../GlobalState/Memberships';
 import { fetchCronieInfo } from '../../GlobalState/Cronies';
 import {
-  createSuccessfulTransactionToastContent,
+  createSuccessfulTransactionToastContent, isCarkayousCollection,
   isCreaturesDrop,
   isCrognomesDrop,
   isCrosmocraftsPartsDrop,
@@ -222,6 +222,13 @@ const SingleDrop = () => {
         const canMint = user.address ? await readContract.canMint(user.address) : 0;
         setDropInfoFromContract(infos, canMint);
         setMaxSupply(1000);
+        calculateStatus(currentDrop, infos.totalSupply, currentDrop.totalSupply);
+      } else if (isCarkayousCollection(drop.address)) {
+        let readContract = await new ethers.Contract(currentDrop.address, abi, readProvider);
+        const infos = await readContract.getInfo();
+        const canMint = user.address ? await readContract.canMint(user.address) : 0;
+        setDropInfoFromContract(infos, canMint);
+        setMaxSupply(2222);
         calculateStatus(currentDrop, infos.totalSupply, currentDrop.totalSupply);
       } else {
         if (currentDrop.address && (isUsingDefaultDropAbi(currentDrop.abi) || isUsingAbiFile(currentDrop.abi))) {
