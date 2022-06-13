@@ -4,9 +4,27 @@ import { fallbackImageUrl } from '../../core/constants';
 import Link from 'next/link';
 import {CdnImage} from "./CdnImage";
 
-export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = true, videoProps, className }) => {
+export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = true, videoProps, className, layout='responsive', width=1, height=1, sizes, blur }) => {
   const [dynamicType, setDynamicType] = useState(null);
   const [transformedImage, setTransformedImage] = useState(image);
+
+  const blurImageUrl = (img)  => {
+    if(img.startsWith('data')) return img;
+    const imageUrl = new URL(img);
+    
+    if(!imageUrl.searchParams){
+      imageUrl.searchParams = new URLSearchParams();
+    }
+    // imageUrl.searchParams.delete('tr');
+    if(imageUrl.searchParams.has('tr')){
+      imageUrl.searchParams.set('tr', imageUrl.searchParams.get('tr') + ',bl-30,q-10');
+    } else {
+      imageUrl.searchParams.set('tr', `w-${width},h-${height},bl-30,q-10`)
+    }
+    // imageUrl.searchParams.set('tr', 'n-blur_ml_card');
+  
+    return imageUrl.toString();
+  }
 
   const mediaTypes = {
     image: 1,
@@ -61,11 +79,11 @@ export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = tr
           ) : url ? (
             <Link href={url} target={newTab ? '_blank' : '_self'}>
               <a>
-                <Image image={transformedImage} title={title} className={className} />
+                <Image image={transformedImage} title={title} className={className} blur={blurImageUrl(transformedImage)} sizes={sizes} layout={layout} width={width} height={height} />
               </a>
             </Link>
           ) : (
-            <Image image={transformedImage} title={title} className={className} />
+            <Image image={transformedImage} title={title} className={className} blur={blurImageUrl(transformedImage)} sizes={sizes} layout={layout} width={width} height={height}/>
           )}
         </>
       )}
@@ -75,9 +93,9 @@ export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = tr
 
 export default memo(AnyMedia);
 
-const Image = memo(({ image, title, className }) => {
+const Image = memo(({ image, title, className, blur, sizes, layout, width, height}) => {
   return (
-    <img
+    <CdnImage
       src={image}
       alt={title}
       onError={({ currentTarget }) => {
@@ -85,6 +103,14 @@ const Image = memo(({ image, title, className }) => {
         currentTarget.src = fallbackImageUrl;
       }}
       className={className}
+      placeholder={blur ? 'blur' : 'empty'}
+      blurDataURL={blur}
+      layout={layout}
+      sizes={sizes}
+      width={width}
+      height={height}
+      unoptimized='true'
+      objectFit="contain"
     />
   );
 });

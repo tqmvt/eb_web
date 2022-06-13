@@ -1,12 +1,11 @@
 import React, { memo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import Image from 'next/image';
 import Link from 'next/link';
 import { ethers } from 'ethers';
 import MetaMaskOnboarding from '@metamask/onboarding';
 
-import { specialImageTransform } from '../../hacks';
+import { nftCardUrl } from '../../hacks';
 import Button from './Button';
 import MakeOfferDialog from '../Offer/MakeOfferDialog';
 import { getTheme } from '../../Theme/theme';
@@ -92,36 +91,28 @@ const ListingCard = ({ listing, imgClass = 'marketplace', watermark, address, co
     return res;
   };
 
-  const nftImageUrl = (listing) => {
-    const imageUrl = new URL(specialImageTransform(listing.nftAddress, listing.nft.image));
-    if(listing.nft.image.startsWith('data')) return listing.nft.image;
-    if(!imageUrl.searchParams){
-      imageUrl.searchParams = new URLSearchParams();
-    }
-    imageUrl.searchParams.delete('tr');
-    imageUrl.searchParams.set('tr', 'n-ml_card');
-  
-    return imageUrl.toString();
-  }
-
   return (
     <>
       <div className="card eb-nft__card h-100 shadow">
         {watermark ? (
           <Watermarked watermark={watermark}>
             <AnyMedia
-              image={nftImageUrl(listing)}
+              image={nftCardUrl(listing.nftAddress, listing.nft.image)}
               className={`card-img-top ${imgClass}`}
               title={listing.nft.name}
               url={`/collection/${listing.nftAddress}/${listing.nftId}`}
+              height={440}
+              width={440}
             />
           </Watermarked>
         ) : (
           <AnyMedia
-            image={nftImageUrl(listing)}
+            image={nftCardUrl(listing.nftAddress, listing.nft.image)}
             className={`card-img-top ${imgClass}`}
             title={listing.nft.name}
             url={`/collection/${listing.nftAddress}/${listing.nftId}`}
+            height={440}
+            width={440}
           />
         )}
         {listing.nft.rank ? (

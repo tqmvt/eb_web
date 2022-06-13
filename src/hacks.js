@@ -43,3 +43,15 @@ export const hostedImage = (imgPath) => {
   const cdn = appConfig('urls.cdn');
   return `${cdn}${imgPath}`;
 }
+
+export const nftCardUrl = (nftAddress, nftImage) => {
+  if(nftImage.startsWith('data')) return nftImage;
+  const imageUrl = new URL(specialImageTransform(nftAddress, nftImage));
+  if(!imageUrl.searchParams){
+    imageUrl.searchParams = new URLSearchParams();
+  }
+  imageUrl.searchParams.delete('tr');
+  imageUrl.searchParams.set('tr', 'n-ml_card');
+
+  return imageUrl.toString();
+}
