@@ -5252,7 +5252,7 @@
       "name": "Carkayous",
       "slug": "carkayous",
       "multiToken": false,
-      "address": "",
+      "address": "0xD456af04E85d0c138d5382a18a78eFf3eBE4B9d6",
       "onChain": false,
       "listable": false,
       "metadata": {
@@ -7411,7 +7411,7 @@
         "twitter": "https://twitter.com/carkayous",
         "discord": "https://discord.gg/carkayous"
       },
-      "address": "",
+      "address": "0xD456af04E85d0c138d5382a18a78eFf3eBE4B9d6",
       "maxMintPerTx": 6,
       "maxMintPerAddress": 100,
       "totalSupply": 2222,
