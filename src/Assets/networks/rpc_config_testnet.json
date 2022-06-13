@@ -1211,7 +1211,7 @@
       "name": "Carkayous",
       "slug": "carkayous",
       "multiToken": false,
-      "address": "",
+      "address": "0xd0186A9e068407738A5D4c710347F37763c20394",
       "onChain": false,
       "listable": false,
       "metadata": {
@@ -2694,7 +2694,7 @@
         "twitter": "https://twitter.com/carkayous",
         "discord": "https://discord.gg/carkayous"
       },
-      "address": "",
+      "address": "0xd0186A9e068407738A5D4c710347F37763c20394",
       "maxMintPerTx": 6,
       "maxMintPerAddress": 100,
       "totalSupply": 2222,
