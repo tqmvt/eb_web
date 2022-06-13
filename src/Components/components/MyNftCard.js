@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import config from '../../Assets/networks/rpc_config.json';
 import PopupMen from './PopupMenu';
 import AnyMedia from './AnyMedia';
+import { nftCardUrl } from '../../hacks';
 
 const MyNftCard = ({
   nft,
@@ -35,17 +36,6 @@ const MyNftCard = ({
   const nftUrl = () => {
     return `/collection/${nft.address}/${nft.id}`;
   };
-
-  const nftImageUrl = () => {
-    if(nft.image && nft.image.startsWith('data')) return nft.image;
-    const imageUrl = new URL(nft.image);
-    if(!imageUrl.searchParams){
-      imageUrl.searchParams = new URLSearchParams();
-    }
-    imageUrl.searchParams.delete('tr');
-    imageUrl.searchParams.set('tr', 'n-ml_card');
-    return imageUrl.toString();
-  }
 
   const onCopyLinkButtonPressed = (url) => () => {
     navigator.clipboard.writeText(url);
@@ -95,7 +85,12 @@ const MyNftCard = ({
 
   return (
     <div className="card eb-nft__card h-100 shadow">
-      <AnyMedia image={nftImageUrl()} title={nft.name} url={nftUrl()} newTab={true} className="card-img-top marketplace" />
+      <AnyMedia image={nftCardUrl(nft.address, nft.image)} 
+            title={nft.name} url={nftUrl()}
+            newTab={true} 
+            className="card-img-top marketplace"  
+            height={440}
+            width={440}/>
       {nft.rank && typeof nft.rank === 'number' && (
         <div className="badge bg-rarity text-wrap mt-1 mx-1">Rank: #{nft.rank}</div>
       )}

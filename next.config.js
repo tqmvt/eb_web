@@ -8,7 +8,7 @@ const nextConfig = {
     styledComponents: true,
   },
   images: {
-    dangerouslyAllowSVG: true,
+    dangerouslyAllowSVG: false,
     domains: [
       'ipfs.io',
       'app.ebisusbay.com',
