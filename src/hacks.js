@@ -38,20 +38,56 @@ export function specialImageTransform(address, defaultImage) {
   return defaultImage;
 }
 
-export const hostedImage = (imgPath) => {
+/**
+ * Build a hosted image URL from our CDN
+ *
+ * @param imgPath
+ * @param useThumbnail
+ * @returns {string}
+ */
+export const hostedImage = (imgPath, useThumbnail) => {
+  if (!imgPath) return imgPath;
+
   imgPath = imgPath ? imgPath.replace(/^\/+/g, '') : '';
   const cdn = appConfig('urls.cdn');
-  return `${cdn}${imgPath}`;
+
+  const imageUrl = new URL(imgPath, cdn);
+
+  return imageKitUrl(imageUrl.toString(), {isThumbnail: useThumbnail});
 }
 
+/**
+ * Build a hosted image URL from our CDN that is fit for the NFT cards
+ *
+ * @param nftAddress
+ * @param nftImage
+ * @returns {string|*}
+ */
 export const nftCardUrl = (nftAddress, nftImage) => {
   if(nftImage.startsWith('data')) return nftImage;
-  const imageUrl = new URL(specialImageTransform(nftAddress, nftImage));
+  return imageKitUrl(specialImageTransform(nftAddress, nftImage), {isCard: true});
+}
+
+/**
+ * Apply ImageKit parameters to an existing image URL
+ *
+ * @param imgUrl
+ * @param isCard
+ * @param isThumbnail
+ * @returns {string}
+ */
+export const imageKitUrl = (imgUrl, {isCard = false, isThumbnail = false}) => {
+  const imageUrl = new URL(imgUrl);
   if(!imageUrl.searchParams){
     imageUrl.searchParams = new URLSearchParams();
   }
   imageUrl.searchParams.delete('tr');
-  imageUrl.searchParams.set('tr', 'n-ml_card');
+
+  if (isCard) {
+    imageUrl.searchParams.set('tr', 'n-ml_card');
+  } else if (isThumbnail) {
+    imageUrl.searchParams.set('tr', 'n-avatar');
+  }
 
   return imageUrl.toString();
 }

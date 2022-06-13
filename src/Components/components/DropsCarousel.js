@@ -236,7 +236,7 @@ export default class Responsive extends Component {
                         <div className="d-author">
                           <div className="author_list_pp">
                             {drop.imgAvatar ? (
-                              <img className="lazy" src={hostedImage(drop.imgAvatar)} alt={drop.author.name} />
+                              <img className="lazy" src={hostedImage(drop.imgAvatar, true)} alt={drop.author.name} />
                             ) : (
                               <Blockies seed={drop.slug} size={10} scale={5} />
                             )}

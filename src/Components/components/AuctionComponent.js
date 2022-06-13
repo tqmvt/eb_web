@@ -13,6 +13,7 @@ import { caseInsensitiveCompare, humanize, newlineText, shortAddress, timeSince 
 import config from '../../Assets/networks/rpc_config.json';
 import BuyerActionBar from '../Auctions/BuyerActionBar';
 import ProfilePreview from '../components/ProfilePreview';
+import {hostedImage} from "../../hacks";
 const knownContracts = config.known_contracts;
 
 const AuctionComponent = (props) => {
@@ -111,7 +112,7 @@ const AuctionComponent = (props) => {
                       <ProfilePreview
                         type="Collection"
                         title={collection.name}
-                        avatar={collection.metadata.avatar}
+                        avatar={hostedImage(collection.metadata.avatar, true)}
                         address={listing.nftAddress}
                         verified={collection.metadata.verified}
                         to={`/collection/${collection.slug}`}

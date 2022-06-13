@@ -25,7 +25,7 @@ import {
 } from '../../utils';
 import { getNftDetails } from '../../GlobalState/nftSlice';
 import { connectAccount, chainConnect } from '../../GlobalState/User';
-import { specialImageTransform } from '../../hacks';
+import {hostedImage, specialImageTransform} from '../../hacks';
 import ListingItem from '../NftDetails/NFTTabListings/ListingItem';
 import PriceActionBar from '../NftDetails/PriceActionBar';
 import { ERC721 } from '../../Contracts/Abis';
@@ -363,7 +363,7 @@ const Nft721 = ({ address, id }) => {
                     <ProfilePreview
                       type="Collection"
                       title={collectionName ?? 'View Collection'}
-                      avatar={collectionMetadata?.avatar}
+                      avatar={hostedImage(collectionMetadata?.avatar, true)}
                       address={address}
                       verified={collectionMetadata?.verified}
                       to={`/collection/${address}`}
@@ -373,11 +373,12 @@ const Nft721 = ({ address, id }) => {
                       <ProfilePreview
                         type="Rarity Rank"
                         title={nft.rank}
-                        avatar={
+                        avatar={hostedImage(
                           collectionMetadata.rarity === 'rarity_sniper'
                             ? '/img/logos/rarity-sniper.png'
-                            : '/img/logos/ebisu-technicolor.svg'
-                        }
+                            : '/img/logos/ebisu-technicolor.svg',
+                          true
+                        )}
                         hover={
                           collectionMetadata.rarity === 'rarity_sniper'
                             ? `Ranking provided by ${humanize(collectionMetadata.rarity)}`
