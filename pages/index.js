@@ -259,10 +259,10 @@ const Home = () => {
           </div>
           <div className="col-lg-6 pt-3">
             <div className="mx-auto text-center">
-              <Image
+              <img
                 src={hostedImage('BAD-FOUNDERS-PASSPORT_kCMVUdlGr.mp4/ik-thumbnail.jpg?tr=w-400')}
-                width={350}
-                height={350}
+                alt="B.A.D. Founder's Passport"
+                className="img-fluid"
               />
             </div>
             <div className="card-body d-flex flex-column align-middle">

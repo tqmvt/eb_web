@@ -9,7 +9,7 @@ import Button from './Button';
 import MakeOfferDialog from '../Offer/MakeOfferDialog';
 import { chainConnect, connectAccount } from '../../GlobalState/User';
 import { AnyMedia } from './AnyMedia';
-import { croSkullRedPotionImageHack } from '../../hacks';
+import { specialImageTransform } from '../../hacks';
 
 const Watermarked = styled.div`
   position: relative;
@@ -96,7 +96,7 @@ const ListingCardCollection = ({ listing, imgClass = 'marketplace', watermark, a
         {watermark ? (
           <Watermarked watermark={watermark}>
             <AnyMedia
-              image={croSkullRedPotionImageHack(listing.nftAddress, listing.nft.image)}
+              image={specialImageTransform(listing.nftAddress, listing.nft.image)}
               className={`card-img-top ${imgClass}`}
               title={listing.nft.name}
               url={`/collection/${listing.nftAddress}/${listing.nftId}`}
@@ -104,7 +104,7 @@ const ListingCardCollection = ({ listing, imgClass = 'marketplace', watermark, a
           </Watermarked>
         ) : (
           <AnyMedia
-            image={croSkullRedPotionImageHack(listing.nftAddress, listing.nft.image)}
+            image={specialImageTransform(listing.nftAddress, listing.nft.image)}
             className={`card-img-top ${imgClass}`}
             title={listing.nft.name}
             url={`/collection/${listing.nftAddress}/${listing.nftId}`}

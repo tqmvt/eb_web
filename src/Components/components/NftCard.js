@@ -7,7 +7,7 @@ import Image from 'next/image';
 import { ethers } from 'ethers';
 import MetaMaskOnboarding from '@metamask/onboarding';
 
-import { croSkullRedPotionImageHack } from '../../hacks';
+import { specialImageTransform } from '../../hacks';
 import Button from './Button';
 import MakeOfferDialog from '../Offer/MakeOfferDialog';
 import { connectAccount, chainConnect } from '../../GlobalState/User';
@@ -49,6 +49,18 @@ const MakeOffer = styled.div`
     width: 45%;
   }
 `;
+
+const nftImageUrl = (listing) => {
+  const imageUrl = new URL(specialImageTransform(listing.address, listing.image));
+  if(listing.image.startsWith('data')) return listing.image;
+  if(!imageUrl.searchParams){
+    imageUrl.searchParams = new URLSearchParams();
+  }
+  imageUrl.searchParams.delete('tr');
+  imageUrl.searchParams.set('tr', 'n-ml_card');
+
+  return imageUrl.toString();
+}
 
 const NftCard = ({ royalty, listing, imgClass = 'marketplace', watermark, address, collection }) => {
   const history = useRouter();
@@ -98,7 +110,7 @@ const NftCard = ({ royalty, listing, imgClass = 'marketplace', watermark, addres
         {watermark ? (
           <Watermarked watermark={watermark}>
             <AnyMedia
-              image={croSkullRedPotionImageHack(listing.address, listing.image)}
+              image={nftImageUrl(listing)}
               className={`card-img-top ${imgClass}`}
               title={listing.name}
               url={`/collection/${collection.slug}/${listing.id}`}
@@ -106,7 +118,7 @@ const NftCard = ({ royalty, listing, imgClass = 'marketplace', watermark, addres
           </Watermarked>
         ) : (
           <AnyMedia
-            image={croSkullRedPotionImageHack(listing.address, listing.image)}
+            image={nftImageUrl(listing)}
             className={`card-img-top ${imgClass}`}
             title={listing.name}
             url={`/collection/${collection.slug}/${listing.id}`}

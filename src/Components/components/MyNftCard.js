@@ -36,6 +36,17 @@ const MyNftCard = ({
     return `/collection/${nft.address}/${nft.id}`;
   };
 
+  const nftImageUrl = () => {
+    if(nft.image && nft.image.startsWith('data')) return nft.image;
+    const imageUrl = new URL(nft.image);
+    if(!imageUrl.searchParams){
+      imageUrl.searchParams = new URLSearchParams();
+    }
+    imageUrl.searchParams.delete('tr');
+    imageUrl.searchParams.set('tr', 'n-ml_card');
+    return imageUrl.toString();
+  }
+
   const onCopyLinkButtonPressed = (url) => () => {
     navigator.clipboard.writeText(url);
     toast.success('Copied!');
@@ -84,7 +95,7 @@ const MyNftCard = ({
 
   return (
     <div className="card eb-nft__card h-100 shadow">
-      <AnyMedia image={nft.image} title={nft.name} url={nftUrl()} newTab={true} className="card-img-top marketplace" />
+      <AnyMedia image={nftImageUrl()} title={nft.name} url={nftUrl()} newTab={true} className="card-img-top marketplace" />
       {nft.rank && typeof nft.rank === 'number' && (
         <div className="badge bg-rarity text-wrap mt-1 mx-1">Rank: #{nft.rank}</div>
       )}
