@@ -284,6 +284,7 @@
     },
     {
       "name": "Marie's Cyborgs",
+      "slug": "maries-cyborgs",
       "multiToken": false,
       "address": "",
       "onChain": false,
@@ -324,6 +325,7 @@
     },
     {
       "name": "The LAB: Crazy Scientists",
+      "slug": "crazy-scientists",
       "multiToken": false,
       "address": "0x6F25b5cCf0Ab49A1906E36C9572CF202e62aE066",
       "onChain": false,
@@ -343,6 +345,7 @@
     },
     {
       "name": "BobaNFTea",
+      "slug": "boba-nftea",
       "multiToken": false,
       "address": "0xde0d3CCA05A9870D82180e771Eb2efc1de039cB9",
       "onChain": false,
@@ -362,6 +365,7 @@
     },
     {
       "name": "RecklessRobots",
+      "slug": "reckless-robots",
       "multiToken": false,
       "address": "0x3b3BC5Ca5451D6dDDFCa7248AF04172632f4A990",
       "onChain": false,
@@ -381,6 +385,7 @@
     },
     {
       "name": "The HD: Hyped Dogs",
+      "slug": "hyped-dogs",
       "multiToken": false,
       "address": "0x1D3587f44944a665F28bE1d9D9E322d43318DbB8",
       "onChain": false,
@@ -400,6 +405,7 @@
     },
     {
       "name": "Creatures",
+      "slug": "creatures",
       "multiToken": false,
       "address": "0xd036b2223bcc2A96164B023022D6b78CD71A1a12",
       "onChain": false,
@@ -503,7 +509,6 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "slug": "3d-slothty",
         "description": "",
         "verified": true,
         "avatar": "/img/collections/slothty/avatar.png",
