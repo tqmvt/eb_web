@@ -4,26 +4,25 @@ import { useRouter } from 'next/router';
 import AuctionComponent from '../../src/Components/components/AuctionComponent';
 import MadAuction from "../../src/Components/Auctions/Curated/MadAuction";
 import Blood4NftAuction from "../../src/Components/Auctions/Curated/Blood4NftAuction";
+import {isAddress} from "../../src/utils";
 
-const Auction = () => {
-  const router = useRouter();
-  const { id } = router.query;
-
-  const [component, setComponent] = useState(<></>);
-
-  useEffect(() => {
-    if (router.isReady) {
-      if (id === 'mad-auction') {
-        setComponent(<MadAuction />)
-      } else if (id === 'blood-4-nft') {
-        setComponent(<Blood4NftAuction />);
-      } else {
-        setComponent(<AuctionComponent id={id} />);
-      }
-    }
-  }, [router.isReady]);
-
-  return component;
+const Auction = ({id}) => {
+  if (id === 'mad-auction') {
+    return (<MadAuction />)
+  } else if (id === 'blood-4-nft') {
+    return (<Blood4NftAuction />);
+  } else {
+    return (<AuctionComponent id={id} />);
+  }
 };
+
+export const getServerSideProps = async ({ params }) => {
+  return {
+    props: {
+      id: params?.id
+    },
+  };
+};
+
 
 export default memo(Auction);

@@ -5268,6 +5268,23 @@
         "twitter": "https://twitter.com/carkayous",
         "discord": "https://discord.gg/carkayous"
       }
+    },
+    {
+      "name": "Blood 4 NFT",
+      "slug": "blood-4-nft",
+      "multiToken": false,
+      "address": "0xCF30e6C7D977F217734e5A265554a016760928E7",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "Blood 4 NFT is a collection of whimsical blood vials.\n\nThe objective of this project is to motivate blood donors community with the power of the NFT. \n14 unique Vials were created paying respect to projects on the Cronos chain by an independent Houston artist.",
+        "verified": true,
+        "avatar": "/img/collections/blood-nft/avatar.jpg",
+        "card": "/img/collections/blood-nft/card.jpg",
+        "banner": "/img/collections/blood-nft/banner.jpg",
+        "maxSupply": 14,
+        "website": "https://youtu.be/OAMFitRCGKg/"
+      }
     }
   ],
   "drops": [
