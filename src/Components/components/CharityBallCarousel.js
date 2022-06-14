@@ -72,15 +72,6 @@ export default class Responsive extends Component {
     this.state = {};
   }
 
-  // @todo refactor out
-  isCroniesDrop(drop) {
-    return drop.slug === 'cronies';
-  }
-  // @todo refactor out
-  isFounderDrop(drop) {
-    return drop.slug === 'founding-member';
-  }
-
   calculateStatus(drop) {
     return statuses.EXPIRED;
     // const sTime = new Date(drop.start);
