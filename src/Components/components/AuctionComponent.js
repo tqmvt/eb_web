@@ -253,9 +253,6 @@ const AuctionComponent = (props) => {
                               </li>
                               <ul>
                                 <li>
-                                  Starting bid is <span className="fw-bold">55 $MAD</span>
-                                </li>
-                                <li>
                                   When current price is 0-99 $MAD, minimum increment is{' '}
                                   <span className="fw-bold">5 $MAD</span>
                                 </li>
