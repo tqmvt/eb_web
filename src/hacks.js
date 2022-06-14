@@ -64,7 +64,7 @@ export const hostedImage = (imgPath, useThumbnail) => {
  * @returns {string|*}
  */
 export const nftCardUrl = (nftAddress, nftImage) => {
-  if(nftImage.startsWith('data')) return nftImage;
+  if (!nftImage || nftImage.startsWith('data')) return nftImage;
   return imageKitUrl(specialImageTransform(nftAddress, nftImage), {isCard: true});
 }
 

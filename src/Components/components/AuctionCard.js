@@ -6,6 +6,8 @@ import Clock from './Clock';
 import { auctionState } from '../../core/api/enums';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faGavel, faGem} from "@fortawesome/free-solid-svg-icons";
+import {AnyMedia} from "./AnyMedia";
+import {nftCardUrl} from "../../hacks";
 
 // const Outer = styled.div`
 //   display: flex;
@@ -25,7 +27,13 @@ const AuctionCard = ({ listing, imgClass = 'marketplace' }) => {
     <Link href={`/auctions/${listing.getAuctionId}`}>
       <a>
         <div className="card eb-nft__card h-100" style={{border:borderColor, boxShadow:boxShadowColor}}>
-          <img src={listing.nft.image} className={`card-img-top ${imgClass}`} alt={listing.nft.name} />
+          <AnyMedia
+            image={nftCardUrl(listing.nftAaddress, listing.nft.image)}
+            className={`card-img-top ${imgClass}`}
+            title={listing.nft.name}
+            width={440}
+            height={440}
+          />
           <div className="eb-de_countdown text-center">
             {listing.state === auctionState.ACTIVE && <>Ends In:</>}
             {listing.state === auctionState.NOT_STARTED && <div className="fw-bold">Not Started</div>}

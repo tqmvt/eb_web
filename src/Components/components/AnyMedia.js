@@ -10,7 +10,7 @@ export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = tr
   const [videoThumbnail, setVideoThumbNail] = useState(image);
 
   const blurImageUrl = (img)  => {
-    if(img.startsWith('data')) return img;
+    if(!img || img.startsWith('data')) return img;
     const imageUrl = new URL(img);
     
     if(!imageUrl.searchParams){
@@ -48,6 +48,10 @@ export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = tr
   }, []);
 
   const determineMediaType = () => {
+    if(!image) {
+      setDynamicType(mediaTypes.image);
+      return;
+    }
 
     //prefer mp4 over gif 
     const imageURL = new URL(image);
@@ -117,7 +121,7 @@ export default memo(AnyMedia);
 const Image = memo(({ image, title, className, blur, sizes, layout, width, height}) => {
   return (
     <CdnImage
-      src={image}
+      src={image ?? fallbackImageUrl}
       alt={title}
       onError={({ currentTarget }) => {
         currentTarget.onerror = null;
