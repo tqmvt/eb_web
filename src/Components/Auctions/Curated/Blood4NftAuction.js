@@ -37,10 +37,10 @@ const Blood4NftAuction = () => {
               <p>Blood 4 NFT is a collection of whimsical blood vials.</p>
               <p>
                 The objective of this project is to motivate the blood donors community with the power of the NFT.
-                14 unique Vials were created paying respect to projects on the cronos chain by an independent Houston artist.
+                14 unique Vials were created paying respect to projects on the Cronos chain by an independent Houston artist.
               </p>
               <p>
-                The unique Vials will be auctioned off on Ebibus Bay June 14 2022 on Worlds Blood Donor Day.
+                The unique Vials will be auctioned off on Ebibu's Bay June 14 2022 on Worlds Blood Donor Day.
               </p>
               <p>
                 #BLOOD4NFT.
