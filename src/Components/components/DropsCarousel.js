@@ -151,6 +151,7 @@ export default class Responsive extends Component {
       slidesToScroll: 1,
       initialSlide: 0,
       adaptiveHeight: 300,
+      lazyLoad: true,
       centerPadding: '100px',
       responsive: [
         {
