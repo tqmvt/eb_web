@@ -68,10 +68,6 @@ export default class Responsive extends Component {
   }
 
   // @todo refactor out
-  isCroniesDrop(drop) {
-    return drop.slug === 'cronies';
-  }
-  // @todo refactor out
   isFounderDrop(drop) {
     return drop.slug === 'founding-member';
   }

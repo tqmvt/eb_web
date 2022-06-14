@@ -1,3 +1,7 @@
+import rpcConfig from '../Assets/networks/rpc_config.json';
+import rpcConfigDev from '../Assets/networks/rpc_config_dev.json';
+import rpcConfigTestnet from '../Assets/networks/rpc_config_testnet.json';
+
 export const environments = {
   production: 'production',
   testnet: 'testnet',
@@ -40,7 +44,9 @@ export const configData = {
         'symbol': 'MAD',
         'address': '0x212331e1435a8df230715db4c02b2a3a0abf8c61'
       }
-    }
+    },
+    collections: rpcConfig.known_contracts,
+    drops: rpcConfig.drops
   },
   [environments.development]: {
     chain: {
@@ -77,7 +83,9 @@ export const configData = {
         'symbol': 'MAD',
         'address': '0x212331e1435a8df230715db4c02b2a3a0abf8c61'
       }
-    }
+    },
+    collections: rpcConfigDev.known_contracts,
+    drops: rpcConfigDev.drops
   },
   [environments.testnet]: {
     chain: {
@@ -114,7 +122,9 @@ export const configData = {
         'symbol': 'MAD',
         'address': '0x4DEdeea250d2cbf54F0e156f0e9b55927094867E'
       }
-    }
+    },
+    collections: rpcConfigTestnet.known_contracts,
+    drops: rpcConfigTestnet.drops
   },
 };
 

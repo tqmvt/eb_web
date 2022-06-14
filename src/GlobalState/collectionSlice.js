@@ -7,7 +7,9 @@ import {
   sortAndFetchListings,
 } from '../core/api';
 import { caseInsensitiveCompare } from '../utils';
-import config from '../Assets/networks/rpc_config.json';
+import {appConfig} from "../Config";
+
+const knownContracts = appConfig('collections');
 
 const collectionSlice = createSlice({
   name: 'collection',
@@ -197,7 +199,7 @@ export const fetchListings =
     const weirdApes = Array.isArray(address);
     const knownContract = weirdApes
       ? null
-      : config.known_contracts.find((c) => caseInsensitiveCompare(c.address, address));
+      : knownContracts.find((c) => caseInsensitiveCompare(c.address, address));
     const fallbackContracts = ['red-skull-potions', 'cronos-fc'];
     const pageSizeOverride = findAllListings ? 1208 : null;
 

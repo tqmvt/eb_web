@@ -5,7 +5,6 @@ import * as Sentry from '@sentry/react';
 import createSentryMiddleware from 'redux-sentry-middleware';
 
 import { memberships } from '../GlobalState/Memberships';
-import { cronies } from '../GlobalState/Cronies';
 import marketplaceReducer from '../GlobalState/marketplaceSlice';
 import auctionsReducer from '../GlobalState/auctionsSlice';
 import listingReducer from '../GlobalState/listingSlice';
@@ -20,7 +19,6 @@ import { user } from '../GlobalState/User';
 
 const rootReducer = combineReducers({
   memberships: memberships,
-  cronies: cronies,
   marketplace: marketplaceReducer,
   auctions: auctionsReducer,
   listing: listingReducer,

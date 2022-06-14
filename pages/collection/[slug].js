@@ -5,10 +5,10 @@ import Head from 'next/head';
 import Collection1155 from '../../src/Components/Collection/collection1155';
 import Collection721 from '../../src/Components/Collection/collection721';
 import CollectionCronosverse from '../../src/Components/Collection/collectionCronosverse';
-import config from '../../src/Assets/networks/rpc_config.json';
 import { caseInsensitiveCompare, isCronosVerseCollection, isAddress } from '../../src/utils';
+import {appConfig} from "../../src/Config";
 
-const knownContracts = config.known_contracts;
+const knownContracts = appConfig('collections')
 
 const collectionTypes = {
   UNSET: -1,

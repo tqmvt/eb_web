@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
-import config from '../../src/Assets/networks/rpc_config.json';
 import MultiDrop from '../../src/Components/Drop/multiDrop';
 import SingleDrop from '../../src/Components/Drop/singleDrop';
 import CronosverseDrop from '../../src/Components/Drop/CronosverseDrop';
-import {caseInsensitiveCompare, isAddress} from "../../src/utils";
+import {caseInsensitiveCompare} from "../../src/utils";
 import Head from "next/head";
+import {appConfig} from "../../src/Config";
 
-export const drops = config.drops;
+export const drops = appConfig('drops');
 
 const Drop = ({ssrDrop}) => {
   const router = useRouter();

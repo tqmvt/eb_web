@@ -2,7 +2,6 @@ import { BigNumber, Contract, ethers } from 'ethers';
 import * as Sentry from '@sentry/react';
 import moment from 'moment';
 
-import rpcConfig from '../Assets/networks/rpc_config.json';
 import { ERC1155, ERC721, MetaPixelsAbi, SouthSideAntsReadAbi } from '../Contracts/Abis';
 import IPFSGatewayTools from '@pinata/ipfs-gateway-tools/dist/node';
 import { dataURItoBlob } from '../Store/utils';
@@ -29,7 +28,7 @@ const config = appConfig();
 let gatewayTools = new IPFSGatewayTools();
 const gateway = 'https://mygateway.mypinata.cloud';
 const readProvider = new ethers.providers.JsonRpcProvider(config.rpc.read);
-const knownContracts = rpcConfig.known_contracts;
+const knownContracts = config.collections;
 
 const api = {
   baseUrl: config.urls.api,
