@@ -14,7 +14,6 @@ import * as Sentry from '@sentry/react';
 import styled from 'styled-components';
 
 import Footer from '../components/Footer';
-import rpcConfig from '../../Assets/networks/rpc_config.json';
 import { connectAccount } from '../../GlobalState/User';
 import { fetchMemberInfo, fetchVipInfo } from '../../GlobalState/Memberships';
 import { createSuccessfulTransactionToastContent, isCmbDrop, newlineText, percentage } from '../../utils';
@@ -23,7 +22,7 @@ import { EbisuDropAbi } from '../../Contracts/Abis';
 import {appConfig} from "../../Config";
 
 const config = appConfig();
-export const drops = rpcConfig.drops;
+const drops = config.drops;
 
 const fadeInUp = keyframes`
   0% {

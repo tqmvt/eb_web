@@ -6,10 +6,10 @@ import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons
 
 import { settings } from '../components/constants';
 import CustomSlide from '../components/CustomSlide';
-import config from '../../Assets/networks/rpc_config.json';
+import {appConfig} from "../../Config";
 
-export const drops = config.drops;
-export const collections = config.known_contracts;
+const drops = appConfig('drops');
+const collections = appConfig('collections');
 const defaultCardImage = '/img/collections/default/card.jpg';
 
 const PastDrops = () => {

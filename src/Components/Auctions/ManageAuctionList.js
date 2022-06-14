@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import {BigNumber, constants, ethers} from 'ethers';
-import config from '../../Assets/networks/rpc_config.json';
 import AuctionContract from '../../Contracts/DegenAuction.json';
 import { sortAndFetchAuctions } from '../../core/api';
 import Clock from '../components/Clock';
@@ -14,6 +13,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {toast} from "react-toastify";
 import MetaMaskOnboarding from "@metamask/onboarding";
 import {chainConnect, connectAccount} from "../../GlobalState/User";
+import {appConfig} from "../../Config";
+
+const config = appConfig();
 
 const ManageAuctionList = () => {
   const dispatch = useDispatch();
@@ -88,7 +90,7 @@ const ManageAuctionList = () => {
 
     if (user.address) {
       let writeContract = await new ethers.Contract(
-        config.mm_auction_contract,
+        config.contracts.madAuction,
         AuctionContract.abi,
         user.provider.getSigner()
       );

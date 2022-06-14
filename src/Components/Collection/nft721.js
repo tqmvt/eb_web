@@ -34,10 +34,11 @@ import MakeOfferDialog from '../Offer/MakeOfferDialog';
 import NFTTabOffers from '../Offer/NFTTabOffers';
 import { OFFER_TYPE } from '../Offer/MadeOffersRow';
 import { offerState } from '../../core/api/enums';
-import config from '../../Assets/networks/rpc_config.json';
 import {commify} from "ethers/lib/utils";
+import {appConfig} from "../../Config";
 
-const knownContracts = config.known_contracts;
+const config = appConfig();
+const knownContracts = config.collections;
 
 const Nft721 = ({ address, id }) => {
   const dispatch = useDispatch();
@@ -79,7 +80,7 @@ const Nft721 = ({ address, id }) => {
   useEffect(() => {
     async function asyncFunc() {
       if (isCroCrowCollection(address) && croCrowBreed === null) {
-        const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
+        const readProvider = new ethers.providers.JsonRpcProvider(config.rpc.read);
         const crowpunkContract = new Contract(
           '0x0f1439a290e86a38157831fe27a3dcd302904055',
           [
@@ -119,7 +120,7 @@ const Nft721 = ({ address, id }) => {
   useEffect(() => {
     async function getCrognomid() {
       if (isCrognomidesCollection(address) && crognomideBreed === null) {
-        const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
+        const readProvider = new ethers.providers.JsonRpcProvider(config.rpc.read);
         const contract = new Contract(
           '0xE57742748f98ab8e08b565160D3A9A32BFEF7352',
           ['function crognomidUsed(uint256) public view returns (bool)'],
@@ -143,7 +144,7 @@ const Nft721 = ({ address, id }) => {
   useEffect(() => {
     async function getApeInfo() {
       if (isBabyWeirdApesCollection(address)) {
-        const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
+        const readProvider = new ethers.providers.JsonRpcProvider(config.rpc.read);
         const abiFile = require(`../../Assets/abis/baby-weird-apes.json`);
         const contract = new Contract(address, abiFile.abi, readProvider);
         try {
@@ -163,7 +164,7 @@ const Nft721 = ({ address, id }) => {
 
   useEffect(() => {
     async function getAttributes(abi) {
-      const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
+      const readProvider = new ethers.providers.JsonRpcProvider(config.rpc.read);
       const contract = new Contract(address, abi, readProvider);
       try {
         const traits = await contract.getToken(id);

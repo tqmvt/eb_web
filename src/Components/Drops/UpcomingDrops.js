@@ -6,9 +6,9 @@ import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons
 
 import { settings } from '../components/constants';
 import CustomSlide from '../components/CustomSlide';
-import config from '../../Assets/networks/rpc_config.json';
-import { drops } from './PastDrops';
-export const collections = config.known_contracts;
+import {appConfig} from "../../Config";
+const collections = appConfig('collections');
+const drops = appConfig('drops');
 
 const UpcomingDrops = () => {
   const dispatch = useDispatch();
