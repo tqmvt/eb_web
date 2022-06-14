@@ -51,8 +51,8 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: '/metaverse-auctions',
-        destination: '/mad-auction',
+        source: '/mad-auction',
+        destination: '/auctions/mad-auction',
         permanent: false,
       },
       {
