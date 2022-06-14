@@ -5269,8 +5269,8 @@
       }
     },
     {
-      "name": "Blood NFT",
-      "slug": "blood-nft",
+      "name": "Blood 4 NFT",
+      "slug": "blood-4-nft",
       "multiToken": false,
       "address": "0xCF30e6C7D977F217734e5A265554a016760928E7",
       "onChain": false,

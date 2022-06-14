@@ -21,7 +21,7 @@ const Auction = () => {
         setComponent(<AuctionComponent id={id} />);
       }
     }
-  }, [router.isReady]);
+  }, [router.isReady, id]);
 
   return component;
 };
