@@ -40,7 +40,7 @@ const Blood4NftAuction = () => {
                 14 unique Vials were created paying respect to projects on the Cronos chain by an independent Houston artist.
               </p>
               <p>
-                The unique Vials will be auctioned off on Ebibu's Bay June 14 2022 on Worlds Blood Donor Day.
+                The unique Vials will be auctioned off on Ebisu's Bay June 14 2022 on Worlds Blood Donor Day.
               </p>
               <p>
                 #BLOOD4NFT.
