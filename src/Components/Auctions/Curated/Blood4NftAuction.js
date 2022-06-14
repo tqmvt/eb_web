@@ -8,7 +8,7 @@ import CuratedAuctionCollection from "./CuratedAuctionCollection";
 import Head from "next/head";
 
 const Blood4NftAuction = () => {
-  const name = 'Blood 4 NFT';
+  const name = 'Blood 4 NFT Auction';
   const description = 'Blood 4 NFT is a collection of whimsical blood vials to motivate the blood donors community with the power of the NFT.';
   const image = '/img/collections/blood-nft/banner.jpg';
 
