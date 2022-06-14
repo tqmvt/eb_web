@@ -1,7 +1,8 @@
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
-import config from '../Assets/networks/rpc_config.json';
+import {appConfig} from "../Config";
 
-const APIURL = `${config.subgraph_base}${config.chain_id === '25' ? 'offers' : 'offers-testnet'}`;
+const config = appConfig();
+const APIURL = `${config.urls.subgraph}${config.chain.id === '25' ? 'offers' : 'offers-testnet'}`;
 
 const FIRST = 1000;
 
