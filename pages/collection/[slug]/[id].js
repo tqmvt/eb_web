@@ -4,10 +4,10 @@ import Head from 'next/head';
 import store from '../../../src/Store/store';
 import { getNftDetails } from '../../../src/GlobalState/nftSlice';
 import { findCollectionByAddress, humanize, isAddress } from '../../../src/utils';
-import config from '../../../src/Assets/networks/rpc_config.json';
 import Nft1155 from '../../../src/Components/Collection/nft1155';
 import Nft721 from '../../../src/Components/Collection/nft721';
-const knownContracts = config.known_contracts;
+import {appConfig} from "../../../src/Config";
+const knownContracts = appConfig('collections')
 
 const Nft = ({ slug, id, nft }) => {
   const [type, setType] = useState('721');

@@ -1,14 +1,13 @@
 import moment from 'moment';
-import config from './Assets/networks/rpc_config.json';
 import blacklist from './core/configs/blacklist.json';
 import attributes from './core/configs/attributes.json';
 import { useEffect, useRef } from 'react';
-import dynamic from 'next/dynamic';
 import IPFSGatewayTools from '@pinata/ipfs-gateway-tools/dist/node';
 import {getCnsName} from "./helpers/cns";
+import {appConfig} from "./Config";
 
-export const drops = config.drops;
-export const collections = config.known_contracts;
+const drops = appConfig('drops')
+const collections = appConfig('collections')
 
 const gateway = 'https://mygateway.mypinata.cloud';
 
