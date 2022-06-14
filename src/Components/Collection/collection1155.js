@@ -16,20 +16,20 @@ import { isCrosmocraftsPartsCollection } from '../../utils';
 import SocialsBar from './SocialsBar';
 import { CollectionSortOption } from '../Models/collection-sort-option.model';
 import { FilterOption } from '../Models/filter-option.model';
-import config from '../../Assets/networks/rpc_config.json';
 import Market from '../../Contracts/Marketplace.json';
 import CollectionInfoBar from '../components/CollectionInfoBar';
 import stakingPlatforms from '../../core/data/staking-platforms.json';
 import SalesCollection from '../components/SalesCollection';
 import CollectionNftsGroup from '../components/CollectionNftsGroup';
+import {appConfig} from "../../Config";
 
-// const knownContracts = config.known_contracts;
+const config = appConfig();
 
 const Collection1155 = ({ collection, tokenId = null, cacheName = 'collection', slug }) => {
   const dispatch = useDispatch();
 
-  const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
-  const readMarket = new Contract(config.market_contract, Market.abi, readProvider);
+  const readProvider = new ethers.providers.JsonRpcProvider(config.rpc.read);
+  const readMarket = new Contract(config.contracts.market, Market.abi, readProvider);
 
   const [royalty, setRoyalty] = useState(null);
   const [metadata, setMetadata] = useState(null);

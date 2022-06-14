@@ -2,6 +2,30 @@
   "name": "ebisusbay",
   "version": "2.0.0",
   "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "start-web": "NODE_OPTIONS=\"--max_old_space_size=4096\" next start",
+    "format": "prettier --write \"**/*.+(js|jsx|json|md|mdx|css|scss)\""
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,json,md,mdx}": [
+      "prettier --write"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
   "dependencies": {
     "@apollo/client": "^3.5.10",
     "@cnsdomains/core": "^0.1.2",
@@ -61,30 +85,6 @@
     "use-breakpoint": "^3.0.2",
     "web-vitals": "^2.1.0",
     "web3modal": "^1.9.7"
-  },
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "start-web": "next start",
-    "format": "prettier --write \"**/*.+(js|jsx|json|md|mdx|css|scss)\""
-  },
-  "lint-staged": {
-    "src/**/*.{js,jsx,json,md,mdx}": [
-      "prettier --write"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
   },
   "devDependencies": {
     "babel-plugin-styled-components": "^2.0.7",

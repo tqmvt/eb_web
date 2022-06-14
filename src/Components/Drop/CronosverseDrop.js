@@ -107,17 +107,13 @@ const CronosverseDrop = () => {
     return state.memberships;
   });
 
-  const cronies = useSelector((state) => {
-    return state.cronies;
-  });
-
   useEffect(() => {
     async function fetchData() {
       await retrieveDropInfo();
     }
     fetchData();
     // eslint-disable-next-line
-  }, [user, membership, cronies]);
+  }, [user, membership]);
 
   const retrieveDropInfo = async () => {
     setDropObject(drop);

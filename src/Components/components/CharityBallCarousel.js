@@ -72,15 +72,6 @@ export default class Responsive extends Component {
     this.state = {};
   }
 
-  // @todo refactor out
-  isCroniesDrop(drop) {
-    return drop.slug === 'cronies';
-  }
-  // @todo refactor out
-  isFounderDrop(drop) {
-    return drop.slug === 'founding-member';
-  }
-
   calculateStatus(drop) {
     return statuses.EXPIRED;
     // const sTime = new Date(drop.start);
@@ -105,6 +96,7 @@ export default class Responsive extends Component {
       slidesToScroll: 1,
       initialSlide: 0,
       adaptiveHeight: 300,
+      lazyLoad: true,
       centerPadding: '100px',
       responsive: [
         {

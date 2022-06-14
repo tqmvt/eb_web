@@ -3,11 +3,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  poweredByHeader: false,
   compiler: {
     styledComponents: true,
   },
   images: {
-    dangerouslyAllowSVG: true,
+    dangerouslyAllowSVG: false,
     domains: [
       'ipfs.io',
       'app.ebisusbay.com',
@@ -17,6 +18,9 @@ const nextConfig = {
       'res.cloudinary.com',
       'ebisusbay.imgix.net',
       'metadata.cronos.domains',
+      'ik.imagekit.io',
+      'cdn.ebisusbay.com',
+      'cdn.ebisusbay.biz'
     ],
   },
   async redirects() {
@@ -47,8 +51,8 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: '/metaverse-auctions',
-        destination: '/mad-auction',
+        source: '/mad-auction',
+        destination: '/auctions/mad-auction',
         permanent: false,
       },
       {

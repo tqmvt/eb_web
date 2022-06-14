@@ -8,6 +8,7 @@ import Footer from '../../src/Components/components/Footer';
 import UpcomingDrops from '../../src/Components/Drops/UpcomingDrops';
 import PastDrops from '../../src/Components/Drops/PastDrops';
 import { getTheme } from '../../src/Theme/theme';
+import {hostedImage} from "../../src/hacks";
 
 const Drops = () => {
   const userTheme = useSelector((state) => {
@@ -28,7 +29,7 @@ const Drops = () => {
           <div style={{ width: '70px' }} className="my-auto">
             <Link href="/collection/founding-member">
               <a>
-                <img src="/img/founding_member_sm.png" className="img-responsive" alt="Founding Member Membership" />
+                <img src={hostedImage('/img/founding_member_sm.png')} className="img-responsive" alt="Founding Member Membership" />
               </a>
             </Link>
           </div>

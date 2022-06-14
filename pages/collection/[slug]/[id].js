@@ -4,10 +4,10 @@ import Head from 'next/head';
 import store from '../../../src/Store/store';
 import { getNftDetails } from '../../../src/GlobalState/nftSlice';
 import { findCollectionByAddress, humanize, isAddress } from '../../../src/utils';
-import config from '../../../src/Assets/networks/rpc_config.json';
 import Nft1155 from '../../../src/Components/Collection/nft1155';
 import Nft721 from '../../../src/Components/Collection/nft721';
-const knownContracts = config.known_contracts;
+import {appConfig} from "../../../src/Config";
+const knownContracts = appConfig('collections')
 
 const Nft = ({ slug, id, nft }) => {
   const [type, setType] = useState('721');
@@ -62,7 +62,7 @@ const Nft = ({ slug, id, nft }) => {
         const traitsTop = traits[0];
         const res = `${anNFT?.description ? anNFT.description.slice(0, 250) : ''} ... Top Trait: ${
           traitsTop.value ? humanize(traitsTop.value) : 'N/A'
-        }, ${traitsTop.occurrence}%`;
+        }, ${traitsTop.occurrence * 100}%`;
 
         return res;
       }
@@ -92,7 +92,7 @@ const Nft = ({ slug, id, nft }) => {
           {type === '1155' ? (
             <Nft1155 address={collection.address} id={id} />
           ) : (
-            <Nft721 address={collection.address} id={id} nft={nft} />
+            <Nft721 address={collection.address} id={id} />
           )}
         </>
       )}

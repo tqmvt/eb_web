@@ -1,6 +1,6 @@
 export class Site24x7LoggingService {
   static init() {
-    Site24x7LoggingService.enableSite24x7(process.env.REACT_APP_SITE24X7_KEY);
+    Site24x7LoggingService.enableSite24x7(process.env.NEXT_PUBLIC_SITE24X7_KEY);
   }
 
   static site24x7ErrorHandler = function (error) {

@@ -3,15 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import Image from 'next/image';
 import { ethers } from 'ethers';
 import MetaMaskOnboarding from '@metamask/onboarding';
 
-import { croSkullRedPotionImageHack } from '../../hacks';
+import { nftCardUrl } from '../../hacks';
 import Button from './Button';
 import MakeOfferDialog from '../Offer/MakeOfferDialog';
 import { connectAccount, chainConnect } from '../../GlobalState/User';
-import { isNftBlacklisted, round, getSlugFromAddress } from '../../utils';
+import { isNftBlacklisted, round } from '../../utils';
 import { AnyMedia } from './AnyMedia';
 
 const Watermarked = styled.div`
@@ -98,18 +97,22 @@ const NftCard = ({ royalty, listing, imgClass = 'marketplace', watermark, addres
         {watermark ? (
           <Watermarked watermark={watermark}>
             <AnyMedia
-              image={croSkullRedPotionImageHack(listing.address, listing.image)}
+              image={nftCardUrl(listing.address, listing.image)}
               className={`card-img-top ${imgClass}`}
               title={listing.name}
               url={`/collection/${collection.slug}/${listing.id}`}
+              width={440}
+              height={440}
             />
           </Watermarked>
         ) : (
           <AnyMedia
-            image={croSkullRedPotionImageHack(listing.address, listing.image)}
+            image={nftCardUrl(listing.address, listing.image)}
             className={`card-img-top ${imgClass}`}
             title={listing.name}
             url={`/collection/${collection.slug}/${listing.id}`}
+            width={440}
+            height={440}
           />
         )}
         {listing.rank && <div className="badge bg-rarity text-wrap mt-1 mx-1">Rank: #{listing.rank}</div>}

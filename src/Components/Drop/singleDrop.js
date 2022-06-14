@@ -14,14 +14,11 @@ import * as Sentry from '@sentry/react';
 import styled from 'styled-components';
 
 import Footer from '../components/Footer';
-import config from '../../Assets/networks/rpc_config.json';
 import { connectAccount } from '../../GlobalState/User';
 import { fetchMemberInfo, fetchVipInfo } from '../../GlobalState/Memberships';
-import { fetchCronieInfo } from '../../GlobalState/Cronies';
 import {
-  createSuccessfulTransactionToastContent,
+  createSuccessfulTransactionToastContent, isCarkayousCollection,
   isCreaturesDrop,
-  isCrognomesDrop,
   isCrosmocraftsPartsDrop,
   isCyberCloneDrop,
   isFounderDrop,
@@ -34,8 +31,12 @@ import { dropState as statuses } from '../../core/api/enums';
 import { EbisuDropAbi } from '../../Contracts/Abis';
 import { getTheme } from '../../Theme/theme';
 import SocialsBar from '../Collection/SocialsBar';
+import {hostedImage} from "../../hacks";
+import {parseUnits} from "ethers/lib/utils";
+import {appConfig} from "../../Config";
 
-export const drops = config.drops;
+const config = appConfig();
+const drops = config.drops;
 
 const fadeInUp = keyframes`
   0% {
@@ -85,7 +86,7 @@ const SingleDrop = () => {
   const router = useRouter();
   const { slug } = router.query;
 
-  const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
+  const readProvider = new ethers.providers.JsonRpcProvider(config.rpc.read);
   const dispatch = useDispatch();
 
   // const [loading, setLoading] = useState(true);
@@ -107,20 +108,19 @@ const SingleDrop = () => {
   const [totalSupply, setTotalSupply] = useState(0);
   const [canMintQuantity, setCanMintQuantity] = useState(0);
 
-  useEffect(() => {
-    logEvent(getAnalytics(), 'screen_view', {
-      firebase_screen: 'drop',
-      drop_id: slug,
-    });
-    // eslint-disable-next-line
-  }, []);
+  // useEffect(() => {
+  //   logEvent(getAnalytics(), 'screen_view', {
+  //     firebase_screen: 'drop',
+  //     drop_id: slug,
+  //   });
+  //   // eslint-disable-next-line
+  // }, []);
 
   useEffect(() => {
     dispatch(fetchMemberInfo());
     if (process.env.NODE_ENV === 'development') {
       dispatch(fetchVipInfo());
     }
-    dispatch(fetchCronieInfo());
     // eslint-disable-next-line
   }, []);
 
@@ -136,10 +136,6 @@ const SingleDrop = () => {
     return state.memberships;
   });
 
-  const cronies = useSelector((state) => {
-    return state.cronies;
-  });
-
   const userTheme = useSelector((state) => {
     return state.user.theme;
   });
@@ -150,7 +146,7 @@ const SingleDrop = () => {
     }
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user, membership, cronies]);
+  }, [user, membership]);
 
   const retrieveDropInfo = async () => {
     setDropObject(drop);
@@ -220,6 +216,13 @@ const SingleDrop = () => {
         const canMint = user.address ? await readContract.canMint(user.address) : 0;
         setDropInfoFromContract(infos, canMint);
         setMaxSupply(1000);
+        calculateStatus(currentDrop, infos.totalSupply, currentDrop.totalSupply);
+      } else if (isCarkayousCollection(drop.address)) {
+        let readContract = await new ethers.Contract(currentDrop.address, abi, readProvider);
+        const infos = await readContract.getInfo();
+        const canMint = user.address ? await readContract.canMint(user.address) : 0;
+        setDropInfoFromContract(infos, canMint);
+        setMaxSupply(2222);
         calculateStatus(currentDrop, infos.totalSupply, currentDrop.totalSupply);
       } else {
         if (currentDrop.address && (isUsingDefaultDropAbi(currentDrop.abi) || isUsingAbiFile(currentDrop.abi))) {
@@ -340,9 +343,12 @@ const SingleDrop = () => {
         if (isCreaturesDrop(drop.address)) {
           finalCost = finalCost.sub(cost.mul(Math.floor(numToMint / 4)));
         }
+
+        const gasPrice = parseUnits('5000', 'gwei');
         let extra = {
           value: finalCost,
-          gasPrice: ethers.utils.parseUnits('5000', 'gwei'),
+          gasPrice: gasPrice,
+          gasLimit: (parseUnits('2.5', 'ether') * numToMint) / gasPrice,
         };
 
         var response;
@@ -382,10 +388,6 @@ const SingleDrop = () => {
               if (isErc20 === true) {
                 response = await contract.mintWithLoot(user.address, numToMint);
               } else {
-                extra = {
-                  ...extra,
-                  gasPrice: ethers.utils.parseUnits('5000', 'gwei'),
-                };
                 response = await contract.mint(user.address, numToMint, extra);
               }
             } else {
@@ -393,10 +395,6 @@ const SingleDrop = () => {
               if (isErc20 === true) {
                 response = await contract.mintWithLoot(numToMint);
               } else {
-                extra = {
-                  ...extra,
-                  gasPrice: ethers.utils.parseUnits('5000', 'gwei'),
-                };
                 response = await contract.mint(numToMint, extra);
               }
             }
@@ -484,7 +482,7 @@ const SingleDrop = () => {
         </Head>
         <HeroSection
           className={`jumbotron h-vh tint`}
-          style={{ backgroundImage: `url(${drop.imgBanner ? drop.imgBanner : '/img/background/Ebisus-bg-1_L.webp'})` }}
+          style={{ backgroundImage: `url(${drop.imgBanner ? hostedImage(drop.imgBanner) : hostedImage('/img/background/Ebisus-bg-1_L.webp')})` }}
         >
           <div className="container">
             <div className="row align-items-center">
@@ -578,7 +576,7 @@ const SingleDrop = () => {
               <div className="d_profile de-flex">
                 <div className="de-flex-col">
                   <div className="profile_avatar">
-                    {drop.imgAvatar && <img src={drop.imgAvatar} alt={drop.author.name} />}
+                    {drop.imgAvatar && <img src={hostedImage(drop.imgAvatar)} alt={drop.author.name} />}
                     <div className="profile_name">
                       <h4>
                         {drop.author.name}
@@ -603,7 +601,7 @@ const SingleDrop = () => {
         <section className="container no-top">
           <div className="row mt-md-5 pt-md-4">
             <div className="col-md-6 text-center">
-              <img src={drop.imgNft} className="img-fluid img-rounded mb-sm-30" alt={drop.title} />
+              <img src={hostedImage(drop.imgNft)} className="img-fluid img-rounded mb-sm-30" alt={drop.title} />
             </div>
             <div className="col-md-6">
               <div className="item_info">

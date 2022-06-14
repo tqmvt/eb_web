@@ -1,11 +1,11 @@
 import {CNS} from "@cnsdomains/core";
-import config from "../Assets/networks/rpc_config.json";
 import {ethers} from "ethers";
+import {appConfig} from "../Config";
 
-const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
+const readProvider = new ethers.providers.JsonRpcProvider(appConfig('rpc.read'));
 
 export const getCnsNames = async (addresses) => {
-  const cns = new CNS(config.chain_id, readProvider);
+  const cns = new CNS(appConfig('chain.id'), readProvider);
   return await Promise.all(addresses.map(async (address) => await cns.getName(address)));
 };
 

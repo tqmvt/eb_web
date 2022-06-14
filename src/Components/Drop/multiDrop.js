@@ -14,15 +14,15 @@ import * as Sentry from '@sentry/react';
 import styled from 'styled-components';
 
 import Footer from '../components/Footer';
-import config from '../../Assets/networks/rpc_config.json';
 import { connectAccount } from '../../GlobalState/User';
 import { fetchMemberInfo, fetchVipInfo } from '../../GlobalState/Memberships';
-import { fetchCronieInfo } from '../../GlobalState/Cronies';
 import { createSuccessfulTransactionToastContent, isCmbDrop, newlineText, percentage } from '../../utils';
 import { dropState as statuses } from '../../core/api/enums';
 import { EbisuDropAbi } from '../../Contracts/Abis';
+import {appConfig} from "../../Config";
 
-export const drops = config.drops;
+const config = appConfig();
+const drops = config.drops;
 
 const fadeInUp = keyframes`
   0% {
@@ -61,7 +61,7 @@ const MultiDrop = () => {
   const router = useRouter();
   const { slug } = router.query;
 
-  const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
+  const readProvider = new ethers.providers.JsonRpcProvider(config.rpc.read);
   const dispatch = useDispatch();
 
   // const [loading, setLoading] = useState(true);
@@ -96,7 +96,6 @@ const MultiDrop = () => {
     if (process.env.NODE_ENV === 'development') {
       dispatch(fetchVipInfo());
     }
-    dispatch(fetchCronieInfo());
     // eslint-disable-next-line
   }, []);
 
@@ -112,17 +111,13 @@ const MultiDrop = () => {
     return state.memberships;
   });
 
-  const cronies = useSelector((state) => {
-    return state.cronies;
-  });
-
   useEffect(() => {
     async function retrieveInfo() {
       await retrieveDropInfo();
     }
     retrieveInfo();
     // eslint-disable-next-line
-  }, [user, membership, cronies]);
+  }, [user, membership]);
 
   const retrieveDropInfo = async () => {
     setDropObject(drop);

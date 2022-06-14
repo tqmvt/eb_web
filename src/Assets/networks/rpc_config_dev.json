@@ -7,6 +7,7 @@
   "explorer": "https://cronoscan.com/",
   "api_base": "https://api.ebisusbay.biz/",
   "app_base": "https://app.ebisusbay.biz/",
+  "cdn_base": "https://cdn.ebisusbay.biz/",
   "subgraph_base": "https://graph.ebisusbay.com:8000/subgraphs/name/ebisusbay/",
   "membership_contract": "0x8d9232Ebc4f06B7b8005CCff0ca401675ceb25F5",
   "auction_contract": "0xd488b38d19d5708cbda224c041a24c3e3149bc93",
@@ -27,7 +28,7 @@
     "mad": {
       "name": "MAD",
       "symbol": "MAD",
-      "address": "0xD6464BdB57e9eD610692635b64fd47B763345032"
+      "address": "0x212331e1435a8df230715db4c02b2a3a0abf8c61"
     }
   },
   "known_contracts": [
@@ -2303,9 +2304,9 @@
       "multiToken": false,
       "address": "0x14e9ef197C0bfaf7C1328ebed7151f53616Af3C5",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
-        "description": "",
+        "description": "A Mysterious Egg found by a CroSkull during his adventure! \"I.... never seen an egg like that, it may hatch in a some mysterious creature.\" Hatching Available on https://app.croskull.com/ ",
         "verified": true,
         "avatar": "/img/collections/croskull/eggs/avatar.webp",
         "card": "/img/collections/croskull/eggs/card.webp",
@@ -2802,6 +2803,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
+        "description": "The glass champions of the MarbleVerse represent the core of creativity, design, and imagination. With their crafted simplicity, minimalistic posture and sturdy build, Marbles are created to battle through race tracks with the grace of a dancer and a strong will to win. Getting stronger as their flocks grow, Marble racers represent purity, open-mindedness, creativity, unbound potential, and unshakable love of our childhoods while reflecting the aesthetic of the contemporary world.",
         "verified": true,
         "avatar": "/img/collections/marbleverse/avatar.webp",
         "banner": "/img/collections/marbleverse/banner.webp",
@@ -3345,7 +3347,7 @@
       "multiToken": false,
       "address": "0x2ea93ef899a28d6049146b98c7CFCA4C7f541a8d",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "Kardia is a unique multi-tier gaming NFT project on the KCC and CRO blockchain, starting with the founder's deck of 11,051 playable cards. Using our play-to-earn mechanics, you can play against other players, earn valuable resources, win NFTs, stake for cryptocurrencies, and compete for crypto-related prizes. A crypto-currency prize pool will be generated from secondary sale royalties and will be used to buy NFTs, other cryptocurrencies, and other prizes that can be won as a result of tournaments, special triggers, loot boxes, and more!",
         "verified": true,
@@ -3913,7 +3915,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "A potion generated in the DR Jiko Labotary, it's rumored to have the powers to summon Ancient CroSkull (EvoSkull). Available for performing summoning on  https://app.croskull.com/",
         "verified": true,
         "avatar": "/img/collections/croskull/purplepotions/avatar.webp",
         "card": "/img/collections/croskull/purplepotions/card.webp",
@@ -4621,7 +4623,7 @@
       "name": "Lazy Gophers",
       "slug": "lazy-gophers",
       "multiToken": false,
-      "address": "0x9B1702011c498fB6b61e308e8D74553f413F7291",
+      "address": "0x20Ec66Dd5b6255604a8730c217391f8820707CCA",
       "onChain": false,
       "listable": false,
       "metadata": {
@@ -4973,7 +4975,7 @@
       "name": "Flaming Phenix Club",
       "slug": "flaming-phenix-club",
       "multiToken": false,
-      "address": "",
+      "address": "0xCf185Cb08c62Ff969D258FBA18F92dabb278A8A9",
       "onChain": false,
       "listable": false,
       "metadata": {
@@ -5008,6 +5010,262 @@
         "twitter": "https://twitter.com/0xLuckless",
         "discord": "https://discord.gg/REbVZ9rACc",
         "medium": "https://medium.com/@0xLuckless"
+      }
+    },
+    {
+      "name": "Meow Meow Society",
+      "slug": "meow-meow-society",
+      "multiToken": false,
+      "address": "0x10970Bf2d222234bb740Ee19DCE621dF894fb123",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "Meow Meow are family cats, having variety of characters, they are waiting for you to get adopted. Let’s meet them at #Cronos. Staking, Breeding, 3D Meow & Metaverse MeowHomes.",
+        "verified": false,
+        "avatar": "/img/collections/meow-meow-society/avatar.webp",
+        "card": "/img/collections/meow-meow-society/card.webp",
+        "banner": "/img/collections/meow-meow-society/banner.webp",
+        "maxSupply": 555,
+        "website": "https://www.meowcatsmeow.com/",
+        "twitter": "https://twitter.com/meowofficialcat",
+        "discord": "https://discord.gg/SSAGbR2FDM"
+      }
+    },
+    {
+      "name": "CroSkull Pets",
+      "slug": "croskull-pets",
+      "multiToken": false,
+      "address": "0xB77959DC7a12F7549ACC084Af01259Fc48813c89",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "The Underworld is full of all kinds of creatures. During the CroSkulls adventures to the different regions of the Underworld, the CroSkulls often find regional eggs. Each season of CroSkulls explore new regions of the Underworld. Each season will have different seasonal pets. Once the eggs hatch, you will acquire a seasonal pet from that egg’s region of the Underworld.",
+        "verified": true,
+        "avatar": "/img/collections/croskull/pets/avatar.webp",
+        "card": "/img/collections/croskull/pets/card.webp",
+        "banner": "/img/collections/croskull/pets/banner.webp",
+        "maxSupply": 2200,
+        "website": "https://app.croskull.com/",
+        "twitter": "https://twitter.com/CroskullNFT",
+        "discord": "https://discord.gg/croskull",
+        "medium": "https://medium.com/@croskullnft"
+      }
+    },
+    {
+      "name": "CronoGods Kids",
+      "slug": "cronogods-kids",
+      "multiToken": false,
+      "address": "0x9F4a2Ac102d006caDFa54cb592d5658A08BEed5B",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "When a God and Goddess get together...",
+        "verified": true,
+        "avatar": "/img/collections/cronogods/kids/avatar.png",
+        "card": "/img/collections/cronogods/kids/card.png",
+        "banner": "/img/collections/cronogods/kids/banner.png",
+        "maxSupply": 2000,
+        "website": "https://www.cronogods.com/cronogoddess",
+        "twitter": "https://twitter.com/CronoGoddess",
+        "discord": "https://discord.gg/xECQDMZANw"
+      }
+    },
+    {
+      "name": "Icy Valkyries",
+      "slug": "icy-valkyries",
+      "multiToken": false,
+      "address": "0x07174D2B657b2243E5C11Df2Cd3D4afD1E45DBBb",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "Icy Valkyries is a collection of 1000 NFTs who live in the darkest corner of Valhalla. Owning a Valkyrie allows you to fight in the monthly Icy Squid Game for huge jackpots, build a farm, start a family and establish your own clan.",
+        "verified": true,
+        "avatar": "/img/collections/icy-valkyries/avatar.png",
+        "card": "/img/collections/icy-valkyries/card.png",
+        "banner": "/img/collections/icy-valkyries/banner.png",
+        "maxSupply": 1000,
+        "website": "https://www.icysquidgame.com/",
+        "twitter": "https://twitter.com/IcySquidGame",
+        "discord": "https://discord.gg/jFX4RNrFGu",
+        "medium": "https://medium.com/@icysquidgame"
+      }
+    },
+    {
+      "name": "B.A.D. - Founders Passport",
+      "slug": "bad-founders-passport",
+      "multiToken": false,
+      "address": "0x4E6795D725e26E340865140a870C25d1e413A118",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "The B.A.D Founders Passport gives you ownership in Baby Alien Division's current and future growth. Receive a lifetime of free NFTs, airdrops, mint royalties, and whitelists.",
+        "verified": true,
+        "avatar": "/img/collections/babyaliendivision/founders-passport/avatar.png",
+        "banner": "/img/collections/babyaliendivision/founders-passport/banner.png",
+        "card": "/img/collections/babyaliendivision/founders-passport/card.png",
+        "maxSupply": 550,
+        "website": "https://badaliens.io/",
+        "twitter": "https://twitter.com/BAD_Cronos",
+        "discord": "https://discord.gg/qKBy2azf69",
+        "medium": "https://medium.com/@babyaliendivision"
+      }
+    },
+    {
+      "name": "Wacky Wurmz",
+      "slug": "wacky-wurmz",
+      "multiToken": false,
+      "address": "0xe362fA5211d6aefa803f0DDA4a7169BC361b0927",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "The Wacky Wurmz is an interdimensional worm species that lived on a planet called The Mother Apple, aka Land of the Giving. This NFT Project consists of 2000 uniquely hand-drawn Wurmz and is managed by Migi. With most of the projects on the cronos chain making finance and investments as a primary part of their goal, the Wacky Wurmz have a different take on that, focusing mainly on fun, wackiness and community.",
+        "verified": false,
+        "avatar": "/img/collections/wacky-wurmz/avatar.gif",
+        "banner": "/img/collections/wacky-wurmz/banner.jpg",
+        "card": "/img/collections/wacky-wurmz/card.jpg",
+        "maxSupply": 2000,
+        "website": "https://wackywurmz.com/",
+        "twitter": "https://twitter.com/WackyWurmz",
+        "discord": "https://discord.gg/WackyWurmz"
+      }
+    },
+    {
+      "name": "Bullish Bees",
+      "slug": "bullish-bees",
+      "multiToken": false,
+      "address": "0xe41267f3288d08c9D4e104654A86eD238DC1524f",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "Discover the tale of a colony of bees and their quest for financial independence. Each NFT receives a revenue share from the CYCLONE platform by CRONEX.Finance.",
+        "verified": false,
+        "avatar": "/img/collections/bullish-bees/avatar.png",
+        "banner": "/img/collections/bullish-bees/banner.png",
+        "card": "/img/collections/bullish-bees/card.png",
+        "maxSupply": 500,
+        "website": "https://cronexfinance.github.io/bullishbees/",
+        "twitter": "https://twitter.com/Bullish_Bees",
+        "discord": "https://discord.gg/B6kHvT2dnV",
+        "medium": "https://medium.com/@cronexfinance",
+        "telegram": "https://t.me/cronexfinance"
+      }
+    },
+    {
+      "name": "Baby Space Lizards",
+      "slug": "baby-space-lizards",
+      "multiToken": false,
+      "address": "0x248aE5E4790421485109A6C55058993721ca061d",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "1500 Baby Space Lizards have hatched!",
+        "verified": false,
+        "avatar": "/img/collections/cronoslizards/baby-space-lizards/avatar.png",
+        "card": "/img/collections/cronoslizards/card.png",
+        "banner": "/img/collections/cronoslizards/banner.png",
+        "maxSupply": 1500,
+        "website": "https://cronoslizards.com/",
+        "twitter": "https://twitter.com/CronosLizards",
+        "discord": "https://discord.gg/BRDQhtDNsM"
+      }
+    },
+    {
+      "name": "GoblinCroTown",
+      "slug": "goblin-cro-town",
+      "multiToken": false,
+      "address": "0x9652656deB47f2940A02203A1284F1781BBBc91D",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "Heartbreaking Crypto investors escape from the chaotic world into a deep cave. Slowly turning into Goblins. Since then, a livable and harmless GoblinCroTown has risen.",
+        "verified": false,
+        "avatar": "/img/collections/goblin-cro-town/avatar.gif",
+        "card": "/img/collections/goblin-cro-town/card.png",
+        "banner": "/img/collections/goblin-cro-town/banner.png",
+        "maxSupply": 1500,
+        "website": "https://goblincrotown.xyz/",
+        "twitter": "https://twitter.com/GoblinCroTown",
+        "discord": "https://discord.gg/QE2hr8xya4",
+        "medium": "https://unicrons.gitbook.io/docs/"
+      }
+    },
+    {
+      "name": "UniCROn Hunters",
+      "slug": "unicron-hunters",
+      "multiToken": false,
+      "address": "0xa5F9409305071BA228377Cd2Bc688C3619c69978",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "A 1111 strong team of uniCROn hunters is joining the NFT space on the CRONOS blockchain.",
+        "verified": false,
+        "avatar": "/img/collections/unicron-hunters/avatar.png",
+        "card": "/img/collections/unicron-hunters/card.png",
+        "banner": "/img/collections/unicron-hunters/banner.png",
+        "maxSupply": 1111,
+        "website": "https://unicronhunters.io/",
+        "twitter": "https://twitter.com/unicronhunters",
+        "discord": "https://discord.gg/unicron"
+      }
+    },
+    {
+      "name": "ScareCRO Fright Society",
+      "slug": "scarecro-fright-society",
+      "multiToken": false,
+      "address": "0x219Bd84e44bE4d08289bE20349D94F84B4185667",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "ScareCRO Fright Society is a unique collection of 420 ScareCRO themed avatars. With over 150 unique traits in the collection, each has it's own personality and charm. An exclusive collection with utility. Full digital rights granted to the NFT owner.",
+        "verified": false,
+        "avatar": "/img/collections/scarecro-fright-society/avatar.png",
+        "card": "/img/collections/scarecro-fright-society/card.png",
+        "banner": "/img/collections/scarecro-fright-society/banner.png",
+        "maxSupply": 420,
+        "website": "https://ScareCRO.online/",
+        "twitter": "https://twitter.com/ScareCROcoin",
+        "discord": "https://discord.gg/Uj4sp6F78j",
+        "medium": "https://medium.com/@ScareCROcoin",
+        "telegram": "https://t.me/ScareCROcoin"
+      }
+    },
+    {
+      "name": "Bulldog Bowlers",
+      "slug": "bulldog-bowlers",
+      "multiToken": false,
+      "address": "0x0D7a1eF798EcC733fc64A6c970B862c48a3C667B",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "Lazy Lanes is a bowling game and mental health space located in Lazy World. Bulldog Bowlers are the game pieces that give you access to the game and Lazy Lanes area. The game and artwork has been developed collectively between the Lazy Horse team and CronoGods with the goal of providing mental health support to our community.",
+        "verified": true,
+        "avatar": "/img/collections/bulldog-bowlers/avatar.jpg",
+        "card": "/img/collections/bulldog-bowlers/card.jpeg",
+        "banner": "/img/collections/bulldog-bowlers/banner.jpeg",
+        "maxSupply": 6000,
+        "website": "https://www.lazyhorseraceclub.com",
+        "twitter": "https://twitter.com/lazy_lanes",
+        "discord": "https://discord.gg/lhrc",
+        "medium": "https://medium.com/@lazyhorseraceclub"
+      }
+    },
+    {
+      "name": "Carkayous",
+      "slug": "carkayous",
+      "multiToken": false,
+      "address": "0x72af9c869a4759e6d50e9656c0741b395532c3dd",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "Carkayous is a fictitious continent created by Jesse Smith (Ink Master | TV Celeb | Tattoo Artist) where his art lives. The goal of Expedition #9 is to further explore Killick Falls Lagoon where the Feral Fish lives. This is a 2,222 PFP collection with FREE Tattoos (flight and hotel included) as the primary utility.",
+        "verified": true,
+        "avatar": "/img/collections/carkayous/avatar.png",
+        "card": "/img/collections/carkayous/card.png",
+        "banner": "/img/collections/carkayous/banner.png",
+        "maxSupply": 2222,
+        "website": "https://carkayous.com/",
+        "twitter": "https://twitter.com/carkayous",
+        "discord": "https://discord.gg/carkayous"
       }
     }
   ],
@@ -7122,20 +7380,89 @@
         "medium": "https://medium.com/@phenixfinance.marketing",
         "telegram": "https://t.me/phenixfinance"
       },
-      "address": "",
+      "address": "0xCf185Cb08c62Ff969D258FBA18F92dabb278A8A9",
       "maxMintPerTx": 10,
       "maxMintPerAddress": 100,
-      "totalSupply": 5000,
+      "totalSupply": 6666,
       "cost": "290",
       "memberCost": "260",
       "whitelistCost": "240",
       "foundersOnly": false,
-      "start": 1654808400000,
+      "start": 1654894800000,
       "end": null,
       "referral": false,
       "is1155": false,
       "published": true,
       "complete": false
+    },
+    {
+      "id": 79,
+      "slug": "icy-valkyries",
+      "imgNft": "/img/drops/icy-valkyries/drop.png",
+      "imgPreview": "/img/drops/icy-valkyries/drop.png",
+      "imgAvatar": "/img/collections/icy-valkyries/avatar.png",
+      "imgBanner": "/img/collections/icy-valkyries/banner.png",
+      "title": "Icy Valkyries",
+      "subtitle": "Icy Valkyries is a collection of 1000 NFTs who live in the darkest corner of Valhalla. \n\nThis is the only NFT project in Cronos who owns an actual CRO validator and controls 1% of the whole network. Fees earned from the validator are used for the game prizes. \n\nOwning a Valkyrie allows you to fight in the monthly Icy Squid Game for huge jackpots, build a farm, start a family and establish your own clan.\n\nWill your clan rule Valhalla one day?",
+      "description": "Icy Valkyries is a collection of 1000 NFTs who live in the darkest corner of Valhalla. \n\nThis is the only NFT project in Cronos who owns an actual CRO validator and controls 1% of the whole network. Fees earned from the validator are used for the game prizes. \n\nOwning a Valkyrie may allow you to fight in the monthly Icy Squid Game for huge jackpots, build a farm, start a family and establish your own clan.\n\nValhalla's economy runs on ICY token, which was launched in November 2021. Valkyries can earn ICY when working on farms or mines and they can also win some ICY from the monthly games.\n\nMint your own valkyrie and one day you may rule this corner of Valhalla!",
+      "author": {
+        "name": "Icy Squid Games",
+        "website": "https://www.icysquidgame.com/",
+        "twitter": "https://twitter.com/IcySquidGame",
+        "discord": "https://discord.gg/jFX4RNrFGu",
+        "medium": "https://medium.com/@icysquidgame"
+      },
+      "address": "0x07174D2B657b2243E5C11Df2Cd3D4afD1E45DBBb",
+      "maxMintPerTx": 8,
+      "maxMintPerAddress": 100,
+      "totalSupply": 1000,
+      "cost": "420",
+      "memberCost": "350",
+      "whitelistCost": "350",
+      "foundersOnly": false,
+      "start": 1654804800000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false,
+      "priceDescription": "Whitelist-only presale for the first 12 hours (limit 8 per address). Public sale after presale ends."
+    },
+    {
+      "id": 80,
+      "slug": "carkayous",
+      "imgNft": "/img/drops/carkayous/drop.png",
+      "imgPreview": "/img/drops/carkayous/drop.png",
+      "imgAvatar": "/img/collections/carkayous/avatar.png",
+      "imgBanner": "/img/collections/carkayous/banner.png",
+      "title": "Carkayous",
+      "subtitle": "Carkayous is a fictitious continent created by Jesse Smith (Ink Master | TV Celeb | Tattoo Artist) where his art lives. The goal of Expedition #9 is to further explore Killick Falls Lagoon where the Feral Fish lives. This is a 2,222 PFP collection with FREE Tattoos (flight and hotel included) as the primary utility.",
+      "description": "Carkayous is a fictitious continent created by Jesse Smith (Ink Master | TV Celeb | Tattoo Artist) where his art lives. \n\nThe goal of Expedition #9 is to further explore Killick Falls Lagoon where the Feral Fish lives. This is a 2,222 PFP collection with FREE Tattoos (flight and hotel included) as the primary utility.\n\nCheck out all of the utilities here: https://www.carkayous.com/expedition-nine ",
+      "author": {
+        "name": "Carkayous",
+        "website": "https://carkayous.com/",
+        "twitter": "https://twitter.com/carkayous",
+        "discord": "https://discord.gg/carkayous"
+      },
+      "address": "0x72af9c869a4759e6d50e9656c0741b395532c3dd",
+      "maxMintPerTx": 6,
+      "maxMintPerAddress": 100,
+      "totalSupply": 2222,
+      "cost": "475",
+      "memberCost": "425",
+      "whitelistCost": "425",
+      "foundersOnly": false,
+      "start": 1655154000000,
+      "salePeriods": {
+        "presale": 1655154000000,
+        "public": 1655240400000
+      },
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false,
+      "priceDescription": "Presale for Whitelist and Founding Members for the first 24 hours (limit 6 per address). Public sale after presale ends."
     }
   ],
   "auctions": [

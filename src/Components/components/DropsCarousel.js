@@ -10,6 +10,7 @@ import Clock from './Clock';
 import LayeredIcon from './LayeredIcon';
 import config from '../../Assets/networks/rpc_config.json';
 import { dropState } from '../../core/api/enums';
+import {hostedImage} from "../../hacks";
 export const drops = config.drops;
 
 const GlobalStyles = createGlobalStyle`
@@ -66,10 +67,6 @@ export default class Responsive extends Component {
     this.arrangeCollections();
   }
 
-  // @todo refactor out
-  isCroniesDrop(drop) {
-    return drop.slug === 'cronies';
-  }
   // @todo refactor out
   isFounderDrop(drop) {
     return drop.slug === 'founding-member';
@@ -154,6 +151,7 @@ export default class Responsive extends Component {
       slidesToScroll: 1,
       initialSlide: 0,
       adaptiveHeight: 300,
+      lazyLoad: true,
       centerPadding: '100px',
       responsive: [
         {
@@ -227,7 +225,7 @@ export default class Responsive extends Component {
                 <div className="nft__item_lg">
                   <div className="row align-items-center">
                     <div className="col-lg-6">
-                      <img src={drop.imgPreview} className="img-fluid mx-auto" alt={drop.title} />
+                      <img src={hostedImage(drop.imgPreview)} className="img-fluid mx-auto" alt={drop.title} />
                     </div>
                     <div className="col-lg-6">
                       <div className="d-desc">
@@ -235,7 +233,7 @@ export default class Responsive extends Component {
                         <div className="d-author">
                           <div className="author_list_pp">
                             {drop.imgAvatar ? (
-                              <img className="lazy" src={drop.imgAvatar} alt={drop.author.name} />
+                              <img className="lazy" src={hostedImage(drop.imgAvatar, true)} alt={drop.author.name} />
                             ) : (
                               <Blockies seed={drop.slug} size={10} scale={5} />
                             )}

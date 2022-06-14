@@ -20,12 +20,12 @@ import {
   AccountMenuActions,
   checkForOutstandingOffers,
 } from '../../GlobalState/User';
-import rpcConfig from '../../Assets/networks/rpc_config.json';
 
 import { getThemeInStorage, setThemeInStorage } from '../../helpers/storage';
 import { getAllCollections } from '../../GlobalState/collectionsSlice';
 import { fetchMyNFTs } from '../../GlobalState/offerSlice';
 import { isUserBlacklisted, round, shortAddress } from '../../utils';
+import {appConfig} from "../../Config";
 
 const BlockiesBadge = styled.div`
   position: absolute;
@@ -448,7 +448,7 @@ const AccountMenu = function () {
           <StyledModalTitle>Wrong network!</StyledModalTitle>
         </Modal.Header>
         <Modal.Body>
-          To continue, you need to switch the network to <span style={{ fontWeight: 'bold' }}>{rpcConfig.name}</span>.{' '}
+          To continue, you need to switch the network to <span style={{ fontWeight: 'bold' }}>{appConfig('chain.name')}</span>.{' '}
         </Modal.Body>
         <Modal.Footer>
           <button className="p-4 pt-2 pb-2 btn_menu inline white lead" onClick={onWrongChainModalClose}>

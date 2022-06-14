@@ -10,10 +10,10 @@ services:
       dockerfile: ./proxy/Dockerfile_local
     environment:
       ## NGINX Amplify Agent
-      AMPLIFY_API_KEY: 9eb5c56d5bdd811ea6d0bdb78009cb6f
+      AMPLIFY_API_KEY: b7f1ca270e79d8dc6350cd837b2b006b
       AMPLIFY_ENABLED: false
     healthcheck:
-      test: ["CMD-SHELL", "curl -f -s http://localhost:8080 || exit 1"]
+      test: ["CMD-SHELL", "curl -f -s http://localhost:8080/health || exit 1"]
       interval: 5s
       timeout: 2s
       retries: 3
@@ -44,12 +44,13 @@ services:
       dockerfile: Dockerfile_local
     environment:
       PORT: '3000'
+      NEXT_PUBLIC_ENV: development
       # APMINSIGHT_ENABLED: 'false'
       # APMINSIGHT_LICENSE_KEY: us_25e4846c624d0af156763484be1e7e31
       # APMINSIGHT_APP_NAME: local-ebisusbay-web-arm64-us-east-1
       # APMINSIGHT_APP_PORT: '3000'
     healthcheck:
-      test: ["CMD-SHELL", "curl -f -s http://localhost:3000 || exit 1"]
+      test: ["CMD-SHELL", "curl -f -s http://localhost:3000/health || exit 1"]
       interval: 5s
       timeout: 2s
       retries: 3

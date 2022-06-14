@@ -1,8 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { getCollectionMetadata } from '../core/api';
-import config from '../Assets/networks/rpc_config.json';
-import {caseInsensitiveCompare, findCollectionByAddress} from '../utils';
-export const knownContracts = config.known_contracts;
+import {findCollectionByAddress} from '../utils';
 
 const collectionsSlice = createSlice({
   name: 'collections',

@@ -32,9 +32,11 @@ import {
   isUserBlacklisted,
   isNftBlacklisted,
 } from '../../src/utils';
-import config from '../../src/Assets/networks/rpc_config.json';
-import { croSkullRedPotionImageHack } from '../../src/hacks';
+import {hostedImage, specialImageTransform} from '../../src/hacks';
 import NFTTabOffers from '../../src/Components/Offer/NFTTabOffers';
+import {appConfig} from "../../src/Config";
+
+const config = appConfig();
 
 const Listing = () => {
   const router = useRouter();
@@ -63,13 +65,15 @@ const Listing = () => {
   const [babyWeirdApeBreed, setBabyWeirdApeBreed] = useState(null);
 
   useEffect(() => {
-    dispatch(getListingDetails(id));
+    if (router.isReady) {
+      dispatch(getListingDetails(id));
+    }
   }, [dispatch, id]);
 
   useEffect(() => {
     async function asyncFunc() {
       if (listing && isCroCrowCollection(listing.nftAddress) && croCrowBreed === null) {
-        const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
+        const readProvider = new ethers.providers.JsonRpcProvider(config.rpc.read);
         const contract = new Contract(
           '0x0f1439a290e86a38157831fe27a3dcd302904055',
           [
@@ -105,7 +109,7 @@ const Listing = () => {
   useEffect(() => {
     async function asyncFunc() {
       if (listing && isCrognomidesCollection(listing.nftAddress) && crognomideBreed === null) {
-        const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
+        const readProvider = new ethers.providers.JsonRpcProvider(config.rpc.read);
         const contract = new Contract(
           '0xE57742748f98ab8e08b565160D3A9A32BFEF7352',
           ['function crognomidUsed(uint256) public view returns (bool)'],
@@ -128,7 +132,7 @@ const Listing = () => {
   useEffect(() => {
     async function asyncFunc() {
       if (listing && isBabyWeirdApesCollection(listing.nftAddress)) {
-        const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
+        const readProvider = new ethers.providers.JsonRpcProvider(config.rpc.read);
         const abiFile = require(`../../src/Assets/abis/baby-weird-apes.json`);
         const contract = new Contract(listing.nftAddress, abiFile.abi, readProvider);
         try {
@@ -267,7 +271,7 @@ const Listing = () => {
                       />
                     ) : (
                       <img
-                        src={croSkullRedPotionImageHack(listing.nftAddress, listing.nft.image)}
+                        src={specialImageTransform(listing.nftAddress, listing.nft.image)}
                         className="img-fluid img-rounded mb-sm-30"
                         alt={listing.nft.name}
                       />
@@ -282,7 +286,7 @@ const Listing = () => {
                   <span
                     onClick={() =>
                       typeof window !== 'undefined' &&
-                      window.open(croSkullRedPotionImageHack(listing.nftAddress, fullImage()), '_blank')
+                      window.open(specialImageTransform(listing.nftAddress, fullImage()), '_blank')
                     }
                   >
                     <span className="p-2">View Full Image</span>
@@ -326,7 +330,7 @@ const Listing = () => {
                     <ProfilePreview
                       type="Collection"
                       title={collection.name}
-                      avatar={collection.metadata.avatar}
+                      avatar={hostedImage(collection.metadata.avatar, true)}
                       address={listing.nftAddress}
                       verified={collection.metadata.verified}
                       to={`/collection/${collection.slug}`}
@@ -335,7 +339,12 @@ const Listing = () => {
                       <ProfilePreview
                         type="Rarity Rank"
                         title={listing.nft.rank}
-                        avatar={collection.metadata.rarity === 'rarity_sniper' ? '/img/logos/rarity-sniper.png' : null}
+                        avatar={hostedImage(
+                          collection.metadata.rarity === 'rarity_sniper'
+                            ? '/img/logos/rarity-sniper.png'
+                            : '/img/logos/ebisu-technicolor.svg',
+                          true
+                        )}
                         hover={
                           collection.metadata.rarity === 'rarity_sniper'
                             ? `Ranking provided by ${humanize(collection.metadata.rarity)}`

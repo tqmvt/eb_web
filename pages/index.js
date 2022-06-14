@@ -18,6 +18,9 @@ import {getTheme, theme} from '../src/Theme/theme';
 import { limitSizeOptions } from '../src/Components/components/constants/filter-options';
 import Button from '../src/Components/components/Button';
 import MetaverseModal from "../src/Components/components/MetaverseModal";
+import {hostedImage} from "../src/hacks";
+import ReactPlayer from "react-player";
+import Image from "next/image";
 
 const fadeInUp = keyframes`
   0% {
@@ -87,7 +90,7 @@ const GlobalStyles = createGlobalStyle`
 const Jumbotron = {
   Host: styled.div`
     background-image: url(${({ isDark }) =>
-      isDark ? '/img/background/banner-dark.webp' : '/img/background/Ebisus-bg-1_L.webp'});
+      isDark ? hostedImage('/img/background/banner-dark.webp') : hostedImage('/img/background/Ebisus-bg-1_L.webp')});
     background-size: cover;
     background-repeat: no-repeat;
     height: max(100vh, 800px);
@@ -247,18 +250,30 @@ const Home = () => {
         <div className="row">
           <div className="col-lg-12">
             <div className="text-center pt-5">
-              <h2>Mad Meerkat Legendary Auction</h2>
+              <h2>B.A.D. - Founders Passport</h2>
               <div className="small-border"></div>
             </div>
           </div>
           <div className="col-lg-6 text-center align-middle d-flex align-items-center">
-            <div className="fs-3 mt-3" style={{color:getTheme(userTheme).colors.textColor3}}>8 Legendary Mad Meerkat Degens being auctioned over the next 16 days. Join our auction in the metaverse!</div>
+            <div className="fs-4 mt-3" style={{color:getTheme(userTheme).colors.textColor3}}>The B.A.D Founders Passport gives you ownership in Baby Alien Division's current and future growth. Receive a lifetime of free NFTs, airdrops, mint royalties, and whitelists.</div>
           </div>
           <div className="col-lg-6 pt-3">
-            <div className="card eb-nft__card h-100 shadow">
-              <img className="card-img-top" src="/img/metaverse_gallery.png" alt="metaverse gallery" />
-              <div className="card-body d-flex flex-column align-middle">
-                <MetaverseModal showAuctionPageLink={true} />
+            <div className="mx-auto text-center">
+              <img
+                src={hostedImage('BAD-FOUNDERS-PASSPORT_kCMVUdlGr.mp4/ik-thumbnail.jpg?tr=w-400')}
+                alt="B.A.D. Founder's Passport"
+                className="img-fluid"
+              />
+            </div>
+            <div className="card-body d-flex flex-column align-middle">
+              <div className="d-flex justify-content-between">
+                <div className="flex-fill mx-1">
+                  <a href="https://badaliens.io/founders-pass-mint/" target="_blank">
+                    <Button type="legacy" className="w-100">
+                      View Mint
+                    </Button>
+                  </a>
+                </div>
               </div>
             </div>
           </div>

@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import config from '../../Assets/networks/rpc_config.json';
 import PopupMen from './PopupMenu';
 import AnyMedia from './AnyMedia';
+import { nftCardUrl } from '../../hacks';
 
 const MyNftCard = ({
   nft,
@@ -84,7 +85,12 @@ const MyNftCard = ({
 
   return (
     <div className="card eb-nft__card h-100 shadow">
-      <AnyMedia image={nft.image} title={nft.name} url={nftUrl()} newTab={true} className="card-img-top marketplace" />
+      <AnyMedia image={nftCardUrl(nft.address, nft.image)} 
+            title={nft.name} url={nftUrl()}
+            newTab={true} 
+            className="card-img-top marketplace"  
+            height={440}
+            width={440}/>
       {nft.rank && typeof nft.rank === 'number' && (
         <div className="badge bg-rarity text-wrap mt-1 mx-1">Rank: #{nft.rank}</div>
       )}

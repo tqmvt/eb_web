@@ -2,9 +2,8 @@ import { BigNumber, Contract, ethers } from 'ethers';
 import * as Sentry from '@sentry/react';
 import moment from 'moment';
 
-import config from '../Assets/networks/rpc_config.json';
 import { ERC1155, ERC721, MetaPixelsAbi, SouthSideAntsReadAbi } from '../Contracts/Abis';
-// import IPFSGatewayTools from '@pinata/ipfs-gateway-tools/dist/browser';
+import IPFSGatewayTools from '@pinata/ipfs-gateway-tools/dist/node';
 import { dataURItoBlob } from '../Store/utils';
 import { SortOption } from '../Components/Models/sort-option.model';
 import { CollectionSortOption } from '../Components/Models/collection-sort-option.model';
@@ -14,7 +13,7 @@ import {
   caseInsensitiveCompare,
   convertIpfsResource,
   findCollectionByAddress,
-  isAntMintPassCollection,
+  isAntMintPassCollection, isCroniesCollection,
   isMetapixelsCollection,
   isNftBlacklisted,
   isSouthSideAntsCollection,
@@ -23,14 +22,16 @@ import {
 } from '../utils';
 import { getAntMintPassMetadata, getWeirdApesStakingStatus } from './api/chain';
 import { fallbackImageUrl } from './constants';
+import {appConfig} from "../Config";
 
-let gatewayTools; // = new IPFSGatewayTools();
+const config = appConfig();
+let gatewayTools = new IPFSGatewayTools();
 const gateway = 'https://mygateway.mypinata.cloud';
-const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
-const knownContracts = config.known_contracts;
+const readProvider = new ethers.providers.JsonRpcProvider(config.rpc.read);
+const knownContracts = config.collections;
 
 const api = {
-  baseUrl: config.api_base,
+  baseUrl: config.urls.api,
   secondaryUrl: config.api_secondary,
   listings: '/listings',
   collections: '/collections',
@@ -437,7 +438,7 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
 
               let count = await readContract.balanceOf(walletAddress, id);
               count = count.toNumber();
-              if (knownContract.address === config.membership_contract && count > 0) {
+              if (knownContract.address === config.contracts.membership && count > 0) {
                 response.isMember = true;
               }
               if (count === 0) {
@@ -925,7 +926,7 @@ export async function getNftFromFile(collectionId, nftId) {
     }
     var canTransfer = true;
     var canSell = true;
-    if (collectionId === config.cronie_contract) {
+    if (isCroniesCollection(collectionId)) {
       const contract = new Contract(collectionId, ERC721, readProvider);
       let uri = await contract.tokenURI(nftId);
 

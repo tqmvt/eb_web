@@ -24,13 +24,14 @@ import PowertraitsFilter from './PowertraitsFilter';
 import SocialsBar from './SocialsBar';
 import { CollectionSortOption } from '../Models/collection-sort-option.model';
 import { FilterOption } from '../Models/filter-option.model';
-import config from '../../Assets/networks/rpc_config.json';
 import Market from '../../Contracts/Marketplace.json';
 import stakingPlatforms from '../../core/data/staking-platforms.json';
 import PriceRangeFilter from '../Collection/PriceRangeFilter';
 import CollectionCronosverse from '../Collection/collectionCronosverse';
+import {hostedImage} from "../../hacks";
+import {appConfig} from "../../Config";
 
-const knownContracts = config.known_contracts;
+const config = appConfig();
 
 const NegativeMargin = styled.div`
   margin-left: -1.75rem !important;
@@ -40,8 +41,8 @@ const NegativeMargin = styled.div`
 const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) => {
   const dispatch = useDispatch();
 
-  const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
-  const readMarket = new Contract(config.market_contract, Market.abi, readProvider);
+  const readProvider = new ethers.providers.JsonRpcProvider(config.rpc.read);
+  const readMarket = new Contract(config.contracts.market, Market.abi, readProvider);
 
   const [royalty, setRoyalty] = useState(null);
 
@@ -161,7 +162,7 @@ const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) 
         id="profile_banner"
         className="jumbotron breadcumb no-bg"
         style={{
-          backgroundImage: `url(${collection.metadata.banner ?? '/img/background/subheader-blue.webp'})`,
+          backgroundImage: `url(${hostedImage(collection.metadata.banner) ?? hostedImage('/img/background/subheader-blue.webp')})`,
           backgroundPosition: '50% 50%',
         }}
       >
@@ -175,7 +176,7 @@ const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) 
               <div className="profile_avatar">
                 <div className="d_profile_img">
                   {collection.metadata.avatar ? (
-                    <img src={collection.metadata.avatar} alt={collection.name} />
+                    <img src={hostedImage(collection.metadata.avatar)} alt={collection.name} />
                   ) : (
                     <Blockies seed={collection.address.toLowerCase()} size={15} scale={10} />
                   )}

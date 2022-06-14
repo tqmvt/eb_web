@@ -23,7 +23,7 @@ const ListingItem = ({
       <div className="listing-container">
         <Link className="avatar" href={link}>
           <a>
-            <div>
+            <div className="blockies me-3">
               <span>
                 {/* <Link href={link}> */}
                 <Blockies seed={user} size={10} scale={5} />
@@ -36,7 +36,9 @@ const ListingItem = ({
           <span>{time} ago</span>
           {`${primaryTitle} `}
           <b>
-            <Link href={link}><a>{primaryText}</a></Link>
+            <Link href={link}>
+              <a>{primaryText}</a>
+            </Link>
           </b>{' '}
           for <b>{price} CRO</b>
         </div>

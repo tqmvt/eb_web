@@ -9,6 +9,9 @@ import { Form, Spinner } from 'react-bootstrap';
 import Footer from '../src/Components/components/Footer';
 import { getAllCollections } from '../src/GlobalState/collectionsSlice';
 import { debounce, siPrefixedNumber } from '../src/utils';
+import {hostedImage} from "../src/hacks";
+import Image from "next/image";
+import {CdnImage} from "../src/Components/components/CdnImage";
 
 const GlobalStyles = createGlobalStyle`
   .mobile-view-list-item {
@@ -226,8 +229,8 @@ const Collections = () => {
                               <Link href={`/collection/${collection.slug}`}>
                                 <a>
                                   {collection.metadata?.avatar ? (
-                                    <img
-                                      src={collection.metadata.avatar}
+                                    <CdnImage
+                                      src={hostedImage(collection.metadata.avatar, true)}
                                       alt={collection?.name}
                                       width="50"
                                       height="50"

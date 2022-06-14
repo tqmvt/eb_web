@@ -5,12 +5,15 @@ import { toast } from 'react-toastify';
 import { Form, ProgressBar, Spinner } from 'react-bootstrap';
 import * as Sentry from '@sentry/react';
 import styled from 'styled-components';
+import {hostedImage} from "../src/hacks";
 
 import Footer from '../src/Components/components/Footer';
-import config from '../src/Assets/networks/rpc_config.json';
 import { createSuccessfulTransactionToastContent, humanize, percentage } from '../src/utils';
 import ShipABI from '../src/Contracts/Ship.json';
 import ShipItemABI from '../src/Contracts/ShipItem.json';
+import {appConfig} from "../src/Config";
+
+const knownContracts = appConfig('collections');
 
 const Drop = () => {
   const [ships, setShips] = useState([]);
@@ -29,7 +32,7 @@ const Drop = () => {
     await refreshDropDetails();
     try {
       if (user.provider) {
-        const spaceShipDrop = config.known_contracts.find((drop) => drop.slug === 'crosmocrafts');
+        const spaceShipDrop = knownContracts.find((drop) => drop.slug === 'crosmocrafts');
         if (!spaceShipDrop.address) {
           setIsLoading(false);
           return;
@@ -57,7 +60,7 @@ const Drop = () => {
   }, [user.address, user.provider]);
 
   const refreshPartsBalance = async () => {
-    const shipItemDrop = config.known_contracts.find((drop) => drop.slug === 'crosmocrafts-parts');
+    const shipItemDrop = knownContracts.find((drop) => drop.slug === 'crosmocrafts-parts');
     let shipItem = await new ethers.Contract(shipItemDrop.address, ShipItemABI.abi, user.provider.getSigner());
     let ids = [];
     for (let i = 0; i < 9; i++) {
@@ -68,8 +71,8 @@ const Drop = () => {
   };
 
   const refreshDropDetails = async () => {
-    const spaceShipDrop = config.known_contracts.find((drop) => drop.slug === 'crosmocrafts');
-    const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
+    const spaceShipDrop = knownContracts.find((drop) => drop.slug === 'crosmocrafts');
+    const readProvider = new ethers.providers.JsonRpcProvider(appConfig('rpc.read'));
     let spaceShip = await new ethers.Contract(spaceShipDrop.address, ShipABI.abi, readProvider);
     const info = await spaceShip.getInfo();
 
@@ -126,7 +129,7 @@ const Drop = () => {
             <div className="d_profile">
               <div className="profile_avatar">
                 <div className="d_profile_img">
-                  <img src="img/collections/crosmonauts/ship/avatar.webp" alt="Crosmonauts" />
+                  <img src={hostedImage('/img/collections/crosmonauts/ship/avatar.webp')} alt="Crosmonauts" />
                 </div>
                 <p>Combine ship parts to build a Crosmocraft!</p>
                 <p>

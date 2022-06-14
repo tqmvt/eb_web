@@ -4,6 +4,7 @@ import { faCheck, faCircle } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
 
 import LayeredIcon from './LayeredIcon';
+import {hostedImage} from "../../hacks";
 
 const VerifiedIcon = styled.span`
   font-size: 10px;
@@ -29,13 +30,13 @@ const CustomSlide = ({ index, avatar, banner, title, subtitle, collectionId, url
       <div className="nft_coll cursor-pointer" onClick={() => navigateTo(url)}>
         <div className="nft_wrap">
           <span>
-            <img src={banner} className="lazy img-fluid" alt={title} />
+            <img src={hostedImage(banner)} className="lazy img-fluid" alt={title} />
           </span>
         </div>
         <div className="nft_coll_pp">
           <span>
             {avatar ? (
-              <img className="lazy" src={avatar} alt={title} />
+              <img className="lazy" src={hostedImage(avatar, true)} alt={title} />
             ) : (
               <Blockies seed={collectionId} size={10} scale={6} />
             )}

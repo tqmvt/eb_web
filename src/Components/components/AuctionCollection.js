@@ -124,11 +124,11 @@ const AuctionCollection = ({ showLoadMore = true, collectionId = null, sellerId 
                     ))}
                 </div>
               ) : (
-                <div className="text-center">Degen auctions will be available soon!</div>
+                <div className="text-center">No active auctions</div>
               )}
             </div>
 
-            <div className="col-lg-12">
+            <div className="col-lg-12 mt-4">
               <div className="text-center">
                 <h2>Completed Auctions</h2>
               </div>
@@ -144,7 +144,7 @@ const AuctionCollection = ({ showLoadMore = true, collectionId = null, sellerId 
                   ))}
                 </div>
               ) : (
-                <div className="text-center">Degen auctions will be available soon!</div>
+                <div className="text-center">No completed auctions</div>
               )}
             </div>
           </>
@@ -164,7 +164,7 @@ const AuctionCollection = ({ showLoadMore = true, collectionId = null, sellerId 
               ))}
           </div>
         ) : (
-          <span>Degen auctions will be available soon!</span>
+          <span>No active auctions</span>
         )}
       </div>
     );

@@ -24,7 +24,7 @@ import {
   timeSince,
 } from '../../utils';
 import { getNftDetails } from '../../GlobalState/nftSlice';
-import { croSkullRedPotionImageHack } from '../../hacks';
+import {hostedImage, specialImageTransform} from '../../hacks';
 import { chainConnect, connectAccount } from '../../GlobalState/User';
 
 import ListingItem from '../NftDetails/NFTTabListings/ListingItem';
@@ -161,7 +161,7 @@ const Nft1155 = ({ address, id }) => {
                 ) : (
                   <>
                     <AnyMedia
-                      image={croSkullRedPotionImageHack(address, nft.image)}
+                      image={specialImageTransform(address, nft.image)}
                       video={nft.video ?? nft.animation_url}
                       videoProps={{ height: 'auto', autoPlay: true }}
                       title={nft.name}
@@ -178,7 +178,7 @@ const Nft1155 = ({ address, id }) => {
                   <span
                     onClick={() =>
                       typeof window !== 'undefined' &&
-                      window.open(croSkullRedPotionImageHack(address, fullImage()), '_blank')
+                      window.open(specialImageTransform(address, fullImage()), '_blank')
                     }
                   >
                     <span className="p-2">View Full Image</span>
@@ -205,7 +205,7 @@ const Nft1155 = ({ address, id }) => {
                     <ProfilePreview
                       type="Collection"
                       title={collectionName ?? 'View Collection'}
-                      avatar={collectionMetadata?.avatar}
+                      avatar={hostedImage(collectionMetadata?.avatar, true)}
                       address={address}
                       verified={collectionMetadata?.verified}
                       to={`/collection/${collectionSlug}`}
@@ -215,11 +215,12 @@ const Nft1155 = ({ address, id }) => {
                       <ProfilePreview
                         type="Rarity Rank"
                         title={nft.rank}
-                        avatar={
+                        avatar={hostedImage(
                           collectionMetadata.rarity === 'rarity_sniper'
                             ? '/img/logos/rarity-sniper.png'
-                            : '/img/logos/ebisu-technicolor.svg'
-                        }
+                            : '/img/logos/ebisu-technicolor.svg',
+                          true
+                        )}
                         hover={
                           collectionMetadata.rarity === 'rarity_sniper'
                             ? `Ranking provided by ${humanize(collectionMetadata.rarity)}`
