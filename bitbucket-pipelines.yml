@@ -70,6 +70,8 @@ pipelines:
             - 'self.hosted'
             - 'linux'
             - 'web'
+          artifacts:
+            download: false
           # Copy RPC config to Admin S3 Bucket
           script:
             - aws s3 cp ./src/Assets/networks/rpc_config_testnet.json s3://test-ebisusbay-admin-storage/rpc_config.json
@@ -100,6 +102,8 @@ pipelines:
             - 'linux'
             - 'web'
           size: 1x
+          artifacts:
+            download: false
           clone:
             enabled: false
           script:
