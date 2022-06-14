@@ -62,14 +62,12 @@ export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = tr
   
       xhr.onload = function () {
         const contentType = xhr.getResponseHeader('Content-Type');
-        const mediaType = contentType.split('/')[0];
-        const format = contentType.split('/')[1];
+        const [mediaType, format] = contentType.split('/');
         let type = mediaTypes[mediaType] ?? mediaTypes.image;
         if(type === mediaTypes.video){
           setVideoThumbNail(makeThumb(transformedImage));
         }
         if(format === 'gif'){
-          console.log('found a gif');
           imageURL.pathname = `${imageURL.pathname}/ik-gif-video.mp4`;
           setTransformedImage(imageURL.toString());
           setVideoThumbNail(null);
@@ -77,7 +75,6 @@ export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = tr
         } else {
           setDynamicType(type);
         }
-        
       };
   
       xhr.send();
