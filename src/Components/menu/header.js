@@ -124,6 +124,14 @@ const Header = function () {
                         </a>
                       </Link>
                     </div>
+                    <div className="navbar-item">
+                      <Link href="/auctions/blood-4-nft">
+                        <a>
+                          Blood 4 NFT
+                          <span className="lines"></span>
+                        </a>
+                      </Link>
+                    </div>
                   </div>
                 </div>
               )}
@@ -159,6 +167,14 @@ const Header = function () {
                   <Link href="/drops">
                     <a>
                       Drops
+                      <span className="lines"></span>
+                    </a>
+                  </Link>
+                </div>
+                <div className="navbar-item">
+                  <Link href="/auctions/blood-4-nft">
+                    <a>
+                      Blood 4 NFT
                       <span className="lines"></span>
                     </a>
                   </Link>
