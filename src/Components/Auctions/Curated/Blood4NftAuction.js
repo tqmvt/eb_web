@@ -55,7 +55,7 @@ const Blood4NftAuction = () => {
       <section className="container pt-5">
         <div className="row">
           <div className="col-lg-12 pt-3">
-            <CuratedAuctionCollection collectionId="" />
+            <CuratedAuctionCollection collectionId="0xCF30e6C7D977F217734e5A265554a016760928E7" />
           </div>
         </div>
       </section>
