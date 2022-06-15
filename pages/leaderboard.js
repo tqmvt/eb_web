@@ -130,9 +130,9 @@ export default function leaderboard() {
             <li id="sale" className={timeframe === null ? 'active' : ''} onClick={() => updateTimeframe(null)}>
               All Time
             </li>
-            <li id="sale" className={timeframe === 'custom' ? 'active' : ''} onClick={() => updateTimeframe('custom')}>
-              Competition
-            </li>
+            {/*<li id="sale" className={timeframe === 'custom' ? 'active' : ''} onClick={() => updateTimeframe('custom')}>*/}
+            {/*  Competition*/}
+            {/*</li>*/}
           </ul>
         </div>
       </div>
