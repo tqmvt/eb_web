@@ -31,7 +31,8 @@ export const configData = {
       market: '0x7a3CdB2364f92369a602CAE81167d0679087e6a3',
       stake: '0xeb074cc764F20d8fE4317ab63f45A85bcE2bEcB1',
       offer: '0x016b347aeb70cc45e3bbaf324feb3c7c464e18b0',
-      madAuction: '0x47E79264A9d1343C04F4A56922bE7e6177aE03a0'
+      madAuction: '0x47E79264A9d1343C04F4A56922bE7e6177aE03a0',
+      slothtyRugsurance: '0xE9A540CBb2247f9bD86e98d1121aBDD084Ca0e89',
     },
     tokens: {
       loot: {
@@ -70,7 +71,8 @@ export const configData = {
       market: '0x7a3CdB2364f92369a602CAE81167d0679087e6a3',
       stake: '0xeb074cc764F20d8fE4317ab63f45A85bcE2bEcB1',
       offer: '0x016b347aeb70cc45e3bbaf324feb3c7c464e18b0',
-      madAuction: '0x47E79264A9d1343C04F4A56922bE7e6177aE03a0'
+      madAuction: '0x47E79264A9d1343C04F4A56922bE7e6177aE03a0',
+      slothtyRugsurance: '0xE9A540CBb2247f9bD86e98d1121aBDD084Ca0e89',
     },
     tokens: {
       loot: {
@@ -109,7 +111,8 @@ export const configData = {
       market: '0xb3cB12e7F9e442ef799a2B7e92f65ab8710d7b27',
       stake: '0x70A9989dd73B026B34462BE158963587dD9ca16f',
       offer: '0x8Dd84fb5d7f8A504BA2398243D768C604f8Daf5E',
-      madAuction: '0x84356061d598A7bCE028dB6a37b14F84cf4A5905'
+      madAuction: '0x84356061d598A7bCE028dB6a37b14F84cf4A5905',
+      slothtyRugsurance: '0x99F3960E8219384BF0624D388cAD698d5A54AE6C',
     },
     tokens: {
       loot: {

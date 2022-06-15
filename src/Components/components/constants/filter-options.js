@@ -1,8 +1,8 @@
 import { FilterOption } from '../../Models/filter-option.model';
-import config from '../../../Assets/networks/rpc_config.json';
 import { ListingsFilterOption } from '../../Models/listings-filter-option.model';
+import {appConfig} from "../../../Config";
 
-const knownContracts = config.known_contracts;
+const knownContracts = appConfig('collections');
 
 export const limitSizeOptions = {
   md: 12,

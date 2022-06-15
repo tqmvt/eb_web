@@ -3,10 +3,10 @@ import React, { memo } from 'react';
 import { Card } from 'react-bootstrap';
 import { faLink } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import config from '../../Assets/networks/rpc_config.json';
 import { toast } from 'react-toastify';
 import { ethers } from 'ethers';
 import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
+import {appConfig} from "../../Config";
 
 // const Outer = styled.div`
 //   display: flex;
@@ -109,7 +109,7 @@ const MyListingCard = ({
           )}
           <button
             className="btn-main mx-1 mt-2"
-            onClick={onCopyLinkButtonPressed(new URL(nftUrl(), config.app_base))}
+            onClick={onCopyLinkButtonPressed(new URL(nftUrl(), appConfig('urls.app')))}
             style={{ cursor: 'pointer', color: 'black' }}
           >
             <FontAwesomeIcon icon={faLink} />
