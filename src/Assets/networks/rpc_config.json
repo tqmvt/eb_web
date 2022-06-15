@@ -5284,6 +5284,25 @@
         "maxSupply": 14,
         "website": "https://youtu.be/OAMFitRCGKg/"
       }
+    },
+    {
+      "name": "Busy Bears Club",
+      "slug": "busy-bears-club",
+      "multiToken": false,
+      "address": "0x01A1b637f9c1A587b33143182186242e932F28A7",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "Busy Bears are a unique and limited collection of 2653 NFT. Each BB represent single Cronos businessman and investor belongs to huge community in Mad City.",
+        "verified": false,
+        "avatar": "/img/collections/busy-bears-club/avatar.png",
+        "card": "/img/collections/busy-bears-club/card.png",
+        "banner": "/img/collections/busy-bears-club/banner.png",
+        "maxSupply": 2653,
+        "website": "https://busybears.club/",
+        "twitter": "https://twitter.com/BusyBearsClub",
+        "discord": "https://discord.gg/BusyBearsClub"
+      }
     }
   ],
   "drops": [
