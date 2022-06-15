@@ -23,7 +23,7 @@ const InvalidListingWarning = function (props) {
     <div className="mainside-warning">
       {walletAddress && correctChain && myUnfilteredListings.some((x) => !x.valid && x.listed) && (
         <div className="de-menu-profile p-3">
-          <span onClick={() => history.push('/wallet/listings')}>
+          <span onClick={() => history.push('/nfts')}>
             <FontAwesomeIcon color="var(--bs-danger)" size={props.size} icon={faExclamationCircle} />
           </span>
         </div>

@@ -345,10 +345,12 @@ const SingleDrop = () => {
         }
 
         const gasPrice = parseUnits('5000', 'gwei');
+        const gasEstimate = await contract.estimateGas.mint(numToMint, {value: finalCost});
+        const gasLimit = gasEstimate.mul(2);
         let extra = {
           value: finalCost,
-          gasPrice: gasPrice,
-          gasLimit: (parseUnits('2.5', 'ether') * numToMint) / gasPrice,
+          gasPrice,
+          gasLimit
         };
 
         var response;

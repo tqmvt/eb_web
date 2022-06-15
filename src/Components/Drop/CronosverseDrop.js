@@ -15,13 +15,13 @@ import styled from 'styled-components';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 
 import Footer from '../components/Footer';
-import config from '../../Assets/networks/rpc_config.json';
 import { connectAccount } from '../../GlobalState/User';
 import { createSuccessfulTransactionToastContent, isFounderDrop, newlineText } from '../../utils';
 import { dropState as statuses } from '../../core/api/enums';
 import { EbisuDropAbi } from '../../Contracts/Abis';
 
 import styles from '../Collection/collectionCronosverse/CollectionCronosverse.module.scss';
+import {appConfig} from "../../Config";
 
 const tiles = [
   '/img/cronosverse/Plain-tile.png',
@@ -30,7 +30,8 @@ const tiles = [
 ];
 const tileType = ['Plain', 'Suburban', 'Commercial'];
 
-export const drops = config.drops;
+const config = appConfig();
+const drops = config.drops;
 
 const fadeInUp = keyframes`
   0% {
@@ -69,7 +70,7 @@ const CronosverseDrop = () => {
   const router = useRouter();
   const { slug } = router.query;
 
-  const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
+  const readProvider = new ethers.providers.JsonRpcProvider(config.rpc.read);
   const dispatch = useDispatch();
 
   const [loading, setLoading] = useState(true);
