@@ -6,11 +6,11 @@ import { faCheck, faChevronLeft, faChevronRight, faCircle } from '@fortawesome/f
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Clock from './Clock';
-import config from '../../Assets/networks/rpc_config.json';
 import { humanize } from '../../utils';
 import LayeredIcon from './LayeredIcon';
+import {appConfig} from "../../Config";
 
-export const drop = config.drops.find((d) => d.slug === 'space-crystal-unicorns');
+export const drop = appConfig('drops').find((d) => d.slug === 'space-crystal-unicorns');
 
 const GlobalStyles = createGlobalStyle`
   .nft-big .slick-prev::before{

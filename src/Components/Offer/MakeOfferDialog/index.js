@@ -15,15 +15,15 @@ import { caseInsensitiveCompare, humanize, isEventValidNumber, shortAddress } fr
 import { OFFER_TYPE } from '../MadeOffersRow';
 import { updateOfferSuccess, updateOfferFailed } from '../../../GlobalState/offerSlice';
 import EmptyData from '../EmptyData';
-import config from '../../../Assets/networks/rpc_config.json';
 import Market from '../../../Contracts/Marketplace.json';
 import { getFilteredOffers } from '../../../core/subgraph';
 import { getAllCollections } from '../../../GlobalState/collectionsSlice';
 import { offerState } from '../../../core/api/enums';
-import { commify } from 'ethers/lib/utils';
 import { txExtras } from '../../../core/constants';
 import { findCollectionByAddress } from '../../../utils';
-const knownContracts = config.known_contracts;
+import {appConfig} from "../../../Config";
+
+const config = appConfig();
 
 const DialogContainer = styled(Dialog)`
   .MuiPaper-root {
@@ -164,8 +164,8 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
   const collectionsStats = useSelector((state) => state.collections.collections);
 
   const dispatch = useDispatch();
-  const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
-  const readMarket = new Contract(config.market_contract, Market.abi, readProvider);
+  const readProvider = new ethers.providers.JsonRpcProvider(config.rpc.read);
+  const readMarket = new Contract(config.contracts.market, Market.abi, readProvider);
 
   const [offerType, setOfferType] = useState(type);
   const [offerDataNew, setOfferDataNew] = useState(offerData);

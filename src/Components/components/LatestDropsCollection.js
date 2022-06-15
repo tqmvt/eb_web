@@ -5,8 +5,8 @@ import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons
 
 import { settings } from './constants';
 import CustomSlide from './CustomSlide';
-import config from '../../Assets/networks/rpc_config.json';
-export const drops = config.drops;
+import {appConfig} from "../../Config";
+const drops = appConfig('drops');
 
 const LatestDropsCollection = () => {
   const PrevArrow = (props) => {

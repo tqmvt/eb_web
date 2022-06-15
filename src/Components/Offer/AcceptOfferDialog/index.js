@@ -27,8 +27,10 @@ import { OFFER_TYPE } from '../MadeOffersRow';
 import EmptyData from '../EmptyData';
 import { updateContractInstance, updateOfferSuccess, updateOfferFailed } from '../../../GlobalState/offerSlice';
 import { shortAddress } from '../../../utils';
-import config from '../../../Assets/networks/rpc_config.json';
 import Market from '../../../Contracts/Marketplace.json';
+import {appConfig} from "../../../Config";
+
+const config = appConfig();
 
 const StyledTypography = styled(Typography)`
   color: ${({ theme }) => theme.colors.textColor3};
@@ -126,8 +128,8 @@ const AcceptOfferDialog = ({ isOpen, toggle, nftData, offerData, collectionMetad
   const offerContract = useSelector((state) => state.user.offerContract);
   const walletAddress = useSelector((state) => state.user.address);
 
-  const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
-  const readMarket = new Contract(config.market_contract, Market.abi, readProvider);
+  const readProvider = new ethers.providers.JsonRpcProvider(config.rpc.read);
+  const readMarket = new Contract(config.contracts.market, Market.abi, readProvider);
 
   const [fee, setFee] = useState(0);
   const [royalty, setRoyalty] = useState(0);
