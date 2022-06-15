@@ -8,6 +8,7 @@ import { shortAddress } from '../src/utils';
 import Slider from "react-slick";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faChevronLeft, faChevronRight} from "@fortawesome/free-solid-svg-icons";
+import styles from '../src/Components/Leaderboard/styles.module.scss';
 
 export const carouselSettings = {
   infinite: true,
@@ -136,7 +137,7 @@ export default function leaderboard() {
         </div>
       </div>
       <div className="d-flex gap-3 mt-lg-4 align-items-center justify-content-between">
-        <div className="nft">
+        <div className={`nft ${styles.dots}`}>
           <Slider {...carouselSettings} prevArrow={<PrevArrow />} nextArrow={<NextArrow />}>
             <Card
               title="Most Total Volume"

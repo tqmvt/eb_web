@@ -9,3 +9,15 @@
 .active {
     border-top: 4px solid #DB630D;
 }
+
+.dots {
+    :global(.slick-dots){
+        padding: 10px;
+    }
+    :global(.slick-dots li button:before){
+        font-size: 10px;
+    }
+    :global(.slick-dots li){
+        margin: 0;
+    }
+}
