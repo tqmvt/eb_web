@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { /*sortAndFetchListings, */ getCollectionMetadata, getMarketMetadata, sortAndFetchAuctions } from '../core/api';
-import config from '../Assets/networks/rpc_config.json';
+import { getCollectionMetadata, getMarketMetadata, sortAndFetchAuctions } from '../core/api';
 import {Auction} from "../core/models/auction";
-export const knownContracts = config.known_contracts;
+import {appConfig} from "../Config";
+export const knownContracts = appConfig('collections');
 
 const auctionsSlice = createSlice({
   name: 'auctions',

@@ -7,10 +7,10 @@ import { getAllOffers, getMyOffers, getFilteredOffers, getOffersForSingleNFT } f
 import { createSuccessfulTransactionToastContent } from '../utils';
 import { ERC1155, ERC721, MetaPixelsAbi } from '../Contracts/Abis';
 import { isMetapixelsCollection } from '../utils';
-import config from '../Assets/networks/rpc_config.json';
 import { offerState } from '../core/api/enums';
+import {appConfig} from "../Config";
 
-const knownContracts = config.known_contracts;
+const knownContracts = appConfig('collections');
 
 const offerSlice = createSlice({
   name: 'offer',
