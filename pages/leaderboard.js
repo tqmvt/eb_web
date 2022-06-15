@@ -69,10 +69,10 @@ export const carouselSettings = {
 };
 
 const headers = {
-  totalVolume: ['', 'Sales Volume', 'Buy Volume', 'Total Volume'],
-  buyVolume: ['', '# of Buy', 'Total Volume'],
-  sellVolume: ['', '# of Sales', 'Total Volume'],
-  biggestSingleSale: ['', 'Transactions', 'Total Volume'],
+  totalVolume: ['User', 'Sales Volume', 'Buy Volume', 'Total Volume'],
+  buyVolume: ['User', '# of Buy', 'Total Volume'],
+  sellVolume: ['User', '# of Sales', 'Total Volume'],
+  biggestSingleSale: ['User', 'Transactions', 'Total Volume'],
 };
 
 export default function leaderboard() {
