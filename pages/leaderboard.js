@@ -5,9 +5,9 @@ import Card from '../src/Components/Leaderboard/Card';
 import Table from '../src/Components/Leaderboard/Table';
 import { getAllLeaderBoard } from '../src/GlobalState/leaderBoardSlice';
 import { shortAddress } from '../src/utils';
-import Slider from "react-slick";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faChevronLeft, faChevronRight} from "@fortawesome/free-solid-svg-icons";
+import Slider from 'react-slick';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import styles from '../src/Components/Leaderboard/styles.module.scss';
 
 export const carouselSettings = {
@@ -33,7 +33,7 @@ export const carouselSettings = {
         slidesToScroll: 1,
         centerMode: true,
         focusOnSelect: true,
-        dots: true
+        dots: true,
       },
     },
     {
@@ -42,7 +42,7 @@ export const carouselSettings = {
         slidesToShow: 2,
         slidesToScroll: 2,
         focusOnSelect: true,
-        dots: true
+        dots: true,
       },
     },
     {
@@ -170,7 +170,7 @@ export default function leaderboard() {
           </Slider>
         </div>
       </div>
-      <div className="mt-4">
+      <div className="mt-4 table-responsive">
         <Table headers={headers[type]} items={leaderBoard[type]} />
       </div>
     </section>

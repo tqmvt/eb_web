@@ -1,11 +1,16 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { shortAddress } from '../../utils';
 import { utils } from 'ethers';
-import {getCnsName} from "../../helpers/cns";
+import { getCnsName } from '../../helpers/cns';
+import styles from './styles.module.scss';
 
 export default function Table({ headers, items }) {
+  const userTheme = useSelector((state) => {
+    return state.user.theme;
+  });
   return (
-    <table className="table table-dark table-borderless">
+    <table className={`table ${styles.table} table-${userTheme} table-borderless`}>
       <thead className="border-bottom">
         <tr>
           <th scope="col" className="text-center">
@@ -36,7 +41,7 @@ export default function Table({ headers, items }) {
   );
 }
 
-function UserName({address}) {
+function UserName({ address }) {
   const [name, setName] = useState(shortAddress(address));
 
   useEffect(() => {
@@ -48,5 +53,5 @@ function UserName({address}) {
     func();
   }, [address]);
 
-  return (<>{name}</>);
+  return <>{name}</>;
 }

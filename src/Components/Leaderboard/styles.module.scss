@@ -1,9 +1,14 @@
+@import '../../Assets/styles/vars';
 
 .card {
-    background-color: rgba(255,255,255,0.2);
+    background-color: $bgColor3;
     padding: 20px;
     margin: 0 15px;
     cursor: pointer;
+}
+
+.table {
+    --bs-table-bg: $bgColor1 !important;
 }
 
 .active {
