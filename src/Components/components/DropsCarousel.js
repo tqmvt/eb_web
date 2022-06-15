@@ -8,10 +8,10 @@ import Slider from 'react-slick';
 
 import Clock from './Clock';
 import LayeredIcon from './LayeredIcon';
-import config from '../../Assets/networks/rpc_config.json';
 import { dropState } from '../../core/api/enums';
 import {hostedImage} from "../../hacks";
-export const drops = config.drops;
+import {appConfig} from "../../Config";
+const drops = appConfig('drops');
 
 const GlobalStyles = createGlobalStyle`
   .nft-big .slick-prev::before{

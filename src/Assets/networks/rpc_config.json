@@ -5284,6 +5284,44 @@
         "maxSupply": 14,
         "website": "https://youtu.be/OAMFitRCGKg/"
       }
+    },
+    {
+      "name": "Busy Bears Club",
+      "slug": "busy-bears-club",
+      "multiToken": false,
+      "address": "0x01A1b637f9c1A587b33143182186242e932F28A7",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "Busy Bears are a unique and limited collection of 2653 NFT. Each BB represent single Cronos businessman and investor belongs to huge community in Mad City.",
+        "verified": false,
+        "avatar": "/img/collections/busy-bears-club/avatar.png",
+        "card": "/img/collections/busy-bears-club/card.png",
+        "banner": "/img/collections/busy-bears-club/banner.png",
+        "maxSupply": 2653,
+        "website": "https://busybears.club/",
+        "twitter": "https://twitter.com/BusyBearsClub",
+        "discord": "https://discord.gg/BusyBearsClub"
+      }
+    },
+    {
+      "name": "CROmads",
+      "slug": "cromads",
+      "multiToken": false,
+      "address": "0xe7C032f7aC5CCb8C5eadD0c59c6aE8eC8E1868dc",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "CROmads are a limited collection of 1234 nomads that found themselves exploring the Cronos Chain! We are a community driven collectibles project with 100% of royalties going back to the community! Across the 1234 CROmads in our collection, no two are the same! Join us as we travel Cronos together and embark on an epic journey!",
+        "verified": false,
+        "avatar": "/img/collections/cromads/avatar.png",
+        "card": "/img/collections/cromads/card.png",
+        "banner": "/img/collections/cromads/banner.png",
+        "maxSupply": 1234,
+        "website": "https://lootpad.io/collection/cromad/",
+        "twitter": "https://twitter.com/CROmadsNFT",
+        "discord": "https://discord.gg/mjMXPKknrv"
+      }
     }
   ],
   "drops": [

@@ -6,7 +6,6 @@ import MetaMaskOnboarding from '@metamask/onboarding';
 import { toast } from 'react-toastify';
 import Countdown from 'react-countdown';
 
-import config from '../../Assets/networks/rpc_config.json';
 import AuctionContract from '../../Contracts/DegenAuction.json';
 import {caseInsensitiveCompare, createSuccessfulTransactionToastContent, devLog, isEventValidNumber} from '../../utils';
 import {auctionState} from '../../core/api/enums';
@@ -14,6 +13,9 @@ import {getAuctionDetails, updateAuctionFromBidEvent} from '../../GlobalState/au
 import {chainConnect, connectAccount} from '../../GlobalState/User';
 import {ERC20} from "../../Contracts/Abis";
 import Button from "../components/Button";
+import {appConfig} from "../../Config";
+
+const config = appConfig();
 
 const BuyerActionBar = () => {
   const dispatch = useDispatch();
@@ -45,8 +47,8 @@ const BuyerActionBar = () => {
   const [isApproved, setIsApproved] = useState(false);
   const [tokenBalance, setTokenBalance] = useState(null);
 
-  const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
-  const readContract = new Contract(config.mm_auction_contract, AuctionContract.abi, readProvider);
+  const readProvider = new ethers.providers.JsonRpcProvider(config.rpc.read);
+  const readContract = new Contract(config.contracts.madAuction, AuctionContract.abi, readProvider);
 
   const showBidDialog = async () => {
     await refreshMadBalance();
@@ -122,7 +124,7 @@ const BuyerActionBar = () => {
   const ensureApproved = async (auctionContract) => {
     if (!isApproved) {
       console.log('approving contract...', user.address, auctionContract.address);
-      const tokenAddress = config.known_tokens.mad.address;
+      const tokenAddress = config.tokens.mad.address;
       let tokenContract = await new ethers.Contract(tokenAddress, ERC20, user.provider.getSigner());
       let tx = await tokenContract.approve(auctionContract.address, constants.MaxUint256);
       return tx.wait();
@@ -132,7 +134,7 @@ const BuyerActionBar = () => {
   const checkApproval = async (auctionContract) => {
     if (!user.provider) return false;
 
-    const tokenAddress = config.known_tokens.mad.address;
+    const tokenAddress = config.tokens.mad.address;
     let tokenContract = await new ethers.Contract(tokenAddress, ERC20, user.provider.getSigner());
     const allowance = await tokenContract.allowance(user.address, auctionContract.address);
 
@@ -143,7 +145,7 @@ const BuyerActionBar = () => {
     if (user.address) {
       try {
         let writeContract = await new ethers.Contract(
-          config.mm_auction_contract,
+          config.contracts.madAuction,
           AuctionContract.abi,
           user.provider.getSigner()
         );
@@ -176,7 +178,7 @@ const BuyerActionBar = () => {
 
   const refreshMadBalance = async () => {
     if (user.provider) {
-      const tokenAddress = config.known_tokens.mad.address;
+      const tokenAddress = config.tokens.mad.address;
       let tokenContract = await new ethers.Contract(tokenAddress, ERC20, user.provider.getSigner());
       const balance = await tokenContract.balanceOf(user.address);
       setTokenBalance(ethers.utils.formatEther(balance));

@@ -26,7 +26,7 @@ const CuratedAuctionCollection = ({ collectionId = null}) => {
         [auctionState.ACTIVE, auctionState.NOT_STARTED].includes(a.state) &&
         caseInsensitiveCompare(a.nftAddress, collectionId) &&
         !testAuctions.includes(a.id)
-      ));
+      ).sort((a, b) => a.endAt > b.endAt ? 1 : -1));
 
       setCompletedAuctions(auctions.filter((a) =>
         typeof a.nft != 'undefined' &&
