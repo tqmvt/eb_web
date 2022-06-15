@@ -4,10 +4,10 @@ import { ethers } from 'ethers';
 import { toast } from 'react-toastify';
 import { faLink, faEllipsisH, faExchangeAlt, faTag, faTimes, faPen } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import config from '../../Assets/networks/rpc_config.json';
 import PopupMen from './PopupMenu';
 import AnyMedia from './AnyMedia';
 import { nftCardUrl } from '../../hacks';
+import {appConfig} from "../../Config";
 
 const MyNftCard = ({
   nft,
@@ -77,7 +77,7 @@ const MyNftCard = ({
     options.push({
       icon: faLink,
       label: 'Copy link',
-      handleClick: onCopyLinkButtonPressed(new URL(nftUrl(), config.app_base)),
+      handleClick: onCopyLinkButtonPressed(new URL(nftUrl(), appConfig('urls.app'))),
     });
 
     return options;

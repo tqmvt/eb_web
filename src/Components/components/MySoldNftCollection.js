@@ -6,11 +6,10 @@ import { getAnalytics, logEvent } from '@firebase/analytics';
 import SoldNftCard from './SoldNftCard';
 import InvalidListingsPopup from './InvalidListingsPopup';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import config from '../../Assets/networks/rpc_config.json';
 import { caseInsensitiveCompare } from '../../utils';
-// import HiddenCard from './HiddenCard';
-// import ListingCard from './ListingCard';
-// import { fetchListings } from '../../GlobalState/marketplaceSlice';
+import {appConfig} from "../../Config";
+
+const knownContracts = appConfig('collections');
 
 const MySoldNftCollection = ({ walletAddress = null }) => {
   const dispatch = useDispatch();
@@ -68,7 +67,7 @@ const MySoldNftCollection = ({ walletAddress = null }) => {
           {mySoldNfts &&
             mySoldNfts.map((nft, index) => {
               if (!nft.nft) {
-                const contract = config.known_contracts.find((c) => caseInsensitiveCompare(c.address, nft.nftAddress));
+                const contract = knownContracts.find((c) => caseInsensitiveCompare(c.address, nft.nftAddress));
                 nft = {
                   ...nft,
                   ...{

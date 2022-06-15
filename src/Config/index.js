@@ -47,7 +47,8 @@ export const configData = {
       }
     },
     collections: rpcConfig.known_contracts,
-    drops: rpcConfig.drops
+    drops: rpcConfig.drops,
+    auctions: rpcConfig.auctions,
   },
   [environments.development]: {
     chain: {
@@ -87,7 +88,8 @@ export const configData = {
       }
     },
     collections: rpcConfigDev.known_contracts,
-    drops: rpcConfigDev.drops
+    drops: rpcConfigDev.drops,
+    auctions: rpcConfigDev.auctions,
   },
   [environments.testnet]: {
     chain: {
@@ -127,7 +129,8 @@ export const configData = {
       }
     },
     collections: rpcConfigTestnet.known_contracts,
-    drops: rpcConfigTestnet.drops
+    drops: rpcConfigTestnet.drops,
+    auctions: rpcConfigTestnet.auctions,
   },
 };
 

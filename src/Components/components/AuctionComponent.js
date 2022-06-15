@@ -10,11 +10,13 @@ import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 
 import { getAuctionDetails } from '../../GlobalState/auctionSlice';
 import { caseInsensitiveCompare, humanize, newlineText, shortAddress, timeSince } from '../../utils';
-import config from '../../Assets/networks/rpc_config.json';
 import BuyerActionBar from '../Auctions/BuyerActionBar';
 import ProfilePreview from '../components/ProfilePreview';
 import {hostedImage} from "../../hacks";
-const knownContracts = config.known_contracts;
+import {appConfig} from "../../Config";
+
+const config = appConfig();
+const knownContracts = config.collections;
 
 const AuctionComponent = (props) => {
   const router = useRouter();
@@ -22,9 +24,6 @@ const AuctionComponent = (props) => {
   const dispatch = useDispatch();
 
   const listing = useSelector((state) => state.auction.auction);
-  const history = useSelector((state) =>
-    state.listing.history.filter((i) => i.state === 1).sort((a, b) => (a.saleTime < b.saleTime ? 1 : -1))
-  );
   const bidHistory = useSelector((state) => state.auction.bidHistory);
   const powertraits = useSelector((state) => state.auction.powertraits);
   const isLoading = useSelector((state) => state.auction.loading);
@@ -32,8 +31,6 @@ const AuctionComponent = (props) => {
   const collection = useSelector((state) => {
     return knownContracts.find((c) => c.address.toLowerCase() === listing?.nftAddress.toLowerCase());
   });
-
-  const [charityMetadata, setCharityMetadata] = useState(false);
 
   useEffect(() => {
     dispatch(getAuctionDetails(id));
@@ -58,15 +55,6 @@ const AuctionComponent = (props) => {
 
     setOpenMenu(index);
   };
-
-  useEffect(() => {
-    if (listing)
-      setCharityMetadata(config.auctions.find((a) => caseInsensitiveCompare(a.hash, listing.getAuctionHash)));
-  }, [listing]);
-
-  if (charityMetadata && charityMetadata.redirectToDrop) {
-    router.push(`/drops/${charityMetadata.redirectToDrop}`);
-  }
 
   return (
     <>
@@ -142,17 +130,6 @@ const AuctionComponent = (props) => {
                       <div className="de_tab_content">
                         {openMenu === 0 && (
                           <div className="tab-1 onStep fadeIn">
-                            {charityMetadata && (
-                              <div key="charity-meta">
-                                <div>{newlineText(charityMetadata.description)}</div>
-                                <p>
-                                  Donate directly at{' '}
-                                  <a href={charityMetadata.link} target="_blank" rel="noreferrer" className="fw-bold">
-                                    {charityMetadata.link}
-                                  </a>
-                                </p>
-                              </div>
-                            )}
                             {listing.nft.attributes && listing.nft.attributes.length > 0 ? (
                               <div key="charity-attributes">
                                 <div className="d-block mb-3">
