@@ -5137,7 +5137,7 @@
       "multiToken": false,
       "address": "0xe41267f3288d08c9D4e104654A86eD238DC1524f",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "Discover the tale of a colony of bees and their quest for financial independence. Each NFT receives a revenue share from the CYCLONE platform by CRONEX.Finance.",
         "verified": false,
