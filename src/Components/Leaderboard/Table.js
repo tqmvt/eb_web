@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { shortAddress } from '../../utils';
 import { utils } from 'ethers';
+import {getCnsName} from "../../helpers/cns";
 
 export default function Table({ headers, items }) {
   return (
@@ -25,7 +26,7 @@ export default function Table({ headers, items }) {
             </th>
             {Object.keys(item).map((key) => (
               <td key={key} className="text-center">
-                {key === 'address' ? shortAddress(item[key]) : utils.commify(item[key])}
+                {key === 'address' ? <UserName address={item[key]} /> : utils.commify(item[key])}
               </td>
             ))}
           </tr>
@@ -33,4 +34,19 @@ export default function Table({ headers, items }) {
       </tbody>
     </table>
   );
+}
+
+function UserName({address}) {
+  const [name, setName] = useState(shortAddress(address));
+
+  useEffect(() => {
+    async function func() {
+      const cnsName = await getCnsName(address);
+      if (cnsName) setName(cnsName);
+    }
+
+    func();
+  }, [address]);
+
+  return (<>{name}</>);
 }

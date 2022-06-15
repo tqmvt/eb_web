@@ -6,7 +6,6 @@
   "symbol": "CRO",
   "explorer": "https://cronoscan.com/",
   "api_base": "https://api.ebisusbay.com/",
-  "api_secondary": "https://api.ebisusbay.biz/",
   "app_base": "https://app.ebisusbay.com/",
   "cdn_base": "https://cdn.ebisusbay.com/",
   "subgraph_base": "https://graph.ebisusbay.com:8000/subgraphs/name/ebisusbay/",

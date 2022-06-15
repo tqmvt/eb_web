@@ -132,6 +132,14 @@ const Header = function () {
                         </a>
                       </Link>
                     </div>
+                    <div className="navbar-item">
+                      <Link href="/leaderboard">
+                        <a>
+                          Leaderboard
+                          <span className="lines"></span>
+                        </a>
+                      </Link>
+                    </div>
                   </div>
                 </div>
               )}

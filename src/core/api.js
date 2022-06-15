@@ -32,7 +32,6 @@ const knownContracts = config.collections;
 
 const api = {
   baseUrl: config.urls.api,
-  secondaryUrl: config.api_secondary,
   listings: '/listings',
   collections: '/collections',
   marketData: '/marketdata',
@@ -1274,10 +1273,10 @@ export async function getNftsForAddress2(walletAddress, walletProvider, page) {
 
 export async function getLeaders(timeframe) {
   const urls = [
-    `${api.secondaryUrl}${api.leaders}?sortBy=totalVolume&direction=desc${timeframe ? `&timeframe=${timeframe}` : ''}`,
-    `${api.secondaryUrl}${api.leaders}?sortBy=saleVolume&direction=desc${timeframe ? `&timeframe=${timeframe}` : ''}`,
-    `${api.secondaryUrl}${api.leaders}?sortBy=buyVolume&direction=desc${timeframe ? `&timeframe=${timeframe}` : ''}`,
-    `${api.secondaryUrl}${api.leaders}?sortBy=highestSale&direction=desc${timeframe ? `&timeframe=${timeframe}` : ''}`,
+    `${api.baseUrl}${api.leaders}?sortBy=totalVolume&direction=desc${timeframe ? `&timeframe=${timeframe}` : ''}`,
+    `${api.baseUrl}${api.leaders}?sortBy=saleVolume&direction=desc${timeframe ? `&timeframe=${timeframe}` : ''}`,
+    `${api.baseUrl}${api.leaders}?sortBy=buyVolume&direction=desc${timeframe ? `&timeframe=${timeframe}` : ''}`,
+    `${api.baseUrl}${api.leaders}?sortBy=highestSale&direction=desc${timeframe ? `&timeframe=${timeframe}` : ''}`,
   ];
   // map every url to the promise of the fetch
   let requests = urls.map((url) => fetch(url));

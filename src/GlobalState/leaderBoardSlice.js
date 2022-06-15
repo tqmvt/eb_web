@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { getLeaders } from '../core/api';
-import config from '../Assets/networks/rpc_config.json';
 
 const leaderBoardSlice = createSlice({
   name: 'leaderBoard',
