@@ -3885,7 +3885,9 @@
         "banner": "/img/collections/toughlions/banner.webp",
         "maxSupply": 1111,
         "twitter": "https://twitter.com/ToughLions1111",
-        "discord": "https://discord.com/invite/8ssS2RWZvn"
+        "discord": "https://discord.com/invite/8ssS2RWZvn",
+        "rarity": "rarity_sniper",
+        "raritySniperSlug": "tough-lions"
       }
     },
     {
