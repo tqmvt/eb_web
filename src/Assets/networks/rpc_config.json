@@ -5312,7 +5312,7 @@
       "multiToken": false,
       "address": "0xe7C032f7aC5CCb8C5eadD0c59c6aE8eC8E1868dc",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "CROmads are a limited collection of 1234 nomads that found themselves exploring the Cronos Chain! We are a community driven collectibles project with 100% of royalties going back to the community! Across the 1234 CROmads in our collection, no two are the same! Join us as we travel Cronos together and embark on an epic journey!",
         "verified": false,
