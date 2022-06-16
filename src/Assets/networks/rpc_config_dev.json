@@ -5352,7 +5352,7 @@
       "onChain": false,
       "listable": false,
       "metadata": {
-        "description": "Our Zombabies are growing up, along with our utility. ",
+        "description": "Our Zombabies are growing up, along with our utility.",
         "verified": false,
         "avatar": "/img/collections/zombabies-evolution/avatar.png",
         "card": "/img/collections/zombabies-evolution/card.png",
@@ -5361,6 +5361,26 @@
         "website": "https://www.zombabies.io/",
         "twitter": "https://twitter.com/ZombabiesNFT",
         "discord": "https://discord.gg/ck264jsVR5"
+      }
+    },
+    {
+      "name": "Voltaik Nuclear Plant",
+      "slug": "voltaik-nuclear-plant",
+      "multiToken": false,
+      "address": "0x6B7a121363e84E0F31e844e949296C3dCd8512ad",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "Voltaik Nuclear Plant is a collection of NFTs created for the Voltaik protocol. These NFTs have a direct utility in the protocol.",
+        "verified": false,
+        "avatar": "/img/collections/voltaik-nuclear-plant/avatar.jpg",
+        "card": "/img/collections/voltaik-nuclear-plant/card.jpg",
+        "banner": "/img/collections/voltaik-nuclear-plant/banner.jpg",
+        "maxSupply": 512,
+        "website": "https://www.panelsproject.com/",
+        "twitter": "https://twitter.com/PanelsProject",
+        "discord": "https://discord.gg/cWdCce8XAx",
+        "medium": "https://medium.com/panels-project"
       }
     }
   ],
