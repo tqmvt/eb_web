@@ -1229,7 +1229,7 @@
     {
       "name": "Lost Toys VIP",
       "slug": "lost-toys-vip",
-      "multiToken": false,
+      "multiToken": true,
       "address": "0x44fcFB92e9F08770449e0f39A9A449502432c3cc",
       "onChain": false,
       "listable": true,
