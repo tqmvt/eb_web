@@ -64,14 +64,14 @@ const Collection = ({ ssrCollection }) => {
         <meta property="og:type" content="website" key="og_type" />
         <meta property="og:title" content={`${ssrCollection?.name || 'NFT'} | Ebisu's Bay Marketplace`} key="title" />
         <meta property="og:url" content={`https://app.ebisusbay.com/collection/${collection?.slug}`} key="og_url" />
-        <meta property="og:image" content={ssrCollection?.metadata?.banner} key="image" />
+        <meta property="og:image" content={ssrCollection?.metadata?.card} key="image" />
         <meta property="og:description" content={ssrCollection?.metadata?.description} />
         <meta
           name="twitter:title"
           content={`${ssrCollection?.name || 'NFT'} | Ebisu's Bay Marketplace`}
           key="twitter_title"
         />
-        <meta name="twitter:image" content={ssrCollection?.metadata?.banner} key="twitter_image" />
+        <meta name="twitter:image" content={ssrCollection?.metadata?.card} key="twitter_image" />
         <meta name="twitter:card" content="summary_large_image" key="misc-card" />
       </Head>
       {initialized && collection && (

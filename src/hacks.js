@@ -15,7 +15,7 @@ export function specialImageTransform(address, defaultImage) {
     return croSkullRedPotionImage();
   }
 
-  if (!defaultImage) {
+  if (!defaultImage || defaultImage === '/img/nft-placeholder.webp') {
     return hostedImage('/img/nft-placeholder.webp');
   }
 

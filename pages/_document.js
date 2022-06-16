@@ -32,6 +32,7 @@ export default function Document() {
         />
 
         {/* Open Graph / Facebook */}
+        <meta property="og:site_name" content="Ebisu's Bay Marketplace" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://app.ebisusbay.com" />
         <meta property="og:title" content="Ebisu's Bay — Cronos #1 NFT marketplace" />
@@ -42,6 +43,7 @@ export default function Document() {
         <meta property="og:image" content="https://app.ebisusbay.com/img/background/Ebisus-bg-1_L.webp" />
 
         {/* Twitter */}
+        <meta property="twitter:site" content="@EbisusBay" />
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://app.ebisusbay.com" />
         <meta property="twitter:title" content="Ebisu's Bay — Cronos #1 NFT marketplace" />

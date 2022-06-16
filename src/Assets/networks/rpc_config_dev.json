@@ -5324,6 +5324,85 @@
         "twitter": "https://twitter.com/CROmadsNFT",
         "discord": "https://discord.gg/mjMXPKknrv"
       }
+    },
+    {
+      "name": "Lost Toys VIP",
+      "slug": "lost-toys-vip",
+      "multiToken": true,
+      "address": "0x87E44a3907e979fCdd2DaF5496fc316E49bb19b2",
+      "tokens": [{ "id": 1 }],
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "Holding a Lost Toy VIP NFT grants you access to the Lost Toys DAO to be able to vote on the future characters within the collection and the next features of our platform SnipeHub. Other utilities include exclusive raffles, WL to other projects and many more benefits yet to be announced.",
+        "verified": true,
+        "avatar": "/img/collections/looneycorns/avatar.webp",
+        "card": "/img/collections/lost-toys-vip/card.png",
+        "banner": "/img/collections/lost-toys-vip/banner.png",
+        "maxSupply": 2200,
+        "website": "https://www.losttoys.io/",
+        "twitter": "https://www.twitter.com/looneycornsnft",
+        "discord": "https://discord.gg/Tdd9TZRMxn"
+      }
+    },
+    {
+      "name": "Zombabies: Evolution",
+      "slug": "zombabies-evolution",
+      "multiToken": false,
+      "address": "0x8EE54067dBb58d872424050234DF6162aa27C06D",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "Our Zombabies are growing up, along with our utility.",
+        "verified": false,
+        "avatar": "/img/collections/zombabies-evolution/avatar.png",
+        "card": "/img/collections/zombabies-evolution/card.png",
+        "banner": "/img/collections/zombabies-evolution/banner.png",
+        "maxSupply": 2500,
+        "website": "https://www.zombabies.io/",
+        "twitter": "https://twitter.com/ZombabiesNFT",
+        "discord": "https://discord.gg/ck264jsVR5"
+      }
+    },
+    {
+      "name": "Voltaik Nuclear Plant",
+      "slug": "voltaik-nuclear-plant",
+      "multiToken": false,
+      "address": "0x6B7a121363e84E0F31e844e949296C3dCd8512ad",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "Voltaik Nuclear Plant is a collection of NFTs created for the Voltaik protocol. These NFTs have a direct utility in the protocol.",
+        "verified": false,
+        "avatar": "/img/collections/voltaik-nuclear-plant/avatar.jpg",
+        "card": "/img/collections/voltaik-nuclear-plant/card.jpg",
+        "banner": "/img/collections/voltaik-nuclear-plant/banner.jpg",
+        "maxSupply": 512,
+        "website": "https://www.panelsproject.com/",
+        "twitter": "https://twitter.com/PanelsProject",
+        "discord": "https://discord.gg/cWdCce8XAx",
+        "medium": "https://medium.com/panels-project"
+      }
+    },
+    {
+      "name": "Big Bad Wolves - Monkey Of Anarkey",
+      "slug": "big-bad-wolves-monkey-of-anarkey",
+      "multiToken": false,
+      "address": "0xD6dd425e2E907eC85413c4f54502e4dA45153685",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "Limited NFT from the partnership between Big Bad Wolves and Monkey Of Anarkey",
+        "verified": false,
+        "avatar": "/img/collections/bigbadwolves/moa/avatar.png",
+        "card": "/img/collections/bigbadwolves/moa/card.png",
+        "banner": "/img/collections/bigbadwolves/moa/banner.png",
+        "maxSupply": 36,
+        "website": "https://www.bigbadwolves.club/",
+        "twitter": "https://twitter.com/BigBadWolves_MC",
+        "discord": "https://discord.gg/9GetF5Nc5x",
+        "medium": "https://t.me/bigbadwolves_nft"
+      }
     }
   ],
   "drops": [

@@ -163,7 +163,7 @@ const Nft1155 = ({ address, id }) => {
                   <>
                     <AnyMedia
                       image={specialImageTransform(address, nft.image)}
-                      video={specialImageTransform(address, nft.video ?? nft.animation_url)}
+                      video={nft.video ?? nft.animation_url}
                       videoProps={{ height: 'auto', autoPlay: true }}
                       title={nft.name}
                       usePlaceholder={false}
