@@ -26,6 +26,10 @@ export function specialImageTransform(address, defaultImage) {
     imageUrl.pathname = `QmX97CwY2NcmPmdS6XtcqLFMV2JGEjnEWjxBQbj4Q6NC2i.mp4`;
     return imageUrl.toString();
   }
+  if(caseInsensitiveCompare(imageUrl.pathname, '/QmX97CwY2NcmPmdS6XtcqLFMV2JGEjnEWjxBQbj4Q6NC2i')){
+    imageUrl.pathname = `QmX97CwY2NcmPmdS6XtcqLFMV2JGEjnEWjxBQbj4Q6NC2i.mp4`;
+    return imageUrl.toString();
+  }
 
   const filteredDomains = imageDomains.filter((domain) => defaultImage.includes(domain));
   if (filteredDomains.length) {
