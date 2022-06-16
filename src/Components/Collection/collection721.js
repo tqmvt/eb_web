@@ -148,16 +148,6 @@ const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) 
 
   return (
     <div>
-      <Head>
-        <title>{collection.name} | Ebisu's Bay Marketplace</title>
-        <meta name="description" content={`${collection.name} for Ebisu's Bay Marketplace`} />
-        <meta name="title" content={`${collection.name} | Ebisu's Bay Marketplace`} />
-        <meta property="og:title" content={`${collection.name} | Ebisu's Bay Marketplace`} />
-        <meta property="og:url" content={`https://app.ebisusbay.com/collection/${collection.slug}`} />
-        <meta property="og:image" content={`https://app.ebisusbay.com${collection.metadata.avatar || '/'}`} />
-        <meta name="twitter:title" content={`${collection.name} | Ebisu's Bay Marketplace`} />
-        <meta name="twitter:image" content={`https://app.ebisusbay.com${collection.metadata.avatar || '/'}`} />
-      </Head>
       <section
         id="profile_banner"
         className="jumbotron breadcumb no-bg"
