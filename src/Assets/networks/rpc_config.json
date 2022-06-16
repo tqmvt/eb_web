@@ -5382,6 +5382,26 @@
         "discord": "https://discord.gg/cWdCce8XAx",
         "medium": "https://medium.com/panels-project"
       }
+    },
+    {
+      "name": "Big Bad Wolves - Monkey Of Anarkey",
+      "slug": "big-bad-wolves-monkey-of-anarkey",
+      "multiToken": false,
+      "address": "0xD6dd425e2E907eC85413c4f54502e4dA45153685",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "Limited NFT from the partnership between Big Bad Wolves and Monkey Of Anarkey",
+        "verified": false,
+        "avatar": "/img/collections/bigbadwolves/moa/avatar.png",
+        "card": "/img/collections/bigbadwolves/moa/card.png",
+        "banner": "/img/collections/bigbadwolves/moa/banner.png",
+        "maxSupply": 36,
+        "website": "https://www.bigbadwolves.club/",
+        "twitter": "https://twitter.com/BigBadWolves_MC",
+        "discord": "https://discord.gg/9GetF5Nc5x",
+        "medium": "https://t.me/bigbadwolves_nft"
+      }
     }
   ],
   "drops": [
