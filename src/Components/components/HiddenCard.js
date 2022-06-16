@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import {hostedImage} from "../../hacks";
+import {hostedImage} from "../../helpers/image";
 
 const HiddenCard = () => {
   return (

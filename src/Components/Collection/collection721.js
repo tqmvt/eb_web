@@ -28,8 +28,8 @@ import Market from '../../Contracts/Marketplace.json';
 import stakingPlatforms from '../../core/data/staking-platforms.json';
 import PriceRangeFilter from '../Collection/PriceRangeFilter';
 import CollectionCronosverse from '../Collection/collectionCronosverse';
-import {hostedImage} from "../../hacks";
 import {appConfig} from "../../Config";
+import {hostedImage, ImageKitService} from "../../helpers/image";
 
 const config = appConfig();
 
@@ -162,7 +162,7 @@ const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) 
         id="profile_banner"
         className="jumbotron breadcumb no-bg"
         style={{
-          backgroundImage: `url(${hostedImage(collection.metadata.banner) ?? hostedImage('/img/background/subheader-blue.webp')})`,
+          backgroundImage: `url(${ImageKitService.buildBannerUrl(collection.metadata.banner ?? '/img/background/subheader-blue.webp')})`,
           backgroundPosition: '50% 50%',
         }}
       >

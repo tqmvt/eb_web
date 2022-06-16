@@ -6,12 +6,12 @@ import Link from 'next/link';
 import { ethers } from 'ethers';
 import MetaMaskOnboarding from '@metamask/onboarding';
 
-import { nftCardUrl } from '../../hacks';
 import Button from './Button';
 import MakeOfferDialog from '../Offer/MakeOfferDialog';
 import { connectAccount, chainConnect } from '../../GlobalState/User';
 import { isNftBlacklisted, round } from '../../utils';
 import { AnyMedia } from './AnyMedia';
+import {nftCardUrl} from "../../helpers/image";
 
 const Watermarked = styled.div`
   position: relative;

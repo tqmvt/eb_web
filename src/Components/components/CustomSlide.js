@@ -4,7 +4,7 @@ import { faCheck, faCircle } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
 
 import LayeredIcon from './LayeredIcon';
-import {hostedImage} from "../../hacks";
+import {hostedImage} from "../../helpers/image";
 
 const VerifiedIcon = styled.span`
   font-size: 10px;

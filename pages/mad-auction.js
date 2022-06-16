@@ -3,7 +3,7 @@ import React from 'react';
 import Footer from '../src/Components/components/Footer';
 import AuctionCollection from '../src/Components/components/AuctionCollection';
 import MetaverseModal from '../src/Components/components/MetaverseModal';
-import {hostedImage} from "../src/hacks";
+import {hostedImage} from "../src/helpers/image";
 
 const MetaverseAuctions = () => {
   return (

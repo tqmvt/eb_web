@@ -22,6 +22,7 @@ import stakingPlatforms from '../../core/data/staking-platforms.json';
 import SalesCollection from '../components/SalesCollection';
 import CollectionNftsGroup from '../components/CollectionNftsGroup';
 import {appConfig} from "../../Config";
+import {ImageKitService} from "../../helpers/image";
 
 const config = appConfig();
 
@@ -139,7 +140,7 @@ const Collection1155 = ({ collection, tokenId = null, cacheName = 'collection', 
         id="profile_banner"
         className="jumbotron breadcumb no-bg"
         style={{
-          backgroundImage: `url(${metadata?.banner ? metadata.banner : '/img/background/subheader-blue.webp'})`,
+          backgroundImage: `url(${ImageKitService.buildBannerUrl(metadata?.banner ?? '/img/background/subheader-blue.webp')})`,
           backgroundPosition: '50% 50%',
         }}
       >

@@ -12,8 +12,8 @@ import { getAuctionDetails } from '../../GlobalState/auctionSlice';
 import { caseInsensitiveCompare, humanize, newlineText, shortAddress, timeSince } from '../../utils';
 import BuyerActionBar from '../Auctions/BuyerActionBar';
 import ProfilePreview from '../components/ProfilePreview';
-import {hostedImage} from "../../hacks";
 import {appConfig} from "../../Config";
+import {hostedImage} from "../../helpers/image";
 
 const config = appConfig();
 const knownContracts = config.collections;

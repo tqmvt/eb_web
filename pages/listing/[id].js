@@ -32,9 +32,10 @@ import {
   isUserBlacklisted,
   isNftBlacklisted,
 } from '../../src/utils';
-import {hostedImage, specialImageTransform} from '../../src/hacks';
+import {specialImageTransform} from '../../src/hacks';
 import NFTTabOffers from '../../src/Components/Offer/NFTTabOffers';
 import {appConfig} from "../../src/Config";
+import {hostedImage} from "../../src/helpers/image";
 
 const config = appConfig();
 

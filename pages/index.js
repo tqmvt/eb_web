@@ -18,9 +18,9 @@ import {getTheme, theme} from '../src/Theme/theme';
 import { limitSizeOptions } from '../src/Components/components/constants/filter-options';
 import Button from '../src/Components/components/Button';
 import MetaverseModal from "../src/Components/components/MetaverseModal";
-import {hostedImage} from "../src/hacks";
 import ReactPlayer from "react-player";
 import Image from "next/image";
+import {hostedImage} from "../src/helpers/image";
 
 const fadeInUp = keyframes`
   0% {

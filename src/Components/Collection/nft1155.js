@@ -24,7 +24,7 @@ import {
   timeSince,
 } from '../../utils';
 import { getNftDetails } from '../../GlobalState/nftSlice';
-import {hostedImage, specialImageTransform} from '../../hacks';
+import {specialImageTransform} from '../../hacks';
 import { chainConnect, connectAccount } from '../../GlobalState/User';
 
 import ListingItem from '../NftDetails/NFTTabListings/ListingItem';
@@ -36,6 +36,7 @@ import MakeOfferDialog from '../Offer/MakeOfferDialog';
 import { OFFER_TYPE } from '../Offer/MadeOffersRow';
 import NFTTabOffers from '../Offer/NFTTabOffers';
 import { AnyMedia } from '../components/AnyMedia';
+import {hostedImage} from "../../helpers/image";
 
 const Nft1155 = ({ address, id }) => {
   const dispatch = useDispatch();
@@ -162,7 +163,7 @@ const Nft1155 = ({ address, id }) => {
                   <>
                     <AnyMedia
                       image={specialImageTransform(address, nft.image)}
-                      video={nft.video ?? nft.animation_url}
+                      video={specialImageTransform(address, nft.video ?? nft.animation_url)}
                       videoProps={{ height: 'auto', autoPlay: true }}
                       title={nft.name}
                       usePlaceholder={false}

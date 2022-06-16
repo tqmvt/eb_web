@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { faDiscord, faTwitter, faMedium, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { faSquare, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import LayeredIcon from './LayeredIcon';
-import {hostedImage} from "../../hacks";
+import {hostedImage} from "../../helpers/image";
 
 const Footer = () => {
   const location = useRouter();
