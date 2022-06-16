@@ -1,6 +1,6 @@
-import { caseInsensitiveCompare } from './utils';
-import {appConfig, imageDomains} from './Config';
-import {ImageKitService} from "./helpers/image";
+import {caseInsensitiveCompare} from './utils';
+import {imageDomains} from './Config';
+import {hostedImage} from "./helpers/image";
 
 export function isCroSkullRedPotion(address) {
   return caseInsensitiveCompare(address, '0x508378E99F5527Acb6eB4f0fc22f954c5783e5F9');
@@ -39,35 +39,3 @@ export function specialImageTransform(address, defaultImage) {
   return defaultImage;
 }
 
-/**
- * Build a hosted image URL from our CDN
- *
- * @param imgPath
- * @param useThumbnail
- * @returns {string}
- */
-export const hostedImage = (imgPath, useThumbnail) => {
-  if (!imgPath) return imgPath;
-
-  imgPath = imgPath.replace(/^\/+/g, '');
-  const cdn = appConfig('urls.cdn');
-
-  const imageUrl = new URL(imgPath, cdn);
-
-  if (useThumbnail) {
-    return ImageKitService.buildAvatarUrl(imageUrl.toString());
-  }
-  return ImageKitService.from(imageUrl.toString()).buildUrl();
-}
-
-/**
- * Build a hosted image URL from our CDN that is fit for the NFT cards
- *
- * @param nftAddress
- * @param nftImage
- * @returns {string|*}
- */
-export const nftCardUrl = (nftAddress, nftImage) => {
-  if (!nftImage || nftImage.startsWith('data')) return nftImage;
-  return ImageKitService.buildNftCardUrl(specialImageTransform(nftAddress, nftImage));
-}

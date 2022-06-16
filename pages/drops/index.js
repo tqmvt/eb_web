@@ -8,7 +8,7 @@ import Footer from '../../src/Components/components/Footer';
 import UpcomingDrops from '../../src/Components/Drops/UpcomingDrops';
 import PastDrops from '../../src/Components/Drops/PastDrops';
 import { getTheme } from '../../src/Theme/theme';
-import {hostedImage} from "../../src/hacks";
+import {hostedImage} from "../../src/helpers/image";
 
 const Drops = () => {
   const userTheme = useSelector((state) => {

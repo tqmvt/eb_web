@@ -6,7 +6,7 @@ import Reveal from 'react-awesome-reveal';
 
 import Footer from '../src/Components/components/Footer';
 import { theme } from '../src/Theme/theme';
-import {hostedImage} from "../src/hacks";
+import {hostedImage} from "../src/helpers/image";
 
 const fadeInUp = keyframes`
   0% {

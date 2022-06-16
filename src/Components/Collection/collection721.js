@@ -28,9 +28,8 @@ import Market from '../../Contracts/Marketplace.json';
 import stakingPlatforms from '../../core/data/staking-platforms.json';
 import PriceRangeFilter from '../Collection/PriceRangeFilter';
 import CollectionCronosverse from '../Collection/collectionCronosverse';
-import {hostedImage} from "../../hacks";
 import {appConfig} from "../../Config";
-import {ImageKitService} from "../../helpers/image";
+import {hostedImage, ImageKitService} from "../../helpers/image";
 
 const config = appConfig();
 

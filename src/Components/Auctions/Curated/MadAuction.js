@@ -3,8 +3,8 @@ import React from 'react';
 import Footer from '../../components/Footer';
 import AuctionCollection from '../../components/AuctionCollection';
 import MetaverseModal from '../../components/MetaverseModal';
-import {hostedImage} from "../../../hacks";
 import CuratedAuctionCollection from "./CuratedAuctionCollection";
+import {hostedImage} from "../../../helpers/image";
 
 const MadAuction = () => {
   return (

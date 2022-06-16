@@ -31,9 +31,9 @@ import { dropState as statuses } from '../../core/api/enums';
 import { EbisuDropAbi } from '../../Contracts/Abis';
 import { getTheme } from '../../Theme/theme';
 import SocialsBar from '../Collection/SocialsBar';
-import {hostedImage} from "../../hacks";
 import {parseUnits} from "ethers/lib/utils";
 import {appConfig} from "../../Config";
+import {hostedImage} from "../../helpers/image";
 
 const config = appConfig();
 const drops = config.drops;

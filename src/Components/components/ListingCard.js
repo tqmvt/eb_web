@@ -5,13 +5,13 @@ import Link from 'next/link';
 import { ethers } from 'ethers';
 import MetaMaskOnboarding from '@metamask/onboarding';
 
-import { nftCardUrl } from '../../hacks';
 import Button from './Button';
 import MakeOfferDialog from '../Offer/MakeOfferDialog';
 import { getTheme } from '../../Theme/theme';
 import { AnyMedia } from './AnyMedia';
 import { connectAccount, chainConnect } from '../../GlobalState/User';
 import { round } from '../../utils';
+import {nftCardUrl} from "../../helpers/image";
 
 const Watermarked = styled.div`
   position: relative;

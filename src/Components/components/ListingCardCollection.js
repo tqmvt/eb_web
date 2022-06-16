@@ -9,7 +9,8 @@ import Button from './Button';
 import MakeOfferDialog from '../Offer/MakeOfferDialog';
 import { chainConnect, connectAccount } from '../../GlobalState/User';
 import { AnyMedia } from './AnyMedia';
-import { nftCardUrl, specialImageTransform } from '../../hacks';
+import { specialImageTransform } from '../../hacks';
+import {nftCardUrl} from "../../helpers/image";
 
 const Watermarked = styled.div`
   position: relative;

@@ -1,5 +1,5 @@
 import {ethers} from "ethers";
-import {hostedImage} from "../hacks";
+import {hostedImage} from "../helpers/image";
 
 export const fallbackImageUrl = hostedImage('/img/nft-placeholder.webp');
 export const txExtras = {

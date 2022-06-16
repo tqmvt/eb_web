@@ -6,8 +6,8 @@ import { faLink, faEllipsisH, faExchangeAlt, faTag, faTimes, faPen } from '@fort
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PopupMen from './PopupMenu';
 import AnyMedia from './AnyMedia';
-import { nftCardUrl } from '../../hacks';
 import {appConfig} from "../../Config";
+import {nftCardUrl} from "../../helpers/image";
 
 const MyNftCard = ({
   nft,

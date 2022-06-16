@@ -7,7 +7,7 @@ import { auctionState } from '../../core/api/enums';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faGavel, faGem} from "@fortawesome/free-solid-svg-icons";
 import {AnyMedia} from "./AnyMedia";
-import {nftCardUrl} from "../../hacks";
+import {nftCardUrl} from "../../helpers/image";
 
 // const Outer = styled.div`
 //   display: flex;
