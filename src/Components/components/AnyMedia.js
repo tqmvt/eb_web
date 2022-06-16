@@ -3,38 +3,19 @@ import ReactPlayer from 'react-player';
 import { fallbackImageUrl } from '../../core/constants';
 import Link from 'next/link';
 import {CdnImage} from "./CdnImage";
+import {ImageKitService} from "../../helpers/image";
 
-export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = true, videoProps, className, layout='responsive', width=1, height=1, sizes }) => {
+export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = false, videoProps, className, layout='responsive', width=1, height=1, sizes }) => {
   const [dynamicType, setDynamicType] = useState(null);
   const [transformedImage, setTransformedImage] = useState(image);
   const [videoThumbnail, setVideoThumbNail] = useState(image);
 
   const blurImageUrl = (img)  => {
-    if(!img || img.startsWith('data')) return img;
-    const imageUrl = new URL(img);
-    
-    if(!imageUrl.searchParams){
-      imageUrl.searchParams = new URLSearchParams();
-    }
-    // imageUrl.searchParams.delete('tr');
-    if(imageUrl.searchParams.has('tr')){
-      imageUrl.searchParams.set('tr', imageUrl.searchParams.get('tr') + ',bl-30,q-10');
-    } else {
-      imageUrl.searchParams.set('tr', `w-${width},h-${height},bl-30,q-10`)
-    }
-    // imageUrl.searchParams.set('tr', 'n-blur_ml_card');
-  
-    return imageUrl.toString();
+    return ImageKitService.buildBlurUrl(img, {width, height});
   }
 
   const makeThumb = (vid) => {
-    const vidUrl = new URL(vid);
-    if(vidUrl.pathname.includes('.')){
-      //try to use imagekit thumbnail (check for period it doesn't work if no exension)
-      vidUrl.pathname = vidUrl.pathname = '/ik-thumbnail.jpg'
-      return vidUrl.toString();
-    } 
-
+    ImageKitService.thumbify(new URL(vid));
   }
 
   const mediaTypes = {
@@ -56,8 +37,7 @@ export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = tr
     //prefer mp4 over gif 
     const imageURL = new URL(image);
     if(imageURL.pathname && imageURL.pathname.endsWith('.gif')){
-      imageURL.pathname = `${imageURL.pathname}/ik-gif-video.mp4`;
-      setTransformedImage(imageURL.toString());
+      setTransformedImage(ImageKitService.gifToMp4(imageURL).toString());
       setVideoThumbNail(null);
       setDynamicType(mediaTypes.video);
     } else {
@@ -72,8 +52,7 @@ export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = tr
           setVideoThumbNail(makeThumb(transformedImage));
         }
         if(format === 'gif'){
-          imageURL.pathname = `${imageURL.pathname}/ik-gif-video.mp4`;
-          setTransformedImage(imageURL.toString());
+          setTransformedImage(ImageKitService.gifToMp4(imageURL).toString());
           setVideoThumbNail(null);
           setDynamicType(mediaTypes.video);
         } else {
@@ -142,6 +121,7 @@ const Image = memo(({ image, title, className, blur, sizes, layout, width, heigh
 
 const Video = memo(
   ({ video, image, title, usePlaceholder, height = '100%', autoPlay = false, controls = true, className }) => {
+
     return (
       <ReactPlayer
         controls={controls}

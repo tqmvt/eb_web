@@ -1,5 +1,6 @@
 import { caseInsensitiveCompare } from './utils';
 import {appConfig, imageDomains} from './Config';
+import {ImageKitService} from "./helpers/image";
 
 export function isCroSkullRedPotion(address) {
   return caseInsensitiveCompare(address, '0x508378E99F5527Acb6eB4f0fc22f954c5783e5F9');
@@ -22,7 +23,7 @@ export function specialImageTransform(address, defaultImage) {
   //Replace VIP GIF with MP4 can remove when image kit transforms gif without file exension
   //Or when metadata updated for image ;)
   if(caseInsensitiveCompare(imageUrl.pathname, '/QmTeJ3UYT6BG8v4Scy9E3W9cxEq6TCeg5SiuLKNFXbsW87')){
-    imageUrl.pathname = `QmX97CwY2NcmPmdS6XtcqLFMV2JGEjnEWjxBQbj4Q6NC2i`;
+    imageUrl.pathname = `QmX97CwY2NcmPmdS6XtcqLFMV2JGEjnEWjxBQbj4Q6NC2i.mp4`;
     return imageUrl.toString();
   }
 
@@ -48,12 +49,15 @@ export function specialImageTransform(address, defaultImage) {
 export const hostedImage = (imgPath, useThumbnail) => {
   if (!imgPath) return imgPath;
 
-  imgPath = imgPath ? imgPath.replace(/^\/+/g, '') : '';
+  imgPath = imgPath.replace(/^\/+/g, '');
   const cdn = appConfig('urls.cdn');
 
   const imageUrl = new URL(imgPath, cdn);
 
-  return imageKitUrl(imageUrl.toString(), {isThumbnail: useThumbnail});
+  if (useThumbnail) {
+    return ImageKitService.buildAvatarUrl(imageUrl.toString());
+  }
+  return ImageKitService.from(imageUrl.toString()).buildUrl();
 }
 
 /**
@@ -65,29 +69,5 @@ export const hostedImage = (imgPath, useThumbnail) => {
  */
 export const nftCardUrl = (nftAddress, nftImage) => {
   if (!nftImage || nftImage.startsWith('data')) return nftImage;
-  return imageKitUrl(specialImageTransform(nftAddress, nftImage), {isCard: true});
-}
-
-/**
- * Apply ImageKit parameters to an existing image URL
- *
- * @param imgUrl
- * @param isCard
- * @param isThumbnail
- * @returns {string}
- */
-export const imageKitUrl = (imgUrl, {isCard = false, isThumbnail = false}) => {
-  const imageUrl = new URL(imgUrl);
-  if(!imageUrl.searchParams){
-    imageUrl.searchParams = new URLSearchParams();
-  }
-  imageUrl.searchParams.delete('tr');
-
-  if (isCard) {
-    imageUrl.searchParams.set('tr', 'n-ml_card');
-  } else if (isThumbnail) {
-    imageUrl.searchParams.set('tr', 'n-avatar');
-  }
-
-  return imageUrl.toString();
+  return ImageKitService.buildNftCardUrl(specialImageTransform(nftAddress, nftImage));
 }
