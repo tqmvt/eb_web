@@ -5329,7 +5329,7 @@
       "name": "Lost Toys VIP",
       "slug": "lost-toys-vip",
       "multiToken": true,
-      "address": "",
+      "address": "0x87E44a3907e979fCdd2DaF5496fc316E49bb19b2",
       "onChain": false,
       "listable": true,
       "metadata": {
