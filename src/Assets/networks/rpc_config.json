@@ -5324,6 +5324,25 @@
         "twitter": "https://twitter.com/CROmadsNFT",
         "discord": "https://discord.gg/mjMXPKknrv"
       }
+    },
+    {
+      "name": "Lost Toys VIP",
+      "slug": "lost-toys-vip",
+      "multiToken": false,
+      "address": "",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "Holding a Lost Toy VIP NFT grants you access to the Lost Toys DAO to be able to vote on the future characters within the collection and the next features of our platform SnipeHub. Other utilities include exclusive raffles, WL to other projects and many more benefits yet to be announced.",
+        "verified": true,
+        "avatar": "/img/collections/looneycorns/avatar.webp",
+        "card": "/img/collections/lost-toys-vip/card.png",
+        "banner": "/img/collections/lost-toys-vip/banner.png",
+        "maxSupply": 2200,
+        "website": "https://www.losttoys.io/",
+        "twitter": "https://www.twitter.com/looneycornsnft",
+        "discord": "https://discord.gg/Tdd9TZRMxn"
+      }
     }
   ],
   "drops": [
