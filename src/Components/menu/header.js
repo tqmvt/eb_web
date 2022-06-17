@@ -132,14 +132,14 @@ const Header = function () {
                         </a>
                       </Link>
                     </div>
-                    <div className="navbar-item">
-                      <Link href="/stats">
-                        <a>
-                          Stats
-                          <span className="lines"></span>
-                        </a>
-                      </Link>
-                    </div>
+                    {/*<div className="navbar-item">*/}
+                    {/*  <Link href="/stats">*/}
+                    {/*    <a>*/}
+                    {/*      Stats*/}
+                    {/*      <span className="lines"></span>*/}
+                    {/*    </a>*/}
+                    {/*  </Link>*/}
+                    {/*</div>*/}
                   </div>
                 </div>
               )}
@@ -187,14 +187,14 @@ const Header = function () {
                     </a>
                   </Link>
                 </div>
-                <div className="navbar-item">
-                  <Link href="/stats">
-                    <a>
-                      Stats
-                      <span className="lines"></span>
-                    </a>
-                  </Link>
-                </div>
+                {/*<div className="navbar-item">*/}
+                {/*  <Link href="/stats">*/}
+                {/*    <a>*/}
+                {/*      Stats*/}
+                {/*      <span className="lines"></span>*/}
+                {/*    </a>*/}
+                {/*  </Link>*/}
+                {/*</div>*/}
               </div>
             </div>
           )}
