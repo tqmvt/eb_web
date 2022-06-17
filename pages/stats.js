@@ -150,7 +150,7 @@ export default function Stats() {
               title="Most Buy Volume"
               onClick={() => setType('buyVolume')}
               totalVolume={utils.commify(leaderBoard?.buyVolume[0]?.totalVolume || 0)}
-              name={shortAddress(leaderBoard?.sellVolume[0]?.address) || 0}
+              name={shortAddress(leaderBoard?.buyVolume[0]?.address) || 0}
               active={type === 'buyVolume'}
             />
             <Card
