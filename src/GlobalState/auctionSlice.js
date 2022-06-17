@@ -29,7 +29,7 @@ const auctionSlice = createSlice({
       state.loading = false;
       state.auction = action.payload.listing;
       state.history = action.payload.history ?? [];
-      state.bidHistory = action.payload.listing.getBidHistory ?? [];
+      state.bidHistory = action.payload.bidHistory ?? [];
       state.powertraits = action.payload.powertraits ?? [];
       state.minBid = action.payload.minBid;
     },
@@ -57,6 +57,9 @@ export const getAuctionDetails = (auctionId) => async (dispatch) => {
   const nft = await getNft(listing.nftAddress, listing.nftId, false);
   const history = nft?.listings ?? [];
   const powertraits = nft.nft?.powertraits ?? [];
+  const flattenedBidHistory = listing.getBidHistory.flatMap((item) => item.updates.map((o) => {
+    return {...o, bidder: item.bidder};
+  })).sort((a, b) => parseInt(a.price) < parseInt(b.price) ? 1 : -1);
 
   let minBid;
   try {
@@ -67,7 +70,7 @@ export const getAuctionDetails = (auctionId) => async (dispatch) => {
     minBid = listing.getMinimumBid;
     console.log('Failed to retrieve minimum bid. Falling back to api value', error);
   }
-  dispatch(auctionReceived({ listing, history, powertraits, minBid }));
+  dispatch(auctionReceived({ listing, history, powertraits, minBid, bidHistory: flattenedBidHistory }));
 };
 
 export const updateAuctionFromBidEvent = (bidAmount) => async (dispatch, getState) => {
