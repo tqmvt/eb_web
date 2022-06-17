@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
-import {relativePrecision, round, shortAddress} from '../../utils';
+import {round, shortAddress} from '../../utils';
 import { utils } from 'ethers';
-import { getCnsName } from '../../helpers/cns';
 import styles from './styles.module.scss';
 
 export default function Table({ headers, items }) {
