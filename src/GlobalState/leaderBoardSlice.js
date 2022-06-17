@@ -35,7 +35,6 @@ const leaderBoardSlice = createSlice({
       })).sort((a, b) => parseInt(a.totalVolume) < parseInt(b.totalVolume) ? 1 : -1);
       state.biggestSingleSale = action.payload[3].data.map((data) => ({
         address: data.id,
-        transactions: '',
         totalVolume: data.highestSale,
       })).sort((a, b) => parseInt(a.totalVolume) < parseInt(b.totalVolume) ? 1 : -1);
     },
