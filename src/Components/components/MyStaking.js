@@ -16,7 +16,7 @@ import {
   faExternalLinkAlt,
 } from '@fortawesome/free-solid-svg-icons';
 import { getTheme } from '../../Theme/theme';
-import {hostedImage} from "../../hacks";
+import {hostedImage} from "../../helpers/image";
 
 const txExtras = {
   gasPrice: ethers.utils.parseUnits('5000', 'gwei'),

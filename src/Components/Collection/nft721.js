@@ -25,7 +25,7 @@ import {
 } from '../../utils';
 import { getNftDetails } from '../../GlobalState/nftSlice';
 import { connectAccount, chainConnect } from '../../GlobalState/User';
-import {hostedImage, specialImageTransform} from '../../hacks';
+import {specialImageTransform} from '../../hacks';
 import ListingItem from '../NftDetails/NFTTabListings/ListingItem';
 import PriceActionBar from '../NftDetails/PriceActionBar';
 import { ERC721 } from '../../Contracts/Abis';
@@ -36,6 +36,7 @@ import { OFFER_TYPE } from '../Offer/MadeOffersRow';
 import { offerState } from '../../core/api/enums';
 import {commify} from "ethers/lib/utils";
 import {appConfig} from "../../Config";
+import {hostedImage} from "../../helpers/image";
 
 const config = appConfig();
 const knownContracts = config.collections;

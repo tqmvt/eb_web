@@ -22,6 +22,7 @@ import stakingPlatforms from '../../core/data/staking-platforms.json';
 import SalesCollection from '../components/SalesCollection';
 import CollectionNftsGroup from '../components/CollectionNftsGroup';
 import {appConfig} from "../../Config";
+import {ImageKitService} from "../../helpers/image";
 
 const config = appConfig();
 
@@ -125,21 +126,11 @@ const Collection1155 = ({ collection, tokenId = null, cacheName = 'collection', 
 
   return (
     <div>
-      <Head>
-        <title>{collectionName()} | Ebisu's Bay Marketplace</title>
-        <meta name="description" content={`${collectionName()} for Ebisu's Bay Marketplace`} />
-        <meta name="title" content={`${collectionName()} | Ebisu's Bay Marketplace`} />
-        <meta property="og:title" content={`${collectionName()} | Ebisu's Bay Marketplace`} />
-        <meta property="og:url" content={`https://app.ebisusbay.com/collection/${collection.address}`} />
-        <meta property="og:image" content={`https://app.ebisusbay.com${collectionMetadata?.avatar || '/'}`} />
-        <meta name="twitter:title" content={`${collectionName()} | Ebisu's Bay Marketplace`} />
-        <meta name="twitter:image" content={`https://app.ebisusbay.com${collectionMetadata?.avatar || '/'}`} />
-      </Head>
       <section
         id="profile_banner"
         className="jumbotron breadcumb no-bg"
         style={{
-          backgroundImage: `url(${metadata?.banner ? metadata.banner : '/img/background/subheader-blue.webp'})`,
+          backgroundImage: `url(${ImageKitService.buildBannerUrl(metadata?.banner ?? '/img/background/subheader-blue.webp')})`,
           backgroundPosition: '50% 50%',
         }}
       >

@@ -28,8 +28,8 @@ import Market from '../../Contracts/Marketplace.json';
 import stakingPlatforms from '../../core/data/staking-platforms.json';
 import PriceRangeFilter from '../Collection/PriceRangeFilter';
 import CollectionCronosverse from '../Collection/collectionCronosverse';
-import {hostedImage} from "../../hacks";
 import {appConfig} from "../../Config";
+import {hostedImage, ImageKitService} from "../../helpers/image";
 
 const config = appConfig();
 
@@ -148,21 +148,11 @@ const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) 
 
   return (
     <div>
-      <Head>
-        <title>{collection.name} | Ebisu's Bay Marketplace</title>
-        <meta name="description" content={`${collection.name} for Ebisu's Bay Marketplace`} />
-        <meta name="title" content={`${collection.name} | Ebisu's Bay Marketplace`} />
-        <meta property="og:title" content={`${collection.name} | Ebisu's Bay Marketplace`} />
-        <meta property="og:url" content={`https://app.ebisusbay.com/collection/${collection.slug}`} />
-        <meta property="og:image" content={`https://app.ebisusbay.com${collection.metadata.avatar || '/'}`} />
-        <meta name="twitter:title" content={`${collection.name} | Ebisu's Bay Marketplace`} />
-        <meta name="twitter:image" content={`https://app.ebisusbay.com${collection.metadata.avatar || '/'}`} />
-      </Head>
       <section
         id="profile_banner"
         className="jumbotron breadcumb no-bg"
         style={{
-          backgroundImage: `url(${hostedImage(collection.metadata.banner) ?? hostedImage('/img/background/subheader-blue.webp')})`,
+          backgroundImage: `url(${ImageKitService.buildBannerUrl(collection.metadata.banner ?? '/img/background/subheader-blue.webp')})`,
           backgroundPosition: '50% 50%',
         }}
       >

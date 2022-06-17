@@ -9,9 +9,9 @@ import { Form, Spinner } from 'react-bootstrap';
 import Footer from '../src/Components/components/Footer';
 import { getAllCollections } from '../src/GlobalState/collectionsSlice';
 import { debounce, siPrefixedNumber } from '../src/utils';
-import {hostedImage} from "../src/hacks";
 import Image from "next/image";
 import {CdnImage} from "../src/Components/components/CdnImage";
+import {hostedImage} from "../src/helpers/image";
 
 const GlobalStyles = createGlobalStyle`
   .mobile-view-list-item {

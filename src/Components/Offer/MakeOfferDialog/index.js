@@ -10,7 +10,7 @@ import { Spinner } from 'react-bootstrap';
 import Button from '../../../Components/components/Button';
 import Input from '../../../Components/components/common/Input';
 import ProfilePreview from '../../../Components/components/ProfilePreview';
-import {hostedImage, specialImageTransform} from '../../../hacks';
+import {specialImageTransform} from '../../../hacks';
 import { caseInsensitiveCompare, humanize, isEventValidNumber, shortAddress } from '../../../utils';
 import { OFFER_TYPE } from '../MadeOffersRow';
 import { updateOfferSuccess, updateOfferFailed } from '../../../GlobalState/offerSlice';
@@ -22,6 +22,7 @@ import { offerState } from '../../../core/api/enums';
 import { txExtras } from '../../../core/constants';
 import { findCollectionByAddress } from '../../../utils';
 import {appConfig} from "../../../Config";
+import {hostedImage} from "../../../helpers/image";
 
 const config = appConfig();
 

@@ -5,13 +5,13 @@ import { toast } from 'react-toastify';
 import { Form, ProgressBar, Spinner } from 'react-bootstrap';
 import * as Sentry from '@sentry/react';
 import styled from 'styled-components';
-import {hostedImage} from "../src/hacks";
 
 import Footer from '../src/Components/components/Footer';
 import { createSuccessfulTransactionToastContent, humanize, percentage } from '../src/utils';
 import ShipABI from '../src/Contracts/Ship.json';
 import ShipItemABI from '../src/Contracts/ShipItem.json';
 import {appConfig} from "../src/Config";
+import {hostedImage} from "../src/helpers/image";
 
 const knownContracts = appConfig('collections');
 

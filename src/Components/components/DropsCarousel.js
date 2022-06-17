@@ -9,8 +9,8 @@ import Slider from 'react-slick';
 import Clock from './Clock';
 import LayeredIcon from './LayeredIcon';
 import { dropState } from '../../core/api/enums';
-import {hostedImage} from "../../hacks";
 import {appConfig} from "../../Config";
+import {hostedImage} from "../../helpers/image";
 const drops = appConfig('drops');
 
 const GlobalStyles = createGlobalStyle`
