@@ -7,7 +7,7 @@ import AccountMenu from '../components/AccountMenu';
 import InvalidListingWarning from '../components/InvalidListingWarning';
 // import { setTheme } from '../../GlobalState/User';
 
-const BREAKPOINTS = { xs: 0, m: 768, l: 1199, xl: 1200 }
+const BREAKPOINTS = { xs: 0, m: 768, l: 1199, xl: 1200 };
 
 const GlobalStyles = createGlobalStyle`
   header#myHeader.navbar.white {
@@ -44,7 +44,7 @@ const Header = function () {
   //   dispatch(setTheme(newTheme));
   // };
 
-  useEffect(() =>{
+  useEffect(() => {
     setUseMobileMenu(minWidth < BREAKPOINTS.l);
   }, [breakpoint]);
 
@@ -132,6 +132,14 @@ const Header = function () {
                         </a>
                       </Link>
                     </div>
+                    <div className="navbar-item">
+                      <Link href="/stats">
+                        <a>
+                          Stats
+                          <span className="lines"></span>
+                        </a>
+                      </Link>
+                    </div>
                   </div>
                 </div>
               )}
@@ -179,10 +187,17 @@ const Header = function () {
                     </a>
                   </Link>
                 </div>
+                <div className="navbar-item">
+                  <Link href="/stats">
+                    <a>
+                      Stats
+                      <span className="lines"></span>
+                    </a>
+                  </Link>
+                </div>
               </div>
             </div>
           )}
-
 
           <AccountMenu />
           <InvalidListingWarning size={'2x'} />

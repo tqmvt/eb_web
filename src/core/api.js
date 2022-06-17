@@ -41,6 +41,7 @@ const api = {
   collectionSummary: '/collection/summary',
   collectionDetails: '/fullcollections',
   wallets: '/wallets',
+  leaders: 'getLeaders',
 };
 
 export default api;
@@ -1268,4 +1269,18 @@ export async function getNftsForAddress2(walletAddress, walletProvider, page) {
         };
       })
   );
+}
+
+export async function getLeaders(timeframe) {
+  const urls = [
+    `${api.baseUrl}${api.leaders}?sortBy=totalVolume&direction=desc${timeframe ? `&timeframe=${timeframe}` : ''}`,
+    `${api.baseUrl}${api.leaders}?sortBy=buyVolume&direction=desc${timeframe ? `&timeframe=${timeframe}` : ''}`,
+    `${api.baseUrl}${api.leaders}?sortBy=saleVolume&direction=desc${timeframe ? `&timeframe=${timeframe}` : ''}`,
+    `${api.baseUrl}${api.leaders}?sortBy=highestSale&direction=desc${timeframe ? `&timeframe=${timeframe}` : ''}`,
+  ];
+  // map every url to the promise of the fetch
+  let requests = urls.map((url) => fetch(url));
+
+  // Promise.all waits until all jobs are resolved
+  return Promise.all(requests).then((responses) => Promise.all(responses.map((r) => r.json())));
 }
