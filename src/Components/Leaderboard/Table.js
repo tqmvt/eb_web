@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { shortAddress } from '../../utils';
+import {relativePrecision, round, shortAddress} from '../../utils';
 import { utils } from 'ethers';
 import { getCnsName } from '../../helpers/cns';
 import styles from './styles.module.scss';
@@ -31,7 +31,7 @@ export default function Table({ headers, items }) {
             </th>
             {Object.keys(item).map((key) => (
               <td key={key} className="text-center">
-                {key === 'address' ? <UserName address={item[key]} /> : utils.commify(item[key])}
+                {key === 'address' ? <UserName address={item[key]} /> : utils.commify(round(item[key]))}
               </td>
             ))}
           </tr>

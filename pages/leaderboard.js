@@ -70,7 +70,7 @@ export const carouselSettings = {
 
 const headers = {
   totalVolume: ['User', 'Sales Volume', 'Buy Volume', 'Total Volume'],
-  buyVolume: ['User', '# of Buy', 'Total Volume'],
+  buyVolume: ['User', '# of Buys', 'Total Volume'],
   sellVolume: ['User', '# of Sales', 'Total Volume'],
   biggestSingleSale: ['User', 'Transactions', 'Total Volume'],
 };

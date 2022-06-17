@@ -22,22 +22,22 @@ const leaderBoardSlice = createSlice({
         salesVolume: data.sellVolume,
         buyVolume: data.buyVolume,
         totalVolume: data.totalVolume,
-      }));
+      })).sort((a, b) => parseInt(a.totalVolume) < parseInt(b.totalVolume) ? 1 : -1);
       state.sellVolume = action.payload[1].data.map((data) => ({
         address: data.id,
         numberOfSales: data.numberSales,
         totalVolume: data.sellVolume,
-      }));
+      })).sort((a, b) => parseInt(a.totalVolume) < parseInt(b.totalVolume) ? 1 : -1);
       state.buyVolume = action.payload[2].data.map((data) => ({
         address: data.id,
         numberOfBuy: data.numberBuys,
         totalVolume: data.buyVolume,
-      }));
+      })).sort((a, b) => parseInt(a.totalVolume) < parseInt(b.totalVolume) ? 1 : -1);
       state.biggestSingleSale = action.payload[3].data.map((data) => ({
         address: data.id,
         transactions: '',
-        totalVolume: data.sellVolume,
-      }));
+        totalVolume: data.highestSale,
+      })).sort((a, b) => parseInt(a.totalVolume) < parseInt(b.totalVolume) ? 1 : -1);
     },
   },
 });
