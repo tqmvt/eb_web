@@ -18,7 +18,7 @@ const Drops = () => {
   return (
     <div>
       <Head>
-        <title>Sales Stats | Ebisu's Bay Marketplace</title>
+        <title>Stats | Ebisu's Bay Marketplace</title>
         <meta name="description" content="A collection of the most active users on Ebisu's Bay Marketplace." />
         <meta name="title" content="Sales Stats | Ebisu's Bay Marketplace" />
         <meta property="og:type" content="website" key="og_type" />
