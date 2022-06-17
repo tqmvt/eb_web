@@ -9,6 +9,7 @@ import UpcomingDrops from '../../src/Components/Drops/UpcomingDrops';
 import PastDrops from '../../src/Components/Drops/PastDrops';
 import { getTheme } from '../../src/Theme/theme';
 import {hostedImage} from "../../src/helpers/image";
+import Head from "next/head";
 
 const Drops = () => {
   const userTheme = useSelector((state) => {
@@ -16,6 +17,16 @@ const Drops = () => {
   });
   return (
     <div>
+      <Head>
+        <title>Sales Stats | Ebisu's Bay Marketplace</title>
+        <meta name="description" content="A collection of the most active users on Ebisu's Bay Marketplace." />
+        <meta name="title" content="Sales Stats | Ebisu's Bay Marketplace" />
+        <meta property="og:type" content="website" key="og_type" />
+        <meta property="og:title" content="Sales Stats | Ebisu's Bay Marketplace" key="title" />
+        <meta property="og:url" content="https://app.ebisusbay.com/stats" key="og_url" />
+        <meta property="og:description" content="A collection of the most active users on Ebisu's Bay Marketplace." key="og_desc" />
+        <meta name="twitter:title" content="Sales Stats | Ebisu's Bay Marketplace" key="twitter_title" />
+      </Head>
       <section className="no-top mt-2 pb-2 bg-transparent">
         <div className="d-flex justify-content-center px-5">
           <p className="my-auto me-5">
