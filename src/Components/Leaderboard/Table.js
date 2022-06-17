@@ -42,16 +42,16 @@ export default function Table({ headers, items }) {
 }
 
 function UserName({ address }) {
-  const [name, setName] = useState(shortAddress(address));
+  // const [name, setName] = useState(shortAddress(address));
+  //
+  // useEffect(() => {
+  //   async function func() {
+  //     const cnsName = await getCnsName(address);
+  //     if (cnsName) setName(cnsName);
+  //   }
+  //
+  //   func();
+  // }, [address]);
 
-  useEffect(() => {
-    async function func() {
-      const cnsName = await getCnsName(address);
-      if (cnsName) setName(cnsName);
-    }
-
-    func();
-  }, [address]);
-
-  return <>{name}</>;
+  return <>{shortAddress(address)}</>;
 }

@@ -133,9 +133,9 @@ const Header = function () {
                       </Link>
                     </div>
                     <div className="navbar-item">
-                      <Link href="/leaderboard">
+                      <Link href="/stats">
                         <a>
-                          Leaderboard
+                          Stats
                           <span className="lines"></span>
                         </a>
                       </Link>
@@ -188,9 +188,9 @@ const Header = function () {
                   </Link>
                 </div>
                 <div className="navbar-item">
-                  <Link href="/leaderboard">
+                  <Link href="/stats">
                     <a>
-                      Leaderboard
+                      Stats
                       <span className="lines"></span>
                     </a>
                   </Link>

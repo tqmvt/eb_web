@@ -75,7 +75,7 @@ const headers = {
   biggestSingleSale: ['User', 'Transactions', 'Total Volume'],
 };
 
-export default function leaderboard() {
+export default function Stats() {
   const [timeframe, setTimeframe] = useState(null);
   const [type, setType] = useState('totalVolume');
   const dispatch = useDispatch();
