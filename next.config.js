@@ -51,6 +51,16 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/collection/carkayous',
+        destination: '/collection/carkayous-feral-fish',
+        permanent: true,
+      },
+      {
+        source: '/collection/carkayous/:id',
+        destination: '/collection/carkayous-feral-fish/:id',
+        permanent: true,
+      },
+      {
         source: '/mad-auction',
         destination: '/auctions/mad-auction',
         permanent: false,

@@ -1,0 +1,28 @@
+@import '../../Assets/styles/vars';
+
+.card {
+    background-color: $bgColor3;
+    padding: 20px;
+    margin: 0 15px;
+    cursor: pointer;
+}
+
+.table {
+    --bs-table-bg: $bgColor1 !important;
+}
+
+.active {
+    border-top: 4px solid #DB630D;
+}
+
+.dots {
+    :global(.slick-dots){
+        padding: 10px;
+    }
+    :global(.slick-dots li button:before){
+        font-size: 10px;
+    }
+    :global(.slick-dots li){
+        margin: 0;
+    }
+}

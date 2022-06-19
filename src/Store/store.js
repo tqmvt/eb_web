@@ -15,6 +15,7 @@ import collectionsReducer from '../GlobalState/collectionsSlice';
 import collectionReducer from '../GlobalState/collectionSlice';
 import { appInitializeStateReducer } from '../GlobalState/InitSlice';
 import offerReducer from '../GlobalState/offerSlice';
+import leaderBoardReducer from '../GlobalState/leaderBoardSlice';
 import { user } from '../GlobalState/User';
 
 const rootReducer = combineReducers({
@@ -30,6 +31,7 @@ const rootReducer = combineReducers({
   collection: collectionReducer,
   offer: offerReducer,
   metaverse: metaverseReducer,
+  leaderBoard: leaderBoardReducer,
 });
 
 const reduxDevToolsComposeEnhancers =
