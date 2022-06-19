@@ -5423,6 +5423,26 @@
         "discord": "https://discord.gg/6VgTfbm3xW",
         "medium": "https://medium.com/@themetaplanets/the-metaplanetss-omniverse-97902ae01fc6"
       }
+    },
+    {
+      "name": "B.A.D. - Bits",
+      "slug": "bad-bits",
+      "multiToken": false,
+      "address": "0xA217d6feEf38F9f2D139300E0C4adF42cf96F4C3",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "On their way across the galaxy, an elite few of B.A.D were sucked into a wormhole and spit out into some strange simplified parallel universe.",
+        "verified": true,
+        "avatar": "/img/collections/bad-bits/avatar.png",
+        "card": "/img/collections/bad-bits/card.png",
+        "banner": "/img/collections/bad-bits/banner.png",
+        "maxSupply": 550,
+        "website": "https://badaliens.io/",
+        "twitter": "https://twitter.com/BAD_Cronos",
+        "discord": "https://discord.gg/HMy5SArp7g",
+        "medium": "https://medium.com/@babyaliendivision"
+      }
     }
   ],
   "drops": [
