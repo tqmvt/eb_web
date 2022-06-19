@@ -5401,7 +5401,47 @@
         "website": "https://www.bigbadwolves.club/",
         "twitter": "https://twitter.com/BigBadWolves_MC",
         "discord": "https://discord.gg/9GetF5Nc5x",
-        "medium": "https://t.me/bigbadwolves_nft"
+        "telegram": "https://t.me/bigbadwolves_nft"
+      }
+    },
+    {
+      "name": "MetaPlanets Big Bang",
+      "slug": "metaplanets-big-bang",
+      "multiToken": false,
+      "address": "0x99180726e23a030278b23C4BbF38c18205A8B53C",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "Metaplanets is an nft project, counting for the first generation called \"big bang\" 600 metaplanets. Our planets are in a 2d cartoon/semi realistic style. But our project is not only to make a simple collection. Our plans are much bigger and our vision much more ambitious. As stated in our roadmap, our second generation \"expansion\" will have 2000 metaplanets, realized in 3d. The owners of the 600 Metaplanets of the \"Big Bang\" collection will be airdrop 3D metaplanets . A lot of utility ! As example : the holders of at least 5 metaplanets, will receive after sold out, a metastar, this star will allow them to complete their planetary systems and add a multiplier to staking potential ! Much more to discover on our website.",
+        "verified": false,
+        "avatar": "/img/collections/metaplanets-big-bang/avatar.png",
+        "card": "/img/collections/metaplanets-big-bang/card.png",
+        "banner": "/img/collections/metaplanets-big-bang/banner.png",
+        "maxSupply": 600,
+        "website": "https://the-metaplanets.com/",
+        "twitter": "https://twitter.com/MetaPlanets_NFT",
+        "discord": "https://discord.gg/6VgTfbm3xW",
+        "medium": "https://medium.com/@themetaplanets/the-metaplanetss-omniverse-97902ae01fc6"
+      }
+    },
+    {
+      "name": "B.A.D. - Bits",
+      "slug": "bad-bits",
+      "multiToken": false,
+      "address": "0xA217d6feEf38F9f2D139300E0C4adF42cf96F4C3",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "On their way across the galaxy, an elite few of B.A.D were sucked into a wormhole and spit out into some strange simplified parallel universe.",
+        "verified": true,
+        "avatar": "/img/collections/bad-bits/avatar.png",
+        "card": "/img/collections/bad-bits/card.png",
+        "banner": "/img/collections/bad-bits/banner.png",
+        "maxSupply": 550,
+        "website": "https://badaliens.io/",
+        "twitter": "https://twitter.com/BAD_Cronos",
+        "discord": "https://discord.gg/HMy5SArp7g",
+        "medium": "https://medium.com/@babyaliendivision"
       }
     }
   ],

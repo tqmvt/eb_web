@@ -65,6 +65,39 @@ export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = fa
 
   };
 
+  const ImageComponent = () => {
+    return (
+      <Image
+        image={transformedImage}
+        title={title}
+        className={className}
+        blur={blurImageUrl(transformedImage)}
+        sizes={sizes}
+        layout={layout}
+        width={width}
+        height={height}
+      />
+    )
+  };
+
+  const AnyMediaWithoutVideo = () => {
+    return (
+      <AnyMedia
+        image={transformedImage}
+        title={title}
+        url={url}
+        newTab={newTab}
+        usePlaceholder={usePlaceholder}
+        videoProps={videoProps}
+        className={className}
+        layout={layout}
+        width={width}
+        height={height}
+        sizes={sizes}
+      />
+    )
+  };
+
   return (
     <>
       {dynamicType && (
@@ -79,15 +112,16 @@ export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = fa
               autoPlay={videoProps?.autoPlay}
               controls={videoProps?.controls}
               className={className}
+              fallbackComponent={<AnyMediaWithoutVideo />}
             />
           ) : url ? (
             <Link href={url} target={newTab ? '_blank' : '_self'}>
               <a>
-                <Image image={transformedImage} title={title} className={className} blur={blurImageUrl(transformedImage)} sizes={sizes} layout={layout} width={width} height={height} />
+                <ImageComponent />
               </a>
             </Link>
           ) : (
-            <Image image={transformedImage} title={title} className={className} blur={blurImageUrl(transformedImage)} sizes={sizes} layout={layout} width={width} height={height}/>
+            <ImageComponent />
           )}
         </>
       )}
@@ -120,9 +154,10 @@ const Image = memo(({ image, title, className, blur, sizes, layout, width, heigh
 });
 
 const Video = memo(
-  ({ video, image, title, usePlaceholder, height = '100%', autoPlay = false, controls = true, className }) => {
+  ({ video, image, title, usePlaceholder, height = '100%', autoPlay = false, controls = true, className, fallbackComponent }) => {
+    const [failed, setFailed] = useState(false);
 
-    return (
+    return !failed ? (
       <ReactPlayer
         controls={controls}
         url={video}
@@ -142,7 +177,12 @@ const Video = memo(
         height={height}
         className={className}
         playsinline={true}
+        onError={(e) => {
+          setFailed(true)
+        }}
       />
+    ) : (
+      <>{fallbackComponent}</>
     );
   }
 );
