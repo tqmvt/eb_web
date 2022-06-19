@@ -56,6 +56,9 @@ export default function Document() {
         <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
       </Head>
       <body>
+        <div id="initialLoader">
+          <div class="loader"></div>
+        </div>
         <Main />
         <NextScript />
       </body>
