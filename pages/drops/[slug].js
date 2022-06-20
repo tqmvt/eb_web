@@ -37,7 +37,7 @@ const Drop = ({ssrDrop}) => {
         <meta property="og:title" content={`${ssrDrop?.title || 'NFT'} | Ebisu's Bay Marketplace`} key="title" />
         <meta property="og:url" content={`https://app.ebisusbay.com/drops/${ssrDrop?.slug}`} key="og_url" />
         <meta property="og:image" content={ssrDrop?.imgNft} key="image" />
-        <meta property="og:description" content={ssrDrop?.subtitle} />
+        <meta property="og:description" content={ssrDrop?.subtitle} key="og_desc" />
         <meta property="og:site_name" content="Ebisu's Bay Marketplace" />
         <meta name="twitter:title" content={`${ssrDrop?.title || 'NFT'} | Ebisu's Bay Marketplace`} key="twitter_title" />
         <meta name="twitter:image" content={ssrDrop?.imgNft} key="twitter_image" />
