@@ -152,7 +152,7 @@ const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) 
         id="profile_banner"
         className="jumbotron breadcumb no-bg"
         style={{
-          backgroundImage: `url(${ImageKitService.buildBannerUrl(collection.metadata.banner ?? '/img/background/subheader-blue.webp')})`,
+          backgroundImage: `url(${ImageKitService.buildBannerUrl(collection.metadata.banner ?? '')})`,
           backgroundPosition: '50% 50%',
         }}
       >
