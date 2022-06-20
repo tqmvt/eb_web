@@ -63,7 +63,7 @@ const Drops = () => {
             </div>
           </div>
           <div className="col-lg-12">
-            <CurrentDrops useCarousel={typeof window !== 'undefined' && window.innerWidth >= 576} />
+            <CurrentDrops useCarousel={false} />
           </div>
         </div>
       </section>

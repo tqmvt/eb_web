@@ -6,6 +6,7 @@ export const environments = {
   production: 'production',
   testnet: 'testnet',
   development: 'development',
+  local: 'local'
 };
 
 export const configData = {
@@ -156,10 +157,18 @@ export const imageDomains = [
  * @returns {null|*}
  */
 export const appConfig = (key) => {
-  const env = environments[process.env.NEXT_PUBLIC_ENV ?? process.env.NODE_ENV];
+  const env = isLocalEnv() ? environments.development : environments[currentEnv()];
   if (!key) return env ? configData[env] : configData[environments.development];
 
   const keys = key.split('.');
 
   return keys.reduce((o,i)=> o[i], env ? configData[env] : configData[environments.development]);
+}
+
+export const currentEnv = () => {
+  return process.env.NEXT_PUBLIC_ENV ?? process.env.NODE_ENV;
+}
+
+export const isLocalEnv = () => {
+  return currentEnv() === environments.local;
 }
