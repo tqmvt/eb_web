@@ -3860,7 +3860,7 @@
       "listable": true,
       "metadata": {
         "description": "",
-        "verified": false,
+        "verified": true,
         "avatar": "/img/collections/electric-vibrations/avatar.webp",
         "card": "/img/collections/electric-vibrations/card.webp",
         "banner": "/img/collections/electric-vibrations/banner.webp",
@@ -5461,6 +5461,25 @@
         "website": "https://www.cybersquad.app/",
         "twitter": "https://twitter.com/CyberSquadd",
         "discord": "https://discord.gg/cybersquad"
+      }
+    },
+    {
+      "name": "Connections",
+      "slug": "connections",
+      "multiToken": false,
+      "address": "0x5835dD398f432C7c41601c03198479Ea63806bA0",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "Dive into a vibrant world of positive vibes and transcend yourself past the physical form and get lost in a world of intense colours and free flowing energy. This limited collection is all about the connections we make with our own selves and all that is around us, both in nature and with the human spirits that we connect with on a daily basis. The energies that we come in contact with make impressions on our psyche, so connecting with positive energies will not only uplift us, but will ignite the fire in our soul.",
+        "verified": true,
+        "avatar": "/img/collections/connections/avatar.jpg",
+        "card": "/img/collections/connections/card.jpg",
+        "banner": "/img/collections/connections/banner.jpg",
+        "maxSupply": 120,
+        "website": "https://www.susandoyleart.com/",
+        "twitter": "https://twitter.com/susandoyleart",
+        "discord": "https://discord.gg/unmG8YEq"
       }
     }
   ],
