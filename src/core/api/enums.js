@@ -25,3 +25,8 @@ export const offerState = {
   REJECTED: 2,
   CANCELLED: 3,
 };
+
+export const listingType = {
+  LISTING: 0,
+  AUCTION: 1,
+}
