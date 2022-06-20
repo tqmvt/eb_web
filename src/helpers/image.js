@@ -1,4 +1,4 @@
-import {appConfig} from "../Config";
+import {appConfig, isLocalEnv} from "../Config";
 import {specialImageTransform} from "../hacks";
 
 export class ImageKitService {
@@ -102,6 +102,7 @@ export class ImageKitService {
   }
 
   buildUrl() {
+    if (isLocalEnv()) return this.imageUrl;
     if(!this.imageUrl || this.imageUrl.startsWith('data')) return this.imageUrl;
 
     const cdn = appConfig('urls.cdn');
@@ -127,6 +128,7 @@ export class ImageKitService {
  * @returns {string}
  */
 export const hostedImage = (imgPath, useThumbnail) => {
+  if (isLocalEnv()) return imgPath;
   if (!imgPath) return imgPath;
 
   imgPath = imgPath.replace(/^\/+/g, '');
