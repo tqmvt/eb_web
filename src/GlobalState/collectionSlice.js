@@ -1,13 +1,14 @@
-import { createSlice } from '@reduxjs/toolkit';
+import {createSlice} from '@reduxjs/toolkit';
 import {
-  sortAndFetchCollectionDetails,
   getCollectionMetadata,
-  getCollectionTraits,
   getCollectionPowertraits,
+  getCollectionTraits,
+  sortAndFetchCollectionDetails,
   sortAndFetchListings,
 } from '../core/api';
-import { caseInsensitiveCompare } from '../utils';
+import {caseInsensitiveCompare} from '../utils';
 import {appConfig} from "../Config";
+import {listingType} from "../core/api/enums";
 
 const knownContracts = appConfig('collections');
 
@@ -237,6 +238,10 @@ export const fetchListings =
 
       if (response.status === 200 && response.nfts.length > 0) {
         if (!cancelled) {
+
+          // @todo remove once proper filter in place on API side
+          response.nfts = response.nfts.filter((nft) => !nft.market.type || nft.market.type === listingType.LISTING);
+
           response.hasRank = response.nfts.length > 0 && typeof response.nfts[0].rank !== 'undefined';
           dispatch(listingsReceived({ ...response, isUsingListingsFallback: false }));
         }

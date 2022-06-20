@@ -63,6 +63,13 @@ function App({ Component, pageProps }) {
     }
   }, [dispatch]);
 
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const loader = document.getElementById('initialLoader');
+      if (loader) loader.style.display = 'none';
+    }
+  }, []);
+
   return (
     <ThemeProvider theme={getTheme(userTheme)}>
       <Head>
