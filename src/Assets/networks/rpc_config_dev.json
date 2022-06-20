@@ -5410,7 +5410,7 @@
       "multiToken": false,
       "address": "0x99180726e23a030278b23C4BbF38c18205A8B53C",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "Metaplanets is an nft project, counting for the first generation called \"big bang\" 600 metaplanets. Our planets are in a 2d cartoon/semi realistic style. But our project is not only to make a simple collection. Our plans are much bigger and our vision much more ambitious. As stated in our roadmap, our second generation \"expansion\" will have 2000 metaplanets, realized in 3d. The owners of the 600 Metaplanets of the \"Big Bang\" collection will be airdrop 3D metaplanets . A lot of utility ! As example : the holders of at least 5 metaplanets, will receive after sold out, a metastar, this star will allow them to complete their planetary systems and add a multiplier to staking potential ! Much more to discover on our website.",
         "verified": false,
