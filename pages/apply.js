@@ -115,7 +115,7 @@ const Application = ({type}) => {
             <meta property="og:url" key="og_url" content="https://app.ebisusbay.com/apply" />
             <meta property="og:title" key="og_title" content="Listing Application | Ebisu's Bay Marketplace" />
             <meta property="og:description" key="og_desc" content="Get your project listed on Ebisu's Bay Marketplace" />
-            <meta property="twitter:url" key="twitter_url" content="https://app.ebisusbay.com/apply">
+            <meta property="twitter:url" key="twitter_url" content="https://app.ebisusbay.com/apply" />
             <meta property="twitter:title" key="twitter_title" content="Listing Application | Ebisu's Bay Marketplace" />
             <meta property="twitter:description" key="twitter_desc" content="Get your project listed on Ebisu's Bay Marketplace" />
           </>
@@ -128,7 +128,7 @@ const Application = ({type}) => {
             <meta property="og:url" key="og_url" content="https://app.ebisusbay.com/apply" />
             <meta property="og:title" key="og_title" content="Launchpad Application | Ebisu's Bay Marketplace" />
             <meta property="og:description" key="og_desc" content="Get your project listed on Ebisu's Bay Marketplace" />
-            <meta property="twitter:url" key="twitter_url" content="https://app.ebisusbay.com/apply">
+            <meta property="twitter:url" key="twitter_url" content="https://app.ebisusbay.com/apply" />
             <meta property="twitter:title" key="twitter_title" content="Launchpad Application | Ebisu's Bay Marketplace" />
             <meta property="twitter:description" key="twitter_desc" content="Get your project listed on Ebisu's Bay Marketplace" />
           </>
