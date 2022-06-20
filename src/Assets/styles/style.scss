@@ -5531,7 +5531,7 @@ iframe.metaverse {
     top: 8px;
     right: 8px;
 
-    .icon-check{
+    .d_icon{
       width: 6px; 
       height: 6px; 
       color: black;
@@ -5539,7 +5539,7 @@ iframe.metaverse {
   }
 
   .form_icon_button {
-    border: solid 1px #ddd;
+    border: solid 1px $textColor2;
     border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -5599,6 +5599,43 @@ iframe.metaverse {
     margin-Bottom: 5px;
     color: $textColor1;
 
+  }
+
+  .first-button{
+    margin-right: 16px;
+  }
+
+  .check-container{
+    display: flex;
+    justify-content: center;
+    min-width: 236px;
+  }
+
+  .select-icon {
+    position: absolute; 
+    top: 8px; 
+    right: 8px; 
+    color: $textColor1;
+  }
+
+  .select-container {
+    display: flex;
+    position: relative; 
+  }
+
+  .select-form {
+    background-image: none;
+    background-color: $cardColor2;
+    color: $textColor1;
+    border-color: $borderColor1;
+  }
+
+  .check-group {
+    display: flex;
+  }
+
+  .check-form {
+    margin-right: 8px;
   }
 
   .btn-main {
@@ -5692,7 +5729,6 @@ iframe.metaverse {
           height: 30px; 
           color: $textColor1;
         }
-    
       }
     
       h2 {

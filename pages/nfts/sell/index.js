@@ -4,8 +4,8 @@ import { connect, useSelector, useDispatch } from 'react-redux';
 
 import MyNftSaleForm from '../../../src/Components/components/MyNftSaleForm';
 import Footer from '../../../src/Components/components/Footer';
+import withAuth from '../../../src/Components/withAuth';
 import { getNft, getCollectionMetadata } from '../../../src/core/api';
-
 
 const NftSell = () => {
   const user = useSelector((state) => state.user);
@@ -26,7 +26,7 @@ const NftSell = () => {
       value: collectionId,
     });
     if (floorPrice.collections.length > 0) {
-        setFloorPrice(floorPrice.collections[0].floorPrice ?? 0);
+      setFloorPrice(floorPrice.collections[0].floorPrice ?? 0);
     }
   }, [nftId, collectionId])
 
@@ -67,4 +67,4 @@ const NftSell = () => {
   )
 };
 
-export default memo(NftSell);
+export default memo(withAuth(NftSell));

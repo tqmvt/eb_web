@@ -45,19 +45,19 @@ const MakeOffer = styled.div`
 
 const NftContainer = ({ nft, price = 0, isPreview = false }) => {
   const user = useSelector((state) => state.user);
-  const [nftData, setNftData] = useState({isLoading: true});
+  const [nftData, setNftData] = useState({ isLoading: true });
 
-  const disabledClick = () =>{
-    if(isPreview){
+  const disabledClick = () => {
+    if (isPreview) {
       return 'not-active';
     }
-    else{
+    else {
       return '';
     }
   };
 
-  useEffect(()=>{
-    if(nft){
+  useEffect(() => {
+    if (nft) {
       setNftData({
         ...nft,
         isLoading: false,
@@ -68,23 +68,23 @@ const NftContainer = ({ nft, price = 0, isPreview = false }) => {
 
   return (
     <>
-      {!nftData.isLoading && 
-      <div className="card eb-nft__card h-100 shadow" style={{minWidth: 330, maxWidth: 440}}>
-        <AnyMedia
-          image={ nftData.image}
-          className={`card-img-top marketplace`}
-          title={nftData.name}
-          url={null}
-          newTab={true}
-        />
-        
-        {nftData.rank ? (
-          <div className="badge bg-rarity text-wrap mt-1 mx-1">Rank: #{nftData.rank}</div>
-        ) : (
-          <br/>
-        )}
-        <div className="card-body d-flex flex-column justify-content-between">
-          {nftData.collection && (
+      {!nftData.isLoading &&
+        <div className="card eb-nft__card h-100 shadow" style={{ minWidth: 330, maxWidth: 440, maxHeight: 520 }}>
+          <AnyMedia
+            image={nftData.image}
+            className={`card-img-top marketplace`}
+            title={nftData.name}
+            url={null}
+            newTab={true}
+          />
+
+          {nftData.rank ? (
+            <div className="badge bg-rarity text-wrap mt-1 mx-1">Rank: #{nftData.rank}</div>
+          ) : (
+            <br />
+          )}
+          <div className="card-body d-flex flex-column justify-content-between">
+            {nftData.collection && (
               <a className={`${disabledClick()}`}>
                 <h6
                   className="card-title mt-auto fw-normal"
@@ -93,25 +93,25 @@ const NftContainer = ({ nft, price = 0, isPreview = false }) => {
                   {collection.name}
                 </h6>
               </a>
-          )}
+            )}
             <a className={`${disabledClick()}`}>
               <h6 className="card-title mt-auto">{nftData.name}</h6>
             </a>
-          <MakeBuy>
-            <div>{price} CRO</div>
-          </MakeBuy>
-          <MakeOffer>
-              <a className={`${disabledClick()}`} >
+            <MakeBuy>
+              <div>{price} CRO</div>
+            </MakeBuy>
+            <MakeOffer>
+              <a className={`${disabledClick()}`}>
                 <Button type="legacy">Buy</Button>
               </a>
-            <div>
-              <Button className={`${disabledClick()}`} type="legacy-outlined" onClick={() => handleMakeOffer('Make')}>
-                Offer
-              </Button>
-            </div>
-          </MakeOffer>
-        </div>
-      </div>}
+              <div>
+                <Button className={`${disabledClick()}`} type="legacy-outlined" onClick={() => handleMakeOffer('Make')}>
+                  Offer
+                </Button>
+              </div>
+            </MakeOffer>
+          </div>
+        </div>}
     </>
   );
 };
