@@ -202,7 +202,7 @@ const Application = ({type}) => {
 };
 export default Application;
 
-export const getServerSideProps = async ({ query }) => {
+export const getStaticProps = async ({ query }) => {
   return {
     props: {
       type: query?.type ?? null,
