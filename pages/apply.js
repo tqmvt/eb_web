@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import Head from 'next/head';
 import styled, { createGlobalStyle } from 'styled-components';
 import { useSelector } from 'react-redux';
 import Reveal from 'react-awesome-reveal';
@@ -9,6 +8,7 @@ import { faLightbulb, faTags } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Footer from '../src/Components/components/Footer';
 import {useRouter} from "next/router";
+import PageHead from "../src/Components/components/PageHead";
 const NativeForms = dynamic(() => import('native-forms-react'), { ssr: false });
 
 const fadeInUp = keyframes`
@@ -106,34 +106,25 @@ const Application = ({type}) => {
 
   return (
     <div>
-      <Head>
-        {type === choice.listing && (
-          <>
-            <title>Listing Application | Ebisu's Bay Marketplace</title>
-            <meta name="title" key="title" content="Listing Application | Ebisu's Bay Marketplace" />
-            <meta name="description" key="desc" content="Get your project listed on Ebisu's Bay Marketplace" />
-            <meta property="og:url" key="og_url" content="https://app.ebisusbay.com/apply" />
-            <meta property="og:title" key="og_title" content="Listing Application | Ebisu's Bay Marketplace" />
-            <meta property="og:description" key="og_desc" content="Get your project listed on Ebisu's Bay Marketplace" />
-            <meta property="twitter:url" key="twitter_url" content="https://app.ebisusbay.com/apply" />
-            <meta property="twitter:title" key="twitter_title" content="Listing Application | Ebisu's Bay Marketplace" />
-            <meta property="twitter:description" key="twitter_desc" content="Get your project listed on Ebisu's Bay Marketplace" />
-          </>
-        )}
-        {type === choice.launchpad && (
-          <>
-            <title>Launchpad Application | Ebisu's Bay Marketplace</title>
-            <meta name="title" key="title" content="Launchpad Application | Ebisu's Bay Marketplace" />
-            <meta name="description" key="desc" content="Get your project listed on Ebisu's Bay Marketplace" />
-            <meta property="og:url" key="og_url" content="https://app.ebisusbay.com/apply" />
-            <meta property="og:title" key="og_title" content="Launchpad Application | Ebisu's Bay Marketplace" />
-            <meta property="og:description" key="og_desc" content="Get your project listed on Ebisu's Bay Marketplace" />
-            <meta property="twitter:url" key="twitter_url" content="https://app.ebisusbay.com/apply" />
-            <meta property="twitter:title" key="twitter_title" content="Launchpad Application | Ebisu's Bay Marketplace" />
-            <meta property="twitter:description" key="twitter_desc" content="Get your project listed on Ebisu's Bay Marketplace" />
-          </>
-        )}
-      </Head>
+      {type === choice.listing ? (
+        <PageHead
+          title="Listing Application"
+          description="Get your project listed on Ebisu's Bay Marketplace"
+          url="https://app.ebisusbay.com/apply?type=listing"
+        />
+      ) : type === choice.launchpad ? (
+        <PageHead
+          title="Launchpad Application"
+          description="Get your project launched on Ebisu's Bay Launchpad"
+          url="https://app.ebisusbay.com/apply?type=launchpad"
+        />
+      ) : (
+        <PageHead
+          title="Listing & Launchpad Application"
+          description="Get your project to market on Ebisu's Bay Marketplace"
+          url="https://app.ebisusbay.com/apply"
+        />
+      )}
       <GlobalStyles />
       <section className="container mt-0 mt-lg-5">
         <div className="row">
