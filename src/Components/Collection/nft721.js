@@ -21,7 +21,7 @@ import {
   mapAttributeString,
   millisecondTimestamp,
   shortAddress,
-  timeSince,
+  timeSince, relativePrecision,
 } from '../../utils';
 import { getNftDetails } from '../../GlobalState/nftSlice';
 import { connectAccount, chainConnect } from '../../GlobalState/User';
@@ -625,7 +625,7 @@ const Trait = ({ title, value, percent, occurrence, type, collectionAddress }) =
           )}
         </h4>
         {occurrence ? (
-          <span>{Math.round(occurrence * 100)}% have this trait</span>
+          <span>{relativePrecision(occurrence)}% have this trait</span>
         ) : (
           percent && <span>{percent}% have this trait</span>
         )}

@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import Head from 'next/head';
-
 import Collection1155 from '../../src/Components/Collection/collection1155';
 import Collection721 from '../../src/Components/Collection/collection721';
 import CollectionCronosverse from '../../src/Components/Collection/collectionCronosverse';
-import { caseInsensitiveCompare, isCronosVerseCollection, isAddress } from '../../src/utils';
+import {caseInsensitiveCompare, isCronosVerseCollection, isAddress, isCollection} from '../../src/utils';
 import {appConfig} from "../../src/Config";
+import PageHead from "../../src/Components/components/PageHead";
 
 const knownContracts = appConfig('collections')
 
@@ -57,23 +56,12 @@ const Collection = ({ ssrCollection }) => {
 
   return (
     <>
-      <Head>
-        <title>{ssrCollection?.name || 'NFT'} | Ebisu's Bay Marketplace</title>
-        <meta name="description" content={`${ssrCollection?.name || 'NFT'} for Ebisu's Bay Marketplace`} />
-        <meta name="title" content={`${ssrCollection?.name || 'NFT'} | Ebisu's Bay Marketplace`} />
-        <meta property="og:type" content="website" key="og_type" />
-        <meta property="og:title" content={`${ssrCollection?.name || 'NFT'} | Ebisu's Bay Marketplace`} key="title" />
-        <meta property="og:url" content={`https://app.ebisusbay.com/collection/${collection?.slug}`} key="og_url" />
-        <meta property="og:image" content={ssrCollection?.metadata?.card} key="image" />
-        <meta property="og:description" content={ssrCollection?.metadata?.description} />
-        <meta
-          name="twitter:title"
-          content={`${ssrCollection?.name || 'NFT'} | Ebisu's Bay Marketplace`}
-          key="twitter_title"
-        />
-        <meta name="twitter:image" content={ssrCollection?.metadata?.card} key="twitter_image" />
-        <meta name="twitter:card" content="summary_large_image" key="misc-card" />
-      </Head>
+      <PageHead
+        title={ssrCollection.name}
+        description={ssrCollection.metadata.description}
+        url={`/collection/${ssrCollection.slug}`}
+        image={ssrCollection.metadata.card}
+      />
       {initialized && collection && (
         <>
           {type === collectionTypes.CRONOSVERSE ? (
@@ -102,6 +90,12 @@ export const getServerSideProps = async ({ params }) => {
     collection = knownContracts.find((c) => c?.address.toLowerCase() === slug.toLowerCase());
   } else {
     collection = knownContracts.find((c) => c?.slug.toLowerCase() === slug.toLowerCase());
+  }
+
+  if (!collection) {
+    return {
+      notFound: true
+    }
   }
 
   if (isAddress(slug)) {
