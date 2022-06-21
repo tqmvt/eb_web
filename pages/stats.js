@@ -77,7 +77,7 @@ const headers = {
 };
 
 export default function Stats() {
-  const [timeframe, setTimeframe] = useState(`1d`);
+  const [timeframe, setTimeframe] = useState(`7d`);
   const [type, setType] = useState('totalVolume');
   const dispatch = useDispatch();
 
