@@ -59,7 +59,7 @@ const Collection = ({ ssrCollection }) => {
       <PageHead
         title={ssrCollection.name}
         description={ssrCollection.metadata.description}
-        url={`https://app.ebisusbay.com/collection/${ssrCollection.slug}`}
+        url={`/collection/${ssrCollection.slug}`}
         image={ssrCollection.metadata.card}
       />
       {initialized && collection && (

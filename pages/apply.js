@@ -110,19 +110,19 @@ const Application = ({type}) => {
         <PageHead
           title="Listing Application"
           description="Get your project listed on Ebisu's Bay Marketplace"
-          url="https://app.ebisusbay.com/apply?type=listing"
+          url="/apply?type=listing"
         />
       ) : type === choice.launchpad ? (
         <PageHead
           title="Launchpad Application"
           description="Get your project launched on Ebisu's Bay Launchpad"
-          url="https://app.ebisusbay.com/apply?type=launchpad"
+          url="/apply?type=launchpad"
         />
       ) : (
         <PageHead
           title="Listing & Launchpad Application"
           description="Get your project to market on Ebisu's Bay Marketplace"
-          url="https://app.ebisusbay.com/apply"
+          url="/apply"
         />
       )}
       <GlobalStyles />

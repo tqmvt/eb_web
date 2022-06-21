@@ -74,7 +74,7 @@ const Nft = ({ slug, id, nft }) => {
       <PageHead
         title={nft.name}
         description={getTraits(nft)}
-        url={`https://app.ebisusbay.com/collection/${collection?.slug}/${nft.id}`}
+        url={`/collection/${collection?.slug}/${nft.id}`}
         image={nft.image}
       />
       {initialized && collection && (

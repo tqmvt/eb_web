@@ -9,6 +9,7 @@ import Slider from 'react-slick';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import styles from '../src/Components/Leaderboard/styles.module.scss';
+import PageHead from "../src/Components/components/PageHead";
 
 export const carouselSettings = {
   infinite: true,
@@ -76,7 +77,7 @@ const headers = {
 };
 
 export default function Stats() {
-  const [timeframe, setTimeframe] = useState(null);
+  const [timeframe, setTimeframe] = useState(`1d`);
   const [type, setType] = useState('totalVolume');
   const dispatch = useDispatch();
 
@@ -111,68 +112,75 @@ export default function Stats() {
   };
 
   return (
-    <section className="container">
-      <div className="row">
-        <div className="col-12 col-lg-7 text-center text-lg-start">
-          <h2 className="mb-0">Cronos Marketplace NFT Sales</h2>
+    <div>
+      <PageHead
+        title="Stats"
+        description="View the top performing NFTs and users on Ebisu's Bay Marketplace"
+        url="/stats"
+      />
+      <section className="container">
+        <div className="row">
+          <div className="col-12 col-lg-7 text-center text-lg-start">
+            <h2 className="mb-0">Cronos Marketplace NFT Sales</h2>
+          </div>
+          <div className="col-12 col-lg-5 text-center text-lg-end mt-4 mt-lg-0">
+            <ul className="activity-filter">
+              <li id="sale" className={timeframe === '1d' ? 'active' : ''} onClick={() => updateTimeframe('1d')}>
+                1d
+              </li>
+              <li id="sale" className={timeframe === '7d' ? 'active' : ''} onClick={() => updateTimeframe('7d')}>
+                7d
+              </li>
+              <li id="sale" className={timeframe === '30d' ? 'active' : ''} onClick={() => updateTimeframe('30d')}>
+                30d
+              </li>
+              <li id="sale" className={timeframe === null ? 'active' : ''} onClick={() => updateTimeframe(null)}>
+                All Time
+              </li>
+              {/*<li id="sale" className={timeframe === 'custom' ? 'active' : ''} onClick={() => updateTimeframe('custom')}>*/}
+              {/*  Competition*/}
+              {/*</li>*/}
+            </ul>
+          </div>
         </div>
-        <div className="col-12 col-lg-5 text-center text-lg-end mt-4 mt-lg-0">
-          <ul className="activity-filter">
-            <li id="sale" className={timeframe === '1d' ? 'active' : ''} onClick={() => updateTimeframe('1d')}>
-              1d
-            </li>
-            <li id="sale" className={timeframe === '7d' ? 'active' : ''} onClick={() => updateTimeframe('7d')}>
-              7d
-            </li>
-            <li id="sale" className={timeframe === '30d' ? 'active' : ''} onClick={() => updateTimeframe('30d')}>
-              30d
-            </li>
-            <li id="sale" className={timeframe === null ? 'active' : ''} onClick={() => updateTimeframe(null)}>
-              All Time
-            </li>
-            {/*<li id="sale" className={timeframe === 'custom' ? 'active' : ''} onClick={() => updateTimeframe('custom')}>*/}
-            {/*  Competition*/}
-            {/*</li>*/}
-          </ul>
+        <div className="d-flex gap-3 mt-lg-4 align-items-center justify-content-between">
+          <div className={`nft ${styles.dots}`}>
+            <Slider {...carouselSettings} prevArrow={<PrevArrow />} nextArrow={<NextArrow />}>
+              <Card
+                title="Most Total Volume"
+                onClick={() => setType('totalVolume')}
+                totalVolume={utils.commify(leaderBoard?.totalVolume[0]?.totalVolume || 0)}
+                name={shortAddress(leaderBoard?.totalVolume[0]?.address) || 0}
+                active={type === 'totalVolume'}
+              />
+              <Card
+                title="Most Buy Volume"
+                onClick={() => setType('buyVolume')}
+                totalVolume={utils.commify(leaderBoard?.buyVolume[0]?.totalVolume || 0)}
+                name={shortAddress(leaderBoard?.buyVolume[0]?.address) || 0}
+                active={type === 'buyVolume'}
+              />
+              <Card
+                title="Most Sell Volume"
+                onClick={() => setType('sellVolume')}
+                totalVolume={utils.commify(leaderBoard?.sellVolume[0]?.totalVolume || 0)}
+                name={shortAddress(leaderBoard?.sellVolume[0]?.address) || 0}
+                active={type === 'sellVolume'}
+              />
+              <Card
+                title="Biggest Single Sale"
+                onClick={() => setType('biggestSingleSale')}
+                totalVolume={utils.commify(leaderBoard?.biggestSingleSale[0]?.totalVolume || 0)}
+                name={shortAddress(leaderBoard?.biggestSingleSale[0]?.address) || 0}
+                active={type === 'biggestSingleSale'}
+              />
+            </Slider>
+          </div>
         </div>
-      </div>
-      <div className="d-flex gap-3 mt-lg-4 align-items-center justify-content-between">
-        <div className={`nft ${styles.dots}`}>
-          <Slider {...carouselSettings} prevArrow={<PrevArrow />} nextArrow={<NextArrow />}>
-            <Card
-              title="Most Total Volume"
-              onClick={() => setType('totalVolume')}
-              totalVolume={utils.commify(leaderBoard?.totalVolume[0]?.totalVolume || 0)}
-              name={shortAddress(leaderBoard?.totalVolume[0]?.address) || 0}
-              active={type === 'totalVolume'}
-            />
-            <Card
-              title="Most Buy Volume"
-              onClick={() => setType('buyVolume')}
-              totalVolume={utils.commify(leaderBoard?.buyVolume[0]?.totalVolume || 0)}
-              name={shortAddress(leaderBoard?.buyVolume[0]?.address) || 0}
-              active={type === 'buyVolume'}
-            />
-            <Card
-              title="Most Sell Volume"
-              onClick={() => setType('sellVolume')}
-              totalVolume={utils.commify(leaderBoard?.sellVolume[0]?.totalVolume || 0)}
-              name={shortAddress(leaderBoard?.sellVolume[0]?.address) || 0}
-              active={type === 'sellVolume'}
-            />
-            <Card
-              title="Biggest Single Sale"
-              onClick={() => setType('biggestSingleSale')}
-              totalVolume={utils.commify(leaderBoard?.biggestSingleSale[0]?.totalVolume || 0)}
-              name={shortAddress(leaderBoard?.biggestSingleSale[0]?.address) || 0}
-              active={type === 'biggestSingleSale'}
-            />
-          </Slider>
+        <div className="mt-4 table-responsive">
+          <Table headers={headers[type]} items={leaderBoard[type]} />
         </div>
-      </div>
-      <div className="mt-4 table-responsive">
-        <Table headers={headers[type]} items={leaderBoard[type]} />
-      </div>
-    </section>
+      </section>
+    </div>
   );
 }
