@@ -1,7 +1,7 @@
 import React, { memo, useEffect, useState } from 'react';
 import store from '../../../src/Store/store';
 import { getNftDetails } from '../../../src/GlobalState/nftSlice';
-import { findCollectionByAddress, humanize, isAddress } from '../../../src/utils';
+import {findCollectionByAddress, humanize, isAddress, relativePrecision} from '../../../src/utils';
 import Nft1155 from '../../../src/Components/Collection/nft1155';
 import Nft721 from '../../../src/Components/Collection/nft721';
 import {appConfig} from "../../../src/Config";
@@ -61,7 +61,7 @@ const Nft = ({ slug, id, nft }) => {
         const traitsTop = traits[0];
         const res = `${anNFT?.description ? anNFT.description.slice(0, 250) : ''} ... Top Trait: ${
           traitsTop.value ? humanize(traitsTop.value) : 'N/A'
-        }, ${traitsTop.occurrence * 100}%`;
+        }, ${relativePrecision(traitsTop.occurrence)}%`;
 
         return res;
       }
