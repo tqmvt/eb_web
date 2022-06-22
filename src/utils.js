@@ -592,3 +592,8 @@ export const getUserDisplayName = async (address) => {
 
   return cnsName ?? shortAddress(address);
 }
+
+export const isEmptyObj = (obj) => {
+  console.log( obj && Object.keys(obj).length === 0 && obj.constructor === Object);
+  return obj && Object.keys(obj).length === 0 && obj.constructor === Object;
+}

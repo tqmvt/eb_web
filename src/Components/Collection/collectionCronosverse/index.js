@@ -8,13 +8,12 @@ import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
 
 import { init, fetchListings } from '../../../GlobalState/collectionSlice';
 import { devLog } from '../../../utils';
-import { CollectionSortOption } from '../../Models/collection-sort-option.model';
-import { FilterOption } from '../../Models/filter-option.model';
 import Button from '../../components/Button';
 import { chainConnect, connectAccount } from '../../../GlobalState/User';
 import MakeOfferDialog from '../../Offer/MakeOfferDialog';
 
 import styles from './CollectionCronosverse.module.scss';
+import {CollectionFilters} from "../../Models/collection-filters.model";
 
 const CollectionCronosverse = ({ collection }) => {
   const dispatch = useDispatch();
@@ -28,10 +27,9 @@ const CollectionCronosverse = ({ collection }) => {
   const [nftOffer, setNftOffer] = useState(null);
 
   useEffect(() => {
-    const filterOption = FilterOption.default();
-    filterOption.type = 'collection';
+    const filterOption = CollectionFilters.default();
     filterOption.address = collection.address;
-    dispatch(init(filterOption, CollectionSortOption.default(), {}, collection.address));
+    dispatch(init(filterOption));
     dispatch(fetchListings(true));
     // eslint-disable-next-line
   }, [dispatch]);

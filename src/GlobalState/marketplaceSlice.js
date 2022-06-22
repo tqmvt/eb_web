@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { sortAndFetchListings, getCollectionMetadata, getMarketMetadata } from '../core/api';
 import { SortOption } from '../Components/Models/sort-option.model';
-import { FilterOption } from '../Components/Models/filter-option.model';
+import {MarketFilters} from "../Components/Models/market-filters.model";
+import {ListingsQuery} from "../core/api/listings/query";
 
 const marketplaceSlice = createSlice({
   name: 'marketplace',
@@ -9,17 +10,17 @@ const marketplaceSlice = createSlice({
     loading: false,
     error: false,
     listings: [],
-    curPage: 0,
-    curFilter: FilterOption.default(),
-    curSort: SortOption.default(),
-    curSearch: null,
+    query: {
+      page: 0,
+      filter: MarketFilters.default(),
+      sort: {},
+    },
     totalPages: 0,
     collection: null,
     marketData: null,
     hasRank: false,
     cachedFilter: {},
     cachedSort: {},
-    cachedSearch: {},
   },
   reducers: {
     listingsLoading: (state, action) => {
@@ -30,7 +31,7 @@ const marketplaceSlice = createSlice({
       state.loading = false;
       state.error = false;
       state.listings.push(...action.payload.listings);
-      state.curPage = action.payload.page;
+      state.query.page = action.payload.page;
       state.totalPages = action.payload.totalPages;
       state.hasRank = action.payload.hasRank;
     },
@@ -38,52 +39,41 @@ const marketplaceSlice = createSlice({
       const hardClear = action.payload || false;
 
       state.listings = [];
-      state.curPage = 0;
       state.totalPages = 0;
-      state.curFilter = FilterOption.default();
-      state.curSort = SortOption.default();
-
-      if (hardClear) {
-        state.cachedFilter = {};
-        state.cachedSort = {};
-        state.cachedSearch = {};
-      }
+      state.query.filter = MarketFilters.default();
+      state.query.sort = SortOption.default();
     },
     onFilter: (state, action) => {
       const { cacheName, option } = action.payload;
 
       state.listings = [];
       state.totalPages = 0;
-      state.curPage = 0;
-      state.curFilter = option;
-
-      if (cacheName) {
-        state.cachedFilter[cacheName] = option;
-      }
+      state.query.page = 0;
+      state.query.filter = option;
     },
     onSort: (state, action) => {
       const { cacheName, option } = action.payload;
 
       state.listings = [];
       state.totalPages = 0;
-      state.curPage = 0;
-      state.curSort = option;
-
-      if (cacheName) {
-        state.cachedSort[cacheName] = option;
-      }
+      state.query.page = 0;
+      state.query.sort = option;
     },
     onSearch: (state, action) => {
       const { cacheName, search } = action.payload;
 
       state.listings = [];
       state.totalPages = 0;
-      state.curPage = 0;
-      state.curSearch = search;
+      state.query.page = 0;
+      state.query.filter.search = search;
+    },
+    onCollectionFilter: (state, action) => {
+      const { cacheName, option } = action.payload;
 
-      if (cacheName) {
-        state.cachedSearch[cacheName] = search;
-      }
+      state.listings = [];
+      state.totalPages = 0;
+      state.query.page = 0;
+      state.query.filter.collection = option;
     },
     onCollectionDataLoaded: (state, action) => {
       state.collection = action.payload.collection;
@@ -109,6 +99,7 @@ export const {
   onCollectionDataLoaded,
   onRankingsLoaded,
   onMarketDataLoaded,
+  onCollectionFilter,
 } = marketplaceSlice.actions;
 
 export default marketplaceSlice.reducer;
@@ -120,7 +111,7 @@ export const init = (sortOption, filterOption) => async (dispatch, getState) => 
     dispatch(onSort({ option: sortOption }));
   }
 
-  if (filterOption && filterOption instanceof FilterOption) {
+  if (filterOption && filterOption instanceof MarketFilters) {
     dispatch(onFilter({ option: filterOption }));
   }
 };
@@ -130,18 +121,14 @@ export const fetchListings =
   async (dispatch, getState) => {
     const state = getState();
 
+
     dispatch(listingsLoading());
     const { response, cancelled } = await sortAndFetchListings(
-      state.marketplace.curPage + 1,
-      state.marketplace.curSort,
-      state.marketplace.curFilter,
-      null,
-      null,
-      state.marketplace.curSearch,
-      null,
-      null,
+      state.marketplace.query.page + 1,
+      state.marketplace.query.sort,
+      ListingsQuery.fromMarketFilter(state.marketplace.query.filter.toQuery()),
       isSales ? 1 : 0,
-      state.marketplace.curFilter.limit
+      state.marketplace.query.filter.limit
     );
 
     if (!cancelled) {
@@ -153,7 +140,7 @@ export const fetchListings =
 export const filterListings =
   (filterOption, cacheName, isSales = false) =>
   async (dispatch) => {
-    dispatch(onFilter({ option: filterOption, cacheName }));
+    dispatch(onCollectionFilter({ option: filterOption, cacheName }));
     dispatch(fetchListings(isSales));
   };
 

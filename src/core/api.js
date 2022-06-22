@@ -7,7 +7,6 @@ import IPFSGatewayTools from '@pinata/ipfs-gateway-tools/dist/node';
 import { dataURItoBlob } from '../Store/utils';
 import { SortOption } from '../Components/Models/sort-option.model';
 import { CollectionSortOption } from '../Components/Models/collection-sort-option.model';
-import { FilterOption } from '../Components/Models/filter-option.model';
 import { limitSizeOptions } from '../Components/components/constants/filter-options';
 import {
   caseInsensitiveCompare,
@@ -23,6 +22,8 @@ import {
 import { getAntMintPassMetadata, getWeirdApesStakingStatus } from './api/chain';
 import { fallbackImageUrl } from './constants';
 import {appConfig} from "../Config";
+import {FullCollectionsQuery} from "./api/fullcollections/query";
+import {ListingsQuery} from "./api/listings/query";
 
 const config = appConfig();
 let gatewayTools = new IPFSGatewayTools();
@@ -53,11 +54,6 @@ export async function sortAndFetchListings(
   page,
   sort,
   filter,
-  traits,
-  powertraits,
-  search,
-  minPrice,
-  maxPrice,
   state,
   pagesize = limitSizeOptions.lg
 ) {
@@ -68,28 +64,20 @@ export async function sortAndFetchListings(
     sortBy: 'listingId',
     direction: 'desc',
   };
-
-  if (filter && filter instanceof FilterOption) {
-    let filterParams = filter.toApi();
-
-    // Make backwards compatible with new filter based on /fullcollections endpoint
-    if (Object.keys(filterParams).includes('address')) {
-      filterParams.collection = filterParams.address;
-      delete filterParams.address;
-    }
-    query = { ...query, ...filterParams };
+  if (filter && (filter instanceof ListingsQuery)) {
+    query = { ...query, ...filter.toApi() };
   }
 
   if (sort && (sort instanceof SortOption || sort instanceof CollectionSortOption)) {
     query = { ...query, ...sort.toApi() };
   }
 
-  if (traits && Object.keys(traits).length > 0) {
+  if (filter.traits && Object.keys(filter.traits).length > 0) {
     //  traits      = { traitCategoryName1: {traitName2: true }, traitCategoryName3: {traitName4: false}}
     //  traitFilter = { traitCategoryName1: ['traitName2']}
-    const traitFilter = Object.keys(traits)
+    const traitFilter = Object.keys(filter.traits)
       .map((traitCategoryName) => {
-        const traitCategory = traits[traitCategoryName];
+        const traitCategory = filter.traits[traitCategoryName];
 
         const traitCategoryKeys = Object.keys(traitCategory);
 
@@ -102,10 +90,10 @@ export async function sortAndFetchListings(
     query['traits'] = JSON.stringify(traitFilter);
   }
 
-  if (powertraits && Object.keys(powertraits).length > 0) {
-    const traitFilter = Object.keys(powertraits)
+  if (filter.powertraits && Object.keys(filter.powertraits).length > 0) {
+    const traitFilter = Object.keys(filter.powertraits)
       .map((traitCategoryName) => {
-        const traitCategory = powertraits[traitCategoryName];
+        const traitCategory = filter.powertraits[traitCategoryName];
 
         const traitCategoryKeys = Object.keys(traitCategory);
 
@@ -117,10 +105,6 @@ export async function sortAndFetchListings(
 
     query['powertraits'] = JSON.stringify(traitFilter);
   }
-
-  if (search) query['search'] = search;
-  if (minPrice) query['minPrice'] = minPrice;
-  if (maxPrice) query['maxPrice'] = maxPrice;
 
   const queryString = new URLSearchParams(query);
 
@@ -252,12 +236,6 @@ export async function sortAndFetchCollectionDetails(
   page,
   sort,
   filter,
-  traits,
-  powertraits,
-  search,
-  filterListed,
-  minPrice,
-  maxPrice,
   pageSize = 50
 ) {
   let query = {
@@ -266,8 +244,9 @@ export async function sortAndFetchCollectionDetails(
     sortBy: 'id',
     direction: 'desc',
   };
+  console.log('filter', filter);
 
-  if (filter && filter instanceof FilterOption) {
+  if (filter && filter instanceof FullCollectionsQuery) {
     query = { ...query, ...filter.toApi() };
   }
 
@@ -275,12 +254,12 @@ export async function sortAndFetchCollectionDetails(
     query = { ...query, ...sort.toApi() };
   }
 
-  if (traits && Object.keys(traits).length > 0) {
+  if (filter.traits && Object.keys(filter.traits).length > 0) {
     //  traits      = { traitCategoryName1: {traitName2: true }, traitCategoryName3: {traitName4: false}}
     //  traitFilter = { traitCategoryName1: ['traitName2']}
-    const traitFilter = Object.keys(traits)
+    const traitFilter = Object.keys(filter.traits)
       .map((traitCategoryName) => {
-        const traitCategory = traits[traitCategoryName];
+        const traitCategory = filter.traits[traitCategoryName];
 
         const traitCategoryKeys = Object.keys(traitCategory);
 
@@ -293,10 +272,10 @@ export async function sortAndFetchCollectionDetails(
     query['traits'] = JSON.stringify(traitFilter);
   }
 
-  if (powertraits && Object.keys(powertraits).length > 0) {
-    const traitFilter = Object.keys(powertraits)
+  if (filter.powertraits && Object.keys(filter.powertraits).length > 0) {
+    const traitFilter = Object.keys(filter.powertraits)
       .map((traitCategoryName) => {
-        const traitCategory = powertraits[traitCategoryName];
+        const traitCategory = filter.powertraits[traitCategoryName];
 
         const traitCategoryKeys = Object.keys(traitCategory);
 
@@ -308,11 +287,6 @@ export async function sortAndFetchCollectionDetails(
 
     query['powertraits'] = JSON.stringify(traitFilter);
   }
-
-  if (search) query['search'] = search;
-  if (filterListed) query['listed'] = filterListed;
-  if (minPrice) query['minPrice'] = minPrice;
-  if (maxPrice) query['maxPrice'] = maxPrice;
 
   const queryString = new URLSearchParams(query);
 

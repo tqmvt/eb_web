@@ -20,7 +20,7 @@ const CollectionFilterBar = ({ cacheName = null }) => {
 
   const collection = useSelector((state) => state.collection);
 
-  const selectDefaultSortValue = collection.cachedSort[cacheName] ?? CollectionSortOption.default();
+  const selectDefaultSortValue = CollectionSortOption.default();
 
   const selectCollectionSortOptions = useSelector((state) => {
     if (state.collection.hasRank) {

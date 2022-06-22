@@ -11,8 +11,6 @@ const PriceRangeFilter = ({ address, ...props }) => {
 
   const [minPrice, setMinPrice] = useState(null);
   const [maxPrice, setMaxPrice] = useState(null);
-  const cachedMinPriceFilter = useSelector((state) => state.collection.cachedMinPrice[address]);
-  const cachedMaxPriceFilter = useSelector((state) => state.collection.cachedMaxPrice[address]);
 
   const clearAttributeFilters = () => {
     setMinPrice('');
@@ -50,11 +48,6 @@ const PriceRangeFilter = ({ address, ...props }) => {
       setMaxPrice(e.target.value);
     }
   };
-
-  // useEffect(() => {
-  //   if (cachedMinPriceFilter) setMinPrice(cachedMinPriceFilter);
-  //   if (cachedMaxPriceFilter) setMaxPrice(cachedMaxPriceFilter);
-  // }, []);
 
   return (
     <div {...props}>

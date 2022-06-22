@@ -12,7 +12,7 @@ const TraitsFilter = ({ address }) => {
   const dispatch = useDispatch();
 
   const collectionStats = useSelector((state) => state.collection.stats);
-  const collectionCachedTraitsFilter = useSelector((state) => state.collection.cachedTraitsFilter);
+  const collectionCachedTraitsFilter = useSelector((state) => state.collection.query.filter.traits);
 
   const [hideAttributes, setHideAttributes] = useState(typeof window !== 'undefined' && window.innerWidth < 768);
 
@@ -25,7 +25,7 @@ const TraitsFilter = ({ address }) => {
   };
 
   const viewSelectedAttributesCount = () => {
-    const cachedTraitsFilter = collectionCachedTraitsFilter[address] || {};
+    const cachedTraitsFilter = collectionCachedTraitsFilter || {};
     return Object.values(cachedTraitsFilter)
       .map((traitCategoryValue) => Object.values(traitCategoryValue).filter((x) => x === true).length)
       .reduce((prev, curr) => prev + curr, 0);
@@ -42,7 +42,7 @@ const TraitsFilter = ({ address }) => {
   };
 
   const viewGetDefaultCheckValue = (traitCategory, id) => {
-    const cachedTraitsFilter = collectionCachedTraitsFilter[address] || {};
+    const cachedTraitsFilter = collectionCachedTraitsFilter || {};
 
     if (!cachedTraitsFilter || !cachedTraitsFilter[traitCategory]) {
       return false;
@@ -67,7 +67,7 @@ const TraitsFilter = ({ address }) => {
   const handleCheck = (event, traitCategory) => {
     const { id, checked } = event.target;
 
-    const cachedTraitsFilter = collectionCachedTraitsFilter[address] || {};
+    const cachedTraitsFilter = collectionCachedTraitsFilter || {};
 
     dispatch(
       filterListingsByTrait({

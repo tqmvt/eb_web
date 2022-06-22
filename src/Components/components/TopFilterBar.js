@@ -3,7 +3,6 @@ import Select from 'react-select';
 import { useSelector } from 'react-redux';
 
 import { SortOption } from '../Models/sort-option.model';
-import { FilterOption } from '../Models/filter-option.model';
 import { getTheme } from '../../Theme/theme';
 import { Form } from 'react-bootstrap';
 import styled from 'styled-components';
@@ -19,7 +18,7 @@ const TopFilterBar = ({
   sortOptions = [],
   filterOptions = [],
   defaultSortValue = SortOption.default(),
-  defaultFilterValue = FilterOption.default(),
+  defaultFilterValue = {value: null, label: 'All'},
   defaultSearchValue = '',
   filterPlaceHolder = '',
   sortPlaceHolder = '',
@@ -64,8 +63,8 @@ const TopFilterBar = ({
         styles={customStyles}
         placeholder={filterPlaceHolder}
         options={filterOptions}
-        getOptionLabel={(option) => option.getOptionLabel}
-        getOptionValue={(option) => option.getOptionValue}
+        getOptionLabel={(option) => option.label}
+        getOptionValue={(option) => option.value}
         defaultValue={defaultFilterValue}
         value={filterValue}
         onChange={onFilterChange}

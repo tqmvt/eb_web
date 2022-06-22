@@ -1,15 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import Head from 'next/head';
 import { Contract, ethers } from 'ethers';
 import Blockies from 'react-blockies';
 import { faCheck, faCircle } from '@fortawesome/free-solid-svg-icons';
 import { Spinner } from 'react-bootstrap';
 import styled from 'styled-components';
-// import Skeleton from 'react-loading-skeleton';
-// import 'react-loading-skeleton/dist/skeleton.css';
-
-// import CollectionListingsGroup from '../components/CollectionListingsGroup';
 import CollectionFilterBar from '../components/CollectionFilterBar';
 import LayeredIcon from '../components/LayeredIcon';
 import Footer from '../components/Footer';
@@ -18,18 +13,19 @@ import SalesCollection from '../components/SalesCollection';
 import CollectionNftsGroup from '../components/CollectionNftsGroup';
 import CollectionListingsGroup from '../components/CollectionListingsGroup';
 import { init, fetchListings, getStats } from '../../GlobalState/collectionSlice';
-import { caseInsensitiveCompare, isCronosVerseCollection, isCrosmocraftsCollection } from '../../utils';
+import { isCronosVerseCollection, isCrosmocraftsCollection } from '../../utils';
 import TraitsFilter from './TraitsFilter';
 import PowertraitsFilter from './PowertraitsFilter';
 import SocialsBar from './SocialsBar';
 import { CollectionSortOption } from '../Models/collection-sort-option.model';
-import { FilterOption } from '../Models/filter-option.model';
 import Market from '../../Contracts/Marketplace.json';
 import stakingPlatforms from '../../core/data/staking-platforms.json';
 import PriceRangeFilter from '../Collection/PriceRangeFilter';
 import CollectionCronosverse from '../Collection/collectionCronosverse';
 import {appConfig} from "../../Config";
 import {hostedImage, ImageKitService} from "../../helpers/image";
+import {useRouter} from "next/router";
+import {CollectionFilters} from "../Models/collection-filters.model";
 
 const config = appConfig();
 
@@ -40,14 +36,13 @@ const NegativeMargin = styled.div`
 
 const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) => {
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const readProvider = new ethers.providers.JsonRpcProvider(config.rpc.read);
   const readMarket = new Contract(config.contracts.market, Market.abi, readProvider);
 
   const [royalty, setRoyalty] = useState(null);
 
-  const collectionCachedTraitsFilter = useSelector((state) => state.collection.cachedTraitsFilter);
-  const collectionCachedSort = useSelector((state) => state.collection.cachedSort);
   const collectionStatsLoading = useSelector((state) => state.collection.statsLoading);
   const collectionStats = useSelector((state) => state.collection.stats);
   const collectionLoading = useSelector((state) => state.collection.loading);
@@ -62,15 +57,8 @@ const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) 
     );
   });
 
-  // const collectionMetadata = useSelector((state) => {
-  //   return knownContracts.find((c) => c.address.toLowerCase() === collection.address.toLowerCase())?.metadata;
-  // });
   const isUsingListingsFallback = useSelector((state) => state.collection.isUsingListingsFallback);
 
-  // const handleCopy = (code) => () => {
-  //   navigator.clipboard.writeText(code);
-  //   toast.success('Copied!');
-  // };
   const [openMenu, setOpenMenu] = React.useState(0);
   const handleBtnClick = (index) => (element) => {
     if (typeof window === 'undefined') {
@@ -103,21 +91,12 @@ const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) 
     sortOption.direction = 'asc';
     sortOption.label = 'By Price';
 
-    const filterOption = FilterOption.default();
-    filterOption.type = 'collection';
+    const filterOption = CollectionFilters.default();
     filterOption.address = collection.mergedAddresses
       ? [collection.address, ...collection.mergedAddresses]
       : collection.address;
-    filterOption.name = 'Specific collection';
 
-    dispatch(
-      init(
-        filterOption,
-        collectionCachedSort[cacheName] ?? sortOption,
-        collectionCachedTraitsFilter[collection.address] ?? {},
-        collection.address
-      )
-    );
+    dispatch(init(filterOption));
     dispatch(fetchListings());
     // eslint-disable-next-line
   }, [dispatch, collection.address]);

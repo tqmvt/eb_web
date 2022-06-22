@@ -7,15 +7,11 @@ import Blockies from 'react-blockies';
 
 import Footer from '../components/Footer';
 import CollectionListingsGroup from '../components/CollectionListingsGroup';
-// import CollectionFilterBar from '../src/Components/components/CollectionFilterBar';
 import LayeredIcon from '../components/LayeredIcon';
 import { init, fetchListings, getStats } from '../../GlobalState/collectionSlice';
 import { isCrosmocraftsPartsCollection } from '../../utils';
-// import TraitsFilter from '../Collection/TraitsFilter';
-// import PowertraitsFilter from '../Collection/PowertraitsFilter';
 import SocialsBar from './SocialsBar';
 import { CollectionSortOption } from '../Models/collection-sort-option.model';
-import { FilterOption } from '../Models/filter-option.model';
 import Market from '../../Contracts/Marketplace.json';
 import CollectionInfoBar from '../components/CollectionInfoBar';
 import stakingPlatforms from '../../core/data/staking-platforms.json';
@@ -23,6 +19,7 @@ import SalesCollection from '../components/SalesCollection';
 import CollectionNftsGroup from '../components/CollectionNftsGroup';
 import {appConfig} from "../../Config";
 import {ImageKitService} from "../../helpers/image";
+import {CollectionFilters} from "../Models/collection-filters.model";
 
 const config = appConfig();
 
@@ -35,8 +32,6 @@ const Collection1155 = ({ collection, tokenId = null, cacheName = 'collection', 
   const [royalty, setRoyalty] = useState(null);
   const [metadata, setMetadata] = useState(null);
 
-  const collectionCachedTraitsFilter = useSelector((state) => state.collection.cachedTraitsFilter);
-  const collectionCachedSort = useSelector((state) => state.collection.cachedSort);
   const collectionStats = useSelector((state) => state.collection.stats);
 
   const listings = useSelector((state) => state.collection.listings);
@@ -81,22 +76,13 @@ const Collection1155 = ({ collection, tokenId = null, cacheName = 'collection', 
     sortOption.direction = 'asc';
     sortOption.label = 'By Price';
 
-    const filterOption = FilterOption.default();
-    filterOption.type = 'collection';
+    const filterOption = CollectionFilters.default();
     filterOption.address = collection.address;
     if (tokenId != null) {
-      filterOption.id = tokenId;
+      filterOption.token = tokenId;
     }
-    filterOption.name = 'Specific collection';
 
-    dispatch(
-      init(
-        filterOption,
-        collectionCachedSort[cacheName] ?? sortOption,
-        collectionCachedTraitsFilter[collection.address] ?? {},
-        collection.address
-      )
-    );
+    dispatch(init(filterOption));
     dispatch(fetchListings());
     // eslint-disable-next-line
   }, [dispatch, collection]);

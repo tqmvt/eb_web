@@ -17,8 +17,6 @@ const auctionsSlice = createSlice({
     collection: null,
     marketData: null,
     hasRank: false,
-    cachedFilter: {},
-    cachedSort: {},
   },
   reducers: {
     auctionsLoading: (state, action) => {
@@ -120,10 +118,10 @@ export const fetchListings = () => async (dispatch, getState) => {
 
   dispatch(auctionsLoading());
   let response = await sortAndFetchAuctions(
-    state.marketplace.curPage + 1,
-    state.marketplace.curSort,
-    state.marketplace.curFilter.type,
-    state.marketplace.curFilter.address
+    state.auctions.curPage + 1,
+    state.auctions.curSort,
+    state.auctions.curFilter.type,
+    state.auctions.curFilter.address
   );
   response.hasRank = response.auctions.length > 0 && typeof response.auctions[0].nft.rank !== 'undefined';
 

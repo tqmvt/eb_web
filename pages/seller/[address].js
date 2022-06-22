@@ -8,8 +8,8 @@ import Footer from '../../src/Components/components/Footer';
 import TopFilterBar from '../../src/Components/components/TopFilterBar';
 import { sortOptions } from '../../src/Components/components/constants/sort-options';
 import { SortOption } from '../../src/Components/Models/sort-option.model';
-import { sortListings } from '../../src/GlobalState/marketplaceSlice';
-import { shortAddress } from '../../src/utils';
+import {searchListings, sortListings} from '../../src/GlobalState/marketplaceSlice';
+import {debounce, shortAddress} from '../../src/utils';
 
 const Seller = () => {
   const cacheName = 'sellerPage';
@@ -22,7 +22,8 @@ const Seller = () => {
     return state.marketplace;
   });
 
-  const selectDefaultSortValue = marketplace.cachedSort[cacheName] ?? SortOption.default();
+  const selectDefaultSortValue = marketplace.query.sort ?? SortOption.default();
+  const selectDefaultSearchValue = marketplace.query.filter.search ?? '';
 
   const selectSortOptions = useSelector((state) => {
     if (state.marketplace.hasRank) {
@@ -38,6 +39,11 @@ const Seller = () => {
     },
     [dispatch]
   );
+
+  const onSearch = debounce((event) => {
+    const { value } = event.target;
+    dispatch(searchListings(value, cacheName));
+  }, 300);
 
   return (
     <div>
@@ -75,7 +81,9 @@ const Seller = () => {
               sortPlaceHolder="Sort Listings..."
               sortOptions={[SortOption.default(), ...selectSortOptions]}
               defaultSortValue={selectDefaultSortValue}
+              defaultSearchValue={selectDefaultSearchValue}
               onSortChange={onSortChange}
+              onSearch={onSearch}
             />
           </div>
         </div>
