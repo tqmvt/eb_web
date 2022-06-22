@@ -2,6 +2,9 @@ import rpcConfig from '../Assets/networks/rpc_config.json';
 import rpcConfigDev from '../Assets/networks/rpc_config_dev.json';
 import rpcConfigTestnet from '../Assets/networks/rpc_config_testnet.json';
 
+import Constants from '../constants';
+const { Features } = Constants;
+
 export const environments = {
   production: 'production',
   testnet: 'testnet',
@@ -171,4 +174,8 @@ export const currentEnv = () => {
 
 export const isLocalEnv = () => {
   return currentEnv() === environments.local;
+}
+
+export const featureFlags = {
+  [Features.AUCTION_OPTION_SALE]: false
 }

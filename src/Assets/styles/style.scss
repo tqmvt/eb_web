@@ -5662,6 +5662,8 @@ iframe.metaverse {
     transition: all 0.3s ease;
   }
 
+  
+
   .fee {
     margin-top: 8px;
     margin-bottom: 8px;
@@ -5674,6 +5676,10 @@ iframe.metaverse {
       font-weight: bold;
     }
   }
+}
+
+.not-active{
+  pointer-events: none;
 }
 
 .dialogAlertContainer{
@@ -5693,7 +5699,7 @@ iframe.metaverse {
     padding: 96px;
     box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.3);
   
-    @media (max-width: 680px) { 
+    @media (max-width: 768px) { 
       padding: 40px 14px;
     }
     
@@ -5733,6 +5739,8 @@ iframe.metaverse {
     
       h2 {
         font-size: 48px;
+        text-align: center;
+        margin-bottom: 0px;
       }
     
       span{
@@ -5740,6 +5748,14 @@ iframe.metaverse {
         font-size: 24px;
         text-align: center;
         justify-content: center;
+
+        @media (max-width: 420px) { 
+          font-size: 20px;
+        }
+
+        @media (max-width: 344px) { 
+          font-size: 16px;
+        }
       }
     
       .btn-popup {
@@ -5748,13 +5764,18 @@ iframe.metaverse {
         border-width: 0px;
         border-radius: 8px;
         font-weight: bold;
-        font-size: 23px;
+        font-size: 24px;
         min-width: 100%;
         padding: 32px;
         text-align: center;
   
         @media (max-width: 420px) { 
           padding: 16px;
+          font-size: 20px;
+        }
+
+        @media (max-width: 344px) { 
+          font-size: 16px;
         }
       }
     

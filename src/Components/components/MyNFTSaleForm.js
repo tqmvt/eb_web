@@ -3,6 +3,7 @@ import React, { memo, useEffect, useState, useCallback } from 'react';
 import { Form, Spinner } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClock, faDollarSign, faCheck, faAngleDown } from '@fortawesome/free-solid-svg-icons';
+
 import { connect, useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
@@ -15,6 +16,11 @@ import useOutSide from '../../hooks/useOutSide';
 import NftContainer from './NftContainer';
 import DialogAlert from './DialogAlert'
 import DotIcon from './DotIcon'
+
+import Constants from '../../constants'
+import useFeatureFlag from '../../hooks/useFeatureFlag';
+
+const numberRegexValidation = /^[1-9]+[0-9]*$/;
 
 const timeOptions = [
   {
@@ -35,6 +41,13 @@ const timeOptions = [
   }
 ]
 
+const DialogAlertTypes = {
+  approveTransferDialog: 'approveTransferDialog',
+  enableListingDialog: 'enableListingDialog',
+  successDialog: 'successDialog',
+  floorPriceWarningDialog: 'floorPriceWarningDialog'
+}
+
 const mapStateToProps = (state) => ({
   walletAddress: state.user.address,
   marketContract: state.user.marketContract,
@@ -52,12 +65,20 @@ const MyNFTSaleForm = ({ walletAddress, marketContract, myNftPageListDialog }) =
   const [isLoading, setIsLoading] = useState(true);
   const [nftName,] = useState(myNftPageListDialog?.name);
 
+  const [popupTrigger, setPopupTrigger] = useState({
+    isActive: false,
+    currentType: ''
+  })
+
   const [fee, setFee] = useState(0);
   const [royalty, setRoyalty] = useState(0);
   const [floorPrice, setFloorPrice] = useState(0);
   const [waitingConfirmation, setWaitingConfirmation] = useState(false);
   const [saleType, setSaleType] = useState(1);
   const [buyNow, setBuyNow] = useState(false);
+
+  const { Features } = Constants;
+  const isAuctionOptionEnabled = useFeatureFlag(Features.AUCTION_OPTION_SALE)
 
   const changeBuyNow = () => {
     setBuyNow(!buyNow);
@@ -76,9 +97,14 @@ const MyNFTSaleForm = ({ walletAddress, marketContract, myNftPageListDialog }) =
     }
   }
 
+  const isBelowFloorPrice = (floorPrice !== 0 && ((floorPrice - Number(salePrice)) / floorPrice) * 100 > 5);
+
   const costOnChange = useCallback((e) => {
-    setSalePrice(e.target.value)
-  }, [setSalePrice]);
+    const newSalePrice = e.target.value.toString();
+    if (numberRegexValidation.test(newSalePrice) || newSalePrice === '') {
+      setSalePrice(newSalePrice)
+    }
+  }, [setSalePrice, floorPrice, salePrice]);
 
   useEffect(() => {
     if (!myNftPageListDialog) router.push(`/nfts`);
@@ -88,7 +114,6 @@ const MyNFTSaleForm = ({ walletAddress, marketContract, myNftPageListDialog }) =
     async function asyncFunc() {
       if (myNftPageListDialog) {
         await getInitialProps();
-      } else {
       }
     }
     asyncFunc();
@@ -104,7 +129,6 @@ const MyNFTSaleForm = ({ walletAddress, marketContract, myNftPageListDialog }) =
         type: 'collection',
         value: contract.address,
       });
-
       if (floorPrice.collections.length > 0) {
         setFloorPrice(floorPrice.collections[0].floorPrice ?? 0);
       }
@@ -133,14 +157,16 @@ const MyNFTSaleForm = ({ walletAddress, marketContract, myNftPageListDialog }) =
     }
   };
 
-  const listDialogSetApprovalForAllStep = async () => {
+  const listDialogSetApprovalForAllStep = async (e) => {
+    e.preventDefault();
     try {
       const marketContractAddress = marketContract.address;
       const { contract } = myNftPageListDialog;
-
+      setWaitingConfirmation(true);
       const tx = await contract.setApprovalForAll(marketContractAddress, true);
       await tx.wait();
       setIsTransferEnable(true);
+      setWaitingConfirmation(false);
 
     } catch (error) {
       if (error.data) {
@@ -150,6 +176,7 @@ const MyNFTSaleForm = ({ walletAddress, marketContract, myNftPageListDialog }) =
       } else {
         toast.error('Unknown Error');
       }
+      setWaitingConfirmation(false);
     }
   };
 
@@ -195,37 +222,106 @@ const MyNFTSaleForm = ({ walletAddress, marketContract, myNftPageListDialog }) =
     setFinalStep(false);
   }, [setFinalStep])
 
+  const getDialogAlertData = {
+
+    approveTransferDialog: {
+      title: 'Approve Transfer',
+      buttonText: 'Continue',
+      isWaiting: true,
+      onClick: listDialogSetApprovalForAllStep,
+      closePopup: () => router.push(`/nfts`),
+      text: 'Ebisu\'s Bay needs approval to transfer your NFT on your behalf',
+    },
+    enableListingDialog: {
+
+      title: 'Enable Listing',
+      buttonText: 'Please confirm transaction in your wallet',
+      onClick: listDialogConfirmListingStep,
+      closePopup: closePopup,
+      isWaiting: true,
+      text: 'Before you can list your NFT, you must grant access with your wallet',
+      warningMessage: `The current price is ${(100 - (salePrice * 100 / floorPrice)).toFixed(1)}% below previous floor price`,
+
+
+    },
+    successDialog: {
+      title: 'Success!',
+      buttonText: 'View in Listings',
+      onClick: () => router.push(`/nfts`),
+      text: `The sale for ${nftName} on ${moment(new Date()).format('MM/DD/YYYY')} has been submitted for listing`,
+
+    },
+    floorPriceWarningDialog: {
+      title: 'Warning',
+      buttonText: 'Accept',
+      onClick: (e) => {
+        e.preventDefault();
+        setPopupTrigger({
+          isActive: true,
+          currentType: DialogAlertTypes.enableListingDialog
+        })
+      },
+      text: `The current price is ${(100 - (salePrice * 100 / floorPrice)).toFixed(1)}% below previous floor price`,
+      closePopup: closePopup,
+      isWarningMessage: true,
+    }
+  }
+
+  const activePopup = useCallback(() => {
+    if (!isTransferEnable) {
+      setPopupTrigger({
+        isActive: true,
+        currentType: DialogAlertTypes.approveTransferDialog
+      })
+      return
+    }
+    if (!myNftPageListDialog && !isLoading) {
+      setPopupTrigger({
+        isActive: true,
+        currentType: DialogAlertTypes.successDialog
+      })
+      return
+    }
+    if (finalStep) {
+      if (isBelowFloorPrice) {
+        setPopupTrigger({
+          isActive: true,
+          currentType: DialogAlertTypes.floorPriceWarningDialog
+        })
+        return
+      }
+      else {
+        setPopupTrigger({
+          isActive: true,
+          currentType: DialogAlertTypes.enableListingDialog
+        })
+        return
+      }
+    }
+    else {
+      setPopupTrigger({
+        isActive: false,
+        currentType: DialogAlertTypes.enableListingDialog
+      })
+      return
+    }
+  }, [isLoading, isTransferEnable, myNftPageListDialog, finalStep])
+
+  useEffect(() => {
+    if (!isLoading) activePopup();
+  }, [isLoading, isTransferEnable, myNftPageListDialog, finalStep])
+
   return (
     <div className='nftSaleForm'>
-      {isLoading ?
+      {isLoading &&
         (<span className="d-flex align-items-center spinner-span">
           <Spinner animation="border" role="status">
             <span className="visually-hidden">Loading...</span>
           </Spinner>
-        </span>)
-        :
-        (!isTransferEnable &&
-          <DialogAlert title={'Approve Transfer'}
-            buttonText={'Continue'}
-            onClick={listDialogSetApprovalForAllStep}
-          >
-            <span>{'Ebisu\'s Bay needs approval to'}</span>
-            <span>{'transfer your NFT on your behalf'}</span>
-          </DialogAlert>
-        )}
-
-      {!myNftPageListDialog && !isLoading && <DialogAlert
-        title='Success!'
-        buttonText='View in Listings'
-        onClick={() => router.push(`/nfts`)}
-      >
-        <span>{`The sale for ${nftName} on`}</span>
-        <span>{`${moment(new Date()).format('MM/DD/YYYY')}`}</span>
-        <span>{'has been submitted for listing'}</span>
-      </DialogAlert>}
+        </span>)}
 
       {myNftPageListDialog && !isLoading && <>
-        <h2>VIP Founding Member Listing Details</h2>
+        <h2 className='title'>VIP Founding Member Listing Details</h2>
         <div className='formContainer'>
           <form className='saleForm'>
             <div className='left-column'>
@@ -233,11 +329,11 @@ const MyNFTSaleForm = ({ walletAddress, marketContract, myNftPageListDialog }) =
               <h3>Sale Type</h3>
 
               <div className='buttonGroup'>
-                <div className={`card form_icon_button shadow first-button ${saleType === 0 ? 'active' : ''}`} onClick={() => changeSaleType('auction')}>
+                {isAuctionOptionEnabled && <div className={`card form_icon_button shadow first-button ${saleType === 0 ? 'active' : ''}`} onClick={() => changeSaleType('auction')}>
                   {saleType === 0 && <DotIcon icon={faCheck} />}
                   <FontAwesomeIcon className='icon' icon={faClock} />
                   <p>Auction</p>
-                </div>
+                </div>}
 
                 <div className={`card form_icon_button shadow ${saleType === 1 ? 'active' : ''}`} onClick={() => changeSaleType('fixedPrice')}>
                   {saleType === 1 && <DotIcon icon={faCheck} />}
@@ -248,15 +344,15 @@ const MyNFTSaleForm = ({ walletAddress, marketContract, myNftPageListDialog }) =
 
               <Form.Group className='form-field mb-3'>
                 <div className='label-container'>
-                  <Form.Label className='formLabel'>{saleType === 1 ? 'Sales Price' : 'Starting Bid Price'}</Form.Label>
+                  <Form.Label className='formLabel'>{saleType === 1 ? 'Listing Price' : 'Starting Bid Price'}</Form.Label>
                 </div>
-                <Form.Control className='input' type='number' placeholder='Enter Text' value={salePrice} onChange={costOnChange} />
+                <Form.Control className='input' type='text' placeholder='Enter Amount' value={salePrice} onChange={costOnChange} />
                 <Form.Text className='field-description textError'>
                   {priceError && 'The entered value must be greater than zero'}
                 </Form.Text>
               </Form.Group>
 
-              {saleType === 0 &&
+              {saleType === 0 && isAuctionOptionEnabled &&
                 <>
                   <Form.Group className='form-field mb-3 check-group'>
                     <Form.Label className='formLabel' >Enable Buy it Now Price?</Form.Label>
@@ -324,22 +420,25 @@ const MyNFTSaleForm = ({ walletAddress, marketContract, myNftPageListDialog }) =
               </div>
             </div>
 
-            {finalStep && (
+            {popupTrigger.isActive && (
               <span ref={ref}>
-                <DialogAlert
-                  title='Enable Listing'
-                  buttonText='Please confirm transaction in your wallet'
-                  onClick={listDialogConfirmListingStep}
-                  closePopup={closePopup}
-                  isWaiting={waitingConfirmation}
-                >
-                  <span>Before you can list your NFT, you must grant access with your wallet</span>
-                  {floorPrice !== 0 && ((floorPrice - Number(salePrice)) / floorPrice) * 100 > 5 && (
-                    <span className='warningMessage'>
-                      The current price is {(100 - (salePrice * 100 / floorPrice)).toFixed(1)}% below previous floor price
-                    </span>
-                  )}
-                </DialogAlert>
+                {
+                  <DialogAlert
+                    title={getDialogAlertData[popupTrigger.currentType].title}
+                    buttonText={getDialogAlertData[popupTrigger.currentType].buttonText}
+                    onClick={getDialogAlertData[popupTrigger.currentType].onClick}
+                    closePopup={getDialogAlertData[popupTrigger.currentType].closePopup}
+                    isWaiting={getDialogAlertData[popupTrigger.currentType].isWaiting ? waitingConfirmation : null}
+                    isWarningMessage={getDialogAlertData[popupTrigger.currentType].isWarningMessage ? true : false}
+                  >
+                    <span>{getDialogAlertData[popupTrigger.currentType].text}</span>
+                    {isBelowFloorPrice && getDialogAlertData[popupTrigger.currentType].warningMessage &&
+                      <span className='warningMessage'>
+                        {getDialogAlertData[popupTrigger.currentType].warningMessage}
+                      </span>
+                    }
+                  </DialogAlert>
+                }
               </span>
             )}
           </form>

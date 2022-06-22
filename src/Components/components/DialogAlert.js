@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { faTimes, faSpinner } from '@fortawesome/free-solid-svg-icons';
 
-const DialogAlert = ({ ref, title, buttonText, onClick, closePopup = null, isWaiting = false, children }) => {
+const DialogAlert = ({ ref, title, buttonText, onClick, closePopup = null, isWaiting = false, isWarningMessage = false, children }) => {
   return (
     <div className='dialogAlertContainer'>
       <div className='dialogAlert' ref={ref}>
@@ -13,7 +13,7 @@ const DialogAlert = ({ ref, title, buttonText, onClick, closePopup = null, isWai
             <FontAwesomeIcon icon={faTimes} className='icon-close' />
           </div>}
 
-          <h2>{title}</h2>
+          <h2 className={isWarningMessage ? 'warningMessage' : ''} >{title}</h2>
 
           <div className='content'>
             {children}
