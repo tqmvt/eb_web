@@ -34,7 +34,7 @@ const NegativeMargin = styled.div`
   margin-right: -1.75rem !important;
 `;
 
-const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) => {
+const Collection721 = ({ collection,  cacheName = 'collection', query }) => {
   const dispatch = useDispatch();
   const router = useRouter();
 
@@ -103,7 +103,7 @@ const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) 
 
   useEffect(() => {
     async function asyncFunc() {
-      dispatch(getStats(collection.address, slug, null, collection.mergedAddresses));
+      dispatch(getStats(collection.address, collection.slug, null, collection.mergedAddresses));
       try {
         let royalties = await readMarket.royalties(collection.address);
         setRoyalty(Math.round(royalties[1]) / 100);
@@ -267,7 +267,6 @@ const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) 
                         royalty={royalty}
                         canLoadMore={canLoadMore}
                         loadMore={loadMore}
-                        address={address}
                         collection={collection}
                       />
                     )}
@@ -291,7 +290,7 @@ const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) 
             )}
             {openMenu === 9 && (
               <NegativeMargin className="tab-2 onStep fadeIn overflow-auto mt-2">
-                <CollectionCronosverse collection={collection} slug={slug} cacheName={slug} />
+                <CollectionCronosverse collection={collection} slug={collection.slug} cacheName={collection.slug} />
               </NegativeMargin>
             )}
           </div>

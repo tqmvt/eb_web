@@ -75,7 +75,7 @@ const Collection = ({ ssrCollection }) => {
               )}
             </>
           ) : (
-            <Collection721 collection={collection} slug={slug} cacheName={slug} />
+            <Collection721 collection={collection} cacheName={slug} />
           )}
         </>
       )}
