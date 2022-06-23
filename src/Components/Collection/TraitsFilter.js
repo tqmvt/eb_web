@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useState } from 'react';
-import { Accordion, Form } from 'react-bootstrap';
+import {Accordion, Badge, Form} from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
@@ -11,6 +11,7 @@ import styles from './PowertraitsFilter/filters.module.scss';
 const TraitsFilter = ({ address }) => {
   const dispatch = useDispatch();
 
+  const userTheme = useSelector((state) => state.user.theme);
   const collectionStats = useSelector((state) => state.collection.stats);
   const collectionCachedTraitsFilter = useSelector((state) => state.collection.query.filter.traits);
 
@@ -83,6 +84,18 @@ const TraitsFilter = ({ address }) => {
     );
   };
 
+  const ThemedBadge = (props) => {
+    return (
+      <Badge
+        pill
+        bg={userTheme === 'dark' ? 'light' : 'dark'}
+        text={userTheme === 'dark' ? 'dark' : 'light'}
+      >
+        {props.children}
+      </Badge>
+    )
+  }
+
   useEffect(() => {
     const container = document.getElementById('traits');
     if (container) {
@@ -93,7 +106,7 @@ const TraitsFilter = ({ address }) => {
   return (
     <>
       <div className="mb-2">
-        <div className="d-flex justify-content-between align-middle">
+        <div className="d-flex flex-wrap justify-content-between align-middle">
           <h3
             className="d-inline-block"
             onClick={() => setHideAttributes(!hideAttributes)}
@@ -108,7 +121,9 @@ const TraitsFilter = ({ address }) => {
         </div>
         {viewSelectedAttributesCount() > 0 && (
           <div className="d-flex justify-content-between align-middle">
-            <span>{viewSelectedAttributesCount()} selected</span>
+            <ThemedBadge>
+              <span>{viewSelectedAttributesCount()} selected</span>
+            </ThemedBadge>
             <div
               className="d-inline-block fst-italic my-auto"
               style={{ fontSize: '0.8em', cursor: 'pointer' }}

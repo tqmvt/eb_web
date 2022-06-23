@@ -24,16 +24,6 @@ const collectionSlice = createSlice({
     query: {
       page: 0,
       filter: CollectionFilters.default(),
-      // filter: {
-      //   search: null,
-      //   traits: {},
-      //   powertraits: {},
-      //   minPrice: null,
-      //   maxPrice: null,
-      //   minRank: null,
-      //   maxRank: null,
-      //   listed: false,
-      // },
       sort: {},
     },
     totalPages: 0,
@@ -110,13 +100,15 @@ const collectionSlice = createSlice({
       }
     },
     onPriceFilter: (state, action) => {
-      const { address, minPrice, maxPrice } = action.payload;
+      const { address, minPrice, maxPrice, minRank, maxRank } = action.payload;
 
       state.listings = [];
       state.totalPages = 0;
       state.query.page = 0;
       state.query.filter.minPrice = minPrice;
       state.query.filter.maxPrice = maxPrice;
+      state.query.filter.minRank = minRank;
+      state.query.filter.maxRank = maxRank;
     },
     onCollectionStatsLoaded: (state, action) => {
       state.stats = action.payload.stats;
@@ -227,9 +219,9 @@ export const filterListingsByTrait =
   };
 
 export const filterListingsByPrice =
-  ({ address, minPrice, maxPrice }) =>
+  ({ address, minPrice, maxPrice, minRank, maxRank }) =>
     async (dispatch) => {
-  dispatch(onPriceFilter({ minPrice, maxPrice, address }));
+  dispatch(onPriceFilter({ minPrice, maxPrice, address, minRank, maxRank }));
   dispatch(fetchListings());
 };
 

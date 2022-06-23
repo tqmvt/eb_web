@@ -244,7 +244,6 @@ export async function sortAndFetchCollectionDetails(
     sortBy: 'id',
     direction: 'desc',
   };
-  console.log('filter', filter);
 
   if (filter && filter instanceof FullCollectionsQuery) {
     query = { ...query, ...filter.toApi() };

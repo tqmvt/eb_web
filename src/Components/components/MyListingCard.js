@@ -42,7 +42,6 @@ const MyListingCard = ({
   };
 
   const onCopyLinkButtonPressed = (url) => () => {
-    console.log(nft.rank);
     navigator.clipboard.writeText(url);
     toast.success('Copied!');
   };

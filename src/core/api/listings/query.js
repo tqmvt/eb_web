@@ -67,7 +67,7 @@ export class ListingsQuery {
       minRank: this.minRank,
       maxRank: this.maxRank,
     };
-console.log('toApi', obj)
+
     return Object.fromEntries(Object.entries(obj).filter(([k, v]) => {
       return !!v && !isEmptyObj(v)
     }));
