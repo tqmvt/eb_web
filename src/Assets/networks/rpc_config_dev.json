@@ -1086,15 +1086,15 @@
       "metadata": {
         "description": "Cronos Primate Business is a collection of 1000 uniquely generated NFTs stored on the Cronos Chain. Each Cronos Primate Business NFT is based on 10 + attributes with different rarities.",
         "verified": true,
-        "avatar": "/img/collections/cronosmb/special/avatar.png",
-        "card": "/img/collections/cronosmb/card.png",
+        "avatar": "/img/collections/cronosmb/avatar.png",
+        "card": "/img/collections/cronosmb/card.jpg",
         "banner": "/img/collections/cronosmb/banner.webp",
         "rarity": "rarity_sniper",
         "raritySniperSlug": "cronos-primate-business",
         "maxSupply": 1000,
         "website": "https://cronospb.com/",
         "twitter": "https://twitter.com/PrimateCronos",
-        "discord": "https://discord.gg/qXxkanCKBB",
+        "discord": "https://discord.gg/cpb",
         "medium": "https://medium.com/cronos-monkey-business"
       }
     },
@@ -1721,12 +1721,12 @@
         "description": "Special Cronos Monkey Business is a collection of 75 unique NFT handmade, designed and created primarily for art.",
         "verified": true,
         "avatar": "/img/collections/cronosmb/special/avatar.png",
-        "card": "/img/collections/cronosmb/special/card.png",
+        "card": "/img/collections/cronosmb/card.jpg",
         "banner": "/img/collections/cronosmb/banner.webp",
         "maxSupply": 75,
         "website": "https://cronospb.com",
         "twitter": "https://twitter.com/PrimateCronos",
-        "discord": "https://discord.gg/qXxkanCKBB"
+        "discord": "https://discord.gg/cpb"
       }
     },
     {
@@ -2230,13 +2230,13 @@
       "metadata": {
         "description": "",
         "verified": true,
-        "avatar": "/img/collections/cronosmb/special/avatar.png",
+        "avatar": "/img/collections/cronosmb/avatar.png",
         "card": "/img/collections/cronosmb/gorilla/card.jpeg",
-        "banner": "/img/collections/cronosmb/gorilla/banner.jpeg",
+        "banner": "/img/collections/cronosmb/banner.webp",
         "maxSupply": 6100,
         "website": "https://cronospb.com/",
         "twitter": "https://twitter.com/PrimateCronos",
-        "discord": "https://discord.gg/qXxkanCKBB",
+        "discord": "https://discord.gg/cpb",
         "medium": "https://medium.com/cronos-monkey-business"
       }
     },
@@ -5480,6 +5480,26 @@
         "website": "https://www.susandoyleart.com/",
         "twitter": "https://twitter.com/susandoyleart",
         "discord": "https://discord.gg/unmG8YEq"
+      }
+    },
+    {
+      "name": "Corruption",
+      "slug": "corruption",
+      "multiToken": false,
+      "address": "0x74359A232CFd53051b5da13811Dc94E7cCf2Ad6A",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "Turn your bananas into evil stones so you can discover corruption",
+        "verified": true,
+        "avatar": "/img/collections/cronosmb/corruption/avatar.png",
+        "card": "/img/collections/cronosmb/card.jpeg",
+        "banner": "/img/collections/cronosmb/banner.webp",
+        "maxSupply": 1780,
+        "website": "https://cronospb.com/",
+        "twitter": "https://twitter.com/PrimateCronos",
+        "discord": "https://discord.gg/cpb",
+        "medium": "https://medium.com/cronos-monkey-business"
       }
     }
   ],

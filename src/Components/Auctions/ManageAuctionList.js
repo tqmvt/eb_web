@@ -8,7 +8,12 @@ import { auctionState } from '../../core/api/enums';
 import { Auction } from '../../core/models/auction';
 import { commify } from 'ethers/lib/utils';
 import {Form, Spinner} from "react-bootstrap";
-import {createSuccessfulTransactionToastContent, isEventValidNumber, secondsToDhms} from "../../utils";
+import {
+  caseInsensitiveCompare,
+  createSuccessfulTransactionToastContent,
+  isEventValidNumber,
+  secondsToDhms
+} from "../../utils";
 import {useDispatch, useSelector} from "react-redux";
 import {toast} from "react-toastify";
 import MetaMaskOnboarding from "@metamask/onboarding";
@@ -81,12 +86,12 @@ const ManageAuctionList = () => {
       const otherAuctions = response.auctions
         .filter((a) => {
           const isCompleted = ![auctionState.NOT_STARTED, auctionState.ACTIVE].includes(a.state);
-          const hasUnwithdrawn = a.bidHistory.some(b => !b.withdrawn);
+          const hasUnwithdrawn = a.bidHistory.some(b => !b.withdrawn && !caseInsensitiveCompare(b.bidder, a.highestBidder));
           const afterTestAuctions = a.timeStarted > 1653891957;
           return isCompleted && hasUnwithdrawn && afterTestAuctions;
         })
         .map((o) => {
-          o.unwithdrawnCount = o.bidHistory.filter(b => !b.withdrawn).length;
+          o.unwithdrawnCount = o.bidHistory.filter(b => !b.withdrawn && !caseInsensitiveCompare(b.bidder, o.highestBidder)).length;
           return new Auction(o)
         })
         .sort((a, b) => a.endAt < b.endAt ? 1 : -1);
@@ -266,6 +271,9 @@ const ManageAuctionList = () => {
                   </p>
                 </div>
                 <div className="card-footer d-flex justify-content-between">
+                  <Link href={`/auctions/${auction.getAuctionId}`}>
+                    <a>View</a>
+                  </Link>
                   <span className="cursor-pointer" onClick={() => handleReturnBids(auction)}>Return {auction.unwithdrawnCount} Bids</span>
                 </div>
               </div>

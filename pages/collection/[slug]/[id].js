@@ -65,7 +65,10 @@ const Nft = ({ slug, id, nft }) => {
 
         return res;
       }
+
+      return anNFT?.description;
     }
+
     return anNFT?.description;
   };
 
