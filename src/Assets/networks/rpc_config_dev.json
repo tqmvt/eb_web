@@ -5501,6 +5501,26 @@
         "discord": "https://discord.gg/cpb",
         "medium": "https://medium.com/cronos-monkey-business"
       }
+    },
+    {
+      "name": "Zealous Zelenskyys",
+      "slug": "zealous-zelenskyys",
+      "multiToken": true,
+      "address": "0x90Dd56b0149D5A8c10A6479546ae4690Df7B124B",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "8,888 Volodymyr Zelenskyy NFTs with 3% yield boost per NFT for up to 5 NFTs per pool at 10mb.finance",
+        "verified": false,
+        "avatar": "/img/collections/zealous-zelenskyys/avatar.png",
+        "card": "/img/collections/zealous-zelenskyys/card.png",
+        "banner": "/img/collections/zealous-zelenskyys/banner.png",
+        "maxSupply": 8888,
+        "website": "https://cronos.zelenskyynft.club/",
+        "twitter": "https://twitter.com/PolyWantsAFarm",
+        "discord": "https://discord.gg/raxn6h9vy5",
+        "medium": "https://medium.com/@polywantsacrackerfarm"
+      }
     }
   ],
   "drops": [
