@@ -227,7 +227,6 @@ const MyNFTSaleForm = ({ walletAddress, marketContract, myNftPageListDialog }) =
 
   const closePopup = useCallback((e) => {
     e.preventDefault();
-    setWaitingConfirmation(false);
     setFinalStep(false);
   }, [setFinalStep])
 
@@ -260,14 +259,16 @@ const MyNFTSaleForm = ({ walletAddress, marketContract, myNftPageListDialog }) =
     },
     floorPriceWarningDialog: {
       title: 'Warning',
-      firstButtonText: 'Accept',
-      onClickFirstButton: (e) => {
+      firstButtonText: 'Change price',
+      onClickSecondButton: (e) => {
         e.preventDefault();
         setPopupTrigger({
           isActive: true,
           currentType: DialogAlertTypes.enableListingDialog
         })
       },
+      secondButtonText: 'Accept',
+      onClickFirstButton: closePopup,
       text: `The current price is ${(100 - (salePrice * 100 / floorPrice)).toFixed(1)}% below previous floor price`,
       closePopup: closePopup,
       isWarningMessage: true,
@@ -290,7 +291,7 @@ const MyNFTSaleForm = ({ walletAddress, marketContract, myNftPageListDialog }) =
       return
     }
     if (finalStep) {
-      if (isBelowFloorPrice) {
+      if (isBelowFloorPrice && !waitingConfirmation) {
         setPopupTrigger({
           isActive: true,
           currentType: DialogAlertTypes.floorPriceWarningDialog
@@ -434,8 +435,8 @@ const MyNFTSaleForm = ({ walletAddress, marketContract, myNftPageListDialog }) =
           </div>
         </div>
       </>}
-      {popupTrigger.isActive && (
-        <span ref={ref}>
+      {(popupTrigger.isActive) && (
+        <span ref={waitingConfirmation? null : ref}>
           {
             <DialogAlert
               title={getDialogAlertData[popupTrigger.currentType].title}
