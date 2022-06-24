@@ -6,6 +6,7 @@ import MetaverseModal from '../../components/MetaverseModal';
 import CuratedAuctionCollection from "./CuratedAuctionCollection";
 import Head from "next/head";
 import {hostedImage} from "../../../helpers/image";
+import PageHead from "../../Head/PageHead";
 
 const Blood4NftAuction = () => {
   const name = 'Blood 4 NFT Auction';
@@ -14,21 +15,12 @@ const Blood4NftAuction = () => {
 
   return (
     <>
-      <Head>
-        <title>{name} | Ebisu's Bay Marketplace</title>
-        <meta name="description" content={description} />
-        <meta name="title" content={`${name} | Ebisu's Bay Marketplace`} />
-        <meta property="og:type" content="website" key="og_type" />
-        <meta property="og:title" content={`${name} | Ebisu's Bay Marketplace`} key="title" />
-        <meta property="og:url" content="https://app.ebisusbay.com/auctions/blood-4-nft" key="og_url" />
-        <meta property="og:image" content={hostedImage(image)} key="image" />
-        <meta property="og:description" content={description} />
-        <meta property="og:site_name" content="Ebisu's Bay Marketplace" />
-        <meta name="twitter:title" content={`${name} | Ebisu's Bay Marketplace`} key="twitter_title" />
-        <meta name="twitter:image" content={image} key="twitter_image" />
-        <meta name="twitter:card" content="summary_large_image" key="misc-card" />
-        <meta name="twitter:site" content="Ebisu's Bay Marketplace" key="twitter_site" />
-      </Head>
+      <PageHead
+        title={name}
+        description={description}
+        url="/blood-4-nft"
+        image={hostedImage(image)}
+      />
       <section className="container no-bottom no-top">
         <div className="row">
           <div className="col-lg-12">

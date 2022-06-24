@@ -36,6 +36,7 @@ import {specialImageTransform} from '../../src/hacks';
 import NFTTabOffers from '../../src/Components/Offer/NFTTabOffers';
 import {appConfig} from "../../src/Config";
 import {hostedImage} from "../../src/helpers/image";
+import PageHead from "../../src/Components/Head/PageHead";
 
 const config = appConfig();
 
@@ -223,16 +224,12 @@ const Listing = () => {
 
   return (
     <div>
-      <Head>
-        <title>{listing?.nft?.name || 'Listing'} | Ebisu's Bay Marketplace</title>
-        <meta name="description" content={`${listing?.nft?.name || 'Listing'} for Ebisu's Bay Marketplace`} />
-        <meta name="title" content={`${listing?.nft?.name || 'Listing'} | Ebisu's Bay Marketplace`} />
-        <meta property="og:title" content={`${listing?.nft?.name || 'Listing'} | Ebisu's Bay Marketplace`} />
-        <meta property="og:url" content={`https://app.ebisusbay.com/${id}`} />
-        <meta property="og:image" content={listing?.nft?.image} />
-        <meta name="twitter:title" content={`${listing?.nft?.name || 'Listing'} | Ebisu's Bay Marketplace`} />
-        <meta name="twitter:image" content={listing?.nft?.image} />
-      </Head>
+      <PageHead
+        title={listing?.nft?.name || 'Listing'}
+        description={`${listing?.nft?.name || 'Listing'}`}
+        url={`/listing/${id}`}
+        image={listing?.nft?.image}
+      />
       {isLoading ? (
         <section className="container">
           <div className="row mt-4">

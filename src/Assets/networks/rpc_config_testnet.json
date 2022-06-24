@@ -1263,6 +1263,18 @@
         "twitter": "https://twitter.com/CyberSquadd",
         "discord": "https://discord.gg/cybersquad"
       }
+    },
+    {
+      "name": "DragonsoftheWest",
+      "slug": "dragons-of-the-west",
+      "multiToken": false,
+      "address": "0x64a55Eba437992f3aC543a6fd72978Dc4E34B410",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": false
+      }
     }
   ],
   "drops": [

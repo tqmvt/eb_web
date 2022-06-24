@@ -5,7 +5,7 @@ import Collection721 from '../../src/Components/Collection/collection721';
 import CollectionCronosverse from '../../src/Components/Collection/collectionCronosverse';
 import {caseInsensitiveCompare, isCronosVerseCollection, isAddress, isCollection} from '../../src/utils';
 import {appConfig} from "../../src/Config";
-import PageHead from "../../src/Components/components/PageHead";
+import PageHead from "../../src/Components/Head/PageHead";
 
 const knownContracts = appConfig('collections')
 

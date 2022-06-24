@@ -20,39 +20,6 @@ export default function Document() {
         <meta content="" name="keywords" />
         <meta content="" name="author" />
 
-        {/* Primary Meta Tags */}
-        <meta name="title" content="Ebisu's Bay — Cronos #1 NFT marketplace" />
-        <meta
-          name="description"
-          content="The first NFT marketplace on Cronos. Create, buy, sell, trade and enjoy the #CroFam NFT community."
-        />
-        <meta
-          name="keywords"
-          content="Cronos, NFT, marketplace, first, community, nft marketplace, curated, launch, nft launch, crofam, collection, drop"
-        />
-
-        {/* Open Graph / Facebook */}
-        <meta property="og:site_name" content="Ebisu's Bay Marketplace" />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://app.ebisusbay.com" />
-        <meta property="og:title" content="Ebisu's Bay — Cronos #1 NFT marketplace" />
-        <meta
-          property="og:description"
-          content="The first NFT marketplace on Cronos. Create, buy, sell, trade and enjoy the #CroFam NFT community."
-        />
-        <meta property="og:image" content="https://app.ebisusbay.com/img/background/Ebisus-bg-1_L.webp" />
-
-        {/* Twitter */}
-        <meta property="twitter:site" content="@EbisusBay" />
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content="https://app.ebisusbay.com" />
-        <meta property="twitter:title" content="Ebisu's Bay — Cronos #1 NFT marketplace" />
-        <meta
-          property="twitter:description"
-          content="The first NFT marketplace on Cronos. Create, buy, sell, trade and enjoy the #CroFam NFT community."
-        />
-        <meta property="twitter:image" content="https://app.ebisusbay.com/img/background/Ebisus-bg-1_L.webp" />
-
         <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
       </Head>
       <body>

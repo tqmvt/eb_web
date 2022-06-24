@@ -326,16 +326,6 @@ const MultiDrop = () => {
   return (
     <div>
       <>
-        <Head>
-          <title>{drop?.title || 'Drop'} | Ebisu's Bay Marketplace</title>
-          <meta name="description" content={`${drop?.title || 'Drop'} for Ebisu's Bay Marketplace`} />
-          <meta name="title" content={`${drop?.title || 'Drop'} | Ebisu's Bay Marketplace`} />
-          <meta property="og:title" content={`${drop?.title || 'Drop'} | Ebisu's Bay Marketplace`} />
-          <meta property="og:url" content={`https://app.ebisusbay.com/drops/${slug}`} />
-          <meta property="og:image" content={`https://app.ebisusbay.com${drop?.imgAvatar || '/'}`} />
-          <meta name="twitter:title" content={`${drop?.title || 'Drop'} | Ebisu's Bay Marketplace`} />
-          <meta name="twitter:image" content={`https://app.ebisusbay.com${drop?.imgAvatar || '/'}`} />
-        </Head>
         <HeroSection
           className={`jumbotron h-vh tint`}
           style={{ backgroundImage: `url(${drop.imgBanner ? drop.imgBanner : '/img/background/Ebisus-bg-1_L.webp'})` }}
