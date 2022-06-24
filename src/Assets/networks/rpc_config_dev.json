@@ -5486,6 +5486,7 @@
       "name": "Corruption",
       "slug": "corruption",
       "multiToken": true,
+      "tokens": [{ "id": 1 }, { "id": 2 }, { "id": 3 }],
       "address": "0xA68825768bDB7a2161422e3CcAF1973FF88f8E66",
       "onChain": false,
       "listable": true,
