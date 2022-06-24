@@ -91,7 +91,7 @@ const ManageAuctionList = () => {
           return isCompleted && hasUnwithdrawn && afterTestAuctions;
         })
         .map((o) => {
-          o.unwithdrawnCount = o.bidHistory.filter(b => !b.withdrawn).length;
+          o.unwithdrawnCount = o.bidHistory.filter(b => !b.withdrawn && !caseInsensitiveCompare(b.bidder, o.highestBidder)).length;
           return new Auction(o)
         })
         .sort((a, b) => a.endAt < b.endAt ? 1 : -1);

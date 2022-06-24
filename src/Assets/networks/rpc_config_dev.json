@@ -1086,15 +1086,15 @@
       "metadata": {
         "description": "Cronos Primate Business is a collection of 1000 uniquely generated NFTs stored on the Cronos Chain. Each Cronos Primate Business NFT is based on 10 + attributes with different rarities.",
         "verified": true,
-        "avatar": "/img/collections/cronosmb/special/avatar.png",
-        "card": "/img/collections/cronosmb/card.png",
+        "avatar": "/img/collections/cronosmb/avatar.png",
+        "card": "/img/collections/cronosmb/card.jpg",
         "banner": "/img/collections/cronosmb/banner.webp",
         "rarity": "rarity_sniper",
         "raritySniperSlug": "cronos-primate-business",
         "maxSupply": 1000,
         "website": "https://cronospb.com/",
         "twitter": "https://twitter.com/PrimateCronos",
-        "discord": "https://discord.gg/qXxkanCKBB",
+        "discord": "https://discord.gg/cpb",
         "medium": "https://medium.com/cronos-monkey-business"
       }
     },
@@ -1721,12 +1721,12 @@
         "description": "Special Cronos Monkey Business is a collection of 75 unique NFT handmade, designed and created primarily for art.",
         "verified": true,
         "avatar": "/img/collections/cronosmb/special/avatar.png",
-        "card": "/img/collections/cronosmb/special/card.png",
+        "card": "/img/collections/cronosmb/card.jpg",
         "banner": "/img/collections/cronosmb/banner.webp",
         "maxSupply": 75,
         "website": "https://cronospb.com",
         "twitter": "https://twitter.com/PrimateCronos",
-        "discord": "https://discord.gg/qXxkanCKBB"
+        "discord": "https://discord.gg/cpb"
       }
     },
     {
@@ -2230,13 +2230,13 @@
       "metadata": {
         "description": "",
         "verified": true,
-        "avatar": "/img/collections/cronosmb/special/avatar.png",
+        "avatar": "/img/collections/cronosmb/avatar.png",
         "card": "/img/collections/cronosmb/gorilla/card.jpeg",
-        "banner": "/img/collections/cronosmb/gorilla/banner.jpeg",
+        "banner": "/img/collections/cronosmb/banner.webp",
         "maxSupply": 6100,
         "website": "https://cronospb.com/",
         "twitter": "https://twitter.com/PrimateCronos",
-        "discord": "https://discord.gg/qXxkanCKBB",
+        "discord": "https://discord.gg/cpb",
         "medium": "https://medium.com/cronos-monkey-business"
       }
     },
@@ -3977,7 +3977,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Collection of 8008 unique PFP's featuring Boomers with various aspects of blockchain technology.",
         "verified": true,
         "avatar": "/img/collections/boomer-squad/avatar.webp",
         "banner": "/img/collections/boomer-squad/banner.webp",
@@ -5078,7 +5078,7 @@
       "multiToken": false,
       "address": "0x07174D2B657b2243E5C11Df2Cd3D4afD1E45DBBb",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "Icy Valkyries is a collection of 1000 NFTs who live in the darkest corner of Valhalla. Owning a Valkyrie allows you to fight in the monthly Icy Squid Game for huge jackpots, build a farm, start a family and establish your own clan.",
         "verified": true,
@@ -5480,6 +5480,47 @@
         "website": "https://www.susandoyleart.com/",
         "twitter": "https://twitter.com/susandoyleart",
         "discord": "https://discord.gg/unmG8YEq"
+      }
+    },
+    {
+      "name": "Corruption",
+      "slug": "corruption",
+      "multiToken": true,
+      "tokens": [{ "id": 1 }, { "id": 2 }, { "id": 3 }],
+      "address": "0xA68825768bDB7a2161422e3CcAF1973FF88f8E66",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "Turn your bananas into evil stones so you can discover corruption",
+        "verified": true,
+        "avatar": "/img/collections/cronosmb/corruption/avatar.png",
+        "card": "/img/collections/cronosmb/card.jpg",
+        "banner": "/img/collections/cronosmb/banner.webp",
+        "maxSupply": 1780,
+        "website": "https://cronospb.com/",
+        "twitter": "https://twitter.com/PrimateCronos",
+        "discord": "https://discord.gg/cpb",
+        "medium": "https://medium.com/cronos-monkey-business"
+      }
+    },
+    {
+      "name": "Zealous Zelenskyys",
+      "slug": "zealous-zelenskyys",
+      "multiToken": true,
+      "address": "0x90Dd56b0149D5A8c10A6479546ae4690Df7B124B",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "8,888 Volodymyr Zelenskyy NFTs with 3% yield boost per NFT for up to 5 NFTs per pool at 10mb.finance",
+        "verified": false,
+        "avatar": "/img/collections/zealous-zelenskyys/avatar.png",
+        "card": "/img/collections/zealous-zelenskyys/card.png",
+        "banner": "/img/collections/zealous-zelenskyys/banner.png",
+        "maxSupply": 8888,
+        "website": "https://cronos.zelenskyynft.club/",
+        "twitter": "https://twitter.com/PolyWantsAFarm",
+        "discord": "https://discord.gg/raxn6h9vy5",
+        "medium": "https://medium.com/@polywantsacrackerfarm"
       }
     }
   ],
@@ -7058,7 +7099,7 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false,
+      "complete": true,
       "featured": false,
       "redirect": "https://lootpad.io/collection/bullishbeavers"
     },
@@ -7639,7 +7680,7 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false,
+      "complete": true,
       "priceDescription": "Whitelist-only presale for the first 12 hours (limit 8 per address). Public sale after presale ends."
     },
     {

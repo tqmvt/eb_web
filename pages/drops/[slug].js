@@ -7,6 +7,7 @@ import CronosverseDrop from '../../src/Components/Drop/CronosverseDrop';
 import {caseInsensitiveCompare} from "../../src/utils";
 import Head from "next/head";
 import {appConfig} from "../../src/Config";
+import PageHead from "../../src/Components/Head/PageHead";
 
 export const drops = appConfig('drops');
 
@@ -29,21 +30,12 @@ const Drop = ({ssrDrop}) => {
 
   return (
     <>
-      <Head>
-        <title>{ssrDrop?.title || 'NFT'} | Ebisu's Bay Marketplace</title>
-        <meta name="description" content={`${ssrDrop?.subtitle || 'NFT'} for Ebisu's Bay Marketplace`} />
-        <meta name="title" content={`${ssrDrop?.title || 'NFT'} | Ebisu's Bay Marketplace`} />
-        <meta property="og:type" content="website" key="og_type" />
-        <meta property="og:title" content={`${ssrDrop?.title || 'NFT'} | Ebisu's Bay Marketplace`} key="title" />
-        <meta property="og:url" content={`https://app.ebisusbay.com/drops/${ssrDrop?.slug}`} key="og_url" />
-        <meta property="og:image" content={ssrDrop?.imgNft} key="image" />
-        <meta property="og:description" content={ssrDrop?.subtitle} key="og_desc" />
-        <meta property="og:site_name" content="Ebisu's Bay Marketplace" />
-        <meta name="twitter:title" content={`${ssrDrop?.title || 'NFT'} | Ebisu's Bay Marketplace`} key="twitter_title" />
-        <meta name="twitter:image" content={ssrDrop?.imgNft} key="twitter_image" />
-        <meta name="twitter:card" content="summary_large_image" key="misc-card" />
-        <meta name="twitter:site" content="Ebisu's Bay Marketplace" key="twitter_site" />
-      </Head>
+      <PageHead
+        title={ssrDrop.title}
+        description={ssrDrop.subtitle}
+        url={`/drops/${ssrDrop.slug}`}
+        image={ssrDrop.imgNft}
+      />
       {ssrDrop && (
         <>
           {isMultiDrop ? (
@@ -62,6 +54,12 @@ const Drop = ({ssrDrop}) => {
 export const getServerSideProps = async ({ params }) => {
   const slug = params?.slug;
   const drop = drops.find((c) => caseInsensitiveCompare(c.slug, slug));
+
+  if (!drop) {
+    return {
+      notFound: true
+    }
+  }
 
   return {
     props: {

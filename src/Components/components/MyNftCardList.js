@@ -24,8 +24,8 @@ const MyNftCardList = ({ nfts = [], isLoading, listedOnly, activeFilterOption, u
   const [page, setPage] = useState(1);
   const isFetching = useSelector((state) => state.user.fetchingNfts);
   const canLoadMore = useSelector((state) => {
-    return false;
-    // return !useChain && !state.user.nftsFullyFetched;
+    if (useChain) return false;
+    return !state.user.nftsFullyFetched;
   });
 
   const loadMore = () => {
@@ -58,9 +58,9 @@ const MyNftCardList = ({ nfts = [], isLoading, listedOnly, activeFilterOption, u
     [dispatch]
   );
 
-  const possibleCollections = collectionFilterOptions.filter((collection) =>
-    isLoading ? true : !!nfts.find((x) => caseInsensitiveCompare(x.address, collection.value))
-  );
+  // const possibleCollections = collectionFilterOptions.filter((collection) =>
+  //   isLoading ? true : !!nfts.find((x) => caseInsensitiveCompare(x.address, collection.value))
+  // );
 
   const filteredNFTs = nfts
     .filter((nft) => (listedOnly ? nft.listed : true))
@@ -98,7 +98,7 @@ const MyNftCardList = ({ nfts = [], isLoading, listedOnly, activeFilterOption, u
                 showFilter={true}
                 showSort={false}
                 showSearch={false}
-                filterOptions={[MarketFilterCollection.default(), ...possibleCollections]}
+                filterOptions={[MarketFilterCollection.default(), ...collectionFilterOptions]}
                 defaultFilterValue={activeFilterOption}
                 filterPlaceHolder="Filter Collection..."
                 onFilterChange={onFilterChange}

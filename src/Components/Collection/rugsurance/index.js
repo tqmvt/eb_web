@@ -15,6 +15,7 @@ import { chainConnect, connectAccount } from '../../../GlobalState/User';
 import { ERC721 } from '../../../Contracts/Abis';
 import styles from './rugsurance.module.scss';
 import {appConfig} from "../../../Config";
+import PageHead from "../../Head/PageHead";
 
 const config = appConfig();
 const knownContracts = config.collections;
@@ -224,14 +225,11 @@ const Rugsurance = () => {
 
   return (
     <div>
-      <Head>
-        <title>Slothty Rugsurance | Ebisu's Bay Marketplace</title>
-        <meta name="description" content="Peace of mind minting on Ebisu's Bay Marketplace" />
-        <meta name="title" content="Slothty Rugsurance | Ebisu's Bay Marketplace" />
-        <meta property="og:title" content="Slothty Rugsurance | Ebisu's Bay Marketplace" />
-        <meta property="og:url" content={`https://app.ebisusbay.com/slothty-rugsurance`} />
-        <meta name="twitter:title" content="Slothty Rugsurance | Ebisu's Bay Marketplace" />
-      </Head>
+      <PageHead
+        title="Slothty Rugsurance"
+        description="Peace of mind minting on Ebisu's Bay Marketplace"
+        url="/slothty-rugsurance"
+      />
       <section className="jumbotron breadcumb no-bg tint">
         <div className="mainbreadcumb">
           <div className="container">

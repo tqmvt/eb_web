@@ -8,7 +8,7 @@ import { faLightbulb, faTags } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Footer from '../src/Components/components/Footer';
 import {useRouter} from "next/router";
-import PageHead from "../src/Components/components/PageHead";
+import PageHead from "../src/Components/Head/PageHead";
 const NativeForms = dynamic(() => import('native-forms-react'), { ssr: false });
 
 const fadeInUp = keyframes`
@@ -202,7 +202,7 @@ const Application = ({type}) => {
 };
 export default Application;
 
-export const getStaticProps = async ({ query }) => {
+export const getServerSideProps = async ({ query }) => {
   return {
     props: {
       type: query?.type ?? null,
