@@ -5078,7 +5078,7 @@
       "multiToken": false,
       "address": "0x07174D2B657b2243E5C11Df2Cd3D4afD1E45DBBb",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "Icy Valkyries is a collection of 1000 NFTs who live in the darkest corner of Valhalla. Owning a Valkyrie allows you to fight in the monthly Icy Squid Game for huge jackpots, build a farm, start a family and establish your own clan.",
         "verified": true,
@@ -7659,7 +7659,7 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false,
+      "complete": true,
       "priceDescription": "Whitelist-only presale for the first 12 hours (limit 8 per address). Public sale after presale ends."
     },
     {
