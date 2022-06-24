@@ -10,6 +10,7 @@ import { sortOptions } from '../../src/Components/components/constants/sort-opti
 import { SortOption } from '../../src/Components/Models/sort-option.model';
 import { sortListings } from '../../src/GlobalState/marketplaceSlice';
 import { shortAddress } from '../../src/utils';
+import PageHead from "../../src/Components/Head/PageHead";
 
 const Seller = () => {
   const cacheName = 'sellerPage';
@@ -41,14 +42,11 @@ const Seller = () => {
 
   return (
     <div>
-      <Head>
-        <title>{shortAddress(address) || 'Seller'} | Ebisu's Bay Marketplace</title>
-        <meta name="description" content={`${shortAddress(address) || 'Seller'} for Ebisu's Bay Marketplace`} />
-        <meta name="title" content={`${shortAddress(address) || 'Seller'} | Ebisu's Bay Marketplace`} />
-        <meta property="og:title" content={`${shortAddress(address) || 'Seller'} | Ebisu's Bay Marketplace`} />
-        <meta property="og:url" content={`https://app.ebisusbay.com/seller/${address}`} />
-        <meta name="twitter:title" content={`${shortAddress(address) || 'Seller'} | Ebisu's Bay Marketplace`} />
-      </Head>
+      <PageHead
+        title={shortAddress(address) || 'Seller'}
+        description={`${shortAddress(address) || 'Seller'} for Ebisu's Bay Marketplace`}
+        url={`/seller/${address}`}
+      />
       <section className="jumbotron breadcumb no-bg tint">
         <div className="mainbreadcumb">
           <div className="container">

@@ -5,7 +5,7 @@ import {findCollectionByAddress, humanize, isAddress, relativePrecision} from '.
 import Nft1155 from '../../../src/Components/Collection/nft1155';
 import Nft721 from '../../../src/Components/Collection/nft721';
 import {appConfig} from "../../../src/Config";
-import PageHead from "../../../src/Components/components/PageHead";
+import PageHead from "../../../src/Components/Head/PageHead";
 const knownContracts = appConfig('collections')
 
 const Nft = ({ slug, id, nft }) => {
