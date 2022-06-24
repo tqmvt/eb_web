@@ -2,7 +2,7 @@ import React, { memo, useEffect, useState, useCallback } from 'react';
 import { useRouter } from 'next/router';
 import { connect, useSelector, useDispatch } from 'react-redux';
 
-import MyNftSaleForm from '../../../src/Components/components/MyNftSaleForm';
+import MyNFTSaleForm from "../../../src/Components/components/MyNFTSaleForm";
 import Footer from '../../../src/Components/components/Footer';
 import withAuth from '../../../src/Components/withAuth';
 import { getNft, getCollectionMetadata } from '../../../src/core/api';
@@ -58,7 +58,7 @@ const NftSell = () => {
       <section className="container">
         <div className="de_tab">
           <div className="de_tab_content">
-            <MyNftSaleForm nft={nft} floorPrice={floorPrice}/>
+            <MyNFTSaleForm nft={nft} floorPrice={floorPrice}/>
           </div>
         </div>
       </section>
