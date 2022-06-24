@@ -4,7 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { faTimes, faSpinner } from '@fortawesome/free-solid-svg-icons';
 
-const DialogAlert = ({ ref, title, buttonText, onClick, closePopup = null, isWaiting = false, isWarningMessage = false, children }) => {
+const DialogAlert = ({ ref, title, firstButtonText, secondButtonText, onClickFirstButton, onClickSecondButton, closePopup = null, isWaiting = false, isWarningMessage = false, children }) => {
+  
   return (
     <div className='dialogAlertContainer'>
       <div className='dialogAlert' ref={ref}>
@@ -19,13 +20,32 @@ const DialogAlert = ({ ref, title, buttonText, onClick, closePopup = null, isWai
             {children}
           </div>
 
-          <button className='btn-popup' onClick={!isWaiting ? onClick : undefined} disabled={isWaiting}>
+          {!secondButtonText ? <button className='btn-popup' onClick={!isWaiting ? onClickFirstButton : undefined} disabled={isWaiting}>
             {isWaiting ? <span className="d-flex align-items-center">
               <FontAwesomeIcon icon={faSpinner} className="fa-spin" />
               <span className="ps-2">Working...</span>
             </span> :
-              buttonText}
+              firstButtonText}
           </button>
+            :
+            <div className= 'button-container'>
+              <button className='btn-popup first-button' onClick={!isWaiting ? onClickFirstButton : undefined} disabled={isWaiting}>
+                {isWaiting ? <span className="d-flex align-items-center">
+                  <FontAwesomeIcon icon={faSpinner} className="fa-spin" />
+                  <span className="ps-2">Working...</span>
+                </span> :
+                  firstButtonText}
+              </button>
+
+              <button className='btn-popup' onClick={!isWaiting ? onClickSecondButton : undefined} disabled={isWaiting}>
+                {isWaiting ? <span className="d-flex align-items-center">
+                  <FontAwesomeIcon icon={faSpinner} className="fa-spin" />
+                  <span className="ps-2">Working...</span>
+                </span> :
+                  secondButtonText}
+              </button>
+            </div>
+          }
         </div>
       </div>
     </div>

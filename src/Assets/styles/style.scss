@@ -5699,7 +5699,7 @@ iframe.metaverse {
     padding: 96px;
     box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.3);
   
-    @media (max-width: 768px) { 
+    @media (max-width: 812px) { 
       padding: 40px 14px;
     }
     
@@ -5777,6 +5777,36 @@ iframe.metaverse {
         @media (max-width: 344px) { 
           font-size: 16px;
         }
+      }
+
+      .button-container {
+
+        .btn-popup {
+          background-color: $blue;
+          color: $white;
+          border-width: 0px;
+          border-radius: 8px;
+          font-weight: bold;
+          font-size: 20px;
+          padding: 24px;
+          text-align: center;
+          min-width: 0%;
+          width: 208px;
+
+          @media (max-width: 812px) { 
+            width: 100%;
+          }
+  
+        }
+
+        .first-button{
+
+          @media (max-width: 812px) { 
+            margin-right: 0px;
+            margin-bottom: 8px; 
+          }
+        }
+
       }
     
       .warningMessage {

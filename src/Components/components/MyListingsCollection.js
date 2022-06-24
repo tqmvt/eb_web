@@ -18,8 +18,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import InfiniteScroll from 'react-infinite-scroll-component';
 // import SoldNftCard from './SoldNftCard';
 
+import { useRouter } from 'next/router';
+
 const MyListingsCollection = ({ walletAddress = null }) => {
   const dispatch = useDispatch();
+  const router = useRouter();
   const [width, setWidth] = useState(0);
   const isLoading = useSelector((state) => state.user.myUnfilteredListingsFetching);
   const myListings = useSelector((state) => state.user.myUnfilteredListings);
@@ -132,9 +135,10 @@ const MyListingsCollection = ({ walletAddress = null }) => {
                       width={width}
                       canCancel={nft.state === 0}
                       canUpdate={nft.state === 0 && nft.isInWallet}
-                      onUpdateButtonPressed={() =>
+                      onUpdateButtonPressed={() =>{
                         dispatch(MyListingsCollectionPageActions.showMyNftPageListDialog(nft))
-                      }
+                        router.push(`/nfts/sell?collectionId=${nft.address}&nftId=${nft.id}`)
+                      }}
                       onCancelButtonPressed={() =>
                         dispatch(MyListingsCollectionPageActions.showMyNftPageCancelDialog(nft))
                       }
@@ -153,8 +157,8 @@ const MyListingsCollection = ({ walletAddress = null }) => {
         </div>
       )}
 
-      <MyNftCancelDialog />
-      <InvalidListingsPopup navigateTo={false} />
+      <MyNftCancelDialog/>
+      <InvalidListingsPopup navigateTo={false}/>
     </>
   );
 };

@@ -1,5 +1,5 @@
-import React, {memo, useCallback, useEffect, useState} from 'react';
-import {connect, useDispatch, useSelector} from 'react-redux';
+import React, { memo, useCallback, useEffect, useState } from 'react';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import NftCard from './MyNftCard';
 import TopFilterBar from './TopFilterBar';
 import { Form, Spinner } from 'react-bootstrap';
@@ -81,7 +81,7 @@ const MyNftCardList = ({ nfts = [], isLoading, listedOnly, activeFilterOption, u
 
   return (
     <>
-      {(isLoading && nfts.length === 0) || !marketContract? (
+      {(isLoading && nfts.length === 0) || !marketContract ? (
         <div className="row">
           <div className="row mt-4">
             <div className="col-lg-12 text-center">
@@ -164,7 +164,10 @@ const MyNftCardList = ({ nfts = [], isLoading, listedOnly, activeFilterOption, u
                         dispatch(MyNftPageActions.showMyNftPageListDialog(nft))
                         router.push(`/nfts/sell?collectionId=${nft.address}&nftId=${nft.id}`)
                       }}
-                      onUpdateButtonPressed={() => dispatch(MyNftPageActions.showMyNftPageListDialog(nft))}
+                      onUpdateButtonPressed={() => {
+                        dispatch(MyNftPageActions.showMyNftPageListDialog(nft))
+                        router.push(`/nfts/sell?collectionId=${nft.address}&nftId=${nft.id}`)
+                      }}
                       onCancelButtonPressed={() => dispatch(MyNftPageActions.showMyNftPageCancelDialog(nft))}
                       newTab={true}
                     />
