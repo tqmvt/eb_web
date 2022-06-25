@@ -5522,6 +5522,25 @@
         "discord": "https://discord.gg/raxn6h9vy5",
         "medium": "https://medium.com/@polywantsacrackerfarm"
       }
+    },
+    {
+      "name": "Busy Bears Elite Club",
+      "slug": "busy-bears-elite-club",
+      "multiToken": true,
+      "address": "0x98F9195CD7842Aef783d1255CFe6AA97F32b2564",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "Card for those who minted 6 BBs. Guarantees special benefits like free NFTs, special giveaways, and more.",
+        "verified": false,
+        "avatar": "/img/collections/busy-bears-elite-club/avatar.png",
+        "card": "/img/collections/busy-bears-elite-club/card.png",
+        "banner": "/img/collections/busy-bears-elite-club/banner.png",
+        "maxSupply": 420,
+        "website": "https://busybears.club/",
+        "twitter": "https://twitter.com/BusyBearsClub",
+        "discord": "https://discord.gg/BusyBearsClub"
+      }
     }
   ],
   "drops": [
