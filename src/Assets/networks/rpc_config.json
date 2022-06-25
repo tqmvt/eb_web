@@ -5566,6 +5566,26 @@
         "telegram": "https://t.me/CroArmy_ETH",
         "medium": "https://croarmy.gitbook.io/croarmy/"
       }
+    },
+    {
+      "name": "Baby Joey",
+      "slug": "baby-joey",
+      "multiToken": false,
+      "address": "0x04eE3890b7d6c5e1D9B7FEcd19bADA7Fa60A2770",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "BabyHop Baby Joey First NFT collection",
+        "verified": false,
+        "avatar": "/img/collections/baby-joey/avatar.jpg",
+        "card": "/img/collections/baby-joey/card.jpg",
+        "banner": "/img/collections/baby-joey/banner.jpg",
+        "maxSupply": 500,
+        "website": "https://www.babyhop.finance/",
+        "twitter": "https://twitter.com/BabyHop__",
+        "discord": "https://discord.gg/fnVzKYPbg/",
+        "telegram": "https://t.me/BabyHopToken"
+      }
     }
   ],
   "drops": [
