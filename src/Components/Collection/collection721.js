@@ -26,6 +26,7 @@ import {appConfig} from "../../Config";
 import {hostedImage, ImageKitService} from "../../helpers/image";
 import {useRouter} from "next/router";
 import {CollectionFilters} from "../Models/collection-filters.model";
+import {pushQueryString} from "../../helpers/query";
 
 const config = appConfig();
 
@@ -74,14 +75,10 @@ const Collection721 = ({ collection,  cacheName = 'collection', query }) => {
       resetFilters();
     }
 
-    router.push({
-        pathname: router.pathname,
-        query: {
-          slug: router.query.slug,
-          tab: key
-        }
-      }, undefined, { shallow: true }
-    );
+    pushQueryString(router, {
+      slug: router.query.slug,
+      tab: key
+    });
   };
 
   const resetFilters = (preservedQuery) => {

@@ -11,6 +11,7 @@ import { listingFilterOptions } from './constants/filter-options';
 import { sortListings, searchListings, filterListingsByListed } from '../../GlobalState/collectionSlice';
 import { getTheme } from '../../Theme/theme';
 import {useRouter} from "next/router";
+import {pushQueryString} from "../../helpers/query";
 
 const CollectionFilterBarContainer = styled.div`
   margin: 0 0 22px;
@@ -54,14 +55,10 @@ const CollectionFilterBar = ({ cacheName = null }) => {
       if (option) query.listed = option;
       else delete query.listed;
 
-      router.push({
-          pathname: router.pathname,
-          query: {
-            slug: router.query.slug,
-            ...query
-          }
-        }, undefined, { shallow: true }
-      );
+      pushQueryString(router, {
+        slug: router.query.slug,
+        ...query
+      });
 
       dispatch(filterListingsByListed(option));
     },
@@ -75,14 +72,10 @@ const CollectionFilterBar = ({ cacheName = null }) => {
     if (value) query.search = value;
     else delete query.search;
 
-    router.push({
-        pathname: router.pathname,
-        query: {
-          slug: router.query.slug,
-          ...query
-        }
-      }, undefined, { shallow: true }
-    );
+    pushQueryString(router, {
+      slug: router.query.slug,
+      ...query
+    });
 
     dispatch(searchListings(value));
   }, 300);

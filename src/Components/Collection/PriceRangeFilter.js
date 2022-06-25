@@ -5,11 +5,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { filterListingsByPrice } from '../../GlobalState/collectionSlice';
 import Button from '../components/Button';
 import { commify } from 'ethers/lib/utils';
+import {pushQueryString} from "../../helpers/query";
+import {useRouter} from "next/router";
 
 const PriceRangeFilter = ({ address, ...props }) => {
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const userTheme = useSelector((state) => state.user.theme);
+  const currentFilter = useSelector((state) => state.collection.query.filter);
 
   const [minPrice, setMinPrice] = useState(null);
   const [maxPrice, setMaxPrice] = useState(null);
@@ -21,6 +25,17 @@ const PriceRangeFilter = ({ address, ...props }) => {
     setMaxPrice('');
     setMinRank('');
     setMaxRank('');
+
+    const query = currentFilter.toPageQuery();
+    query.minPrice = null;
+    query.maxPrice = null;
+    query.minRank = null;
+    query.maxRank = null;
+
+    pushQueryString(router, {
+      slug: router.query.slug,
+      ...query
+    });
 
     dispatch(
       filterListingsByPrice({
@@ -34,6 +49,18 @@ const PriceRangeFilter = ({ address, ...props }) => {
   };
 
   const onApply = () => {
+
+    const query = currentFilter.toPageQuery();
+    query.minPrice = minPrice;
+    query.maxPrice = maxPrice;
+    query.minRank = minRank;
+    query.maxRank = maxRank;
+
+    pushQueryString(router, {
+      slug: router.query.slug,
+      ...query
+    });
+
     dispatch(
       filterListingsByPrice({
         address,

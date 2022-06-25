@@ -8,6 +8,7 @@ import { filterListingsByTrait } from '../../GlobalState/collectionSlice';
 import {humanize, isEmptyObj, mapAttributeString} from '../../utils';
 import styles from './PowertraitsFilter/filters.module.scss';
 import {useRouter} from "next/router";
+import {pushQueryString} from "../../helpers/query";
 
 const TraitsFilter = ({ address }) => {
   const dispatch = useDispatch();
@@ -60,6 +61,15 @@ const TraitsFilter = ({ address }) => {
     for (const item of inputs) {
       item.checked = false;
     }
+
+    const query = currentFilter.toPageQuery();
+    query.traits = {};
+
+    pushQueryString(router, {
+      slug: router.query.slug,
+      ...query
+    });
+
     dispatch(
       filterListingsByTrait({
         traits: {},
@@ -88,14 +98,10 @@ const TraitsFilter = ({ address }) => {
     const query = currentFilter.toPageQuery();
     query.traits = isEmptyObj(allTraits) ? undefined : JSON.stringify(allTraits);
 
-    router.push({
-        pathname: router.pathname,
-        query: {
-          slug: router.query.slug,
-          ...query
-        }
-      }, undefined, { shallow: true }
-    );
+    pushQueryString(router, {
+      slug: router.query.slug,
+      ...query
+    });
 
     dispatch(
       filterListingsByTrait({
