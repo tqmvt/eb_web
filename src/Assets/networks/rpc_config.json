@@ -4104,7 +4104,8 @@
         "website": "https://croarmy.io/",
         "twitter": "https://twitter.com/croarmy_eth",
         "discord": "https://discord.gg/croarmy",
-        "telegram": "https://t.me/CroArmy_ETH"
+        "telegram": "https://t.me/CroArmy_ETH",
+        "medium": "https://croarmy.gitbook.io/croarmy/"
       }
     },
     {
@@ -4419,7 +4420,8 @@
         "website": "https://croarmy.io/",
         "twitter": "https://twitter.com/croarmy_eth",
         "discord": "https://discord.gg/croarmy",
-        "telegram": "https://t.me/CroArmy_ETH"
+        "telegram": "https://t.me/CroArmy_ETH",
+        "medium": "https://croarmy.gitbook.io/croarmy/"
       }
     },
     {
@@ -4838,7 +4840,7 @@
       "name": "CroArmy Jackals",
       "slug": "cro-army-jackals",
       "multiToken": false,
-      "address": "0x5e1d8835B9fB1c074b99E09BE29B906ebcA48e99",
+      "address": "0xa423B83f5e8C5A2b47676316f22B91E6dFcE3Cd1",
       "onChain": false,
       "listable": true,
       "metadata": {
@@ -4851,7 +4853,8 @@
         "website": "https://croarmy.io/",
         "twitter": "https://twitter.com/croarmy_eth",
         "discord": "https://discord.gg/croarmy",
-        "telegram": "https://t.me/CroArmy_ETH"
+        "telegram": "https://t.me/CroArmy_ETH",
+        "medium": "https://croarmy.gitbook.io/croarmy/"
       }
     },
     {
@@ -4891,7 +4894,8 @@
         "website": "https://croarmy.io/",
         "twitter": "https://twitter.com/croarmy_eth",
         "discord": "https://discord.gg/croarmy",
-        "telegram": "https://t.me/CroArmy_ETH"
+        "telegram": "https://t.me/CroArmy_ETH",
+        "medium": "https://croarmy.gitbook.io/croarmy/"
       }
     },
     {
@@ -5521,6 +5525,66 @@
         "twitter": "https://twitter.com/PolyWantsAFarm",
         "discord": "https://discord.gg/raxn6h9vy5",
         "medium": "https://medium.com/@polywantsacrackerfarm"
+      }
+    },
+    {
+      "name": "Busy Bears Elite Club",
+      "slug": "busy-bears-elite-club",
+      "multiToken": true,
+      "address": "0x98F9195CD7842Aef783d1255CFe6AA97F32b2564",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "Card for those who minted 6 BBs. Guarantees special benefits like free NFTs, special giveaways, and more.",
+        "verified": false,
+        "avatar": "/img/collections/busy-bears-elite-club/avatar.png",
+        "card": "/img/collections/busy-bears-elite-club/card.png",
+        "banner": "/img/collections/busy-bears-elite-club/banner.png",
+        "maxSupply": 420,
+        "website": "https://busybears.club/",
+        "twitter": "https://twitter.com/BusyBearsClub",
+        "discord": "https://discord.gg/BusyBearsClub"
+      }
+    },
+    {
+      "name": "CroArmy Coalition",
+      "slug": "cro-army-coalition",
+      "multiToken": false,
+      "address": "0x85aC0eAc55A62840121c5Bc75368987a52267086",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "The Coalition is the replacement for our Panther. This was a proof of concept NFT that was massively successful. This will grant you DAO rights, highest \"dividends\" via airdrops, and whitelist for any launch we may sponsor.",
+        "verified": false,
+        "avatar": "/img/collections/cro-army-coalition/avatar.png",
+        "card": "/img/collections/cro-army-coalition/card.png",
+        "banner": "/img/collections/cro-army-coalition/banner.png",
+        "maxSupply": 250,
+        "website": "https://croarmy.io/",
+        "twitter": "https://twitter.com/croarmy_eth",
+        "discord": "https://discord.gg/croarmy",
+        "telegram": "https://t.me/CroArmy_ETH",
+        "medium": "https://croarmy.gitbook.io/croarmy/"
+      }
+    },
+    {
+      "name": "Baby Joey",
+      "slug": "baby-joey",
+      "multiToken": false,
+      "address": "0x04eE3890b7d6c5e1D9B7FEcd19bADA7Fa60A2770",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "BabyHop Baby Joey First NFT collection",
+        "verified": false,
+        "avatar": "/img/collections/baby-joey/avatar.jpg",
+        "card": "/img/collections/baby-joey/card.jpg",
+        "banner": "/img/collections/baby-joey/banner.jpg",
+        "maxSupply": 500,
+        "website": "https://www.babyhop.finance/",
+        "twitter": "https://twitter.com/BabyHop__",
+        "discord": "https://discord.gg/fnVzKYPbg/",
+        "telegram": "https://t.me/BabyHopToken"
       }
     }
   ],
