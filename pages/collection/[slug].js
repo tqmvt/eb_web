@@ -17,7 +17,7 @@ const collectionTypes = {
   CRONOSVERSE: 2,
 };
 
-const Collection = ({ ssrCollection }) => {
+const Collection = ({ ssrCollection, query }) => {
   const router = useRouter();
   const { slug } = router.query;
 
@@ -76,7 +76,7 @@ const Collection = ({ ssrCollection }) => {
               )}
             </>
           ) : (
-            <Collection721 collection={collection} cacheName={slug} />
+            <Collection721 collection={collection} cacheName={slug} query={query} />
           )}
         </>
       )}
@@ -84,7 +84,7 @@ const Collection = ({ ssrCollection }) => {
   );
 };
 
-export const getServerSideProps = async ({ params }) => {
+export const getServerSideProps = async ({ params, query }) => {
   const slug = params?.slug;
   let collection;
   if (isAddress(slug)) {
@@ -108,6 +108,7 @@ export const getServerSideProps = async ({ params }) => {
       props: {
         slug: collection?.slug,
         ssrCollection: collection,
+        query: query,
       },
     };
   }
@@ -116,6 +117,7 @@ export const getServerSideProps = async ({ params }) => {
     props: {
       slug: collection?.slug,
       ssrCollection: collection,
+      query: query,
     },
   };
 };

@@ -12,6 +12,12 @@ export class MarketFilters {
     return new MarketFilters();
   }
 
+  /**
+   * Maps to an object that is acceptable to use as a URL query string.
+   * Includes values such as current tab
+   *
+   * @returns {*}
+   */
   toQuery() {
     const obj = {
       address: this.collection.value,

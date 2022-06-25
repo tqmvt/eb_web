@@ -73,37 +73,11 @@ export async function sortAndFetchListings(
   }
 
   if (filter.traits && Object.keys(filter.traits).length > 0) {
-    //  traits      = { traitCategoryName1: {traitName2: true }, traitCategoryName3: {traitName4: false}}
-    //  traitFilter = { traitCategoryName1: ['traitName2']}
-    const traitFilter = Object.keys(filter.traits)
-      .map((traitCategoryName) => {
-        const traitCategory = filter.traits[traitCategoryName];
-
-        const traitCategoryKeys = Object.keys(traitCategory);
-
-        const truthyFilters = traitCategoryKeys.filter((traitCategoryKey) => traitCategory[traitCategoryKey]);
-
-        return truthyFilters.length === 0 ? {} : { [traitCategoryName]: truthyFilters };
-      })
-      .reduce((prev, curr) => ({ ...prev, ...curr }), {});
-
-    query['traits'] = JSON.stringify(traitFilter);
+    query['traits'] = JSON.stringify(filter.traits);
   }
 
   if (filter.powertraits && Object.keys(filter.powertraits).length > 0) {
-    const traitFilter = Object.keys(filter.powertraits)
-      .map((traitCategoryName) => {
-        const traitCategory = filter.powertraits[traitCategoryName];
-
-        const traitCategoryKeys = Object.keys(traitCategory);
-
-        const truthyFilters = traitCategoryKeys.filter((traitCategoryKey) => traitCategory[traitCategoryKey]);
-
-        return truthyFilters.length === 0 ? {} : { [traitCategoryName]: truthyFilters };
-      })
-      .reduce((prev, curr) => ({ ...prev, ...curr }), {});
-
-    query['powertraits'] = JSON.stringify(traitFilter);
+    query['powertraits'] = JSON.stringify(filter.powertraits);
   }
 
   const queryString = new URLSearchParams(query);
@@ -254,37 +228,11 @@ export async function sortAndFetchCollectionDetails(
   }
 
   if (filter.traits && Object.keys(filter.traits).length > 0) {
-    //  traits      = { traitCategoryName1: {traitName2: true }, traitCategoryName3: {traitName4: false}}
-    //  traitFilter = { traitCategoryName1: ['traitName2']}
-    const traitFilter = Object.keys(filter.traits)
-      .map((traitCategoryName) => {
-        const traitCategory = filter.traits[traitCategoryName];
-
-        const traitCategoryKeys = Object.keys(traitCategory);
-
-        const truthyFilters = traitCategoryKeys.filter((traitCategoryKey) => traitCategory[traitCategoryKey]);
-
-        return truthyFilters.length === 0 ? {} : { [traitCategoryName]: truthyFilters };
-      })
-      .reduce((prev, curr) => ({ ...prev, ...curr }), {});
-
-    query['traits'] = JSON.stringify(traitFilter);
+    query['traits'] = JSON.stringify(filter.traits);
   }
 
   if (filter.powertraits && Object.keys(filter.powertraits).length > 0) {
-    const traitFilter = Object.keys(filter.powertraits)
-      .map((traitCategoryName) => {
-        const traitCategory = filter.powertraits[traitCategoryName];
-
-        const traitCategoryKeys = Object.keys(traitCategory);
-
-        const truthyFilters = traitCategoryKeys.filter((traitCategoryKey) => traitCategory[traitCategoryKey]);
-
-        return truthyFilters.length === 0 ? {} : { [traitCategoryName]: truthyFilters };
-      })
-      .reduce((prev, curr) => ({ ...prev, ...curr }), {});
-
-    query['powertraits'] = JSON.stringify(traitFilter);
+    query['powertraits'] = JSON.stringify(filter.powertraits);
   }
 
   const queryString = new URLSearchParams(query);

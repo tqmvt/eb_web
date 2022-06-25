@@ -34,6 +34,12 @@ const NegativeMargin = styled.div`
   margin-right: -1.75rem !important;
 `;
 
+const tabs = {
+  items: 'items',
+  activity: 'activity',
+  map: 'map'
+};
+
 const Collection721 = ({ collection,  cacheName = 'collection', query }) => {
   const dispatch = useDispatch();
   const router = useRouter();
@@ -46,6 +52,7 @@ const Collection721 = ({ collection,  cacheName = 'collection', query }) => {
   const collectionStatsLoading = useSelector((state) => state.collection.statsLoading);
   const collectionStats = useSelector((state) => state.collection.stats);
   const collectionLoading = useSelector((state) => state.collection.loading);
+
   const [isFirstLoaded, setIsFirstLoaded] = useState(0);
 
   const listings = useSelector((state) => state.collection.listings);
@@ -59,19 +66,39 @@ const Collection721 = ({ collection,  cacheName = 'collection', query }) => {
 
   const isUsingListingsFallback = useSelector((state) => state.collection.isUsingListingsFallback);
 
-  const [openMenu, setOpenMenu] = React.useState(0);
-  const handleBtnClick = (index) => (element) => {
-    if (typeof window === 'undefined') {
-      return;
-    }
-    var elements = document.querySelectorAll('.tab');
-    for (var i = 0; i < elements.length; i++) {
-      elements[i].classList.remove('active');
-    }
-    element.target.parentElement.classList.add('active');
+  const [openMenu, setOpenMenu] = useState(0);
+  const handleBtnClick = (key) => (element) => {
+    setOpenMenu(key);
 
-    setOpenMenu(index);
+    if (key === tabs.items) {
+      resetFilters();
+    }
+
+    router.push({
+        pathname: router.pathname,
+        query: {
+          slug: router.query.slug,
+          tab: key
+        }
+      }, undefined, { shallow: true }
+    );
   };
+
+  const resetFilters = (preservedQuery) => {
+    const sortOption = CollectionSortOption.default();
+    sortOption.key = 'price';
+    sortOption.direction = 'asc';
+    sortOption.label = 'By Price';
+
+    const filterOption = preservedQuery ? CollectionFilters.fromQuery(preservedQuery) : CollectionFilters.default();
+    filterOption.address = collection.mergedAddresses
+      ? [collection.address, ...collection.mergedAddresses]
+      : collection.address;
+
+    console.log('--test--incoming', preservedQuery, filterOption);
+    dispatch(init(filterOption));
+    dispatch(fetchListings());
+  }
 
   const hasTraits = () => {
     return collectionStats?.traits != null && Object.entries(collectionStats?.traits).length > 0;
@@ -86,18 +113,8 @@ const Collection721 = ({ collection,  cacheName = 'collection', query }) => {
   };
 
   useEffect(() => {
-    const sortOption = CollectionSortOption.default();
-    sortOption.key = 'price';
-    sortOption.direction = 'asc';
-    sortOption.label = 'By Price';
-
-    const filterOption = CollectionFilters.default();
-    filterOption.address = collection.mergedAddresses
-      ? [collection.address, ...collection.mergedAddresses]
-      : collection.address;
-
-    dispatch(init(filterOption));
-    dispatch(fetchListings());
+    resetFilters(query);
+    setOpenMenu(query.tab ?? tabs.items);
     // eslint-disable-next-line
   }, [dispatch, collection.address]);
 
@@ -220,21 +237,21 @@ const Collection721 = ({ collection,  cacheName = 'collection', query }) => {
 
         <div className="de_tab">
           <ul className="de_nav mb-2">
-            <li id="Mainbtn0" className="tab active">
-              <span onClick={handleBtnClick(0)}>Items</span>
+            <li id="Mainbtn0" className={`tab ${openMenu === tabs.items ? 'active' : ''}`}>
+              <span onClick={handleBtnClick('items')}>Items</span>
             </li>
-            <li id="Mainbtn1" className="tab">
-              <span onClick={handleBtnClick(1)}>Activity</span>
+            <li id="Mainbtn1" className={`tab ${openMenu === tabs.activity ? 'active' : ''}`}>
+              <span onClick={handleBtnClick('activity')}>Activity</span>
             </li>
             {isCronosVerseCollection(collection.address) && (
-              <li id="Mainbtn9" className="tab">
-                <span onClick={handleBtnClick(9)}>Map</span>
+              <li id="Mainbtn9" className={`tab ${openMenu === tabs.map ? 'active' : ''}`}>
+                <span onClick={handleBtnClick('map')}>Map</span>
               </li>
             )}
           </ul>
 
           <div className="de_tab_content">
-            {openMenu === 0 && (
+            {openMenu === tabs.items && (
               <div className="tab-1 onStep fadeIn">
                 <div className="row">
                   <CollectionFilterBar
@@ -283,12 +300,12 @@ const Collection721 = ({ collection,  cacheName = 'collection', query }) => {
                 </div>
               </div>
             )}
-            {openMenu === 1 && (
+            {openMenu === tabs.activity && (
               <div className="tab-2 onStep fadeIn">
                 <SalesCollection cacheName="collection" collectionId={collection.address} />
               </div>
             )}
-            {openMenu === 9 && (
+            {openMenu === tabs.map && (
               <NegativeMargin className="tab-2 onStep fadeIn overflow-auto mt-2">
                 <CollectionCronosverse collection={collection} slug={collection.slug} cacheName={collection.slug} />
               </NegativeMargin>

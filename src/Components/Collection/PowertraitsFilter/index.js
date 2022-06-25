@@ -4,15 +4,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 
-import { humanize, mapAttributeString } from '../../../utils';
+import {humanize, isEmptyObj, mapAttributeString} from '../../../utils';
 import { filterListingsByTrait } from '../../../GlobalState/collectionSlice';
 import styles from './filters.module.scss';
+import {useRouter} from "next/router";
 
 const PowertraitsFilter = ({ address }) => {
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const collectionStats = useSelector((state) => state.collection.stats);
   const collectionCachedTraitsFilter = useSelector((state) => state.collection.query.filter.powertraits);
+  const currentFilter = useSelector((state) => state.collection.query.filter);
 
   const [hideAttributes, setHideAttributes] = useState(typeof window !== 'undefined' && window.innerWidth < 768);
 
@@ -27,7 +30,7 @@ const PowertraitsFilter = ({ address }) => {
   const viewSelectedAttributesCount = () => {
     const cachedTraitsFilter = collectionCachedTraitsFilter || {};
     return Object.values(cachedTraitsFilter)
-      .map((traitCategoryValue) => Object.values(traitCategoryValue).filter((x) => x === true).length)
+      .map((traitCategoryValue) => Object.values(traitCategoryValue).length)
       .reduce((prev, curr) => prev + curr, 0);
   };
 
@@ -48,7 +51,7 @@ const PowertraitsFilter = ({ address }) => {
       return false;
     }
 
-    return cachedTraitsFilter[traitCategory][id] || false;
+    return cachedTraitsFilter[traitCategory].includes(id) || false;
   };
 
   const clearAttributeFilters = () => {
@@ -67,17 +70,35 @@ const PowertraitsFilter = ({ address }) => {
   const handleCheck = (event, traitCategory) => {
     const { id, checked } = event.target;
 
-    const cachedTraitsFilter = collectionCachedTraitsFilter || {};
+    const currentTraitFilters = collectionCachedTraitsFilter || {};
+
+    let allTraits = {
+      ...currentTraitFilters,
+      [traitCategory]: [
+        ...(currentTraitFilters[traitCategory] || []),
+        id
+      ].filter((v, i, a) => a.indexOf(v) === i && (v !== id || checked)),
+    };
+
+    allTraits = Object.fromEntries(Object.entries(allTraits).filter(([k, v]) => {
+      return !!v && !isEmptyObj(v) && v.length > 0;
+    }));
+
+    const query = currentFilter.toPageQuery();
+    query.powertraits = isEmptyObj(allTraits) ? undefined : JSON.stringify(allTraits);
+
+    router.push({
+        pathname: router.pathname,
+        query: {
+          slug: router.query.slug,
+          ...query
+        }
+      }, undefined, { shallow: true }
+    );
 
     dispatch(
       filterListingsByTrait({
-        powertraits: {
-          ...cachedTraitsFilter,
-          [traitCategory]: {
-            ...(cachedTraitsFilter[traitCategory] || {}),
-            [id]: checked,
-          },
-        },
+        powertraits: allTraits,
         address,
       })
     );

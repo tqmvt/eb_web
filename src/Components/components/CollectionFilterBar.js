@@ -10,6 +10,7 @@ import { CollectionSortOption } from '../Models/collection-sort-option.model';
 import { listingFilterOptions } from './constants/filter-options';
 import { sortListings, searchListings, filterListingsByListed } from '../../GlobalState/collectionSlice';
 import { getTheme } from '../../Theme/theme';
+import {useRouter} from "next/router";
 
 const CollectionFilterBarContainer = styled.div`
   margin: 0 0 22px;
@@ -17,8 +18,10 @@ const CollectionFilterBarContainer = styled.div`
 
 const CollectionFilterBar = ({ cacheName = null }) => {
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const collection = useSelector((state) => state.collection);
+  const currentFilter = useSelector((state) => state.collection.query.filter);
 
   const selectDefaultSortValue = CollectionSortOption.default();
 
@@ -47,6 +50,19 @@ const CollectionFilterBar = ({ cacheName = null }) => {
         option = '0';
       }
 
+      const query = currentFilter.toPageQuery();
+      if (option) query.listed = option;
+      else delete query.listed;
+
+      router.push({
+          pathname: router.pathname,
+          query: {
+            slug: router.query.slug,
+            ...query
+          }
+        }, undefined, { shallow: true }
+      );
+
       dispatch(filterListingsByListed(option));
     },
     [dispatch]
@@ -54,6 +70,20 @@ const CollectionFilterBar = ({ cacheName = null }) => {
 
   const handleSearch = debounce((event) => {
     const { value } = event.target;
+
+    const query = currentFilter.toPageQuery();
+    if (value) query.search = value;
+    else delete query.search;
+
+    router.push({
+        pathname: router.pathname,
+        query: {
+          slug: router.query.slug,
+          ...query
+        }
+      }, undefined, { shallow: true }
+    );
+
     dispatch(searchListings(value));
   }, 300);
 
@@ -128,6 +158,7 @@ const CollectionFilterBar = ({ cacheName = null }) => {
           placeholder="Search by name"
           onChange={handleSearch}
           style={{ marginBottom: 0, marginTop: 0 }}
+          defaultValue={currentFilter.search}
         />
       </div>
       <div className="col-xl-3 px-2 mt-2 col-md-6 col-sm-12 d-sm-flex d-lg-none d-xl-flex">
