@@ -95,8 +95,7 @@ const Collection721 = ({ collection,  cacheName = 'collection', query }) => {
       ? [collection.address, ...collection.mergedAddresses]
       : collection.address;
 
-    console.log('--test--incoming', preservedQuery, filterOption);
-    dispatch(init(filterOption));
+    dispatch(init(filterOption, sortOption));
     dispatch(fetchListings());
   }
 

@@ -137,8 +137,12 @@ export const {
 
 export default collectionSlice.reducer;
 
-export const init = (filterOption) => async (dispatch) => {
+export const init = (filterOption, sortOption) => async (dispatch) => {
   dispatch(clearSet(false));
+
+  if (sortOption) {
+    dispatch(onSort({ option: sortOption }));
+  }
 
   dispatch(onFilter({ option: filterOption }));
 };
