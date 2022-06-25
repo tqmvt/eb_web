@@ -17,6 +17,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { getTheme } from '../../Theme/theme';
 import {hostedImage} from "../../helpers/image";
+import {AnyMedia} from "./AnyMedia";
 
 const txExtras = {
   gasPrice: ethers.utils.parseUnits('5000', 'gwei'),
@@ -135,10 +136,11 @@ const MyStaking = () => {
       <section className="container no-top">
         <div className="row mt-md-5 pt-md-4">
           <div className="col-md-4 text-center">
-            <img
-              src={hostedImage('/img/drops/vip/drop.webp')}
-              className="img-fluid img-rounded mb-sm-30"
-              alt="VIP Founding Member Staking"
+            <AnyMedia
+              video={hostedImage('QmX97CwY2NcmPmdS6XtcqLFMV2JGEjnEWjxBQbj4Q6NC2i.mp4')}
+              videoProps={
+                {autoPlay: true}
+              }
             />
           </div>
           <div className="col-md-8">
