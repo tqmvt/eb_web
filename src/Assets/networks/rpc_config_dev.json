@@ -4104,7 +4104,8 @@
         "website": "https://croarmy.io/",
         "twitter": "https://twitter.com/croarmy_eth",
         "discord": "https://discord.gg/croarmy",
-        "telegram": "https://t.me/CroArmy_ETH"
+        "telegram": "https://t.me/CroArmy_ETH",
+        "medium": "https://croarmy.gitbook.io/croarmy/"
       }
     },
     {
@@ -4419,7 +4420,8 @@
         "website": "https://croarmy.io/",
         "twitter": "https://twitter.com/croarmy_eth",
         "discord": "https://discord.gg/croarmy",
-        "telegram": "https://t.me/CroArmy_ETH"
+        "telegram": "https://t.me/CroArmy_ETH",
+        "medium": "https://croarmy.gitbook.io/croarmy/"
       }
     },
     {
@@ -4851,7 +4853,8 @@
         "website": "https://croarmy.io/",
         "twitter": "https://twitter.com/croarmy_eth",
         "discord": "https://discord.gg/croarmy",
-        "telegram": "https://t.me/CroArmy_ETH"
+        "telegram": "https://t.me/CroArmy_ETH",
+        "medium": "https://croarmy.gitbook.io/croarmy/"
       }
     },
     {
@@ -4891,7 +4894,8 @@
         "website": "https://croarmy.io/",
         "twitter": "https://twitter.com/croarmy_eth",
         "discord": "https://discord.gg/croarmy",
-        "telegram": "https://t.me/CroArmy_ETH"
+        "telegram": "https://t.me/CroArmy_ETH",
+        "medium": "https://croarmy.gitbook.io/croarmy/"
       }
     },
     {
@@ -5540,6 +5544,27 @@
         "website": "https://busybears.club/",
         "twitter": "https://twitter.com/BusyBearsClub",
         "discord": "https://discord.gg/BusyBearsClub"
+      }
+    },
+    {
+      "name": "CroArmy Coalition",
+      "slug": "cro-army-coalition",
+      "multiToken": false,
+      "address": "0x85aC0eAc55A62840121c5Bc75368987a52267086",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "The Coalition is the replacement for our Panther. This was a proof of concept NFT that was massively successful. This will grant you DAO rights, highest \"dividends\" via airdrops, and whitelist for any launch we may sponsor.",
+        "verified": false,
+        "avatar": "/img/collections/cro-army-coalition/avatar.png",
+        "card": "/img/collections/cro-army-coalition/card.png",
+        "banner": "/img/collections/cro-army-coalition/banner.png",
+        "maxSupply": 250,
+        "website": "https://croarmy.io/",
+        "twitter": "https://twitter.com/croarmy_eth",
+        "discord": "https://discord.gg/croarmy",
+        "telegram": "https://t.me/CroArmy_ETH",
+        "medium": "https://croarmy.gitbook.io/croarmy/"
       }
     }
   ],
