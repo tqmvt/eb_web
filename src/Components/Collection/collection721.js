@@ -53,6 +53,7 @@ const Collection721 = ({ collection,  cacheName = 'collection', query }) => {
   const collectionStatsLoading = useSelector((state) => state.collection.statsLoading);
   const collectionStats = useSelector((state) => state.collection.stats);
   const collectionLoading = useSelector((state) => state.collection.loading);
+  const initialLoadComplete = useSelector((state) => state.collection.initialLoadComplete);
 
   const [isFirstLoaded, setIsFirstLoaded] = useState(0);
 
@@ -282,6 +283,7 @@ const Collection721 = ({ collection,  cacheName = 'collection', query }) => {
                         canLoadMore={canLoadMore}
                         loadMore={loadMore}
                         collection={collection}
+                        initialLoadComplete={initialLoadComplete}
                       />
                     )}
                     {isFirstLoaded !== 2 && collectionLoading && (

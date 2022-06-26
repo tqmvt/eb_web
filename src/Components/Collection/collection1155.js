@@ -33,6 +33,7 @@ const Collection1155 = ({ collection, tokenId = null, cacheName = 'collection', 
   const [metadata, setMetadata] = useState(null);
 
   const collectionStats = useSelector((state) => state.collection.stats);
+  const initialLoadComplete = useSelector((state) => state.collection.initialLoadComplete);
 
   const listings = useSelector((state) => state.collection.listings);
   const hasRank = useSelector((state) => state.collection.hasRank);
@@ -222,6 +223,7 @@ const Collection1155 = ({ collection, tokenId = null, cacheName = 'collection', 
                         loadMore={loadMore}
                         address={collection.address}
                         collection={collection}
+                        initialLoadComplete={initialLoadComplete}
                       />
                     )}
                   </div>

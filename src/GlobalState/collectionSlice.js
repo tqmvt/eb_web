@@ -32,11 +32,13 @@ const collectionSlice = createSlice({
     stats: null,
     hasRank: false,
     isUsingListingsFallback: false,
+    initialLoadComplete: false,
   },
   reducers: {
     listingsLoading: (state, _) => {
       state.loading = true;
       state.error = false;
+      state.initialLoadComplete = state.query.page !== 0;
     },
     listingsReceived: (state, action) => {
       state.loading = false;
@@ -47,6 +49,7 @@ const collectionSlice = createSlice({
       state.totalCount = action.payload.totalCount;
       state.hasRank = action.payload.hasRank;
       state.isUsingListingsFallback = action.payload.isUsingListingsFallback;
+      state.initialLoadComplete = true;
     },
     clearSet: (state, action) => {
       const hardClear = action.payload || false;
