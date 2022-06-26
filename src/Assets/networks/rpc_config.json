@@ -5586,6 +5586,25 @@
         "discord": "https://discord.gg/fnVzKYPbg/",
         "telegram": "https://t.me/BabyHopToken"
       }
+    },
+    {
+      "name": "Undead Space Apes",
+      "slug": "undead-space-apes",
+      "multiToken": false,
+      "address": "0x5DA0c6A68e7C348664664F1546B9BaAA493E8C73",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "5,000 Undead Space Apes on the Cronos Network. Royalties distributed to holders.",
+        "verified": false,
+        "avatar": "/img/collections/undead-space-apes/avatar.png",
+        "card": "/img/collections/undead-space-apes/card.png",
+        "banner": "/img/collections/undead-space-apes/banner.png",
+        "maxSupply": 5000,
+        "website": "https://undeadspaceapes.com/",
+        "twitter": "https://twitter.com/UndeadSpaceApes",
+        "discord": "https://discord.gg/yvanGgJRbB/"
+      }
     }
   ],
   "drops": [
