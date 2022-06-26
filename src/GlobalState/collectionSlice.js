@@ -187,11 +187,11 @@ export const fetchListings =
         pageSizeOverride
       );
 
-      if (response.status === 200 && response.nfts.length > 0) {
+      if (response.status === 200) {
         if (!cancelled) {
 
           // @todo remove once proper filter in place on API side
-          response.nfts = response.nfts.filter((nft) => !nft.market.type || nft.market.type === listingType.LISTING);
+          response.nfts = response.nfts?.filter((nft) => !nft.market.type || nft.market.type === listingType.LISTING);
 
           response.hasRank = response.nfts.length > 0 && typeof response.nfts[0].rank !== 'undefined';
           dispatch(listingsReceived({ ...response, isUsingListingsFallback: false }));
