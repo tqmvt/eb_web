@@ -8,7 +8,7 @@ import { filterListingsByTrait } from '../../GlobalState/collectionSlice';
 import {humanize, isEmptyObj, mapAttributeString} from '../../utils';
 import styles from './PowertraitsFilter/filters.module.scss';
 import {useRouter} from "next/router";
-import {pushQueryString} from "../../helpers/query";
+import {cleanedQuery, pushQueryString} from "../../helpers/query";
 
 const TraitsFilter = ({ address }) => {
   const dispatch = useDispatch();
@@ -62,17 +62,16 @@ const TraitsFilter = ({ address }) => {
       item.checked = false;
     }
 
-    const query = currentFilter.toPageQuery();
-    query.traits = {};
+    currentFilter.traits = {};
 
     pushQueryString(router, {
       slug: router.query.slug,
-      ...query
+      ...currentFilter.toPageQuery()
     });
 
     dispatch(
       filterListingsByTrait({
-        traits: {},
+        traits: currentFilter.traits,
         address,
       })
     );
@@ -83,24 +82,19 @@ const TraitsFilter = ({ address }) => {
 
     const currentTraitFilters = collectionCachedTraitsFilter || {};
 
-    let allTraits = {
+    let allTraits = cleanedQuery({
       ...currentTraitFilters,
       [traitCategory]: [
         ...(currentTraitFilters[traitCategory] || []),
         id
       ].filter((v, i, a) => a.indexOf(v) === i && (v !== id || checked)),
-    };
+    });
 
-    allTraits = Object.fromEntries(Object.entries(allTraits).filter(([k, v]) => {
-      return !!v && !isEmptyObj(v) && v.length > 0;
-    }));
-
-    const query = currentFilter.toPageQuery();
-    query.traits = isEmptyObj(allTraits) ? undefined : JSON.stringify(allTraits);
+    currentFilter.traits = allTraits;
 
     pushQueryString(router, {
       slug: router.query.slug,
-      ...query
+      ...currentFilter.toPageQuery()
     });
 
     dispatch(

@@ -1,4 +1,5 @@
 import {isEmptyObj} from "../../utils";
+import {cleanedQuery} from "../../helpers/query";
 
 export class CollectionFilters {
   address = null;
@@ -47,24 +48,28 @@ export class CollectionFilters {
   /**
    * Maps to an object that is acceptable to use as a URL query string.
    * Includes values such as current tab
+   * Traits and powertraits need to be explicitly encoded
    *
    * @returns {*}
    */
   toPageQuery() {
-    const obj = {
+    const obj = cleanedQuery({
       token: this.token,
       search: this.search,
       traits: this.traits,
-      powertraits:  this.powertraits,
+      powertraits: this.powertraits,
       minPrice: this.minPrice,
       maxPrice: this.maxPrice,
       minRank: this.minRank,
       maxRank: this.maxRank,
       listed: this.listed,
       tab: this.tab,
-    };
+    });
 
-    return this.removeEmpties(obj);
+    if (obj.traits) obj.traits = JSON.stringify(obj.traits);
+    if (obj.powertraits) obj.powertraits = JSON.stringify(obj.powertraits);
+
+    return obj;
   }
 
   /**
@@ -74,7 +79,7 @@ export class CollectionFilters {
    * @returns {*}
    */
   toQuery() {
-    const obj = {
+    return cleanedQuery({
       address: this.address,
       token: this.token,
       search: this.search,
@@ -85,14 +90,6 @@ export class CollectionFilters {
       minRank: this.minRank,
       maxRank: this.maxRank,
       listed: this.listed,
-    };
-
-    return this.removeEmpties(obj);
-  }
-
-  removeEmpties(obj) {
-    return Object.fromEntries(Object.entries(obj).filter(([k, v]) => {
-      return !!v && !isEmptyObj(v)
-    }));
+    });
   }
 }

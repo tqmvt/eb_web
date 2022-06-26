@@ -1,3 +1,5 @@
+import {isEmptyObj} from "../utils";
+
 /**
  * Format traits from checkbox-formatted object to be acceptable in a query string
  * traits param would be in the format of
@@ -33,11 +35,27 @@ export const formatCheckboxTraits = (traits) => {
     .reduce((prev, curr) => ({...prev, ...curr}), {});
 }
 
-
+/**
+ * Push a query string onto the existing route
+ *
+ * @param router
+ * @param query
+ */
 export const pushQueryString = (router, query) => {
   router.push({
       pathname: router.pathname,
-      query: query
+      query: cleanedQuery(query)
     }, undefined, { shallow: true }
   );
+}
+
+/**
+ *
+ * @param query
+ * @returns {{[p: string]: unknown}}
+ */
+export const cleanedQuery = (query) => {
+  return Object.fromEntries(Object.entries(query).filter(([k, v]) => {
+    return !!v && !isEmptyObj(v) && v.toString().length > 0;
+  }));
 }
