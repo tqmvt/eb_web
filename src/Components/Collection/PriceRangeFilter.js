@@ -53,10 +53,22 @@ const PriceRangeFilter = ({ address, ...props }) => {
   };
 
   const onApply = () => {
-    currentFilter.minPrice = isNaN(parseInt(minPrice)) ? null : parseInt(minPrice);
-    currentFilter.maxPrice = isNaN(parseInt(maxPrice)) ? null : parseInt(maxPrice);;
-    currentFilter.minRank = isNaN(parseInt(minRank)) ? null : parseInt(minRank);;
-    currentFilter.maxRank = isNaN(parseInt(maxRank)) ? null : parseInt(maxRank);;
+    const tmpMinPrice = isNaN(parseInt(minPrice)) ? null : parseInt(minPrice);
+    const tmpMaxPrice = isNaN(parseInt(maxPrice)) ? null : parseInt(maxPrice);
+    const tmpMinRank = isNaN(parseInt(minRank)) ? null : parseInt(minRank);
+    const tmpMaxRank = isNaN(parseInt(maxRank)) ? null : parseInt(maxRank);
+
+    if (tmpMinPrice === currentFilter.minPrice &&
+      tmpMaxPrice === currentFilter.maxPrice &&
+      tmpMinRank === currentFilter.minRank &&
+      tmpMaxRank === currentFilter.maxRank) {
+      return;
+    }
+
+    currentFilter.minPrice = tmpMinPrice;
+    currentFilter.maxPrice = tmpMaxPrice;
+    currentFilter.minRank = tmpMinRank;
+    currentFilter.maxRank = tmpMaxRank;
 
     pushQueryString(router, {
       slug: router.query.slug,
