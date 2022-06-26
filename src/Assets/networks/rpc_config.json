@@ -5120,7 +5120,7 @@
       "name": "Wacky Wurmz",
       "slug": "wacky-wurmz",
       "multiToken": false,
-      "address": "0xe362fA5211d6aefa803f0DDA4a7169BC361b0927",
+      "address": "0x731A37c48F3e08BD119511892AEE482f4dc8B5fa",
       "onChain": false,
       "listable": false,
       "metadata": {
@@ -7813,6 +7813,35 @@
       "is1155": false,
       "published": true,
       "complete": false
+    },
+    {
+      "id": 82,
+      "slug": "wacky-wurmz",
+      "imgNft": "",
+      "imgPreview": "",
+      "imgAvatar": "/img/collections/wacky-wurmz/avatar.png",
+      "title": "Wacky Wurmz",
+      "subtitle": "",
+      "description": "",
+      "author": {
+        "name": "Wacky Wurmz",
+        "link": "https://www.wackywurmz.com"
+      },
+      "address": "0x731A37c48F3e08BD119511892AEE482f4dc8B5fa",
+      "maxMintPerTx": 0,
+      "maxMintPerAddress": 0,
+      "totalSupply": 0,
+      "cost": "",
+      "whitelistCost": "",
+      "foundersOnly": false,
+      "start": 1656766800000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false,
+      "featured": false,
+      "redirect": "https://www.wackywurmz.com"
     }
   ],
   "auctions": [
