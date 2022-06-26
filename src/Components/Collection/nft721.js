@@ -37,6 +37,7 @@ import { offerState } from '../../core/api/enums';
 import {commify} from "ethers/lib/utils";
 import {appConfig} from "../../Config";
 import {hostedImage} from "../../helpers/image";
+import Link from "next/link";
 
 const config = appConfig();
 const knownContracts = config.collections;
@@ -442,6 +443,7 @@ const Nft721 = ({ address, id }) => {
                                           occurrence={data.occurrence}
                                           type={data.display_type}
                                           collectionAddress={address}
+                                          collectionSlug={collection.slug}
                                         />
                                       );
                                     })}
@@ -457,6 +459,7 @@ const Nft721 = ({ address, id }) => {
                                         occurrence={data.occurrence}
                                         type={data.display_type}
                                         collectionAddress={address}
+                                        collectionSlug={collection.slug}
                                       />
                                     );
                                   })}
@@ -606,24 +609,31 @@ const Nft721 = ({ address, id }) => {
 
 export default memo(Nft721);
 
-const Trait = ({ title, value, percent, occurrence, type, collectionAddress }) => {
+const Trait = ({ title, value, percent, occurrence, type, collectionAddress, collectionSlug }) => {
   return (
     <div className="col-lg-4 col-md-6 col-sm-6">
       <div className="nft_attr">
         <h5>{humanize(title)}</h5>
-        <h4>
-          {value !== undefined ? (
-            <>
-              {type === 'date' ? (
-                <>{new Date(millisecondTimestamp(value)).toDateString()}</>
+        <Link href={{
+          pathname: `/collection/${collectionSlug}`,
+          query: {traits: JSON.stringify({[title]: [value]})}
+        }}>
+          <a>
+            <h4>
+              {value !== undefined ? (
+                <>
+                  {type === 'date' ? (
+                    <>{new Date(millisecondTimestamp(value)).toDateString()}</>
+                  ) : (
+                    <>{mapAttributeString(value, collectionAddress, true)}</>
+                  )}
+                </>
               ) : (
-                <>{mapAttributeString(value, collectionAddress, true)}</>
+                <>N/A</>
               )}
-            </>
-          ) : (
-            <>N/A</>
-          )}
-        </h4>
+            </h4>
+          </a>
+        </Link>
         {occurrence ? (
           <span>{relativePrecision(occurrence)}% have this trait</span>
         ) : (
