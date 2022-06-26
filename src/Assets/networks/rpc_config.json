@@ -7813,6 +7813,35 @@
       "is1155": false,
       "published": true,
       "complete": false
+    },
+    {
+      "id": 82,
+      "slug": "wacky-wurmz",
+      "imgNft": "",
+      "imgPreview": "",
+      "imgAvatar": "/img/collections/wacky-wurmz/avatar.png",
+      "title": "Wacky Wurmz",
+      "subtitle": "",
+      "description": "",
+      "author": {
+        "name": "Wacky Wurmz",
+        "link": "https://www.wackywurmz.com"
+      },
+      "address": "",
+      "maxMintPerTx": 0,
+      "maxMintPerAddress": 0,
+      "totalSupply": 0,
+      "cost": "",
+      "whitelistCost": "",
+      "foundersOnly": false,
+      "start": 1656792000000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false,
+      "featured": false,
+      "redirect": "https://www.wackywurmz.com"
     }
   ],
   "auctions": [
