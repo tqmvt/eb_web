@@ -12,7 +12,7 @@ import CollectionInfoBar from '../components/CollectionInfoBar';
 import SalesCollection from '../components/SalesCollection';
 import CollectionNftsGroup from '../components/CollectionNftsGroup';
 import CollectionListingsGroup from '../components/CollectionListingsGroup';
-import { init, fetchListings, getStats } from '../../GlobalState/collectionSlice';
+import {init, fetchListings, getStats, updateTab} from '../../GlobalState/collectionSlice';
 import { isCronosVerseCollection, isCrosmocraftsCollection } from '../../utils';
 import TraitsFilter from './TraitsFilter';
 import PowertraitsFilter from './PowertraitsFilter';
@@ -79,6 +79,7 @@ const Collection721 = ({ collection,  cacheName = 'collection', query }) => {
       slug: router.query.slug,
       tab: key
     });
+    dispatch(updateTab(key));
   };
 
   const resetFilters = (preservedQuery) => {

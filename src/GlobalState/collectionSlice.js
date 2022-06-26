@@ -118,6 +118,9 @@ const collectionSlice = createSlice({
       state.statsLoading = true;
       state.error = false;
     },
+    onTabUpdated: (state, action) => {
+      state.query.filter.tab = action.payload;
+    },
   },
 });
 
@@ -133,6 +136,7 @@ export const {
   clearSet,
   onCollectionStatsLoading,
   onCollectionStatsLoaded,
+  onTabUpdated,
 } = collectionSlice.actions;
 
 export default collectionSlice.reducer;
@@ -144,6 +148,7 @@ export const init = (filterOption, sortOption) => async (dispatch) => {
     dispatch(onSort({ option: sortOption }));
   }
 
+  console.log('init', filterOption)
   dispatch(onFilter({ option: filterOption }));
 };
 
@@ -232,6 +237,10 @@ export const filterListingsByPrice =
 export const resetListings = () => async (dispatch) => {
   dispatch(clearSet());
   dispatch(fetchListings());
+};
+
+export const updateTab = (tab) => async (dispatch) => {
+  dispatch(onTabUpdated(tab));
 };
 
 export const getStats =
