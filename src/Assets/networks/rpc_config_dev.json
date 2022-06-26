@@ -5528,8 +5528,8 @@
       }
     },
     {
-      "name": "Busy Bears Elite Club",
-      "slug": "busy-bears-elite-club",
+      "name": "Busy Bears Elite Club Cards",
+      "slug": "busy-bears-elite-club-cards",
       "multiToken": true,
       "address": "0x98F9195CD7842Aef783d1255CFe6AA97F32b2564",
       "onChain": false,
