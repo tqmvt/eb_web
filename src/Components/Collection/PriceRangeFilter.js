@@ -13,10 +13,7 @@ const PriceRangeFilter = ({ address, ...props }) => {
   const router = useRouter();
 
   const userTheme = useSelector((state) => state.user.theme);
-  const currentFilter = useSelector((state) => {
-    console.log('asdf', state.collection.query.filter.minPrice)
-    return state.collection.query.filter
-  });
+  const currentFilter = useSelector((state) => state.collection.query.filter);
 
   const [minPrice, setMinPrice] = useState(currentFilter.minPrice);
   const [maxPrice, setMaxPrice] = useState(currentFilter.maxPrice);

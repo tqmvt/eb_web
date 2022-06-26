@@ -151,7 +151,6 @@ export const init = (filterOption, sortOption) => async (dispatch) => {
     dispatch(onSort({ option: sortOption }));
   }
 
-  console.log('init', filterOption)
   dispatch(onFilter({ option: filterOption }));
 };
 
