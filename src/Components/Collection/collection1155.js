@@ -20,6 +20,7 @@ import CollectionNftsGroup from '../components/CollectionNftsGroup';
 import {appConfig} from "../../Config";
 import {ImageKitService} from "../../helpers/image";
 import {CollectionFilters} from "../Models/collection-filters.model";
+import {Spinner} from "react-bootstrap";
 
 const config = appConfig();
 
@@ -223,8 +224,16 @@ const Collection1155 = ({ collection, tokenId = null, cacheName = 'collection', 
                         loadMore={loadMore}
                         address={collection.address}
                         collection={collection}
-                        initialLoadComplete={initialLoadComplete}
                       />
+                    )}
+                    {!initialLoadComplete && (
+                      <div className="row mt-5">
+                        <div className="col-lg-12 text-center">
+                          <Spinner animation="border" role="status">
+                            <span className="visually-hidden">Loading...</span>
+                          </Spinner>
+                        </div>
+                      </div>
                     )}
                   </div>
                 </div>

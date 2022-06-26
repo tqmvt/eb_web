@@ -283,10 +283,9 @@ const Collection721 = ({ collection,  cacheName = 'collection', query }) => {
                         canLoadMore={canLoadMore}
                         loadMore={loadMore}
                         collection={collection}
-                        initialLoadComplete={initialLoadComplete}
                       />
                     )}
-                    {isFirstLoaded !== 2 && collectionLoading && (
+                    {!initialLoadComplete && (
                       <div className="row mt-5">
                         <div className="col-lg-12 text-center">
                           <Spinner animation="border" role="status">

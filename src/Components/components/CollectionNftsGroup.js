@@ -11,10 +11,9 @@ const CollectionNftsGroup = ({
   canLoadMore = false,
   loadMore,
   collection,
-  initialLoadComplete = false,
 }) => {
   if (showLoadMore) {
-    return (initialLoadComplete ? (
+    return (
       <InfiniteScroll
         dataLength={listings.length}
         next={loadMore}
@@ -55,15 +54,7 @@ const CollectionNftsGroup = ({
             ))}
         </div>
       </InfiniteScroll>
-    ) : (
-        <div className="row">
-          <div className="col-lg-12 text-center">
-            <Spinner animation="border" role="status">
-              <span className="visually-hidden">Loading...</span>
-            </Spinner>
-          </div>
-        </div>
-    ));
+    );
   } else {
     return (
       <div className="row">
