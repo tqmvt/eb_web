@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { keyframes } from '@emotion/react';
 import Reveal from 'react-awesome-reveal';
 import styled, { createGlobalStyle } from 'styled-components';
-import { faFire } from '@fortawesome/free-solid-svg-icons';
+import {faFire, faInfoCircle} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Footer from '../src/Components/components/Footer';
@@ -21,6 +21,9 @@ import MetaverseModal from "../src/Components/components/MetaverseModal";
 import ReactPlayer from "react-player";
 import Image from "next/image";
 import {hostedImage} from "../src/helpers/image";
+import {appConfig} from "../src/Config";
+import Head from "next/head";
+import {faTwitter} from "@fortawesome/free-brands-svg-icons";
 
 const fadeInUp = keyframes`
   0% {
@@ -167,7 +170,7 @@ const Home = () => {
         </Reveal>
         <Reveal className="onStep" keyframes={fadeInUp} delay={600} duration={900} triggerOnce>
           <p className="lead">
-            Ebisu's Bay is the first NFT marketplace on Cronos. Create, buy, sell, trade and enjoy the #CroFam NFT
+            Ebisu's Bay is the first and largest NFT marketplace on Cronos. Create, buy, sell, trade and enjoy the #CroFam NFT
             community.
           </p>
         </Reveal>
@@ -232,6 +235,10 @@ const Home = () => {
 
   return (
     <div>
+      <Head>
+        <title>Ebisu's Bay Marketplace</title>
+        <link rel="canonical" key="link_canonical" href={appConfig('urls.app')} />
+      </Head>
       <GlobalStyles />
       {/*<section className="promo">*/}
       {/*  <div className="d-flex justify-content-center px-3">*/}
@@ -245,6 +252,58 @@ const Home = () => {
         {!mobile && <div className="container">{JumbotronData()}</div>}
       </Jumbotron.Host>
       {mobile && JumbotronData()}
+
+      <section className="container no-bottom no-top">
+        <div className="row">
+          <div className="col-lg-12">
+            <div className="text-center pt-5">
+              <h2>Croge NFTs</h2>
+              <div className="small-border"></div>
+            </div>
+          </div>
+          <div className="col-lg-8 col-md-6 d-flex align-items-center">
+            <div className="mt-3" style={{color:getTheme(userTheme).colors.textColor3}}>
+              <p>
+                Randomly generated profile picture style NFTs, minting for whitelisters only on June 30th! All Ebisu's Bay Founding Member holders automatically whitelisted. Public mint on July 1. NFT reveal on July 2.
+              </p>
+              <p>
+                Get all the details, and how you could win a $10,000 USDC giveaway, here: <br />
+                <a href="https://medium.com/@cometcalls/croge-nfts-are-coming-june-30-2022-c167ca0b511b" target="_blank" rel="noreferrer">
+                  https://medium.com/@cometcalls/croge-nfts-are-coming-june-30-2022-c167ca0b511b
+                </a>
+              </p>
+            </div>
+          </div>
+          <div className="col-lg-4 col-md-6 pt-3">
+            <div className="mx-auto text-center">
+              <img
+                src={hostedImage('/img/promos/croge.jpg')}
+                alt="Croge NFTs"
+                className="img-fluid"
+                style={{maxWidth: '300px'}}
+              />
+            </div>
+            <div className="card-body d-flex flex-column align-middle">
+              <div className="d-flex justify-content-between">
+                <div className="flex-fill mx-1">
+                  <a href="https://twitter.com/crogecoin" target="_blank" rel="noreferrer">
+                    <Button type="legacy-outlined" className="w-100">
+                      <FontAwesomeIcon icon={faTwitter} className="me-1"/> Twitter
+                    </Button>
+                  </a>
+                </div>
+                <div className="flex-fill mx-1">
+                  <a href="https://medium.com/@cometcalls/croge-nfts-are-coming-june-30-2022-c167ca0b511b" target="_blank" rel="noreferrer">
+                    <Button type="legacy" className="w-100">
+                      <FontAwesomeIcon icon={faInfoCircle} className="me-1"/> Details
+                    </Button>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <section className="container no-bottom">
         <div className="row">
@@ -294,6 +353,45 @@ const Home = () => {
         </div>
       </section>
 
+      <section className="container">
+        <div className="row">
+          <div className="col-lg-12">
+            <div className="text-center">
+              <h2>Frens</h2>
+              <div className="small-border"></div>
+            </div>
+          </div>
+        </div>
+        <div className="row align-items-center text-center">
+          <div className="col">
+            <a href="https://nebkas.ro" target="_blank" rel="noreferrer">
+              <img
+                src={hostedImage(userTheme === 'light' ? '/img/logos/nebkas-logo.png' : '/img/logos/nebkas-logo.png')}
+                alt="nebkas.co"
+                width="128px"
+              />
+            </a>
+          </div>
+          <div className="col">
+            <a href="https://weare.fi/en/" target="_blank" rel="noreferrer">
+              <img
+                src={hostedImage(userTheme === 'light' ? '/img/logos/wearefi-logo.png' : '/img/logos/wearefi-white.png')}
+                alt="WeAre Solutions"
+                width={userTheme === 'light' ? '64px' : '160px'}
+              />
+            </a>
+          </div>
+          <div className="col">
+            <a href="https://crodex.app/" target="_blank" rel="noreferrer">
+              <img
+                src={hostedImage(userTheme === 'light' ? '/img/logos/crodex.png' : '/img/logos/crodex-white.png')}
+                alt="CRODEX"
+                width="150px"
+              />
+            </a>
+          </div>
+        </div>
+      </section>
       <Footer />
     </div>
   );

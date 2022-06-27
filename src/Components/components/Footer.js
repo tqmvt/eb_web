@@ -1,97 +1,100 @@
 import React, { memo } from 'react';
 import { useSelector } from 'react-redux';
-import { useRouter } from 'next/router';
-import { faDiscord, faTwitter, faMedium, faInstagram } from '@fortawesome/free-brands-svg-icons';
+import {faDiscord, faTwitter, faMedium, faInstagram, faTelegram} from '@fortawesome/free-brands-svg-icons';
 import { faSquare, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import LayeredIcon from './LayeredIcon';
 import {hostedImage} from "../../helpers/image";
+import Link from "next/link";
 
 const Footer = () => {
-  const location = useRouter();
   const userTheme = useSelector((state) => {
     return state.user.theme;
   });
 
   return (
-    <footer className="footer-light" data-is-in-home-page={(location.pathname === '/').toString()}>
-      <div className="container text-center">
-        <h5>Frens</h5>
-        <div className="row align-items-center">
-          <div className="col">
-            <a href="https://nebkas.ro" target="_blank" rel="noreferrer">
-              <img
-                src={hostedImage(userTheme === 'light' ? '/img/logos/nebkas-logo.png' : '/img/logos/nebkas-logo.png')}
-                alt="nebkas.co"
-                width="128px"
-              />
-            </a>
-          </div>
-          <div className="col">
-            <a href="https://weare.fi/en/" target="_blank" rel="noreferrer">
-              <img
-                src={hostedImage(userTheme === 'light' ? '/img/logos/wearefi-logo.png' : '/img/logos/wearefi-white.png')}
-                alt="WeAre Solutions"
-                width={userTheme === 'light' ? '64px' : '160px'}
-              />
-            </a>
-          </div>
-          <div className="col">
-            <a href="https://crodex.app/" target="_blank" rel="noreferrer">
-              <img
-                src={hostedImage(userTheme === 'light' ? '/img/logos/crodex.png' : '/img/logos/crodex-white.png')}
-                alt="CRODEX"
-                width="150px"
-              />
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div className="subfooter">
-        <div className="container">
-          <div className="row align-items-center">
-            <div className="col-2">
+    <footer className="footer-light">
+      <div className="container">
+        <div className="row">
+          <div className="col-md-3 col-sm-6 col-xs-1">
+            <div className="widget">
               <img
                 height="40px"
                 src={hostedImage(userTheme === 'light' ? '/img/logo-light.svg' : '/img/logo-dark-prod.svg')}
                 alt="ebisus bay logo"
               />
+              <p className="mt-2">Ebisu's Bay is the first and largest NFT marketplace on Cronos. Create, buy, sell, trade and enjoy the #CroFam NFT community.</p>
             </div>
-
-            <div className="col-10 social-icons d-flex justify-content-end">
-              <a href="https://discord.gg/ebisusbay" target="_blank" rel="noreferrer">
-                <LayeredIcon icon={faDiscord} bgIcon={faSquare} shrink={8} />
-              </a>
-              <a href="https://twitter.com/EbisusBay" target="_blank" rel="noreferrer">
-                <LayeredIcon icon={faTwitter} bgIcon={faSquare} shrink={7} />
-              </a>
-              <a href="https://www.instagram.com/ebisusbayofficial" target="_blank" rel="noreferrer">
-                <LayeredIcon icon={faInstagram} bgIcon={faSquare} shrink={7} />
-              </a>
-              <a href="https://blog.ebisusbay.com" target="_blank" rel="noreferrer">
-                <LayeredIcon icon={faMedium} bgIcon={faSquare} shrink={7} />
-              </a>
-              <a href="mailto:support@ebisusbay.com">
-                <LayeredIcon icon={faEnvelope} bgIcon={faSquare} shrink={7} />
-              </a>
+          </div>
+          <div className="col-md-3 col-sm-6 col-xs-1">
+            <div className="widget">
+              <h5>Marketplace</h5>
+              <ul>
+                <li><Link href="/marketplace">Explore</Link></li>
+                <li><Link href="/collections">Collections</Link></li>
+                <li><Link href="/drops">Drops</Link></li>
+                <li><Link href="/apply?type=listing">Listing Application</Link></li>
+                <li><Link href="/apply?type=launchpad">Launchpad Application</Link></li>
+              </ul>
             </div>
-
-            <div className="d-flex justify-content-evenly mt-3 text-center">
-              <div>
-                <a href="/tos.html" target="_blank" rel="noreferrer">
-                  &nbsp;{'Terms of Service'}
-                </a>
+          </div>
+          <div className="col-md-3 col-sm-6 col-xs-1">
+            <div className="widget">
+              <h5>Resources</h5>
+              <ul>
+                <li><a href="https://status.ebisusbay.com/" target="_blank" rel="noreferrer">Platform Status</a></li>
+                <li><a href="https://faq.ebisusbay.com/" target="_blank" rel="noreferrer">FAQ</a></li>
+                <li><a href="https://blog.ebisusbay.com/" target="_blank" rel="noreferrer">Blog</a></li>
+                <li><a href="/tos.html" target="_blank" rel="noreferrer">Terms of Service</a></li>
+                <li><a href="/pp.html" target="_blank" rel="noreferrer">Privacy Policy</a></li>
+              </ul>
+            </div>
+          </div>
+          <div className="col-md-3 col-sm-6 col-xs-1">
+            <div className="widget">
+              <h5>Community</h5>
+              <ul>
+                <li><a href="/collection/founding-member">Become a Founding Member</a></li>
+                <li><a href="https://discord.gg/ebisusbay" target="_blank" rel="noreferrer">Discord</a></li>
+                <li><a href="https://twitter.com/EbisusBay" target="_blank" rel="noreferrer">Twitter</a></li>
+                <li><a href="https://instagram.com/ebisusbayofficial" target="_blank" rel="noreferrer">Instagram</a></li>
+                <li><a href="https://t.me/ebisusbay" target="_blank" rel="noreferrer">Telegram</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="subfooter">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+              <div className="de-flex">
+                <div className="de-flex-col">
+                  <span className="copy">&copy; 2021 - {new Date().getFullYear()} Ebisu's Bay Marketplace</span>
+                </div>
+                <div className="de-flex-col">
+                  <div className="social-icons">
+                    <a href="https://discord.gg/ebisusbay" target="_blank" rel="noreferrer">
+                      <LayeredIcon icon={faDiscord} bgIcon={faSquare} shrink={8} />
+                    </a>
+                    <a href="https://twitter.com/EbisusBay" target="_blank" rel="noreferrer">
+                      <LayeredIcon icon={faTwitter} bgIcon={faSquare} shrink={7} />
+                    </a>
+                    <a href="https://www.instagram.com/ebisusbayofficial" target="_blank" rel="noreferrer">
+                      <LayeredIcon icon={faInstagram} bgIcon={faSquare} shrink={7} />
+                    </a>
+                    <a href="https://t.me/ebisusbay" target="_blank" rel="noreferrer">
+                      <LayeredIcon icon={faTelegram} bgIcon={faSquare} shrink={7} />
+                    </a>
+                    <a href="https://blog.ebisusbay.com" target="_blank" rel="noreferrer">
+                      <LayeredIcon icon={faMedium} bgIcon={faSquare} shrink={7} />
+                    </a>
+                    <a href="mailto:support@ebisusbay.com">
+                      <LayeredIcon icon={faEnvelope} bgIcon={faSquare} shrink={7} />
+                    </a>
+                  </div>
+                </div>
               </div>
-              <div>
-                <a href="/pp.html" target="_blank" rel="noreferrer">
-                  &nbsp;{'Privacy Policy'}
-                </a>
-              </div>
             </div>
-
-            <span className="col-12 pt-3 copy text-center" style={{ opacity: '0.6' }}>
-              Copyright &copy; 2022 EbisusBay.com. All rights reserved
-            </span>
           </div>
         </div>
       </div>
