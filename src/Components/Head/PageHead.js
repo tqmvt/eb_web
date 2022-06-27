@@ -21,6 +21,8 @@ const PageHead = ({ title, description, image, url }) => {
       {description && <meta property="twitter:description" key="twitter_desc" content={description} />}
       {url && <meta property="twitter:url" key="twitter_url" content={`${config.urls.app.replace(/\/$/, '')}${url}`} />}
       {image && <meta property="twitter:image" key="twitter_img" content={image} />}
+
+      {url && <link rel="canonical" key="link_canonical" href={`${config.urls.app.replace(/\/$/, '')}${url}`} />}
     </Head>
   );
 };

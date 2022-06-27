@@ -21,6 +21,8 @@ import MetaverseModal from "../src/Components/components/MetaverseModal";
 import ReactPlayer from "react-player";
 import Image from "next/image";
 import {hostedImage} from "../src/helpers/image";
+import {appConfig} from "../src/Config";
+import Head from "next/head";
 
 const fadeInUp = keyframes`
   0% {
@@ -232,6 +234,10 @@ const Home = () => {
 
   return (
     <div>
+      <Head>
+        <title>Ebisu's Bay Marketplace</title>
+        <link rel="canonical" key="link_canonical" href={appConfig('urls.app')} />
+      </Head>
       <GlobalStyles />
       {/*<section className="promo">*/}
       {/*  <div className="d-flex justify-content-center px-3">*/}
