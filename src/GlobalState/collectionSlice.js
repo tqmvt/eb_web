@@ -3,12 +3,15 @@ import {
   getCollectionMetadata,
   getCollectionPowertraits,
   getCollectionTraits,
-  sortAndFetchCollectionDetails,
-  sortAndFetchListings,
 } from '../core/api';
 import {caseInsensitiveCompare} from '../utils';
 import {appConfig} from "../Config";
 import {listingType} from "../core/api/enums";
+import {ListingsQuery} from "../core/api/listings/query";
+import {FullCollectionsQuery} from "../core/api/fullcollections/query";
+import {CollectionFilters} from "../Components/Models/collection-filters.model";
+import {sortAndFetchCollectionDetails} from "../core/api/fullcollections";
+import {sortAndFetchListings} from "../core/api/listings";
 
 const knownContracts = appConfig('collections');
 
@@ -20,32 +23,22 @@ const collectionSlice = createSlice({
     listings: [],
     query: {
       page: 0,
-      filter: {},
+      filter: CollectionFilters.default(),
       sort: {},
-      search: null,
-      traits: {},
-      powertraits: {},
-      filterListed: '',
-      minPrice: null,
-      maxPrice: null,
     },
     totalPages: 0,
     totalCount: 0,
     statsLoading: false,
     stats: null,
     hasRank: false,
-    cachedTraitsFilter: {},
-    cachedPowertraitsFilter: {},
-    cachedFilter: {},
-    cachedSort: {},
-    cachedMinPrice: {},
-    cachedMaxPrice: {},
     isUsingListingsFallback: false,
+    initialLoadComplete: false,
   },
   reducers: {
     listingsLoading: (state, _) => {
       state.loading = true;
       state.error = false;
+      state.initialLoadComplete = state.query.page !== 0;
     },
     listingsReceived: (state, action) => {
       state.loading = false;
@@ -56,6 +49,7 @@ const collectionSlice = createSlice({
       state.totalCount = action.payload.totalCount;
       state.hasRank = action.payload.hasRank;
       state.isUsingListingsFallback = action.payload.isUsingListingsFallback;
+      state.initialLoadComplete = true;
     },
     clearSet: (state, action) => {
       const hardClear = action.payload || false;
@@ -63,20 +57,8 @@ const collectionSlice = createSlice({
       state.listings = [];
       state.totalPages = 0;
       state.query.page = 0;
-      state.query.filter = {};
+      state.query.filter = CollectionFilters.default();
       state.query.sort = {};
-      state.query.search = null;
-      state.query.minPrice = null;
-      state.query.maxPrice = null;
-
-      if (hardClear) {
-        state.cachedTraitsFilter = {};
-        state.cachedPowertraitsFilter = {};
-        state.cachedFilter = {};
-        state.cachedSort = {};
-        state.cachedMinPrice = {};
-        state.cachedMaxPrice = {};
-      }
     },
     onFilter: (state, action) => {
       const { cacheName, option } = action.payload;
@@ -85,10 +67,6 @@ const collectionSlice = createSlice({
       state.totalPages = 0;
       state.query.page = 0;
       state.query.filter = option;
-
-      if (cacheName) {
-        state.cachedFilter[cacheName] = option;
-      }
     },
     onSort: (state, action) => {
       const { cacheName, option } = action.payload;
@@ -97,22 +75,18 @@ const collectionSlice = createSlice({
       state.totalPages = 0;
       state.query.page = 0;
       state.query.sort = option;
-
-      if (cacheName) {
-        state.cachedSort[cacheName] = option;
-      }
     },
     onSearch: (state, action) => {
       state.listings = [];
       state.totalPages = 0;
       state.query.page = 0;
-      state.query.search = action.payload;
+      state.query.filter.search = action.payload;
     },
     onListedFilter: (state, action) => {
       state.listings = [];
       state.totalPages = 0;
       state.query.page = 0;
-      state.query.filterListed = action.payload;
+      state.query.filter.listed = action.payload;
     },
     onTraitFilter: (state, action) => {
       const { address, traits, powertraits } = action.payload;
@@ -122,31 +96,22 @@ const collectionSlice = createSlice({
       state.query.page = 0;
 
       if (traits) {
-        state.query.traits = traits;
+        state.query.filter.traits = traits;
       }
       if (powertraits) {
-        state.query.powertraits = powertraits;
-      }
-      if (address && traits) {
-        state.cachedTraitsFilter[address] = traits;
-      }
-      if (address && powertraits) {
-        state.cachedPowertraitsFilter[address] = powertraits;
+        state.query.filter.powertraits = powertraits;
       }
     },
     onPriceFilter: (state, action) => {
-      const { address, minPrice, maxPrice } = action.payload;
+      const { address, minPrice, maxPrice, minRank, maxRank } = action.payload;
 
       state.listings = [];
       state.totalPages = 0;
       state.query.page = 0;
-      state.query.minPrice = minPrice;
-      state.query.maxPrice = maxPrice;
-
-      if (address) {
-        state.cachedMinPrice[address] = minPrice;
-        state.cachedMaxPrice[address] = maxPrice;
-      }
+      state.query.filter.minPrice = minPrice;
+      state.query.filter.maxPrice = maxPrice;
+      state.query.filter.minRank = minRank;
+      state.query.filter.maxRank = maxRank;
     },
     onCollectionStatsLoaded: (state, action) => {
       state.stats = action.payload.stats;
@@ -155,6 +120,9 @@ const collectionSlice = createSlice({
     onCollectionStatsLoading: (state, _) => {
       state.statsLoading = true;
       state.error = false;
+    },
+    onTabUpdated: (state, action) => {
+      state.query.filter.tab = action.payload;
     },
   },
 });
@@ -171,23 +139,19 @@ export const {
   clearSet,
   onCollectionStatsLoading,
   onCollectionStatsLoaded,
+  onTabUpdated,
 } = collectionSlice.actions;
 
 export default collectionSlice.reducer;
 
-export const init = (filterOption, sortOption, traitFilterOption, address) => async (dispatch) => {
+export const init = (filterOption, sortOption) => async (dispatch) => {
   dispatch(clearSet(false));
-
-  dispatch(onFilter({ option: filterOption }));
 
   if (sortOption) {
     dispatch(onSort({ option: sortOption }));
   }
 
-  //  TODO: needs DTO
-  if (traitFilterOption) {
-    dispatch(onTraitFilter({ traits: traitFilterOption, address }));
-  }
+  dispatch(onFilter({ option: filterOption }));
 };
 
 export const fetchListings =
@@ -208,12 +172,7 @@ export const fetchListings =
       const { response, cancelled } = await sortAndFetchListings(
         state.collection.query.page + 1,
         state.collection.query.sort,
-        state.collection.query.filter,
-        state.collection.query.traits,
-        state.collection.query.powertraits,
-        state.collection.query.search,
-        state.collection.query.minPrice,
-        state.collection.query.maxPrice,
+        ListingsQuery.fromCollectionFilter(state.collection.query.filter.toQuery()),
       );
 
       if (!cancelled) {
@@ -226,21 +185,15 @@ export const fetchListings =
       const { response, cancelled } = await sortAndFetchCollectionDetails(
         state.collection.query.page + 1,
         state.collection.query.sort,
-        state.collection.query.filter,
-        state.collection.query.traits,
-        state.collection.query.powertraits,
-        state.collection.query.search,
-        state.collection.query.filterListed,
-        state.collection.query.minPrice,
-        state.collection.query.maxPrice,
+        FullCollectionsQuery.createApiQuery(state.collection.query.filter.toQuery()),
         pageSizeOverride
       );
 
-      if (response.status === 200 && response.nfts.length > 0) {
+      if (response.status === 200) {
         if (!cancelled) {
 
           // @todo remove once proper filter in place on API side
-          response.nfts = response.nfts.filter((nft) => !nft.market.type || nft.market.type === listingType.LISTING);
+          response.nfts = response.nfts?.filter((nft) => !nft.market.type || nft.market.type === listingType.LISTING);
 
           response.hasRank = response.nfts.length > 0 && typeof response.nfts[0].rank !== 'undefined';
           dispatch(listingsReceived({ ...response, isUsingListingsFallback: false }));
@@ -277,15 +230,19 @@ export const filterListingsByTrait =
   };
 
 export const filterListingsByPrice =
-  ({ address, minPrice, maxPrice }) =>
+  ({ address, minPrice, maxPrice, minRank, maxRank }) =>
     async (dispatch) => {
-  dispatch(onPriceFilter({ minPrice, maxPrice, address }));
+  dispatch(onPriceFilter({ minPrice, maxPrice, address, minRank, maxRank }));
   dispatch(fetchListings());
 };
 
 export const resetListings = () => async (dispatch) => {
   dispatch(clearSet());
   dispatch(fetchListings());
+};
+
+export const updateTab = (tab) => async (dispatch) => {
+  dispatch(onTabUpdated(tab));
 };
 
 export const getStats =

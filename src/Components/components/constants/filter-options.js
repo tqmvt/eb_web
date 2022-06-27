@@ -1,6 +1,5 @@
-import { FilterOption } from '../../Models/filter-option.model';
-import { ListingsFilterOption } from '../../Models/listings-filter-option.model';
 import {appConfig} from "../../../Config";
+import {MarketFilterCollection} from "../../Models/market-filters.model";
 
 const knownContracts = appConfig('collections');
 
@@ -11,12 +10,12 @@ export const limitSizeOptions = {
 
 export const collectionFilterOptions = knownContracts
   .sort((a, b) => (a.name > b.name ? 1 : -1))
-  .map((x) => FilterOption.fromJson(x));
+  .map((x) => new MarketFilterCollection(x.name, x.address));
 
 export const marketPlaceCollectionFilterOptions = knownContracts
   .filter((c) => c.listable)
   .sort((a, b) => (a.name > b.name ? 1 : -1))
-  .map((x) => ListingsFilterOption.fromJson(x));
+  .map((x) => new MarketFilterCollection(x.name, x.address));
 
 export const listingFilterOptions = [
   {

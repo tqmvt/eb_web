@@ -48,14 +48,6 @@ const AuctionCollection = ({ showLoadMore = true, collectionId = null, sellerId 
     return state.marketplace;
   });
 
-  // const isFilteredOnCollection = useSelector((state) => {
-  //   return (
-  //     marketplace.curFilter !== null &&
-  //     marketplace.curFilter.type === 'collection' &&
-  //     marketplace.curFilter.address !== null
-  //   );
-  // });
-
   useEffect(() => {
     let sort = {
       type: 'listingId',
@@ -75,18 +67,6 @@ const AuctionCollection = ({ showLoadMore = true, collectionId = null, sellerId 
       filter.address = sellerId;
     } else {
       //  if cacheName is supplied filter and sort values remain same after changing pages.
-      const cachedFilter = marketplace.cachedFilter[cacheName];
-      const cachedSort = marketplace.cachedSort[cacheName];
-
-      if (cachedFilter) {
-        filter.type = cachedFilter.type;
-        filter.address = cachedFilter.address;
-      }
-
-      if (cachedSort) {
-        sort.type = cachedSort.type;
-        sort.direction = cachedSort.direction;
-      }
     }
     dispatch(init(sort, filter));
     dispatch(fetchListings());

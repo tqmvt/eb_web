@@ -49,7 +49,7 @@ const MakeOffer = styled.div`
   }
 `;
 
-const NftCard = ({ royalty, listing, imgClass = 'marketplace', watermark, address, collection }) => {
+const NftCard = ({ royalty, listing, imgClass = 'marketplace', watermark, collection }) => {
   const history = useRouter();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
