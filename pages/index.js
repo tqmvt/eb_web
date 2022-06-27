@@ -167,7 +167,7 @@ const Home = () => {
         </Reveal>
         <Reveal className="onStep" keyframes={fadeInUp} delay={600} duration={900} triggerOnce>
           <p className="lead">
-            Ebisu's Bay is the first NFT marketplace on Cronos. Create, buy, sell, trade and enjoy the #CroFam NFT
+            Ebisu's Bay is the first and largest NFT marketplace on Cronos. Create, buy, sell, trade and enjoy the #CroFam NFT
             community.
           </p>
         </Reveal>
@@ -294,6 +294,45 @@ const Home = () => {
         </div>
       </section>
 
+      <section className="container">
+        <div className="row">
+          <div className="col-lg-12">
+            <div className="text-center">
+              <h2>Frens</h2>
+              <div className="small-border"></div>
+            </div>
+          </div>
+        </div>
+        <div className="row align-items-center text-center">
+          <div className="col">
+            <a href="https://nebkas.ro" target="_blank" rel="noreferrer">
+              <img
+                src={hostedImage(userTheme === 'light' ? '/img/logos/nebkas-logo.png' : '/img/logos/nebkas-logo.png')}
+                alt="nebkas.co"
+                width="128px"
+              />
+            </a>
+          </div>
+          <div className="col">
+            <a href="https://weare.fi/en/" target="_blank" rel="noreferrer">
+              <img
+                src={hostedImage(userTheme === 'light' ? '/img/logos/wearefi-logo.png' : '/img/logos/wearefi-white.png')}
+                alt="WeAre Solutions"
+                width={userTheme === 'light' ? '64px' : '160px'}
+              />
+            </a>
+          </div>
+          <div className="col">
+            <a href="https://crodex.app/" target="_blank" rel="noreferrer">
+              <img
+                src={hostedImage(userTheme === 'light' ? '/img/logos/crodex.png' : '/img/logos/crodex-white.png')}
+                alt="CRODEX"
+                width="150px"
+              />
+            </a>
+          </div>
+        </div>
+      </section>
       <Footer />
     </div>
   );
