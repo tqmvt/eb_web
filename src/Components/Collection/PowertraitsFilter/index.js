@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useState } from 'react';
-import { Accordion, Form } from 'react-bootstrap';
+import {Accordion, Badge, Form} from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
@@ -14,6 +14,7 @@ const PowertraitsFilter = ({ address }) => {
   const dispatch = useDispatch();
   const router = useRouter();
 
+  const userTheme = useSelector((state) => state.user.theme);
   const collectionStats = useSelector((state) => state.collection.stats);
   const collectionCachedTraitsFilter = useSelector((state) => state.collection.query.filter.powertraits);
   const currentFilter = useSelector((state) => state.collection.query.filter);
@@ -89,7 +90,7 @@ const PowertraitsFilter = ({ address }) => {
       ].filter((v, i, a) => a.indexOf(v) === i && (v !== id || checked)),
     });
 
-    query.powertraits = currentFilter.allTraits;
+    currentFilter.powertraits = allTraits;
 
     pushQueryString(router, {
       slug: router.query.slug,
@@ -104,6 +105,18 @@ const PowertraitsFilter = ({ address }) => {
     );
   };
 
+  const ThemedBadge = (props) => {
+    return (
+      <Badge
+        pill
+        bg={userTheme === 'dark' ? 'light' : 'dark'}
+        text={userTheme === 'dark' ? 'dark' : 'light'}
+      >
+        {props.children}
+      </Badge>
+    )
+  }
+
   useEffect(() => {
     const container = document.getElementById('powertraits');
     if (container) {
@@ -113,7 +126,7 @@ const PowertraitsFilter = ({ address }) => {
 
   return (
     <div className="my-4">
-      <div className="mb-4">
+      <div className="mb-2">
         <div className="d-flex justify-content-between align-middle">
           <h3
             className="d-inline-block"
@@ -129,7 +142,9 @@ const PowertraitsFilter = ({ address }) => {
         </div>
         {viewSelectedAttributesCount() > 0 && (
           <div className="d-flex justify-content-between align-middle">
-            <span>{viewSelectedAttributesCount()} selected</span>
+            <ThemedBadge>
+              <span>{viewSelectedAttributesCount()} selected</span>
+            </ThemedBadge>
             <div
               className="d-inline-block fst-italic my-auto me-2"
               style={{ fontSize: '0.8em', cursor: 'pointer' }}

@@ -146,7 +146,7 @@ const TraitsFilter = ({ address }) => {
               <span>{viewSelectedAttributesCount()} selected</span>
             </ThemedBadge>
             <div
-              className="d-inline-block fst-italic my-auto"
+              className="d-inline-block fst-italic my-auto me-2"
               style={{ fontSize: '0.8em', cursor: 'pointer' }}
               onClick={clearAttributeFilters}
             >

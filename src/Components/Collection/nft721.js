@@ -444,6 +444,7 @@ const Nft721 = ({ address, id }) => {
                                           type={data.display_type}
                                           collectionAddress={address}
                                           collectionSlug={collection.slug}
+                                          queryKey="traits"
                                         />
                                       );
                                     })}
@@ -460,6 +461,7 @@ const Nft721 = ({ address, id }) => {
                                         type={data.display_type}
                                         collectionAddress={address}
                                         collectionSlug={collection.slug}
+                                        queryKey="traits"
                                       />
                                     );
                                   })}
@@ -482,12 +484,18 @@ const Nft721 = ({ address, id }) => {
                                     powertraits.length > 0 &&
                                     powertraits.map((data, i) => {
                                       return (
-                                        <div key={i} className="col-lg-4 col-md-6 col-sm-6">
-                                          <div className="nft_attr">
-                                            <h5>{data.trait_type}</h5>
-                                            <h4>{data.value > 0 ? <>+ {data.value}</> : <>{data.value}</>}</h4>
-                                          </div>
-                                        </div>
+                                        <Trait
+                                          key={i}
+                                          title={data.trait_type}
+                                          value={data.value}
+                                          valueDisplay={data.value > 0 ? `+ ${data.value}` : data.value}
+                                          percent={data.percent}
+                                          occurrence={data.occurrence}
+                                          type={data.display_type}
+                                          collectionAddress={address}
+                                          collectionSlug={collection.slug}
+                                          queryKey="powertraits"
+                                        />
                                       );
                                     })}
                                   {evoSkullTraits &&
@@ -609,31 +617,42 @@ const Nft721 = ({ address, id }) => {
 
 export default memo(Nft721);
 
-const Trait = ({ title, value, percent, occurrence, type, collectionAddress, collectionSlug }) => {
+const Trait = ({ title, value, valueDisplay, percent, occurrence, type, collectionAddress, collectionSlug, queryKey }) => {
+
+  const Value = () => {
+    return (
+      <h4>
+        {value !== undefined ? (
+          <>
+            {type === 'date' ? (
+              <>{new Date(millisecondTimestamp(value)).toDateString()}</>
+            ) : (
+              <>{mapAttributeString(valueDisplay ?? value, collectionAddress, true)}</>
+            )}
+          </>
+        ) : (
+          <>N/A</>
+        )}
+      </h4>
+    )
+  };
+
   return (
     <div className="col-lg-4 col-md-6 col-sm-6">
       <div className="nft_attr">
         <h5>{humanize(title)}</h5>
-        <Link href={{
-          pathname: `/collection/${collectionSlug}`,
-          query: {traits: JSON.stringify({[title]: [value]})}
-        }}>
-          <a>
-            <h4>
-              {value !== undefined ? (
-                <>
-                  {type === 'date' ? (
-                    <>{new Date(millisecondTimestamp(value)).toDateString()}</>
-                  ) : (
-                    <>{mapAttributeString(value, collectionAddress, true)}</>
-                  )}
-                </>
-              ) : (
-                <>N/A</>
-              )}
-            </h4>
-          </a>
-        </Link>
+        {collectionSlug && queryKey ? (
+          <Link href={{
+            pathname: `/collection/${collectionSlug}`,
+            query: {[queryKey]: JSON.stringify({[title]: [value.toString()]})}
+          }}>
+            <a>
+              <Value />
+            </a>
+          </Link>
+        ) : (
+          <Value />
+        )}
         {occurrence ? (
           <span>{relativePrecision(occurrence)}% have this trait</span>
         ) : (
