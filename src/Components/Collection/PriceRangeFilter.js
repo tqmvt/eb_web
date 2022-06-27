@@ -1,38 +1,84 @@
 import React, { memo, useState } from 'react';
-import { Accordion, Form } from 'react-bootstrap';
+import {Accordion, Badge, Form} from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { filterListingsByPrice } from '../../GlobalState/collectionSlice';
 import Button from '../components/Button';
 import { commify } from 'ethers/lib/utils';
+import {pushQueryString} from "../../helpers/query";
+import {useRouter} from "next/router";
 
 const PriceRangeFilter = ({ address, ...props }) => {
   const dispatch = useDispatch();
+  const router = useRouter();
 
-  const [minPrice, setMinPrice] = useState(null);
-  const [maxPrice, setMaxPrice] = useState(null);
-  const cachedMinPriceFilter = useSelector((state) => state.collection.cachedMinPrice[address]);
-  const cachedMaxPriceFilter = useSelector((state) => state.collection.cachedMaxPrice[address]);
+  const userTheme = useSelector((state) => state.user.theme);
+  const currentFilter = useSelector((state) => state.collection.query.filter);
+
+  const [minPrice, setMinPrice] = useState(currentFilter.minPrice);
+  const [maxPrice, setMaxPrice] = useState(currentFilter.maxPrice);
+  const [minRank, setMinRank] = useState(currentFilter.minRank);
+  const [maxRank, setMaxRank] = useState(currentFilter.maxRank);
+
+  const hasActiveRangeFilter = () => {
+    return !!currentFilter.minPrice ||
+      !!currentFilter.maxPrice ||
+      !!currentFilter.minRank ||
+      !!currentFilter.maxRank;
+  };
 
   const clearAttributeFilters = () => {
-    setMinPrice('');
-    setMaxPrice('');
+    currentFilter.minPrice = null;
+    currentFilter.maxPrice = null;
+    currentFilter.minRank = null;
+    currentFilter.maxRank = null;
+
+    pushQueryString(router, {
+      slug: router.query.slug,
+      ...currentFilter.toPageQuery()
+    });
 
     dispatch(
       filterListingsByPrice({
         address,
         minPrice: null,
         maxPrice: null,
+        minRank: null,
+        maxRank: null,
       })
     );
   };
 
   const onApply = () => {
+    const tmpMinPrice = isNaN(parseInt(minPrice)) ? null : parseInt(minPrice);
+    const tmpMaxPrice = isNaN(parseInt(maxPrice)) ? null : parseInt(maxPrice);
+    const tmpMinRank = isNaN(parseInt(minRank)) ? null : parseInt(minRank);
+    const tmpMaxRank = isNaN(parseInt(maxRank)) ? null : parseInt(maxRank);
+
+    if (tmpMinPrice === currentFilter.minPrice &&
+      tmpMaxPrice === currentFilter.maxPrice &&
+      tmpMinRank === currentFilter.minRank &&
+      tmpMaxRank === currentFilter.maxRank) {
+      return;
+    }
+
+    currentFilter.minPrice = tmpMinPrice;
+    currentFilter.maxPrice = tmpMaxPrice;
+    currentFilter.minRank = tmpMinRank;
+    currentFilter.maxRank = tmpMaxRank;
+
+    pushQueryString(router, {
+      slug: router.query.slug,
+      ...currentFilter.toPageQuery()
+    });
+
     dispatch(
       filterListingsByPrice({
         address,
-        minPrice: parseInt(minPrice),
-        maxPrice: parseInt(maxPrice),
+        minPrice: currentFilter.minPrice,
+        maxPrice: currentFilter.maxPrice,
+        minRank: currentFilter.minRank,
+        maxRank: currentFilter.maxRank,
       })
     );
   };
@@ -51,26 +97,61 @@ const PriceRangeFilter = ({ address, ...props }) => {
     }
   };
 
-  // useEffect(() => {
-  //   if (cachedMinPriceFilter) setMinPrice(cachedMinPriceFilter);
-  //   if (cachedMaxPriceFilter) setMaxPrice(cachedMaxPriceFilter);
-  // }, []);
+  const onMinRankChange = (e) => {
+    const re = /^[0-9\b]+$/;
+    if (e.target.value === '' || re.test(e.target.value)) {
+      setMinRank(e.target.value);
+    }
+  };
+
+  const onMaxRankChange = (e) => {
+    const re = /^[0-9\b]+$/;
+    if (e.target.value === '' || re.test(e.target.value)) {
+      setMaxRank(e.target.value);
+    }
+  };
+
+  const ThemedBadge = (props) => {
+    return (
+      <Badge
+        pill
+        bg={userTheme === 'dark' ? 'light' : 'dark'}
+        text={userTheme === 'dark' ? 'dark' : 'light'}
+      >
+        {props.children}
+      </Badge>
+    )
+  }
 
   return (
     <div {...props}>
-      {(minPrice > 0 || maxPrice > 0) && (
-        <div className="d-flex justify-content-between align-middle">
-          <span>
-            {minPrice && maxPrice && (
-              <>
-                {commify(minPrice)} - {commify(maxPrice)} CRO
-              </>
-            )}
-            {minPrice && !maxPrice && <>At least {commify(minPrice)} CRO</>}
-            {!minPrice && maxPrice && <>Max {commify(maxPrice)} CRO</>}
-          </span>
+      {hasActiveRangeFilter() && (
+        <div className="d-flex flex-wrap justify-content-between align-middle mb-2">
+          <div className="me-2">
+            <ThemedBadge>
+              {currentFilter.minPrice && currentFilter.maxPrice ? (
+                <>
+                  {commify(currentFilter.minPrice)} - {commify(currentFilter.maxPrice)} CRO
+                </>
+              )
+                : currentFilter.minPrice && !currentFilter.maxPrice ? <>At least {commify(currentFilter.minPrice)} CRO</>
+                : !currentFilter.minPrice && currentFilter.maxPrice && <>Max {commify(currentFilter.maxPrice)} CRO</>
+              }
+            </ThemedBadge>
+          </div>
+          <div className="me-2">
+            <ThemedBadge>
+              {currentFilter.minRank && currentFilter.maxRank && (
+                <>
+                  Rank {commify(currentFilter.minRank)} - {commify(currentFilter.maxRank)}
+                </>
+              )}
+              {currentFilter.minRank && !currentFilter.maxRank && <>At least rank {commify(currentFilter.minRank)}</>}
+              {!currentFilter.minRank && currentFilter.maxRank && <>Max rank {commify(currentFilter.maxRank)}</>}
+            </ThemedBadge>
+          </div>
           <div
-            className="d-inline-block fst-italic my-auto"
+            className="d-inline-block fst-italic my-auto flex-grow-1 text-end"
             style={{ fontSize: '0.8em', cursor: 'pointer' }}
             onClick={clearAttributeFilters}
           >
@@ -79,13 +160,14 @@ const PriceRangeFilter = ({ address, ...props }) => {
         </div>
       )}
 
-      <Accordion>
+      <Accordion defaultActiveKey={hasActiveRangeFilter() ? 'price' : undefined}>
         <Accordion.Item eventKey="price">
           <Accordion.Header>
-            <h3 className="my-1">Price Range</h3>
+            <h3 className="my-1">Range Filters</h3>
           </Accordion.Header>
           <Accordion.Body>
             <div className="row">
+              <h5 className="mb-0">Price</h5>
               <div className="col-xl-6 col-lg-12 px-2 mt-2">
                 <Form.Control
                   type="text"
@@ -101,6 +183,27 @@ const PriceRangeFilter = ({ address, ...props }) => {
                   placeholder="Max Price"
                   value={maxPrice}
                   onChange={onMaxPriceChange}
+                  style={{ marginBottom: 0, marginTop: 0 }}
+                />
+              </div>
+            </div>
+            <div className="row mt-4">
+              <h5 className="mb-0">Rank</h5>
+              <div className="col-xl-6 col-lg-12 px-2 mt-2">
+                <Form.Control
+                  type="text"
+                  placeholder="Min Rank"
+                  value={minRank}
+                  onChange={onMinRankChange}
+                  style={{ marginBottom: 0, marginTop: 0 }}
+                />
+              </div>
+              <div className="col-xl-6 col-lg-12 px-2 mt-2">
+                <Form.Control
+                  type="text"
+                  placeholder="Max Rank"
+                  value={maxRank}
+                  onChange={onMaxRankChange}
                   style={{ marginBottom: 0, marginTop: 0 }}
                 />
               </div>

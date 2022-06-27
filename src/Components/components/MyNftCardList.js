@@ -2,13 +2,13 @@ import React, {memo, useCallback, useEffect, useState} from 'react';
 import {connect, useDispatch, useSelector} from 'react-redux';
 import NftCard from './MyNftCard';
 import TopFilterBar from './TopFilterBar';
-import { FilterOption } from '../Models/filter-option.model';
 import { Form, Spinner } from 'react-bootstrap';
 import { collectionFilterOptions } from './constants/filter-options';
 import { fetchChainNfts, fetchNfts, MyNftPageActions } from '../../GlobalState/User';
 import InvalidListingsPopup from './InvalidListingsPopup';
 import InfiniteScroll from "react-infinite-scroll-component";
 import {caseInsensitiveCompare, findCollectionByAddress} from "../../utils";
+import {MarketFilterCollection} from "../Models/market-filters.model";
 
 const mapStateToProps = (state) => ({
   nfts: state.user.nfts,
@@ -59,19 +59,19 @@ const MyNftCardList = ({ nfts = [], isLoading, listedOnly, activeFilterOption, u
   );
 
   // const possibleCollections = collectionFilterOptions.filter((collection) =>
-  //   isLoading ? true : !!nfts.find((x) => caseInsensitiveCompare(x.address, collection.address))
+  //   isLoading ? true : !!nfts.find((x) => caseInsensitiveCompare(x.address, collection.value))
   // );
 
   const filteredNFTs = nfts
     .filter((nft) => (listedOnly ? nft.listed : true))
     .filter((nft) => {
-      if (activeFilterOption.getOptionValue === null) {
+      if (!activeFilterOption.value) {
         return true;
       }
 
-      let targetCollection = findCollectionByAddress(activeFilterOption.getOptionValue);
+      let targetCollection = findCollectionByAddress(activeFilterOption.value);
       if (targetCollection.multiToken)  {
-        targetCollection = findCollectionByAddress(activeFilterOption.getOptionValue, nft.id);
+        targetCollection = findCollectionByAddress(activeFilterOption.value, nft.id);
       }
       return targetCollection && caseInsensitiveCompare(targetCollection.address, nft.address);
     });
@@ -98,7 +98,7 @@ const MyNftCardList = ({ nfts = [], isLoading, listedOnly, activeFilterOption, u
                 showFilter={true}
                 showSort={false}
                 showSearch={false}
-                filterOptions={[FilterOption.default(), ...collectionFilterOptions]}
+                filterOptions={[MarketFilterCollection.default(), ...collectionFilterOptions]}
                 defaultFilterValue={activeFilterOption}
                 filterPlaceHolder="Filter Collection..."
                 onFilterChange={onFilterChange}

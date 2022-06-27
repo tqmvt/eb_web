@@ -9,7 +9,7 @@ import { SortOption } from '../Models/sort-option.model';
 
 import HiddenCard from './HiddenCard';
 import { findCollectionByAddress, isMetapixelsCollection } from '../../utils';
-import { ListingsFilterOption } from '../Models/listings-filter-option.model';
+import {MarketFilters} from "../Models/market-filters.model";
 
 const ListingCollection = ({
   limitSize,
@@ -22,7 +22,7 @@ const ListingCollection = ({
   const listings = useSelector((state) => state.marketplace.listings);
 
   const canLoadMore = useSelector((state) => {
-    return state.marketplace.curPage === 0 || state.marketplace.curPage < state.marketplace.totalPages;
+    return state.marketplace.query.page === 0 || state.marketplace.query.page < state.marketplace.totalPages;
   });
   const isFetching = useSelector((state) => state.marketplace.loading);
 
@@ -32,7 +32,7 @@ const ListingCollection = ({
 
   useEffect(() => {
     const sortOption = new SortOption();
-    const filterOption = new ListingsFilterOption();
+    const filterOption = new MarketFilters();
 
     if (limitSize) filterOption.limit = limitSize;
 
@@ -41,9 +41,7 @@ const ListingCollection = ({
       sortOption.direction = 'desc';
       sortOption.label = 'By Id';
 
-      filterOption.type = 'collection';
-      filterOption.address = collectionId;
-      filterOption.name = 'By Collection';
+      filterOption.collection.address = collectionId;
 
       dispatch(init(sortOption, filterOption));
       dispatch(fetchListings());
@@ -55,18 +53,14 @@ const ListingCollection = ({
       sortOption.direction = 'desc';
       sortOption.label = 'By Id';
 
-      filterOption.type = 'seller';
-      filterOption.address = sellerId;
-      filterOption.name = 'By Seller';
+      filterOption.seller = sellerId;
 
       dispatch(init(sortOption, filterOption));
       dispatch(fetchListings());
       return;
     }
 
-    dispatch(
-      init(marketplace.cachedSort[cacheName] ?? sortOption, marketplace.cachedFilter[cacheName] ?? filterOption)
-    );
+    dispatch(init(sortOption, filterOption));
     dispatch(fetchListings());
     // eslint-disable-next-line
   }, [dispatch]);

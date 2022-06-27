@@ -26,7 +26,6 @@ import {
   isUserBlacklisted,
   sliceIntoChunks,
 } from '../utils';
-import { FilterOption } from '../Components/Models/filter-option.model';
 import { nanoid } from 'nanoid';
 import { appAuthInitFinished } from './InitSlice';
 import { captureException } from '@sentry/react';
@@ -36,6 +35,7 @@ import { offerState } from '../core/api/enums';
 import { CNS, TextRecords } from '@cnsdomains/core';
 import { txExtras } from '../core/constants';
 import {appConfig} from "../Config";
+import {MarketFilterCollection} from "../Components/Models/market-filters.model";
 
 const config = appConfig();
 
@@ -84,7 +84,7 @@ const userSlice = createSlice({
     myNftPageListDialog: null,
     myNftPageCancelDialog: null,
     myNftPageListedOnly: false,
-    myNftPageActiveFilterOption: FilterOption.default(),
+    myNftPageActiveFilterOption: MarketFilterCollection.default(),
 
     // My Listings
     myUnfilteredListingsFetching: false,

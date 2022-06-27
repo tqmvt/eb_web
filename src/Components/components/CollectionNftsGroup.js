@@ -10,7 +10,6 @@ const CollectionNftsGroup = ({
   royalty,
   canLoadMore = false,
   loadMore,
-  address,
   collection,
 }) => {
   if (showLoadMore) {
@@ -49,7 +48,6 @@ const CollectionNftsGroup = ({
                   royalty={royalty}
                   listing={listing}
                   imgClass="collection"
-                  address={address}
                   collection={collection}
                 />
               </div>
@@ -68,7 +66,6 @@ const CollectionNftsGroup = ({
                   royalty={royalty}
                   listing={listing}
                   imgClass="collection"
-                  address={address}
                   collection={collection}
                 />
               </div>

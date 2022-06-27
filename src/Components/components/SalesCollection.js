@@ -10,7 +10,7 @@ import { ethers } from 'ethers';
 import TopFilterBar from './TopFilterBar';
 import { marketPlaceCollectionFilterOptions } from './constants/filter-options';
 import { sortOptions } from './constants/sort-options';
-import { ListingsFilterOption } from '../Models/listings-filter-option.model';
+import {MarketFilters} from "../Models/market-filters.model";
 
 const SalesCollection = ({
   showLoadMore = true,
@@ -28,7 +28,7 @@ const SalesCollection = ({
     return state.marketplace.listings;
   });
   const canLoadMore = useSelector((state) => {
-    return state.marketplace.curPage === 0 || state.marketplace.curPage < state.marketplace.totalPages;
+    return state.marketplace.query.page === 0 || state.marketplace.query.page < state.marketplace.totalPages;
   });
   const isFetching = useSelector((state) => state.marketplace.loading);
 
@@ -46,15 +46,13 @@ const SalesCollection = ({
   };
 
   useEffect(() => {
-    const sortOption = marketplace.cachedSort[cacheName] ?? defaultSort();
+    const sortOption = defaultSort();
 
     if (collectionId) {
-      const filterOption = new ListingsFilterOption();
-      filterOption.type = 'collection';
-      filterOption.address = collectionId;
-      filterOption.name = 'By Collection';
+      const filterOption = new MarketFilters();
+      filterOption.collection.value = collectionId;
       if (tokenId != null) {
-        filterOption.id = tokenId;
+        filterOption.tokenId = tokenId;
       }
 
       dispatch(init(sortOption, filterOption));
@@ -63,17 +61,15 @@ const SalesCollection = ({
     }
 
     if (sellerId) {
-      const filterOption = new ListingsFilterOption();
-      filterOption.type = 'seller';
-      filterOption.address = sellerId;
-      filterOption.name = 'By Seller';
+      const filterOption = new MarketFilters();
+      filterOption.seller = sellerId;
 
       dispatch(init(sortOption, filterOption));
       dispatch(fetchListings(true));
       return;
     }
 
-    const filterOption = marketplace.cachedFilter[cacheName] ?? ListingsFilterOption.default();
+    const filterOption = marketplace.query.filter ?? MarketFilters.default();
 
     dispatch(init(sortOption, filterOption));
     dispatch(fetchListings(true));
@@ -87,9 +83,10 @@ const SalesCollection = ({
     }
   };
 
-  const selectDefaultFilterValue = marketplace.cachedFilter[cacheName] ?? ListingsFilterOption.default();
-  const selectDefaultSortValue = marketplace.cachedSort[cacheName] ?? defaultSort();
-  const selectDefaultSearchValue = marketplace.cachedSearch[cacheName] ?? '';
+  const selectDefaultFilterValue = marketplace.query.filter.collection ?? MarketFilters.default();
+  const selectDefaultSortValue = marketplace.query.sort ?? defaultSort();
+  const selectDefaultSearchValue = marketplace.query.filter.search ?? '';
+
   const selectFilterOptions = marketPlaceCollectionFilterOptions;
   const selectSortOptions = useSelector((state) => {
     return sortOptions
@@ -134,7 +131,7 @@ const SalesCollection = ({
             showFilter={!collectionId}
             showSort={true}
             sortOptions={[SortOption.default(), ...selectSortOptions]}
-            filterOptions={[ListingsFilterOption.default(), ...selectFilterOptions]}
+            filterOptions={[MarketFilters.default(), ...selectFilterOptions]}
             defaultSortValue={selectDefaultSortValue}
             defaultFilterValue={selectDefaultFilterValue}
             defaultSearchValue={selectDefaultSearchValue}
