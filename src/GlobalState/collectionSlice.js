@@ -3,8 +3,6 @@ import {
   getCollectionMetadata,
   getCollectionPowertraits,
   getCollectionTraits,
-  sortAndFetchCollectionDetails,
-  sortAndFetchListings,
 } from '../core/api';
 import {caseInsensitiveCompare} from '../utils';
 import {appConfig} from "../Config";
@@ -12,6 +10,8 @@ import {listingType} from "../core/api/enums";
 import {ListingsQuery} from "../core/api/listings/query";
 import {FullCollectionsQuery} from "../core/api/fullcollections/query";
 import {CollectionFilters} from "../Components/Models/collection-filters.model";
+import {sortAndFetchCollectionDetails} from "../core/api/fullcollections";
+import {sortAndFetchListings} from "../core/api/listings";
 
 const knownContracts = appConfig('collections');
 

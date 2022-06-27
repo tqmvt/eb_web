@@ -50,6 +50,9 @@ export default api;
 //  just for sortAndFetchListings function
 let abortController = null;
 
+/**
+ * @deprecated use function in ./listings
+ */
 export async function sortAndFetchListings(
   page,
   sort,
@@ -206,6 +209,9 @@ export async function getCollectionSummary(address) {
   return await (await fetch(uri)).json();
 }
 
+/**
+ * @deprecated use function in ./fullcollections
+ */
 export async function sortAndFetchCollectionDetails(
   page,
   sort,
