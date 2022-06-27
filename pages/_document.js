@@ -24,7 +24,7 @@ export default function Document() {
       </Head>
       <body>
         <div id="initialLoader">
-          <div class="loader"></div>
+          <div className="loader"></div>
         </div>
         <Main />
         <NextScript />
