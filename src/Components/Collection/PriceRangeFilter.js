@@ -33,6 +33,11 @@ const PriceRangeFilter = ({ address, ...props }) => {
     currentFilter.minRank = null;
     currentFilter.maxRank = null;
 
+    setMinPrice('');
+    setMaxPrice('');
+    setMinRank('');
+    setMaxRank('');
+
     pushQueryString(router, {
       slug: router.query.slug,
       ...currentFilter.toPageQuery()
