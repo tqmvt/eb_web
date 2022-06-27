@@ -319,7 +319,7 @@ const CronosverseCollectionBoard = ({ onBuy, onOffer, listings = [], nfts = [] }
                 top: `${tileInfo.modalPosition?.y}px`,
               }}
             >
-              <div className="modal_content">
+              <div className={styles.modal_content}>
                 <div
                   className={`${styles.cross}`}
                   onClick={() => {
@@ -328,8 +328,8 @@ const CronosverseCollectionBoard = ({ onBuy, onOffer, listings = [], nfts = [] }
                 >
                   &times;
                 </div>
-                <img className="tile_img" src={tileInfo.tile} alt="tile" />
-                <div className="tile_items">
+                <img className={styles.tile_img} src={tileInfo.tile} alt="tile" />
+                <div className={styles.tile_items}>
                   <div>TokenId: {tileInfo.tokenId}</div>
                   <div>Type: {tileType[tileInfo.type - 1]}</div>
                   <div>
