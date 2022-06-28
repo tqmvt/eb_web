@@ -32,6 +32,7 @@ const Footer = () => {
                 <li><Link href="/marketplace">Explore</Link></li>
                 <li><Link href="/collections">Collections</Link></li>
                 <li><Link href="/drops">Drops</Link></li>
+                <li><Link href="/stats">Stats</Link></li>
                 <li><Link href="/apply?type=listing">Listing Application</Link></li>
                 <li><Link href="/apply?type=launchpad">Launchpad Application</Link></li>
               </ul>
@@ -44,8 +45,9 @@ const Footer = () => {
                 <li><a href="https://status.ebisusbay.com/" target="_blank" rel="noreferrer">Platform Status</a></li>
                 <li><a href="https://faq.ebisusbay.com/" target="_blank" rel="noreferrer">FAQ</a></li>
                 <li><a href="https://blog.ebisusbay.com/" target="_blank" rel="noreferrer">Blog</a></li>
-                <li><a href="/tos.html" target="_blank" rel="noreferrer">Terms of Service</a></li>
-                <li><a href="/pp.html" target="_blank" rel="noreferrer">Privacy Policy</a></li>
+                <li><a href="https://almurraydesign.com/store.html#!/Ebisus-Bay/c/130146020" target="_blank" rel="noreferrer">Merchandise</a></li>
+                <li><a href="/terms-of-service.html" target="_blank" rel="noreferrer">Terms of Service</a></li>
+                <li><a href="/privacy-policy.html" target="_blank" rel="noreferrer">Privacy Policy</a></li>
               </ul>
             </div>
           </div>

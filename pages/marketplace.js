@@ -11,6 +11,7 @@ import { filterListings, getMarketData, searchListings, sortListings } from '../
 import { debounce, siPrefixedNumber } from '../src/utils';
 import { SortOption } from '../src/Components/Models/sort-option.model';
 import {MarketFilterCollection} from "../src/Components/Models/market-filters.model";
+import PageHead from "../src/Components/Head/PageHead";
 
 const Marketplace = () => {
   const cacheName = 'marketplace';
@@ -75,6 +76,11 @@ const Marketplace = () => {
 
   return (
     <div>
+      <PageHead
+        title="Marketplace"
+        description="View the hottest NFTs for sale on Ebisu's Bay Marketplace"
+        url="/marketplace"
+      />
       <section className="jumbotron breadcumb no-bg tint">
         <div className="mainbreadcumb">
           <div className="container">
