@@ -5626,6 +5626,26 @@
         "medium": "https://medium.com/@drdao.club",
         "telegram": "https://t.me/DrDaoFounder"
       }
+    },
+    {
+      "name": "AristoDog",
+      "slug": "aristodog",
+      "multiToken": false,
+      "address": "",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "Create a community of aristocrats, driven by the community.\n\nFirst 100% utility project, our goal is to greatly improve the experience of cronos users.",
+        "verified": false,
+        "avatar": "/img/collections/aristodog/avatar.png",
+        "card": "/img/collections/aristodog/card.png",
+        "banner": "/img/collections/aristodog/banner.png",
+        "maxSupply": 3333,
+        "website": "https://aristodognft.com/",
+        "twitter": "https://twitter.com/AristoDogNFT",
+        "discord": "https://discord.gg/aristodog",
+        "medium": "https://medium.com/aristodog"
+      }
     }
   ],
   "drops": [
@@ -7882,6 +7902,38 @@
       "complete": false,
       "featured": false,
       "redirect": "https://www.wackywurmz.com"
+    },
+    {
+      "id": 83,
+      "slug": "aristodog",
+      "imgNft": "/img/drops/aristodog/drop.png",
+      "imgPreview": "/img/drops/aristodog/drop.png",
+      "imgAvatar": "/img/collections/aristodog/avatar.png",
+      "imgBanner": "/img/collections/aristodog/banner.png",
+      "title": "AristoDog",
+      "subtitle": "Create a community of aristocrats, driven by the community.\n\nFirst 100% utility project, our goal is to greatly improve the experience of cronos users.",
+      "description": "Create a community of aristocrats, driven by the community.\n\nFirst 100% utility project, our goal is to greatly improve the experience of cronos users.\n\nRoadmap:\n\nHosting raffle: Sell your NFT by hosting your own raffle, only a few projects will be partnered in the beginning so we can use their NFTs collections.\n\nDAO: Decision, investment... The project is in your hands.\n\nSwap NFTs: Securely exchange NFTs from peer to peer.\n\nThe Trading Post will be a way to list NFTs to trade with other users.\n\nThe Dog House: Royalties share, dog house with evolving system and potential items gains to improve your house.\n\nAristoLand: A corner of paradise for our aristocrats\n\nRoadmap 2.0: Yes, this is going to be something big… Stay tuned.",
+      "author": {
+        "name": "AristoDog",
+        "website": "https://aristodognft.com/",
+        "twitter": "https://twitter.com/AristoDogNFT",
+        "discord": "https://discord.gg/aristodog",
+        "medium" : "https://medium.com/aristodog"
+      },
+      "address": "",
+      "maxMintPerTx": 10,
+      "maxMintPerAddress": 100,
+      "totalSupply": 3333,
+      "cost": "500",
+      "memberCost": "450",
+      "whitelistCost": "400",
+      "foundersOnly": false,
+      "start": 1656792000000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false
     }
   ],
   "auctions": [
