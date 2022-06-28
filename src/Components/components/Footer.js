@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import { useSelector } from 'react-redux';
-import {faDiscord, faTwitter, faMedium, faInstagram, faTelegram} from '@fortawesome/free-brands-svg-icons';
+import {faDiscord, faTwitter, faMedium, faInstagram, faTelegram, faLinkedin} from '@fortawesome/free-brands-svg-icons';
 import { faSquare, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import LayeredIcon from './LayeredIcon';
 import {hostedImage} from "../../helpers/image";
@@ -60,6 +60,7 @@ const Footer = () => {
                 <li><a href="https://twitter.com/EbisusBay" target="_blank" rel="noreferrer">Twitter</a></li>
                 <li><a href="https://instagram.com/ebisusbayofficial" target="_blank" rel="noreferrer">Instagram</a></li>
                 <li><a href="https://t.me/ebisusbay" target="_blank" rel="noreferrer">Telegram</a></li>
+                <li><a href="https://linkedin.com/company/ebisusbay" target="_blank" rel="noreferrer">LinkedIn</a></li>
               </ul>
             </div>
           </div>
@@ -89,6 +90,9 @@ const Footer = () => {
                     </a>
                     <a href="https://blog.ebisusbay.com" target="_blank" rel="noreferrer">
                       <LayeredIcon icon={faMedium} bgIcon={faSquare} shrink={7} />
+                    </a>
+                    <a href="https://linkedin.com/company/ebisusbay" target="_blank" rel="noreferrer">
+                      <LayeredIcon icon={faLinkedin} bgIcon={faSquare} shrink={7} />
                     </a>
                     <a href="mailto:support@ebisusbay.com">
                       <LayeredIcon icon={faEnvelope} bgIcon={faSquare} shrink={7} />
