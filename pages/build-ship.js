@@ -12,6 +12,7 @@ import ShipABI from '../src/Contracts/Ship.json';
 import ShipItemABI from '../src/Contracts/ShipItem.json';
 import {appConfig} from "../src/Config";
 import {hostedImage} from "../src/helpers/image";
+import PageHead from "../src/Components/Head/PageHead";
 
 const knownContracts = appConfig('collections');
 
@@ -104,6 +105,11 @@ const Drop = () => {
 
   return (
     <>
+      <PageHead
+        title="Build a Crosmocraft"
+        description="Build a crosmocraft using crosmocraft parts!"
+        url="/build-ship"
+      />
       <section
         id="profile_banner"
         className="jumbotron breadcumb no-bg tint"
