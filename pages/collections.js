@@ -12,6 +12,7 @@ import { debounce, siPrefixedNumber } from '../src/utils';
 import Image from "next/image";
 import {CdnImage} from "../src/Components/components/CdnImage";
 import {hostedImage} from "../src/helpers/image";
+import PageHead from "../src/Components/Head/PageHead";
 
 const GlobalStyles = createGlobalStyle`
   .mobile-view-list-item {
@@ -136,6 +137,11 @@ const Collections = () => {
 
   return (
     <div>
+      <PageHead
+        title="Collections"
+        description="View the top performing collections on Ebisu's Bay Marketplace"
+        url="/collections"
+      />
       <GlobalStyles />
       <section className="jumbotron breadcumb no-bg tint">
         <div className="mainbreadcumb">
