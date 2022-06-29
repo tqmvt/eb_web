@@ -5646,6 +5646,24 @@
         "discord": "https://discord.gg/aristodog",
         "medium": "https://medium.com/aristodog"
       }
+    },
+    {
+      "name": "Possessed Pirates",
+      "slug": "possessed-pirates",
+      "multiToken": false,
+      "address": "0x7158CA28039626c92B7cdBEA1a6595c3ca025f71",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "In the seas of Cronos, heading to Ebisu's Bay. But something is wrong...there's something turning the crew into monsters...possessing them!",
+        "verified": false,
+        "avatar": "/img/collections/possessed-pirates/avatar.png",
+        "card": "/img/collections/possessed-pirates/card.png",
+        "banner": "/img/collections/possessed-pirates/banner.png",
+        "maxSupply": 100,
+        "twitter": "https://twitter.com/PosessedP",
+        "discord": "https://discord.gg/dWpku7EWct"
+      }
     }
   ],
   "drops": [
