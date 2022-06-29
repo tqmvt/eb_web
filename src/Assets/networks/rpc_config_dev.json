@@ -5683,6 +5683,26 @@
         "twitter": "https://twitter.com/DragonsoftheW",
         "discord": "https://discord.gg/Jdpdg3bpVA"
       }
+    },
+    {
+      "name": "Big Bad Wolves - Reckless Robots",
+      "slug": "big-bad-wolves-reckless-robots",
+      "multiToken": false,
+      "address": "0x9E34be8C32EABF42D3da03B87f69Bc999A394f9b",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "Limited NFT from the partnership between Big Bad Wolves and Reckless Robots",
+        "verified": false,
+        "avatar": "/img/collections/big-bad-wolves-reckless-robots/avatar.png",
+        "card": "/img/collections/big-bad-wolves-reckless-robots/card.png",
+        "banner": "/img/collections/big-bad-wolves-reckless-robots/banner.png",
+        "maxSupply": 20,
+        "website": "https://www.bigbadwolves.club/",
+        "twitter": "https://twitter.com/BigBadWolves_MC",
+        "discord": "https://discord.gg/9GetF5Nc5x",
+        "telegram": "https://t.me/bigbadwolves_nft"
+      }
     }
   ],
   "drops": [
