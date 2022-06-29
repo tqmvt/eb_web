@@ -5664,6 +5664,25 @@
         "twitter": "https://twitter.com/PosessedP",
         "discord": "https://discord.gg/dWpku7EWct"
       }
+    },
+    {
+      "name": "Dragons of the West",
+      "slug": "dragons-of-the-west",
+      "multiToken": false,
+      "address": "0x23E5D32718D05B1aAbADB849a39ff1C2C35b3ce1",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "Dragons of the West is a collection of 4,444 Chinese Dragons inspired by the hit TV show \"Avatar: The Last Airbender\". These dragons are used in our turn-based card strategy P2E game available on mobile and PC.",
+        "verified": false,
+        "avatar": "/img/collections/dragons-of-the-west/avatar.png",
+        "card": "/img/collections/dragons-of-the-west/card.png",
+        "banner": "/img/collections/dragons-of-the-west/banner.png",
+        "maxSupply": 4444,
+        "website": "https://www.dragonsofthewestnft.com/",
+        "twitter": "https://twitter.com/DragonsoftheW",
+        "discord": "https://discord.gg/Jdpdg3bpVA"
+      }
     }
   ],
   "drops": [
