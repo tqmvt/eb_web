@@ -5646,6 +5646,63 @@
         "discord": "https://discord.gg/aristodog",
         "medium": "https://medium.com/aristodog"
       }
+    },
+    {
+      "name": "Possessed Pirates",
+      "slug": "possessed-pirates",
+      "multiToken": false,
+      "address": "0x7158CA28039626c92B7cdBEA1a6595c3ca025f71",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "In the seas of Cronos, heading to Ebisu's Bay. But something is wrong...there's something turning the crew into monsters...possessing them!",
+        "verified": false,
+        "avatar": "/img/collections/possessed-pirates/avatar.png",
+        "card": "/img/collections/possessed-pirates/card.png",
+        "banner": "/img/collections/possessed-pirates/banner.png",
+        "maxSupply": 100,
+        "twitter": "https://twitter.com/PosessedP",
+        "discord": "https://discord.gg/dWpku7EWct"
+      }
+    },
+    {
+      "name": "Dragons of the West",
+      "slug": "dragons-of-the-west",
+      "multiToken": false,
+      "address": "0x23E5D32718D05B1aAbADB849a39ff1C2C35b3ce1",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "Dragons of the West is a collection of 4,444 Chinese Dragons inspired by the hit TV show \"Avatar: The Last Airbender\". These dragons are used in our turn-based card strategy P2E game available on mobile and PC.",
+        "verified": false,
+        "avatar": "/img/collections/dragons-of-the-west/avatar.png",
+        "card": "/img/collections/dragons-of-the-west/card.png",
+        "banner": "/img/collections/dragons-of-the-west/banner.png",
+        "maxSupply": 4444,
+        "website": "https://www.dragonsofthewestnft.com/",
+        "twitter": "https://twitter.com/DragonsoftheW",
+        "discord": "https://discord.gg/Jdpdg3bpVA"
+      }
+    },
+    {
+      "name": "Big Bad Wolves - Reckless Robots",
+      "slug": "big-bad-wolves-reckless-robots",
+      "multiToken": false,
+      "address": "0x9E34be8C32EABF42D3da03B87f69Bc999A394f9b",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "Limited NFT from the partnership between Big Bad Wolves and Reckless Robots",
+        "verified": false,
+        "avatar": "/img/collections/big-bad-wolves-reckless-robots/avatar.png",
+        "card": "/img/collections/big-bad-wolves-reckless-robots/card.png",
+        "banner": "/img/collections/big-bad-wolves-reckless-robots/banner.png",
+        "maxSupply": 20,
+        "website": "https://www.bigbadwolves.club/",
+        "twitter": "https://twitter.com/BigBadWolves_MC",
+        "discord": "https://discord.gg/9GetF5Nc5x",
+        "telegram": "https://t.me/bigbadwolves_nft"
+      }
     }
   ],
   "drops": [

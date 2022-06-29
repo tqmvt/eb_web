@@ -11,7 +11,7 @@ export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = fa
   const [videoThumbnail, setVideoThumbNail] = useState(image);
 
   const blurImageUrl = (img)  => {
-    return ImageKitService.buildBlurUrl(img, {width, height});
+    return ImageKitService.buildBlurUrl(img, {width: 30, height: 30});
   }
 
   const makeThumb = (vid) => {
