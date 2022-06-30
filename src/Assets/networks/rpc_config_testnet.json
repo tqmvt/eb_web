@@ -1280,7 +1280,7 @@
       "name": "AristoDog",
       "slug": "aristodog",
       "multiToken": false,
-      "address": "0x8bF3ba5f6a5167E20DeafcAE9bD44352e1e50897",
+      "address": "0xd0997A498E6e4e90ff850202BAEEe88C64d265Fb",
       "onChain": false,
       "listable": false,
       "metadata": {
@@ -2828,7 +2828,7 @@
         "discord": "https://discord.gg/aristodog",
         "medium" : "https://medium.com/aristodog"
       },
-      "address": "0x8bF3ba5f6a5167E20DeafcAE9bD44352e1e50897",
+      "address": "0xd0997A498E6e4e90ff850202BAEEe88C64d265Fb",
       "maxMintPerTx": 10,
       "maxMintPerAddress": 100,
       "totalSupply": 3333,
