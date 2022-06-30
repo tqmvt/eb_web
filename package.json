@@ -7,7 +7,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "start-web": "NODE_OPTIONS=\"--max_old_space_size=4096\" next start",
+    "start-web": "NODE_OPTIONS=\"--max_old_space_size=1408\" next start",
     "format": "prettier --write \"**/*.+(js|jsx|json|md|mdx|css|scss)\""
   },
   "lint-staged": {
