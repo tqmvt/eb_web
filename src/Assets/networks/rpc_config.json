@@ -5573,7 +5573,7 @@
       "multiToken": false,
       "address": "0x04eE3890b7d6c5e1D9B7FEcd19bADA7Fa60A2770",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "BabyHop Baby Joey First NFT collection",
         "verified": false,
