@@ -293,7 +293,7 @@ const Home = () => {
                   </a>
                 </div>
                 <div className="flex-fill mx-1">
-                  <a href="https://medium.com/@cometcalls/croge-nfts-are-coming-june-30-2022-c167ca0b511b" target="_blank" rel="noreferrer">
+                  <a href="https://nft.crogecoin.com/" target="_blank" rel="noreferrer">
                     <Button type="legacy" className="w-100">
                       <FontAwesomeIcon icon={faInfoCircle} className="me-1"/> Details
                     </Button>
