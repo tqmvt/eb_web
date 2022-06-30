@@ -5703,6 +5703,26 @@
         "discord": "https://discord.gg/9GetF5Nc5x",
         "telegram": "https://t.me/bigbadwolves_nft"
       }
+    },
+    {
+      "name": "D.G.Pals Limited Edition",
+      "slug": "dg-pals-limited-edition",
+      "multiToken": false,
+      "address": "0x500cdf7a96a612BEb9e018035a3E89180a6732fE",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "Welcome to the D.G.Verse! Backed by Crypto.com Capital and Spartan Group, D.G.Pals is one of the first to redefine Web3 gaming with the first Interoperable NFT on the Cronos chain. The Limited Edition Collection contains some of the most unique D.G.Pals in the D.G.Verse. Limited Edition NFTs are extremely rare in circulation, with only 100-200 per release. Limited Edition D.G.Pal NFTs will be able to participate in all of the games in the D.G.Verse. Do check out the D.G.Pals website for more information on the collection.",
+        "verified": true,
+        "avatar": "/img/collections/dg-pals-limited-edition/avatar.jpg",
+        "card": "/img/collections/dg-pals-limited-edition/card.png",
+        "banner": "/img/collections/dg-pals-limited-edition/banner.png",
+        "maxSupply": 10000,
+        "website": "https://dgpals.io/",
+        "twitter": "https://twitter.com/officialdgpals",
+        "discord": "https://discord.gg/dgpals",
+        "medium": "https://medium.com/officialdgpals"
+      }
     }
   ],
   "drops": [
