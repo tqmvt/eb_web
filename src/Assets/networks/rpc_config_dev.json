@@ -5730,7 +5730,7 @@
       "multiToken": false,
       "address": "0x9c4d9D1c8Ce84E328ec1990ebE0c8382AB788097",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "",
         "verified": false,
