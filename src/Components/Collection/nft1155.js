@@ -24,7 +24,7 @@ import {
   timeSince,
 } from '../../utils';
 import { getNftDetails } from '../../GlobalState/nftSlice';
-import {specialImageTransform} from '../../hacks';
+import { specialImageTransform } from '../../hacks';
 import { chainConnect, connectAccount } from '../../GlobalState/User';
 
 import ListingItem from '../NftDetails/NFTTabListings/ListingItem';
@@ -36,7 +36,7 @@ import MakeOfferDialog from '../Offer/MakeOfferDialog';
 import { OFFER_TYPE } from '../Offer/MadeOffersRow';
 import NFTTabOffers from '../Offer/NFTTabOffers';
 import { AnyMedia } from '../components/AnyMedia';
-import {hostedImage} from "../../helpers/image";
+import { hostedImage } from '../../helpers/image';
 
 const Nft1155 = ({ address, id }) => {
   const dispatch = useDispatch();
@@ -74,6 +74,11 @@ const Nft1155 = ({ address, id }) => {
     if (nft.original_image.startsWith('ipfs://')) {
       const link = nft.original_image.split('://')[1];
       return `https://ipfs.io/ipfs/${link}`;
+    }
+
+    if (nft.original_image.startsWith('https://gateway.ebisusbay.com')) {
+      const link = nft.original_image.replace('gateway.ebisusbay.com', 'ipfs.io');
+      return link;
     }
 
     return nft.original_image;

@@ -21,11 +21,12 @@ import {
   mapAttributeString,
   millisecondTimestamp,
   shortAddress,
-  timeSince, relativePrecision,
+  timeSince,
+  relativePrecision,
 } from '../../utils';
 import { getNftDetails } from '../../GlobalState/nftSlice';
 import { connectAccount, chainConnect } from '../../GlobalState/User';
-import {specialImageTransform} from '../../hacks';
+import { specialImageTransform } from '../../hacks';
 import ListingItem from '../NftDetails/NFTTabListings/ListingItem';
 import PriceActionBar from '../NftDetails/PriceActionBar';
 import { ERC721 } from '../../Contracts/Abis';
@@ -34,10 +35,10 @@ import MakeOfferDialog from '../Offer/MakeOfferDialog';
 import NFTTabOffers from '../Offer/NFTTabOffers';
 import { OFFER_TYPE } from '../Offer/MadeOffersRow';
 import { offerState } from '../../core/api/enums';
-import {commify} from "ethers/lib/utils";
-import {appConfig} from "../../Config";
-import {hostedImage} from "../../helpers/image";
-import Link from "next/link";
+import { commify } from 'ethers/lib/utils';
+import { appConfig } from '../../Config';
+import { hostedImage } from '../../helpers/image';
+import Link from 'next/link';
 
 const config = appConfig();
 const knownContracts = config.collections;
@@ -170,20 +171,22 @@ const Nft721 = ({ address, id }) => {
       const contract = new Contract(address, abi, readProvider);
       try {
         const traits = await contract.getToken(id);
-        return Object.entries(traits.currentToken).filter(([key]) => {
-          return !/[^a-zA-Z]/.test(key)
-        }).map(([key, value], i) => {
-          let type = 'string';
-          if (typeof value == "boolean") {
-            type = 'boolean'
-            value = value ? 'yes' : 'no'
-          } else if (key === 'lastClaimTimestamp') {
-            type = 'date';
-          } else if (key === 'lastActionBlock') {
-            value = commify(value);
-          }
-          return {key, value, type};
-        });
+        return Object.entries(traits.currentToken)
+          .filter(([key]) => {
+            return !/[^a-zA-Z]/.test(key);
+          })
+          .map(([key, value], i) => {
+            let type = 'string';
+            if (typeof value == 'boolean') {
+              type = 'boolean';
+              value = value ? 'yes' : 'no';
+            } else if (key === 'lastClaimTimestamp') {
+              type = 'date';
+            } else if (key === 'lastActionBlock') {
+              value = commify(value);
+            }
+            return { key, value, type };
+          });
       } catch (error) {
         console.log(error);
       }
@@ -216,6 +219,11 @@ const Nft721 = ({ address, id }) => {
     if (nft.original_image.startsWith('ipfs://')) {
       const link = nft.original_image.split('://')[1];
       return `https://ipfs.io/ipfs/${link}`;
+    }
+
+    if (nft.original_image.startsWith('https://gateway.ebisusbay.com')) {
+      const link = nft.original_image.replace('gateway.ebisusbay.com', 'ipfs.io');
+      return link;
     }
 
     return nft.original_image;
@@ -617,8 +625,17 @@ const Nft721 = ({ address, id }) => {
 
 export default memo(Nft721);
 
-const Trait = ({ title, value, valueDisplay, percent, occurrence, type, collectionAddress, collectionSlug, queryKey }) => {
-
+const Trait = ({
+  title,
+  value,
+  valueDisplay,
+  percent,
+  occurrence,
+  type,
+  collectionAddress,
+  collectionSlug,
+  queryKey,
+}) => {
   const Value = () => {
     return (
       <h4>
@@ -634,7 +651,7 @@ const Trait = ({ title, value, valueDisplay, percent, occurrence, type, collecti
           <>N/A</>
         )}
       </h4>
-    )
+    );
   };
 
   return (
@@ -642,10 +659,12 @@ const Trait = ({ title, value, valueDisplay, percent, occurrence, type, collecti
       <div className="nft_attr">
         <h5>{humanize(title)}</h5>
         {collectionSlug && queryKey ? (
-          <Link href={{
-            pathname: `/collection/${collectionSlug}`,
-            query: {[queryKey]: JSON.stringify({[title]: [value.toString()]})}
-          }}>
+          <Link
+            href={{
+              pathname: `/collection/${collectionSlug}`,
+              query: { [queryKey]: JSON.stringify({ [title]: [value.toString()] }) },
+            }}
+          >
             <a>
               <Value />
             </a>

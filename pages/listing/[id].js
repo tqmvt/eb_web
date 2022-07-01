@@ -157,6 +157,11 @@ const Listing = () => {
       return `https://ipfs.io/ipfs/${link}`;
     }
 
+    if (listing.nft.original_image.startsWith('https://gateway.ebisusbay.com')) {
+      const link = listing.nft.original_image.replace('gateway.ebisusbay.com', 'ipfs.io');
+      return link;
+    }
+  
     return listing.nft.original_image;
   };
 
