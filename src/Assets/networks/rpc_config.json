@@ -5723,6 +5723,25 @@
         "discord": "https://discord.gg/dgpals",
         "medium": "https://medium.com/officialdgpals"
       }
+    },
+    {
+      "name": "Mawnsters World",
+      "slug": "mawnsters-world",
+      "multiToken": false,
+      "address": "0x9c4d9D1c8Ce84E328ec1990ebE0c8382AB788097",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": false,
+        "avatar": "/img/collections/mawnsters-world/avatar.png",
+        "card": "/img/collections/mawnsters-world/card.png",
+        "banner": "/img/collections/mawnsters-world/banner.png",
+        "maxSupply": 3333,
+        "website": "https://www.mawnstersworld.com/",
+        "twitter": "https://twitter.com/MawnstersWorld",
+        "discord": "http://discord.gg/mdtt8QXw9Z"
+      }
     }
   ],
   "drops": [
