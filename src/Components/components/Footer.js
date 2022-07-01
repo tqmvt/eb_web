@@ -94,9 +94,6 @@ const Footer = () => {
                     <a href="https://linkedin.com/company/ebisusbay" target="_blank" rel="noreferrer">
                       <LayeredIcon icon={faLinkedin} bgIcon={faSquare} shrink={7} />
                     </a>
-                    <a href="mailto:support@ebisusbay.com">
-                      <LayeredIcon icon={faEnvelope} bgIcon={faSquare} shrink={7} />
-                    </a>
                   </div>
                 </div>
               </div>
