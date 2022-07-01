@@ -58,9 +58,9 @@ const MyNftCardList = ({ nfts = [], isLoading, listedOnly, activeFilterOption, u
     [dispatch]
   );
 
-  // const possibleCollections = collectionFilterOptions.filter((collection) =>
-  //   isLoading ? true : !!nfts.find((x) => caseInsensitiveCompare(x.address, collection.value))
-  // );
+  const possibleCollections = nfts.length > 1000 ? collectionFilterOptions : collectionFilterOptions.filter((collection) =>
+    isLoading ? true : !!nfts.find((x) => caseInsensitiveCompare(x.address, collection.value))
+  );
 
   const filteredNFTs = nfts
     .filter((nft) => (listedOnly ? nft.listed : true))
@@ -98,7 +98,7 @@ const MyNftCardList = ({ nfts = [], isLoading, listedOnly, activeFilterOption, u
                 showFilter={true}
                 showSort={false}
                 showSearch={false}
-                filterOptions={[MarketFilterCollection.default(), ...collectionFilterOptions]}
+                filterOptions={[MarketFilterCollection.default(), ...possibleCollections]}
                 defaultFilterValue={activeFilterOption}
                 filterPlaceHolder="Filter Collection..."
                 onFilterChange={onFilterChange}
