@@ -5189,10 +5189,9 @@
         "card": "/img/collections/goblin-cro-town/card.png",
         "banner": "/img/collections/goblin-cro-town/banner.png",
         "maxSupply": 1500,
-        "website": "https://goblincrotown.xyz/",
+        "website": "https://goblincrotown.com/",
         "twitter": "https://twitter.com/GoblinCroTown",
-        "discord": "https://discord.gg/QE2hr8xya4",
-        "medium": "https://unicrons.gitbook.io/docs/"
+        "discord": "https://discord.gg/QE2hr8xya4"
       }
     },
     {
@@ -5282,7 +5281,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "Blood 4 NFT is a collection of whimsical blood vials.\n\nThe objective of this project is to motivate blood donors community with the power of the NFT. \n14 unique Vials were created paying respect to projects on the Cronos chain by an independent Houston artist.",
+        "description": "Blood 4 NFT is a collection of whimsical blood vials.\n\nThe objective of this project is to motivate blood donors community with the power of the NFT. \n14 unique Vials were created paying respect to projects on the Cronos chain by an independent Houston artist. Blood 4 NFT has already collected 4,175 MAD for the community and we aspire to do more: royalties will be responsibly utilized.",
         "verified": true,
         "avatar": "/img/collections/blood-nft/avatar.jpg",
         "card": "/img/collections/blood-nft/card.jpg",
@@ -5730,7 +5729,7 @@
       "multiToken": false,
       "address": "0x9c4d9D1c8Ce84E328ec1990ebE0c8382AB788097",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "",
         "verified": false,
