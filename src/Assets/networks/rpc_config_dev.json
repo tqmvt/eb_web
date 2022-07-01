@@ -5630,7 +5630,7 @@
       "name": "AristoDog",
       "slug": "aristodog",
       "multiToken": false,
-      "address": "",
+      "address": "0x0aecdAf71c1e5c461D2730eEe5243E7b0A81dC7b",
       "onChain": false,
       "listable": false,
       "metadata": {
@@ -8053,7 +8053,7 @@
         "discord": "https://discord.gg/aristodog",
         "medium" : "https://medium.com/aristodog"
       },
-      "address": "",
+      "address": "0x0aecdAf71c1e5c461D2730eEe5243E7b0A81dC7b",
       "maxMintPerTx": 10,
       "maxMintPerAddress": 100,
       "totalSupply": 3333,
