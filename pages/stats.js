@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import styles from '../src/Components/Leaderboard/styles.module.scss';
 import PageHead from "../src/Components/Head/PageHead";
+import Footer from "../src/Components/components/Footer";
 
 export const carouselSettings = {
   infinite: true,
@@ -181,6 +182,7 @@ export default function Stats() {
           <Table headers={headers[type]} items={leaderBoard[type]} />
         </div>
       </section>
+      <Footer />
     </div>
   );
 }
