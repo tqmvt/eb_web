@@ -5451,7 +5451,7 @@
       "name": "CyberSquad",
       "slug": "cyber-squad",
       "multiToken": false,
-      "address": "",
+      "address": "0x92E38D9A6a55984e83025CAD11e5538a8227ef3c",
       "onChain": false,
       "listable": false,
       "metadata": {
@@ -7992,7 +7992,7 @@
         "twitter": "https://twitter.com/CyberSquadd",
         "discord": "https://discord.gg/cybersquad"
       },
-      "address": "",
+      "address": "0x92E38D9A6a55984e83025CAD11e5538a8227ef3c",
       "maxMintPerTx": 10,
       "maxMintPerAddress": 100,
       "totalSupply": 10000,
