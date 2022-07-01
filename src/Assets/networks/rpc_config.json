@@ -4983,7 +4983,7 @@
       "multiToken": false,
       "address": "0xCf185Cb08c62Ff969D258FBA18F92dabb278A8A9",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "The Flaming Phenix Club is a prestigious collection of 6,666 stunningly beautiful, fiery, and unique creatures apart of the Phenix Finance Ecosystem.",
         "verified": true,
@@ -7222,7 +7222,7 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false
+      "complete": true
     },
     {
       "id": 58,
@@ -7849,7 +7849,7 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false
+      "complete": true
     },
     {
       "id": 79,
