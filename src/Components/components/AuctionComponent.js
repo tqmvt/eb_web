@@ -12,8 +12,8 @@ import { getAuctionDetails } from '../../GlobalState/auctionSlice';
 import { caseInsensitiveCompare, humanize, newlineText, shortAddress, timeSince } from '../../utils';
 import BuyerActionBar from '../Auctions/BuyerActionBar';
 import ProfilePreview from '../components/ProfilePreview';
-import {appConfig} from "../../Config";
-import {hostedImage} from "../../helpers/image";
+import { appConfig } from '../../Config';
+import { hostedImage } from '../../helpers/image';
 
 const config = appConfig();
 const knownContracts = config.collections;
@@ -40,6 +40,11 @@ const AuctionComponent = (props) => {
     if (listing.nft.original_image.startsWith('ipfs://')) {
       const link = listing.nft.original_image.split('://')[1];
       return `https://ipfs.io/ipfs/${link}`;
+    }
+
+    if (listing.nft.original_image.startsWith('https://gateway.ebisusbay.com')) {
+      const link = listing.nft.original_image.replace('gateway.ebisusbay.com', 'ipfs.io');
+      return link;
     }
 
     return listing.nft.original_image;

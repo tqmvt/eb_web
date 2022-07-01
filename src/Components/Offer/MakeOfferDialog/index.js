@@ -10,7 +10,7 @@ import { Spinner } from 'react-bootstrap';
 import Button from '../../../Components/components/Button';
 import Input from '../../../Components/components/common/Input';
 import ProfilePreview from '../../../Components/components/ProfilePreview';
-import {specialImageTransform} from '../../../hacks';
+import { specialImageTransform } from '../../../hacks';
 import { caseInsensitiveCompare, humanize, isEventValidNumber, shortAddress } from '../../../utils';
 import { OFFER_TYPE } from '../MadeOffersRow';
 import { updateOfferSuccess, updateOfferFailed } from '../../../GlobalState/offerSlice';
@@ -21,8 +21,8 @@ import { getAllCollections } from '../../../GlobalState/collectionsSlice';
 import { offerState } from '../../../core/api/enums';
 import { txExtras } from '../../../core/constants';
 import { findCollectionByAddress } from '../../../utils';
-import {appConfig} from "../../../Config";
-import {hostedImage} from "../../../helpers/image";
+import { appConfig } from '../../../Config';
+import { hostedImage } from '../../../helpers/image';
 
 const config = appConfig();
 
@@ -324,6 +324,11 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
     if (nftData.image.startsWith('ipfs://')) {
       const link = nftData.image.split('://')[1];
       return `https://ipfs.io/ipfs/${link}`;
+    }
+
+    if (nftData.image.startsWith('https://gateway.ebisusbay.com')) {
+      const link = nftData.image.replace('gateway.ebisusbay.com', 'ipfs.io');
+      return link;
     }
 
     return nftData.image;
