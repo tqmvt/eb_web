@@ -5820,6 +5820,25 @@
         "discord": "https://discord.gg/cronosbotsociety",
         "medium": "https://medium.com/@Cronos-Bot-Society"
       }
+    },
+    {
+      "name": "CROMMY",
+      "slug": "crommy",
+      "multiToken": false,
+      "address": "0xDD50C0055938f9706d9474D364fdC46880C4c9a5",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "5000 cute Mummies make trouble in the Cronosverse. Will you be able to catch them?",
+        "verified": false,
+        "avatar": "/img/collections/crommy/avatar.jpg",
+        "card": "/img/collections/crommy/card.jpg",
+        "banner": "/img/collections/crommy/banner.jpg",
+        "maxSupply": 5000,
+        "website": "https://www.crorarity.com/crommy/",
+        "twitter": "https://twitter.com/cromummy",
+        "discord": "https://discord.gg/9kZ4bBsYcy"
+      }
     }
   ],
   "drops": [
