@@ -5788,11 +5788,17 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Crogecoin is the first and biggest memecoin on the Cronos network. Croge NFTs are used by the community to represent our support for Crogecoin, Cronos, and Crypto.com. The Croge community loves memes, sports, and fun.",
         "verified": true,
+        "avatar": "/img/collections/croge-nft/avatar.jpg",
+        "card": "/img/collections/croge-nft/card.jpg",
+        "banner": "/img/collections/croge-nft/banner.jpeg",
+        "maxSupply": 5000,
         "website": "https://www.crogecoin.com/",
+        "discord": "https://discord.gg/crogenft",
         "twitter": "https://twitter.com/CrogeCoin",
-        "telegram": "https://t.me/crogecoin"
+        "telegram": "https://t.me/crogecoin",
+        "medium": "https://medium.com/@cometcalls/croge-nfts-are-coming-june-30-2022-c167ca0b511b"
       }
     }
   ],
