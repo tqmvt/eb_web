@@ -5779,6 +5779,21 @@
         "twitter": "https://twitter.com/ToughLions1111",
         "discord": "https://discord.gg/8ssS2RWZvn"
       }
+    },
+    {
+      "name": "CrogeNFT",
+      "slug": "croge-nft",
+      "multiToken": false,
+      "address": "0x210f968ab05b81E7C37D11Eb5AcF855a51F34e5C",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "website": "https://www.crogecoin.com/",
+        "twitter": "https://twitter.com/CrogeCoin",
+        "telegram": "https://t.me/crogecoin"
+      }
     }
   ],
   "drops": [
