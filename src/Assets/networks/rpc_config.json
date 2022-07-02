@@ -5120,7 +5120,7 @@
       "name": "Wacky Wurmz",
       "slug": "wacky-wurmz",
       "multiToken": false,
-      "address": "0x731A37c48F3e08BD119511892AEE482f4dc8B5fa",
+      "address": "0x26E7023f081FC28649Ce63DB2D9a9574b464790E",
       "onChain": false,
       "listable": false,
       "metadata": {
@@ -8020,7 +8020,7 @@
         "name": "Wacky Wurmz",
         "link": "https://www.wackywurmz.com/mint"
       },
-      "address": "0x731A37c48F3e08BD119511892AEE482f4dc8B5fa",
+      "address": "0x26E7023f081FC28649Ce63DB2D9a9574b464790E",
       "maxMintPerTx": 0,
       "maxMintPerAddress": 0,
       "totalSupply": 0,
