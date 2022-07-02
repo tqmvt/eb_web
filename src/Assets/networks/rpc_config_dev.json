@@ -5788,11 +5788,56 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "",
+        "description": "Crogecoin is the first and biggest memecoin on the Cronos network. Croge NFTs are used by the community to represent our support for Crogecoin, Cronos, and Crypto.com. The Croge community loves memes, sports, and fun.",
         "verified": true,
+        "avatar": "/img/collections/croge-nft/avatar.jpg",
+        "card": "/img/collections/croge-nft/card.jpg",
+        "banner": "/img/collections/croge-nft/banner.jpeg",
+        "maxSupply": 5000,
         "website": "https://www.crogecoin.com/",
+        "discord": "https://discord.gg/crogenft",
         "twitter": "https://twitter.com/CrogeCoin",
-        "telegram": "https://t.me/crogecoin"
+        "telegram": "https://t.me/crogecoin",
+        "medium": "https://medium.com/@cometcalls/croge-nfts-are-coming-june-30-2022-c167ca0b511b"
+      }
+    },
+    {
+      "name": "CBS: Ballin Bots",
+      "slug": "cbs-ballin-bots",
+      "multiToken": false,
+      "address": "0x4202074d695724366F00C24Ab9D27ac1dD2ED526",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "CBS: Ballin Bots is a collection of 3,000 NFTs with striking artwork, a magnitude of traits and utility to go with it! A new era of the society is on the horizon, the Ballin Bots are currently being reprogrammed out of their hibernation chambers in order to advance the society into the future of finance…. The CBS coin, which they will personally spear head whilst the original CBS Bots carry on defending the Planet Cronos.",
+        "verified": false,
+        "avatar": "/img/collections/cbs-ballin-bots/avatar.png",
+        "card": "/img/collections/cbs-ballin-bots/card.png",
+        "banner": "/img/collections/cbs-ballin-bots/banner.png",
+        "maxSupply": 3000,
+        "website": "https://cronosbotsociety.com/",
+        "twitter": "https://twitter.com/CronosBots",
+        "discord": "https://discord.gg/cronosbotsociety",
+        "medium": "https://medium.com/@Cronos-Bot-Society"
+      }
+    },
+    {
+      "name": "CROMMY",
+      "slug": "crommy",
+      "multiToken": false,
+      "address": "0xDD50C0055938f9706d9474D364fdC46880C4c9a5",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "5000 cute Mummies make trouble in the Cronosverse. Will you be able to catch them?",
+        "verified": false,
+        "avatar": "/img/collections/crommy/avatar.jpg",
+        "card": "/img/collections/crommy/card.jpg",
+        "banner": "/img/collections/crommy/banner.jpg",
+        "maxSupply": 5000,
+        "website": "https://www.crorarity.com/crommy/",
+        "twitter": "https://twitter.com/cromummy",
+        "discord": "https://discord.gg/9kZ4bBsYcy"
       }
     }
   ],
