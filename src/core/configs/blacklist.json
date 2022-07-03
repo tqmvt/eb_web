@@ -35,6 +35,11 @@
       "slug": "lazy-horse",
       "address": "0xD504ed871d33dbD4f56f523A37dceC86Ee918cb6",
       "ids": [1931]
+    },
+    {
+      "slug": "mad-meerkat-degen",
+      "address": "0xA19bFcE9BaF34b92923b71D487db9D0D051a88F8",
+      "ids": [5924]
     }
   ]
 }
