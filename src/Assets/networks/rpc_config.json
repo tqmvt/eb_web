@@ -4990,6 +4990,8 @@
         "avatar": "/img/collections/flaming-phenix-club/avatar.webp",
         "banner": "/img/collections/flaming-phenix-club/banner.webp",
         "card": "/img/collections/flaming-phenix-club/card.webp",
+        "rarity": "rarity_sniper",
+        "raritySniperSlug": "flaming-phenix-club",
         "maxSupply": 6666,
         "website": "https://phenix.finance/",
         "twitter": "https://twitter.com/phenixfinance",
