@@ -4784,7 +4784,7 @@
       "multiToken": false,
       "address": "0x45958Cb5ede8dc9E1a797C1526D4523db1471F15",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "CrougarX is the 2nd Generation of the Crougar NFT project. It is intended to have a higher scarcity, as well as unique utilities and benefits to holders of CrougarX and Gen 1 NFTs.   CrougarX is a very limited collection of 1,111 NFTs. Derived from the first Crougar collection, with several exciting aesthetic differences! Such as a redesigned pixel art style, a variety of completely new traits, as well as the introduction of animated backgrounds.   The CrougarX collection has dual utility: with benefits to CrougarX holders and also Gen 1 Holders. Additional benefits for holding both!",
         "verified": true,
