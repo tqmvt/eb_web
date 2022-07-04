@@ -1381,7 +1381,7 @@
       "onChain": false,
       "listable": true,
       "metadata": {
-        "description": "IcySquidNFT is a collection of 1000 NFTs used in the game http://IcySquidGame.com by IcyCro",
+        "description": "IcySquidNFT is a collection of 1000 NFTs used in the game https://IcySquidGame.com by IcyCro",
         "verified": true,
         "avatar": "/img/collections/icysquidgame/avatar.png",
         "card": "/img/collections/icysquidgame/card.jpg",
