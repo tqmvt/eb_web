@@ -242,12 +242,12 @@ const MyNFTSaleForm = ({ walletAddress, marketContract, myNftPageListDialog }) =
     },
     enableListingDialog: {
       title: 'Enable Listing',
-      firstButtonText: 'Please confirm transaction in your wallet',
+      firstButtonText: 'Continue',
       onClickFirstButton: listDialogConfirmListingStep,
       closePopup: closePopup,
       isWaiting: true,
-      text: 'Before you can list your NFT, you must grant access with your wallet',
-      warningMessage: `The current price is ${(100 - (salePrice * 100 / floorPrice)).toFixed(1)}% below previous floor price`,
+      text: 'Before you can list your NFT, you must confirm the transaction in your wallet',
+      warningMessage: `The desired price is ${(100 - (salePrice * 100 / floorPrice)).toFixed(1)}% below the current floor price of ${floorPrice} CRO`,
     },
     successDialog: {
       title: 'Success!',
@@ -269,7 +269,7 @@ const MyNFTSaleForm = ({ walletAddress, marketContract, myNftPageListDialog }) =
       },
       secondButtonText: 'Accept',
       onClickFirstButton: closePopup,
-      text: `The current price is ${(100 - (salePrice * 100 / floorPrice)).toFixed(1)}% below previous floor price`,
+      text: `The desired price is ${(100 - (salePrice * 100 / floorPrice)).toFixed(1)}% below the current floor price of ${floorPrice} CRO`,
       closePopup: closePopup,
       isWarningMessage: true,
     }

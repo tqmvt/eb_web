@@ -49,7 +49,7 @@ const NftSell = () => {
           <div className="container">
             <div className="row m-10-hor">
               <div className="col-12 text-center">
-                <h1>Sale NFT</h1>
+                <h1>Sell NFT</h1>
               </div>
             </div>
           </div>
