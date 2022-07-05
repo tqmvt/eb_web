@@ -5748,7 +5748,7 @@
       "name": "Alien Apocalypse",
       "slug": "alien-apocalypse",
       "multiToken": false,
-      "address": "",
+      "address": "0x5628c7a229ff920e3c7aB668107e822Fa84244B4",
       "onChain": false,
       "listable": false,
       "metadata": {
@@ -5840,6 +5840,81 @@
         "website": "https://www.crorarity.com/crommy/",
         "twitter": "https://twitter.com/cromummy",
         "discord": "https://discord.gg/9kZ4bBsYcy"
+      }
+    },
+    {
+      "name": "Invisible Crommy",
+      "slug": "invisible-crommy",
+      "multiToken": false,
+      "address": "0x3aE3f00f262a37e87e9cdb8013F57Fe701917183",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "The second gen of Crommy. Only 100 exclusive NFTs",
+        "verified": false,
+        "avatar": "/img/collections/invisible-crommy/avatar.jpg",
+        "card": "/img/collections/invisible-crommy/card.jpg",
+        "banner": "/img/collections/invisible-crommy/banner.jpg",
+        "maxSupply": 100,
+        "website": "https://www.crorarity.com/crommy/",
+        "twitter": "https://twitter.com/cromummy",
+        "discord": "https://discord.gg/9kZ4bBsYcy"
+      }
+    },
+    {
+      "name": "New America NFT",
+      "slug": "new-america-nft",
+      "multiToken": false,
+      "address": "0x7fbbD577E8D6510f6e5Cb19c477B9A5e050D411F",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "\"Launch The Enforcers\" is the First 3D collection From New America NFT. With a storyline emerging from a comic book story, New America NFT takes a step into the Gaming world of things with their soon to release play to earn video game. New America NFT continues to add value with staking, and also Earning 3D assets for game play for simply holding and NFT. Enjoy customizations, monthly CRO rewards, and more through their discord community.",
+        "verified": false,
+        "avatar": "/img/collections/new-america-nft/avatar.jpg",
+        "card": "/img/collections/new-america-nft/card.png",
+        "banner": "/img/collections/new-america-nft/banner.png",
+        "maxSupply": 980,
+        "twitter": "https://twitter.com/NewAmericaNFT",
+        "discord": "https://discord.gg/yNJbZJSmQ5"
+      }
+    },
+    {
+      "name": "Cyborg Chests",
+      "slug": "cyborg-chests",
+      "multiToken": false,
+      "address": "0x4A8a028E3C24b95A055B5B6b3ef16db36E46b882",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "The Cyborg Loot Box Lottery Mechanism. 1 in 2 chests will always win! To discover the contents of your chest, simply go to the My Chests tab https://cyborgstables.io/my-chests to see your Chests. Select the Chest, enable, and then click on the « open chest » button. Your prizes will be directly transferred to your wallet and your NFT CHEST will go directly to the burn address. Therefore, it will be impossible for someone malicious to resell a Chest that has already been opened! Do you feel lucky today?",
+        "verified": false,
+        "avatar": "/img/collections/cyborg-chests/avatar.png",
+        "card": "/img/collections/cyborg-chests/card.png",
+        "banner": "/img/collections/cyborg-chests/banner.png",
+        "maxSupply": 10000,
+        "website": "https://cyborgstables.io/",
+        "twitter": "https://twitter.com/CyborgSwapDEX",
+        "discord": "https://discord.gg/Ku6A7tJSVp",
+        "medium": "https://cyborgswap.medium.com",
+        "telegram": "https://t.me/chronoswap_chat"
+      }
+    },
+    {
+      "name": "Natsumi",
+      "slug": "natsumi",
+      "multiToken": false,
+      "address": "0x937B2660796D5394058298440F71fCEBD5f1F18A",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "Follow the journey of Natsumi as she uncovers her powers and unlock her destiny.",
+        "verified": false,
+        "avatar": "/img/collections/natsumi/avatar.png",
+        "card": "/img/collections/natsumi/card.jpg",
+        "banner": "/img/collections/natsumi/banner.jpg",
+        "maxSupply": 500,
+        "twitter": "https://twitter.com/NatsumiNFT"
       }
     }
   ],
@@ -8150,7 +8225,7 @@
         "twitter": "https://twitter.com/ada_apocalypse",
         "discord": "https://discord.gg/fDcyEcgSDg"
       },
-      "address": "",
+      "address": "0x5628c7a229ff920e3c7aB668107e822Fa84244B4",
       "maxMintPerTx": 10,
       "maxMintPerAddress": 100,
       "totalSupply": 3000,

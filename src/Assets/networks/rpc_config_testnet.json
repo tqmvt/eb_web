@@ -1295,6 +1295,25 @@
         "discord": "https://discord.gg/aristodog",
         "medium": "https://medium.com/aristodog"
       }
+    },
+    {
+      "name": "Alien Apocalypse",
+      "slug": "alien-apocalypse",
+      "multiToken": false,
+      "address": "0xa20A2502777948ba4D2231c100011F27cD0B8444",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "Alien Apocalypse is a collection of 3,000 uniquely generated invaders. The first of its kind, bridging the Cronos and Cardano Blockchains. The collection contains over 180 out of this world traits that are sure to blow your mind. Owning an Alien Apocalypse NFT will grant you access to the Horde Ecosystem.",
+        "verified": true,
+        "avatar": "/img/collections/alien-apocalypse/avatar.png",
+        "card": "/img/collections/alien-apocalypse/card.png",
+        "banner": "/img/collections/alien-apocalypse/banner.png",
+        "maxSupply": 3000,
+        "website": "https://apocalypse-nft.io/",
+        "twitter": "https://twitter.com/ada_apocalypse",
+        "discord": "https://discord.gg/fDcyEcgSDg"
+      }
     }
   ],
   "drops": [
@@ -2837,6 +2856,36 @@
       "whitelistCost": "400",
       "foundersOnly": false,
       "start": 1656457200000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false
+    },
+    {
+      "id": 84,
+      "slug": "alien-apocalypse",
+      "imgNft": "/img/drops/alien-apocalypse/drop.png",
+      "imgPreview": "/img/drops/alien-apocalypse/drop.png",
+      "imgAvatar": "/img/collections/alien-apocalypse/avatar.png",
+      "imgBanner": "/img/collections/alien-apocalypse/banner.png",
+      "title": "Alien Apocalypse",
+      "subtitle": "Alien Apocalypse is a collection of 3,000 uniquely generated invaders. The first of its kind, bridging the Cronos and Cardano Blockchains.",
+      "description": "Alien Apocalypse is a collection of 3,000 uniquely generated invaders. The first of its kind, bridging the Cronos and Cardano Blockchains.\n\nThe collection contains over 180 out of this world traits that are sure to blow your mind \uD83D\uDCA5\uD83D\uDC7D\n\nOwning an Alien Apocalypse NFT will grant you access to the Horde Ecosystem.\n\nUtilities:\n\n\uD83D\uDC49 Cross Chain Cardano Airdrop\n\uD83D\uDC49 Staking\n\uD83D\uDC49 Apocalypse Animation\n\uD83D\uDC49Merchandise",
+      "author": {
+        "name": "ADA Apocalypse",
+        "website": "https://apocalypse-nft.io/",
+        "twitter": "https://twitter.com/ada_apocalypse",
+        "discord": "https://discord.gg/fDcyEcgSDg"
+      },
+      "address": "0xa20A2502777948ba4D2231c100011F27cD0B8444",
+      "maxMintPerTx": 10,
+      "maxMintPerAddress": 100,
+      "totalSupply": 3000,
+      "cost": "290",
+      "memberCost": "250",
+      "foundersOnly": false,
+      "start": 1656984375000,
       "end": null,
       "referral": false,
       "is1155": false,

@@ -78,7 +78,7 @@ const headers = {
 };
 
 export default function Stats() {
-  const [timeframe, setTimeframe] = useState(`7d`);
+  const [timeframe, setTimeframe] = useState('custom');
   const [type, setType] = useState('totalVolume');
   const dispatch = useDispatch();
 
@@ -138,9 +138,9 @@ export default function Stats() {
               <li id="sale" className={timeframe === null ? 'active' : ''} onClick={() => updateTimeframe(null)}>
                 All Time
               </li>
-              {/*<li id="sale" className={timeframe === 'custom' ? 'active' : ''} onClick={() => updateTimeframe('custom')}>*/}
-              {/*  Competition*/}
-              {/*</li>*/}
+              <li id="sale" className={timeframe === 'custom' ? 'active' : ''} onClick={() => updateTimeframe('custom')}>
+                Competition
+              </li>
             </ul>
           </div>
         </div>
@@ -182,6 +182,10 @@ export default function Stats() {
           <Table headers={headers[type]} items={leaderBoard[type]} />
         </div>
       </section>
+      {timeframe === 'custom' &&
+        <p className="text-center small"><a href="/files/Contest_Terms_and_Conditions.html">Contest Terms and
+          Conditions</a></p>
+      }
       <Footer />
     </div>
   );
