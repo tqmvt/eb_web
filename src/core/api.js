@@ -824,7 +824,6 @@ export async function getNft(collectionId, nftId, useFallback = true) {
       const plotCoords = `(${data.xmin}, ${data.ymin})`;
       result.nft.description = `Metaverse Pixel plot at ${plotCoords} with a ${plotSize} size`;
     }
-
     return result;
   } catch (error) {
     console.log(error);

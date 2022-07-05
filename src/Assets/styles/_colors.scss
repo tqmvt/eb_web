@@ -18,8 +18,13 @@
   --color-bgColor2: #bd2727;
   --color-bgColor3: #f6f6f6;
 
+  --color-cardColor1: #fff;
+  --color-cardColor2: #f2f2f2;
+
   --color-borderColor1: #eeeeee;
   --color-borderColor2: #bbbbbb;
+
+  --color-warningColor1: #ffc107;
 
   --color-boxShadow1: rgba(20, 20, 20, 0.1);
 }
@@ -43,9 +48,14 @@ html[data-theme='dark'] {
   --color-bgColor1: #212428;
   --color-bgColor2: #bd2727;
   --color-bgColor3: #333;
+  
+  --color-cardColor1: #000;
+  --color-cardColor2: #2e333c;
 
   --color-borderColor1: rgba(255, 255, 255, 0.1);
   --color-borderColor2: rgba(255, 255, 255, 0.1);
+
+  --color-warningColor1: #e3ad0c;
 
   --color-boxShadow1: rgba(20, 20, 20, 0.6);
 }
@@ -69,7 +79,12 @@ $bgColor1: var(--color-bgColor1);
 $bgColor2: var(--color-bgColor2);
 $bgColor3: var(--color-bgColor3);
 
+$cardColor1: var(--color-cardColor1);
+$cardColor2: var(--color-cardColor2);
+
 $borderColor1: var(--color-borderColor1);
 $borderColor2: var(--color-borderColor2);
+
+$warningColor1: var(--color-warningColor1);
 
 $colorBoxShadow1: var(--color-boxShadow1);
