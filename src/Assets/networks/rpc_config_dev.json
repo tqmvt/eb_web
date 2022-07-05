@@ -5899,6 +5899,23 @@
         "medium": "https://cyborgswap.medium.com",
         "telegram": "https://t.me/chronoswap_chat"
       }
+    },
+    {
+      "name": "Natsumi",
+      "slug": "natsumi",
+      "multiToken": false,
+      "address": "0x937B2660796D5394058298440F71fCEBD5f1F18A",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "Follow the journey of Natsumi as she uncovers her powers and unlock her destiny.",
+        "verified": false,
+        "avatar": "/img/collections/natsumi/avatar.png",
+        "card": "/img/collections/natsumi/card.jpg",
+        "banner": "/img/collections/natsumi/banner.jpg",
+        "maxSupply": 500,
+        "twitter": "https://twitter.com/NatsumiNFT"
+      }
     }
   ],
   "drops": [
