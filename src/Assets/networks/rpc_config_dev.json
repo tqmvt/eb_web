@@ -5748,7 +5748,7 @@
       "name": "Alien Apocalypse",
       "slug": "alien-apocalypse",
       "multiToken": false,
-      "address": "",
+      "address": "0x5628c7a229ff920e3c7aB668107e822Fa84244B4",
       "onChain": false,
       "listable": false,
       "metadata": {
@@ -8150,7 +8150,7 @@
         "twitter": "https://twitter.com/ada_apocalypse",
         "discord": "https://discord.gg/fDcyEcgSDg"
       },
-      "address": "",
+      "address": "0x5628c7a229ff920e3c7aB668107e822Fa84244B4",
       "maxMintPerTx": 10,
       "maxMintPerAddress": 100,
       "totalSupply": 3000,
