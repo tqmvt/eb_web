@@ -5841,6 +5841,25 @@
         "twitter": "https://twitter.com/cromummy",
         "discord": "https://discord.gg/9kZ4bBsYcy"
       }
+    },
+    {
+      "name": "Invisible Crommy",
+      "slug": "invisible-crommy",
+      "multiToken": false,
+      "address": "0x3aE3f00f262a37e87e9cdb8013F57Fe701917183",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "The second gen of Crommy. Only 100 exclusive NFTs",
+        "verified": false,
+        "avatar": "/img/collections/invisible-crommy/avatar.jpg",
+        "card": "/img/collections/invisible-crommy/card.jpg",
+        "banner": "/img/collections/invisible-crommy/banner.jpg",
+        "maxSupply": 100,
+        "website": "https://www.crorarity.com/crommy/",
+        "twitter": "https://twitter.com/cromummy",
+        "discord": "https://discord.gg/9kZ4bBsYcy"
+      }
     }
   ],
   "drops": [
