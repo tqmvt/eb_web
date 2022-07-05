@@ -5878,6 +5878,27 @@
         "twitter": "https://twitter.com/NewAmericaNFT",
         "discord": "https://discord.gg/yNJbZJSmQ5"
       }
+    },
+    {
+      "name": "Cyborg Chests",
+      "slug": "cyborg-chests",
+      "multiToken": false,
+      "address": "0x4A8a028E3C24b95A055B5B6b3ef16db36E46b882",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "The Cyborg Loot Box Lottery Mechanism. 1 in 2 chests will always win! To discover the contents of your chest, simply go to the My Chests tab https://cyborgstables.io/my-chests to see your Chests. Select the Chest, enable, and then click on the « open chest » button. Your prizes will be directly transferred to your wallet and your NFT CHEST will go directly to the burn address. Therefore, it will be impossible for someone malicious to resell a Chest that has already been opened! Do you feel lucky today?",
+        "verified": false,
+        "avatar": "/img/collections/cyborg-chests/avatar.png",
+        "card": "/img/collections/cyborg-chests/card.png",
+        "banner": "/img/collections/cyborg-chests/banner.png",
+        "maxSupply": 10000,
+        "website": "https://cyborgstables.io/",
+        "twitter": "https://twitter.com/CyborgSwapDEX",
+        "discord": "https://discord.gg/Ku6A7tJSVp",
+        "medium": "https://cyborgswap.medium.com",
+        "telegram": "https://t.me/chronoswap_chat"
+      }
     }
   ],
   "drops": [
