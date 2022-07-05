@@ -5916,6 +5916,25 @@
         "maxSupply": 500,
         "twitter": "https://twitter.com/NatsumiNFT"
       }
+    },
+    {
+      "name": "CroWhales",
+      "slug": "cro-whales",
+      "multiToken": false,
+      "address": "0x81766b0ea49e7bac90e369f56d3bae2a19d2934d",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "An exclusive NFT community collecting $CRO in the bear market. 60% of minting revenue will be deposited into MMO vault to earn $CRO. 1:1 Airdrop to all future collection.",
+        "verified": false,
+        "avatar": "/img/collections/cro-whales/avatar.png",
+        "card": "/img/collections/cro-whales/card.png",
+        "banner": "/img/collections/cro-whales/banner.png",
+        "maxSupply": 100,
+        "twitter": "https://twitter.com/CroWhales",
+        "discord": "https://discord.gg/f8hYkFxH",
+        "telegram": "https://t.me/crowhalesnft"
+      }
     }
   ],
   "drops": [
