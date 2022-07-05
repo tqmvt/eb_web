@@ -329,7 +329,7 @@ const MyNFTSaleForm = ({ walletAddress, marketContract, myNftPageListDialog }) =
         </span>)}
 
       {myNftPageListDialog && !isLoading && <>
-        <h2 className='title'>VIP Founding Member Listing Details</h2>
+        <h2 className='title'>{`${myNftPageListDialog?.name} Listing Details`}</h2>
         <div className='formContainer'>
           <form className='saleForm'>
             <div className='left-column'>
