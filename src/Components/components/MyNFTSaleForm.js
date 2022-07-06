@@ -1,6 +1,6 @@
 import React, { memo, useEffect, useState, useCallback } from 'react';
 
-import { Form, Spinner } from 'react-bootstrap';
+import {Badge, Form, Spinner} from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClock, faDollarSign, faCheck, faAngleDown } from '@fortawesome/free-solid-svg-icons';
 
@@ -352,7 +352,17 @@ const MyNFTSaleForm = ({ walletAddress, marketContract, myNftPageListDialog }) =
 
               <Form.Group className='form-field mb-3'>
                 <div className='label-container'>
-                  <Form.Label className='formLabel'>{saleType === 1 ? 'Listing Price' : 'Starting Bid Price'}</Form.Label>
+                  <Form.Label className='formLabel'>
+                    {saleType === 1 ? 'Listing Price' : 'Starting Bid Price'}
+                    <Badge
+                      pill
+                      bg={user.theme === 'dark' ? 'light' : 'secondary'}
+                      text={user.theme === 'dark' ? 'dark' : 'light'}
+                      className="ms-2"
+                    >
+                      Floor: {floorPrice} CRO
+                    </Badge>
+                  </Form.Label>
                 </div>
                 <Form.Control className='input' type='text' placeholder='Enter Amount' value={salePrice} onChange={costOnChange} />
                 <Form.Text className='field-description textError'>
