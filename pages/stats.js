@@ -183,7 +183,7 @@ export default function Stats() {
         </div>
       </section>
       {timeframe === 'custom' &&
-        <p className="text-center small"><a href="/files/Contest_Terms_and_Conditions.html">Contest Terms and
+        <p className="text-center small"><a href="/Contest_Terms_and_Conditions.html">Contest Terms and
           Conditions</a></p>
       }
       <Footer />
