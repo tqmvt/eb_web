@@ -5935,6 +5935,39 @@
         "discord": "https://discord.gg/f8hYkFxH",
         "telegram": "https://t.me/crowhalesnft"
       }
+    },
+    {
+      "name": "CronosDrake",
+      "slug": "cronos-drake",
+      "multiToken": false,
+      "address": "0xacba47acefe362c7df6dd343e1b1501c3387b603",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "500 unique drakes with over 30 traits and can be staked to earn passive income.",
+        "verified": false,
+        "avatar": "/img/collections/cronos-drake/avatar.jpg",
+        "maxSupply": 500,
+        "twitter": "https://twitter.com/cronosdrake",
+        "discord": "https://discord.gg/ZxvghdtNxc"
+      }
+    },
+    {
+      "name": "LadyBACC",
+      "slug": "lady-bacc",
+      "multiToken": false,
+      "address": "0xEA2462cb14DA8Cb22D1d417a9A1D16EBE6030e18",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "The Ladies continue the BACC lineage",
+        "verified": false,
+        "avatar": "/img/collections/lady-bacc/avatar.jpg",
+        "maxSupply": 10000,
+        "twitter": "https://twitter.com/ApesLady",
+        "discord": "https://discord.gg/9VXbM9RF2H",
+        "medium": "https://medium.com/@ladyapes"
+      }
     }
   ],
   "drops": [
