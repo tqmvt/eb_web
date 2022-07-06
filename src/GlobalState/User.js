@@ -82,6 +82,7 @@ const userSlice = createSlice({
     nftsFullyFetched: false,
     myNftPageTransferDialog: null,
     myNftPageListDialog: null,
+    myNftPageListDialogError: false,
     myNftPageCancelDialog: null,
     myNftPageListedOnly: false,
     myNftPageActiveFilterOption: MarketFilterCollection.default(),
@@ -173,6 +174,9 @@ const userSlice = createSlice({
     },
     setMyNftPageListDialog(state, action) {
       state.myNftPageListDialog = action.payload;
+    },
+    setMyNftPageListDialogError(state, action) {
+      state.myNftPageListDialogError = action.payload;
     },
     setMyNftPageCancelDialog(state, action) {
       state.myNftPageCancelDialog = action.payload;
@@ -1007,10 +1011,14 @@ export class MyNftPageActions {
   };
 
   static showMyNftPageListDialog =
-    ({ contract, id, image, name, address }) =>
+    ({ contract, id, image, name, address, price, rank }) =>
     async (dispatch) => {
-      dispatch(userSlice.actions.setMyNftPageListDialog({ contract, id, image, name, address }));
+      dispatch(userSlice.actions.setMyNftPageListDialog({ contract, id, image, name, address, price, rank }));
     };
+
+  static setMyNftPageListDialogError = (error) => async (dispatch) => {
+    dispatch(userSlice.actions.setMyNftPageListDialogError(error));
+  };
 
   static hideMyNftPageListDialog = () => async (dispatch) => {
     dispatch(userSlice.actions.setMyNftPageListDialog(null));
@@ -1063,6 +1071,8 @@ export class MyNftPageActions {
     ({ contractAddress, nftId, salePrice, marketContract }) =>
     async (dispatch) => {
       try {
+        dispatch(MyNftPageActions.setMyNftPageListDialogError(false));
+
         const price = ethers.utils.parseEther(salePrice);
 
         let tx = await marketContract.makeListing(contractAddress, nftId, price, txExtras);
@@ -1083,6 +1093,7 @@ export class MyNftPageActions {
           console.log(error);
           toast.error('Unknown Error');
         }
+        dispatch(MyNftPageActions.setMyNftPageListDialogError(true));
       }
     };
 }
@@ -1093,9 +1104,9 @@ export class MyListingsCollectionPageActions {
   };
 
   static showMyNftPageListDialog =
-    ({ contract, id, image, name, address }) =>
+    ({ contract, id, image, name, address, price, rank }) =>
     async (dispatch) => {
-      dispatch(userSlice.actions.setMyNftPageListDialog({ contract, id, image, name, address }));
+      dispatch(userSlice.actions.setMyNftPageListDialog({ contract, id, image, name, address, price, rank }));
     };
 
   static setInvalidOnly =
