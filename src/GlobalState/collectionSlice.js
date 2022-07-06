@@ -193,7 +193,14 @@ export const fetchListings =
         if (!cancelled) {
 
           // @todo remove once proper filter in place on API side
-          response.nfts = response.nfts?.filter((nft) => !nft.market.type || nft.market.type === listingType.LISTING);
+          response.nfts = response.nfts?.map((nft) => {
+            // Filter out any that have an auction attached for some reason
+            if (nft.market.type && nft.market.type !== listingType.LISTING) {
+              delete nft.market;
+            }
+            return nft;
+          })
+          // response.nfts = response.nfts?.filter((nft) => !nft.market.type || nft.market.type === listingType.LISTING);
 
           response.hasRank = response.nfts.length > 0 && typeof response.nfts[0].rank !== 'undefined';
           dispatch(listingsReceived({ ...response, isUsingListingsFallback: false }));
