@@ -5935,6 +5935,22 @@
         "discord": "https://discord.gg/f8hYkFxH",
         "telegram": "https://t.me/crowhalesnft"
       }
+    },
+    {
+      "name": "CronosDrake",
+      "slug": "cronos-drake",
+      "multiToken": false,
+      "address": "0xacba47acefe362c7df6dd343e1b1501c3387b603",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "500 unique drakes with over 30 traits and can be staked to earn passive income.",
+        "verified": false,
+        "avatar": "/img/collections/cronos-drake/avatar.jpg",
+        "maxSupply": 500,
+        "twitter": "https://twitter.com/cronosdrake",
+        "discord": "https://discord.gg/ZxvghdtNxc"
+      }
     }
   ],
   "drops": [
