@@ -8320,6 +8320,38 @@
       "is1155": false,
       "published": true,
       "complete": false
+    },
+    {
+      "id": 86,
+      "slug": "cbs-ballin-bots",
+      "imgNft": "",
+      "imgAvatar": "/img/collections/cbs-ballin-bots/avatar.png",
+      "title": "CBS: Ballin Bots",
+      "subtitle": "",
+      "description": "",
+      "author": {
+        "name": "Cronos Bot Society",
+        "website": "https://cronosbotsociety.com/",
+        "twitter": "https://twitter.com/CronosBots",
+        "discord": "https://discord.gg/cronosbotsociety",
+        "medium": "https://medium.com/@Cronos-Bot-Society"
+      },
+      "address": "0x4202074d695724366F00C24Ab9D27ac1dD2ED526",
+      "maxMintPerTx": 0,
+      "maxMintPerAddress": 0,
+      "totalSupply": 0,
+      "cost": "",
+      "memberCost": "",
+      "whitelistCost": "",
+      "foundersOnly": false,
+      "start": 1657494000000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false,
+      "featured": false,
+      "redirect": "https://lootpad.io/collection/ballin"
     }
   ],
   "auctions": [
