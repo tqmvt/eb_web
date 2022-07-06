@@ -83,14 +83,14 @@ const MyNftTransferDialog = ({ walletAddress, myNftPageTransferDialog }) => {
         <DialogContainer onClose={onTransferDialogCancel} open={!!myNftPageTransferDialog}>
           <DialogContent>
             <DialogTitle>Start Transfer</DialogTitle>
-            <Grid container spacing={{ sm: 4 }} columns={2}>
-              <Grid item xs={2} md={1} key="1">
+            <Grid container spacing={{ sm: 4 }}>
+              <Grid item xs={12} md={6} key="1">
                 <Container>
                   <CardMedia component="img" src={myNftPageTransferDialog.image} width="150" />
                 </Container>
               </Grid>
-              <Grid item xs={1} key="2">
-                <StyledTextField label="Address" variant="outlined" onChange={onTransferDialogAddressValueChange} />
+              <Grid item xs={12} md={6} key="2">
+                <StyledTextField label="Address" variant="outlined" onChange={onTransferDialogAddressValueChange} fullWidth />
               </Grid>
             </Grid>
 
