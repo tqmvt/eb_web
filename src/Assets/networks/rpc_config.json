@@ -6005,6 +6005,27 @@
         "twitter": "https://twitter.com/6_sense_nft",
         "discord": "https://discord.gg/mZ9JVWpHFC"
       }
+    },
+    {
+      "name": "The Battle Among Mongoose",
+      "slug": "the-battle-among-mongoose",
+      "multiToken": false,
+      "address": "0x06EA467b0013C363E97780A1B447BBfeA604ba7e",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "The Battle Among Mongoose is a unique P2E NFT game built exclusively for the Cronos network. The NFTs' scarcity with its unique attributes and tokenomics allows you to monetize your gaming experience with $MNG.",
+        "verified": false,
+        "avatar": "/img/collections/the-battle-among-mongoose/avatar.png",
+        "card": "/img/collections/the-battle-among-mongoose/card.png",
+        "banner": "/img/collections/the-battle-among-mongoose/banner.png",
+        "maxSupply": 2022,
+        "website": "https://battle.saharadao.finance/",
+        "twitter": "https://twitter.com/SaharaDao",
+        "discord": "https://discord.gg/gTz8yjpymd",
+        "telegram": "https://t.me/SaharaDAOglobal",
+        "medium": "https://saharadao.medium.com"
+      }
     }
   ],
   "drops": [
