@@ -5272,7 +5272,9 @@
         "maxSupply": 2222,
         "website": "https://carkayous.com/",
         "twitter": "https://twitter.com/carkayous",
-        "discord": "https://discord.gg/carkayous"
+        "discord": "https://discord.gg/carkayous",
+        "rarity": "rarity_sniper",
+        "raritySniperSlug": "feral-fish"
       }
     },
     {
@@ -8228,7 +8230,7 @@
     },
     {
       "id": 80,
-      "slug": "carkayous",
+      "slug": "carkayous-feral-fish",
       "imgNft": "/img/drops/carkayous/drop.png",
       "imgPreview": "/img/drops/carkayous/drop.png",
       "imgAvatar": "/img/collections/carkayous/avatar.png",
