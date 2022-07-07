@@ -6046,6 +6046,25 @@
         "discord": "https://discord.gg/q4FQ4ukffB",
         "medium": "https://medium.com/@battlereadyboyz/battle-ready-boyz-56a5eee494fa"
       }
+    },
+    {
+      "name": "Trippy Treasure Chests",
+      "slug": "trippy-treasure-chests",
+      "multiToken": false,
+      "address": "0x9C9BB3BDa7914437C466f833D2BE25a405957a3a",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "Offering passive income through staking, cross-chain investment returns, and royalties! Brought to you by: Possessed Pirates",
+        "verified": false,
+        "avatar": "/img/collections/trippy-treasure-chests/avatar.png",
+        "card": "/img/collections/trippy-treasure-chests/card.png",
+        "banner": "/img/collections/trippy-treasure-chests/banner.png",
+        "maxSupply": 2000,
+        "website": "https://treasure.croarmy.app/",
+        "twitter": "https://twitter.com/PosessedP",
+        "discord": "https://discord.gg/dWpku7EWct"
+      }
     }
   ],
   "drops": [
