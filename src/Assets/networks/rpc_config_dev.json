@@ -5986,6 +5986,25 @@
         "telegram": "https://t.me/crolon_mars",
         "medium": "https://wakeupandsmelltheblog.com/nft/crolon-mars-release-an-exclusive-3d-nft-drop-to-the-cronos-chain/"
       }
+    },
+    {
+      "name": "World Wide Crazy",
+      "slug": "world-wide-crazy",
+      "multiToken": false,
+      "address": "0xB6410ab2f847DE56126C2781248e791E5899488D",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "3100 crazy cats that always seem to have fun!",
+        "verified": false,
+        "avatar": "/img/collections/world-wide-crazy/avatar.png",
+        "card": "/img/collections/world-wide-crazy/card.png",
+        "banner": "/img/collections/world-wide-crazy/banner.png",
+        "maxSupply": 3100,
+        "website": "https://6sense.mystrikingly.com/",
+        "twitter": "https://twitter.com/6_sense_nft",
+        "discord": "https://discord.gg/mZ9JVWpHFC"
+      }
     }
   ],
   "drops": [
