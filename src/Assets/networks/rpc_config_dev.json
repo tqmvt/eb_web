@@ -5968,6 +5968,24 @@
         "discord": "https://discord.gg/9VXbM9RF2H",
         "medium": "https://medium.com/@ladyapes"
       }
+    },
+    {
+      "name": "Crolon Mars NFT",
+      "slug": "crolon-mars-nft",
+      "multiToken": false,
+      "address": "0xcAe06e7B36cbb3BCe19f41640f1104e99F5395F4",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "CrolonMars Metaverse access NFTs",
+        "verified": false,
+        "avatar": "/img/collections/crolon-mars-nft/avatar.jpg",
+        "maxSupply": 720,
+        "website": "https://www.crolonmars.com/",
+        "twitter": "https://twitter.com/CrolonMars",
+        "telegram": "https://t.me/crolon_mars",
+        "medium": "https://wakeupandsmelltheblog.com/nft/crolon-mars-release-an-exclusive-3d-nft-drop-to-the-cronos-chain/"
+      }
     }
   ],
   "drops": [
