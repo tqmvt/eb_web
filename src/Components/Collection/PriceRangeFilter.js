@@ -177,7 +177,7 @@ const PriceRangeFilter = ({ address, ...props }) => {
                 <Form.Control
                   type="text"
                   placeholder="Min Price"
-                  value={minPrice}
+                  value={minPrice ?? ''}
                   onChange={onMinPriceChange}
                   style={{ marginBottom: 0, marginTop: 0 }}
                 />
@@ -186,7 +186,7 @@ const PriceRangeFilter = ({ address, ...props }) => {
                 <Form.Control
                   type="text"
                   placeholder="Max Price"
-                  value={maxPrice}
+                  value={maxPrice ?? ''}
                   onChange={onMaxPriceChange}
                   style={{ marginBottom: 0, marginTop: 0 }}
                 />
@@ -198,7 +198,7 @@ const PriceRangeFilter = ({ address, ...props }) => {
                 <Form.Control
                   type="text"
                   placeholder="Min Rank"
-                  value={minRank}
+                  value={minRank ?? ''}
                   onChange={onMinRankChange}
                   style={{ marginBottom: 0, marginTop: 0 }}
                 />
@@ -207,7 +207,7 @@ const PriceRangeFilter = ({ address, ...props }) => {
                 <Form.Control
                   type="text"
                   placeholder="Max Rank"
-                  value={maxRank}
+                  value={maxRank ?? ''}
                   onChange={onMaxRankChange}
                   style={{ marginBottom: 0, marginTop: 0 }}
                 />
