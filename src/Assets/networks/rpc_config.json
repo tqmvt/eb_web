@@ -1073,7 +1073,7 @@
         "maxSupply": 797,
         "website": "https://cronoslizards.com/",
         "twitter": "https://twitter.com/CronosLizards",
-        "discord": "https://discord.gg/BRDQhtDNsM"
+        "discord": "https://discord.gg/7KQPm4SBFb"
       }
     },
     {
@@ -2372,7 +2372,7 @@
         "maxSupply": 2203,
         "website": "https://cronoslizards.com/",
         "twitter": "https://twitter.com/CronosLizards",
-        "discord": "https://discord.gg/Dk6tk36kcN"
+        "discord": "https://discord.gg/7KQPm4SBFb"
       }
     },
     {
@@ -5968,6 +5968,84 @@
         "discord": "https://discord.gg/9VXbM9RF2H",
         "medium": "https://medium.com/@ladyapes"
       }
+    },
+    {
+      "name": "Crolon Mars NFT",
+      "slug": "crolon-mars-nft",
+      "multiToken": false,
+      "address": "0xcAe06e7B36cbb3BCe19f41640f1104e99F5395F4",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "CrolonMars Metaverse access NFTs",
+        "verified": false,
+        "avatar": "/img/collections/crolon-mars-nft/avatar.jpg",
+        "maxSupply": 720,
+        "website": "https://www.crolonmars.com/",
+        "twitter": "https://twitter.com/CrolonMars",
+        "telegram": "https://t.me/crolon_mars",
+        "medium": "https://wakeupandsmelltheblog.com/nft/crolon-mars-release-an-exclusive-3d-nft-drop-to-the-cronos-chain/"
+      }
+    },
+    {
+      "name": "World Wide Crazy",
+      "slug": "world-wide-crazy",
+      "multiToken": false,
+      "address": "0xB6410ab2f847DE56126C2781248e791E5899488D",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "3100 crazy cats that always seem to have fun!",
+        "verified": false,
+        "avatar": "/img/collections/world-wide-crazy/avatar.png",
+        "card": "/img/collections/world-wide-crazy/card.png",
+        "banner": "/img/collections/world-wide-crazy/banner.png",
+        "maxSupply": 3100,
+        "website": "https://6sense.mystrikingly.com/",
+        "twitter": "https://twitter.com/6_sense_nft",
+        "discord": "https://discord.gg/mZ9JVWpHFC"
+      }
+    },
+    {
+      "name": "The Battle Among Mongoose",
+      "slug": "the-battle-among-mongoose",
+      "multiToken": false,
+      "address": "0x06EA467b0013C363E97780A1B447BBfeA604ba7e",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "The Battle Among Mongoose is a unique P2E NFT game built exclusively for the Cronos network. The NFTs' scarcity with its unique attributes and tokenomics allows you to monetize your gaming experience with $MNG.",
+        "verified": false,
+        "avatar": "/img/collections/the-battle-among-mongoose/avatar.png",
+        "card": "/img/collections/the-battle-among-mongoose/card.png",
+        "banner": "/img/collections/the-battle-among-mongoose/banner.png",
+        "maxSupply": 2022,
+        "website": "https://battle.saharadao.finance/",
+        "twitter": "https://twitter.com/SaharaDao",
+        "discord": "https://discord.gg/gTz8yjpymd",
+        "telegram": "https://t.me/SaharaDAOglobal",
+        "medium": "https://saharadao.medium.com"
+      }
+    },
+    {
+      "name": "Battle Ready",
+      "slug": "battle-ready",
+      "multiToken": false,
+      "address": "",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "Battle Ready Boyz is a project combining Design and GameFi offering its members to use their NFTs in Play-to-Earn or Risk-To-Earn.\n\nThe BRB collection features 7777 unique NFTs representing Aurora's gorilla soldiers and statues of their emperors.\n\nDon't forget to fight each other, life is too short!",
+        "verified": true,
+        "avatar": "/img/collections/battle-ready/avatar.png",
+        "card": "/img/collections/battle-ready/card.png",
+        "banner": "/img/collections/battle-ready/banner.png",
+        "maxSupply": 7777,
+        "website": "https://www.battlereadyboyz.io/",
+        "twitter": "https://twitter.com/BattleReadyBoyz",
+        "discord": "https://discord.gg/q4FQ4ukffB",
+        "medium": "https://medium.com/@battlereadyboyz/battle-ready-boyz-56a5eee494fa"
+      }
     }
   ],
   "drops": [
@@ -8352,6 +8430,38 @@
       "complete": false,
       "featured": false,
       "redirect": "https://lootpad.io/collection/ballin"
+    },
+    {
+      "id": 87,
+      "slug": "battle-ready",
+      "imgNft": "/img/drops/battle-ready/drop.png",
+      "imgPreview": "/img/drops/battle-ready/drop.png",
+      "imgAvatar": "/img/collections/battle-ready/avatar.png",
+      "imgBanner": "/img/collections/battle-ready/banner.png",
+      "title": "Battle Ready",
+      "subtitle": "Battle Ready Boyz is a project combining Design and GameFi offering its members to use their NFTs in Play-to-Earn or Risk-To-Earn.\n\nThe BRB collection features 7777 unique NFTs representing Aurora's gorilla soldiers and statues of their emperors.\n\nDon't forget to fight each other, life is too short!",
+      "description": "Battle Ready Boyz is a project combining Design and GameFi offering its members to use their NFTs in Play-to-Earn or Risk-To-Earn.\n\nThe BRB collection features 7777 unique NFTs representing Aurora's gorilla soldiers and statues of their emperors.\n\nUtilities :\n\nPlay to earn\n\nRisk to earn\n\nNFT Staking \n\nExchangeable token\n\nUtility token\n\nNFT upgrade\n\nMerch (BRB poker cards, ...)\n\nDAO & partnerships\n\nOGs & VIP events\n\nFull redistribution of royalties\n\nFree online novel\n\nAirdrop to our holders : Battle Retired Boyz\n\nDon't forget to fight each other, life is too short!",
+      "author": {
+        "name": "Battle Ready",
+        "website": "https://www.battlereadyboyz.io/",
+        "twitter": "https://twitter.com/BattleReadyBoyz",
+        "discord": "https://discord.gg/q4FQ4ukffB",
+        "medium": "https://medium.com/@battlereadyboyz/battle-ready-boyz-56a5eee494fa"
+      },
+      "address": "",
+      "maxMintPerTx": 10,
+      "maxMintPerAddress": 100,
+      "totalSupply": 7777,
+      "cost": "399",
+      "memberCost": "379",
+      "whitelistCost": "349",
+      "foundersOnly": false,
+      "start": 1657483200000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false
     }
   ],
   "auctions": [

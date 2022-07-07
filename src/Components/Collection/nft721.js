@@ -321,7 +321,7 @@ const Nft721 = ({ address, id }) => {
                   >
                     <span className="p-2">View Full Image</span>
                     <div style={{ width: '14px' }}>
-                      <FontAwesomeIcon icon={faExternalLinkAlt} size="md" />
+                      <FontAwesomeIcon icon={faExternalLinkAlt} />
                     </div>
                   </span>
                 </div>
