@@ -8525,6 +8525,7 @@
       "totalSupply": 2500,
       "cost": "500",
       "memberCost": "450",
+      "whitelistCost": "425",
       "foundersOnly": false,
       "start": 1657393200000,
       "end": null,
