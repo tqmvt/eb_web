@@ -15,7 +15,7 @@ export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = fa
   }
 
   const makeThumb = (vid) => {
-    ImageKitService.thumbify(new URL(vid));
+    return ImageKitService.thumbify(new URL(vid));
   }
 
   const mediaTypes = {
