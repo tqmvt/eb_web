@@ -9,21 +9,23 @@ import MetaMaskOnboarding from '@metamask/onboarding';
 
 import Footer from '../../components/Footer';
 import { createSuccessfulTransactionToastContent } from '../../../utils';
-import config from '../../../Assets/networks/rpc_config.json';
 import { getSlothty721NftsFromIds, getSlothty721NftsFromWallet } from '../../../core/api/chain';
 import RugsuranceAbi from '../../../Contracts/SlothtyRugsurance.json';
 import { chainConnect, connectAccount } from '../../../GlobalState/User';
 import { ERC721 } from '../../../Contracts/Abis';
 import styles from './rugsurance.module.scss';
+import {appConfig} from "../../../Config";
+import PageHead from "../../Head/PageHead";
 
-const knownContracts = config.known_contracts;
-const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
+const config = appConfig();
+const knownContracts = config.collections;
+const readProvider = new ethers.providers.JsonRpcProvider(config.rpc.read);
 
 const GreyscaleImg = styled.img`
   -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
   filter: grayscale(100%);
 `;
-const rugContractAddress = config.slothy_rugsurance_contract;
+const rugContractAddress = config.contracts.slothtyRugsurance;
 
 const txExtras = {
   gasPrice: ethers.utils.parseUnits('5000', 'gwei'),
@@ -223,14 +225,11 @@ const Rugsurance = () => {
 
   return (
     <div>
-      <Head>
-        <title>Slothty Rugsurance | Ebisu's Bay Marketplace</title>
-        <meta name="description" content="Peace of mind minting on Ebisu's Bay Marketplace" />
-        <meta name="title" content="Slothty Rugsurance | Ebisu's Bay Marketplace" />
-        <meta property="og:title" content="Slothty Rugsurance | Ebisu's Bay Marketplace" />
-        <meta property="og:url" content={`https://app.ebisusbay.com/slothty-rugsurance`} />
-        <meta name="twitter:title" content="Slothty Rugsurance | Ebisu's Bay Marketplace" />
-      </Head>
+      <PageHead
+        title="Slothty Rugsurance"
+        description="Peace of mind minting on Ebisu's Bay Marketplace"
+        url="/slothty-rugsurance"
+      />
       <section className="jumbotron breadcumb no-bg tint">
         <div className="mainbreadcumb">
           <div className="container">

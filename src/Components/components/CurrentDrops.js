@@ -6,9 +6,9 @@ import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons
 
 import { settings } from './constants';
 import CustomSlide from '../components/CustomSlide';
-import config from '../../Assets/networks/rpc_config.json';
-export const drops = config.drops;
-export const collections = config.known_contracts;
+import {appConfig} from "../../Config";
+export const drops = appConfig('drops');
+export const collections = appConfig('collections');
 
 const carouselSetings = {
   ...settings,

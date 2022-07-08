@@ -10,20 +10,21 @@ import { Spinner } from 'react-bootstrap';
 import Button from '../../../Components/components/Button';
 import Input from '../../../Components/components/common/Input';
 import ProfilePreview from '../../../Components/components/ProfilePreview';
-import { croSkullRedPotionImageHack } from '../../../hacks';
+import { specialImageTransform } from '../../../hacks';
 import { caseInsensitiveCompare, humanize, isEventValidNumber, shortAddress } from '../../../utils';
 import { OFFER_TYPE } from '../MadeOffersRow';
 import { updateOfferSuccess, updateOfferFailed } from '../../../GlobalState/offerSlice';
 import EmptyData from '../EmptyData';
-import config from '../../../Assets/networks/rpc_config.json';
 import Market from '../../../Contracts/Marketplace.json';
 import { getFilteredOffers } from '../../../core/subgraph';
 import { getAllCollections } from '../../../GlobalState/collectionsSlice';
 import { offerState } from '../../../core/api/enums';
-import { commify } from 'ethers/lib/utils';
 import { txExtras } from '../../../core/constants';
 import { findCollectionByAddress } from '../../../utils';
-const knownContracts = config.known_contracts;
+import { appConfig } from '../../../Config';
+import { hostedImage } from '../../../helpers/image';
+
+const config = appConfig();
 
 const DialogContainer = styled(Dialog)`
   .MuiPaper-root {
@@ -164,8 +165,8 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
   const collectionsStats = useSelector((state) => state.collections.collections);
 
   const dispatch = useDispatch();
-  const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
-  const readMarket = new Contract(config.market_contract, Market.abi, readProvider);
+  const readProvider = new ethers.providers.JsonRpcProvider(config.rpc.read);
+  const readMarket = new Contract(config.contracts.market, Market.abi, readProvider);
 
   const [offerType, setOfferType] = useState(type);
   const [offerDataNew, setOfferDataNew] = useState(offerData);
@@ -325,6 +326,11 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
       return `https://ipfs.io/ipfs/${link}`;
     }
 
+    if (nftData.image.startsWith('https://gateway.ebisusbay.com')) {
+      const link = nftData.image.replace('gateway.ebisusbay.com', 'ipfs.io');
+      return link;
+    }
+
     return nftData.image;
   };
 
@@ -353,10 +359,10 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
         {!isNftLoading && !isGettingOfferType ? (
           <DialogMainContent>
             <ImageContainer>
-              <img src={croSkullRedPotionImageHack(nftData.address, nftData.image)} alt={nftData.name} />
+              <img src={specialImageTransform(nftData.address, nftData.image)} alt={nftData.name} />
               {nftData && nftData.image && (
                 <div className="nft__item_action mt-2" style={{ cursor: 'pointer' }}>
-                  <span onClick={() => window.open(croSkullRedPotionImageHack(nftData.address, fullImage()), '_blank')}>
+                  <span onClick={() => window.open(specialImageTransform(nftData.address, fullImage()), '_blank')}>
                     <span className="p-2">View Full Image</span>
                     <FontAwesomeIcon icon={faExternalLinkAlt} />
                   </span>
@@ -373,7 +379,7 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
                       <ProfilePreview
                         type="Collection"
                         title={nftData.address && shortAddress(nftData.address)}
-                        avatar={collectionMetadata?.avatar}
+                        avatar={hostedImage(collectionMetadata?.avatar, true)}
                         address={nftData.address}
                         verified={collectionMetadata?.verified}
                         to={`/collection/${nftData.address}`}
@@ -383,9 +389,12 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
                         <ProfilePreview
                           type="Rarity Rank"
                           title={nftData.rank}
-                          avatar={
-                            collectionMetadata?.rarity === 'rarity_sniper' ? '/img/logos/rarity-sniper.png' : null
-                          }
+                          avatar={hostedImage(
+                            collectionMetadata?.rarity === 'rarity_sniper'
+                              ? '/img/logos/rarity-sniper.png'
+                              : '/img/logos/ebisu-technicolor.svg',
+                            true
+                          )}
                           hover={
                             collectionMetadata?.rarity === 'rarity_sniper'
                               ? `Ranking provided by ${humanize(collectionMetadata.rarity)}`

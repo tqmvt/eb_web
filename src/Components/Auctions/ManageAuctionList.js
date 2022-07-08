@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import {BigNumber, constants, ethers} from 'ethers';
-import config from '../../Assets/networks/rpc_config.json';
 import AuctionContract from '../../Contracts/DegenAuction.json';
 import { sortAndFetchAuctions } from '../../core/api';
 import Clock from '../components/Clock';
@@ -9,17 +8,26 @@ import { auctionState } from '../../core/api/enums';
 import { Auction } from '../../core/models/auction';
 import { commify } from 'ethers/lib/utils';
 import {Form, Spinner} from "react-bootstrap";
-import {createSuccessfulTransactionToastContent, isEventValidNumber, secondsToDhms} from "../../utils";
+import {
+  caseInsensitiveCompare,
+  createSuccessfulTransactionToastContent,
+  isEventValidNumber,
+  secondsToDhms
+} from "../../utils";
 import {useDispatch, useSelector} from "react-redux";
 import {toast} from "react-toastify";
 import MetaMaskOnboarding from "@metamask/onboarding";
 import {chainConnect, connectAccount} from "../../GlobalState/User";
+import {appConfig} from "../../Config";
+
+const config = appConfig();
 
 const ManageAuctionList = () => {
   const dispatch = useDispatch();
 
   const user = useSelector((state) => state.user);
-  const [auctions, setAuctions] = useState([]);
+  const [activeAuctions, setActiveAuctions] = useState([]);
+  const [unwithdrawnAuctions, setUnwithdrawnAuctions] = useState([]);
   const [openStartConfirmationDialog, setStartConfirmationDialog] = useState(false);
   const [formError, setFormError] = useState(null);
   const [runTime, setRunTime] = useState(0);
@@ -74,7 +82,21 @@ const ManageAuctionList = () => {
       const auctions = response.auctions
         .filter((a) => [auctionState.NOT_STARTED, auctionState.ACTIVE].includes(a.state))
         .map((o) => new Auction(o));
-      setAuctions(auctions);
+      setActiveAuctions(auctions);
+      const otherAuctions = response.auctions
+        .filter((a) => {
+          const isCompleted = ![auctionState.NOT_STARTED, auctionState.ACTIVE].includes(a.state);
+          const hasUnwithdrawn = a.bidHistory.some(b => !b.withdrawn && !caseInsensitiveCompare(b.bidder, a.highestBidder));
+          const afterTestAuctions = a.timeStarted > 1653891957;
+          return isCompleted && hasUnwithdrawn && afterTestAuctions;
+        })
+        .map((o) => {
+          o.unwithdrawnCount = o.bidHistory.filter(b => !b.withdrawn && !caseInsensitiveCompare(b.bidder, o.highestBidder)).length;
+          return new Auction(o)
+        })
+        .sort((a, b) => a.endAt < b.endAt ? 1 : -1);
+      console.log(otherAuctions);
+      setUnwithdrawnAuctions(otherAuctions);
     }
     fetchData();
   }, []);
@@ -88,7 +110,7 @@ const ManageAuctionList = () => {
 
     if (user.address) {
       let writeContract = await new ethers.Contract(
-        config.mm_auction_contract,
+        config.contracts.madAuction,
         AuctionContract.abi,
         user.provider.getSigner()
       );
@@ -130,6 +152,42 @@ const ManageAuctionList = () => {
     }
   };
 
+  const handleReturnBids = async (auction) => {
+    if (user.address) {
+      let writeContract = await new ethers.Contract(
+        config.contracts.madAuction,
+        AuctionContract.abi,
+        user.provider.getSigner()
+      );
+      try {
+        setExecutingStart(true);
+        const tx = await writeContract.returnBidsToWallets(auction.getAuctionHash, auction.getAuctionIndex);
+        const receipt = await tx.wait();
+        toast.success(createSuccessfulTransactionToastContent(receipt.transactionHash));
+      } catch (error) {
+        if (error.data) {
+          toast.error(error.data.message);
+        } else if (error.message) {
+          toast.error(error.message);
+        } else {
+          console.log(error);
+          toast.error('Unknown Error');
+        }
+      } finally {
+        setExecutingStart(false);
+      }
+    } else {
+      if (user.needsOnboard) {
+        const onboarding = new MetaMaskOnboarding();
+        onboarding.startOnboarding();
+      } else if (!user.address) {
+        dispatch(connectAccount());
+      } else if (!user.correctChain) {
+        dispatch(chainConnect());
+      }
+    }
+  };
+
   /* const handleCancelClick = (auction) => async () => {
     if (user.address) {
       let writeContract = await new ethers.Contract(
@@ -159,9 +217,11 @@ const ManageAuctionList = () => {
 
   return (
     <div>
-      <div className="card-group">
-        {auctions &&
-          auctions.map((auction, index) => (
+      <h2>Active Auctions</h2>
+      <div className="card-group mb-4">
+        {activeAuctions?.length > 0 ? (
+          <>
+            activeAuctions.map((auction, index) => (
             <div key={index} className="d-item col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12 mb-4 px-2">
               <div className="card eb-nft__card h-100 shadow">
                 <img src={auction.nft.image} className={`card-img-top marketplace`} alt={auction.nft.name} />
@@ -187,6 +247,34 @@ const ManageAuctionList = () => {
                   {auction.state === auctionState.NOT_STARTED && (
                     <span className="cursor-pointer" onClick={() => showConfirmationDialog(auction)}>Start</span>
                   )}
+                </div>
+              </div>
+            </div>
+            ))}
+          </>
+        ) : (
+          <>No active auctions</>
+        )}
+      </div>
+      <h2>Complete Unwithdrawn Auctions</h2>
+      <div className="card-group">
+        {unwithdrawnAuctions &&
+          unwithdrawnAuctions.map((auction, index) => (
+            <div key={index} className="d-item col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12 mb-4 px-2">
+              <div className="card eb-nft__card h-100 shadow">
+                <img src={auction.nft.image} className={`card-img-top marketplace`} alt={auction.nft.name} />
+                <div className="card-body d-flex flex-column">
+                  <h6 className="card-title mt-auto">{auction.nft.name}</h6>
+                  <p className="card-text">
+                    {commify(auction.getHighestBid)} MAD <br />
+                    State: {mapStateToHumanReadable(auction)}
+                  </p>
+                </div>
+                <div className="card-footer d-flex justify-content-between">
+                  <Link href={`/auctions/${auction.getAuctionId}`}>
+                    <a>View</a>
+                  </Link>
+                  <span className="cursor-pointer" onClick={() => handleReturnBids(auction)}>Return {auction.unwithdrawnCount} Bids</span>
                 </div>
               </div>
             </div>

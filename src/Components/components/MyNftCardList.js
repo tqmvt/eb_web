@@ -1,14 +1,16 @@
-import React, {memo, useCallback, useEffect, useState} from 'react';
-import {connect, useDispatch, useSelector} from 'react-redux';
+import React, { memo, useCallback, useEffect, useState } from 'react';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import NftCard from './MyNftCard';
 import TopFilterBar from './TopFilterBar';
-import { FilterOption } from '../Models/filter-option.model';
 import { Form, Spinner } from 'react-bootstrap';
 import { collectionFilterOptions } from './constants/filter-options';
 import { fetchChainNfts, fetchNfts, MyNftPageActions } from '../../GlobalState/User';
 import InvalidListingsPopup from './InvalidListingsPopup';
 import InfiniteScroll from "react-infinite-scroll-component";
 import {caseInsensitiveCompare, findCollectionByAddress} from "../../utils";
+import {MarketFilterCollection} from "../Models/market-filters.model";
+
+import { useRouter } from 'next/router';
 
 const mapStateToProps = (state) => ({
   nfts: state.user.nfts,
@@ -20,12 +22,13 @@ const mapStateToProps = (state) => ({
 let abortController;
 const MyNftCardList = ({ nfts = [], isLoading, listedOnly, activeFilterOption, useChain = false }) => {
   const dispatch = useDispatch();
-
+  const router = useRouter();
   const [page, setPage] = useState(1);
   const isFetching = useSelector((state) => state.user.fetchingNfts);
+  const marketContract = useSelector((state) => state.user.marketContract,);
   const canLoadMore = useSelector((state) => {
-    return false;
-    // return !useChain && !state.user.nftsFullyFetched;
+    if (useChain) return false;
+    return !state.user.nftsFullyFetched;
   });
 
   const loadMore = () => {
@@ -58,27 +61,27 @@ const MyNftCardList = ({ nfts = [], isLoading, listedOnly, activeFilterOption, u
     [dispatch]
   );
 
-  const possibleCollections = collectionFilterOptions.filter((collection) =>
-    isLoading ? true : !!nfts.find((x) => caseInsensitiveCompare(x.address, collection.address))
+  const possibleCollections = nfts.length > 1000 ? collectionFilterOptions : collectionFilterOptions.filter((collection) =>
+    isLoading ? true : !!nfts.find((x) => caseInsensitiveCompare(x.address, collection.value))
   );
 
   const filteredNFTs = nfts
     .filter((nft) => (listedOnly ? nft.listed : true))
     .filter((nft) => {
-      if (activeFilterOption.getOptionValue === null) {
+      if (!activeFilterOption.value) {
         return true;
       }
 
-      let targetCollection = findCollectionByAddress(activeFilterOption.getOptionValue);
+      let targetCollection = findCollectionByAddress(activeFilterOption.value);
       if (targetCollection.multiToken)  {
-        targetCollection = findCollectionByAddress(activeFilterOption.getOptionValue, nft.id);
+        targetCollection = findCollectionByAddress(activeFilterOption.value, nft.id);
       }
       return targetCollection && caseInsensitiveCompare(targetCollection.address, nft.address);
     });
 
   return (
     <>
-      {isLoading && nfts.length === 0 ? (
+      {(isLoading && nfts.length === 0) || !marketContract ? (
         <div className="row">
           <div className="row mt-4">
             <div className="col-lg-12 text-center">
@@ -98,7 +101,7 @@ const MyNftCardList = ({ nfts = [], isLoading, listedOnly, activeFilterOption, u
                 showFilter={true}
                 showSort={false}
                 showSearch={false}
-                filterOptions={[FilterOption.default(), ...possibleCollections]}
+                filterOptions={[MarketFilterCollection.default(), ...possibleCollections]}
                 defaultFilterValue={activeFilterOption}
                 filterPlaceHolder="Filter Collection..."
                 onFilterChange={onFilterChange}
@@ -157,8 +160,14 @@ const MyNftCardList = ({ nfts = [], isLoading, listedOnly, activeFilterOption, u
                       canCancel={nft.listed && nft.listingId}
                       canUpdate={nft.listable && nft.listed}
                       onTransferButtonPressed={() => dispatch(MyNftPageActions.showMyNftPageTransferDialog(nft))}
-                      onSellButtonPressed={() => dispatch(MyNftPageActions.showMyNftPageListDialog(nft))}
-                      onUpdateButtonPressed={() => dispatch(MyNftPageActions.showMyNftPageListDialog(nft))}
+                      onSellButtonPressed={() => {
+                        dispatch(MyNftPageActions.showMyNftPageListDialog(nft))
+                        router.push(`/nfts/sell?collectionId=${nft.address}&nftId=${nft.id}`)
+                      }}
+                      onUpdateButtonPressed={() => {
+                        dispatch(MyNftPageActions.showMyNftPageListDialog(nft))
+                        router.push(`/nfts/sell?collectionId=${nft.address}&nftId=${nft.id}`)
+                      }}
                       onCancelButtonPressed={() => dispatch(MyNftPageActions.showMyNftPageCancelDialog(nft))}
                       newTab={true}
                     />

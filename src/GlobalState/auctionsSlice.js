@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { /*sortAndFetchListings, */ getCollectionMetadata, getMarketMetadata, sortAndFetchAuctions } from '../core/api';
-import config from '../Assets/networks/rpc_config.json';
+import { getCollectionMetadata, getMarketMetadata, sortAndFetchAuctions } from '../core/api';
 import {Auction} from "../core/models/auction";
-export const knownContracts = config.known_contracts;
+import {appConfig} from "../Config";
+export const knownContracts = appConfig('collections');
 
 const auctionsSlice = createSlice({
   name: 'auctions',
@@ -17,8 +17,6 @@ const auctionsSlice = createSlice({
     collection: null,
     marketData: null,
     hasRank: false,
-    cachedFilter: {},
-    cachedSort: {},
   },
   reducers: {
     auctionsLoading: (state, action) => {
@@ -120,10 +118,10 @@ export const fetchListings = () => async (dispatch, getState) => {
 
   dispatch(auctionsLoading());
   let response = await sortAndFetchAuctions(
-    state.marketplace.curPage + 1,
-    state.marketplace.curSort,
-    state.marketplace.curFilter.type,
-    state.marketplace.curFilter.address
+    state.auctions.curPage + 1,
+    state.auctions.curSort,
+    state.auctions.curFilter.type,
+    state.auctions.curFilter.address
   );
   response.hasRank = response.auctions.length > 0 && typeof response.auctions[0].nft.rank !== 'undefined';
 

@@ -2,19 +2,17 @@ import { BigNumber, Contract, ethers } from 'ethers';
 import * as Sentry from '@sentry/react';
 import moment from 'moment';
 
-import config from '../Assets/networks/rpc_config.json';
 import { ERC1155, ERC721, MetaPixelsAbi, SouthSideAntsReadAbi } from '../Contracts/Abis';
-// import IPFSGatewayTools from '@pinata/ipfs-gateway-tools/dist/browser';
+import IPFSGatewayTools from '@pinata/ipfs-gateway-tools/dist/node';
 import { dataURItoBlob } from '../Store/utils';
 import { SortOption } from '../Components/Models/sort-option.model';
 import { CollectionSortOption } from '../Components/Models/collection-sort-option.model';
-import { FilterOption } from '../Components/Models/filter-option.model';
 import { limitSizeOptions } from '../Components/components/constants/filter-options';
 import {
   caseInsensitiveCompare,
   convertIpfsResource,
   findCollectionByAddress,
-  isAntMintPassCollection,
+  isAntMintPassCollection, isCroniesCollection,
   isMetapixelsCollection,
   isNftBlacklisted,
   isSouthSideAntsCollection,
@@ -23,14 +21,18 @@ import {
 } from '../utils';
 import { getAntMintPassMetadata, getWeirdApesStakingStatus } from './api/chain';
 import { fallbackImageUrl } from './constants';
+import {appConfig} from "../Config";
+import {FullCollectionsQuery} from "./api/fullcollections/query";
+import {ListingsQuery} from "./api/listings/query";
 
-let gatewayTools; // = new IPFSGatewayTools();
+const config = appConfig();
+let gatewayTools = new IPFSGatewayTools();
 const gateway = 'https://mygateway.mypinata.cloud';
-const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
-const knownContracts = config.known_contracts;
+const readProvider = new ethers.providers.JsonRpcProvider(config.rpc.read);
+const knownContracts = config.collections;
 
 const api = {
-  baseUrl: config.api_base,
+  baseUrl: config.urls.api,
   listings: '/listings',
   collections: '/collections',
   marketData: '/marketdata',
@@ -40,6 +42,7 @@ const api = {
   collectionSummary: '/collection/summary',
   collectionDetails: '/fullcollections',
   wallets: '/wallets',
+  leaders: 'getLeaders',
 };
 
 export default api;
@@ -47,15 +50,13 @@ export default api;
 //  just for sortAndFetchListings function
 let abortController = null;
 
+/**
+ * @deprecated use function in ./listings
+ */
 export async function sortAndFetchListings(
   page,
   sort,
   filter,
-  traits,
-  powertraits,
-  search,
-  minPrice,
-  maxPrice,
   state,
   pagesize = limitSizeOptions.lg
 ) {
@@ -66,59 +67,21 @@ export async function sortAndFetchListings(
     sortBy: 'listingId',
     direction: 'desc',
   };
-
-  if (filter && filter instanceof FilterOption) {
-    let filterParams = filter.toApi();
-
-    // Make backwards compatible with new filter based on /fullcollections endpoint
-    if (Object.keys(filterParams).includes('address')) {
-      filterParams.collection = filterParams.address;
-      delete filterParams.address;
-    }
-    query = { ...query, ...filterParams };
+  if (filter && (filter instanceof ListingsQuery)) {
+    query = { ...query, ...filter.toApi() };
   }
 
   if (sort && (sort instanceof SortOption || sort instanceof CollectionSortOption)) {
     query = { ...query, ...sort.toApi() };
   }
 
-  if (traits && Object.keys(traits).length > 0) {
-    //  traits      = { traitCategoryName1: {traitName2: true }, traitCategoryName3: {traitName4: false}}
-    //  traitFilter = { traitCategoryName1: ['traitName2']}
-    const traitFilter = Object.keys(traits)
-      .map((traitCategoryName) => {
-        const traitCategory = traits[traitCategoryName];
-
-        const traitCategoryKeys = Object.keys(traitCategory);
-
-        const truthyFilters = traitCategoryKeys.filter((traitCategoryKey) => traitCategory[traitCategoryKey]);
-
-        return truthyFilters.length === 0 ? {} : { [traitCategoryName]: truthyFilters };
-      })
-      .reduce((prev, curr) => ({ ...prev, ...curr }), {});
-
-    query['traits'] = JSON.stringify(traitFilter);
+  if (filter.traits && Object.keys(filter.traits).length > 0) {
+    query['traits'] = JSON.stringify(filter.traits);
   }
 
-  if (powertraits && Object.keys(powertraits).length > 0) {
-    const traitFilter = Object.keys(powertraits)
-      .map((traitCategoryName) => {
-        const traitCategory = powertraits[traitCategoryName];
-
-        const traitCategoryKeys = Object.keys(traitCategory);
-
-        const truthyFilters = traitCategoryKeys.filter((traitCategoryKey) => traitCategory[traitCategoryKey]);
-
-        return truthyFilters.length === 0 ? {} : { [traitCategoryName]: truthyFilters };
-      })
-      .reduce((prev, curr) => ({ ...prev, ...curr }), {});
-
-    query['powertraits'] = JSON.stringify(traitFilter);
+  if (filter.powertraits && Object.keys(filter.powertraits).length > 0) {
+    query['powertraits'] = JSON.stringify(filter.powertraits);
   }
-
-  if (search) query['search'] = search;
-  if (minPrice) query['minPrice'] = minPrice;
-  if (maxPrice) query['maxPrice'] = maxPrice;
 
   const queryString = new URLSearchParams(query);
 
@@ -246,16 +209,13 @@ export async function getCollectionSummary(address) {
   return await (await fetch(uri)).json();
 }
 
+/**
+ * @deprecated use function in ./fullcollections
+ */
 export async function sortAndFetchCollectionDetails(
   page,
   sort,
   filter,
-  traits,
-  powertraits,
-  search,
-  filterListed,
-  minPrice,
-  maxPrice,
   pageSize = 50
 ) {
   let query = {
@@ -265,7 +225,7 @@ export async function sortAndFetchCollectionDetails(
     direction: 'desc',
   };
 
-  if (filter && filter instanceof FilterOption) {
+  if (filter && filter instanceof FullCollectionsQuery) {
     query = { ...query, ...filter.toApi() };
   }
 
@@ -273,44 +233,13 @@ export async function sortAndFetchCollectionDetails(
     query = { ...query, ...sort.toApi() };
   }
 
-  if (traits && Object.keys(traits).length > 0) {
-    //  traits      = { traitCategoryName1: {traitName2: true }, traitCategoryName3: {traitName4: false}}
-    //  traitFilter = { traitCategoryName1: ['traitName2']}
-    const traitFilter = Object.keys(traits)
-      .map((traitCategoryName) => {
-        const traitCategory = traits[traitCategoryName];
-
-        const traitCategoryKeys = Object.keys(traitCategory);
-
-        const truthyFilters = traitCategoryKeys.filter((traitCategoryKey) => traitCategory[traitCategoryKey]);
-
-        return truthyFilters.length === 0 ? {} : { [traitCategoryName]: truthyFilters };
-      })
-      .reduce((prev, curr) => ({ ...prev, ...curr }), {});
-
-    query['traits'] = JSON.stringify(traitFilter);
+  if (filter.traits && Object.keys(filter.traits).length > 0) {
+    query['traits'] = JSON.stringify(filter.traits);
   }
 
-  if (powertraits && Object.keys(powertraits).length > 0) {
-    const traitFilter = Object.keys(powertraits)
-      .map((traitCategoryName) => {
-        const traitCategory = powertraits[traitCategoryName];
-
-        const traitCategoryKeys = Object.keys(traitCategory);
-
-        const truthyFilters = traitCategoryKeys.filter((traitCategoryKey) => traitCategory[traitCategoryKey]);
-
-        return truthyFilters.length === 0 ? {} : { [traitCategoryName]: truthyFilters };
-      })
-      .reduce((prev, curr) => ({ ...prev, ...curr }), {});
-
-    query['powertraits'] = JSON.stringify(traitFilter);
+  if (filter.powertraits && Object.keys(filter.powertraits).length > 0) {
+    query['powertraits'] = JSON.stringify(filter.powertraits);
   }
-
-  if (search) query['search'] = search;
-  if (filterListed) query['listed'] = filterListed;
-  if (minPrice) query['minPrice'] = minPrice;
-  if (maxPrice) query['maxPrice'] = maxPrice;
 
   const queryString = new URLSearchParams(query);
 
@@ -435,7 +364,7 @@ export async function getNftsForAddress(walletAddress, walletProvider, onNftLoad
 
               let count = await readContract.balanceOf(walletAddress, id);
               count = count.toNumber();
-              if (knownContract.address === config.membership_contract && count > 0) {
+              if (knownContract.address === config.contracts.membership && count > 0) {
                 response.isMember = true;
               }
               if (count === 0) {
@@ -764,37 +693,33 @@ export async function getUnfilteredListingsForAddress(walletAddress, walletProvi
 
     const filteredListings = listings
       .map((item) => {
-        const { listingId, price, nft, purchaser, valid, state, is1155 } = item;
+        const { listingId, price, nft, purchaser, valid, state, is1155, nftAddress } = item;
         const { name, image, rank } = nft || {};
 
         const listingTime = moment(new Date(item.listingTime * 1000)).format('DD/MM/YYYY, HH:mm');
         const id = item.nftId;
-        const address = item.nftAddress.toLowerCase();
-        const isInWallet = !!walletNfts.find((walletNft) => walletNft.address === address && walletNft.id === id);
+        const isInWallet = !!walletNfts.find((walletNft) => caseInsensitiveCompare(walletNft.address, nftAddress) && walletNft.id === id);
         const listed = true;
 
-        const isMetaPixels =
-          (
-            (knownContracts.find((knownContract) => knownContract.name === 'MetaPixels') ?? {}).address ?? ''
-          ).toLowerCase() === address.toLowerCase();
+        const isMetaPixels = isMetapixelsCollection(nftAddress);
         const readContract = (() => {
           if (is1155) {
-            return new Contract(address, ERC1155, signer);
+            return new Contract(nftAddress, ERC1155, signer);
           }
           if (isMetaPixels) {
-            return new Contract(address, MetaPixelsAbi, signer);
+            return new Contract(nftAddress, MetaPixelsAbi, signer);
           }
-          return new Contract(address, ERC721, signer);
+          return new Contract(nftAddress, ERC721, signer);
         })();
 
         const writeContract = (() => {
           if (is1155) {
-            return new Contract(address, ERC1155, signer);
+            return new Contract(nftAddress, ERC1155, signer);
           }
           if (isMetaPixels) {
-            return new Contract(address, MetaPixelsAbi, signer);
+            return new Contract(nftAddress, MetaPixelsAbi, signer);
           }
-          return new Contract(address, ERC721, signer);
+          return new Contract(nftAddress, ERC721, signer);
         })();
 
         readContract.connect(readProvider);
@@ -802,7 +727,7 @@ export async function getUnfilteredListingsForAddress(walletAddress, walletProvi
 
         return {
           contract: writeContract,
-          address,
+          address: nftAddress,
           id,
           image,
           name,
@@ -899,7 +824,6 @@ export async function getNft(collectionId, nftId, useFallback = true) {
       const plotCoords = `(${data.xmin}, ${data.ymin})`;
       result.nft.description = `Metaverse Pixel plot at ${plotCoords} with a ${plotSize} size`;
     }
-
     return result;
   } catch (error) {
     console.log(error);
@@ -923,7 +847,7 @@ export async function getNftFromFile(collectionId, nftId) {
     }
     var canTransfer = true;
     var canSell = true;
-    if (collectionId === config.cronie_contract) {
+    if (isCroniesCollection(collectionId)) {
       const contract = new Contract(collectionId, ERC721, readProvider);
       let uri = await contract.tokenURI(nftId);
 
@@ -1271,4 +1195,18 @@ export async function getNftsForAddress2(walletAddress, walletProvider, page) {
         };
       })
   );
+}
+
+export async function getLeaders(timeframe) {
+  const urls = [
+    `${api.baseUrl}${api.leaders}?sortBy=totalVolume&direction=desc${timeframe ? `&timeframe=${timeframe}` : ''}`,
+    `${api.baseUrl}${api.leaders}?sortBy=buyVolume&direction=desc${timeframe ? `&timeframe=${timeframe}` : ''}`,
+    `${api.baseUrl}${api.leaders}?sortBy=saleVolume&direction=desc${timeframe ? `&timeframe=${timeframe}` : ''}`,
+    `${api.baseUrl}${api.leaders}?sortBy=highestSale&direction=desc${timeframe ? `&timeframe=${timeframe}` : ''}`,
+  ];
+  // map every url to the promise of the fetch
+  let requests = urls.map((url) => fetch(url));
+
+  // Promise.all waits until all jobs are resolved
+  return Promise.all(requests).then((responses) => Promise.all(responses.map((r) => r.json())));
 }

@@ -8,6 +8,9 @@ import App from '../src/App';
 import { SentryLoggingService } from '../src/services/sentry-logging.service';
 import { Site24x7LoggingService } from '../src/services/site24x7-logging.service';
 
+import { config } from '@fortawesome/fontawesome-svg-core';
+import '@fortawesome/fontawesome-svg-core/styles.css';
+
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 import 'slick-carousel/slick/slick.css';
@@ -18,6 +21,8 @@ import '../src/Assets/styles/override.scss';
 
 SentryLoggingService.init();
 Site24x7LoggingService.init();
+
+config.autoAddCss = false;
 
 export default function MyApp({ Component, pageProps }) {
   return (

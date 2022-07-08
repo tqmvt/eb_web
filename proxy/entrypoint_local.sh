@@ -36,7 +36,7 @@ else
   echo "local" > /etc/amplify-agent/custom/environment
 
   # Application name
-  AMPLIFY_IMAGENAME=api-nginx
+  AMPLIFY_IMAGENAME=web-nginx
 
   # Get Docker Host instance id
   INSTANCE_ID=`cat /etc/amplify-agent/custom/instance_id`

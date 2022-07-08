@@ -20,7 +20,7 @@ docker compose -f docker-compose.yml up --build
 
 Verify:
 ```
-#curl -i http://localhost:8080/health
+curl -i http://localhost:8080/health
 ```
 
 Check running containers:

@@ -2,9 +2,21 @@ import React, { memo, useEffect, useState } from 'react';
 import ReactPlayer from 'react-player';
 import { fallbackImageUrl } from '../../core/constants';
 import Link from 'next/link';
+import {CdnImage} from "./CdnImage";
+import {ImageKitService} from "../../helpers/image";
 
-export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = true, videoProps, className }) => {
+export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = false, videoProps, className, layout='responsive', width=1, height=1, sizes }) => {
   const [dynamicType, setDynamicType] = useState(null);
+  const [transformedImage, setTransformedImage] = useState(image);
+  const [videoThumbnail, setVideoThumbNail] = useState(image);
+
+  const blurImageUrl = (img)  => {
+    return ImageKitService.buildBlurUrl(img, {width: 30, height: 30});
+  }
+
+  const makeThumb = (vid) => {
+    ImageKitService.thumbify(new URL(vid));
+  }
 
   const mediaTypes = {
     image: 1,
@@ -17,16 +29,73 @@ export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = tr
   }, []);
 
   const determineMediaType = () => {
-    const xhr = new XMLHttpRequest();
-    xhr.open('HEAD', image, true);
+    if(!image) {
+      setDynamicType(mediaTypes.image);
+      return;
+    }
 
-    xhr.onload = function () {
-      const contentType = xhr.getResponseHeader('Content-Type');
-      const mediaType = contentType.split('/')[0];
-      setDynamicType(mediaTypes[mediaType] ?? mediaTypes.image);
-    };
+    //prefer mp4 over gif 
+    const imageURL = new URL(image);
+    if(imageURL.pathname && imageURL.pathname.endsWith('.gif')){
+      setTransformedImage(ImageKitService.gifToMp4(imageURL).toString());
+      setVideoThumbNail(null);
+      setDynamicType(mediaTypes.video);
+    } else {
+      const xhr = new XMLHttpRequest();
+      xhr.open('HEAD', transformedImage, true);
+  
+      xhr.onload = function () {
+        const contentType = xhr.getResponseHeader('Content-Type');
+        const [mediaType, format] = contentType.split('/');
+        let type = mediaTypes[mediaType] ?? mediaTypes.image;
+        if(type === mediaTypes.video){
+          setVideoThumbNail(makeThumb(transformedImage));
+        }
+        if(format === 'gif'){
+          setTransformedImage(ImageKitService.gifToMp4(imageURL).toString());
+          setVideoThumbNail(null);
+          setDynamicType(mediaTypes.video);
+        } else {
+          setDynamicType(type);
+        }
+      };
+  
+      xhr.send();
+    }
 
-    xhr.send();
+  };
+
+  const ImageComponent = () => {
+    return (
+      <Image
+        image={transformedImage}
+        title={title}
+        className={className}
+        blur={blurImageUrl(transformedImage)}
+        sizes={sizes}
+        layout={layout}
+        width={width}
+        height={height}
+      />
+    )
+  };
+
+  const AnyMediaWithoutVideo = () => {
+    return (
+      <AnyMedia
+        image={transformedImage}
+        title={title}
+        url={url}
+        newTab={newTab}
+        usePlaceholder={usePlaceholder}
+        videoProps={videoProps}
+        className={className}
+        layout={layout}
+        width={width}
+        height={height}
+        sizes={sizes}
+      />
+    )
   };
 
   return (
@@ -35,23 +104,24 @@ export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = tr
         <>
           {video || dynamicType === mediaTypes.video ? (
             <Video
-              video={video ?? image}
-              image={dynamicType !== mediaTypes.video ? image : null}
+              video={video ?? transformedImage}
+              image={videoThumbnail}
               title={title}
               usePlaceholder={usePlaceholder}
               height={videoProps?.height}
               autoPlay={videoProps?.autoPlay}
               controls={videoProps?.controls}
               className={className}
+              fallbackComponent={<AnyMediaWithoutVideo />}
             />
           ) : url ? (
             <Link href={url} target={newTab ? '_blank' : '_self'}>
               <a>
-                <Image image={image} title={title} url={url} className={className} />
+                <ImageComponent />
               </a>
             </Link>
           ) : (
-            <Image image={image} title={title} url={url} className={className} />
+            <ImageComponent />
           )}
         </>
       )}
@@ -61,23 +131,33 @@ export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = tr
 
 export default memo(AnyMedia);
 
-const Image = memo(({ image, title, url, className }) => {
+const Image = memo(({ image, title, className, blur, sizes, layout, width, height}) => {
   return (
-    <img
-      src={image}
+    <CdnImage
+      src={image ?? fallbackImageUrl}
       alt={title}
       onError={({ currentTarget }) => {
         currentTarget.onerror = null;
         currentTarget.src = fallbackImageUrl;
       }}
       className={className}
+      placeholder={blur ? 'blur' : 'empty'}
+      blurDataURL={blur}
+      layout={layout}
+      sizes={sizes}
+      width={width}
+      height={height}
+      unoptimized='true'
+      objectFit="contain"
     />
   );
 });
 
 const Video = memo(
-  ({ video, image, title, usePlaceholder, height = '100%', autoPlay = false, controls = true, className }) => {
-    return (
+  ({ video, image, title, usePlaceholder, height = '100%', autoPlay = false, controls = true, className, fallbackComponent }) => {
+    const [failed, setFailed] = useState(false);
+
+    return !failed ? (
       <ReactPlayer
         controls={controls}
         url={video}
@@ -97,7 +177,12 @@ const Video = memo(
         height={height}
         className={className}
         playsinline={true}
+        onError={(e) => {
+          setFailed(true)
+        }}
       />
+    ) : (
+      <>{fallbackComponent}</>
     );
   }
 );

@@ -9,7 +9,8 @@ import Button from './Button';
 import MakeOfferDialog from '../Offer/MakeOfferDialog';
 import { chainConnect, connectAccount } from '../../GlobalState/User';
 import { AnyMedia } from './AnyMedia';
-import { croSkullRedPotionImageHack } from '../../hacks';
+import { specialImageTransform } from '../../hacks';
+import {nftCardUrl} from "../../helpers/image";
 
 const Watermarked = styled.div`
   position: relative;
@@ -96,23 +97,27 @@ const ListingCardCollection = ({ listing, imgClass = 'marketplace', watermark, a
         {watermark ? (
           <Watermarked watermark={watermark}>
             <AnyMedia
-              image={croSkullRedPotionImageHack(listing.nftAddress, listing.nft.image)}
+              image={nftCardUrl(listing.nftAddress, listing.nft.image)}
               className={`card-img-top ${imgClass}`}
               title={listing.nft.name}
               url={`/collection/${listing.nftAddress}/${listing.nftId}`}
+              width={440}
+              height={440}
             />
           </Watermarked>
         ) : (
           <AnyMedia
-            image={croSkullRedPotionImageHack(listing.nftAddress, listing.nft.image)}
+            image={nftCardUrl(listing.nftAddress, listing.nft.image)}
             className={`card-img-top ${imgClass}`}
             title={listing.nft.name}
             url={`/collection/${listing.nftAddress}/${listing.nftId}`}
+            width={440}
+            height={440}
           />
         )}
         {listing.nft.rank && <div className="badge bg-rarity text-wrap mt-1 mx-1">Rank: #{listing.nft.rank}</div>}
         <div className="card-body d-flex flex-column justify-content-between">
-          <Link className="linkPointer" href={`/collection/${listing.nftAddress}/${listing.nftId}`}>
+          <Link href={`/collection/${listing.nftAddress}/${listing.nftId}`}>
             <a>
               <h6 className="card-title mt-auto">{listing.nft.name}</h6>
             </a>
@@ -121,8 +126,10 @@ const ListingCardCollection = ({ listing, imgClass = 'marketplace', watermark, a
             <div>{ethers.utils.commify(listing.price)} CRO</div>
           </MakeBuy>
           <MakeOffer>
-            <Link className="linkPointer" href={`/collection/${listing.nftAddress}/${listing.nftId}`}>
-              <Button type="legacy">Buy</Button>
+            <Link href={`/collection/${listing.nftAddress}/${listing.nftId}`}>
+              <a>
+                <Button type="legacy">Buy</Button>
+              </a>
             </Link>
             <div>
               <Button type="legacy-outlined" onClick={() => handleMakeOffer('Make')}>

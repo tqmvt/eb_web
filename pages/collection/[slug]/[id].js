@@ -1,25 +1,19 @@
 import React, { memo, useEffect, useState } from 'react';
-// import { useSelector } from 'react-redux';
-import Head from 'next/head';
-
 import store from '../../../src/Store/store';
 import { getNftDetails } from '../../../src/GlobalState/nftSlice';
-import { findCollectionByAddress, humanize, isAddress } from '../../../src/utils';
-import config from '../../../src/Assets/networks/rpc_config.json';
+import {findCollectionByAddress, humanize, isAddress, relativePrecision} from '../../../src/utils';
 import Nft1155 from '../../../src/Components/Collection/nft1155';
 import Nft721 from '../../../src/Components/Collection/nft721';
-const knownContracts = config.known_contracts;
+import {appConfig} from "../../../src/Config";
+import PageHead from "../../../src/Components/Head/PageHead";
+const knownContracts = appConfig('collections')
 
 const Nft = ({ slug, id, nft }) => {
   const [type, setType] = useState('721');
   const [collection, setCollection] = useState(null);
-  // const [redirect, setRedirect] = useState(false);
   const [initialized, setInitialized] = useState(false);
 
-  // const nft = useSelector((state) => state.nft.nft);
-
   useEffect(() => {
-    // setRedirect(null);
     let col = knownContracts.find((c) => c.slug === slug);
     if (col) {
       setCollection(col);
@@ -29,7 +23,6 @@ const Nft = ({ slug, id, nft }) => {
       col = findCollectionByAddress(slug, id);
       if (col) {
         setCollection(col);
-        // setRedirect(col.slug);
         router.push(`/collection/${col.slug}/${id}`);
       }
     }
@@ -63,48 +56,36 @@ const Nft = ({ slug, id, nft }) => {
           }
         });
       }
-      if (traits.length) {
+
+      if (traits.length > 0 && traits[0].occurrence) {
         const traitsTop = traits[0];
         const res = `${anNFT?.description ? anNFT.description.slice(0, 250) : ''} ... Top Trait: ${
-          traitsTop?.value ? humanize(traitsTop.value) : 'N/A'
-        }, ${traitsTop?.occurrence || traitsTop?.percent}%`;
+          traitsTop.value ? humanize(traitsTop.value) : 'N/A'
+        }, ${relativePrecision(traitsTop.occurrence)}%`;
 
         return res;
       }
+
+      return anNFT?.description;
     }
+
     return anNFT?.description;
   };
 
-  // if (redirect) {
-  //   router.push(`/collection/${redirect}/${id}`);
-  //   return <></>;
-  // }
-
   return (
     <>
-      <Head>
-        <title>{nft?.name || 'NFT'} | Ebisu's Bay Marketplace</title>
-        <link
-          href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@200;300;400;500;600;700;800&display=swap"
-          rel="stylesheet"
-        />
-        <meta name="description" content={`${nft?.name || 'NFT'} for Ebisu's Bay Marketplace`} />
-        <meta name="title" content={`${nft?.name || 'NFT'} | Ebisu's Bay Marketplace`} />
-        <meta property="og:type" content="website" key="og_type" />
-        <meta property="og:title" content={`${nft?.name || 'NFT'} | Ebisu's Bay Marketplace`} key="title" />
-        <meta property="og:url" content={`https://app.ebisusbay.com/nft/${collection?.address}`} key="og_url" />
-        <meta property="og:image" content={nft?.image} key="image" />
-        <meta property="og:description" content={getTraits(nft)} />
-        <meta name="twitter:title" content={`${nft?.name || 'NFT'} | Ebisu's Bay Marketplace`} key="twitter_title" />
-        <meta name="twitter:image" content={nft?.image} key="twitter_image" />
-        <meta name="twitter:card" content="summary_large_image" key="misc-card" />
-      </Head>
+      <PageHead
+        title={nft.name}
+        description={getTraits(nft)}
+        url={`/collection/${collection?.slug}/${nft.id}`}
+        image={nft.image}
+      />
       {initialized && collection && (
         <>
           {type === '1155' ? (
             <Nft1155 address={collection.address} id={id} />
           ) : (
-            <Nft721 address={collection.address} id={id} nft={nft} />
+            <Nft721 address={collection.address} id={id} />
           )}
         </>
       )}
@@ -125,6 +106,12 @@ export const getServerSideProps = async ({ params }) => {
   let nft;
   if (collection?.address) {
     nft = await store.dispatch(getNftDetails(collection.address, tokenId));
+  }
+
+  if (!collection || !nft) {
+    return {
+      notFound: true
+    }
   }
 
   if (isAddress(slug)) {

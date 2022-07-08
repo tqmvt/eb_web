@@ -10,7 +10,6 @@ const CollectionNftsGroup = ({
   royalty,
   canLoadMore = false,
   loadMore,
-  address,
   collection,
 }) => {
   if (showLoadMore) {
@@ -29,17 +28,13 @@ const CollectionNftsGroup = ({
             </div>
           </div>
         }
-        endMessage={() => {
-          if (listings.length) {
-            return (
-              <div className="row mt-4">
-                <div className="col-lg-12 text-center">
-                  <span>Nothing to see here...</span>
-                </div>
-              </div>
-            );
-          }
-        }}
+        endMessage={listings.length ? (
+          <div className="row mt-4">
+            <div className="col-lg-12 text-center">
+              <span>Nothing to see here...</span>
+            </div>
+          </div>
+        ) : <></>}
       >
         <div className="card-group">
           {listings &&
@@ -49,7 +44,6 @@ const CollectionNftsGroup = ({
                   royalty={royalty}
                   listing={listing}
                   imgClass="collection"
-                  address={address}
                   collection={collection}
                 />
               </div>
@@ -68,7 +62,6 @@ const CollectionNftsGroup = ({
                   royalty={royalty}
                   listing={listing}
                   imgClass="collection"
-                  address={address}
                   collection={collection}
                 />
               </div>

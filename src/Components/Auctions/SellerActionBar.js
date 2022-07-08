@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { createGlobalStyle } from 'styled-components';
 import { ethers } from 'ethers';
-import config from '../../Assets/networks/rpc_config.json';
 import AuctionContract from '../../Contracts/DegenAuction.json';
 import { toast } from 'react-toastify';
-import { caseInsensitiveCompare, createSuccessfulTransactionToastContent } from '../../utils';
-import { ERC721 } from '../../Contracts/Abis';
-import { Card, Form, Spinner } from 'react-bootstrap';
+import { createSuccessfulTransactionToastContent } from '../../utils';
+import { Spinner } from 'react-bootstrap';
 import { auctionState } from '../../core/api/enums';
 import { getAuctionDetails } from '../../GlobalState/auctionSlice';
 import MetaMaskOnboarding from '@metamask/onboarding';
 import { chainConnect, connectAccount } from '../../GlobalState/User';
+import {appConfig} from "../../Config";
+
+const config = appConfig();
 
 const SellerActionBar = () => {
   const dispatch = useDispatch();
@@ -62,7 +62,7 @@ const SellerActionBar = () => {
     if (user.address) {
       try {
         let writeContract = await new ethers.Contract(
-          config.mm_auction_contract,
+          config.contracts.madAuction,
           AuctionContract.abi,
           user.provider.getSigner()
         );

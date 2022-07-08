@@ -5,7 +5,6 @@ import * as Sentry from '@sentry/react';
 import createSentryMiddleware from 'redux-sentry-middleware';
 
 import { memberships } from '../GlobalState/Memberships';
-import { cronies } from '../GlobalState/Cronies';
 import marketplaceReducer from '../GlobalState/marketplaceSlice';
 import auctionsReducer from '../GlobalState/auctionsSlice';
 import listingReducer from '../GlobalState/listingSlice';
@@ -16,11 +15,11 @@ import collectionsReducer from '../GlobalState/collectionsSlice';
 import collectionReducer from '../GlobalState/collectionSlice';
 import { appInitializeStateReducer } from '../GlobalState/InitSlice';
 import offerReducer from '../GlobalState/offerSlice';
+import leaderBoardReducer from '../GlobalState/leaderBoardSlice';
 import { user } from '../GlobalState/User';
 
 const rootReducer = combineReducers({
   memberships: memberships,
-  cronies: cronies,
   marketplace: marketplaceReducer,
   auctions: auctionsReducer,
   listing: listingReducer,
@@ -32,6 +31,7 @@ const rootReducer = combineReducers({
   collection: collectionReducer,
   offer: offerReducer,
   metaverse: metaverseReducer,
+  leaderBoard: leaderBoardReducer,
 });
 
 const reduxDevToolsComposeEnhancers =

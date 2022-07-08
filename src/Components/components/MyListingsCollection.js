@@ -10,7 +10,6 @@ import {
 import { Form, Spinner } from 'react-bootstrap';
 import { getAnalytics, logEvent } from '@firebase/analytics';
 import MyListingCard from './MyListingCard';
-import MyNftListDialog from './MyNftListDialog';
 import MyNftCancelDialog from './MyNftCancelDialog';
 import InvalidListingsPopup from './InvalidListingsPopup';
 
@@ -19,8 +18,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import InfiniteScroll from 'react-infinite-scroll-component';
 // import SoldNftCard from './SoldNftCard';
 
+import { useRouter } from 'next/router';
+
 const MyListingsCollection = ({ walletAddress = null }) => {
   const dispatch = useDispatch();
+  const router = useRouter();
   const [width, setWidth] = useState(0);
   const isLoading = useSelector((state) => state.user.myUnfilteredListingsFetching);
   const myListings = useSelector((state) => state.user.myUnfilteredListings);
@@ -133,9 +135,10 @@ const MyListingsCollection = ({ walletAddress = null }) => {
                       width={width}
                       canCancel={nft.state === 0}
                       canUpdate={nft.state === 0 && nft.isInWallet}
-                      onUpdateButtonPressed={() =>
+                      onUpdateButtonPressed={() =>{
                         dispatch(MyListingsCollectionPageActions.showMyNftPageListDialog(nft))
-                      }
+                        router.push(`/nfts/sell?collectionId=${nft.address}&nftId=${nft.id}`)
+                      }}
                       onCancelButtonPressed={() =>
                         dispatch(MyListingsCollectionPageActions.showMyNftPageCancelDialog(nft))
                       }
@@ -154,9 +157,8 @@ const MyListingsCollection = ({ walletAddress = null }) => {
         </div>
       )}
 
-      <MyNftListDialog />
-      <MyNftCancelDialog />
-      <InvalidListingsPopup navigateTo={false} />
+      <MyNftCancelDialog/>
+      <InvalidListingsPopup navigateTo={false}/>
     </>
   );
 };

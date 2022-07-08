@@ -4,9 +4,10 @@ import { ethers } from 'ethers';
 import { toast } from 'react-toastify';
 import { faLink, faEllipsisH, faExchangeAlt, faTag, faTimes, faPen } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import config from '../../Assets/networks/rpc_config.json';
 import PopupMen from './PopupMenu';
 import AnyMedia from './AnyMedia';
+import {appConfig} from "../../Config";
+import {nftCardUrl} from "../../helpers/image";
 
 const MyNftCard = ({
   nft,
@@ -76,7 +77,7 @@ const MyNftCard = ({
     options.push({
       icon: faLink,
       label: 'Copy link',
-      handleClick: onCopyLinkButtonPressed(new URL(nftUrl(), config.app_base)),
+      handleClick: onCopyLinkButtonPressed(new URL(nftUrl(), appConfig('urls.app'))),
     });
 
     return options;
@@ -84,7 +85,12 @@ const MyNftCard = ({
 
   return (
     <div className="card eb-nft__card h-100 shadow">
-      <AnyMedia image={nft.image} title={nft.name} url={nftUrl()} newTab={true} className="card-img-top marketplace" />
+      <AnyMedia image={nftCardUrl(nft.address, nft.image)} 
+            title={nft.name} url={nftUrl()}
+            newTab={true} 
+            className="card-img-top marketplace"  
+            height={440}
+            width={440}/>
       {nft.rank && typeof nft.rank === 'number' && (
         <div className="badge bg-rarity text-wrap mt-1 mx-1">Rank: #{nft.rank}</div>
       )}

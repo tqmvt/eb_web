@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createGlobalStyle } from 'styled-components';
-import Image from 'next/image';
 import Link from 'next/link';
 import { ethers } from 'ethers';
 import Blockies from 'react-blockies';
@@ -10,6 +9,10 @@ import { Form, Spinner } from 'react-bootstrap';
 import Footer from '../src/Components/components/Footer';
 import { getAllCollections } from '../src/GlobalState/collectionsSlice';
 import { debounce, siPrefixedNumber } from '../src/utils';
+import Image from "next/image";
+import {CdnImage} from "../src/Components/components/CdnImage";
+import {hostedImage} from "../src/helpers/image";
+import PageHead from "../src/Components/Head/PageHead";
 
 const GlobalStyles = createGlobalStyle`
   .mobile-view-list-item {
@@ -134,6 +137,11 @@ const Collections = () => {
 
   return (
     <div>
+      <PageHead
+        title="Collections"
+        description="View the top performing collections on Ebisu's Bay Marketplace"
+        url="/collections"
+      />
       <GlobalStyles />
       <section className="jumbotron breadcumb no-bg tint">
         <div className="mainbreadcumb">
@@ -227,8 +235,8 @@ const Collections = () => {
                               <Link href={`/collection/${collection.slug}`}>
                                 <a>
                                   {collection.metadata?.avatar ? (
-                                    <Image
-                                      src={collection.metadata.avatar}
+                                    <CdnImage
+                                      src={hostedImage(collection.metadata.avatar, true)}
                                       alt={collection?.name}
                                       width="50"
                                       height="50"
@@ -269,7 +277,9 @@ const Collections = () => {
                                 onClick={() => sortCollections('floorPrice')}
                               >
                                 <span>Floor Price</span>
-                                <span className="text-end">{collection.numberActive > 0 ? `${collectionFloorPriceValue(collection)} CRO` : 'N/A'}</span>
+                                <span className="text-end">
+                                  {collection.numberActive > 0 ? `${collectionFloorPriceValue(collection)} CRO` : 'N/A'}
+                                </span>
                               </div>
                               <div className="col-12 mobile-view-list-item">
                                 <span>
@@ -292,7 +302,9 @@ const Collections = () => {
                         </th>
                         {tableMobileView && <td>{siPrefixedNumber(collectionVolume(collection))} CRO</td>}
                         {tableMobileView && <td>{siPrefixedNumber(collectionSales(collection))}</td>}
-                        {tableMobileView && <td>{collection.numberActive > 0 ? `${collectionFloorPriceValue(collection)} CRO` : '-'}</td>}
+                        {tableMobileView && (
+                          <td>{collection.numberActive > 0 ? `${collectionFloorPriceValue(collection)} CRO` : '-'}</td>
+                        )}
                         {tableMobileView && <td>{collectionAveragePrices(collection)} CRO</td>}
                         {tableMobileView && <td>{siPrefixedNumber(collectionNumberActiveValue(collection))}</td>}
                       </tr>

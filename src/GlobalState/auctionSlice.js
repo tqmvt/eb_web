@@ -1,11 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { getAuction, getNft } from '../core/api';
 import { Contract, ethers } from 'ethers';
-import config from '../Assets/networks/rpc_config.json';
 import { Auction } from '../core/models/auction';
 import AuctionContract from '../Contracts/DegenAuction.json';
 import { devLog } from '../utils';
-const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
+import {appConfig} from "../Config";
+
+const config = appConfig();
+const readProvider = new ethers.providers.JsonRpcProvider(config.rpc.read);
 
 const auctionSlice = createSlice({
   name: 'listing',
@@ -27,7 +29,7 @@ const auctionSlice = createSlice({
       state.loading = false;
       state.auction = action.payload.listing;
       state.history = action.payload.history ?? [];
-      state.bidHistory = action.payload.listing.getBidHistory ?? [];
+      state.bidHistory = action.payload.bidHistory ?? [];
       state.powertraits = action.payload.powertraits ?? [];
       state.minBid = action.payload.minBid;
     },
@@ -55,17 +57,20 @@ export const getAuctionDetails = (auctionId) => async (dispatch) => {
   const nft = await getNft(listing.nftAddress, listing.nftId, false);
   const history = nft?.listings ?? [];
   const powertraits = nft.nft?.powertraits ?? [];
+  const flattenedBidHistory = listing.getBidHistory.flatMap((item) => item.updates.map((o) => {
+    return {...o, bidder: item.bidder};
+  })).sort((a, b) => parseInt(a.price) < parseInt(b.price) ? 1 : -1);
 
   let minBid;
   try {
-    const readContract = new Contract(config.mm_auction_contract, AuctionContract.abi, readProvider);
+    const readContract = new Contract(config.contracts.madAuction, AuctionContract.abi, readProvider);
     minBid = await readContract.minimumBid(hash, index);
     minBid = ethers.utils.formatEther(minBid);
   } catch (error) {
     minBid = listing.getMinimumBid;
     console.log('Failed to retrieve minimum bid. Falling back to api value', error);
   }
-  dispatch(auctionReceived({ listing, history, powertraits, minBid }));
+  dispatch(auctionReceived({ listing, history, powertraits, minBid, bidHistory: flattenedBidHistory }));
 };
 
 export const updateAuctionFromBidEvent = (bidAmount) => async (dispatch, getState) => {
@@ -74,9 +79,11 @@ export const updateAuctionFromBidEvent = (bidAmount) => async (dispatch, getStat
 
   devLog('updateAuctionFromBidEvent', currentAuction.hash, currentAuction.index);
   try {
-    const readContract = new Contract(config.mm_auction_contract, AuctionContract.abi, readProvider);
+    const readContract = new Contract(config.contracts.madAuction, AuctionContract.abi, readProvider);
+    const chainAuction = await readContract.getAuction(currentAuction.hash, currentAuction.index);
     const minBid = await readContract.minimumBid(currentAuction.hash, currentAuction.index);
     devLog('minBid', minBid.toString());
+    devLog('chainAuction', chainAuction, parseInt(chainAuction.endAt));
 
     const allBids = await readContract.getAllBids(currentAuction.hash, currentAuction.index);
     const apiMappedAllBids = allBids.map((bid) => {
@@ -101,8 +108,8 @@ export const updateAuctionFromBidEvent = (bidAmount) => async (dispatch, getStat
         highestBidder: highestBid.bidder,
         minimumBid: minBid.toString(),
         bidHistory: apiMappedAllBids,
-      },
-    });
+        endAt: parseInt(chainAuction.endAt)
+    }});
     devLog('auction', state.auction.auction, auction);
 
     dispatch(

@@ -7,13 +7,10 @@ import { commify } from 'ethers/lib/utils';
 import Link from 'next/link';
 
 import Button from '../../../Components/components/Button';
-import { caseInsensitiveCompare, findCollectionByAddress, shortAddress, shortString } from '../../../utils';
-import config from '../../../Assets/networks/rpc_config.json';
+import { findCollectionByAddress, shortAddress, shortString } from '../../../utils';
 import { getNftDetails } from '../../../GlobalState/nftSlice';
 import MakeOfferDialog from '../MakeOfferDialog';
 import AcceptOfferDialog from '../AcceptOfferDialog';
-
-const knownContracts = config.known_contracts;
 
 const TableRowContainer = styled.div`
   display: flex;

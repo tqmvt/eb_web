@@ -5,9 +5,9 @@ import * as Sentry from '@sentry/react';
 export class SentryLoggingService {
   static init() {
     Sentry.init({
-      dsn: process.env.REACT_APP_SENTRY_DSN,
+      dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
       debug: false,
-      enabled: !!process.env.REACT_APP_SENTRY_DSN,
+      enabled: !!process.env.NEXT_PUBLIC_SENTRY_DSN,
       release: 'main',
       // integrations: [
       //   new Integrations.BrowserTracing({

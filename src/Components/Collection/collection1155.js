@@ -7,36 +7,34 @@ import Blockies from 'react-blockies';
 
 import Footer from '../components/Footer';
 import CollectionListingsGroup from '../components/CollectionListingsGroup';
-// import CollectionFilterBar from '../src/Components/components/CollectionFilterBar';
 import LayeredIcon from '../components/LayeredIcon';
 import { init, fetchListings, getStats } from '../../GlobalState/collectionSlice';
 import { isCrosmocraftsPartsCollection } from '../../utils';
-// import TraitsFilter from '../Collection/TraitsFilter';
-// import PowertraitsFilter from '../Collection/PowertraitsFilter';
 import SocialsBar from './SocialsBar';
 import { CollectionSortOption } from '../Models/collection-sort-option.model';
-import { FilterOption } from '../Models/filter-option.model';
-import config from '../../Assets/networks/rpc_config.json';
 import Market from '../../Contracts/Marketplace.json';
 import CollectionInfoBar from '../components/CollectionInfoBar';
 import stakingPlatforms from '../../core/data/staking-platforms.json';
 import SalesCollection from '../components/SalesCollection';
 import CollectionNftsGroup from '../components/CollectionNftsGroup';
+import {appConfig} from "../../Config";
+import {ImageKitService} from "../../helpers/image";
+import {CollectionFilters} from "../Models/collection-filters.model";
+import {Spinner} from "react-bootstrap";
 
-// const knownContracts = config.known_contracts;
+const config = appConfig();
 
 const Collection1155 = ({ collection, tokenId = null, cacheName = 'collection', slug }) => {
   const dispatch = useDispatch();
 
-  const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
-  const readMarket = new Contract(config.market_contract, Market.abi, readProvider);
+  const readProvider = new ethers.providers.JsonRpcProvider(config.rpc.read);
+  const readMarket = new Contract(config.contracts.market, Market.abi, readProvider);
 
   const [royalty, setRoyalty] = useState(null);
   const [metadata, setMetadata] = useState(null);
 
-  const collectionCachedTraitsFilter = useSelector((state) => state.collection.cachedTraitsFilter);
-  const collectionCachedSort = useSelector((state) => state.collection.cachedSort);
   const collectionStats = useSelector((state) => state.collection.stats);
+  const initialLoadComplete = useSelector((state) => state.collection.initialLoadComplete);
 
   const listings = useSelector((state) => state.collection.listings);
   const hasRank = useSelector((state) => state.collection.hasRank);
@@ -80,22 +78,13 @@ const Collection1155 = ({ collection, tokenId = null, cacheName = 'collection', 
     sortOption.direction = 'asc';
     sortOption.label = 'By Price';
 
-    const filterOption = FilterOption.default();
-    filterOption.type = 'collection';
+    const filterOption = CollectionFilters.default();
     filterOption.address = collection.address;
     if (tokenId != null) {
-      filterOption.id = tokenId;
+      filterOption.token = tokenId;
     }
-    filterOption.name = 'Specific collection';
 
-    dispatch(
-      init(
-        filterOption,
-        collectionCachedSort[cacheName] ?? sortOption,
-        collectionCachedTraitsFilter[collection.address] ?? {},
-        collection.address
-      )
-    );
+    dispatch(init(filterOption));
     dispatch(fetchListings());
     // eslint-disable-next-line
   }, [dispatch, collection]);
@@ -125,21 +114,11 @@ const Collection1155 = ({ collection, tokenId = null, cacheName = 'collection', 
 
   return (
     <div>
-      <Head>
-        <title>{collectionName()} | Ebisu's Bay Marketplace</title>
-        <meta name="description" content={`${collectionName()} for Ebisu's Bay Marketplace`} />
-        <meta name="title" content={`${collectionName()} | Ebisu's Bay Marketplace`} />
-        <meta property="og:title" content={`${collectionName()} | Ebisu's Bay Marketplace`} />
-        <meta property="og:url" content={`https://app.ebisusbay.com/collection/${collection.address}`} />
-        <meta property="og:image" content={`https://app.ebisusbay.com${collectionMetadata?.avatar || '/'}`} />
-        <meta name="twitter:title" content={`${collectionName()} | Ebisu's Bay Marketplace`} />
-        <meta name="twitter:image" content={`https://app.ebisusbay.com${collectionMetadata?.avatar || '/'}`} />
-      </Head>
       <section
         id="profile_banner"
         className="jumbotron breadcumb no-bg"
         style={{
-          backgroundImage: `url(${metadata?.banner ? metadata.banner : '/img/background/subheader-blue.webp'})`,
+          backgroundImage: `url(${ImageKitService.buildBannerUrl(metadata?.banner ?? '')})`,
           backgroundPosition: '50% 50%',
         }}
       >
@@ -246,6 +225,15 @@ const Collection1155 = ({ collection, tokenId = null, cacheName = 'collection', 
                         address={collection.address}
                         collection={collection}
                       />
+                    )}
+                    {!initialLoadComplete && (
+                      <div className="row mt-5">
+                        <div className="col-lg-12 text-center">
+                          <Spinner animation="border" role="status">
+                            <span className="visually-hidden">Loading...</span>
+                          </Spinner>
+                        </div>
+                      </div>
                     )}
                   </div>
                 </div>

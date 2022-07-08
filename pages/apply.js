@@ -1,17 +1,15 @@
-import React, { useState } from 'react';
-import Head from 'next/head';
+import React, {useEffect, useState} from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import { useSelector } from 'react-redux';
 import Reveal from 'react-awesome-reveal';
 import { keyframes } from '@emotion/react';
-import dynamic from 'next/dynamic'
+import dynamic from 'next/dynamic';
+import { faLightbulb, faTags } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Footer from '../src/Components/components/Footer';
-import {faLightbulb, faTags} from "@fortawesome/free-solid-svg-icons";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-const NativeForms = dynamic(
-  () => import('native-forms-react'),
-  { ssr: false }
-)
+import {useRouter} from "next/router";
+import PageHead from "../src/Components/Head/PageHead";
+const NativeForms = dynamic(() => import('native-forms-react'), { ssr: false });
 
 const fadeInUp = keyframes`
   0% {
@@ -74,34 +72,59 @@ const StyledForm = styled.div`
   }
 `;
 
-const Application = () => {
-  // const dispatch = useDispatch();
+const choice = {
+  listing: 'listing',
+  launchpad: 'launchpad'
+};
+
+const Application = ({type}) => {
+  const router = useRouter();
 
   const userTheme = useSelector((state) => {
     return state.user.theme;
   });
 
-  const [openTab, setOpenTab] = useState(null);
+  const [openTab, setOpenTab] = useState(type);
   const handleBtnClick = (index) => (element) => {
-    var elements = document.querySelectorAll('.tab');
-    for (var i = 0; i < elements.length; i++) {
-      elements[i].classList.remove('active');
+    if (choice[index]) {
+      router.push({
+        pathname: '/apply',
+        query: { type: choice[index] }
+      },
+        undefined, { shallow: true }
+      );
     }
-    element.target.closest('.tab').classList.add('active');
-
-    setOpenTab(index);
   };
+
+  useEffect(() => {
+    if (router.query.type && choice[router.query.type]) {
+      setOpenTab(router.query.type);
+      const element = document.getElementById('form');
+      element.scrollIntoView();
+    }
+  }, [router.query])
 
   return (
     <div>
-      <Head>
-        <title>Project Applications | Ebisu's Bay Marketplace</title>
-        <meta name="description" content="Peace of mind minting on Ebisu's Bay Marketplace" />
-        <meta name="title" content="Project Applications | Ebisu's Bay Marketplace" />
-        <meta property="og:title" content="Project Applications | Ebisu's Bay Marketplace" />
-        <meta property="og:url" content={`https://app.ebisusbay.com/apply`} />
-        <meta name="twitter:title" content="Project Applications | Ebisu's Bay Marketplace" />
-      </Head>
+      {type === choice.listing ? (
+        <PageHead
+          title="Listing Application"
+          description="Get your project listed on Ebisu's Bay Marketplace"
+          url="/apply?type=listing"
+        />
+      ) : type === choice.launchpad ? (
+        <PageHead
+          title="Launchpad Application"
+          description="Get your project launched on Ebisu's Bay Launchpad"
+          url="/apply?type=launchpad"
+        />
+      ) : (
+        <PageHead
+          title="Listing & Launchpad Application"
+          description="Get your project to market on Ebisu's Bay Marketplace"
+          url="/apply"
+        />
+      )}
       <GlobalStyles />
       <section className="container mt-0 mt-lg-5">
         <div className="row">
@@ -111,53 +134,49 @@ const Application = () => {
         </div>
         <div className="row justify-content-center mt-2">
           <div className="col-xl-4 col-sm-6 d-flex justify-content-center mb-2 mb-sm-0">
-            <a href="#form">
-              <ChoiceBox
-                className="tab feature-box f-boxed style-3"
-                style={{ cursor: 'pointer' }}
-                onClick={handleBtnClick(0)}
-              >
-                <Reveal className="onStep mb-3" keyframes={fadeInUp} delay={0} duration={600} triggerOnce>
-                  <FontAwesomeIcon className="bg-color-2" icon={faTags} />
+            <ChoiceBox
+              className={`tab feature-box f-boxed style-3 ${openTab === choice.listing ? 'active' : ''}`}
+              style={{ cursor: 'pointer' }}
+              onClick={handleBtnClick(choice.listing)}
+            >
+              <Reveal className="onStep mb-3" keyframes={fadeInUp} delay={0} duration={600} triggerOnce>
+                <FontAwesomeIcon className="bg-color-2" icon={faTags} />
+              </Reveal>
+              <div className="text">
+                <Reveal className="onStep" keyframes={fadeInUp} delay={100} duration={600} triggerOnce>
+                  <h4 className="">Listing Request</h4>
                 </Reveal>
-                <div className="text">
-                  <Reveal className="onStep" keyframes={fadeInUp} delay={100} duration={600} triggerOnce>
-                    <h4 className="">Listing Request</h4>
-                  </Reveal>
-                  <Reveal className="onStep" keyframes={fadeInUp} delay={200} duration={600} triggerOnce>
-                    <p className="">For established projects that would like to be added to the marketplace.</p>
-                  </Reveal>
-                </div>
-              </ChoiceBox>
-            </a>
+                <Reveal className="onStep" keyframes={fadeInUp} delay={200} duration={600} triggerOnce>
+                  <p className="">For established projects that would like to be added to the marketplace.</p>
+                </Reveal>
+              </div>
+            </ChoiceBox>
           </div>
 
           <div className="col-xl-4 col-sm-6 d-flex justify-content-center">
-            <a href="#form">
-              <ChoiceBox
-                className="tab feature-box f-boxed style-3"
-                style={{ cursor: 'pointer' }}
-                onClick={handleBtnClick(1)}
-              >
-                <Reveal className="onStep mb-3" keyframes={fadeInUp} delay={0} duration={600} triggerOnce>
-                  <FontAwesomeIcon className="bg-color-2" icon={faLightbulb} />
+            <ChoiceBox
+              className={`tab feature-box f-boxed style-3 ${openTab === choice.launchpad ? 'active' : ''}`}
+              style={{ cursor: 'pointer' }}
+              onClick={handleBtnClick(choice.launchpad)}
+            >
+              <Reveal className="onStep mb-3" keyframes={fadeInUp} delay={0} duration={600} triggerOnce>
+                <FontAwesomeIcon className="bg-color-2" icon={faLightbulb} />
+              </Reveal>
+              <div className="text">
+                <Reveal className="onStep" keyframes={fadeInUp} delay={100} duration={600} triggerOnce>
+                  <h4 className="">Launchpad Request</h4>
                 </Reveal>
-                <div className="text">
-                  <Reveal className="onStep" keyframes={fadeInUp} delay={100} duration={600} triggerOnce>
-                    <h4 className="">Launchpad Request</h4>
-                  </Reveal>
-                  <Reveal className="onStep" keyframes={fadeInUp} delay={200} duration={600} triggerOnce>
-                    <p className="">For projects that would like to launch on the Ebisu's Bay launchpad</p>
-                  </Reveal>
-                </div>
-              </ChoiceBox>
-            </a>
+                <Reveal className="onStep" keyframes={fadeInUp} delay={200} duration={600} triggerOnce>
+                  <p className="">For projects that would like to launch on the Ebisu's Bay launchpad</p>
+                </Reveal>
+              </div>
+            </ChoiceBox>
           </div>
         </div>
         <div id="form" className="row">
           <div className="col">
             <div className="col-lg-12 mt-4">
-              {openTab === 0 && (
+              {openTab === choice.listing && (
                 <>
                   <h3 className="text-center">Listing Request</h3>
                   <StyledForm isDark={userTheme === 'dark'}>
@@ -165,7 +184,7 @@ const Application = () => {
                   </StyledForm>
                 </>
               )}
-              {openTab === 1 && (
+              {openTab === choice.launchpad && (
                 <>
                   <h3 className="text-center">Launchpad Request</h3>
                   <StyledForm isDark={userTheme === 'dark'}>
@@ -182,3 +201,11 @@ const Application = () => {
   );
 };
 export default Application;
+
+export const getServerSideProps = async ({ query }) => {
+  return {
+    props: {
+      type: query?.type ?? null,
+    },
+  };
+};

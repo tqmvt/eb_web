@@ -3,11 +3,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  poweredByHeader: false,
   compiler: {
     styledComponents: true,
   },
   images: {
-    dangerouslyAllowSVG: true,
+    dangerouslyAllowSVG: false,
     domains: [
       'ipfs.io',
       'app.ebisusbay.com',
@@ -17,13 +18,25 @@ const nextConfig = {
       'res.cloudinary.com',
       'ebisusbay.imgix.net',
       'metadata.cronos.domains',
+      'ik.imagekit.io',
+      'cdn.ebisusbay.com',
+      'cdn.ebisusbay.biz'
     ],
+  },
+  i18n: {
+    locales: ["en"],
+    defaultLocale: "en",
   },
   async redirects() {
     return [
       {
         source: '/drops/founding-member',
         destination: '/collection/founding-member',
+        permanent: true,
+      },
+      {
+        source: '/drops/carkayous',
+        destination: '/drops/carkayous-feral-fish',
         permanent: true,
       },
       {
@@ -47,8 +60,18 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: '/metaverse-auctions',
-        destination: '/mad-auction',
+        source: '/collection/carkayous',
+        destination: '/collection/carkayous-feral-fish',
+        permanent: true,
+      },
+      {
+        source: '/collection/carkayous/:id',
+        destination: '/collection/carkayous-feral-fish/:id',
+        permanent: true,
+      },
+      {
+        source: '/mad-auction',
+        destination: '/auctions/mad-auction',
         permanent: false,
       },
       {

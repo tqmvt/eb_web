@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import Breakpoint, { BreakpointProvider, setDefaultBreakpoints } from 'react-socks';
 import Link from 'next/link';
 import { createGlobalStyle } from 'styled-components';
-
+import useBreakpoint from 'use-breakpoint';
 import AccountMenu from '../components/AccountMenu';
 import InvalidListingWarning from '../components/InvalidListingWarning';
 // import { setTheme } from '../../GlobalState/User';
 
-setDefaultBreakpoints([{ xs: 0 }, { l: 1199 }, { xl: 1200 }]);
+const BREAKPOINTS = { xs: 0, m: 768, l: 1199, xl: 1200 };
 
 const GlobalStyles = createGlobalStyle`
   header#myHeader.navbar.white {
@@ -32,10 +31,12 @@ const GlobalStyles = createGlobalStyle`
 `;
 
 const Header = function () {
-  const [showmenu, btn_icon] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
   const theme = useSelector((state) => {
     return state.user.theme;
   });
+  const { breakpoint, maxWidth, minWidth } = useBreakpoint(BREAKPOINTS);
+  const [useMobileMenu, setUseMobileMenu] = useState(false);
 
   // const dispatch = useDispatch();
   // const toggleTheme = () => {
@@ -44,14 +45,17 @@ const Header = function () {
   // };
 
   useEffect(() => {
+    setUseMobileMenu(minWidth < BREAKPOINTS.l);
+  }, [breakpoint]);
+
+  useEffect(() => {
     if (typeof window !== 'undefined') {
       const header = document.getElementById('myHeader');
       const totop = document.getElementById('eb-scroll-to-top');
       const sticky = header.offsetTop;
       const scrollCallBack = window.addEventListener('scroll', () => {
-        btn_icon(false);
+        setShowMenu(false);
         if (window.pageYOffset > sticky) {
-          header.classList.add('sticky');
           totop.classList.add('show');
         } else {
           header.classList.remove('sticky');
@@ -83,9 +87,9 @@ const Header = function () {
             </div>
           </div>
 
-          <BreakpointProvider>
-            <Breakpoint l down>
-              {showmenu && (
+          {useMobileMenu ? (
+            <div className="breakpoint__l-down">
+              {showMenu && (
                 <div className="menu">
                   <div className="menu">
                     <div className="navbar-item">
@@ -121,9 +125,9 @@ const Header = function () {
                       </Link>
                     </div>
                     <div className="navbar-item">
-                      <Link href="/mad-auction">
+                      <Link href="/stats">
                         <a>
-                          MAD Auction
+                          Stats
                           <span className="lines"></span>
                         </a>
                       </Link>
@@ -131,9 +135,9 @@ const Header = function () {
                   </div>
                 </div>
               )}
-            </Breakpoint>
-
-            <Breakpoint xl>
+            </div>
+          ) : (
+            <div className="breakpoint__xl-only ">
               <div className="menu">
                 <div className="navbar-item">
                   <Link href="/">
@@ -168,22 +172,22 @@ const Header = function () {
                   </Link>
                 </div>
                 <div className="navbar-item">
-                  <Link href="/mad-auction">
+                  <Link href="/stats">
                     <a>
-                      MAD Auction
+                      Stats
                       <span className="lines"></span>
                     </a>
                   </Link>
                 </div>
               </div>
-            </Breakpoint>
-          </BreakpointProvider>
+            </div>
+          )}
 
           <AccountMenu />
           <InvalidListingWarning size={'2x'} />
         </div>
 
-        <button className="nav-icon" onClick={() => btn_icon(!showmenu)}>
+        <button className="nav-icon" onClick={() => setShowMenu(!showMenu)}>
           <div className="menu-line white"></div>
           <div className="menu-line1 white"></div>
           <div className="menu-line2 white"></div>

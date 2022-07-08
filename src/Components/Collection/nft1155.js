@@ -24,7 +24,7 @@ import {
   timeSince,
 } from '../../utils';
 import { getNftDetails } from '../../GlobalState/nftSlice';
-import { croSkullRedPotionImageHack } from '../../hacks';
+import { specialImageTransform } from '../../hacks';
 import { chainConnect, connectAccount } from '../../GlobalState/User';
 
 import ListingItem from '../NftDetails/NFTTabListings/ListingItem';
@@ -36,6 +36,7 @@ import MakeOfferDialog from '../Offer/MakeOfferDialog';
 import { OFFER_TYPE } from '../Offer/MadeOffersRow';
 import NFTTabOffers from '../Offer/NFTTabOffers';
 import { AnyMedia } from '../components/AnyMedia';
+import { hostedImage } from '../../helpers/image';
 
 const Nft1155 = ({ address, id }) => {
   const dispatch = useDispatch();
@@ -73,6 +74,11 @@ const Nft1155 = ({ address, id }) => {
     if (nft.original_image.startsWith('ipfs://')) {
       const link = nft.original_image.split('://')[1];
       return `https://ipfs.io/ipfs/${link}`;
+    }
+
+    if (nft.original_image.startsWith('https://gateway.ebisusbay.com')) {
+      const link = nft.original_image.replace('gateway.ebisusbay.com', 'ipfs.io');
+      return link;
     }
 
     return nft.original_image;
@@ -131,16 +137,6 @@ const Nft1155 = ({ address, id }) => {
 
   return (
     <div>
-      <Head>
-        <title>{nft?.name || 'NFT'} | Ebisu's Bay Marketplace</title>
-        <meta name="description" content={`${nft?.name || 'NFT'} for Ebisu's Bay Marketplace`} />
-        <meta name="title" content={`${nft?.name || 'NFT'} | Ebisu's Bay Marketplace`} />
-        <meta property="og:title" content={`${nft?.name || 'NFT'} | Ebisu's Bay Marketplace`} />
-        <meta property="og:url" content={`https://app.ebisusbay.com/nft/${address}`} />
-        <meta property="og:image" content={nft?.image} />
-        <meta name="twitter:title" content={`${nft?.name || 'NFT'} | Ebisu's Bay Marketplace`} />
-        <meta name="twitter:image" content={nft?.image} />
-      </Head>
       {isLoading ? (
         <section className="container">
           <div className="row mt-4">
@@ -161,8 +157,8 @@ const Nft1155 = ({ address, id }) => {
                 ) : (
                   <>
                     <AnyMedia
-                      image={croSkullRedPotionImageHack(address, nft.image)}
-                      video={nft.video ?? nft.animation_url}
+                      image={specialImageTransform(address, nft.image)}
+                      video={specialImageTransform(address, nft.video ?? nft.animation_url)}
                       videoProps={{ height: 'auto', autoPlay: true }}
                       title={nft.name}
                       usePlaceholder={false}
@@ -178,7 +174,7 @@ const Nft1155 = ({ address, id }) => {
                   <span
                     onClick={() =>
                       typeof window !== 'undefined' &&
-                      window.open(croSkullRedPotionImageHack(address, fullImage()), '_blank')
+                      window.open(specialImageTransform(address, fullImage()), '_blank')
                     }
                   >
                     <span className="p-2">View Full Image</span>
@@ -205,7 +201,7 @@ const Nft1155 = ({ address, id }) => {
                     <ProfilePreview
                       type="Collection"
                       title={collectionName ?? 'View Collection'}
-                      avatar={collectionMetadata?.avatar}
+                      avatar={hostedImage(collectionMetadata?.avatar, true)}
                       address={address}
                       verified={collectionMetadata?.verified}
                       to={`/collection/${collectionSlug}`}
@@ -215,11 +211,12 @@ const Nft1155 = ({ address, id }) => {
                       <ProfilePreview
                         type="Rarity Rank"
                         title={nft.rank}
-                        avatar={
+                        avatar={hostedImage(
                           collectionMetadata.rarity === 'rarity_sniper'
                             ? '/img/logos/rarity-sniper.png'
-                            : '/img/logos/ebisu-technicolor.svg'
-                        }
+                            : '/img/logos/ebisu-technicolor.svg',
+                          true
+                        )}
                         hover={
                           collectionMetadata.rarity === 'rarity_sniper'
                             ? `Ranking provided by ${humanize(collectionMetadata.rarity)}`

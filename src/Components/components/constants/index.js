@@ -5,6 +5,7 @@ export const settings = {
   slidesToScroll: 4,
   initialSlide: 0,
   adaptiveHeight: 300,
+  lazyLoad: true,
   responsive: [
     {
       breakpoint: 1900,

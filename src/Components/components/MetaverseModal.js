@@ -51,10 +51,12 @@ const MetaverseModal = (props) => {
         </div>
         {showAuctionPageLink && (
           <div className="flex-fill mx-1">
-            <Link href="/mad-auction">
-              <Button type="legacy-outlined" className="w-100">
-                View Auctions
-              </Button>
+            <Link href="/auctions/mad-auction">
+              <a>
+                <Button type="legacy-outlined" className="w-100">
+                  View Auctions
+                </Button>
+              </a>
             </Link>
           </div>
         )}

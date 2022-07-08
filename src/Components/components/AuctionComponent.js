@@ -10,10 +10,13 @@ import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 
 import { getAuctionDetails } from '../../GlobalState/auctionSlice';
 import { caseInsensitiveCompare, humanize, newlineText, shortAddress, timeSince } from '../../utils';
-import config from '../../Assets/networks/rpc_config.json';
 import BuyerActionBar from '../Auctions/BuyerActionBar';
 import ProfilePreview from '../components/ProfilePreview';
-const knownContracts = config.known_contracts;
+import { appConfig } from '../../Config';
+import { hostedImage } from '../../helpers/image';
+
+const config = appConfig();
+const knownContracts = config.collections;
 
 const AuctionComponent = (props) => {
   const router = useRouter();
@@ -21,9 +24,6 @@ const AuctionComponent = (props) => {
   const dispatch = useDispatch();
 
   const listing = useSelector((state) => state.auction.auction);
-  const history = useSelector((state) =>
-    state.listing.history.filter((i) => i.state === 1).sort((a, b) => (a.saleTime < b.saleTime ? 1 : -1))
-  );
   const bidHistory = useSelector((state) => state.auction.bidHistory);
   const powertraits = useSelector((state) => state.auction.powertraits);
   const isLoading = useSelector((state) => state.auction.loading);
@@ -31,8 +31,6 @@ const AuctionComponent = (props) => {
   const collection = useSelector((state) => {
     return knownContracts.find((c) => c.address.toLowerCase() === listing?.nftAddress.toLowerCase());
   });
-
-  const [charityMetadata, setCharityMetadata] = useState(false);
 
   useEffect(() => {
     dispatch(getAuctionDetails(id));
@@ -42,6 +40,11 @@ const AuctionComponent = (props) => {
     if (listing.nft.original_image.startsWith('ipfs://')) {
       const link = listing.nft.original_image.split('://')[1];
       return `https://ipfs.io/ipfs/${link}`;
+    }
+
+    if (listing.nft.original_image.startsWith('https://gateway.ebisusbay.com')) {
+      const link = listing.nft.original_image.replace('gateway.ebisusbay.com', 'ipfs.io');
+      return link;
     }
 
     return listing.nft.original_image;
@@ -57,15 +60,6 @@ const AuctionComponent = (props) => {
 
     setOpenMenu(index);
   };
-
-  useEffect(() => {
-    if (listing)
-      setCharityMetadata(config.auctions.find((a) => caseInsensitiveCompare(a.hash, listing.getAuctionHash)));
-  }, [listing]);
-
-  if (charityMetadata && charityMetadata.redirectToDrop) {
-    router.push(`/drops/${charityMetadata.redirectToDrop}`);
-  }
 
   return (
     <>
@@ -111,7 +105,7 @@ const AuctionComponent = (props) => {
                       <ProfilePreview
                         type="Collection"
                         title={collection.name}
-                        avatar={collection.metadata.avatar}
+                        avatar={hostedImage(collection.metadata.avatar, true)}
                         address={listing.nftAddress}
                         verified={collection.metadata.verified}
                         to={`/collection/${collection.slug}`}
@@ -141,17 +135,6 @@ const AuctionComponent = (props) => {
                       <div className="de_tab_content">
                         {openMenu === 0 && (
                           <div className="tab-1 onStep fadeIn">
-                            {charityMetadata && (
-                              <div key="charity-meta">
-                                <div>{newlineText(charityMetadata.description)}</div>
-                                <p>
-                                  Donate directly at{' '}
-                                  <a href={charityMetadata.link} target="_blank" rel="noreferrer" className="fw-bold">
-                                    {charityMetadata.link}
-                                  </a>
-                                </p>
-                              </div>
-                            )}
                             {listing.nft.attributes && listing.nft.attributes.length > 0 ? (
                               <div key="charity-attributes">
                                 <div className="d-block mb-3">
@@ -251,9 +234,6 @@ const AuctionComponent = (props) => {
                                 price
                               </li>
                               <ul>
-                                <li>
-                                  Starting bid is <span className="fw-bold">55 $MAD</span>
-                                </li>
                                 <li>
                                   When current price is 0-99 $MAD, minimum increment is{' '}
                                   <span className="fw-bold">5 $MAD</span>

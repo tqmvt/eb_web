@@ -1,10 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { Contract, ethers } from 'ethers';
-import config from '../Assets/networks/rpc_config.json';
 import Membership from '../Contracts/EbisusBayMembership.json';
+import {appConfig} from "../Config";
 
-const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
-const readMemberships = new Contract(config.membership_contract, Membership.abi, readProvider);
+const config = appConfig();
+const readProvider = new ethers.providers.JsonRpcProvider(config.rpc.read);
+const readMemberships = new Contract(config.contracts.membership, Membership.abi, readProvider);
 
 const memberSlice = createSlice({
   name: 'memberships',

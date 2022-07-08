@@ -10,7 +10,8 @@ import SalesCollection from '../src/Components/components/SalesCollection';
 import { filterListings, getMarketData, searchListings, sortListings } from '../src/GlobalState/marketplaceSlice';
 import { debounce, siPrefixedNumber } from '../src/utils';
 import { SortOption } from '../src/Components/Models/sort-option.model';
-import { ListingsFilterOption } from '../src/Components/Models/listings-filter-option.model';
+import {MarketFilterCollection} from "../src/Components/Models/market-filters.model";
+import PageHead from "../src/Components/Head/PageHead";
 
 const Marketplace = () => {
   const cacheName = 'marketplace';
@@ -41,9 +42,9 @@ const Marketplace = () => {
     // eslint-disable-next-line
   }, []);
 
-  const selectDefaultFilterValue = marketplace.cachedFilter[cacheName] ?? ListingsFilterOption.default();
-  const selectDefaultSortValue = marketplace.cachedSort[cacheName] ?? SortOption.default();
-  const selectDefaultSearchValue = marketplace.cachedSearch[cacheName] ?? '';
+  const selectDefaultFilterValue = marketplace.query.filter.collection ?? MarketFilterCollection.default();
+  const selectDefaultSortValue = marketplace.query.sort ?? SortOption.default();
+  const selectDefaultSearchValue = marketplace.query.filter.search ?? '';
 
   const selectFilterOptions = marketPlaceCollectionFilterOptions;
   const selectSortOptions = useSelector((state) => {
@@ -75,6 +76,11 @@ const Marketplace = () => {
 
   return (
     <div>
+      <PageHead
+        title="Marketplace"
+        description="View the hottest NFTs for sale on Ebisu's Bay Marketplace"
+        url="/marketplace"
+      />
       <section className="jumbotron breadcumb no-bg tint">
         <div className="mainbreadcumb">
           <div className="container">
@@ -129,7 +135,7 @@ const Marketplace = () => {
                       showFilter={true}
                       showSort={true}
                       sortOptions={[SortOption.default(), ...selectSortOptions]}
-                      filterOptions={[ListingsFilterOption.default(), ...selectFilterOptions]}
+                      filterOptions={[ {value: null, label: 'All'}, ...selectFilterOptions]}
                       defaultSortValue={selectDefaultSortValue}
                       defaultFilterValue={selectDefaultFilterValue}
                       defaultSearchValue={selectDefaultSearchValue}

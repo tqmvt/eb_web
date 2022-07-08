@@ -1,10 +1,11 @@
 import React, { memo } from 'react';
+import {hostedImage} from "../../helpers/image";
 
 const HiddenCard = () => {
   return (
     <a href="https://www.magbrewvikings.com/" target="_blank" rel="noreferrer">
       <div className="card eb-nft__card h-100 shadow">
-        <img src="/img/collections/magbrew/opesc.jpg" className={`card-img-top marketplace`} alt="Shh, it's a secret" />
+        <img src={hostedImage('/img/collections/magbrew/opesc.jpg')} className={`card-img-top marketplace`} alt="Shh, it's a secret" />
         <div className="badge bg-rarity-none text-wrap mt-1 mx-1">Rank: N/A</div>
         <div className="card-body d-flex flex-column"></div>
       </div>

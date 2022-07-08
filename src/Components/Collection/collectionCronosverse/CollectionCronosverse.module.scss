@@ -2,7 +2,7 @@
 
 .bitpixel_back {
   text-align: center;
-  background-image: url('/public/img/cronosverse/Bit-back.png');
+  background-image: url('/img/cronosverse/Bit-back.png');
   background-size: 100% 100%;
   background-repeat: no-repeat;
   display: flex;
@@ -45,20 +45,20 @@
   background: $bgColor1 !important;
 }
 
-.tip_modal .modal_content {
+.modal_content {
   display: flex;
   justify-content: flex-start;
   background: $bgColor1 !important;
 }
 
-.tip_modal .modal_content .tile_img {
+.tile_img {
   width: 40px;
   height: 40px;
   border-radius: 5px;
   margin-right: 10px;
 }
 
-.tip_modal .modal_content .tile_items {
+.tile_items {
   display: flex;
   flex-direction: column;
   align-items: flex-start;

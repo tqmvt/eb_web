@@ -1,8 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { Contract, ethers, BigNumber } from 'ethers';
-import config from '../Assets/networks/rpc_config.json';
 import Membership from '../Contracts/EbisusBayMembership.json';
-import Cronies from '../Contracts/CronosToken.json';
 import StakeABI from '../Contracts/Stake.json';
 import Market from '../Contracts/Marketplace.json';
 import Auction from '../Contracts/DegenAuction.json';
@@ -28,7 +26,6 @@ import {
   isUserBlacklisted,
   sliceIntoChunks,
 } from '../utils';
-import { FilterOption } from '../Components/Models/filter-option.model';
 import { nanoid } from 'nanoid';
 import { appAuthInitFinished } from './InitSlice';
 import { captureException } from '@sentry/react';
@@ -37,8 +34,10 @@ import { getAllOffers } from '../core/subgraph';
 import { offerState } from '../core/api/enums';
 import { CNS, TextRecords } from '@cnsdomains/core';
 import { txExtras } from '../core/constants';
+import {appConfig} from "../Config";
+import {MarketFilterCollection} from "../Components/Models/market-filters.model";
 
-const knownContracts = config.known_contracts;
+const config = appConfig();
 
 const userSlice = createSlice({
   name: 'user',
@@ -51,7 +50,6 @@ const userSlice = createSlice({
     gettingContractData: true,
     code: '',
     isMember: false,
-    cronies: [],
     founderCount: 0,
     vipCount: 0,
     stakeCount: 0,
@@ -60,7 +58,6 @@ const userSlice = createSlice({
 
     // Contracts
     membershipContract: null,
-    croniesContract: null,
     marketContract: null,
     stateContract: null,
     auctionContract: null,
@@ -85,9 +82,10 @@ const userSlice = createSlice({
     nftsFullyFetched: false,
     myNftPageTransferDialog: null,
     myNftPageListDialog: null,
+    myNftPageListDialogError: false,
     myNftPageCancelDialog: null,
     myNftPageListedOnly: false,
-    myNftPageActiveFilterOption: FilterOption.default(),
+    myNftPageActiveFilterOption: MarketFilterCollection.default(),
 
     // My Listings
     myUnfilteredListingsFetching: false,
@@ -114,7 +112,6 @@ const userSlice = createSlice({
     accountChanged(state, action) {
       state.membershipContract = action.payload.membershipContract;
       state.stakeContract = action.payload.stakeContract;
-      state.croniesContract = action.payload.croniesContract;
 
       state.balance = action.payload.balance;
       state.code = action.payload.code;
@@ -177,6 +174,9 @@ const userSlice = createSlice({
     },
     setMyNftPageListDialog(state, action) {
       state.myNftPageListDialog = action.payload;
+    },
+    setMyNftPageListDialogError(state, action) {
+      state.myNftPageListDialogError = action.payload;
     },
     setMyNftPageCancelDialog(state, action) {
       state.myNftPageCancelDialog = action.payload;
@@ -477,7 +477,7 @@ export const connectAccount =
         method: 'net_version',
       });
 
-      const correctChain = cid === config.chain_id || cid === Number(config.chain_id);
+      const correctChain = cid === config.chain.id || cid === Number(config.chain.id);
 
       const accounts = await web3provider.request({
         method: 'eth_accounts',
@@ -555,18 +555,17 @@ export const connectAccount =
       dispatch(retrieveCnsProfile());
 
       if (signer && correctChain) {
-        mc = new Contract(config.membership_contract, Membership.abi, signer);
-        sc = new Contract(config.stake_contract, StakeABI.abi, signer);
-        cc = new Contract(config.cronie_contract, Cronies.abi, signer);
+        mc = new Contract(config.contracts.membership, Membership.abi, signer);
+        sc = new Contract(config.contracts.stake, StakeABI.abi, signer);
         const rawCode = await mc.codes(address);
         code = ethers.utils.parseBytes32String(rawCode);
         rewards = ethers.utils.formatEther(await mc.payments(address));
         ownedFounder = await mc.balanceOf(address, 1);
         ownedVip = await mc.balanceOf(address, 2);
         stakeCount = await sc.amountStaked(address);
-        market = new Contract(config.market_contract, Market.abi, signer);
-        auction = new Contract(config.mm_auction_contract, Auction.abi, signer);
-        offer = new Contract(config.offer_contract, Offer.abi, signer);
+        market = new Contract(config.contracts.market, Market.abi, signer);
+        auction = new Contract(config.contracts.madAuction, Auction.abi, signer);
+        offer = new Contract(config.contracts.offer, Offer.abi, signer);
         sales = ethers.utils.formatEther(await market.payments(address));
         stakingRewards = ethers.utils.formatEther(await sc.getReward(address));
 
@@ -586,7 +585,6 @@ export const connectAccount =
           correctChain: correctChain,
           membershipContract: mc,
           stakeContract: sc,
-          croniesContract: cc,
           code: code,
           balance: balance,
           rewards: rewards,
@@ -666,7 +664,7 @@ export const initProvider = () => async (dispatch) => {
 
 export const chainConnect = (type) => async (dispatch) => {
   if (window.ethereum) {
-    const cid = ethers.utils.hexValue(BigNumber.from(config.chain_id));
+    const cid = ethers.utils.hexValue(BigNumber.from(config.chain.id));
     try {
       await window.ethereum.request({
         method: 'wallet_switchEthereumChain',
@@ -681,13 +679,13 @@ export const chainConnect = (type) => async (dispatch) => {
             method: 'wallet_addEthereumChain',
             params: [
               {
-                chainName: config.name,
+                chainName: config.chain.name,
                 chainId: cid,
-                rpcUrls: [config.write_rpc],
+                rpcUrls: [config.rpc.write],
                 blockExplorerUrls: null,
                 nativeCurrency: {
-                  name: config.symbol,
-                  symbol: config.symbol,
+                  name: config.chain.symbol,
+                  symbol: config.chain.symbol,
                   decimals: 18,
                 },
               },
@@ -886,7 +884,7 @@ export const retrieveCnsProfile = () => async (dispatch, getState) => {
 
   try {
     let cnsProfile = {};
-    const cns = new CNS(config.chain_id, provider);
+    const cns = new CNS(config.chain.id, provider);
     cnsProfile.name = await cns.getName(address);
     if (cnsProfile.name) {
       cnsProfile.twitter = await cns.name(cnsProfile.name).getText(TextRecords.Twitter);
@@ -1013,10 +1011,14 @@ export class MyNftPageActions {
   };
 
   static showMyNftPageListDialog =
-    ({ contract, id, image, name, address }) =>
+    ({ contract, id, image, name, address, price, rank }) =>
     async (dispatch) => {
-      dispatch(userSlice.actions.setMyNftPageListDialog({ contract, id, image, name, address }));
+      dispatch(userSlice.actions.setMyNftPageListDialog({ contract, id, image, name, address, price, rank }));
     };
+
+  static setMyNftPageListDialogError = (error) => async (dispatch) => {
+    dispatch(userSlice.actions.setMyNftPageListDialogError(error));
+  };
 
   static hideMyNftPageListDialog = () => async (dispatch) => {
     dispatch(userSlice.actions.setMyNftPageListDialog(null));
@@ -1069,6 +1071,8 @@ export class MyNftPageActions {
     ({ contractAddress, nftId, salePrice, marketContract }) =>
     async (dispatch) => {
       try {
+        dispatch(MyNftPageActions.setMyNftPageListDialogError(false));
+
         const price = ethers.utils.parseEther(salePrice);
 
         let tx = await marketContract.makeListing(contractAddress, nftId, price, txExtras);
@@ -1089,6 +1093,7 @@ export class MyNftPageActions {
           console.log(error);
           toast.error('Unknown Error');
         }
+        dispatch(MyNftPageActions.setMyNftPageListDialogError(true));
       }
     };
 }
@@ -1099,9 +1104,9 @@ export class MyListingsCollectionPageActions {
   };
 
   static showMyNftPageListDialog =
-    ({ contract, id, image, name, address }) =>
+    ({ contract, id, image, name, address, price, rank }) =>
     async (dispatch) => {
-      dispatch(userSlice.actions.setMyNftPageListDialog({ contract, id, image, name, address }));
+      dispatch(userSlice.actions.setMyNftPageListDialog({ contract, id, image, name, address, price, rank }));
     };
 
   static setInvalidOnly =

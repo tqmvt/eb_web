@@ -3,6 +3,7 @@ import React from 'react';
 import Footer from '../src/Components/components/Footer';
 import AuctionCollection from '../src/Components/components/AuctionCollection';
 import MetaverseModal from '../src/Components/components/MetaverseModal';
+import {hostedImage} from "../src/helpers/image";
 
 const MetaverseAuctions = () => {
   return (
@@ -16,7 +17,7 @@ const MetaverseAuctions = () => {
           </div>
           <div className="col-lg-6 pt-3">
             <div className="card eb-nft__card h-100 shadow">
-              <img className="card-img-top" src="/img/metaverse_gallery.png" alt="metaverse gallery" />
+              <img className="card-img-top" src={hostedImage('/img/metaverse_gallery.png')} alt="metaverse gallery" />
               <div className="card-body d-flex flex-column align-middle">
                 <MetaverseModal />
               </div>

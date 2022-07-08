@@ -15,13 +15,13 @@ import styled from 'styled-components';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 
 import Footer from '../components/Footer';
-import config from '../../Assets/networks/rpc_config.json';
 import { connectAccount } from '../../GlobalState/User';
 import { createSuccessfulTransactionToastContent, isFounderDrop, newlineText } from '../../utils';
 import { dropState as statuses } from '../../core/api/enums';
 import { EbisuDropAbi } from '../../Contracts/Abis';
 
 import styles from '../Collection/collectionCronosverse/CollectionCronosverse.module.scss';
+import {appConfig} from "../../Config";
 
 const tiles = [
   '/img/cronosverse/Plain-tile.png',
@@ -30,7 +30,8 @@ const tiles = [
 ];
 const tileType = ['Plain', 'Suburban', 'Commercial'];
 
-export const drops = config.drops;
+const config = appConfig();
+const drops = config.drops;
 
 const fadeInUp = keyframes`
   0% {
@@ -69,7 +70,7 @@ const CronosverseDrop = () => {
   const router = useRouter();
   const { slug } = router.query;
 
-  const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
+  const readProvider = new ethers.providers.JsonRpcProvider(config.rpc.read);
   const dispatch = useDispatch();
 
   const [loading, setLoading] = useState(true);
@@ -107,17 +108,13 @@ const CronosverseDrop = () => {
     return state.memberships;
   });
 
-  const cronies = useSelector((state) => {
-    return state.cronies;
-  });
-
   useEffect(() => {
     async function fetchData() {
       await retrieveDropInfo();
     }
     fetchData();
     // eslint-disable-next-line
-  }, [user, membership, cronies]);
+  }, [user, membership]);
 
   const retrieveDropInfo = async () => {
     setDropObject(drop);
@@ -312,16 +309,6 @@ const CronosverseDrop = () => {
   return (
     <div>
       <>
-        <Head>
-          <title>{drop?.title || 'Drop'} | Ebisu's Bay Marketplace</title>
-          <meta name="description" content={`${drop?.title || 'Drop'} for Ebisu's Bay Marketplace`} />
-          <meta name="title" content={`${drop?.title || 'Drop'} | Ebisu's Bay Marketplace`} />
-          <meta property="og:title" content={`${drop?.title || 'Drop'} | Ebisu's Bay Marketplace`} />
-          <meta property="og:url" content={`https://app.ebisusbay.com/drops/${slug}`} />
-          <meta property="og:image" content={`https://app.ebisusbay.com${drop?.imgAvatar || '/'}`} />
-          <meta name="twitter:title" content={`${drop?.title || 'Drop'} | Ebisu's Bay Marketplace`} />
-          <meta name="twitter:image" content={`https://app.ebisusbay.com${drop?.imgAvatar || '/'}`} />
-        </Head>
         <HeroSection
           className={`jumbotron h-vh tint`}
           style={{ backgroundImage: `url(${drop.imgBanner ? drop.imgBanner : '/img/background/Ebisus-bg-1_L.webp'})` }}

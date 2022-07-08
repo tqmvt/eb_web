@@ -8,13 +8,12 @@ import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
 
 import { init, fetchListings } from '../../../GlobalState/collectionSlice';
 import { devLog } from '../../../utils';
-import { CollectionSortOption } from '../../Models/collection-sort-option.model';
-import { FilterOption } from '../../Models/filter-option.model';
 import Button from '../../components/Button';
 import { chainConnect, connectAccount } from '../../../GlobalState/User';
 import MakeOfferDialog from '../../Offer/MakeOfferDialog';
 
 import styles from './CollectionCronosverse.module.scss';
+import {CollectionFilters} from "../../Models/collection-filters.model";
 
 const CollectionCronosverse = ({ collection }) => {
   const dispatch = useDispatch();
@@ -28,10 +27,9 @@ const CollectionCronosverse = ({ collection }) => {
   const [nftOffer, setNftOffer] = useState(null);
 
   useEffect(() => {
-    const filterOption = FilterOption.default();
-    filterOption.type = 'collection';
+    const filterOption = CollectionFilters.default();
     filterOption.address = collection.address;
-    dispatch(init(filterOption, CollectionSortOption.default(), {}, collection.address));
+    dispatch(init(filterOption));
     dispatch(fetchListings(true));
     // eslint-disable-next-line
   }, [dispatch]);
@@ -321,7 +319,7 @@ const CronosverseCollectionBoard = ({ onBuy, onOffer, listings = [], nfts = [] }
                 top: `${tileInfo.modalPosition?.y}px`,
               }}
             >
-              <div className="modal_content">
+              <div className={styles.modal_content}>
                 <div
                   className={`${styles.cross}`}
                   onClick={() => {
@@ -330,8 +328,8 @@ const CronosverseCollectionBoard = ({ onBuy, onOffer, listings = [], nfts = [] }
                 >
                   &times;
                 </div>
-                <img className="tile_img" src={tileInfo.tile} alt="tile" />
-                <div className="tile_items">
+                <img className={styles.tile_img} src={tileInfo.tile} alt="tile" />
+                <div className={styles.tile_items}>
                   <div>TokenId: {tileInfo.tokenId}</div>
                   <div>Type: {tileType[tileInfo.type - 1]}</div>
                   <div>

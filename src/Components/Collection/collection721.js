@@ -1,15 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import Head from 'next/head';
 import { Contract, ethers } from 'ethers';
 import Blockies from 'react-blockies';
 import { faCheck, faCircle } from '@fortawesome/free-solid-svg-icons';
 import { Spinner } from 'react-bootstrap';
 import styled from 'styled-components';
-// import Skeleton from 'react-loading-skeleton';
-// import 'react-loading-skeleton/dist/skeleton.css';
-
-// import CollectionListingsGroup from '../components/CollectionListingsGroup';
 import CollectionFilterBar from '../components/CollectionFilterBar';
 import LayeredIcon from '../components/LayeredIcon';
 import Footer from '../components/Footer';
@@ -17,39 +12,49 @@ import CollectionInfoBar from '../components/CollectionInfoBar';
 import SalesCollection from '../components/SalesCollection';
 import CollectionNftsGroup from '../components/CollectionNftsGroup';
 import CollectionListingsGroup from '../components/CollectionListingsGroup';
-import { init, fetchListings, getStats } from '../../GlobalState/collectionSlice';
-import { caseInsensitiveCompare, isCronosVerseCollection, isCrosmocraftsCollection } from '../../utils';
+import {init, fetchListings, getStats, updateTab} from '../../GlobalState/collectionSlice';
+import { isCronosVerseCollection, isCrosmocraftsCollection } from '../../utils';
 import TraitsFilter from './TraitsFilter';
 import PowertraitsFilter from './PowertraitsFilter';
 import SocialsBar from './SocialsBar';
 import { CollectionSortOption } from '../Models/collection-sort-option.model';
-import { FilterOption } from '../Models/filter-option.model';
-import config from '../../Assets/networks/rpc_config.json';
 import Market from '../../Contracts/Marketplace.json';
 import stakingPlatforms from '../../core/data/staking-platforms.json';
 import PriceRangeFilter from '../Collection/PriceRangeFilter';
 import CollectionCronosverse from '../Collection/collectionCronosverse';
+import {appConfig} from "../../Config";
+import {hostedImage, ImageKitService} from "../../helpers/image";
+import {useRouter} from "next/router";
+import {CollectionFilters} from "../Models/collection-filters.model";
+import {pushQueryString} from "../../helpers/query";
 
-const knownContracts = config.known_contracts;
+const config = appConfig();
 
 const NegativeMargin = styled.div`
   margin-left: -1.75rem !important;
   margin-right: -1.75rem !important;
 `;
 
-const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) => {
-  const dispatch = useDispatch();
+const tabs = {
+  items: 'items',
+  activity: 'activity',
+  map: 'map'
+};
 
-  const readProvider = new ethers.providers.JsonRpcProvider(config.read_rpc);
-  const readMarket = new Contract(config.market_contract, Market.abi, readProvider);
+const Collection721 = ({ collection,  cacheName = 'collection', query }) => {
+  const dispatch = useDispatch();
+  const router = useRouter();
+
+  const readProvider = new ethers.providers.JsonRpcProvider(config.rpc.read);
+  const readMarket = new Contract(config.contracts.market, Market.abi, readProvider);
 
   const [royalty, setRoyalty] = useState(null);
 
-  const collectionCachedTraitsFilter = useSelector((state) => state.collection.cachedTraitsFilter);
-  const collectionCachedSort = useSelector((state) => state.collection.cachedSort);
   const collectionStatsLoading = useSelector((state) => state.collection.statsLoading);
   const collectionStats = useSelector((state) => state.collection.stats);
   const collectionLoading = useSelector((state) => state.collection.loading);
+  const initialLoadComplete = useSelector((state) => state.collection.initialLoadComplete);
+
   const [isFirstLoaded, setIsFirstLoaded] = useState(0);
 
   const listings = useSelector((state) => state.collection.listings);
@@ -61,28 +66,37 @@ const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) 
     );
   });
 
-  // const collectionMetadata = useSelector((state) => {
-  //   return knownContracts.find((c) => c.address.toLowerCase() === collection.address.toLowerCase())?.metadata;
-  // });
   const isUsingListingsFallback = useSelector((state) => state.collection.isUsingListingsFallback);
 
-  // const handleCopy = (code) => () => {
-  //   navigator.clipboard.writeText(code);
-  //   toast.success('Copied!');
-  // };
-  const [openMenu, setOpenMenu] = React.useState(0);
-  const handleBtnClick = (index) => (element) => {
-    if (typeof window === 'undefined') {
-      return;
-    }
-    var elements = document.querySelectorAll('.tab');
-    for (var i = 0; i < elements.length; i++) {
-      elements[i].classList.remove('active');
-    }
-    element.target.parentElement.classList.add('active');
+  const [openMenu, setOpenMenu] = useState(0);
+  const handleBtnClick = (key) => (element) => {
+    setOpenMenu(key);
 
-    setOpenMenu(index);
+    if (key === tabs.items) {
+      resetFilters();
+    }
+
+    pushQueryString(router, {
+      slug: router.query.slug,
+      tab: key
+    });
+    dispatch(updateTab(key));
   };
+
+  const resetFilters = (preservedQuery) => {
+    const sortOption = CollectionSortOption.default();
+    sortOption.key = 'price';
+    sortOption.direction = 'asc';
+    sortOption.label = 'By Price';
+
+    const filterOption = preservedQuery ? CollectionFilters.fromQuery(preservedQuery) : CollectionFilters.default();
+    filterOption.address = collection.mergedAddresses
+      ? [collection.address, ...collection.mergedAddresses]
+      : collection.address;
+
+    dispatch(init(filterOption, sortOption));
+    dispatch(fetchListings());
+  }
 
   const hasTraits = () => {
     return collectionStats?.traits != null && Object.entries(collectionStats?.traits).length > 0;
@@ -97,33 +111,14 @@ const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) 
   };
 
   useEffect(() => {
-    const sortOption = CollectionSortOption.default();
-    sortOption.key = 'price';
-    sortOption.direction = 'asc';
-    sortOption.label = 'By Price';
-
-    const filterOption = FilterOption.default();
-    filterOption.type = 'collection';
-    filterOption.address = collection.mergedAddresses
-      ? [collection.address, ...collection.mergedAddresses]
-      : collection.address;
-    filterOption.name = 'Specific collection';
-
-    dispatch(
-      init(
-        filterOption,
-        collectionCachedSort[cacheName] ?? sortOption,
-        collectionCachedTraitsFilter[collection.address] ?? {},
-        collection.address
-      )
-    );
-    dispatch(fetchListings());
+    resetFilters(query);
+    setOpenMenu(query.tab ?? tabs.items);
     // eslint-disable-next-line
   }, [dispatch, collection.address]);
 
   useEffect(() => {
     async function asyncFunc() {
-      dispatch(getStats(collection.address, slug, null, collection.mergedAddresses));
+      dispatch(getStats(collection.address, collection.slug, null, collection.mergedAddresses));
       try {
         let royalties = await readMarket.royalties(collection.address);
         setRoyalty(Math.round(royalties[1]) / 100);
@@ -147,21 +142,11 @@ const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) 
 
   return (
     <div>
-      <Head>
-        <title>{collection.name} | Ebisu's Bay Marketplace</title>
-        <meta name="description" content={`${collection.name} for Ebisu's Bay Marketplace`} />
-        <meta name="title" content={`${collection.name} | Ebisu's Bay Marketplace`} />
-        <meta property="og:title" content={`${collection.name} | Ebisu's Bay Marketplace`} />
-        <meta property="og:url" content={`https://app.ebisusbay.com/collection/${collection.slug}`} />
-        <meta property="og:image" content={`https://app.ebisusbay.com${collection.metadata.avatar || '/'}`} />
-        <meta name="twitter:title" content={`${collection.name} | Ebisu's Bay Marketplace`} />
-        <meta name="twitter:image" content={`https://app.ebisusbay.com${collection.metadata.avatar || '/'}`} />
-      </Head>
       <section
         id="profile_banner"
         className="jumbotron breadcumb no-bg"
         style={{
-          backgroundImage: `url(${collection.metadata.banner ?? '/img/background/subheader-blue.webp'})`,
+          backgroundImage: `url(${ImageKitService.buildBannerUrl(collection.metadata.banner ?? '')})`,
           backgroundPosition: '50% 50%',
         }}
       >
@@ -175,7 +160,7 @@ const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) 
               <div className="profile_avatar">
                 <div className="d_profile_img">
                   {collection.metadata.avatar ? (
-                    <img src={collection.metadata.avatar} alt={collection.name} />
+                    <img src={hostedImage(collection.metadata.avatar)} alt={collection.name} />
                   ) : (
                     <Blockies seed={collection.address.toLowerCase()} size={15} scale={10} />
                   )}
@@ -250,21 +235,21 @@ const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) 
 
         <div className="de_tab">
           <ul className="de_nav mb-2">
-            <li id="Mainbtn0" className="tab active">
-              <span onClick={handleBtnClick(0)}>Items</span>
+            <li id="Mainbtn0" className={`tab ${openMenu === tabs.items ? 'active' : ''}`}>
+              <span onClick={handleBtnClick('items')}>Items</span>
             </li>
-            <li id="Mainbtn1" className="tab">
-              <span onClick={handleBtnClick(1)}>Activity</span>
+            <li id="Mainbtn1" className={`tab ${openMenu === tabs.activity ? 'active' : ''}`}>
+              <span onClick={handleBtnClick('activity')}>Activity</span>
             </li>
             {isCronosVerseCollection(collection.address) && (
-              <li id="Mainbtn9" className="tab">
-                <span onClick={handleBtnClick(9)}>Map</span>
+              <li id="Mainbtn9" className={`tab ${openMenu === tabs.map ? 'active' : ''}`}>
+                <span onClick={handleBtnClick('map')}>Map</span>
               </li>
             )}
           </ul>
 
           <div className="de_tab_content">
-            {openMenu === 0 && (
+            {openMenu === tabs.items && (
               <div className="tab-1 onStep fadeIn">
                 <div className="row">
                   <CollectionFilterBar
@@ -297,11 +282,10 @@ const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) 
                         royalty={royalty}
                         canLoadMore={canLoadMore}
                         loadMore={loadMore}
-                        address={address}
                         collection={collection}
                       />
                     )}
-                    {isFirstLoaded !== 2 && collectionLoading && (
+                    {!initialLoadComplete && (
                       <div className="row mt-5">
                         <div className="col-lg-12 text-center">
                           <Spinner animation="border" role="status">
@@ -314,14 +298,14 @@ const Collection721 = ({ collection, address, slug, cacheName = 'collection' }) 
                 </div>
               </div>
             )}
-            {openMenu === 1 && (
+            {openMenu === tabs.activity && (
               <div className="tab-2 onStep fadeIn">
                 <SalesCollection cacheName="collection" collectionId={collection.address} />
               </div>
             )}
-            {openMenu === 9 && (
+            {openMenu === tabs.map && (
               <NegativeMargin className="tab-2 onStep fadeIn overflow-auto mt-2">
-                <CollectionCronosverse collection={collection} slug={slug} cacheName={slug} />
+                <CollectionCronosverse collection={collection} slug={collection.slug} cacheName={collection.slug} />
               </NegativeMargin>
             )}
           </div>
