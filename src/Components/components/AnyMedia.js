@@ -194,6 +194,6 @@ const Video = memo(
 
 const IFrame = memo(({ url }) => {
   return (
-    <iframe src={image} />
+    <iframe src={url} width="100%" height="100%"/>
   );
 });
