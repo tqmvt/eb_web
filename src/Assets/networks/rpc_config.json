@@ -5769,7 +5769,7 @@
       "name": "Hype Hogs",
       "slug": "hype-hogs",
       "multiToken": false,
-      "address": "",
+      "address": "0xF257E02D8c5c9a405589F99859f8b28b0Ccc5474",
       "onChain": false,
       "listable": false,
       "metadata": {
@@ -8406,7 +8406,7 @@
         "twitter": "https://twitter.com/ToughLions1111",
         "discord": "https://discord.gg/8ssS2RWZvn"
       },
-      "address": "",
+      "address": "0xF257E02D8c5c9a405589F99859f8b28b0Ccc5474",
       "maxMintPerTx": 20,
       "maxMintPerAddress": 100,
       "totalSupply": 3333,
