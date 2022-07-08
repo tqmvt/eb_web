@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useState } from 'react';
-import ReactPlayer from 'react-player';
+import ReactPlayer from 'react-player/lazy';
 import { fallbackImageUrl } from '../../core/constants';
 import Link from 'next/link';
 import {CdnImage} from "./CdnImage";
@@ -22,6 +22,7 @@ export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = fa
     image: 1,
     video: 2,
     audio: 3,
+    iframe: 4,
   };
 
   useEffect(() => {
@@ -40,6 +41,8 @@ export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = fa
       setTransformedImage(ImageKitService.gifToMp4(imageURL).toString());
       setVideoThumbNail(null);
       setDynamicType(mediaTypes.video);
+    } else if(imageURL.pathname && imageURL.pathname.endsWith('.html')){
+      setDynamicType(mediaTypes.iframe);
     } else {
       const xhr = new XMLHttpRequest();
       xhr.open('HEAD', transformedImage, true);
@@ -114,6 +117,8 @@ export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = fa
               className={className}
               fallbackComponent={<AnyMediaWithoutVideo />}
             />
+          ) : dynamicType === mediaTypes.iframe ? (
+            <IFrame url={image} />
           ) : url ? (
             <Link href={url} target={newTab ? '_blank' : '_self'}>
               <a>
@@ -186,3 +191,9 @@ const Video = memo(
     );
   }
 );
+
+const IFrame = memo(({ url }) => {
+  return (
+    <iframe src={url} width="100%" height="100%"/>
+  );
+});

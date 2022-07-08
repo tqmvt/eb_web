@@ -35,6 +35,11 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/drops/carkayous',
+        destination: '/drops/carkayous-feral-fish',
+        permanent: true,
+      },
+      {
         source: '/collection/mad-treehouse',
         destination: '/collection/mm-treehouse',
         permanent: true,

@@ -5272,7 +5272,9 @@
         "maxSupply": 2222,
         "website": "https://carkayous.com/",
         "twitter": "https://twitter.com/carkayous",
-        "discord": "https://discord.gg/carkayous"
+        "discord": "https://discord.gg/carkayous",
+        "rarity": "rarity_sniper",
+        "raritySniperSlug": "feral-fish"
       }
     },
     {
@@ -5767,7 +5769,7 @@
       "name": "Hype Hogs",
       "slug": "hype-hogs",
       "multiToken": false,
-      "address": "",
+      "address": "0xF257E02D8c5c9a405589F99859f8b28b0Ccc5474",
       "onChain": false,
       "listable": false,
       "metadata": {
@@ -8228,7 +8230,7 @@
     },
     {
       "id": 80,
-      "slug": "carkayous",
+      "slug": "carkayous-feral-fish",
       "imgNft": "/img/drops/carkayous/drop.png",
       "imgPreview": "/img/drops/carkayous/drop.png",
       "imgAvatar": "/img/collections/carkayous/avatar.png",
@@ -8404,7 +8406,7 @@
         "twitter": "https://twitter.com/ToughLions1111",
         "discord": "https://discord.gg/8ssS2RWZvn"
       },
-      "address": "",
+      "address": "0xF257E02D8c5c9a405589F99859f8b28b0Ccc5474",
       "maxMintPerTx": 20,
       "maxMintPerAddress": 100,
       "totalSupply": 3333,
