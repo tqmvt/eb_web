@@ -1333,6 +1333,26 @@
         "twitter": "https://twitter.com/ToughLions1111",
         "discord": "https://discord.gg/8ssS2RWZvn"
       }
+    },
+    {
+      "slug": "ebisus-land",
+      "name": "Ebisu's Land",
+      "onChain": false,
+      "address": "0x962026657a05BA7F52b27d249fe3fa90D9691692",
+      "multiToken": false,
+      "listable": true,
+      "metadata": {
+        "description": "",
+        "verified": true,
+        "avatar": "/img/avatar.jpg",
+        "card": "/img/collections/ebisu/card.webp",
+        "maxSupply": 1000,
+        "website": "https://app.ebisusbay.com/",
+        "twitter": "https://twitter.com/EbisusBay",
+        "discord": "https://discord.gg/ynrBrSkAFG",
+        "medium": "https://blog.ebisusbay.com/",
+        "instagram": "https://www.instagram.com/ebisusbayofficial"
+      }
     }
   ],
   "drops": [
@@ -2933,6 +2953,29 @@
       "totalSupply": 3333,
       "cost": "275",
       "memberCost": "250",
+      "foundersOnly": false,
+      "start": 1657138269000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false
+    },
+    {
+      "id": 99,
+      "slug": "ebisus-land",
+      "imgNft": "/img/drops/vip/drop.webp",
+      "imgPreview": "/img/drops/founding_member/drop.webp",
+      "imgAvatar": "/img/avatar.jpg",
+      "title": "Ebisu's Land",
+      "subtitle": "Test Subtitle",
+      "description": "Test Description",
+      "author": { "name": "Ebisu's Bay", "link": "https://app.ebisusbay.com" },
+      "address": "0x962026657a05BA7F52b27d249fe3fa90D9691692",
+      "maxMintPerTx": 10,
+      "totalSupply": 1000,
+      "cost": "2.0",
+      "memberCost": "1.0",
       "foundersOnly": false,
       "start": 1657138269000,
       "end": null,
