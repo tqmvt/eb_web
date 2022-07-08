@@ -117,7 +117,7 @@ export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = fa
               className={className}
               fallbackComponent={<AnyMediaWithoutVideo />}
             />
-          ) : mediaTypes.iframe ? (
+          ) : dynamicType === mediaTypes.iframe ? (
             <IFrame url={image} />
           ) : url ? (
             <Link href={url} target={newTab ? '_blank' : '_self'}>
