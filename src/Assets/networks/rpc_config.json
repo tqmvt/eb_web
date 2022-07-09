@@ -6072,7 +6072,7 @@
       "name": "Fury Mouse Gang",
       "slug": "fury-mouse-gang",
       "multiToken": false,
-      "address": "0xb981A80AceB67FbD35D13209084A2eD1f7bC2d29",
+      "address": "0xb0A48BDCBb08A1817C8eDf51E940bd3e74572A14",
       "onChain": false,
       "listable": false,
       "metadata": {
@@ -7316,7 +7316,7 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false
+      "complete": true
     },
     {
       "id": 45,
@@ -8519,7 +8519,7 @@
         "twitter": "https://twitter.com/FuryMouseGang",
         "discord": "https://discord.gg/fmg"
       },
-      "address": "0xb981A80AceB67FbD35D13209084A2eD1f7bC2d29",
+      "address": "0xb0A48BDCBb08A1817C8eDf51E940bd3e74572A14",
       "maxMintPerTx": 10,
       "maxMintPerAddress": 100,
       "totalSupply": 2500,
