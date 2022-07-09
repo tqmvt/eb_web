@@ -1122,24 +1122,7 @@ export async function getNftsForAddress2(walletAddress, walletProvider, page) {
             image = nft.image_aws ?? nft.image;
           } else if (nft.token_uri) {
             if (typeof nft.token_uri === 'string') {
-              const uri = nft.token_uri;
-              const checkedUri = (() => {
-                try {
-                  if (gatewayTools.containsCID(uri) && !uri.startsWith('ar')) {
-                    return gatewayTools.convertToDesiredGateway(uri, gateway);
-                  }
-
-                  if (uri.startsWith('ar')) {
-                    return `https://arweave.net/${uri.substring(5)}`;
-                  }
-
-                  return uri;
-                } catch (e) {
-                  return uri;
-                }
-              })();
-
-              const json = await (await fetch(checkedUri)).json();
+              const json = await (await fetch(nft.token_uri)).json();
               image = convertIpfsResource(json.image);
               if (json.name) name = json.name;
             } else if (typeof nft.token_uri === 'object') {
