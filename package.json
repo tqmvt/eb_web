@@ -85,7 +85,7 @@
     "typesafe-actions": "^5.1.0",
     "use-breakpoint": "^3.0.2",
     "web-vitals": "^2.1.0",
-    "web3modal": "^1.9.8"
+    "web3modal": "^1.9.7"
   },
   "devDependencies": {
     "babel-plugin-styled-components": "^2.0.7",
