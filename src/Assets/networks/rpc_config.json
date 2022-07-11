@@ -6074,7 +6074,7 @@
       "multiToken": false,
       "address": "0xb0A48BDCBb08A1817C8eDf51E940bd3e74572A14",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "The Fury Mouse Gang is an NFT project with a first generation of 2500 unique mice gang PFP collectibles. At night the fury takes hold of them and they ravage everything in their path. These creatures rule their world. The ambition is huge: to become the number 1 project on Cronos. Our community is linked around a story and a brotherhood between the members of the Gang. We want our members to live an unique experience, never seen on Cronos.. So if you can’t beat the gang, join us, before it is too late.",
         "verified": true,
@@ -8532,7 +8532,7 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false
+      "complete": true
     }
   ],
   "auctions": [
