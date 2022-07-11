@@ -4468,7 +4468,7 @@
       "multiToken": false,
       "address": "0xa9C5A884b012A0B1528012d7EaEF38512DA12b2B",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "Cyberclone is a collection of 2000 uniquely generated NFTs stored on the Cronos blockchain. Each NFT Clone is inspired by the futuristic life of the year 2234, where the world is falling apart under the control of the Cyberclones, who are conquering earth!",
         "verified": true,
@@ -8083,7 +8083,7 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false,
+      "complete": true,
       "priceDescription": "Whitelist presale for the first hour. Whitelist pricing applicable only during presale and limited to 5 per wallet. Public sale will begin after the presale completes"
     },
     {
