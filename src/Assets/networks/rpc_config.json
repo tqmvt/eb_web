@@ -6086,6 +6086,26 @@
         "twitter": "https://twitter.com/FuryMouseGang",
         "discord": "https://discord.gg/fmg"
       }
+    },
+    {
+      "name": "Mascot Booster Bags",
+      "slug": "mascot-booster-bags",
+      "multiToken": false,
+      "address": "0x9433e3e85652f4972c9a2cb603d901f591737c9b",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "Mascot booster bags are sports kits for mascots to boost their utilities. These bags will unlock powers for mascots to gain benefits in whole new ecosystem and will act as a primary collection within that ecosystem. Benefits for these bags will be revealed in Discord from time to time.",
+        "verified": true,
+        "avatar": "/img/collections/mascot-booster-bags/avatar.png",
+        "card": "/img/collections/mascot-booster-bags/card.png",
+        "banner": "/img/collections/mascot-booster-bags/banner.png",
+        "maxSupply": 576,
+        "website": "https://www.betamascots.com/",
+        "twitter": "https://twitter.com/TheSportsNFT",
+        "discord": "https://discord.gg/9Exq5ECpDv",
+        "medium": "https://medium.com/@thesportsnft"
+      }
     }
   ],
   "drops": [
