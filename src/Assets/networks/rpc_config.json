@@ -6125,6 +6125,24 @@
         "twitter": "https://twitter.com/GoblinCroTown",
         "discord": "https://discord.gg/QE2hr8xya4"
       }
+    },
+    {
+      "name": "Cronos Cats",
+      "slug": "cronos-cats",
+      "multiToken": false,
+      "address": "0x3f31e8854858500b7caba28ecda49c81d32a98af",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "Cronos Cats is a limited Profile-Picture (PFP) with added utility community-driven collection fully native to the Cronos Network. With a supply of only 1000 algorithmically generated Cats with hundreds of Hand-Drawn traits accompanied by a complex rarity system, we strive to become a blue-chip NFT project on the Cronos Network. Our confidence derives from our extremely detailed artwork, our first-mover advantage, and the immense support we have received from the Cronos community.",
+        "verified": false,
+        "avatar": "/img/collections/cronos-cats/avatar.jpg",
+        "card": "/img/collections/cronos-cats/card.png",
+        "banner": "/img/collections/cronos-cats/banner.png",
+        "maxSupply": 1000,
+        "website": "https://cronoscats.carrd.co/",
+        "twitter": "https://twitter.com/CronosCats"
+      }
     }
   ],
   "drops": [
