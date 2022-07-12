@@ -6106,6 +6106,25 @@
         "discord": "https://discord.gg/9Exq5ECpDv",
         "medium": "https://medium.com/@thesportsnft"
       }
+    },
+    {
+      "name": "GoblinCroPet",
+      "slug": "goblin-cro-pet",
+      "multiToken": false,
+      "address": "0xe3f94fCAf605F24B30A0567719b62E4775500412",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "Heartbreaking Crypto investors escape from the chaotic world into a deep cave. Slowly turning into Goblins. Since then, a livable and harmless GoblinCroTown has risen. And these beasts are their petz!",
+        "verified": false,
+        "avatar": "/img/collections/goblin-cro-pet/avatar.png",
+        "card": "/img/collections/goblin-cro-pet/card.png",
+        "banner": "/img/collections/goblin-cro-pet/banner.png",
+        "maxSupply": 1500,
+        "website": "https://goblincrotown.com/",
+        "twitter": "https://twitter.com/GoblinCroTown",
+        "discord": "https://discord.gg/QE2hr8xya4"
+      }
     }
   ],
   "drops": [
