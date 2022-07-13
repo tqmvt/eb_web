@@ -2,21 +2,34 @@ import React, { memo, useEffect, useState } from 'react';
 import ReactPlayer from 'react-player/lazy';
 import { fallbackImageUrl } from '../../core/constants';
 import Link from 'next/link';
-import {CdnImage} from "./CdnImage";
-import {ImageKitService} from "../../helpers/image";
+import { CdnImage } from './CdnImage';
+import { ImageKitService } from '../../helpers/image';
 
-export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = false, videoProps, className, layout='responsive', width=1, height=1, sizes }) => {
+export const AnyMedia = ({
+  image,
+  video,
+  title,
+  url,
+  newTab,
+  usePlaceholder = false,
+  videoProps,
+  className,
+  layout = 'responsive',
+  width = 1,
+  height = 1,
+  sizes,
+}) => {
   const [dynamicType, setDynamicType] = useState(null);
   const [transformedImage, setTransformedImage] = useState(image);
   const [videoThumbnail, setVideoThumbNail] = useState(image);
 
-  const blurImageUrl = (img)  => {
-    return ImageKitService.buildBlurUrl(img, {width: 30, height: 30});
-  }
+  const blurImageUrl = (img) => {
+    return ImageKitService.buildBlurUrl(img, { width: 30, height: 30 });
+  };
 
   const makeThumb = (vid) => {
     return ImageKitService.thumbify(new URL(vid));
-  }
+  };
 
   const mediaTypes = {
     image: 1,
@@ -30,31 +43,31 @@ export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = fa
   }, []);
 
   const determineMediaType = () => {
-    if(!image) {
+    if (!image) {
       setDynamicType(mediaTypes.image);
       return;
     }
 
-    //prefer mp4 over gif 
+    //prefer mp4 over gif
     const imageURL = new URL(image);
-    if(imageURL.pathname && imageURL.pathname.endsWith('.gif')){
+    if (imageURL.pathname && imageURL.pathname.endsWith('.gif')) {
       setTransformedImage(ImageKitService.gifToMp4(imageURL).toString());
       setVideoThumbNail(null);
       setDynamicType(mediaTypes.video);
-    } else if(imageURL.pathname && imageURL.pathname.endsWith('.html')){
+    } else if (imageURL.pathname && imageURL.pathname.endsWith('.html')) {
       setDynamicType(mediaTypes.iframe);
     } else {
       const xhr = new XMLHttpRequest();
       xhr.open('HEAD', transformedImage, true);
-  
+
       xhr.onload = function () {
         const contentType = xhr.getResponseHeader('Content-Type');
         const [mediaType, format] = contentType.split('/');
         let type = mediaTypes[mediaType] ?? mediaTypes.image;
-        if(type === mediaTypes.video){
+        if (type === mediaTypes.video) {
           setVideoThumbNail(makeThumb(transformedImage));
         }
-        if(format === 'gif'){
+        if (format === 'gif') {
           setTransformedImage(ImageKitService.gifToMp4(imageURL).toString());
           setVideoThumbNail(null);
           setDynamicType(mediaTypes.video);
@@ -62,10 +75,9 @@ export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = fa
           setDynamicType(type);
         }
       };
-  
+
       xhr.send();
     }
-
   };
 
   const ImageComponent = () => {
@@ -80,7 +92,7 @@ export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = fa
         width={width}
         height={height}
       />
-    )
+    );
   };
 
   const AnyMediaWithoutVideo = () => {
@@ -98,7 +110,7 @@ export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = fa
         height={height}
         sizes={sizes}
       />
-    )
+    );
   };
 
   return (
@@ -136,7 +148,7 @@ export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = fa
 
 export default memo(AnyMedia);
 
-const Image = memo(({ image, title, className, blur, sizes, layout, width, height}) => {
+const Image = memo(({ image, title, className, blur, sizes, layout, width, height }) => {
   return (
     <CdnImage
       src={image ?? fallbackImageUrl}
@@ -152,14 +164,24 @@ const Image = memo(({ image, title, className, blur, sizes, layout, width, heigh
       sizes={sizes}
       width={width}
       height={height}
-      unoptimized='true'
+      unoptimized="true"
       objectFit="contain"
     />
   );
 });
 
 const Video = memo(
-  ({ video, image, title, usePlaceholder, height = '100%', autoPlay = false, controls = true, className, fallbackComponent }) => {
+  ({
+    video,
+    image,
+    title,
+    usePlaceholder,
+    height = '100%',
+    autoPlay = false,
+    controls = true,
+    className,
+    fallbackComponent,
+  }) => {
     const [failed, setFailed] = useState(false);
 
     return !failed ? (
@@ -183,7 +205,7 @@ const Video = memo(
         className={className}
         playsinline={true}
         onError={(e) => {
-          setFailed(true)
+          setFailed(true);
         }}
       />
     ) : (
@@ -193,7 +215,5 @@ const Video = memo(
 );
 
 const IFrame = memo(({ url }) => {
-  return (
-    <iframe src={url} width="100%" height="100%"/>
-  );
+  return <iframe src={url} width="100%" height="100%" />;
 });
