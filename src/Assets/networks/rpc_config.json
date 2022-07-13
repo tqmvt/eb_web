@@ -5752,7 +5752,7 @@
       "multiToken": false,
       "address": "0x5628c7a229ff920e3c7aB668107e822Fa84244B4",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "Alien Apocalypse is a collection of 3,000 uniquely generated invaders. The first of its kind, bridging the Cronos and Cardano Blockchains. The collection contains over 180 out of this world traits that are sure to blow your mind. Owning an Alien Apocalypse NFT will grant you access to the Horde Ecosystem.",
         "verified": true,
@@ -8482,7 +8482,7 @@
       "referral": false,
       "is1155": false,
       "published": true,
-      "complete": false
+      "complete": true
     },
     {
       "id": 85,
