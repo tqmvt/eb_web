@@ -6143,6 +6143,24 @@
         "website": "https://cronoscats.carrd.co/",
         "twitter": "https://twitter.com/CronosCats"
       }
+    },
+    {
+      "name": "Cronos Demon Legion",
+      "slug": "cronos-demon-legion",
+      "multiToken": false,
+      "address": "0xE4c7F4A8DCb74Fd531e7B65e55735e9A8E321433",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "555 gaming-crazed demons have emerged from the void... They found themselves landed on the Cronos chain, and are looking for gamers and NFT lovers to join their Legion! Owning a Cronos Demon Legion NFT will act as an entry pass to all of our gaming events, contests, and tournaments (CRO and NFT prizes). All Demon holders will also automatically receive our Gen 2 via airdrop. 55 of the 555 will be placed in the CDL reserve wallet, and used as rewards for upcoming events!",
+        "verified": false,
+        "avatar": "/img/collections/cronos-demon-legion/avatar.png",
+        "card": "/img/collections/cronos-demon-legion/card.png",
+        "banner": "/img/collections/cronos-demon-legion/banner.png",
+        "maxSupply": 555,
+        "twitter": "https://twitter.com/DemonLegionCRO",
+        "discord": "https://discord.gg/tgrn3t6nnd"
+      }
     }
   ],
   "drops": [
