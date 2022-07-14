@@ -6150,7 +6150,7 @@
       "multiToken": false,
       "address": "0xE4c7F4A8DCb74Fd531e7B65e55735e9A8E321433",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
         "description": "555 gaming-crazed demons have emerged from the void... They found themselves landed on the Cronos chain, and are looking for gamers and NFT lovers to join their Legion! Owning a Cronos Demon Legion NFT will act as an entry pass to all of our gaming events, contests, and tournaments (CRO and NFT prizes). All Demon holders will also automatically receive our Gen 2 via airdrop. 55 of the 555 will be placed in the CDL reserve wallet, and used as rewards for upcoming events!",
         "verified": false,
@@ -6160,6 +6160,24 @@
         "maxSupply": 555,
         "twitter": "https://twitter.com/DemonLegionCRO",
         "discord": "https://discord.gg/tgrn3t6nnd"
+      }
+    },
+    {
+      "name": "New America Airdrop",
+      "slug": "new-america-airdrop",
+      "multiToken": false,
+      "address": "0xE936eEbB581F5142412eA3918FC649d9B006bC10",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "\"Launch The Enforcers\" is the First 3D collection From New America NFT. With a storyline emerging from a comic book story, New America NFT takes a step into the Gaming world of things with their soon to release play to earn video game. New America NFT continues to add value with staking, and also Earning 3D assets for game play for simply holding and NFT. Enjoy customizations, monthly CRO rewards, and more through their discord community.",
+        "verified": false,
+        "avatar": "/img/collections/new-america-airdrop/avatar.jpg",
+        "card": "/img/collections/new-america-airdrop/card.jpg",
+        "banner": "/img/collections/new-america-airdrop/banner.jpg",
+        "maxSupply": 207,
+        "twitter": "https://twitter.com/NewAmericaNFT",
+        "discord": "https://discord.gg/yNJbZJSmQ5"
       }
     }
   ],
