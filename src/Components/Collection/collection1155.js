@@ -96,9 +96,9 @@ const Collection1155 = ({ collection, tokenId = null, cacheName = 'collection', 
   useEffect(() => {
     async function asyncFunc() {
       if (tokenId != null) {
-        dispatch(getStats(collection.address, slug, tokenId));
+        dispatch(getStats(collection, tokenId));
       } else {
-        dispatch(getStats(collection.address));
+        dispatch(getStats(collection));
       }
       try {
         let royalties = await readMarket.royalties(collection.address);
