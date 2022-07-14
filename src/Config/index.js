@@ -160,7 +160,7 @@ export const imageDomains = [
  * @returns {null|*}
  */
 export const appConfig = (key) => {
-  const env = isLocalEnv() ? environments.development : environments[currentEnv()];
+  const env = isLocalEnv() ? environments.production : environments[currentEnv()];
   if (!key) return env ? configData[env] : configData[environments.development];
 
   const keys = key.split('.');
