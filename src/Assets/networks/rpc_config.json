@@ -6196,6 +6196,25 @@
         "discord": "https://discord.gg/VrC2e4GNVR",
         "telegram": "https://t.me/crowitches"
       }
+    },
+    {
+      "name": "B.A.D. - Lizzys",
+      "slug": "bad-lizzys",
+      "multiToken": false,
+      "address": "0xd7eEc30A764B3Eed788e93de9fc69b432Dd54d16",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "Cronos Lizards meet the BAD Bits and portal to a new universe - the BADverse! Join us as we take to the stars and explore.",
+        "verified": true,
+        "avatar": "/img/collections/bad-lizzys/avatar.png",
+        "card": "/img/collections/bad-lizzys/card.png",
+        "banner": "/img/collections/bad-lizzys/banner.png",
+        "maxSupply": 10000,
+        "website": "https://cronoslizards.com/",
+        "twitter": "https://twitter.com/badlizzys",
+        "discord": "https://discord.gg/HMy5SArp7g"
+      }
     }
   ],
   "drops": [
