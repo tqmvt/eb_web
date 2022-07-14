@@ -43,6 +43,11 @@
       "slug": "trooprz-mutantz",
       "address": "0x96628048830a499b156aBdC04cC169C18c3A17f2",
       "ids": [1218, 988, 891, 741]
+    },
+    {
+      "slug": "croskull-pets",
+      "address": "0xB77959DC7a12F7549ACC084Af01259Fc48813c89",
+      "ids": [819]
     }
   ]
 }
