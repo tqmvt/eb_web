@@ -18,7 +18,7 @@ import {
   humanize,
   isCrosmocraftsPartsDrop,
   mapAttributeString,
-  millisecondTimestamp,
+  millisecondTimestamp, rankingsLinkForCollection, rankingsLogoForCollection, rankingsTitleForCollection,
   relativePrecision,
   shortAddress,
   timeSince,
@@ -211,22 +211,9 @@ const Nft1155 = ({ address, id }) => {
                       <ProfilePreview
                         type="Rarity Rank"
                         title={nft.rank}
-                        avatar={hostedImage(
-                          collectionMetadata.rarity === 'rarity_sniper'
-                            ? '/img/logos/rarity-sniper.png'
-                            : '/img/logos/ebisu-technicolor.svg',
-                          true
-                        )}
-                        hover={
-                          collectionMetadata.rarity === 'rarity_sniper'
-                            ? `Ranking provided by ${humanize(collectionMetadata.rarity)}`
-                            : "Ranking provided by Ebisu's Bay"
-                        }
-                        to={
-                          collectionMetadata.rarity === 'rarity_sniper'
-                            ? `https://raritysniper.com/${collectionMetadata.raritySniperSlug}/${id}`
-                            : null
-                        }
+                        avatar={rankingsLogoForCollection(collection)}
+                        hover={rankingsTitleForCollection(collection)}
+                        to={rankingsLinkForCollection(collection)}
                         pop={true}
                       />
                     )}

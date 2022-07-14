@@ -30,7 +30,7 @@ import {
   isCrognomidesCollection,
   isBabyWeirdApesCollection,
   isUserBlacklisted,
-  isNftBlacklisted,
+  isNftBlacklisted, rankingsLogoForCollection, rankingsTitleForCollection, rankingsLinkForCollection,
 } from '../../src/utils';
 import {specialImageTransform} from '../../src/hacks';
 import NFTTabOffers from '../../src/Components/Offer/NFTTabOffers';
@@ -342,22 +342,9 @@ const Listing = () => {
                       <ProfilePreview
                         type="Rarity Rank"
                         title={listing.nft.rank}
-                        avatar={hostedImage(
-                          collection.metadata.rarity === 'rarity_sniper'
-                            ? '/img/logos/rarity-sniper.png'
-                            : '/img/logos/ebisu-technicolor.svg',
-                          true
-                        )}
-                        hover={
-                          collection.metadata.rarity === 'rarity_sniper'
-                            ? `Ranking provided by ${humanize(collection.metadata.rarity)}`
-                            : null
-                        }
-                        to={
-                          collection.metadata.rarity === 'rarity_sniper'
-                            ? `https://raritysniper.com/${collection.metadata.raritySniperSlug}/${listing.nft.id}`
-                            : null
-                        }
+                        avatar={rankingsLogoForCollection(collection)}
+                        hover={rankingsTitleForCollection(collection)}
+                        to={rankingsLinkForCollection(collection)}
                         pop={true}
                       />
                     )}
