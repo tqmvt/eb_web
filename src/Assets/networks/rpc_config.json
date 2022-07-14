@@ -1021,6 +1021,7 @@
       "address": "0xD504ed871d33dbD4f56f523A37dceC86Ee918cb6",
       "onChain": false,
       "listable": true,
+      "powertraits": true,
       "metadata": {
         "description": "",
         "verified": true,
@@ -1435,6 +1436,7 @@
       "address": "0x7d0259070B5f513CA543afb6a906d42af5884B1B",
       "onChain": false,
       "listable": true,
+      "powertraits": true,
       "metadata": {
         "description": "",
         "verified": true,

@@ -1,4 +1,6 @@
 import { Html, Head, Main, NextScript } from 'next/document';
+import {appConfig} from "../src/Config";
+const cdn = appConfig('urls.cdn');
 
 export default function Document() {
   return (
@@ -6,8 +8,8 @@ export default function Document() {
       <Head>
         <meta charSet="utf-8" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=4" />
-        <link rel="icon" type="image/png" href="/favicon.png" sizes="any" />
-        <link rel="shortcut icon" type="image/png" href="/favicon.png" sizes="any" />
+        <link rel="icon" type="image/png" href={`${cdn}favicon.png`} sizes="any" />
+        <link rel="shortcut icon" type="image/png" href={`${cdn}favicon.png`} sizes="any" />
         <link rel="manifest" href="/site.webmanifest?v=3" />
         <link rel="mask-icon" href="/safari-pinned-tab.svg?v=3" color="#5bbad5" />
         <link

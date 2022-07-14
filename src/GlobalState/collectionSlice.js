@@ -253,10 +253,10 @@ export const updateTab = (tab) => async (dispatch) => {
 };
 
 export const getStats =
-  (address, slug, id = null, extraAddresses = null) =>
+  (collection, id = null, extraAddresses = null) =>
   async (dispatch) => {
     try {
-      const mergedAddresses = extraAddresses ? [address, ...extraAddresses] : address;
+      const mergedAddresses = extraAddresses ? [collection.address, ...extraAddresses] : collection.address;
       var response;
       if (id != null) {
         response = await getCollectionMetadata(mergedAddresses, null, {
@@ -266,12 +266,12 @@ export const getStats =
       } else {
         response = await getCollectionMetadata(mergedAddresses);
       }
-      const traits = await getCollectionTraits(address);
-      const powertraits = await getCollectionPowertraits(address);
+      const traits = await getCollectionTraits(collection.address);
+      const powertraits = collection.powertraits ? await getCollectionPowertraits(collection.address) : null;
       dispatch(
         onCollectionStatsLoaded({
           stats: {
-            ...combineStats(response.collections, address),
+            ...combineStats(response.collections, collection.address),
             ...{
               traits: traits,
               powertraits: powertraits,
