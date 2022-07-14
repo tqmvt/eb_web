@@ -6215,6 +6215,26 @@
         "twitter": "https://twitter.com/badlizzys",
         "discord": "https://discord.gg/HMy5SArp7g"
       }
+    },
+    {
+      "name": "CroSkull Pets Eggs - Season 2",
+      "slug": "croskull-pets-eggs-s2",
+      "multiToken": false,
+      "address": "0x6d54590Ed6950EcD3987778c004d4773a7e99dAC",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "A Mysterious Egg found by a CroSkull during his adventure! \"I.... never seen an egg like that, it may hatch in a some mysterious creature.\" Hatching Available on https://app.croskull.com/ ",
+        "verified": true,
+        "avatar": "/img/collections/croskull-pets-eggs-s2/avatar.jpeg",
+        "card": "/img/collections/croskull-pets-eggs-s2/card.jpeg",
+        "banner": "/img/collections/croskull-pets-eggs-s2/banner.jpeg",
+        "maxSupply": 2200,
+        "website": "https://app.croskull.com/",
+        "twitter": "https://twitter.com/CroskullNFT",
+        "discord": "https://discord.gg/croskull",
+        "medium": "https://medium.com/@croskullnft"
+      }
     }
   ],
   "drops": [
