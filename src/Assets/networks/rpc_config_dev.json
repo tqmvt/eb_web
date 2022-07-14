@@ -6179,6 +6179,26 @@
         "twitter": "https://twitter.com/NewAmericaNFT",
         "discord": "https://discord.gg/yNJbZJSmQ5"
       }
+    },
+    {
+      "name": "CroWitches",
+      "slug": "cro-witches",
+      "multiToken": false,
+      "address": "0x95603a09fe2d2afdd7ce5d0e3cd83319666e62d9",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "CroWitches is a collection of 3,333 upgradable NFTs on the Cronos network. 15% of all CroWitches NFTs minted & 7% of all marketplace volume is distributed in CRO to all holders. CroWitches NFT holders can stake their NFTs ",
+        "verified": false,
+        "avatar": "/img/collections/cro-witches/avatar.png",
+        "card": "/img/collections/cro-witches/card.png",
+        "banner": "/img/collections/cro-witches/banner.png",
+        "maxSupply": 3333,
+        "website": "https://www.crowitches.com/",
+        "twitter": "https://twitter.com/CroWitches",
+        "discord": "https://discord.gg/VrC2e4GNVR",
+        "telegram": "https://t.me/crowitches"
+      }
     }
   ],
   "drops": [
