@@ -22,7 +22,7 @@ import {
   millisecondTimestamp,
   shortAddress,
   timeSince,
-  relativePrecision,
+  relativePrecision, rankingsLogoForCollection, rankingsTitleForCollection, rankingsLinkForCollection,
 } from '../../utils';
 import { getNftDetails } from '../../GlobalState/nftSlice';
 import { connectAccount, chainConnect } from '../../GlobalState/User';
@@ -331,7 +331,7 @@ const Nft721 = ({ address, id }) => {
               {nft && (
                 <div className="item_info">
                   <h2>{nft.name}</h2>
-                  <p>{nft.description}</p>
+                  <p className="text-break">{nft.description}</p>
                   {isCroCrowCollection(address) && croCrowBreed && (
                     <div className="d-flex flex-row align-items-center mb-4">
                       <LayeredIcon
@@ -384,22 +384,9 @@ const Nft721 = ({ address, id }) => {
                       <ProfilePreview
                         type="Rarity Rank"
                         title={nft.rank}
-                        avatar={hostedImage(
-                          collectionMetadata.rarity === 'rarity_sniper'
-                            ? '/img/logos/rarity-sniper.png'
-                            : '/img/logos/ebisu-technicolor.svg',
-                          true
-                        )}
-                        hover={
-                          collectionMetadata.rarity === 'rarity_sniper'
-                            ? `Ranking provided by ${humanize(collectionMetadata.rarity)}`
-                            : "Ranking provided by Ebisu's Bay"
-                        }
-                        to={
-                          collectionMetadata.rarity === 'rarity_sniper'
-                            ? `https://raritysniper.com/${collectionMetadata.raritySniperSlug}/${id}`
-                            : null
-                        }
+                        avatar={rankingsLogoForCollection(collection)}
+                        hover={rankingsTitleForCollection(collection)}
+                        to={rankingsLinkForCollection(collection)}
                         pop={true}
                       />
                     )}

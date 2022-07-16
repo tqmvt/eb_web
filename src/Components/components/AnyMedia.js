@@ -43,7 +43,7 @@ export const AnyMedia = ({
   }, []);
 
   const determineMediaType = () => {
-    if (!image) {
+    if (!image || image.startsWith('data')) {
       setDynamicType(mediaTypes.image);
       return;
     }

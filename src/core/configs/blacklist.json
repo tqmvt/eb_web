@@ -10,7 +10,8 @@
     "0xbfbb50e897b8fa1da53fa6016364a03ac15e146b",
     "0x5A726A70b508cbD2cC34f549c6689170a48d02dD",
     "0x66Ff8811De7ccfebef1Ff0A7F5B628569700eEd1",
-    "0xbfbb50e897b8fa1da53fa6016364a03ac15e146b"
+    "0xbfbb50e897b8fa1da53fa6016364a03ac15e146b",
+    "0xe4a2a29648a46a70f9212b5430cbbab481e2c3d3"
   ],
   "collections": [
     {
@@ -31,7 +32,7 @@
     {
       "slug": "mm-treehouse",
       "address": "0xDC5bBDb4A4b051BDB85B959eB3cBD1c8C0d0c105",
-      "ids": [163, 8991, 8993, 8992]
+      "ids": [163, 8991, 8993, 8992, 4332]
     },
     {
       "slug": "lazy-horse",
@@ -41,7 +42,12 @@
     {
       "slug": "trooprz-mutantz",
       "address": "0x96628048830a499b156aBdC04cC169C18c3A17f2",
-      "ids": [1218, 988, 984, 895, 891, 741]
+      "ids": [1218, 988, 891, 741]
+    },
+    {
+      "slug": "croskull-pets",
+      "address": "0xB77959DC7a12F7549ACC084Af01259Fc48813c89",
+      "ids": [819]
     }
   ]
 }
