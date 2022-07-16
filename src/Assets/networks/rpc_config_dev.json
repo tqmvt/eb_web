@@ -6298,9 +6298,16 @@
       "multiToken": false,
       "address": "0x8ac06d8CF5B371bf57723C050C1969f0f23Dbf98",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
-        "verified": true
+        "verified": true,
+        "avatar": "/img/collections/project-x-access-pass/avatar.png",
+        "card": "/img/collections/project-x-access-pass/card.png",
+        "banner": "/img/collections/project-x-access-pass/banner.png",
+        "maxSupply": 3000,
+        "website": "https://www.argofinance.money/",
+        "twitter": "https://twitter.com/ArgoProtocol",
+        "discord": "https://discord.gg/argofinance"
       }
     }
   ],
