@@ -331,7 +331,7 @@ const Nft721 = ({ address, id }) => {
               {nft && (
                 <div className="item_info">
                   <h2>{nft.name}</h2>
-                  <p>{nft.description}</p>
+                  <p className="text-break">{nft.description}</p>
                   {isCroCrowCollection(address) && croCrowBreed && (
                     <div className="d-flex flex-row align-items-center mb-4">
                       <LayeredIcon

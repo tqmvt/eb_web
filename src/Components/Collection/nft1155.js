@@ -187,7 +187,7 @@ const Nft1155 = ({ address, id }) => {
               {nft && (
                 <div className="item_info">
                   <h2>{nft.name}</h2>
-                  <p>{nft.description}</p>
+                  <p className="text-break">{nft.description}</p>
                   {collection.listable && (
                     <>
                       <PriceActionBar
