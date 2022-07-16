@@ -6272,6 +6272,25 @@
         "twitter": "https://twitter.com/cronos_tiger",
         "discord": "https://discord.gg/aeW9FAJgj9"
       }
+    },
+    {
+      "name": "Sleazy Weasel",
+      "slug": "sleazy-weasel",
+      "multiToken": false,
+      "address": "0x07BEa69887Ce393F91b3D5697bADB53b92367C71",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "The Sleazy Weasel NFT is a collection of Sleazy Weasel with a supply of of 10000 including 2000 Rare and Legendary Sleazy Weasel unique NFTs — the unique digital collectibles living on the Cronos blockchain. Your Sleazy Weasel as your membership card grants access to holders only-benefits, the first of which is access to the staking pool and future utilities and more can be unlocked by the community through activity and decisions.",
+        "verified": false,
+        "avatar": "/img/collections/sleazy-weasel/avatar.png",
+        "card": "/img/collections/sleazy-weasel/card.png",
+        "banner": "/img/collections/sleazy-weasel/banner.png",
+        "maxSupply": 10000,
+        "website": "https://www.sleazyweasel.xyz/",
+        "twitter": "https://twitter.com/sleazy_weasel",
+        "discord": "https://discord.gg/sleazyweasenft"
+      }
     }
   ],
   "drops": [
