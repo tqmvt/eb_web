@@ -35,7 +35,9 @@ export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = fa
       return;
     }
 
-    //prefer mp4 over gif 
+    const knownImageTypes = ['.png', '.jpg', '.jpeg', 'webp'];
+
+    //prefer mp4 over gif
     const imageURL = new URL(image);
     if(imageURL.pathname && imageURL.pathname.endsWith('.gif')){
       setTransformedImage(ImageKitService.gifToMp4(imageURL).toString());
@@ -43,6 +45,8 @@ export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = fa
       setDynamicType(mediaTypes.video);
     } else if(imageURL.pathname && imageURL.pathname.endsWith('.html')){
       setDynamicType(mediaTypes.iframe);
+    } else if (imageURL.pathname && knownImageTypes.some((o) => imageURL.pathname.endsWith(o))) {
+      setDynamicType(mediaTypes.image);
     } else {
       const xhr = new XMLHttpRequest();
       xhr.open('HEAD', transformedImage, true);
