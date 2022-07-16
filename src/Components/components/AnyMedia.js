@@ -30,7 +30,7 @@ export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = fa
   }, []);
 
   const determineMediaType = () => {
-    if(!image) {
+    if(!image || image.startsWith('data')) {
       setDynamicType(mediaTypes.image);
       return;
     }

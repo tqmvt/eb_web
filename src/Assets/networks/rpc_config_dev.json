@@ -6295,10 +6295,13 @@
     {
       "name": "Project X Access Pass",
       "slug": "project-x-access-pass",
-      "multiToken": false,
+      "multiToken": true,
       "address": "0x8ac06d8CF5B371bf57723C050C1969f0f23Dbf98",
       "onChain": false,
       "listable": true,
+      "tokens": [
+        { "id": 1 }
+      ],
       "metadata": {
         "verified": true,
         "avatar": "/img/collections/project-x-access-pass/avatar.png",
