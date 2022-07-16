@@ -6291,6 +6291,17 @@
         "twitter": "https://twitter.com/sleazy_weasel",
         "discord": "https://discord.gg/sleazyweasenft"
       }
+    },
+    {
+      "name": "Project X Access Pass",
+      "slug": "project-x-access-pass",
+      "multiToken": false,
+      "address": "0x8ac06d8CF5B371bf57723C050C1969f0f23Dbf98",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "verified": true
+      }
     }
   ],
   "drops": [
