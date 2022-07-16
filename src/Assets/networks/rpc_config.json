@@ -6254,6 +6254,24 @@
         "twitter": "https://twitter.com/CrooksofCronos",
         "discord": "https://discord.gg/rDVGWqdFKf"
       }
+    },
+    {
+      "name": "Cronos Tiger",
+      "slug": "cronos-tiger",
+      "multiToken": false,
+      "address": "0x5526e68318E29A4bea0c493d69389B9592975938",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "Welcome to the Cronos Tiger ecosystem. The plan is simple: launch the founder collection and use 100% mint founds for the next collection. Each holder will be able to mint two tiger gen 2 for free. At 50% of mint we start the ico of our coin and about 1 week later it will be available in beta test our game for all holders.",
+        "verified": false,
+        "avatar": "/img/collections/cronos-tiger/avatar.png",
+        "card": "/img/collections/cronos-tiger/card.jpg",
+        "banner": "/img/collections/cronos-tiger/banner.jpeg",
+        "maxSupply": 100,
+        "twitter": "https://twitter.com/cronos_tiger",
+        "discord": "https://discord.gg/aeW9FAJgj9"
+      }
     }
   ],
   "drops": [
