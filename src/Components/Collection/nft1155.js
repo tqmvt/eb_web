@@ -234,9 +234,11 @@ const Nft1155 = ({ address, id }) => {
                       <li id="Mainbtn2" className="tab">
                         <span onClick={handleBtnClick(2)}>History</span>
                       </li>
-                      <li id="Mainbtn3" className="tab">
-                        <span onClick={handleBtnClick(3)}>Listings</span>
-                      </li>
+                      {collection.listable && (
+                        <li id="Mainbtn3" className="tab">
+                          <span onClick={handleBtnClick(3)}>Listings</span>
+                        </li>
+                      )}
                       <li id="Mainbtn4" className="tab">
                         <span onClick={handleBtnClick(4)}>Offers</span>
                       </li>
