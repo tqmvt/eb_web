@@ -6235,6 +6235,25 @@
         "discord": "https://discord.gg/croskull",
         "medium": "https://medium.com/@croskullnft"
       }
+    },
+    {
+      "name": "Cro County Crooks",
+      "slug": "cro-county-crooks",
+      "multiToken": false,
+      "address": "0x230Bb7ce185CD0042973202f5F38B7072440e2C9",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "A collection of 1111 NFTs living on the Cronos Blockchain with real utility and value to bring into the ecosystem. Utility Includes: NFT Staking, Farming, NFT Marketplace for New Artists, Regular Airdrops for Holders, Cronos NFT Dapp, CAAC Consortium(DAO), Burning Mechanism & Much More!",
+        "verified": false,
+        "avatar": "/img/collections/cro-county-crooks/avatar.png",
+        "card": "/img/collections/cro-county-crooks/card.png",
+        "banner": "/img/collections/cro-county-crooks/banner.png",
+        "maxSupply": 1111,
+        "website": "https://crooksofcronos.xyz/",
+        "twitter": "https://twitter.com/CrooksofCronos",
+        "discord": "https://discord.gg/rDVGWqdFKf"
+      }
     }
   ],
   "drops": [
