@@ -6298,7 +6298,7 @@
       "multiToken": true,
       "address": "0x8ac06d8CF5B371bf57723C050C1969f0f23Dbf98",
       "onChain": false,
-      "listable": true,
+      "listable": false,
       "tokens": [
         { "id": 1 }
       ],
