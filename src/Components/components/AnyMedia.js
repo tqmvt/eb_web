@@ -72,39 +72,6 @@ export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = fa
 
   };
 
-  const ImageComponent = () => {
-    return (
-      <Image
-        image={transformedImage}
-        title={title}
-        className={className}
-        blur={blurImageUrl(transformedImage)}
-        sizes={sizes}
-        layout={layout}
-        width={width}
-        height={height}
-      />
-    )
-  };
-
-  const AnyMediaWithoutVideo = () => {
-    return (
-      <AnyMedia
-        image={transformedImage}
-        title={title}
-        url={url}
-        newTab={newTab}
-        usePlaceholder={usePlaceholder}
-        videoProps={videoProps}
-        className={className}
-        layout={layout}
-        width={width}
-        height={height}
-        sizes={sizes}
-      />
-    )
-  };
-
   return (
     <>
       {dynamicType && (
@@ -119,18 +86,50 @@ export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = fa
               autoPlay={videoProps?.autoPlay}
               controls={videoProps?.controls}
               className={className}
-              fallbackComponent={<AnyMediaWithoutVideo />}
+              fallbackComponent={
+                <AnyMedia
+                  image={transformedImage}
+                  title={title}
+                  url={url}
+                  newTab={newTab}
+                  usePlaceholder={usePlaceholder}
+                  videoProps={videoProps}
+                  className={className}
+                  layout={layout}
+                  width={width}
+                  height={height}
+                  sizes={sizes}
+                />
+              }
             />
           ) : dynamicType === mediaTypes.iframe ? (
             <IFrame url={image} />
           ) : url ? (
             <Link href={url} target={newTab ? '_blank' : '_self'}>
               <a>
-                <ImageComponent />
+                <Image
+                  image={transformedImage}
+                  title={title}
+                  className={className}
+                  blur={blurImageUrl(transformedImage)}
+                  sizes={sizes}
+                  layout={layout}
+                  width={width}
+                  height={height}
+                />
               </a>
             </Link>
           ) : (
-            <ImageComponent />
+            <Image
+              image={transformedImage}
+              title={title}
+              className={className}
+              blur={blurImageUrl(transformedImage)}
+              sizes={sizes}
+              layout={layout}
+              width={width}
+              height={height}
+            />
           )}
         </>
       )}
