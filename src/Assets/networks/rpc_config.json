@@ -6235,6 +6235,62 @@
         "discord": "https://discord.gg/croskull",
         "medium": "https://medium.com/@croskullnft"
       }
+    },
+    {
+      "name": "Cro County Crooks",
+      "slug": "cro-county-crooks",
+      "multiToken": false,
+      "address": "0x230Bb7ce185CD0042973202f5F38B7072440e2C9",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "A collection of 1111 NFTs living on the Cronos Blockchain with real utility and value to bring into the ecosystem. Utility Includes: NFT Staking, Farming, NFT Marketplace for New Artists, Regular Airdrops for Holders, Cronos NFT Dapp, CAAC Consortium(DAO), Burning Mechanism & Much More!",
+        "verified": false,
+        "avatar": "/img/collections/cro-county-crooks/avatar.png",
+        "card": "/img/collections/cro-county-crooks/card.png",
+        "banner": "/img/collections/cro-county-crooks/banner.png",
+        "maxSupply": 1111,
+        "website": "https://crooksofcronos.xyz/",
+        "twitter": "https://twitter.com/CrooksofCronos",
+        "discord": "https://discord.gg/rDVGWqdFKf"
+      }
+    },
+    {
+      "name": "Cronos Tiger",
+      "slug": "cronos-tiger",
+      "multiToken": false,
+      "address": "0x5526e68318E29A4bea0c493d69389B9592975938",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "Welcome to the Cronos Tiger ecosystem. The plan is simple: launch the founder collection and use 100% mint founds for the next collection. Each holder will be able to mint two tiger gen 2 for free. At 50% of mint we start the ico of our coin and about 1 week later it will be available in beta test our game for all holders.",
+        "verified": false,
+        "avatar": "/img/collections/cronos-tiger/avatar.png",
+        "card": "/img/collections/cronos-tiger/card.jpg",
+        "banner": "/img/collections/cronos-tiger/banner.jpeg",
+        "maxSupply": 100,
+        "twitter": "https://twitter.com/cronos_tiger",
+        "discord": "https://discord.gg/aeW9FAJgj9"
+      }
+    },
+    {
+      "name": "Sleazy Weasel",
+      "slug": "sleazy-weasel",
+      "multiToken": false,
+      "address": "0x07BEa69887Ce393F91b3D5697bADB53b92367C71",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "The Sleazy Weasel NFT is a collection of Sleazy Weasel with a supply of of 10000 including 2000 Rare and Legendary Sleazy Weasel unique NFTs — the unique digital collectibles living on the Cronos blockchain. Your Sleazy Weasel as your membership card grants access to holders only-benefits, the first of which is access to the staking pool and future utilities and more can be unlocked by the community through activity and decisions.",
+        "verified": false,
+        "avatar": "/img/collections/sleazy-weasel/avatar.png",
+        "card": "/img/collections/sleazy-weasel/card.png",
+        "banner": "/img/collections/sleazy-weasel/banner.png",
+        "maxSupply": 10000,
+        "website": "https://www.sleazyweasel.xyz/",
+        "twitter": "https://twitter.com/sleazy_weasel",
+        "discord": "https://discord.gg/sleazyweasenft"
+      }
     }
   ],
   "drops": [
