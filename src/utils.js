@@ -506,11 +506,13 @@ export const convertIpfsResource = (resource, tooltip) => {
 };
 
 export const isUserBlacklisted = (address) => {
-  return !!blacklist.users.find((bAddress) => caseInsensitiveCompare(address, bAddress));
+  const users = blacklist.flatMap((record) => record.users);
+  return users.some((bAddress) => caseInsensitiveCompare(address, bAddress));
 };
 
 export const isNftBlacklisted = (address, id) => {
-  return !!blacklist.collections.find((collection) => {
+  const collections = blacklist.flatMap((record) => record.tokens);
+  return collections.some((collection) => {
     const matchesAddress = caseInsensitiveCompare(collection.address, address);
     const matchesSlug = collection.slug === address;
     const includesId = collection.ids.includes(parseInt(id));
