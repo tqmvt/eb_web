@@ -394,14 +394,6 @@ export const connectAccount =
   async (dispatch, getState) => {
     const state = getState();
     const providerOptions = {
-      injected: {
-        display: {
-          logo: 'https://github.com/MetaMask/brand-resources/raw/master/SVG/metamask-fox.svg',
-          name: 'MetaMask',
-          description: 'Connect with MetaMask in your browser',
-        },
-        package: null,
-      },
       'custom-defiwallet': {
         display: {
           logo: '/img/logos/cdc_logo.svg',
