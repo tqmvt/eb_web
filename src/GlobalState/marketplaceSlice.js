@@ -2,8 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 import { getCollectionMetadata, getMarketMetadata } from '../core/api';
 import { SortOption } from '../Components/Models/sort-option.model';
 import {MarketFilters} from "../Components/Models/market-filters.model";
-import {ListingsQuery} from "../core/api/listings/query";
-import {sortAndFetchListings} from "../core/api/listings";
+import {ListingsQuery} from "../core/api/queries/listings";
+import {sortAndFetchListings} from "../core/api/endpoints/listings";
 
 const marketplaceSlice = createSlice({
   name: 'marketplace',
