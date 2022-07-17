@@ -2,13 +2,13 @@ import { createSlice } from '@reduxjs/toolkit';
 import { Contract } from 'ethers';
 import { toast } from 'react-toastify';
 
-import { getQuickWallet } from '../core/api';
 import { getAllOffers, getMyOffers, getFilteredOffers, getOffersForSingleNFT } from '../core/subgraph';
 import { createSuccessfulTransactionToastContent } from '../utils';
 import { ERC1155, ERC721, MetaPixelsAbi } from '../Contracts/Abis';
 import { isMetapixelsCollection } from '../utils';
 import { offerState } from '../core/api/enums';
 import {appConfig} from "../Config";
+import {getQuickWallet} from "../core/api/endpoints/wallets";
 
 const knownContracts = appConfig('collections');
 
@@ -154,7 +154,7 @@ export const fetchMadeOffers =
 
 export const fetchMyNFTs = (address) => async (dispatch) => {
   dispatch(myNFTsLoading());
-  const { data } = await getQuickWallet(address);
+  const { data } = await getQuickWallet(address, {pageSize: 1000});
 
   if (data) dispatch(myNFTsLoaded(data));
   else dispatch(myNFTsLoaded([]));

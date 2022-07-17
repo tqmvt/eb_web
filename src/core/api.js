@@ -22,8 +22,9 @@ import {
 import { getAntMintPassMetadata, getWeirdApesStakingStatus } from './api/chain';
 import { fallbackImageUrl } from './constants';
 import {appConfig} from "../Config";
-import {FullCollectionsQuery} from "./api/fullcollections/query";
-import {ListingsQuery} from "./api/listings/query";
+import {FullCollectionsQuery} from "./api/queries/fullcollections";
+import {ListingsQuery} from "./api/queries/listings";
+import {getQuickWallet} from "./api/endpoints/wallets";
 
 const config = appConfig();
 let gatewayTools = new IPFSGatewayTools();
@@ -1011,37 +1012,6 @@ export async function getAuction(hash, index) {
     console.log(error);
     Sentry.captureException(error);
   }
-}
-
-export async function getQuickWallet(walletAddress, queryParams = {}) {
-  const pagingSupported = true;
-
-  const defaultParams = {
-    wallet: walletAddress,
-    pageSize: 1000,
-  };
-
-  let queryString = new URLSearchParams(defaultParams);
-  if (pagingSupported) {
-    queryString = new URLSearchParams({
-      ...defaultParams,
-      ...queryParams,
-    });
-  }
-
-  const url = new URL(api.wallets, `${api.baseUrl}`);
-  const uri = `${url}?${queryString}`;
-
-  const json = await (await fetch(uri)).json();
-
-  if (json.status !== 200 || !json.data) return { ...json, ...{ data: [] } };
-
-  // @todo: remove once api has this version in prod
-  if (!Array.isArray(json.data)) {
-    json.data = [...json.data.erc1155, ...json.data.erc721];
-  }
-
-  return json;
 }
 
 async function getAllListingsForUser(walletAddress) {

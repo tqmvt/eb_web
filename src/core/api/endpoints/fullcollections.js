@@ -1,37 +1,34 @@
-import {limitSizeOptions} from "../../../Components/components/constants/filter-options";
-import {ListingsQuery} from "./query";
-import {SortOption} from "../../../Components/Models/sort-option.model";
+import {FullCollectionsQuery} from "../queries/fullcollections";
 import {CollectionSortOption} from "../../../Components/Models/collection-sort-option.model";
 import {appConfig} from "../../../Config";
 
 const config = appConfig();
 const api = {
   baseUrl: config.urls.api,
-  listings: '/listings',
+  collectionDetails: '/fullcollections',
 };
 
 // @todo refactor into something more generic
 let abortController = null;
 
-export async function sortAndFetchListings(
+export async function sortAndFetchCollectionDetails(
   page,
   sort,
   filter,
-  state,
-  pagesize = limitSizeOptions.lg
+  pageSize = 50
 ) {
   let query = {
-    state: state ?? 0,
     page: page,
-    pageSize: pagesize,
-    sortBy: 'listingId',
+    pageSize: pageSize ?? 50,
+    sortBy: 'id',
     direction: 'desc',
   };
-  if (filter && (filter instanceof ListingsQuery)) {
+
+  if (filter && filter instanceof FullCollectionsQuery) {
     query = { ...query, ...filter.toApi() };
   }
 
-  if (sort && (sort instanceof SortOption || sort instanceof CollectionSortOption)) {
+  if (sort && sort instanceof CollectionSortOption) {
     query = { ...query, ...sort.toApi() };
   }
 
@@ -45,7 +42,7 @@ export async function sortAndFetchListings(
 
   const queryString = new URLSearchParams(query);
 
-  const url = new URL(api.listings, `${api.baseUrl}`);
+  const url = new URL(api.collectionDetails, `${api.baseUrl}`);
   const uri = `${url}?${queryString}`;
 
   //  Debugging

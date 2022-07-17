@@ -7,11 +7,11 @@ import {
 import {caseInsensitiveCompare} from '../utils';
 import {appConfig} from "../Config";
 import {listingType} from "../core/api/enums";
-import {ListingsQuery} from "../core/api/listings/query";
-import {FullCollectionsQuery} from "../core/api/fullcollections/query";
+import {ListingsQuery} from "../core/api/queries/listings";
+import {FullCollectionsQuery} from "../core/api/queries/fullcollections";
 import {CollectionFilters} from "../Components/Models/collection-filters.model";
-import {sortAndFetchCollectionDetails} from "../core/api/fullcollections";
-import {sortAndFetchListings} from "../core/api/listings";
+import {sortAndFetchCollectionDetails} from "../core/api/endpoints/fullcollections";
+import {sortAndFetchListings} from "../core/api/endpoints/listings";
 
 const knownContracts = appConfig('collections');
 
