@@ -6312,6 +6312,25 @@
         "twitter": "https://twitter.com/ArgoProtocol",
         "discord": "https://discord.gg/argofinance"
       }
+    },
+    {
+      "name": "CheeseCake Slices",
+      "slug": "cheesecake-slices",
+      "multiToken": false,
+      "address": "0xbB6CC5e52CDB5ABC63d6e1054a8022EBE7Cd88FE",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "A collection of 3000 slices of CheeseCakes! Where we aim for everyone to get a slice of the cake.",
+        "verified": false,
+        "avatar": "/img/collections/cheesecake-slices/avatar.png",
+        "card": "/img/collections/cheesecake-slices/card.png",
+        "banner": "/img/collections/cheesecake-slices/banner.png",
+        "maxSupply": 3000,
+        "website": "https://cheesecakeslices.com/",
+        "twitter": "https://twitter.com/CheesecakeSlic3",
+        "discord": "https://discord.gg/4gJM7JfrVr"
+      }
     }
   ],
   "drops": [
