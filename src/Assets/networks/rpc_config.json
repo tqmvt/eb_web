@@ -8712,8 +8712,8 @@
       "end": null,
       "referral": false,
       "is1155": false,
-      "published": true,
-      "complete": true,
+      "published": false,
+      "complete": false,
       "featured": false,
       "redirect": "https://lootpad.io/collection/ballin"
     },
