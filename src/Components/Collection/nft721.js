@@ -22,7 +22,11 @@ import {
   millisecondTimestamp,
   shortAddress,
   timeSince,
-  relativePrecision, rankingsLogoForCollection, rankingsTitleForCollection, rankingsLinkForCollection,
+  relativePrecision,
+  rankingsLogoForCollection,
+  rankingsTitleForCollection,
+  rankingsLinkForCollection,
+  isLazyHorseCollection,
 } from '../../utils';
 import { getNftDetails } from '../../GlobalState/nftSlice';
 import { connectAccount, chainConnect } from '../../GlobalState/User';
@@ -39,6 +43,7 @@ import { commify } from 'ethers/lib/utils';
 import { appConfig } from '../../Config';
 import { hostedImage } from '../../helpers/image';
 import Link from 'next/link';
+import axios from "axios";
 
 const config = appConfig();
 const knownContracts = config.collections;
@@ -82,6 +87,8 @@ const Nft721 = ({ address, id }) => {
   const [crognomideBreed, setCrognomideBreed] = useState(null);
   const [babyWeirdApeBreed, setBabyWeirdApeBreed] = useState(null);
   const [evoSkullTraits, setEvoSkullTraits] = useState([]);
+  const [lazyHorseName, setLazyHorseName] = useState(null);
+  const [lazyHorseTraits, setLazyHorseTraits] = useState([]);
 
   useEffect(() => {
     dispatch(getNftDetails(address, id));
@@ -222,6 +229,33 @@ const Nft721 = ({ address, id }) => {
     // eslint-disable-next-line
   }, [address]);
 
+  useEffect(() => {
+    async function getLazyHorseName() {
+      if (isLazyHorseCollection(address)) {
+        const readProvider = new ethers.providers.JsonRpcProvider(config.rpc.read);
+        const contract = new Contract(address, ERC721, readProvider);
+        try {
+          const uri = await contract.tokenURI(id);
+          await axios.get(uri)
+            .then((response) => {
+              setLazyHorseName(response.data.name);
+              setLazyHorseTraits([
+                response.data.attributes.find((trait) => trait.trait_type === 'Race Count'),
+                response.data.attributes.find((trait) => trait.trait_type === 'Breeded'),
+              ])
+            });
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        setLazyHorseName(null);
+      }
+    }
+    getLazyHorseName();
+
+    // eslint-disable-next-line
+  }, [address]);
+
   const fullImage = () => {
     if (nft.original_image.startsWith('ipfs://')) {
       const link = nft.original_image.split('://')[1];
@@ -328,7 +362,7 @@ const Nft721 = ({ address, id }) => {
             <div className="col-md-6">
               {nft && (
                 <div className="item_info">
-                  <h2>{nft.name}</h2>
+                  <h2>{lazyHorseName ?? nft.name}</h2>
                   <p className="text-break">{nft.description}</p>
                   {isCroCrowCollection(address) && croCrowBreed && (
                     <div className="d-flex flex-row align-items-center mb-4">
@@ -469,7 +503,7 @@ const Nft721 = ({ address, id }) => {
                       )}
                       {currentTab === tabs.powertraits && (
                         <div className="tab-2 onStep fadeIn">
-                          {(powertraits && powertraits.length > 0) || (evoSkullTraits && evoSkullTraits.length > 0) ? (
+                          {(powertraits && powertraits.length > 0) || (evoSkullTraits && evoSkullTraits.length > 0) || (lazyHorseTraits && lazyHorseTraits.length > 0) ? (
                             <>
                               <div className="d-block mb-3">
                                 <div className="row mt-5 gx-3 gy-2">
@@ -501,6 +535,17 @@ const Nft721 = ({ address, id }) => {
                                           value={data.value}
                                           type={data.type}
                                           collectionAddress={address}
+                                        />
+                                      );
+                                    })}
+                                  {lazyHorseTraits &&
+                                    Array.isArray(lazyHorseTraits) &&
+                                    lazyHorseTraits.map((data, i) => {
+                                      return (
+                                        <Trait
+                                          key={i}
+                                          title={data.trait_type}
+                                          value={data.value}
                                         />
                                       );
                                     })}

@@ -425,6 +425,9 @@ export const isCarkayousCollection = (address) => {
   return isCollection(address, 'carkayous');
 };
 
+export const isLazyHorseCollection = (address) => {
+  return isCollection(address, 'lazy-horse');
+};
 
 export const percentage = (partialValue, totalValue) => {
   if (!totalValue || totalValue === 0) return 0;
