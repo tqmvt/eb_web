@@ -61,7 +61,7 @@ const MyNftCardList = ({ nfts = [], isLoading, listedOnly, activeFilterOption, u
     [dispatch]
   );
 
-  const possibleCollections = nfts.length > 1000 ? collectionFilterOptions : collectionFilterOptions.filter((collection) =>
+  const possibleCollections = nfts.length > 50 ? collectionFilterOptions : collectionFilterOptions.filter((collection) =>
     isLoading ? true : !!nfts.find((x) => caseInsensitiveCompare(x.address, collection.value))
   );
 
