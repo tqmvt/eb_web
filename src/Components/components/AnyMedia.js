@@ -37,37 +37,42 @@ export const AnyMedia = ({ image, video, title, url, newTab, usePlaceholder = fa
 
     const knownImageTypes = ['.png', '.jpg', '.jpeg', 'webp'];
 
-    //prefer mp4 over gif
-    const imageURL = new URL(image);
-    if(imageURL.pathname && imageURL.pathname.endsWith('.gif')){
-      setTransformedImage(ImageKitService.gifToMp4(imageURL).toString());
-      setVideoThumbNail(null);
-      setDynamicType(mediaTypes.video);
-    } else if(imageURL.pathname && imageURL.pathname.endsWith('.html')){
-      setDynamicType(mediaTypes.iframe);
-    } else if (imageURL.pathname && knownImageTypes.some((o) => imageURL.pathname.endsWith(o))) {
+    try {
+      const imageURL = new URL(image);
+      //prefer mp4 over gif
+      if(imageURL.pathname && imageURL.pathname.endsWith('.gif')){
+        setTransformedImage(ImageKitService.gifToMp4(imageURL).toString());
+        setVideoThumbNail(null);
+        setDynamicType(mediaTypes.video);
+      } else if(imageURL.pathname && imageURL.pathname.endsWith('.html')){
+        setDynamicType(mediaTypes.iframe);
+      } else if (imageURL.pathname && knownImageTypes.some((o) => imageURL.pathname.endsWith(o))) {
+        setDynamicType(mediaTypes.image);
+      } else {
+        const xhr = new XMLHttpRequest();
+        xhr.open('HEAD', transformedImage, true);
+
+        xhr.onload = function () {
+          const contentType = xhr.getResponseHeader('Content-Type');
+          const [mediaType, format] = contentType.split('/');
+          let type = mediaTypes[mediaType] ?? mediaTypes.image;
+          if(type === mediaTypes.video){
+            setVideoThumbNail(makeThumb(transformedImage));
+          }
+          if(format === 'gif'){
+            setTransformedImage(ImageKitService.gifToMp4(imageURL).toString());
+            setVideoThumbNail(null);
+            setDynamicType(mediaTypes.video);
+          } else {
+            setDynamicType(type);
+          }
+        };
+
+        xhr.send();
+      }
+    } catch (e) {
+      console.log('Unable to determine media type', e, image)
       setDynamicType(mediaTypes.image);
-    } else {
-      const xhr = new XMLHttpRequest();
-      xhr.open('HEAD', transformedImage, true);
-  
-      xhr.onload = function () {
-        const contentType = xhr.getResponseHeader('Content-Type');
-        const [mediaType, format] = contentType.split('/');
-        let type = mediaTypes[mediaType] ?? mediaTypes.image;
-        if(type === mediaTypes.video){
-          setVideoThumbNail(makeThumb(transformedImage));
-        }
-        if(format === 'gif'){
-          setTransformedImage(ImageKitService.gifToMp4(imageURL).toString());
-          setVideoThumbNail(null);
-          setDynamicType(mediaTypes.video);
-        } else {
-          setDynamicType(type);
-        }
-      };
-  
-      xhr.send();
     }
 
   };

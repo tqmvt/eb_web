@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from 'react';
+import React, { memo, useCallback, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -37,7 +37,6 @@ import NFTTabOffers from '../../src/Components/Offer/NFTTabOffers';
 import {appConfig} from "../../src/Config";
 import {hostedImage} from "../../src/helpers/image";
 import PageHead from "../../src/Components/Head/PageHead";
-import {useCallback} from "@types/react";
 
 const config = appConfig();
 const tabs = {
