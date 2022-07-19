@@ -6331,6 +6331,27 @@
         "twitter": "https://twitter.com/CheesecakeSlic3",
         "discord": "https://discord.gg/4gJM7JfrVr"
       }
+    },
+    {
+      "name": "Apes Utopia",
+      "slug": "apes-utopia",
+      "multiToken": false,
+      "address": "",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "The Apes embark on a journey through the Kingdom of Utopia to set foot on the world! Apes Utopia is a collection of 2,222 NFTs with over 200 features built on the Cronos blockchain. Apes Utopia NFTs provide access to various benefits in our ecosystem. Apes Utopia owners can participate in special events such as NFT sweepstakes, surprise sweepstakes, giveaways and much more. Remember, all Apes Utopia is special - but some are particularly special.",
+        "verified": true,
+        "avatar": "/img/collections/apes-utopia/avatar.gif",
+        "card": "/img/collections/apes-utopia/card.png",
+        "banner": "/img/collections/apes-utopia/banner.jpeg",
+        "maxSupply": 2222,
+        "website": "https://www.apesutopia.com/",
+        "twitter": "https://twitter.com/ApesUtopia",
+        "discord": "https://discord.com/invite/CBmUVWusQQ",
+        "medium": "https://medium.com/@apesutopia",
+        "telegram": "https://t.me/+AvEkD1pZfdEzZDgx"
+      }
     }
   ],
   "drops": [
@@ -8779,6 +8800,39 @@
       "is1155": false,
       "published": true,
       "complete": true
+    },
+    {
+      "id": 88,
+      "slug": "apes-utopia",
+      "imgNft": "/img/drops/apes-utopia/drop.png",
+      "imgPreview": "/img/drops/apes-utopia/drop.png",
+      "imgAvatar": "/img/collections/apes-utopia/avatar.gif",
+      "imgBanner": "/img/collections/apes-utopia/banner.jpeg",
+      "title": "Apes Utopia",
+      "subtitle": "The Apes embark on a journey through the Kingdom of Utopia to set foot on the world! Apes Utopia is a collection of 2,222 NFTs with over 200 features built on the Cronos blockchain. Apes Utopia NFTs provide access to various benefits in our ecosystem. Apes Utopia owners can participate in special events such as NFT sweepstakes, surprise sweepstakes, giveaways and much more. Remember, all Apes Utopia is special - but some are particularly special.",
+      "description": "Welcome to ApesUtopia! Apes Utopia is a collection of 2,222 NFTs with over 200 features built on the Cronos blockchain. Our vision is to create a strong family-friendly brand with many benefits that can be enjoyed by everyone, especially our owners, in both the real and digital worlds.\nApes Utopia owners can access various benefits in our ecosystem.\n★ Owners can participate in special events such as NFT sweepstakes, surprise sweepstakes, giveaways and much more. There will be a weekly draw on Discord.\n\n★ In addition, our members with at least 10 ApesUtopia NFT will have special powers such as decision making and we will work to direct our project together.\n\n★Airdrop: Owners will receive a certain percentage of royalties every month.\n\n★ The BabyApesUtopia NFTs that ApesUtopia gave birth to in the world will be deposited in the wallets of the owners.\n\n★ Stake: Holders will start receiving $ATOPIA tokens in their wallets during their NFT holding period. With $ATOPIA token, they will have exclusive items in our store!\n\n★ Metaverse: Owners will enter the metaverse universe with a huge art gallery. We will also build plots to house ApesUtopia and its babies!",
+      "author": {
+        "name": "Apes Utopia",
+        "website": "https://www.apesutopia.com/",
+        "twitter": "https://twitter.com/ApesUtopia",
+        "discord": "https://discord.com/invite/CBmUVWusQQ",
+        "medium": "https://medium.com/@apesutopia",
+        "telegram": "https://t.me/+AvEkD1pZfdEzZDgx"
+      },
+      "address": "",
+      "maxMintPerTx": 20,
+      "maxMintPerAddress": 100,
+      "totalSupply": 2222,
+      "cost": "450",
+      "memberCost": "420",
+      "whitelistCost": "399",
+      "foundersOnly": false,
+      "start": 1658692800000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false
     }
   ],
   "auctions": [
