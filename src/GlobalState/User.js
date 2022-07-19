@@ -707,7 +707,7 @@ export const chainConnect = (type) => async (dispatch) => {
 };
 
 export const fetchNfts =
-  (page, persist = false) =>
+  (page, persist = false, collectionAddress = null) =>
   async (dispatch, getState) => {
     const state = getState();
 
@@ -715,7 +715,7 @@ export const fetchNfts =
     const walletProvider = state.user.provider;
 
     dispatch(fetchingNfts({ persist }));
-    const response = await getNftsForAddress2(walletAddress, walletProvider, page);
+    const response = await getNftsForAddress2(walletAddress, walletProvider, page, collectionAddress);
     if (response.length > 0) {
       dispatch(onNftsAdded(response));
       dispatch(nftsFetched());
