@@ -2687,9 +2687,9 @@
       "multiToken": false,
       "address": "0x8513af602e45bC60D94f0033edc6E983be4B4b3f",
       "onChain": false,
-      "listable": false,
+      "listable": true,
       "metadata": {
-        "description": "",
+        "description": "CroPet collection of 400 hand-drawn unique and limited NFTs with 100+ different traits that has different rarities.",
         "verified": false,
         "avatar": "/img/collections/cropet/avatar.png",
         "card": "/img/collections/cropet/card.png",
