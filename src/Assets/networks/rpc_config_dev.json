@@ -6348,9 +6348,29 @@
         "maxSupply": 2222,
         "website": "https://www.apesutopia.com/",
         "twitter": "https://twitter.com/ApesUtopia",
-        "discord": "https://discord.com/invite/CBmUVWusQQ",
+        "discord": "https://discord.gg/CBmUVWusQQ",
         "medium": "https://medium.com/@apesutopia",
         "telegram": "https://t.me/+AvEkD1pZfdEzZDgx"
+      }
+    },
+    {
+      "name": "DegenBrains",
+      "slug": "degen-brains",
+      "multiToken": false,
+      "address": "0xDa9d418C4B8Ac59A6eC92cDFDd514F75a0f44e18",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "Purchasing a DegenBrains NFT will grant you exclusive access to a gamified Learn2Earn platform, private Discord channels with a growing community of degen-investors, and unique ways to earn passive income.",
+        "verified": false,
+        "avatar": "/img/collections/degen-brains/avatar.webp",
+        "card": "/img/collections/degen-brains/card.webp",
+        "banner": "/img/collections/degen-brains/banner.webp",
+        "maxSupply": 10000,
+        "website": "https://degenbrains.com/",
+        "twitter": "https://twitter.com/degenbrains",
+        "discord": "https://discord.gg/degenbrainfinance",
+        "medium": "https://medium.com/@degenbrains"
       }
     }
   ],
