@@ -25,16 +25,17 @@ const MyNftCardList = ({ nfts = [], isLoading, listedOnly, activeFilterOption, u
   const router = useRouter();
   const [page, setPage] = useState(1);
   const isFetching = useSelector((state) => state.user.fetchingNfts);
-  const marketContract = useSelector((state) => state.user.marketContract,);
+  const marketContract = useSelector((state) => state.user.marketContract);
   const canLoadMore = useSelector((state) => {
     if (useChain) return false;
     return !state.user.nftsFullyFetched;
   });
+  const [collectionFilter, setCollectionFilter] = useState(null);
 
   const loadMore = () => {
     if (!isFetching && !useChain) {
       let nextPage = page + 1;
-      dispatch(fetchNfts(nextPage, true));
+      dispatch(fetchNfts(nextPage, true, collectionFilter?.value));
       setPage(nextPage);
     }
   };
@@ -49,21 +50,19 @@ const MyNftCardList = ({ nfts = [], isLoading, listedOnly, activeFilterOption, u
       } else {
         abortController = new AbortController();
       }
-      dispatch(fetchNfts(page));
+      dispatch(fetchNfts(page, false, collectionFilter?.value));
     }
     // eslint-disable-next-line
-  }, [useChain]);
+  }, [useChain, collectionFilter]);
 
-  const onFilterChange = useCallback(
-    (filterOption) => {
-      dispatch(MyNftPageActions.setMyNftPageActiveFilterOption(filterOption));
-    },
-    [dispatch]
-  );
+  const onFilterChange = useCallback((filterOption) => {
+    setCollectionFilter(filterOption);
+  }, []);
 
-  const possibleCollections = nfts.length > 50 ? collectionFilterOptions : collectionFilterOptions.filter((collection) =>
-    isLoading ? true : !!nfts.find((x) => caseInsensitiveCompare(x.address, collection.value))
-  );
+  // const possibleCollections = nfts.length > 50 ? collectionFilterOptions : collectionFilterOptions.filter((collection) =>
+  //   isLoading ? true : !!nfts.find((x) => caseInsensitiveCompare(x.address, collection.value))
+  // );
+  const possibleCollections = collectionFilterOptions;
 
   const filteredNFTs = nfts
     .filter((nft) => (listedOnly ? nft.listed : true))
@@ -102,10 +101,9 @@ const MyNftCardList = ({ nfts = [], isLoading, listedOnly, activeFilterOption, u
                 showSort={false}
                 showSearch={false}
                 filterOptions={[MarketFilterCollection.default(), ...possibleCollections]}
-                defaultFilterValue={activeFilterOption}
                 filterPlaceHolder="Filter Collection..."
                 onFilterChange={onFilterChange}
-                filterValue={activeFilterOption}
+                filterValue={collectionFilter}
               />
             </div>
             <div className="col-12 col-sm-6 col-md-4 m-0 text-nowrap d-flex align-items-center">

@@ -1034,8 +1034,11 @@ async function getAllListingsForUser(walletAddress) {
   return listings;
 }
 
-export async function getNftsForAddress2(walletAddress, walletProvider, page) {
-  const quickWallet = await getQuickWallet(walletAddress, { page });
+export async function getNftsForAddress2(walletAddress, walletProvider, page, collectionAddress) {
+  let query = { page };
+  if (collectionAddress) query.collection = collectionAddress;
+
+  const quickWallet = await getQuickWallet(walletAddress, query);
   if (!quickWallet.data) return [];
 
   const results = quickWallet.data;
