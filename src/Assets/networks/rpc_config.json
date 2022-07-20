@@ -8853,6 +8853,40 @@
       "is1155": false,
       "published": true,
       "complete": false
+    },
+    {
+      "id": 89,
+      "slug": "degen-brains",
+      "imgNft": "",
+      "imgPreview": "",
+      "imgAvatar": "/img/collections/degen-brains/avatar.webp",
+      "imgBanner": "/img/collections/degen-brains/banner.webp",
+      "title": "Degen Brains",
+      "subtitle": "",
+      "description": "",
+      "author": {
+        "name": "Degen Brains",
+        "website": "",
+        "twitter": "",
+        "discord": "",
+        "medium": "",
+        "telegram": ""
+      },
+      "address": "",
+      "maxMintPerTx": 0,
+      "maxMintPerAddress": 0,
+      "totalSupply": 0,
+      "cost": "",
+      "memberCost": "",
+      "whitelistCost": "",
+      "foundersOnly": false,
+      "start": 1658732400000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false,
+      "redirect": "https://www.degenbrain.finance/"
     }
   ],
   "auctions": [
