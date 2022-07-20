@@ -40,11 +40,11 @@ RUN mkdir -p /var/log/nodejs && touch /var/log/nodejs/nodejs.log && chown -R nod
 # Install dumb-init
 RUN apt-get update && apt-get install -y dumb-init
 
-#Harden Image
-COPY ./harden.sh .
-RUN chmod +x harden.sh && \
-    sh harden.sh && \
-    rm -f harden.sh
+# # Harden Image
+# COPY ./harden.sh .
+# RUN chmod +x harden.sh && \
+#     sh harden.sh && \
+#     rm -f harden.sh
 
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]
 CMD ["/bin/bash", "-c", "exec npm run start-web >> /var/log/nodejs/nodejs.log 2>&1"]
