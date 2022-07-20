@@ -28,7 +28,7 @@ const CollectionNftsGroup = ({
             </div>
           </div>
         }
-        endMessage={listings.length ? (
+        endMessage={!listings.length ? (
           <div className="row mt-4">
             <div className="col-lg-12 text-center">
               <span>Nothing to see here...</span>

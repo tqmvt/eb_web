@@ -157,17 +157,13 @@ const SalesCollection = ({
             </div>
           </div>
         }
-        endMessage={() => {
-          if (listings.length) {
-            return (
-              <div className="row mt-4">
-                <div className="col-lg-12 text-center">
-                  <span>Nothing to see here...</span>
-                </div>
-              </div>
-            );
-          }
-        }}
+        endMessage={!listings.length ? (
+          <div className="row mt-4">
+            <div className="col-lg-12 text-center">
+              <span>Nothing to see here...</span>
+            </div>
+          </div>
+        ) : <></>}
       >
         <Table responsive className="table de-table table-rank sales-table align-middle" data-mobile-responsive="true">
           <thead>
@@ -188,7 +184,7 @@ const SalesCollection = ({
               listings.map((listing, index) => (
                 <tr key={index}>
                   <td style={{ minWidth: '50px' }}>
-                    <Link href={`/listing/${listing.listingId}`}>
+                    <Link href={`/collection/${listing.nftAddress}/${listing.nftId}`}>
                       <a>
                         <img
                           className="lazy rounded"
@@ -200,7 +196,7 @@ const SalesCollection = ({
                     </Link>
                   </td>
                   <th style={{ minWidth: '115px' }}>
-                    <Link href={`/listing/${listing.listingId}`}>
+                    <Link href={`/collection/${listing.nftAddress}/${listing.nftId}`}>
                       <a>{listing.nft.name ?? 'Unknown'}</a>
                     </Link>
                   </th>

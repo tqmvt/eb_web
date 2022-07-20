@@ -394,14 +394,6 @@ export const connectAccount =
   async (dispatch, getState) => {
     const state = getState();
     const providerOptions = {
-      injected: {
-        display: {
-          logo: 'https://github.com/MetaMask/brand-resources/raw/master/SVG/metamask-fox.svg',
-          name: 'MetaMask',
-          description: 'Connect with MetaMask in your browser',
-        },
-        package: null,
-      },
       'custom-defiwallet': {
         display: {
           logo: '/img/logos/cdc_logo.svg',
@@ -715,7 +707,7 @@ export const chainConnect = (type) => async (dispatch) => {
 };
 
 export const fetchNfts =
-  (page, persist = false) =>
+  (page, persist = false, collectionAddress = null) =>
   async (dispatch, getState) => {
     const state = getState();
 
@@ -723,7 +715,7 @@ export const fetchNfts =
     const walletProvider = state.user.provider;
 
     dispatch(fetchingNfts({ persist }));
-    const response = await getNftsForAddress2(walletAddress, walletProvider, page);
+    const response = await getNftsForAddress2(walletAddress, walletProvider, page, collectionAddress);
     if (response.length > 0) {
       dispatch(onNftsAdded(response));
       dispatch(nftsFetched());

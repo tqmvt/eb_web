@@ -1,13 +1,9 @@
-import React, { memo, useEffect, useState } from 'react';
+import React, {memo, useCallback, useEffect, useState} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import Head from 'next/head';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
-import Blockies from 'react-blockies';
 import { ethers } from 'ethers';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import ReactPlayer from 'react-player';
 import { Spinner } from 'react-bootstrap';
 import MetaMaskOnboarding from '@metamask/onboarding';
 
@@ -18,7 +14,7 @@ import {
   humanize,
   isCrosmocraftsPartsDrop,
   mapAttributeString,
-  millisecondTimestamp,
+  millisecondTimestamp, rankingsLinkForCollection, rankingsLogoForCollection, rankingsTitleForCollection,
   relativePrecision,
   shortAddress,
   timeSince,
@@ -37,6 +33,14 @@ import { OFFER_TYPE } from '../Offer/MadeOffersRow';
 import NFTTabOffers from '../Offer/NFTTabOffers';
 import { AnyMedia } from '../components/AnyMedia';
 import { hostedImage } from '../../helpers/image';
+
+const tabs = {
+  details: 'details',
+  powertraits: 'powertraits',
+  history: 'history',
+  listings: 'listings',
+  offers: 'offers',
+};
 
 const Nft1155 = ({ address, id }) => {
   const dispatch = useDispatch();
@@ -84,19 +88,10 @@ const Nft1155 = ({ address, id }) => {
     return nft.original_image;
   };
 
-  const [openMenu, setOpenMenu] = React.useState(0);
-  const handleBtnClick = (index) => (element) => {
-    if (typeof window === 'undefined') {
-      return;
-    }
-    var elements = document.querySelectorAll('.tab');
-    for (var i = 0; i < elements.length; i++) {
-      elements[i].classList.remove('active');
-    }
-    element.target.parentElement.classList.add('active');
-
-    setOpenMenu(index);
-  };
+  const [currentTab, setCurrentTab] = useState(tabs.details);
+  const handleTabChange = useCallback((tab) => {
+    setCurrentTab(tab);
+  }, []);
 
   const [openMakeOfferDialog, setOpenMakeOfferDialog] = useState(false);
   const [offerType, setOfferType] = useState(OFFER_TYPE.none);
@@ -133,7 +128,7 @@ const Nft1155 = ({ address, id }) => {
     }
 
     // eslint-disable-next-line
-  }, [nft, user]);
+  }, [nft, user.address]);
 
   return (
     <div>
@@ -187,7 +182,7 @@ const Nft1155 = ({ address, id }) => {
               {nft && (
                 <div className="item_info">
                   <h2>{nft.name}</h2>
-                  <p>{nft.description}</p>
+                  <p className="text-break">{nft.description}</p>
                   {collection.listable && (
                     <>
                       <PriceActionBar
@@ -211,22 +206,9 @@ const Nft1155 = ({ address, id }) => {
                       <ProfilePreview
                         type="Rarity Rank"
                         title={nft.rank}
-                        avatar={hostedImage(
-                          collectionMetadata.rarity === 'rarity_sniper'
-                            ? '/img/logos/rarity-sniper.png'
-                            : '/img/logos/ebisu-technicolor.svg',
-                          true
-                        )}
-                        hover={
-                          collectionMetadata.rarity === 'rarity_sniper'
-                            ? `Ranking provided by ${humanize(collectionMetadata.rarity)}`
-                            : "Ranking provided by Ebisu's Bay"
-                        }
-                        to={
-                          collectionMetadata.rarity === 'rarity_sniper'
-                            ? `https://raritysniper.com/${collectionMetadata.raritySniperSlug}/${id}`
-                            : null
-                        }
+                        avatar={rankingsLogoForCollection(collection)}
+                        hover={rankingsTitleForCollection(collection)}
+                        to={rankingsLinkForCollection(collection)}
                         pop={true}
                       />
                     )}
@@ -236,27 +218,29 @@ const Nft1155 = ({ address, id }) => {
 
                   <div className="de_tab">
                     <ul className="de_nav nft_tabs_options">
-                      <li id="Mainbtn0" className="tab active">
-                        <span onClick={handleBtnClick(0)}>Details</span>
+                      <li className={`tab ${currentTab === tabs.details ? 'active' : ''}`}>
+                        <span onClick={() => handleTabChange(tabs.details)}>Details</span>
                       </li>
                       {powertraits && powertraits.length > 0 && (
-                        <li id="Mainbtn1" className="tab">
-                          <span onClick={handleBtnClick(1)}>In-Game Attributes</span>
+                        <li className={`tab ${currentTab === tabs.powertraits ? 'active' : ''}`}>
+                          <span onClick={() => handleTabChange(tabs.powertraits)}>In-Game Attributes</span>
                         </li>
                       )}
-                      <li id="Mainbtn2" className="tab">
-                        <span onClick={handleBtnClick(2)}>History</span>
+                      <li className={`tab ${currentTab === tabs.history ? 'active' : ''}`}>
+                        <span onClick={() => handleTabChange(tabs.history)}>History</span>
                       </li>
-                      <li id="Mainbtn3" className="tab">
-                        <span onClick={handleBtnClick(3)}>Listings</span>
-                      </li>
-                      <li id="Mainbtn4" className="tab">
-                        <span onClick={handleBtnClick(4)}>Offers</span>
+                      {collection.listable && (
+                        <li className={`tab ${currentTab === tabs.listings ? 'active' : ''}`}>
+                          <span onClick={() => handleTabChange(tabs.listings)}>Listings</span>
+                        </li>
+                      )}
+                      <li className={`tab ${currentTab === tabs.offers ? 'active' : ''}`}>
+                        <span onClick={() => handleTabChange(tabs.offers)}>Offers</span>
                       </li>
                     </ul>
 
                     <div className="de_tab_content">
-                      {openMenu === 0 && (
+                      {currentTab === tabs.details && (
                         <div className="tab-1 onStep fadeIn">
                           {(nft.attributes && Array.isArray(nft.attributes) && nft.attributes.length > 0) ||
                           (nft.properties && Array.isArray(nft.properties) && nft.properties.length > 0) ? (
@@ -337,7 +321,7 @@ const Nft1155 = ({ address, id }) => {
                           )}
                         </div>
                       )}
-                      {openMenu === 1 && (
+                      {currentTab === tabs.powertraits && (
                         <div className="tab-2 onStep fadeIn">
                           {powertraits && powertraits.length > 0 ? (
                             <>
@@ -363,7 +347,7 @@ const Nft1155 = ({ address, id }) => {
                           )}
                         </div>
                       )}
-                      {openMenu === 2 && (
+                      {currentTab === tabs.history && (
                         <div className="listing-tab tab-3 onStep fadeIn">
                           {soldListings && soldListings.length > 0 ? (
                             <>
@@ -411,12 +395,12 @@ const Nft1155 = ({ address, id }) => {
                           )}
                         </div>
                       )}
-                      {openMenu === 3 && (
+                      {currentTab === tabs.listings && (
                         <div className="tab-3 onStep fadeIn">
                           <NFTTabListings listings={activeListings} />
                         </div>
                       )}
-                      {openMenu === 4 && <NFTTabOffers nftAddress={address} nftId={id} />}
+                      {currentTab === tabs.offers && <NFTTabOffers nftAddress={address} nftId={id} />}
                     </div>
                   </div>
                 </div>

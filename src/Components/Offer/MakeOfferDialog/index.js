@@ -11,7 +11,13 @@ import Button from '../../../Components/components/Button';
 import Input from '../../../Components/components/common/Input';
 import ProfilePreview from '../../../Components/components/ProfilePreview';
 import { specialImageTransform } from '../../../hacks';
-import { caseInsensitiveCompare, humanize, isEventValidNumber, shortAddress } from '../../../utils';
+import {
+  caseInsensitiveCompare,
+  humanize,
+  isEventValidNumber, rankingsLinkForCollection,
+  rankingsLogoForCollection, rankingsTitleForCollection,
+  shortAddress
+} from '../../../utils';
 import { OFFER_TYPE } from '../MadeOffersRow';
 import { updateOfferSuccess, updateOfferFailed } from '../../../GlobalState/offerSlice';
 import EmptyData from '../EmptyData';
@@ -258,7 +264,8 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
     return <></>;
   }
 
-  const collectionMetadata = findCollectionByAddress(nftData.address)?.metadata;
+  const collection = findCollectionByAddress(nftData.address);
+  const collectionMetadata = collection?.metadata;
 
   const getUpdatedOffer = (offerDataNew1, actionType1, offerPrice1) => {
     if (actionType1 === OFFER_TYPE.update) {
@@ -389,17 +396,8 @@ export default function MakeOfferDialog({ isOpen, toggle, type, nftData, offerDa
                         <ProfilePreview
                           type="Rarity Rank"
                           title={nftData.rank}
-                          avatar={hostedImage(
-                            collectionMetadata?.rarity === 'rarity_sniper'
-                              ? '/img/logos/rarity-sniper.png'
-                              : '/img/logos/ebisu-technicolor.svg',
-                            true
-                          )}
-                          hover={
-                            collectionMetadata?.rarity === 'rarity_sniper'
-                              ? `Ranking provided by ${humanize(collectionMetadata.rarity)}`
-                              : null
-                          }
+                          avatar={rankingsLogoForCollection(collection)}
+                          hover={rankingsTitleForCollection(collection)}
                         />
                       )}
                     </div>

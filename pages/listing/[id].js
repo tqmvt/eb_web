@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from 'react';
+import React, { memo, useCallback, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -30,7 +30,7 @@ import {
   isCrognomidesCollection,
   isBabyWeirdApesCollection,
   isUserBlacklisted,
-  isNftBlacklisted,
+  isNftBlacklisted, rankingsLogoForCollection, rankingsTitleForCollection, rankingsLinkForCollection,
 } from '../../src/utils';
 import {specialImageTransform} from '../../src/hacks';
 import NFTTabOffers from '../../src/Components/Offer/NFTTabOffers';
@@ -39,6 +39,13 @@ import {hostedImage} from "../../src/helpers/image";
 import PageHead from "../../src/Components/Head/PageHead";
 
 const config = appConfig();
+const tabs = {
+  details: 'details',
+  powertraits: 'powertraits',
+  history: 'history',
+  offers: 'offers',
+  breeding: 'breeding',
+};
 
 const Listing = () => {
   const router = useRouter();
@@ -165,19 +172,10 @@ const Listing = () => {
     return listing.nft.original_image;
   };
 
-  const [openMenu, setOpenMenu] = React.useState(0);
-  const handleBtnClick = (index) => (element) => {
-    if (typeof window === 'undefined') {
-      return;
-    }
-    var elements = document.querySelectorAll('.tab');
-    for (var i = 0; i < elements.length; i++) {
-      elements[i].classList.remove('active');
-    }
-    element.target.parentElement.classList.add('active');
-
-    setOpenMenu(index);
-  };
+  const [currentTab, setCurrentTab] = React.useState(0);
+  const handleTabChange = useCallback((tab) => {
+    setCurrentTab(tab);
+  }, []);
 
   const showBuy = () => async () => {
     if (user.address) {
@@ -342,22 +340,9 @@ const Listing = () => {
                       <ProfilePreview
                         type="Rarity Rank"
                         title={listing.nft.rank}
-                        avatar={hostedImage(
-                          collection.metadata.rarity === 'rarity_sniper'
-                            ? '/img/logos/rarity-sniper.png'
-                            : '/img/logos/ebisu-technicolor.svg',
-                          true
-                        )}
-                        hover={
-                          collection.metadata.rarity === 'rarity_sniper'
-                            ? `Ranking provided by ${humanize(collection.metadata.rarity)}`
-                            : null
-                        }
-                        to={
-                          collection.metadata.rarity === 'rarity_sniper'
-                            ? `https://raritysniper.com/${collection.metadata.raritySniperSlug}/${listing.nft.id}`
-                            : null
-                        }
+                        avatar={rankingsLogoForCollection(collection)}
+                        hover={rankingsTitleForCollection(collection)}
+                        to={rankingsLinkForCollection(collection)}
                         pop={true}
                       />
                     )}
@@ -367,29 +352,29 @@ const Listing = () => {
 
                   <div className="de_tab">
                     <ul className="de_nav">
-                      <li id="Mainbtn0" className="tab active">
-                        <span onClick={handleBtnClick(0)}>Details</span>
+                      <li className={`tab ${currentTab === tabs.details ? 'active' : ''}`}>
+                        <span onClick={() => handleTabChange(tabs.details)}>Details</span>
                       </li>
                       {powertraits && powertraits.length > 0 && (
-                        <li id="Mainbtn1" className="tab">
-                          <span onClick={handleBtnClick(1)}>In-Game Attributes</span>
+                        <li className={`tab ${currentTab === tabs.powertraits ? 'active' : ''}`}>
+                          <span onClick={() => handleTabChange(tabs.powertraits)}>In-Game Attributes</span>
                         </li>
                       )}
-                      <li id="Mainbtn2" className="tab">
-                        <span onClick={handleBtnClick(2)}>History</span>
+                      <li className={`tab ${currentTab === tabs.history ? 'active' : ''}`}>
+                        <span onClick={() => handleTabChange(tabs.history)}>History</span>
                       </li>
-                      <li id="Mainbtn3" className="tab">
-                        <span onClick={handleBtnClick(3)}>Offers</span>
+                      <li className={`tab ${currentTab === tabs.offers ? 'active' : ''}`}>
+                        <span onClick={() => handleTabChange(tabs.offers)}>Offers</span>
                       </li>
                       {babyWeirdApeBreed && (
-                        <li id="Mainbtn9" className="tab">
-                          <span onClick={handleBtnClick(9)}>Breed Info</span>
+                        <li className={`tab ${currentTab === tabs.breeding ? 'active' : ''}`}>
+                          <span onClick={() => handleTabChange(tabs.breeding)}>Breed Info</span>
                         </li>
                       )}
                     </ul>
 
                     <div className="de_tab_content">
-                      {openMenu === 0 && (
+                      {currentTab === 0 && (
                         <div className="tab-1 onStep fadeIn">
                           {(listing.nft.attributes &&
                             Array.isArray(listing.nft.attributes) &&
@@ -479,7 +464,7 @@ const Listing = () => {
                           )}
                         </div>
                       )}
-                      {openMenu === 1 && (
+                      {currentTab === 1 && (
                         <div className="tab-2 onStep fadeIn">
                           {powertraits && powertraits.length > 0 ? (
                             <>
@@ -505,7 +490,7 @@ const Listing = () => {
                           )}
                         </div>
                       )}
-                      {openMenu === 2 && (
+                      {currentTab === 2 && (
                         <div className="tab-3 onStep fadeIn">
                           {history && history.length > 0 ? (
                             <>
@@ -542,8 +527,8 @@ const Listing = () => {
                           )}
                         </div>
                       )}
-                      {openMenu === 3 && <NFTTabOffers nftAddress={listing.nftAddress} nftId={listing.nftId} />}
-                      {openMenu === 9 && babyWeirdApeBreed && (
+                      {currentTab === 3 && <NFTTabOffers nftAddress={listing.nftAddress} nftId={listing.nftId} />}
+                      {currentTab === 9 && babyWeirdApeBreed && (
                         <div className="tab-2 onStep fadeIn">
                           <div className="d-block mb-3">
                             <div className="row mt-5 gx-3 gy-2">

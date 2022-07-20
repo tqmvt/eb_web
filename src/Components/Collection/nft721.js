@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from 'react';
+import React, { memo, useCallback, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Contract, ethers } from 'ethers';
 import { faCrow, faExternalLinkAlt, faHeart } from '@fortawesome/free-solid-svg-icons';
@@ -23,6 +23,10 @@ import {
   shortAddress,
   timeSince,
   relativePrecision,
+  rankingsLogoForCollection,
+  rankingsTitleForCollection,
+  rankingsLinkForCollection,
+  isLazyHorseCollection,
 } from '../../utils';
 import { getNftDetails } from '../../GlobalState/nftSlice';
 import { connectAccount, chainConnect } from '../../GlobalState/User';
@@ -39,9 +43,17 @@ import { commify } from 'ethers/lib/utils';
 import { appConfig } from '../../Config';
 import { hostedImage } from '../../helpers/image';
 import Link from 'next/link';
+import axios from "axios";
 
 const config = appConfig();
 const knownContracts = config.collections;
+const tabs = {
+  details: 'details',
+  powertraits: 'powertraits',
+  history: 'history',
+  offers: 'offers',
+  breeding: 'breeding',
+};
 
 const Nft721 = ({ address, id }) => {
   const dispatch = useDispatch();
@@ -75,6 +87,8 @@ const Nft721 = ({ address, id }) => {
   const [crognomideBreed, setCrognomideBreed] = useState(null);
   const [babyWeirdApeBreed, setBabyWeirdApeBreed] = useState(null);
   const [evoSkullTraits, setEvoSkullTraits] = useState([]);
+  const [lazyHorseName, setLazyHorseName] = useState(null);
+  const [lazyHorseTraits, setLazyHorseTraits] = useState([]);
 
   useEffect(() => {
     dispatch(getNftDetails(address, id));
@@ -215,6 +229,33 @@ const Nft721 = ({ address, id }) => {
     // eslint-disable-next-line
   }, [address]);
 
+  useEffect(() => {
+    async function getLazyHorseName() {
+      if (isLazyHorseCollection(address)) {
+        const readProvider = new ethers.providers.JsonRpcProvider(config.rpc.read);
+        const contract = new Contract(address, ERC721, readProvider);
+        try {
+          const uri = await contract.tokenURI(id);
+          await axios.get(uri)
+            .then((response) => {
+              setLazyHorseName(response.data.name);
+              setLazyHorseTraits([
+                response.data.attributes.find((trait) => trait.trait_type === 'Race Count'),
+                response.data.attributes.find((trait) => trait.trait_type === 'Breeded'),
+              ])
+            });
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        setLazyHorseName(null);
+      }
+    }
+    getLazyHorseName();
+
+    // eslint-disable-next-line
+  }, [address]);
+
   const fullImage = () => {
     if (nft.original_image.startsWith('ipfs://')) {
       const link = nft.original_image.split('://')[1];
@@ -229,19 +270,10 @@ const Nft721 = ({ address, id }) => {
     return nft.original_image;
   };
 
-  const [openMenu, setOpenMenu] = React.useState(0);
-  const handleBtnClick = (index) => (element) => {
-    if (typeof window === 'undefined') {
-      return;
-    }
-    var elements = document.querySelectorAll('.tab');
-    for (var i = 0; i < elements.length; i++) {
-      elements[i].classList.remove('active');
-    }
-    element.target.parentElement.classList.add('active');
-
-    setOpenMenu(index);
-  };
+  const [currentTab, setCurrentTab] = React.useState(tabs.details);
+  const handleTabChange = useCallback((tab) => {
+    setCurrentTab(tab);
+  }, []);
 
   const handleMakeOffer = () => {
     if (user.address) {
@@ -274,7 +306,7 @@ const Nft721 = ({ address, id }) => {
     }
 
     // eslint-disable-next-line
-  }, [nft, user]);
+  }, [nft, user.address]);
 
   return (
     <div>
@@ -330,8 +362,8 @@ const Nft721 = ({ address, id }) => {
             <div className="col-md-6">
               {nft && (
                 <div className="item_info">
-                  <h2>{nft.name}</h2>
-                  <p>{nft.description}</p>
+                  <h2>{lazyHorseName ?? nft.name}</h2>
+                  <p className="text-break">{nft.description}</p>
                   {isCroCrowCollection(address) && croCrowBreed && (
                     <div className="d-flex flex-row align-items-center mb-4">
                       <LayeredIcon
@@ -384,22 +416,9 @@ const Nft721 = ({ address, id }) => {
                       <ProfilePreview
                         type="Rarity Rank"
                         title={nft.rank}
-                        avatar={hostedImage(
-                          collectionMetadata.rarity === 'rarity_sniper'
-                            ? '/img/logos/rarity-sniper.png'
-                            : '/img/logos/ebisu-technicolor.svg',
-                          true
-                        )}
-                        hover={
-                          collectionMetadata.rarity === 'rarity_sniper'
-                            ? `Ranking provided by ${humanize(collectionMetadata.rarity)}`
-                            : "Ranking provided by Ebisu's Bay"
-                        }
-                        to={
-                          collectionMetadata.rarity === 'rarity_sniper'
-                            ? `https://raritysniper.com/${collectionMetadata.raritySniperSlug}/${id}`
-                            : null
-                        }
+                        avatar={rankingsLogoForCollection(collection)}
+                        hover={rankingsTitleForCollection(collection)}
+                        to={rankingsLinkForCollection(collection)}
                         pop={true}
                       />
                     )}
@@ -409,29 +428,29 @@ const Nft721 = ({ address, id }) => {
 
                   <div className="de_tab">
                     <ul className="de_nav nft_tabs_options">
-                      <li id="Mainbtn0" className="tab active">
-                        <span onClick={handleBtnClick(0)}>Details</span>
+                      <li className={`tab ${currentTab === tabs.details ? 'active' : ''}`}>
+                        <span onClick={() => handleTabChange(tabs.details)}>Details</span>
                       </li>
                       {((powertraits && powertraits.length > 0) || (evoSkullTraits && evoSkullTraits.length > 0)) && (
-                        <li id="Mainbtn1" className="tab">
-                          <span onClick={handleBtnClick(1)}>In-Game Attributes</span>
+                        <li className={`tab ${currentTab === tabs.powertraits ? 'active' : ''}`}>
+                          <span onClick={() => handleTabChange(tabs.powertraits)}>In-Game Attributes</span>
                         </li>
                       )}
-                      <li id="Mainbtn2" className="tab">
-                        <span onClick={handleBtnClick(2)}>History</span>
+                      <li className={`tab ${currentTab === tabs.history ? 'active' : ''}`}>
+                        <span onClick={() => handleTabChange(tabs.history)}>History</span>
                       </li>
-                      <li id="Mainbtn3" className="tab">
-                        <span onClick={handleBtnClick(3)}>Offers</span>
+                      <li className={`tab ${currentTab === tabs.offers ? 'active' : ''}`}>
+                        <span onClick={() => handleTabChange(tabs.offers)}>Offers</span>
                       </li>
                       {babyWeirdApeBreed && (
-                        <li id="Mainbtn9" className="tab">
-                          <span onClick={handleBtnClick(9)}>Breed Info</span>
+                        <li className={`tab ${currentTab === tabs.breeding ? 'active' : ''}`}>
+                          <span onClick={() => handleTabChange(tabs.breeding)}>Breed Info</span>
                         </li>
                       )}
                     </ul>
 
                     <div className="de_tab_content">
-                      {openMenu === 0 && (
+                      {currentTab === tabs.details && (
                         <div className="tab-1 onStep fadeIn">
                           {(nft.attributes && Array.isArray(nft.attributes) && nft.attributes.length > 0) ||
                           (nft.properties && Array.isArray(nft.properties) && nft.properties.length > 0) ? (
@@ -482,9 +501,9 @@ const Nft721 = ({ address, id }) => {
                           )}
                         </div>
                       )}
-                      {openMenu === 1 && (
+                      {currentTab === tabs.powertraits && (
                         <div className="tab-2 onStep fadeIn">
-                          {(powertraits && powertraits.length > 0) || (evoSkullTraits && evoSkullTraits.length > 0) ? (
+                          {(powertraits && powertraits.length > 0) || (evoSkullTraits && evoSkullTraits.length > 0) || (lazyHorseTraits && lazyHorseTraits.length > 0) ? (
                             <>
                               <div className="d-block mb-3">
                                 <div className="row mt-5 gx-3 gy-2">
@@ -519,6 +538,17 @@ const Nft721 = ({ address, id }) => {
                                         />
                                       );
                                     })}
+                                  {lazyHorseTraits &&
+                                    Array.isArray(lazyHorseTraits) &&
+                                    lazyHorseTraits.map((data, i) => {
+                                      return (
+                                        <Trait
+                                          key={i}
+                                          title={data.trait_type}
+                                          value={data.value}
+                                        />
+                                      );
+                                    })}
                                 </div>
                               </div>
                             </>
@@ -529,7 +559,7 @@ const Nft721 = ({ address, id }) => {
                           )}
                         </div>
                       )}
-                      {openMenu === 2 && (
+                      {currentTab === tabs.history && (
                         <div className="listing-tab tab-3 onStep fadeIn">
                           {listingHistory && listingHistory.length > 0 ? (
                             <>
@@ -553,9 +583,9 @@ const Nft721 = ({ address, id }) => {
                         </div>
                       )}
 
-                      {openMenu === 3 && <NFTTabOffers nftAddress={address} nftId={id} />}
+                      {currentTab === tabs.offers && <NFTTabOffers nftAddress={address} nftId={id} />}
 
-                      {openMenu === 9 && babyWeirdApeBreed && (
+                      {currentTab === tabs.breeding && babyWeirdApeBreed && (
                         <div className="tab-2 onStep fadeIn">
                           <div className="d-block mb-3">
                             <div className="row mt-5 gx-3 gy-2">

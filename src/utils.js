@@ -5,6 +5,7 @@ import { useEffect, useRef } from 'react';
 import IPFSGatewayTools from '@pinata/ipfs-gateway-tools/dist/node';
 import {getCnsName} from "./helpers/cns";
 import {appConfig} from "./Config";
+import {hostedImage} from "./helpers/image";
 
 const drops = appConfig('drops')
 const collections = appConfig('collections')
@@ -424,6 +425,9 @@ export const isCarkayousCollection = (address) => {
   return isCollection(address, 'carkayous');
 };
 
+export const isLazyHorseCollection = (address) => {
+  return isCollection(address, 'lazy-horse');
+};
 
 export const percentage = (partialValue, totalValue) => {
   if (!totalValue || totalValue === 0) return 0;
@@ -505,11 +509,13 @@ export const convertIpfsResource = (resource, tooltip) => {
 };
 
 export const isUserBlacklisted = (address) => {
-  return !!blacklist.users.find((bAddress) => caseInsensitiveCompare(address, bAddress));
+  const users = blacklist.flatMap((record) => record.users);
+  return users.some((bAddress) => caseInsensitiveCompare(address, bAddress));
 };
 
 export const isNftBlacklisted = (address, id) => {
-  return !!blacklist.collections.find((collection) => {
+  const collections = blacklist.flatMap((record) => record.tokens);
+  return collections.some((collection) => {
     const matchesAddress = caseInsensitiveCompare(collection.address, address);
     const matchesSlug = collection.slug === address;
     const includesId = collection.ids.includes(parseInt(id));
@@ -595,4 +601,32 @@ export const getUserDisplayName = async (address) => {
 
 export const isEmptyObj = (obj) => {
   return obj && Object.keys(obj).length === 0 && obj.constructor === Object;
+}
+
+export const rankingsLogoForCollection = (collection) => {
+  let logo = '/img/logos/ebisu-technicolor.svg';
+  if (!collection) hostedImage(logo, true);
+
+  if (collection.metadata.rankings?.source === 'rarity_sniper') logo = '/img/logos/rarity-sniper.png';
+  else if (collection.metadata.rankings?.source === 'provided') logo = collection.metadata.avatar;
+
+  return hostedImage(logo, true);
+}
+export const rankingsTitleForCollection = (collection) => {
+  let title = `Ranking provided by Ebisu's Bay`;
+  if (!collection) return title;
+
+  if (collection.metadata.rankings?.source === 'rarity_sniper') title = `Ranking provided by Rarity Sniper`;
+  else if (collection.metadata.rankings?.source === 'provided') title = `Ranking provided by ${collection.name}`;
+
+  return title;
+}
+export const rankingsLinkForCollection = (collection, id) => {
+  let link = null;
+  if (!collection) return link;
+
+  if (collection.metadata.rankings?.source === 'rarity_sniper') link = `https://raritysniper.com/${collection.metadata.rankings.slug}/${id}`;
+  else if (collection.metadata.rankings?.source === 'provided' && collection.metadata.website) link = collection.metadata.website;
+
+  return link;
 }

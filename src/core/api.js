@@ -22,8 +22,9 @@ import {
 import { getAntMintPassMetadata, getWeirdApesStakingStatus } from './api/chain';
 import { fallbackImageUrl } from './constants';
 import {appConfig} from "../Config";
-import {FullCollectionsQuery} from "./api/fullcollections/query";
-import {ListingsQuery} from "./api/listings/query";
+import {FullCollectionsQuery} from "./api/queries/fullcollections";
+import {ListingsQuery} from "./api/queries/listings";
+import {getQuickWallet} from "./api/endpoints/wallets";
 
 const config = appConfig();
 let gatewayTools = new IPFSGatewayTools();
@@ -286,7 +287,7 @@ export async function sortAndFetchCollectionDetails(
 
 export async function getCollectionTraits(contractAddress) {
   try {
-    const internalUri = `https://app.ebisusbay.com/files/${contractAddress.toLowerCase()}/rarity.json`;
+    const internalUri = new URL(`/files/${contractAddress.toLowerCase()}/rarity.json`, `${config.urls.cdn}`);
 
     return await (await fetch(internalUri)).json();
   } catch (error) {
@@ -298,7 +299,7 @@ export async function getCollectionTraits(contractAddress) {
 
 export async function getCollectionPowertraits(contractAddress) {
   try {
-    const internalUri = `https://app.ebisusbay.com/files/${contractAddress.toLowerCase()}/powertraits.json`;
+    const internalUri = new URL(`/files/${contractAddress.toLowerCase()}/powertraits.json`, `${config.urls.cdn}`);
 
     return await (await fetch(internalUri)).json();
   } catch (error) {
@@ -1013,37 +1014,6 @@ export async function getAuction(hash, index) {
   }
 }
 
-export async function getQuickWallet(walletAddress, queryParams = {}) {
-  const pagingSupported = true;
-
-  const defaultParams = {
-    wallet: walletAddress,
-    pageSize: 1000,
-  };
-
-  let queryString = new URLSearchParams(defaultParams);
-  if (pagingSupported) {
-    queryString = new URLSearchParams({
-      ...defaultParams,
-      ...queryParams,
-    });
-  }
-
-  const url = new URL(api.wallets, `${api.baseUrl}`);
-  const uri = `${url}?${queryString}`;
-
-  const json = await (await fetch(uri)).json();
-
-  if (json.status !== 200 || !json.data) return { ...json, ...{ data: [] } };
-
-  // @todo: remove once api has this version in prod
-  if (!Array.isArray(json.data)) {
-    json.data = [...json.data.erc1155, ...json.data.erc721];
-  }
-
-  return json;
-}
-
 async function getAllListingsForUser(walletAddress) {
   let listings = [];
   let chunkParams = { complete: false, pageSize: 100, curPage: 1 };
@@ -1064,8 +1034,11 @@ async function getAllListingsForUser(walletAddress) {
   return listings;
 }
 
-export async function getNftsForAddress2(walletAddress, walletProvider, page) {
-  const quickWallet = await getQuickWallet(walletAddress, { page });
+export async function getNftsForAddress2(walletAddress, walletProvider, page, collectionAddress) {
+  let query = { page };
+  if (collectionAddress) query.collection = collectionAddress;
+
+  const quickWallet = await getQuickWallet(walletAddress, query);
   if (!quickWallet.data) return [];
 
   const results = quickWallet.data;

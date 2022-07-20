@@ -104,7 +104,7 @@ const NftCard = ({ royalty, listing, imgClass = 'marketplace', watermark, collec
               width={440}
               height={440}
               video={listing.animation_url}
-              videoProps={{ height: '220px' }}
+              // videoProps={{ height: '220px' }}
               usePlaceholder={true}
             />
           </Watermarked>
@@ -117,7 +117,7 @@ const NftCard = ({ royalty, listing, imgClass = 'marketplace', watermark, collec
             width={440}
             height={440}
             video={listing.animation_url}
-            videoProps={{ height: '220px' }}
+            // videoProps={{ height: '220px' }}
             usePlaceholder={true}
           />
         )}

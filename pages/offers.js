@@ -99,6 +99,8 @@ const MyOffers = () => {
             (c) => caseInsensitiveCompare(c.nftAddress, offer.nftAddress) && parseInt(c.nftId) === parseInt(offer.nftId)
           );
 
+          if (!nft) return false;
+
           const knownContract = findCollectionByAddress(offer.nftAddress, offer.nftId);
           if (!knownContract) return false;
 
@@ -108,7 +110,7 @@ const MyOffers = () => {
           const canShowCompletedOffers = !knownContract.multiToken || parseInt(offer.state) === offerState.ACTIVE;
           const isBlacklisted = isNftBlacklisted(offer.nftAddress, offer.nftId);
 
-          return nft && isAboveOfferThreshold && canShowCompletedOffers && !nft.is1155 && !isBlacklisted;
+          return isAboveOfferThreshold && canShowCompletedOffers && !nft.is1155 && !isBlacklisted;
         })
         .sort((a, b) => parseInt(b.price) - parseInt(a.price));
       const receivedPublicOffersFilter = allOffers
@@ -116,6 +118,8 @@ const MyOffers = () => {
           const nft = myNFTs.find(
             (c) => caseInsensitiveCompare(c.nftAddress, offer.nftAddress) && parseInt(c.nftId) === parseInt(offer.nftId)
           );
+          if (!nft || (nft.balance !== undefined && parseInt(nft.balance) < 1))
+            return false;
 
           const knownContract = findCollectionByAddress(offer.nftAddress, offer.nftId);
           if (!knownContract) return false;
@@ -126,7 +130,7 @@ const MyOffers = () => {
           const canShowCompletedOffers = !knownContract.multiToken || parseInt(offer.state) === offerState.ACTIVE;
           const isBlacklisted = isNftBlacklisted(offer.nftAddress, offer.nftId);
 
-          return nft && isAboveOfferThreshold && canShowCompletedOffers && nft.is1155 && !isBlacklisted;
+          return isAboveOfferThreshold && canShowCompletedOffers && nft.is1155 && !isBlacklisted;
         })
         .sort((a, b) => parseInt(b.price) - parseInt(a.price));
 
