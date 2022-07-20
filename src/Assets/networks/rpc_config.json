@@ -8928,7 +8928,7 @@
       "maxMintPerAddress": 100 ,
       "totalSupply": 200 ,
       "cost": "2000",
-      "memberCost": "1800",
+      "memberCost": "1600",
       "whitelistCost": "",
       "foundersOnly": false,
       "start": 1658952000000 ,
