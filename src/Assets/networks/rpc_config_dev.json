@@ -6372,6 +6372,25 @@
         "discord": "https://discord.gg/degenbrainfinance",
         "medium": "https://medium.com/@degenbrains"
       }
+    },
+    {
+      "name": "Everybody's not friends",
+      "slug": "everybodys-not-friends",
+      "multiToken": false,
+      "address": "",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "Everybody's not friends is a handcrafted set of unique and rare 1/1 collectible characters and animations created by timebeam. This is a community driven passion project. The purpose of this project is to build a community which promotes friendship through a set of humorous 3D cartoon characters, animations and monthly live streamed brawls.",
+        "verified": true,
+        "avatar": "/img/collections/everybodysnf/avatar.png",
+        "card": "/img/collections/everybodysnf/card.png",
+        "banner": "/img/collections/everybodysnf/banner.png",
+        "maxSupply": 200,
+        "website": "https://timebeam.myportfolio.com/everybodys-friends",
+        "twitter": "https://twitter.com/everybdyfriends",
+        "discord": "https://discord.com/invite/3MmDxXpB5P"
+      }
     }
   ],
   "drops": [
@@ -8822,7 +8841,41 @@
       "complete": true
     },
     {
-      "id": 88,
+      "id": 89,
+      "slug": "degen-brains",
+      "imgNft": "",
+      "imgPreview": "",
+      "imgAvatar": "/img/collections/degen-brains/avatar.webp",
+      "imgBanner": "/img/collections/degen-brains/banner.webp",
+      "title": "Degen Brains",
+      "subtitle": "",
+      "description": "",
+      "author": {
+        "name": "Degen Brains",
+        "website": "",
+        "twitter": "",
+        "discord": "",
+        "medium": "",
+        "telegram": ""
+      },
+      "address": "",
+      "maxMintPerTx": 0,
+      "maxMintPerAddress": 0,
+      "totalSupply": 0,
+      "cost": "",
+      "memberCost": "",
+      "whitelistCost": "",
+      "foundersOnly": false,
+      "start": 1658775600000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false,
+      "redirect": "https://www.degenbrain.finance/"
+    },
+    {
+      "id": 90,
       "slug": "apes-utopia",
       "imgNft": "/img/drops/apes-utopia/drop.png",
       "imgPreview": "/img/drops/apes-utopia/drop.png",
@@ -8848,6 +8901,37 @@
       "whitelistCost": "399",
       "foundersOnly": false,
       "start": 1658692800000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false
+    },
+    {
+      "id": 91,
+      "slug": "everybodys-not-friends",
+      "imgNft": "/img/drops/everybodysnf/drop.png",
+      "imgPreview": "/img/drops/everybodysnf/drop.png",
+      "imgAvatar": "/img/collections/everybodysnf/avatar.png",
+      "imgBanner": "/img/collections/everybodysnf/banner.png",
+      "title": "Everybody's Not Friends",
+      "subtitle": "Everybody's not friends is a handcrafted set of unique and rare 1/1 collectible characters and animations created by timebeam. This is a community driven passion project. The purpose of this project is to build a community which promotes friendship through a set of humorous 3D cartoon characters, animations and monthly live streamed brawls.",
+      "description": "Everybody's not friends is a handcrafted set of unique and rare 1/1 collectible characters and animations created by timebeam. The purpose of this project is to build a community which promotes friendship through a set of humorous 3D cartoon characters, animations and monthly live streamed brawls. All the everybody's not friends characters are rigged for character animation. When you purchase a friend you are taking the next step in the everybody’s not friends community. Friends will get the exclusive opportunity to participate in brawl night! Once a month we will pick two random NFT holders and their characters will brawl. The fighters and winner will be determined by a mini app we developed called 'the random generator'. The fight will be animated based on the outcome of the random generator. We will do a live stream of the animated fight. Winners will win some cool prizes and crypto! Come join our community and lets have some fun!",
+      "author": {
+        "name": "Everybody's not friends",
+        "website": "https://timebeam.myportfolio.com/everybodys-friends",
+        "twitter": "https://twitter.com/everybdyfriends",
+        "discord": "https://discord.com/invite/3MmDxXpB5P"
+      },
+      "address": "",
+      "maxMintPerTx": 5,
+      "maxMintPerAddress": 100 ,
+      "totalSupply": 200 ,
+      "cost": "2000",
+      "memberCost": "1600",
+      "whitelistCost": "",
+      "foundersOnly": false,
+      "start": 1658952000000 ,
       "end": null,
       "referral": false,
       "is1155": false,
