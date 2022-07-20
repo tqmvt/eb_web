@@ -1372,6 +1372,26 @@
         "twitter": "https://twitter.com/FuryMouseGang",
         "discord": "https://discord.gg/fmg"
       }
+    },
+    {
+      "name": "Battle Ready Boyz",
+      "slug": "battle-ready-boyz",
+      "multiToken": false,
+      "address": "0xa3775af958E95148989afccFD3A64AbEF2C88A84",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "Battle Ready Boyz is a project combining Design and GameFi offering its members to use their NFTs in Play-to-Earn or Risk-To-Earn.\n\nThe BRB collection features 7777 unique NFTs representing Aurora's gorilla soldiers and statues of their emperors.\n\nDon't forget to fight each other, life is too short!",
+        "verified": true,
+        "avatar": "/img/collections/battle-ready-boyz/avatar.png",
+        "card": "/img/collections/battle-ready-boyz/card.png",
+        "banner": "/img/collections/battle-ready-boyz/banner.png",
+        "maxSupply": 7777,
+        "website": "https://www.battlereadyboyz.io/",
+        "twitter": "https://twitter.com/BattleReadyBoyz",
+        "discord": "https://discord.gg/q4FQ4ukffB",
+        "medium": "https://medium.com/@battlereadyboyz/battle-ready-boyz-56a5eee494fa"
+      }
     }
   ],
   "drops": [
@@ -2974,6 +2994,38 @@
       "memberCost": "250",
       "foundersOnly": false,
       "start": 1657138269000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false
+    },
+    {
+      "id": 87,
+      "slug": "battle-ready-boyz",
+      "imgNft": "/img/drops/battle-ready-boyz/drop.png",
+      "imgPreview": "/img/drops/battle-ready-boyz/drop.png",
+      "imgAvatar": "/img/collections/battle-ready-boyz/avatar.png",
+      "imgBanner": "/img/collections/battle-ready-boyz/banner.png",
+      "title": "Battle Ready Boyz",
+      "subtitle": "Battle Ready Boyz is a project combining Design and GameFi offering its members to use their NFTs in Play-to-Earn or Risk-To-Earn.\n\nThe BRB collection features 7777 unique NFTs representing Aurora's gorilla soldiers and statues of their emperors.\n\nDon't forget to fight each other, life is too short!",
+      "description": "Battle Ready Boyz is a project combining Design and GameFi offering its members to use their NFTs in Play-to-Earn or Risk-To-Earn.\n\nThe BRB collection features 7777 unique NFTs representing Aurora's gorilla soldiers and statues of their emperors.\n\nUtilities :\n\nPlay to earn\n\nRisk to earn\n\nNFT Staking \n\nExchangeable token\n\nUtility token\n\nNFT upgrade\n\nMerch (BRB poker cards, ...)\n\nDAO & partnerships\n\nOGs & VIP events\n\nFull redistribution of royalties\n\nFree online novel\n\nAirdrop to our holders : Battle Retired Boyz\n\nDon't forget to fight each other, life is too short!",
+      "author": {
+        "name": "Battle Ready Boyz",
+        "website": "https://www.battlereadyboyz.io/",
+        "twitter": "https://twitter.com/BattleReadyBoyz",
+        "discord": "https://discord.gg/q4FQ4ukffB",
+        "medium": "https://medium.com/@battlereadyboyz/battle-ready-boyz-56a5eee494fa"
+      },
+      "address": "0xa3775af958E95148989afccFD3A64AbEF2C88A84",
+      "maxMintPerTx": 10,
+      "maxMintPerAddress": 100,
+      "totalSupply": 7777,
+      "cost": "399",
+      "memberCost": "379",
+      "whitelistCost": "349",
+      "foundersOnly": false,
+      "start": 1658353133000,
       "end": null,
       "referral": false,
       "is1155": false,
