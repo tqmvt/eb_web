@@ -11,7 +11,7 @@ import MakeOfferDialog from '../Offer/MakeOfferDialog';
 import { connectAccount, chainConnect } from '../../GlobalState/User';
 import { isNftBlacklisted, round } from '../../utils';
 import { AnyMedia } from './AnyMedia';
-import {nftCardUrl} from "../../helpers/image";
+import { nftCardUrl } from '../../helpers/image';
 
 const Watermarked = styled.div`
   position: relative;
@@ -103,6 +103,8 @@ const NftCard = ({ royalty, listing, imgClass = 'marketplace', watermark, collec
               url={`/collection/${collection.slug}/${listing.id}`}
               width={440}
               height={440}
+              video={listing.video ?? listing.animation_url}
+              usePlaceholder={true}
             />
           </Watermarked>
         ) : (
@@ -113,6 +115,8 @@ const NftCard = ({ royalty, listing, imgClass = 'marketplace', watermark, collec
             url={`/collection/${collection.slug}/${listing.id}`}
             width={440}
             height={440}
+            video={listing.video ?? listing.animation_url}
+            usePlaceholder={true}
           />
         )}
         {listing.rank && <div className="badge bg-rarity text-wrap mt-1 mx-1">Rank: #{listing.rank}</div>}

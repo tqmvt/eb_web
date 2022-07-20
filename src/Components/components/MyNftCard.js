@@ -86,11 +86,14 @@ const MyNftCard = ({
   return (
     <div className="card eb-nft__card h-100 shadow">
       <AnyMedia image={nftCardUrl(nft.address, nft.image)} 
-            title={nft.name} url={nftUrl()}
-            newTab={true} 
-            className="card-img-top marketplace"  
-            height={440}
-            width={440}/>
+        title={nft.name} url={nftUrl()}
+        newTab={true}
+        className="card-img-top marketplace"
+        height={440}
+        width={440}
+        video={nft.video ?? nft.animation_url}
+        usePlaceholder={true}
+      />
       {nft.rank && typeof nft.rank === 'number' && (
         <div className="badge bg-rarity text-wrap mt-1 mx-1">Rank: #{nft.rank}</div>
       )}
