@@ -21,6 +21,10 @@ services:
       timeout: 2s
       retries: 3
       start_period: 10s
+    tmpfs:
+      - /home/node/.npm/_logs:mode=770,uid=1000,gid=1000
+      - /home/node/.npm/_cacache:mode=770,uid=1000,gid=1000
+      - /tmp:mode=770,uid=1000,gid=1000
     volumes:
       - ./volumes/ebisusbay-web_logs:/var/log/nodejs:rw
       - ./volumes/ebisusbay-web_cache:/usr/src/app/.next/cache:rw

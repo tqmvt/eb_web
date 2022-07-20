@@ -26,7 +26,7 @@ import {
   rankingsLogoForCollection,
   rankingsTitleForCollection,
   rankingsLinkForCollection,
-  isLazyHorseCollection,
+  isLazyHorseCollection, isLazyHorsePonyCollection,
 } from '../../utils';
 import { getNftDetails } from '../../GlobalState/nftSlice';
 import { connectAccount, chainConnect } from '../../GlobalState/User';
@@ -231,7 +231,7 @@ const Nft721 = ({ address, id }) => {
 
   useEffect(() => {
     async function getLazyHorseName() {
-      if (isLazyHorseCollection(address)) {
+      if (isLazyHorseCollection(address) || isLazyHorsePonyCollection(address)) {
         const readProvider = new ethers.providers.JsonRpcProvider(config.rpc.read);
         const contract = new Contract(address, ERC721, readProvider);
         try {

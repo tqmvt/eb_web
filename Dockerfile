@@ -2,17 +2,12 @@
 ### Runtime image ###
 #####################
 
-FROM node:16.16.0-slim
+FROM node:16-slim
 
 # Update packages
 RUN apt-get update && apt-get install -y git curl procps htop net-tools netcat dnsutils
 
-# Does not work
-# RUN npm install -g npm@latest
-# RUN npm install -g npm@v8.7.0
-
-# Latest npm version that works
-RUN npm install -g npm@v8.5.5
+RUN npm install -g npm@latest
 
 # Print Node.js & npm versions
 RUN node --version
