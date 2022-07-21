@@ -1,8 +1,17 @@
 [
   {
-    "users": [
-      "0xade6d50beeb9156d95eba3cd66ef2ae6695443ac"
+    "users": ["0xE877C5420604BADa353010ADd7D5C304BDC2FF33"],
+    "tokens": [
+      {
+        "slug": "carkayous-feral-fish",
+        "address": "0x72af9c869a4759e6d50e9656c0741b395532c3dd",
+        "ids": [1975]
+      }
     ],
+    "reason": "Verified by Jason the project owner"
+  },
+  {
+    "users": ["0xade6d50beeb9156d95eba3cd66ef2ae6695443ac"],
     "tokens": [
       {
         "slug": "crognomes",
