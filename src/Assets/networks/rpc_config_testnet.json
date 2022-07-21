@@ -1377,7 +1377,7 @@
       "name": "Battle Ready Boyz",
       "slug": "battle-ready-boyz",
       "multiToken": false,
-      "address": "0xa3775af958E95148989afccFD3A64AbEF2C88A84",
+      "address": "0xEB88A1655a052999DD36809F1990dCd98064975F",
       "onChain": false,
       "listable": false,
       "metadata": {
@@ -3038,7 +3038,7 @@
         "discord": "https://discord.gg/q4FQ4ukffB",
         "medium": "https://medium.com/@battlereadyboyz/battle-ready-boyz-56a5eee494fa"
       },
-      "address": "0xa3775af958E95148989afccFD3A64AbEF2C88A84",
+      "address": "0xEB88A1655a052999DD36809F1990dCd98064975F",
       "maxMintPerTx": 10,
       "maxMintPerAddress": 100,
       "totalSupply": 7777,
