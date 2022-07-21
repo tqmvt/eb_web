@@ -1397,7 +1397,7 @@
       "name": "Apes Utopia",
       "slug": "apes-utopia",
       "multiToken": false,
-      "address": "0xb4aCc139D99c743641D66FC8dA3026C1F4018d31",
+      "address": "0xF07413e160B8F34C57cBB7730d9c34006986ae43",
       "onChain": false,
       "listable": false,
       "metadata": {
@@ -3125,7 +3125,7 @@
         "medium": "https://medium.com/@apesutopia",
         "telegram": "https://t.me/+AvEkD1pZfdEzZDgx"
       },
-      "address": "0xb4aCc139D99c743641D66FC8dA3026C1F4018d31",
+      "address": "0xF07413e160B8F34C57cBB7730d9c34006986ae43",
       "maxMintPerTx": 20,
       "maxMintPerAddress": 100,
       "totalSupply": 2222,
