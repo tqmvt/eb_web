@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { keyframes } from '@emotion/react';
 import Reveal from 'react-awesome-reveal';
 import styled, { createGlobalStyle } from 'styled-components';
-import { faFire } from '@fortawesome/free-solid-svg-icons';
+import {faCoffee, faFire} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Footer from '../src/Components/components/Footer';
@@ -14,7 +14,7 @@ import HotCollections from '../src/Components/components/HotCollections';
 import CurrentDrops from '../src/Components/components/CurrentDrops';
 import { getMarketData } from '../src/GlobalState/marketplaceSlice';
 import { siPrefixedNumber } from '../src/utils';
-import { theme } from '../src/Theme/theme';
+import {getTheme, theme} from '../src/Theme/theme';
 import { limitSizeOptions } from '../src/Components/components/constants/filter-options';
 import Button from '../src/Components/components/Button';
 import {hostedImage} from "../src/helpers/image";
@@ -249,57 +249,50 @@ const Home = () => {
       </Jumbotron.Host>
       {mobile && JumbotronData()}
 
-      {/*<section className="container no-bottom no-top">*/}
-      {/*  <div className="row">*/}
-      {/*    <div className="col-lg-12">*/}
-      {/*      <div className="text-center pt-5">*/}
-      {/*        <h2>Croge NFTs</h2>*/}
-      {/*        <div className="small-border"></div>*/}
-      {/*      </div>*/}
-      {/*    </div>*/}
-      {/*    <div className="col-lg-8 col-md-6 d-flex align-items-center">*/}
-      {/*      <div className="mt-3" style={{color:getTheme(userTheme).colors.textColor3}}>*/}
-      {/*        <p>*/}
-      {/*          Randomly generated profile picture style NFTs, minting for whitelisters only on June 30th! All Ebisu's Bay Founding Member holders automatically whitelisted. Public mint on July 1. NFT reveal on July 2.*/}
-      {/*        </p>*/}
-      {/*        <p>*/}
-      {/*          Get all the details, and how you could win a $10,000 USDC giveaway, here: <br />*/}
-      {/*          <a href="https://medium.com/@cometcalls/croge-nfts-are-coming-june-30-2022-c167ca0b511b" target="_blank" rel="noreferrer">*/}
-      {/*            https://medium.com/@cometcalls/croge-nfts-are-coming-june-30-2022-c167ca0b511b*/}
-      {/*          </a>*/}
-      {/*        </p>*/}
-      {/*      </div>*/}
-      {/*    </div>*/}
-      {/*    <div className="col-lg-4 col-md-6 pt-3">*/}
-      {/*      <div className="mx-auto text-center">*/}
-      {/*        <img*/}
-      {/*          src={hostedImage('/img/promos/croge.jpg')}*/}
-      {/*          alt="Croge NFTs"*/}
-      {/*          className="img-fluid"*/}
-      {/*          style={{maxWidth: '300px'}}*/}
-      {/*        />*/}
-      {/*      </div>*/}
-      {/*      <div className="card-body d-flex flex-column align-middle">*/}
-      {/*        <div className="d-flex justify-content-between">*/}
-      {/*          <div className="flex-fill mx-1">*/}
-      {/*            <a href="https://twitter.com/crogecoin" target="_blank" rel="noreferrer">*/}
-      {/*              <Button type="legacy-outlined" className="w-100">*/}
-      {/*                <FontAwesomeIcon icon={faTwitter} className="me-1"/> Twitter*/}
-      {/*              </Button>*/}
-      {/*            </a>*/}
-      {/*          </div>*/}
-      {/*          <div className="flex-fill mx-1">*/}
-      {/*            <a href="https://nft.crogecoin.com/" target="_blank" rel="noreferrer">*/}
-      {/*              <Button type="legacy" className="w-100">*/}
-      {/*                <FontAwesomeIcon icon={faInfoCircle} className="me-1"/> Details*/}
-      {/*              </Button>*/}
-      {/*            </a>*/}
-      {/*          </div>*/}
-      {/*        </div>*/}
-      {/*      </div>*/}
-      {/*    </div>*/}
-      {/*  </div>*/}
-      {/*</section>*/}
+      <section className="container no-bottom no-top">
+        <div className="row">
+          <div className="col-lg-12">
+            <div className="text-center pt-5">
+              <h2>Ebisu's Beans</h2>
+              <div className="small-border"></div>
+            </div>
+          </div>
+          <div className="col-lg-8 col-md-6 d-flex align-items-center">
+            <div className="mt-3" style={{color:getTheme(userTheme).colors.textColor3}}>
+              <p>
+                One of the shichifukujin or the seven Japanese gods of fortune, Ebisu brings you a beautiful coffee. Milk chocolate with notes of berries and a Caramel finish, the Ebisu’s Bay blend is the perfect zen to your morning routine before hitting the market!</p>
+            </div>
+          </div>
+          <div className="col-lg-4 col-md-6 pt-3">
+            <div className="mx-auto text-center">
+              <img
+                src={hostedImage('/img/promos/beans.webp')}
+                alt="Ebisu's Beans"
+                className="img-fluid"
+                style={{maxWidth: '300px'}}
+              />
+            </div>
+            <div className="card-body d-flex flex-column align-middle">
+              <div className="d-flex justify-content-between">
+                {/*<div className="flex-fill mx-1">*/}
+                {/*  <a href="https://twitter.com/crogecoin" target="_blank" rel="noreferrer">*/}
+                {/*    <Button type="legacy-outlined" className="w-100">*/}
+                {/*      <FontAwesomeIcon icon={faTwitter} className="me-1"/> Twitter*/}
+                {/*    </Button>*/}
+                {/*  </a>*/}
+                {/*</div>*/}
+                <div className="flex-fill mx-1">
+                  <a href="https://cryptobeanscoffee.com/products/ebisus-beans" target="_blank" rel="noreferrer">
+                    <Button type="legacy-outlined" className="w-100">
+                      <FontAwesomeIcon icon={faCoffee} className="me-1"/> Buy Now
+                    </Button>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <section className="container no-bottom">
         <div className="row">

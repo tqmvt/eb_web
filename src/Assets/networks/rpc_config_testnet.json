@@ -1372,6 +1372,47 @@
         "twitter": "https://twitter.com/FuryMouseGang",
         "discord": "https://discord.gg/fmg"
       }
+    },
+    {
+      "name": "Battle Ready Boyz",
+      "slug": "battle-ready-boyz",
+      "multiToken": false,
+      "address": "0xEB88A1655a052999DD36809F1990dCd98064975F",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "Battle Ready Boyz is a project combining Design and GameFi offering its members to use their NFTs in Play-to-Earn or Risk-To-Earn.\n\nThe BRB collection features 7777 unique NFTs representing Aurora's gorilla soldiers and statues of their emperors.\n\nDon't forget to fight each other, life is too short!",
+        "verified": true,
+        "avatar": "/img/collections/battle-ready-boyz/avatar.png",
+        "card": "/img/collections/battle-ready-boyz/card.png",
+        "banner": "/img/collections/battle-ready-boyz/banner.png",
+        "maxSupply": 7777,
+        "website": "https://www.battlereadyboyz.io/",
+        "twitter": "https://twitter.com/BattleReadyBoyz",
+        "discord": "https://discord.gg/q4FQ4ukffB",
+        "medium": "https://medium.com/@battlereadyboyz/battle-ready-boyz-56a5eee494fa"
+      }
+    },
+    {
+      "name": "Apes Utopia",
+      "slug": "apes-utopia",
+      "multiToken": false,
+      "address": "0xb4aCc139D99c743641D66FC8dA3026C1F4018d31",
+      "onChain": false,
+      "listable": false,
+      "metadata": {
+        "description": "The Apes embark on a journey through the Kingdom of Utopia to set foot on the world! Apes Utopia is a collection of 2,222 NFTs with over 200 features built on the Cronos blockchain. Apes Utopia NFTs provide access to various benefits in our ecosystem. Apes Utopia owners can participate in special events such as NFT sweepstakes, surprise sweepstakes, giveaways and much more. Remember, all Apes Utopia is special - but some are particularly special.",
+        "verified": true,
+        "avatar": "/img/collections/apes-utopia/avatar.gif",
+        "card": "/img/collections/apes-utopia/card.png",
+        "banner": "/img/collections/apes-utopia/banner.jpeg",
+        "maxSupply": 2222,
+        "website": "https://www.apesutopia.com/",
+        "twitter": "https://twitter.com/ApesUtopia",
+        "discord": "https://discord.gg/CBmUVWusQQ",
+        "medium": "https://medium.com/@apesutopia",
+        "telegram": "https://t.me/+AvEkD1pZfdEzZDgx"
+      }
     }
   ],
   "drops": [
@@ -2981,6 +3022,38 @@
       "complete": false
     },
     {
+      "id": 87,
+      "slug": "battle-ready-boyz",
+      "imgNft": "/img/drops/battle-ready-boyz/drop.png",
+      "imgPreview": "/img/drops/battle-ready-boyz/drop.png",
+      "imgAvatar": "/img/collections/battle-ready-boyz/avatar.png",
+      "imgBanner": "/img/collections/battle-ready-boyz/banner.png",
+      "title": "Battle Ready Boyz",
+      "subtitle": "Battle Ready Boyz is a project combining Design and GameFi offering its members to use their NFTs in Play-to-Earn or Risk-To-Earn.\n\nThe BRB collection features 7777 unique NFTs representing Aurora's gorilla soldiers and statues of their emperors.\n\nDon't forget to fight each other, life is too short!",
+      "description": "Battle Ready Boyz is a project combining Design and GameFi offering its members to use their NFTs in Play-to-Earn or Risk-To-Earn.\n\nThe BRB collection features 7777 unique NFTs representing Aurora's gorilla soldiers and statues of their emperors.\n\nUtilities :\n\nPlay to earn\n\nRisk to earn\n\nNFT Staking \n\nExchangeable token\n\nUtility token\n\nNFT upgrade\n\nMerch (BRB poker cards, ...)\n\nDAO & partnerships\n\nOGs & VIP events\n\nFull redistribution of royalties\n\nFree online novel\n\nAirdrop to our holders : Battle Retired Boyz\n\nDon't forget to fight each other, life is too short!",
+      "author": {
+        "name": "Battle Ready Boyz",
+        "website": "https://www.battlereadyboyz.io/",
+        "twitter": "https://twitter.com/BattleReadyBoyz",
+        "discord": "https://discord.gg/q4FQ4ukffB",
+        "medium": "https://medium.com/@battlereadyboyz/battle-ready-boyz-56a5eee494fa"
+      },
+      "address": "0xEB88A1655a052999DD36809F1990dCd98064975F",
+      "maxMintPerTx": 10,
+      "maxMintPerAddress": 100,
+      "totalSupply": 7777,
+      "cost": "399",
+      "memberCost": "379",
+      "whitelistCost": "349",
+      "foundersOnly": false,
+      "start": 1658353133000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false
+    },
+    {
       "id": 99,
       "slug": "ebisus-land",
       "imgNft": "/img/drops/vip/drop.webp",
@@ -3028,6 +3101,39 @@
       "whitelistCost": "425",
       "foundersOnly": false,
       "start": 1657303686000,
+      "end": null,
+      "referral": false,
+      "is1155": false,
+      "published": true,
+      "complete": false
+    },
+    {
+      "id": 89,
+      "slug": "apes-utopia",
+      "imgNft": "/img/drops/apes-utopia/drop.png",
+      "imgPreview": "/img/drops/apes-utopia/drop.png",
+      "imgAvatar": "/img/collections/apes-utopia/avatar.gif",
+      "imgBanner": "/img/collections/apes-utopia/banner.jpeg",
+      "title": "Apes Utopia",
+      "subtitle": "The Apes embark on a journey through the Kingdom of Utopia to set foot on the world! Apes Utopia is a collection of 2,222 NFTs with over 200 features built on the Cronos blockchain. Apes Utopia NFTs provide access to various benefits in our ecosystem. Apes Utopia owners can participate in special events such as NFT sweepstakes, surprise sweepstakes, giveaways and much more. Remember, all Apes Utopia is special - but some are particularly special.",
+      "description": "Welcome to ApesUtopia! Apes Utopia is a collection of 2,222 NFTs with over 200 features built on the Cronos blockchain. Our vision is to create a strong family-friendly brand with many benefits that can be enjoyed by everyone, especially our owners, in both the real and digital worlds.\nApes Utopia owners can access various benefits in our ecosystem.\n★ Owners can participate in special events such as NFT sweepstakes, surprise sweepstakes, giveaways and much more. There will be a weekly draw on Discord.\n\n★ In addition, our members with at least 10 ApesUtopia NFT will have special powers such as decision making and we will work to direct our project together.\n\n★Airdrop: Owners will receive a certain percentage of royalties every month.\n\n★ The BabyApesUtopia NFTs that ApesUtopia gave birth to in the world will be deposited in the wallets of the owners.\n\n★ Stake: Holders will start receiving $ATOPIA tokens in their wallets during their NFT holding period. With $ATOPIA token, they will have exclusive items in our store!\n\n★ Metaverse: Owners will enter the metaverse universe with a huge art gallery. We will also build plots to house ApesUtopia and its babies!",
+      "author": {
+        "name": "Apes Utopia",
+        "website": "https://www.apesutopia.com/",
+        "twitter": "https://twitter.com/ApesUtopia",
+        "discord": "https://discord.com/invite/CBmUVWusQQ",
+        "medium": "https://medium.com/@apesutopia",
+        "telegram": "https://t.me/+AvEkD1pZfdEzZDgx"
+      },
+      "address": "0xb4aCc139D99c743641D66FC8dA3026C1F4018d31",
+      "maxMintPerTx": 20,
+      "maxMintPerAddress": 100,
+      "totalSupply": 2222,
+      "cost": "450",
+      "memberCost": "420",
+      "whitelistCost": "399",
+      "foundersOnly": false,
+      "start": 1658360550000,
       "end": null,
       "referral": false,
       "is1155": false,
