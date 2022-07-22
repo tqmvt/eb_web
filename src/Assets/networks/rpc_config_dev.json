@@ -6289,7 +6289,7 @@
         "maxSupply": 10000,
         "website": "https://www.sleazyweasel.xyz/",
         "twitter": "https://twitter.com/sleazy_weasel",
-        "discord": "https://discord.gg/sleazyweasenft"
+        "discord": "https://discord.gg/sleazyweasel"
       }
     },
     {
@@ -6409,6 +6409,27 @@
         "twitter": "https://twitter.com/boarsgonewild",
         "discord": "https://discord.gg/gC9ZVKDYZY",
         "medium": "https://medium.com/@Crossbreeds/crossbreed-merger-a82680c81f96"
+      }
+    },
+    {
+      "name": "BTC CroArmy Miners",
+      "slug": "btc-cro-army-miners",
+      "multiToken": false,
+      "address": "0x963ebb384b39C720EEaD0B7094Eb0d55eCd40AB9",
+      "onChain": false,
+      "listable": true,
+      "metadata": {
+        "description": "BTC CroArmy Miners. This NFT represents ownership to several Antminer rentals. We are currently renting Antminers with the funds pooled with this collection. Details can be found in our discord community.  Earn / Mine / Learn about BTC in the CroArmy",
+        "verified": false,
+        "avatar": "/img/collections/btc-cro-army-miners/avatar.webp",
+        "card": "/img/collections/btc-cro-army-miners/card.webp",
+        "banner": "/img/collections/btc-cro-army-miners/banner.webp",
+        "maxSupply": 1000,
+        "website": "https://croarmy.io/",
+        "twitter": "https://twitter.com/croarmy_eth",
+        "discord": "https://discord.gg/croarmy",
+        "telegram": "https://t.me/CroArmy_ETH",
+        "medium": "https://croarmy.gitbook.io/croarmy/"
       }
     }
   ],
